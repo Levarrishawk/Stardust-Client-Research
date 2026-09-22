@@ -33,7 +33,8 @@ def records(archive: Path):
         if usize == 0:
             yield name, None
         else:
-            yield name, expand(kind, raw[payload_offset:payload_offset + csize], usize)
+            stored_size = usize if kind == 0 else csize
+            yield name, expand(kind, raw[payload_offset:payload_offset + stored_size], usize)
 
 
 def chunk(data: bytes, tag: bytes) -> bytes:

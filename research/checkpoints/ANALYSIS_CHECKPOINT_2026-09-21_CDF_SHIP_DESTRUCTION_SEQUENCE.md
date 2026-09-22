@@ -65,7 +65,7 @@ This is a sequence-owned sound layer, separate from VTHR engine state and DAMA s
 
 ### Optional SDOL / SDOE
 
-`FUN_006FD080` optionally enters `SDOL` and repeatedly parses `SDOE` records through `FUN_006FC720`. The SDOE parser reads three variable byte/string vectors; the enclosing runtime record is 44 bytes. The only occurrence in the effective 6,204-file CDF corpus is `client_shared_star_destroyer.cdf`: empty first string, `appearance/star_destroyer_baffles.apt` second string, empty third string. This confirms that at least the second field is an appearance reference; the optional first/third field meanings remain unresolved. The grammar, optionality, and corpus rarity are confirmed.
+`FUN_006FD080` optionally enters `SDOL` and repeatedly parses `SDOE` records through `FUN_006FC720`. The SDOE parser reads three variable byte/string vectors; the enclosing runtime record is 44 bytes. The only occurrence in the corrected effective 6,288-file CDF corpus is `client_shared_star_destroyer.cdf`: empty first string, `appearance/star_destroyer_baffles.apt` second string, empty third string. This confirms that at least the second field is an appearance reference; the optional first/third field meanings remain unresolved. The grammar, optionality, and corpus rarity are confirmed.
 
 ## Post-load preparation
 

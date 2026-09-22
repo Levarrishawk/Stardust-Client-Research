@@ -28,7 +28,8 @@ def records(path):
 
 def extract(record):
     name, _, usize, offset, kind, csize, raw = record
-    return name, expand(kind, raw[offset:offset+csize], usize)
+    stored_size = usize if kind == 0 else csize
+    return name, expand(kind, raw[offset:offset+stored_size], usize)
 
 def iff_tree(data, limit=160):
     out = []

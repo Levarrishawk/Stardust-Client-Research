@@ -2688,3 +2688,31 @@ page behavior or persistence. See
 | `0x00787710` | `detail_appearance_select_distance_detail_VA_00787710` | Distance selection plus adjacent availability fallback; confirmed broad behavior |
 | `0x00766700` | `indexed_detail_mesh_to_dpvs_model_VA_00766700` | Converts IDTL geometry through imported DPVS::MeshModel::create; confirmed |
 | `0x0079AA50` | `detail_appearance_template_build_test_model_VA_0079AA50` | Builds TEST model or bound fallback; confirmed |
+
+# Appearance-fetch fallback names added 2026-09-22
+
+| Address | Stable provisional name | Evidence |
+|---|---|---|
+| `0x00B260F0` | `appearance_template_fetch_or_default_VA_00B260F0` | Replaces null/empty/nonexistent path with defaultappearance.apt before fetch; confirmed by disassembly/decompilation |
+| `0x00B262D0` | `appearance_template_default_path_VA_00B262D0` | Returns the default-appearance APT string; confirmed |
+| `0x00A93030` | `tree_file_exists_normalized_VA_00A93030` | Normalizes logical path, then tests mounted search nodes; confirmed |
+| `0x00A92FD0` | `tree_file_find_existing_node_VA_00A92FD0` | Priority-ordered search-node existence walk; confirmed |
+| `0x00A94210` | `iff_open_path_allow_missing_VA_00A94210` | Calls TreeFile::open with caller's allow-missing flag and initializes IFF reader; confirmed |
+| `0x00A996A0` | `search_tree_exists_VA_00A996A0` | TREE-node existence virtual delegates to CRC/path record lookup; confirmed |
+
+# CLEF/MKAT loader names added 2026-09-22
+
+| Address | Stable provisional name | Evidence |
+|---|---|---|
+| `0x006984E0` | `client_effect_read_CLEF_dispatch_VA_006984E0` | Dispatches CLEF/0001–0003; confirmed |
+| `0x00698560` | `client_effect_read_CLEF_v0001_VA_00698560` | Reads CPAP, PSND, CAMS, CLGT, FFBK leaves; confirmed |
+| `0x00698B70` | `client_effect_read_CLEF_v0002_VA_00698B70` | Version 0002 reader with extra CPAP byte; confirmed |
+| `0x00699100` | `client_effect_read_CLEF_v0003_VA_00699100` | Version 0003 reader with extra CPAP fields; confirmed |
+| `0x005F40D0` | `client_effect_template_fetch_cached_VA_005F40D0` | Cache/open path, warning/null on absent top-level CEF; confirmed |
+| `0x00699860` | `client_effect_template_add_ref_VA_00699860` | Increments template reference at +0x04; confirmed |
+| `0x00417320` | `sound_template_fetch_cached_VA_00417320` | Cache/open allow-missing and null return for absent sound template; confirmed |
+| `0x007975D0` | `marker_appearance_factory_VA_007975D0` | Allocates MKAT appearance and calls constructor; confirmed |
+| `0x00797630` | `marker_appearance_construct_and_dispatch_VA_00797630` | Initializes MKAT and dispatches v0000 loader; confirmed |
+| `0x00797740` | `marker_appearance_read_v0000_INFO_VA_00797740` | Reads shader path and numeric marker fields; confirmed |
+
+Open field-level semantics from this cluster: CLEF `CAMS` four scalars, `CLGT` byte/scalar record, `FFBK` two scalars, and downstream behavior of a null `PSND` template handle. The observed file/path contracts are in the 2026-09-22 CLEF and MKAT checkpoints; no semantics are assigned merely from the tag names.

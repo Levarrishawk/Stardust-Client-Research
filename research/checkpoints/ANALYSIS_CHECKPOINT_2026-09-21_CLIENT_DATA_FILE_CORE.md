@@ -55,19 +55,19 @@ This is direct evidence that correct original animation behavior depends on CDF 
 
 ## Corpus-wide effective-schema inventory
 
-An overlay-aware scan of the configured TRE set found **6,204 effective `.cdf` paths**: 6,200 valid `CLDF/0000` files and four zero-byte overlay tombstones. This establishes both the scale of the compatibility requirement and the fact that only version `0000` is active in the installed corpus.
+Correction (2026-09-22): the original scan used the compressed-size field to slice kind-0 TRE records. That omitted 84 effective live CDF paths and chose a lower-priority duplicate for two others. The corrected configured-overlay scan finds **6,288 effective `.cdf` paths**: 6,284 valid `CLDF/0000` files and four zero-byte overlay tombstones. The added files contain 75 `ASND`, five `CEFT`, and three `HOBJ` records; one valid CDF has no child tag. This establishes both the scale of the compatibility requirement and the fact that only version `0000` is active in the installed live corpus. See `ANALYSIS_CHECKPOINT_2026-09-22_TRE_LEGACY_TOOL_REAUDIT.md`.
 
 Most prevalent records/forms are:
 
 | Tag/form | Files | Instances | Interpretation |
 |---|---:|---:|---|
-| `CEFT` | 4,018 | 46,961 | client-effect references |
+| `CEFT` | 4,023 | 46,966 | client-effect references |
 | `CSND` | 4,415 | 15,732 | client sound references |
 | `FORM/WEAR` | 3,734 | 12,570 | wearable definitions |
 | `MESH` | 3,734 | 17,047 | wearable/mesh references |
 | `CSSI` | 3,243 | 52,040 | repeated client presentation records; exact expansion still provisional |
 | `WCSI` | 3,142 | 14,273 | wearable-associated records; exact expansion still provisional |
-| `ASND` | 941 | 1,928 | ambient/attached sound |
+| `ASND` | 1,016 | 2,003 | ambient/attached sound |
 | `CHLD` | 615 | 5,985 | child object records |
 | `APPR` | 364 | 1,350 | appearance references |
 | `FORM/DAMA` | 300 | 1,225 | damage-state groups |
@@ -76,9 +76,9 @@ Most prevalent records/forms are:
 | `FORM/VTHR` | 107 | 403 | vehicle-thruster groups |
 | `EVNT` | 18 | 522 | symbolic event/resource mappings |
 
-Other confirmed corpus tags include `CHL2`, `PSOR`, `HOBJ`, `HARD`, `LOBJ`, `INTS`, `ONOF`, `ENGS`, `GLOW`, `TURR`, `VSND`, `HPNT`, `MASP`, `WSCL`, `VGEF`, `BANR`, `LIFT`, `FLAG`, `DSEF`, `WING`, `VLEF`, and several rare specialized forms. The generated `effective_cdf_inventory.csv` preserves path, winning archive, priority, byte count, version, and per-file tag counts for targeted follow-up.
+Other confirmed corpus tags include `CHL2`, `PSOR`, `HOBJ`, `HARD`, `LOBJ`, `INTS`, `ONOF`, `ENGS`, `GLOW`, `TURR`, `VSND`, `HPNT`, `MASP`, `WSCL`, `VGEF`, `BANR`, `LIFT`, `FLAG`, `DSEF`, `WING`, `VLEF`, and several rare specialized forms. The corrected `local-private/generated-evidence/cdf_tags_corrected_2026-09-22.csv` preserves path, winning archive, priority, byte count, version, and per-file tag counts for targeted follow-up. The earlier `effective_cdf_inventory.csv` is superseded for aggregate counts.
 
-Overlay provenance is highly concentrated: 4,849 winners come from `mtg_patch_012_configurable_01.tre`, 1,307 from `mtg_patch_017.tre`, with smaller planet/Stardust/base contributions. A replacement must therefore reproduce configured overlay resolution rather than assuming base-game CDFs.
+Overlay provenance is highly concentrated: 4,930 winners come from `mtg_patch_012_configurable_01.tre`, 1,307 from `mtg_patch_017.tre`, with smaller planet/Stardust contributions. A replacement must therefore reproduce configured overlay resolution rather than assuming base-game CDFs.
 
 ### Common payload shapes
 

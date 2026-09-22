@@ -47,7 +47,8 @@ for _, aname in sorted(configured, reverse=True):
         nend=names.find(b"\0",noff); name=names[noff:nend].decode("ascii","replace").lower().replace("\\","/")
         if not name.endswith(".cdf") or name in seen: continue
         seen.add(name)
-        try: data=expand(kind,raw[poff:poff+csize],usize)
+        stored_size = usize if kind == 0 else csize
+        try: data=expand(kind,raw[poff:poff+stored_size],usize)
         except Exception: continue
         for payload in walk(data,0,len(data)):
             fields=[]; p=0

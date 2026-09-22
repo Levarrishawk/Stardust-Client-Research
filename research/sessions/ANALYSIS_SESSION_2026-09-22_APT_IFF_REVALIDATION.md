@@ -1,0 +1,7 @@
+# Analysis session: APT/IFF overlay revalidation — 2026-09-22
+
+This single block revisited APT redirects and IFF overlay entries after the kind-0 TRE length correction. The corrected 48-archive inventory contains 6,153 valid live APT redirects, two genuine zero-payload APT entries, and no APT-to-APT target. Three redirects point to targets unavailable in the configured archive overlay. The `appearance/no_render.apt` → `appearance/no_render.iff`/`NRND` pair is valid; the preceding DTLA session's stale wording about an absent no-render redirect is corrected.
+
+The size-field issue affects 939 effective APT and 19 effective IFF entries that are live despite compressed size zero. The complete evidence, target list, confidence limits, and reproduction command are in [the checkpoint](../checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_APT_IFF_OVERLAY_REVALIDATION.md). A reproducible `tools/python/apt_redirect_inventory.py` is included; its generated CSV is private evidence, not a tracked asset.
+
+No executable function or packet handler was newly assigned in this block. Planning estimates stay at 96% implementation-grade / 90% comprehensive; stable-address and packet counts stay 2,198 and 345/0. The next bounded analysis should trace missing-target behavior at the appearance fetcher and validate any loose-file fallback before specifying replacement error semantics. No replacement-client construction or Git commit was performed.

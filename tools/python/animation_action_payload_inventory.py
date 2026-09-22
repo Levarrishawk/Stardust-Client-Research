@@ -30,7 +30,8 @@ def archive_records(path):
         name = names[name_offset:end].decode("utf-8", "replace").lower().replace("\\", "/")
         if not name.endswith(".ash"):
             continue
-        result[name] = None if packed == 0 else expand(kind, raw[position:position + packed], unpacked)
+        stored_size = unpacked if kind == 0 else packed
+        result[name] = None if unpacked == 0 else expand(kind, raw[position:position + stored_size], unpacked)
     return result
 
 

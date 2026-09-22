@@ -180,7 +180,7 @@ Per-texture compiler `0x62A0E570` compiles D3DSAMP 10 (maximum anisotropy), 1/2/
 
 ## Effective newer-version assets
 
-A configuration-aware scan processed all 48 configured TRE archives in descending priority, honoring tombstones. It resolved 23,393 winning `.sht/.eft` paths: 23,286 live and 107 tombstones, with zero parse errors. Twenty-seven live winners contain forms beyond the traced dispatchers: 24 SHT records from priority-47 `mtg_patch_018.tre` and three EFT records from priority-40 `mtg_patch_011_files_01.tre`. Raw IMPL 0008 assets are shadowed, but IMPL 0009/PASS 0010 assets remain visible.
+A corrected configuration-aware scan processed all 48 configured TRE archives in descending priority, honoring true zero-size masks. It resolved 23,393 winning `.sht/.eft` paths: 23,306 live and 87 masks, with zero parse errors. The prior 23,286/107 split misclassified 20 live uncompressed SHT records. Twenty-seven live winners contain forms beyond the traced dispatchers: 24 SHT records from priority-47 `mtg_patch_018.tre` and three EFT records from priority-40 `mtg_patch_011_files_01.tre`. Raw IMPL 0008 assets are shadowed, but IMPL 0009/PASS 0010 assets remain visible.
 
 PASS 0010 and IMPL 0009 are therefore **Confirmed runtime-namespace winners**, not historical residue. Whether every asset is requested in a normal session remains Unknown. Full original-asset compatibility nonetheless requires decoding them.
 

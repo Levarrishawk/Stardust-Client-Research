@@ -32,7 +32,8 @@ def members(path):
         if not name.endswith(".cdf"):
             continue
         try:
-            yield name, expand(kind, raw[poff : poff + csize], usize)
+            stored_size = usize if kind == 0 else csize
+            yield name, expand(kind, raw[poff : poff + stored_size], usize)
         except (ValueError, zlib.error):
             pass
 

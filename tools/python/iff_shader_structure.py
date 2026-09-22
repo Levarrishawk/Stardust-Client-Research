@@ -21,9 +21,10 @@ def fetch(archive, name):
         end = names.find(b"\0", noff)
         got = names[noff:end].decode(errors="replace").lower().replace("\\", "/")
         if got == want:
-            if not csize:
+            if not usize:
                 raise ValueError("tombstone")
-            return expand(kind, raw[pos:pos+csize], usize)
+            stored_size = usize if kind == 0 else csize
+            return expand(kind, raw[pos:pos+stored_size], usize)
     raise KeyError(name)
 
 def tree(data):

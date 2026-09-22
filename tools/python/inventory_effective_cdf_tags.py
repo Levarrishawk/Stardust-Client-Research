@@ -29,7 +29,8 @@ def archive_records(path: pathlib.Path):
         name = names[name_offset:end].decode("ascii", "replace").lower().replace("\\", "/")
         if name.endswith(".cdf"):
             try:
-                payload = expand(kind, raw[payload_offset : payload_offset + csize], usize)
+                stored_size = usize if kind == 0 else csize
+                payload = expand(kind, raw[payload_offset : payload_offset + stored_size], usize)
             except (ValueError, zlib.error):
                 continue
             yield name, payload

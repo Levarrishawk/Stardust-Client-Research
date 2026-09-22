@@ -31,7 +31,8 @@ def records(path):
         name = names[name_offset:end].decode("utf-8", "replace").lower().replace("\\", "/")
         if not name.endswith(".dds"):
             continue
-        result[name] = None if packed == 0 else (raw, position, packed, unpacked, kind)
+        stored_size = unpacked if kind == 0 else packed
+        result[name] = None if unpacked == 0 else (raw, position, stored_size, unpacked, kind)
     return result
 
 

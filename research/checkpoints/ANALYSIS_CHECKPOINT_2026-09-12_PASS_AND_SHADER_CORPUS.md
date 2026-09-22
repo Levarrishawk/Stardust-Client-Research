@@ -16,6 +16,8 @@ Exact state labels are not being guessed. The wire widths, order, object offsets
 
 ## Installed raw corpus
 
+Correction (2026-09-22): the counts below are historical and used compressed-size-zero as an empty-record test. The corrected inventory has 37,842 live SHT, 87 masks, 467 live EFT, SSHT/0000 35,293, SSHT/0001 2,395, and PASS/0009 1,703. Other PASS 0008/0007 and IMPL/PASS 0010 counts here are unchanged; see the appearance-fetch fallback checkpoint. The executable PASS layout conclusions are unaffected.
+
 - 36,686 live SHT and 1,243 SHT tombstones.
 - 467 live EFT.
 - SSHT 0000: 34,302; SSHT 0001: 2,266.

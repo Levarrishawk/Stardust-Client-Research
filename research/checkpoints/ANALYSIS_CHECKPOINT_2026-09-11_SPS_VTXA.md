@@ -34,7 +34,7 @@ Of 41,016 raw installed MSH occurrences:
 - 29,025 are MESH 0005 / SPS 0001 / VTXA 0003;
 - 11,814 are MESH 0004 / SPS 0001 / VTXA 0003;
 - six are MESH 0003 / SPS 0000 / VTXA 0002;
-- 171 require anomaly, tombstone or alternate-structure review.
+- 171 required anomaly, tombstone or alternate-structure review at this historical checkpoint. Correction (2026-09-22): 106 are live uncompressed MESH/0005/SPS/0001/VTXA/0003 records; only 65 are true zero-payload masks. See `ANALYSIS_CHECKPOINT_2026-09-22_APPEARANCE_FETCH_FALLBACK.md`.
 
 `appearance/defaultappearance.msh` independently validates MESH 0003, SPS 0000, one external shader NAME, primitive type ID 9, VTXA 0002, and indexed geometry.
 

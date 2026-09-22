@@ -54,9 +54,10 @@ def main(root, output):
             end=names.find(b"\0", noff); name=names[noff:end].decode("utf-8", "replace")
             ext=Path(name).suffix.lower()
             if ext not in (".sht", ".eft"): continue
-            if csize == 0: ext_counts[(ext,"tombstone")]+=1; continue
+            if usize == 0: ext_counts[(ext,"tombstone")]+=1; continue
             try:
-                data=expand(kind, raw[pos:pos+csize], usize); forms, seen=scan_iff(data)
+                stored_size=usize if kind == 0 else csize
+                data=expand(kind, raw[pos:pos+stored_size], usize); forms, seen=scan_iff(data)
                 ext_counts[(ext,"live")]+=1; tags.update(seen)
                 for f,v in forms: form_counts[(ext,f,v)]+=1
                 rows.append(dict(archive=archive.name,name=name,ext=ext,forms=";".join(f"{f}/{v}" for f,v in forms),status="live"))

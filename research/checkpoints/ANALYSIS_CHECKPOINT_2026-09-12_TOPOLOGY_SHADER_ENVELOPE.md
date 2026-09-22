@@ -6,7 +6,7 @@ SHA-256: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`
 
 ## Outcome
 
-This block closes the complete static-mesh topology enum, establishes SIDX as view-dependent index ordering, traces external SHT references through EFCT/IMPL/PASS selection, and resolves every one of the 171 mesh-corpus anomalies as an archive tombstone rather than live geometry.
+This block closes the complete static-mesh topology enum, establishes SIDX as view-dependent index ordering, and traces external SHT references through EFCT/IMPL/PASS selection. Its original claim that all 171 mesh-corpus anomalies were tombstones was later disproven by the corrected kind-0 TRE size rule; see the correction below.
 
 ## Confirmed topology
 
@@ -34,7 +34,7 @@ Missing external resources use explicit `shader/defaultshader.sht` and `effect/d
 
 ## Corpus anomaly closure
 
-All 171 prior anomalies have zero payload size and are SearchTree masks: 88 in `data_sku1_00.tre`, 11 in `data_sku1_06.tre`, seven in `data_sku1_07.tre`, and 65 in `mtg_patch_004_appearance_04.tre`. Some retain nonzero uncompressed-size metadata. No alternate live MESH/SPS/VTXA tuple remains.
+Correction (2026-09-22): only the 65 records in `mtg_patch_004_appearance_04.tre` have zero uncompressed size and are SearchTree masks. The 88/11/7 SKU records are 106 **live**, uncompressed `MESH/0005 / SPS/0001 / VTXA/0003` assets with `csize=0` and `usize>0`. The corrected all-archive inventory returns 29,131 such MESH/0005 tuples, 11,814 MESH/0004 tuples, six legacy tuples, 65 true masks, and zero extraction errors. The topology and SIDX code findings of this historical checkpoint are unaffected. See `ANALYSIS_CHECKPOINT_2026-09-22_APPEARANCE_FETCH_FALLBACK.md`.
 
 ## Progress
 

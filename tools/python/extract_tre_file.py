@@ -28,7 +28,8 @@ def find_member(archive: Path, wanted: str) -> bytes | None:
         end = names.find(b"\0", name_offset)
         name = names[name_offset:end].decode("ascii", "replace").lower().replace("\\", "/")
         if name == wanted:
-            return expand(kind, raw[payload_offset:payload_offset + csize], usize)
+            stored_size = usize if kind == 0 else csize
+            return expand(kind, raw[payload_offset:payload_offset + stored_size], usize)
     return None
 
 

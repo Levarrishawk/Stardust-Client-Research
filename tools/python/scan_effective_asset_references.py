@@ -24,7 +24,8 @@ def records(path: Path):
         _, usize, pos, kind, csize, noff = struct.unpack_from("<6I", recs, i * 24)
         end = names.find(b"\0", noff)
         name = names[noff:end].decode("utf-8", "replace").lower().replace("\\", "/")
-        data = None if csize == 0 else expand(kind, raw[pos:pos+csize], usize)
+        stored_size = usize if kind == 0 else csize
+        data = None if usize == 0 else expand(kind, raw[pos:pos+stored_size], usize)
         yield name, data
 
 def main(root: Path, cfg: Path, needles_csv: Path, output: Path):

@@ -716,13 +716,13 @@ Raw disassembly at `0x0076F890` establishes the complete twelve-entry SPS topolo
 
 Shader tracing now reaches the material/effect/pass boundary. SHT fetch is cached with `shader/defaultshader.sht` fallback and registry-based outer-tag construction. EFT fetch is cached with `effect/defaulteffect.eft` fallback. EFCT accepts 0000/0001 and selects the first supported inline or NAME implementation from its U8 count. IMPL supports 0000-0007; later forms introduce SCAP and OPTN gates. Each implementation owns counted PASS records, whose dispatcher supports 0000-0009. Exact PASS state/program fields remain intentionally open.
 
-The detailed corpus auditor reclassified all 171 formerly unresolved MSH occurrences as zero-payload SearchTree masks. The split is 88/11/7 across `data_sku1_00/06/07.tre` and 65 in `mtg_patch_004_appearance_04.tre`. The SKU masks often retain nonzero uncompressed-size metadata, so zero compressed/stored payload size is the correct mask discriminator. No live alternate mesh schema remains in the installed corpus.
+Historical finding, corrected 2026-09-22: the detailed corpus auditor originally classified all 171 unresolved MSH occurrences as masks. That was wrong because it used compressed size for kind-0 records. The 88/11/7 SKU records are live uncompressed meshes; only the 65 `mtg_patch_004_appearance_04.tre` records are true masks. See the correction at the end of this log.
 
 ### 2026-09-12 — PASS layout and shader corpus
 
 All ten PASS loaders at `0x0075E940` through `0x007619D0` were exported. PASS 0009 explicitly reads one child-stage count, 23 additional U8 states, and eight U32 states/tags into stable runtime offsets through `+0x7C`. It then loads `PFFP` or `PVSH`, followed by `PPSH` or repeated texture stages. PFFP supports versions 0000/0001. Older PASS versions are additive subsets sharing the same constructor defaults.
 
-Mechanical scanning covered 36,686 live SHT, 1,243 SHT tombstones, and 467 live EFT with no framing/decompression failures. SSHT is 34,302 version 0000 and 2,266 version 0001; EFCT is four version 0000 and 463 version 0001. PASS 0008/0009 dominate the embedded live forms.
+Historical count, corrected 2026-09-22: mechanical scanning originally reported 36,686 live SHT and 1,243 SHT masks. The corrected values are 37,842 live SHT and 87 masks, with zero framing/decompression failures. SSHT is 35,293 version 0000 and 2,395 version 0001; EFCT remains four version 0000 and 463 version 0001. PASS 0008/0009 dominate the embedded live forms.
 
 The scan also found 108 PASS 0010 and 82 IMPL 0008/0009 raw forms in later patch assets. Main executable dispatch is demonstrably limited to PASS 0009 and IMPL 0007. Searching `Stardust.exe` for the later version immediates found `0010` only in an unrelated `EMTR` particle-emitter version dispatcher at `0x007B9B90`; it is not evidence of shader support. Runtime reachability/effective overlay analysis remains required. This mismatch is now a first-class original-asset compatibility risk.
 
@@ -755,7 +755,7 @@ Startup constructs a SharedFoundation setup record whose config filename is `swg
 
 ## 2026-09-12 PASS render-state and effective-overlay continuation
 
-Backend `0x62A0B340` maps PASS fields to literal D3D9 states covering shade, depth, blend, alpha test, color writes, and complete one-/two-sided stencil behavior. `0x62A0E570` compiles max-anisotropy, address U/V/W and mip/min/mag sampler states. A corrected overlay scanner honored all 48 configured TRE priorities and tombstones: 23,393 winning SHT/EFT names, 23,286 live, 107 tombstones, zero parse errors. Twenty-seven live winners use IMPL 0009/PASS 0010; raw IMPL 0008 records are shadowed. Namespace visibility is confirmed; session-level requests remain unproven.
+Backend `0x62A0B340` maps PASS fields to literal D3D9 states covering shade, depth, blend, alpha test, color writes, and complete one-/two-sided stencil behavior. `0x62A0E570` compiles max-anisotropy, address U/V/W and mip/min/mag sampler states. A later kind-0 size correction changes the 48-archive overlay split to 23,393 winning SHT/EFT names, 23,306 live, 87 true masks, zero parse errors. Twenty-seven live winners use IMPL 0009/PASS 0010; raw IMPL 0008 records are shadowed. Namespace visibility is confirmed; session-level requests remain unproven.
 
 ## 2026-09-12 effective PASS 0010 / IMPL 0009 grammar and generated vertex variants
 
@@ -944,3 +944,9 @@ Replacement consequence: publish typed terrain-generation channels and use engin
 - Three strings are start appearance, end appearance and optional sound. Corpus positions confirm `.prt` start/end naming; only tractor beam supplies the third `.snd`.
 - V0000 has 16 F32 values; v0001 has 16 F32, two U32 attachment-transform flags and one discarded legacy byte; v0002 has 19 F32 and the two flags. Runtime tests at `0x007AB412` and `0x007AB4AA` gate full transform/orientation handling for start/end attachment objects. Every deployed legacy byte is zero. Unknown scalar labels remain ordered typed fields.
 - `0x007A9BE0` constructs a local shader primitive with five fixed branch records. Rendering samples template channels and allocates dynamic geometry proportional to active branches.
+
+# 2026-09-22 — appearance missing-path fallback and raw MSH correction
+
+- DTLA lazy child fetch `0x00799810` uses wrapper `0x00B260F0`: if the logical child path is absent/masked, `0x00A93030` detects that and the wrapper substitutes `appearance/defaultappearance.apt` before strict fetch. A live APT with an unavailable NAME target is not protected by this first-level substitution.
+- Loose-file `SearchAbsolute` is mounted above the configured TRE priority range; installed CFG files declare no `searchPath` or `searchTOC` entries.
+- The earlier assertion that all 171 anomalous raw `.msh` records were masks was false. Corrected kind-0 payload sizing classifies 106 as live MESH/0005/SPS/0001/VTXA/0003 and 65 as true zero-size masks. Corrected all-archive counts: 29,131 / 11,814 / six live tuples, plus 65 masks, with zero extraction errors.

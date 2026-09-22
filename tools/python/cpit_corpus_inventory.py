@@ -21,8 +21,9 @@ def records(path):
         name = names[noff:end].decode("ascii", "replace").replace("\\", "/").lower()
         payload = None
         if name.startswith("cockpit/") and name.endswith(".iff"):
-            payload = b"" if csize == 0 else expand(kind, raw[pos:pos+csize], usize)
-        yield name, csize != 0, payload
+            stored_size = usize if kind == 0 else csize
+            payload = b"" if usize == 0 else expand(kind, raw[pos:pos+stored_size], usize)
+        yield name, usize != 0, payload
 
 def children(data, start, end):
     p = start

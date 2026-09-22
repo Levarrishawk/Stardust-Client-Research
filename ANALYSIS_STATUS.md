@@ -9,6 +9,42 @@ This is a heuristic planning estimate, not a mechanically measurable completion 
 - Overall implementation-grade, replacement-relevant behavioral/specification research: **96%**.
 - Expanded comprehensive whole-client ledger: **90%** (see `COMPREHENSIVE_ANALYSIS_LEDGER.md`).
 
+The one-hour 2026-09-22 continuation closed 11 bounded analysis blocks. A
+repository-wide TRE reader re-audit corrected 15 additional legacy scripts
+after the earlier five targeted fixes. Its major corpus correction is **6,288
+effective CDF paths / 6,284 valid / four masks** (84 live files omitted by the
+old reader). The configured CLEF overlay is now 1,145 valid files plus one
+mask, all in executable-supported versions 0001–0003, with 1,889 recognized
+direct child references (1,877 live, 12 absent). Executable analysis closed
+the CLEF versioned loader, top-level template cache/missing-path behavior,
+and PSND null-template boundary. All 15 recovered MKAT marker files have live
+shader references; 53 recovered TGA files are one-row terrain color ramps.
+The stable-name registry is **2,214 unique addresses / zero duplicates**;
+the server packet matrix remains **345 documented / zero reachable gaps**.
+Rounded estimates stay unchanged. See
+`research/sessions/ANALYSIS_SESSION_2026-09-22_ONE_HOUR_TRE_CLEF.md`.
+
+The prior targeted TRE kind-0 tooling audit corrected five extractors.
+It reverses the earlier CPIT corpus claim that 18 named cockpit frames were
+absent/masked: all 25 nonempty frame APT paths and their immediate targets are
+present; the other 11 profiles have empty frame names. Six effective STF files
+previously vulnerable to the same size test are valid empty tables. Corrected
+sound and forward-shader reference scans produced unchanged results. See
+`research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_TRE_SIZE_TOOL_AUDIT.md`.
+
+The latest APT/IFF overlay revalidation corrects archive inventory semantics
+without changing either rounded completion estimate, the 2,198-address
+registry, or the 345-message server packet matrix. See
+`research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_APT_IFF_OVERLAY_REVALIDATION.md`.
+
+The subsequent appearance-fetch trace confirms that missing direct DTLA child
+paths are replaced by `appearance/defaultappearance.apt` at the fetch wrapper,
+whereas missing targets within live APTs are recursively fetched without that
+substitution. Loose files can outrank TREE archives in the current VFS mount
+order. Six stable names bring the registry to **2,204 unique addresses / zero
+duplicates**. Rounded estimates and packet matrix remain unchanged. See
+`research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_APPEARANCE_FETCH_FALLBACK.md`.
+
 ## 2026-09-21 reconciliation snapshot
 
 - The current Stardust server packet-source inventory is fully classified in the matrix: **345 documented / 0 reachable gaps**. This is protocol-inventory closure, not a claim that all client-side optional behavior is understood.
@@ -92,7 +128,7 @@ The MESH-boundary continuation recovered versions 0002-0005, legacy versus APPR-
 
 The SPS/VTXA block recovered shader grouping, primitive/index envelopes, vertex declaration families and the installed MSH version profile. `ANALYSIS_CHECKPOINT_2026-09-11_SPS_VTXA.md` is the current checkpoint.
 
-The topology/shader-envelope block closed all twelve primitive topology IDs, proved SIDX view-selection behavior, traced SHT into EFCT/IMPL/PASS version dispatch, and classified all 171 mesh anomalies as tombstones. `ANALYSIS_CHECKPOINT_2026-09-12_TOPOLOGY_SHADER_ENVELOPE.md` is the current checkpoint.
+The topology/shader-envelope block closed all twelve primitive topology IDs, proved SIDX view-selection behavior, and traced SHT into EFCT/IMPL/PASS version dispatch. Its contemporaneous classification of all 171 mesh anomalies as tombstones was later corrected: 106 are live uncompressed SKU meshes and 65 are true masks. See the 2026-09-22 appearance-fetch checkpoint and the corrected historical topology checkpoint.
 
 The PASS/corpus block recovered the PASS 0009 serialized superset and PFFP/PVSH/PPSH/texture-stage branches, inventoried every installed SHT/EFT occurrence, and exposed later-patch PASS 0010 and IMPL 0008/0009 compatibility risk. `ANALYSIS_CHECKPOINT_2026-09-12_PASS_AND_SHADER_CORPUS.md` is the current checkpoint.
 
@@ -366,7 +402,7 @@ The FreeChase camera profile's four residual chunks are behaviorally closed. `FR
 
 Space-camera ownership is now separated from FreeChase behavior. CockpitCamera consumes CPIT profiles, owns an attached cockpit-frame presentation object, and switches cockpit/exterior stages; ShipTurretCamera resolves stations 4..11 to turret mounts, maintains twenty zoom distances and collision-shortens the desired offset. Both retain transient targets and share only the base camera/render boundary. See `ANALYSIS_CHECKPOINT_2026-09-21_SPACE_CAMERA_OWNERSHIP.md`.
 
-The configured CPIT corpus is validated: 36/36 effective profiles are version 0000, all parse, all zoom arrays are ordered, and ten contain hyperspace offsets. Empty or tombstoned cockpit frames are a common supported state (29/36), so a replacement must keep camera/ship behavior operational without cockpit geometry. See `ANALYSIS_CHECKPOINT_2026-09-21_CPIT_CORPUS_VALIDATION.md` and `cpit_corpus_inventory.csv`.
+The configured CPIT corpus is validated: 36/36 effective profiles are version 0000, all parse, all zoom arrays are ordered, and ten contain hyperspace offsets. Correction (2026-09-22): 11 profiles have an empty frame path; all 25 nonempty frame APT paths and their immediate redirect targets are present. The earlier 29/36 empty-or-tombstoned claim misclassified 18 live kind-0 APT records. The runtime must still tolerate an absent frame object, but that is not evidence of intentional asset masks in this corpus. See the corrected CPIT checkpoint and `cpit_corpus_inventory_corrected_2026-09-22.csv`.
 
 The effective input command corpus is now exhaustively enumerated: 436 command
 definitions contain 525 populated action records and 120 distinct numeric
@@ -482,5 +518,5 @@ are confirmed by DPVS imports. See
 `ANALYSIS_CHECKPOINT_2026-09-22_DTLA_DETAIL_APPEARANCE.md`.
 
 Rounded estimates remain **96% implementation-grade / 90% comprehensive**;
-the stable registry contains **2,198 distinct addresses / 0 duplicates** and
+the stable registry then contained **2,198 distinct addresses / 0 duplicates** and
 the packet matrix remains **345 documented / 0 reachable gaps**.

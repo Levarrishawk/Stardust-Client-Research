@@ -72,13 +72,13 @@ def main(root: str, output: str):
             row = dict(archive=archive.name, record=i, name=name, usize=usize, csize=csize,
                        compression=kind, mesh="", sps="", vtxa="", status="", detail="")
             try:
-                # SearchTree treats a zero stored/compressed payload size as a
-                # mask record. Some stock SKU archives retain a historical
-                # uncompressed-size value even though csize is zero.
-                if csize == 0:
+                # SearchTree tests the uncompressed-size field. For kind 0,
+                # payload length is usize even if csize is zero.
+                if usize == 0:
                     row["status"] = "tombstone"
                 else:
-                    data = expand(kind, raw[pos:pos+csize], usize)
+                    stored_size = usize if kind == 0 else csize
+                    data = expand(kind, raw[pos:pos+stored_size], usize)
                     schema, tags = inventory(data)
                     row["mesh"], row["sps"], row["vtxa"] = schema
                     row["detail"] = tags

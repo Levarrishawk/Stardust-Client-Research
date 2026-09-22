@@ -19,7 +19,7 @@ Scope: one bounded original-asset block after the LEFX checkpoint. Static only. 
 
 The [DTLA checkpoint](../checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_DTLA_DETAIL_APPEARANCE.md) contains executable addresses, corpus counts, structural schema, confidence and replacement contract. The reproducible [corpus inventory script](../../tools/python/dtla_corpus_inventory.py) reads the configured overlay and writes its detailed CSV only to an ignored local-private path. The curated documents and stable-name registry were updated; no raw assets or bulk decompiler output were added to Git.
 
-Confirmed: version acceptance, field widths, ID mapping, sorted distance bands, child cap/lazy creation, adjacent availability fallback, IDTL geometry, DPVS TEST/WRIT model roles and corpus counts. Strongly inferred: engine-neutral detail-appearance/visibility abstraction. Unknown: RADR and flag semantics; selected-child failure behavior for the absent no-render redirect and missing mesh paths; operational behavior of the one non-DTLA path.
+Confirmed: version acceptance, field widths, ID mapping, sorted distance bands, child cap/lazy creation, adjacent availability fallback, IDTL geometry, DPVS TEST/WRIT model roles and corpus counts. Strongly inferred: engine-neutral detail-appearance/visibility abstraction. Unknown: RADR and flag semantics; selected-child failure behavior for missing mesh paths; operational behavior of the one non-DTLA path. The no-render redirect is present and valid in the effective overlay.
 
 ## Current position and next bounded question
 

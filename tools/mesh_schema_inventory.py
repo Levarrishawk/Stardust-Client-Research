@@ -45,7 +45,8 @@ def main(root):
             if not names[noff:end].lower().endswith(b".msh"): continue
             total += 1
             try:
-                data = expand(kind, raw[pos:pos+csize], usize)
+                stored_size = usize if kind == 0 else csize
+                data = expand(kind, raw[pos:pos+stored_size], usize)
                 f = forms(data)
                 key = tuple(v.decode("ascii", "replace") for v in (f.get(b"MESH",[b""])[0], f.get(b"SPS ",[b""])[0], f.get(b"VTXA",[b""])[0]))
                 counts[key] += 1

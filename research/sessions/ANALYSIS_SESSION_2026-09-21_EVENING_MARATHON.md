@@ -35,8 +35,10 @@ inventory of original input assets.
     precedence and appearance-relative application.
 11. **Space-camera ownership** — CPIT grammar/cockpit frame lifecycle and turret
     station/mount/zoom/collision behavior.
-12. **CPIT corpus** — all 36 effective profiles validated; missing/tombstoned
-    cockpit geometry proven to be normal fallback state.
+12. **CPIT corpus** — all 36 effective profiles validated; the runtime has a
+    missing-frame fallback. Correction (2026-09-22): 11 profiles have an empty
+    frame path, while all 25 nonempty frame APTs and immediate targets exist;
+    the original claim of 18 masked frame assets was a TRE extraction error.
 13. **Input command/action corpus** — all 436 commands, 1,744 slots, 525
     populated actions and 120 numeric interpreter IDs inventoried.
 14. **Input physical-binding corpus** — all 14 effective maps and 1,939 bindings

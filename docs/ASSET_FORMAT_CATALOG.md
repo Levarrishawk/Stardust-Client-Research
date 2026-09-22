@@ -27,9 +27,9 @@ Confirmed supported versions are `0002` through `0005`. Versions 0002/0003 conta
 
 SPS begins with `CNT ` and repeated shader groups. Shader groups use either external `NAME` or inline shader templates, then `INFO` primitive count. SPS 0001 primitive `0000/INFO` contains topology ID and has-index/has-sorted-index flags, followed by `VTXA`, optional U16 `INDX`, and optional `SIDX` sorted-index ranges. VTXA versions 0001-0003 encode a declaration, vertex count and interleaved DATA supporting position, packed colors/scalars, normal, and up to 15 dimensioned texture-coordinate sets.
 
-Corpus occurrence profile: 29,025 MESH-0005/SPS-0001/VTXA-0003; 11,814 MESH-0004/SPS-0001/VTXA-0003; six legacy MESH-0003/SPS-0000/VTXA-0002. The 171 formerly unresolved records are confirmed zero-payload SearchTree tombstones rather than live mesh variants.
+Corrected corpus occurrence profile: 29,131 MESH-0005/SPS-0001/VTXA-0003; 11,814 MESH-0004/SPS-0001/VTXA-0003; six legacy MESH-0003/SPS-0000/VTXA-0002; and 65 true zero-payload SearchTree masks. Of 171 previously unresolved records, 106 are live uncompressed SKU meshes misread when compressed size zero was treated as empty. See the appearance-fetch fallback checkpoint.
 
-Source corpus: the 58 TRE archives configured under `C:\Stardust-DEV`. This inventory was produced by read-only header/index/name-block parsing. Counts include overridden copies in lower-priority archives.
+Source corpus: the 58 installed TRE archives under `C:\Stardust-DEV`, not just the 48 mounted by `swgemu_live.cfg`. This inventory was produced by read-only header/index/name-block parsing. Counts include unmounted SKU archives and overridden copies in lower-priority archives.
 
 ### PEFT particles
 
@@ -133,7 +133,7 @@ Installed `effect/a_simple.eft` contains multiple `IMPL/PASS` implementations: a
 
 Executable version dispatch confirms `EFCT` versions 0000-0001, `IMPL` versions 0000-0007, and `PASS` versions 0000-0009. EFCT contains an ordered set of inline or NAME-referenced implementations and selects the first supported one. Later IMPL forms carry SCAP capability requirements and optional OPTN selectors before their pass count/data. Later backend tracing maps the PASS state compiler, sampler subset and fixed/program shader branches; forward overlay winners using IMPL 0009/PASS 0010 remain a separately documented compatibility boundary.
 
-The raw installed corpus contains 467 live EFT and 36,686 live SHT records with zero parse errors. Outer versions are EFCT 0000 (4), EFCT 0001 (463), SSHT 0000 (34,302), and SSHT 0001 (2,266). Embedded PASS counts are 0000=2, 0002=2, 0005=4, 0007=86, 0008=658, 0009=1,697, and 0010=108. Embedded IMPL 0008/0009 also occur 82 times. PASS 0010 and IMPL 0008/0009 exceed the traced main executable dispatch ranges and are retained as a compatibility/reachability issue, not discarded as scanner noise.
+The corrected raw installed corpus contains 467 live EFT and 37,842 live SHT records, plus 87 true SHT masks, with zero parse errors. Outer versions are EFCT 0000 (4), EFCT 0001 (463), SSHT 0000 (35,293), and SSHT 0001 (2,395). Embedded PASS counts are 0000=2, 0002=2, 0005=4, 0007=86, 0008=658, 0009=1,703, and 0010=108. Embedded IMPL 0008/0009 also occur 82 times. The prior 36,686/1,243 SHT live/mask split was false because its extractor treated kind-0 compressed size zero as empty. PASS 0010 and IMPL 0008/0009 exceed the traced main executable dispatch ranges and remain a compatibility/reachability issue.
 
 PASS 0009 has an explicit 56-byte DATA payload: one U8 child-stage count, twenty-three additional U8 state values, and eight U32 state/tag values. It then chooses fixed-function `PFFP` or named vertex shader `PVSH`, followed by pixel shader `PPSH` or repeated fixed-function texture stages. Exact state labels are being assigned only through consumers.
 
@@ -143,7 +143,7 @@ Fixed-function texture-stage dispatch `0x00762C20` accepts versions 0000 and 000
 
 The D3D9 consumer closes the sampler subset as maximum anisotropy, address U/V/W, and mip/min/mag filtering, with TextureData defaults plus stage overrides. Color/alpha combiners remain structurally present but not yet labeled.
 
-Configuration-aware overlay resolution found 23,393 winning shader/effect paths. Twenty-seven live winners contain IMPL 0009/PASS 0010; no IMPL 0008 winner remains. A replacement must support visible 0009/0010 grammar even though the traced Stardust.exe dispatchers stop at IMPL 0007/PASS 0009.
+Configuration-aware overlay resolution found 23,393 winning shader/effect paths: 23,306 live and 87 masks after the kind-0 size correction. Twenty-seven live winners contain IMPL 0009/PASS 0010; no IMPL 0008 winner remains. A replacement must support visible 0009/0010 grammar even though the traced Stardust.exe dispatchers stop at IMPL 0007/PASS 0009.
 
 SPS topology IDs 0-11 are exactly non-indexed then indexed point list, line list, line strip, triangle list, triangle strip, and triangle fan. SIDX stores multiple `(local direction, index buffer)` variants; the client chooses the minimum camera-direction dot product before binding indices.
 
@@ -167,7 +167,7 @@ The portal-building sample is now concrete: highest-priority `appearance/yt1300.
 
 ## Effective IMPL 0009 / PASS 0010 grammar
 
-A configuration-aware scan recorded every `IMPL` and `PASS` DATA payload and child sequence in the 23,286 live winning SHT/EFT records. It found 82 `IMPL 0009` records, all with seven-byte DATA, and 108 `PASS 0010` records, all with 57-byte DATA. The corresponding supported late schemas are 102 `IMPL 0007` records at seven bytes and 1,325 `PASS 0009` records at 56 bytes.
+A configuration-aware schema scan recorded `IMPL` and `PASS` DATA payloads among the 23,286 winners then classified as live. The corrected overlay has 23,306 live winners; the 20 newly recovered SHT records have not yet been included in this detailed field-width scan. Within the prior sample it found 82 `IMPL 0009` records, all with seven-byte DATA, and 108 `PASS 0010` records, all with 57-byte DATA. The corresponding supported late schemas were 102 `IMPL 0007` records at seven bytes and 1,325 `PASS 0009` records at 56 bytes. Re-run the detailed schema scan before treating these counts as full-overlay totals.
 
 `IMPL 0009` preserves the supported outer grammar: mandatory `SCAP`, optional `OPTN`, seven-byte `DATA`, then one or more `PASS` forms. Its DATA remains `{U8 passCount, U32 phaseTag, U8 flag, U8 flag}` by structural continuity; whether the two flags retain identical semantics is **Strongly inferred**, not confirmed by executable code because Stardust.exe has no 0009 loader.
 

@@ -177,7 +177,15 @@ Normalizer helper `ascii_or_locale_lower_VA_0131D6E8` maps ASCII A-Z to a-z in n
 
 The executable path is `appearance_template_fetch_VA_00B263C0 -> TreeFile/IFF open -> outer FORM tag -> appearance_factory_register_tag_VA_00B25E80 registry -> typed factory -> typed version loader`.
 
+Many callers, including lazy DTLA child fetch `0x00799810`, first use `appearance_template_fetch_or_default_VA_00B260F0`. That wrapper checks whether the requested logical path is nonempty and exists in the mounted VFS (`0x00A93030`/`0x00A92FD0`). An absent or masked path is replaced with `appearance/defaultappearance.apt`, whose live redirect points to a live `appearance/defaultappearance.msh`, before calling the strict fetcher. It then increments the fetched template's reference count. This is a path-level substitution, **not** a general license to treat all fetch errors as a default appearance: a live APT with an absent target passes the wrapper's first check and its recursive target open can be fatal. The normal concrete fetch branch calls IFF open `0x00A94210` with allow-missing, then explicitly raises `Could not open appearance file %s` if open fails. A conditional branch active under the `AsynchronousLoader` state can construct a MESH template with a null IFF pointer before the ordinary open; its eventual load/error behavior remains untraced, so do not claim unconditional fatality for every broken `.msh` redirect.
+
+`swgemu.cfg` includes `swgemu_live.cfg`, `swgemu_login.cfg`, `swgemu_preload.cfg`, `options.cfg`, and `user.cfg`. None of the installed CFGs declares a `searchPath` or `searchTOC` entry. The startup installer nevertheless creates a `SearchAbsolute` node at one priority above the highest mounted TRE (56 under this configuration) and a `SearchCache` node after that. The absolute node tests `GetFileAttributesA` and opens through `CreateFileA`, so a loose file resolvable from the process working directory can override TRE contents. No copies of the three currently unresolved APT targets were found under `C:\Stardust-DEV`; actual process working directory and external overrides remain environment-dependent. See `ANALYSIS_CHECKPOINT_2026-09-22_APPEARANCE_FETCH_FALLBACK.md`.
+
 `.apt` is an indirection format. The fetcher opens `FORM APT / FORM 0000 / NAME`, reads one target logical path, rejects APT-to-APT indirection, caches the association, and recursively fetches the target. Non-APT resources are opened as IFF, dispatched by outer FORM tag, and cached by `CrcString`. Unknown tags are reported as four printable characters rather than guessed.
+
+The corrected kind-0 TRE size rule was applied to all 48 archives configured by `swgemu_live.cfg` (203,617 effective paths). Of 6,155 effective `.apt` paths, 6,153 contain a valid `APT/0000/NAME` redirect, two are genuinely zero-payload overlay entries, and none fails IFF parsing. Redirect targets are 5,052 `.lod`, 1,085 `.msh`, 13 `.cmp`, one `.iff`, one `.ssa`, and one `.prt`; none redirects to another `.apt`. Three target paths are unavailable in the configured overlay: `appearance/lod/speeder_usv5_s02.lod` and `appearance/mesh/eft_cloud_cumulus_01.msh` are absent, while `appearance/ssa/wp_rifle_dlt20a.ssa` is a zero-payload overlay winner. This is path availability, not proof that each APT is used at runtime or that loose files cannot supply a path. See `ANALYSIS_CHECKPOINT_2026-09-22_APT_IFF_OVERLAY_REVALIDATION.md` and `tools/python/apt_redirect_inventory.py`.
+
+For uncompressed TRE records (`kind == 0`), a zero compressed-size field alone does **not** signify a zero-payload overlay entry: payload length follows the uncompressed-size field. The effective overlay has 939 `.apt` and 19 `.iff` records with `kind == 0`, compressed size zero, and nonzero uncompressed size. Earlier inventories using compressed size unconditionally could misclassify these records; the corrected APT inventory above supersedes such classifications.
 
 Base loader `appearance_template_load_appr_VA_00B2CB60` enters `FORM APPR` and accepts versions `0001`, `0002`, or `0003`; other versions are fatal. Concrete factories allocate their type and invoke its loader. `MESH`, for example, is registered at `0x00796250` with factory `0x007962D0`.
 
@@ -229,7 +237,7 @@ SPS 0000 primitive records use an older flat layout: U32 topology ID, `VTXA`, an
 
 All runtime index buffers remain 16-bit even where legacy files encode each index in four bytes. This is a file-format compatibility constraint, not a reason to use 16-bit internal limits globally in the replacement.
 
-A corpus inventory of all 41,016 installed `.msh` records found the dominant tuples `MESH 0005 / SPS 0001 / VTXA 0003` (29,025 occurrences) and `MESH 0004 / SPS 0001 / VTXA 0003` (11,814), plus six legacy `0003/0000/0002` occurrences. Another 171 records could not be cleanly classified by the simple mechanical scanner (65 nonmatching/empty tuples and 106 extraction/structure errors), so these are explicitly retained for malformed/tombstone/alternate-container audit rather than silently excluded.
+A corrected corpus inventory of all 41,016 installed `.msh` records found `MESH 0005 / SPS 0001 / VTXA 0003` (29,131 occurrences), `MESH 0004 / SPS 0001 / VTXA 0003` (11,814), six legacy `0003/0000/0002`, and 65 true zero-payload masks. The earlier count of 29,025 omitted 106 uncompressed SKU meshes whose compressed-size field is zero but whose uncompressed-size field is nonzero. See the appearance-fetch fallback checkpoint for the corrective audit.
 
 ## Primitive topology, sorted indices, and shader/effect envelope
 
@@ -258,7 +266,7 @@ The external material path is now anchored as `NAME -> shader_template_fetch -> 
 
 The EFCT boolean is confirmed by code and symbol evidence. `shader_effect_load_v0001_VA_00783630` stores DATA byte 1 at effect offset `+0x18`; `StaticShaderTemplate::containsPrecalculatedVertexLighting` at `0x0077FFF0` returns that byte; and the executable-exported `StaticShader::containsPrecalculatedVertexLighting()` at `0x0076A4C0` dispatches `ShaderTemplate` virtual slot 7. The v0000 loader leaves the constructor default false. The configured live overlay contains 356 winning EFCT/0001 records: 316 false and 40 true. Every true winner currently has an `effect/c_*.eft` name, a useful corpus consistency check but not the basis for the semantic identification.
 
-The 171 previously unresolved raw MSH occurrences have now been fully classified. Every one has a zero payload-size field and is a SearchTree mask/tombstone: 88 in `data_sku1_00.tre`, 11 in `data_sku1_06.tre`, seven in `data_sku1_07.tre`, and 65 in `mtg_patch_004_appearance_04.tre`. Some SKU tombstones retain a nonzero historical uncompressed-size field, proving that tombstone detection must use zero payload size rather than only zero uncompressed size. There are therefore no additional live MESH/SPS/VTXA tuples in this 41,016-record corpus.
+Correction to the original 171-anomaly interpretation: 106 SKU records (88 in `data_sku1_00.tre`, 11 in `data_sku1_06.tre`, seven in `data_sku1_07.tre`) are **live** uncompressed MESH/0005, SPS/0001, VTXA/0003 assets. Their `kind=0`, `csize=0`, `usize>0` records have valid IFF payloads. Only 65 records in `mtg_patch_004_appearance_04.tre` have `usize=0` and are true SearchTree masks. The corrected `tools/mesh_schema_inventory.py` returns 41,016 records, zero extraction errors and precisely these four categories; `tools/mesh_anomaly_audit.py` returns just 65 tombstones. The earlier claim that all 171 were tombstones was false.
 
 ## PASS wire layout and installed shader corpus
 
@@ -281,9 +289,9 @@ The DATA payload therefore totals 24 U8 values including the child count and eig
 
 The version family is additive: older PASS loaders populate a subset of the same 0x80-byte runtime object while constructor defaults fill absent fields. This directly argues against deserializing into packed host structs in the replacement. Use explicit readers per version that populate a stable engine-neutral `LegacyPassDescription`.
 
-A read-only scan of all raw installed TREE records found 36,686 live `.sht`, 1,243 SHT tombstones, and 467 live `.eft`, with no extraction/IFF framing errors. Live SHT outer versions are 34,302 `SSHT/0000` and 2,266 `SSHT/0001`. EFT outer versions are four `EFCT/0000` and 463 `EFCT/0001`.
+A corrected read-only scan of all raw installed TREE records found 37,842 live `.sht`, 87 true SHT tombstones, and 467 live `.eft`, with no extraction/IFF framing errors. Live SHT outer versions are 35,293 `SSHT/0000` and 2,395 `SSHT/0001`; some `.sht`-named records have other outer forms. EFT outer versions are four `EFCT/0000` and 463 `EFCT/0001`. The earlier 36,686/1,243 SHT live/mask split used compressed size for uncompressed records and was false. The corrected configured overlay has 23,393 winning shader/effect names: 23,306 live and 87 masks (20 more live than previously reported). See the appearance-fetch fallback checkpoint.
 
-Raw embedded form counts are dominated by PASS 0009 (1,697 across EFT/SHT) and PASS 0008 (658), followed by PASS 0007 (86). However, 108 raw PASS 0010 forms and 82 IMPL 0008/0009 forms also occur, principally in later patch assets. The traced main executable dispatchers stop at PASS 0009 and IMPL 0007. These are real well-framed asset forms, but no corresponding Stardust.exe shader dispatcher was found; similar `0010` immediates elsewhere belong to unrelated particle-emitter versions. Their effective overlay visibility and runtime reachability must be tested before concluding whether Stardust currently ignores them, never references them, or requires compatibility beyond this executable's loader. A replacement consuming the full original asset set should plan to decode them rather than silently reject them.
+Raw embedded form counts are dominated by PASS 0009 (1,703 across EFT/SHT) and PASS 0008 (658), followed by PASS 0007 (86). However, 108 raw PASS 0010 forms and 82 IMPL 0008/0009 forms also occur, principally in later patch assets. The traced main executable dispatchers stop at PASS 0009 and IMPL 0007. These are real well-framed asset forms, but no corresponding Stardust.exe shader dispatcher was found; similar `0010` immediates elsewhere belong to unrelated particle-emitter versions. Twenty-seven live overlay winners contain IMPL 0009/PASS 0010; their actual runtime reachability remains unproven. A replacement consuming the full original asset set should plan to decode them rather than silently reject them.
 
 PTAT terrain templates also own environment-cycle timing. Constructor `0x00B6E2F0` defaults member `+0x40` to `1800.0` seconds, while PTAT/0013 and /0014 load it from DATA. The effective overlay-selected `terrain/tatooine.trn` (`mtg_patch_013_configurable_02.tre`, priority 42) contains `11280.0` seconds, or 188 minutes. Its DATA stream becomes unaligned after a NUL-terminated path, so readers must advance field-by-field exactly as the IFF schema dictates rather than align or overlay a host struct.
 
@@ -387,6 +395,31 @@ models (`setTestModel` and `setWriteModel`); RADR and flag effects remain open.
 The current
 overlay has 290 distinct `.msh` child paths absent by direct virtual-path
 lookup. All 385 `appearance/no_render.apt` references resolve through a valid
-high-priority APT-to-NRND redirect. The exact missing-mesh fetch consequence
-remains open. See
-`ANALYSIS_CHECKPOINT_2026-09-22_DTLA_DETAIL_APPEARANCE.md`.
+high-priority APT-to-NRND redirect. A directly missing DTLA mesh child sent
+through appearance fetch receives the default-appearance APT fallback; a
+missing NAME target inside an existing APT follows a different recursive
+path and remains a separate risk. See
+`ANALYSIS_CHECKPOINT_2026-09-22_DTLA_DETAIL_APPEARANCE.md` and
+`ANALYSIS_CHECKPOINT_2026-09-22_APPEARANCE_FETCH_FALLBACK.md`.
+
+## Corrected short-asset overlay boundary (2026-09-22)
+
+TRE kind-0 payloads use the uncompressed-size field even when compressed size
+is zero. Corrected configured-overlay scans show 1,145 valid `CLEF` effects
+plus one true mask, all in versions 0001–0003 supported by Stardust.exe. The
+five leaf families are `PSND` sound, `CPAP` appearance/particle, `CAMS`
+camera-effect numeric data, `CLGT` light numeric data, and `FFBK`
+`forcefeedback/*.ffe` references. There are 1,889 recognized direct child
+references, 12 absent from configured TREs. A modern renderer/audio/input
+backend may redesign implementation, but it must preserve versioned leaf
+behavior when consuming original CEF assets. See
+`ANALYSIS_CHECKPOINT_2026-09-22_FULL_CLEF_OVERLAY.md` and
+`ANALYSIS_CHECKPOINT_2026-09-22_CLEF_LOADER_VERSIONS.md`.
+
+The corrected CDF corpus has 6,284 valid `CLDF/0000` files and four true
+masks. All 15 recovered MKAT marker appearances parse as `MKAT/0000/INFO`
+and reference live shaders. Fifty-three recovered TGA files are 1-row terrain
+color ramps (24- or 32-bit). Twenty-five named cockpit-frame APT references
+resolve through immediate targets and, where applicable, live DTLA children.
+Path closure is not proof of complete runtime rendering. See the respective
+2026-09-22 CDF, marker, terrain-ramp, and cockpit-frame checkpoints.

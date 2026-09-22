@@ -35,7 +35,8 @@ def records(path):
         _,usize,pos,kind,csize,noff=struct.unpack_from("<6I",recs,i*24)
         end=names.find(b"\0",noff); name=names[noff:end].decode("utf-8","replace").lower().replace("\\","/")
         if Path(name).suffix not in (".sht",".eft"): continue
-        yield name, None if csize == 0 else expand(kind,raw[pos:pos+csize],usize)
+        stored_size=usize if kind == 0 else csize
+        yield name, None if usize == 0 else expand(kind,raw[pos:pos+stored_size],usize)
 
 def main(root,cfg,out):
     root=Path(root); cfg=Path(cfg)

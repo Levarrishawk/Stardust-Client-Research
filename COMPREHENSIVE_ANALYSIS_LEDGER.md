@@ -1459,12 +1459,66 @@ fallback. It also exposes three tombstones, one non-DTLA `.lod` outlier, eight
 duplicate-child-ID assets and 290 directly unresolved mesh child paths. The
 385 no-render APT references resolve through a valid high-priority NRND
 redirect after correcting the inventory helper's uncompressed-TRE size rule.
-Policy
-forms `TEST` and `WRIT` feed DPVS visibility models through nested `IDTL`
-geometry; RADR/flag effects remain open. Missing-child fetch failure is the immediate next targeted
-question. See the DTLA detail-appearance checkpoint.
+Policy forms `TEST` and `WRIT` feed DPVS visibility models through nested `IDTL`
+geometry; RADR/flag effects remain open. Missing-child fetch failure is the immediate next targeted question. See the DTLA detail-appearance checkpoint.
 
 This deepens the mandatory original-asset compatibility contract, but does
 not justify moving the rounded estimates: **90% comprehensive / 96%
 implementation-grade**. The registry is **2,198 distinct addresses / 0
 duplicates**; the packet matrix remains **345 documented / 0 reachable gaps**.
+
+### APT/IFF overlay revalidation (2026-09-22)
+
+The kind-0 TRE payload-length correction was applied across the configured
+48-archive overlay. All 6,153 live effective APT records parse as
+`APT/0000/NAME`; two effective APT records are actual zero-payload entries.
+There are no APT-to-APT redirects. Three live redirects have unavailable
+archive-overlay targets (two absent paths and one zero-payload winner).
+Nineteen live `.iff` and 939 live `.apt` records have compressed size zero
+but nonzero kind-0 payloads; previous compressed-size-only scans of those
+extensions require this corrected interpretation. The stable function and
+packet inventories did not change. See the APT/IFF overlay checkpoint.
+
+### Appearance fetch fallback boundary (2026-09-22)
+
+The direct DTLA child fetch uses a VFS-existence wrapper that substitutes the
+installed default appearance for an absent/masked child name. This corrects the
+prior tentative hard-failure concern for those 290 directly absent mesh paths.
+Recursive fetching of a live APT's NAME target does not pass through that
+wrapper, so the three unavailable redirect targets remain separate risks. The
+automatic absolute-path search node has priority above the configured TREE
+archives and can resolve a loose file from the process working directory.
+Six confirmed function names bring the registry to **2,204 unique addresses / 0
+duplicates**. Rounded estimates remain **90% comprehensive / 96%
+implementation-grade**; packet matrix remains **345 / 0**. See the
+appearance-fetch fallback checkpoint.
+
+### TRE size-tool and cockpit-frame correction (2026-09-22)
+
+Five targeted Python TRE extraction tools were corrected to use `usize` for
+kind-0 payload length and for SearchTree-style mask decisions. The configured
+CPIT scan still has 36 valid profiles, but only 11 have no frame path; all 25
+nonempty frame APT paths and their immediate targets are live. The prior 18
+false missing frames came from `csize=0` on uncompressed APT records. Six
+effective STF files with the same field combination are valid 13-byte empty
+tables. Sound-overlay and forward-shader-reference results were unchanged on
+re-run. See the TRE size-tool audit checkpoint. Rounded progress, stable names
+and packet matrix remain unchanged.
+
+### One-hour TRE and CLEF continuation (2026-09-22)
+
+The follow-on global script scan found 15 additional legacy TRE readers with
+the same kind-0/zero-csize defect. Corrected full-overlay inventories recover
+84 previously omitted live CDF paths (6,288 total), 430 short CLEF assets,
+53 one-row terrain TGA ramps, and 15 MKAT marker appearances. The 25 named
+CPIT cockpit APTs resolve through all immediate targets and 22 live LOD
+children. The full CEF corpus is 1,145 valid CLEF files plus one true mask;
+all live versions are supported by Stardust.exe, with 1,889 recognized direct
+child resources and 12 absent paths in configured TREs. Decompiled CLEF
+readers and template-cache/audio lookup establish the three version schemas,
+five leaf families, top-level CEF warning/null behavior, nested CPAP default
+appearance fetch, and PSND missing-sound null handle. MKAT/0000/INFO loader
+fields match all 15 recovered markers. Eleven bounded blocks add ten stable
+names, bringing the registry to **2,214 unique addresses / zero duplicates**.
+Rounded progress remains **90% comprehensive / 96% implementation-grade**;
+packet matrix remains **345 / 0**. See the one-hour TRE/CLEF session report.

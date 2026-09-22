@@ -12,7 +12,7 @@ This is the canonical entry point for reviewing the `Stardust.exe` research befo
 - Implementation-grade replacement research: **96%**
 - Comprehensive whole-client research ledger: **90%**
 - Server packet-source matrix: **345 documented / 0 reachable gaps**
-- Stable provisional-name registry: **2,198 distinct addresses / 0 duplicate rows**
+- Stable provisional-name registry: **2,204 distinct addresses / 0 duplicate rows**
 
 These percentages are planning estimates, not a claim that every compiler-emitted function has been decompiled. The remaining analysis must be completed before returning to engine selection or client construction.
 
@@ -26,7 +26,7 @@ These percentages are planning estimates, not a claim that every compiler-emitte
 6. [Asset pipeline](docs/ASSET_PIPELINE.md), [rendering](docs/RENDERING_ARCHITECTURE.md), [terrain](docs/WORLD_TERRAIN_ARCHITECTURE.md), and [platform/input/audio](docs/PLATFORM_INPUT_AUDIO_ARCHITECTURE.md)
 7. [Unknown-function ledger](UNKNOWN_FUNCTIONS.md) and [uncertainty audit](docs/FUNCTION_UNCERTAINTY_AUDIT.md)
 8. [64-bit port plan](docs/64BIT_PORT_PLAN.md) and [engine-decision requirements](docs/ENGINE_DECISION_REQUIREMENTS.md)
-9. [Latest session report](research/sessions/ANALYSIS_SESSION_2026-09-22_30MIN_DTLA.md) and [DTLA checkpoint](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_DTLA_DETAIL_APPEARANCE.md)
+9. [Latest session report](research/sessions/ANALYSIS_SESSION_2026-09-22_30MIN_APPEARANCE_FETCH.md), [appearance-fetch checkpoint](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_APPEARANCE_FETCH_FALLBACK.md), [APT/IFF checkpoint](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_APT_IFF_OVERLAY_REVALIDATION.md), and [DTLA checkpoint](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_DTLA_DETAIL_APPEARANCE.md)
 
 ## Workspace map
 

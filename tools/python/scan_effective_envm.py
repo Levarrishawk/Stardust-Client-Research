@@ -30,7 +30,8 @@ def members(archive: Path):
         end = names.find(b"\0", name_offset)
         name = names[name_offset:end].decode("ascii", "replace").lower().replace("\\", "/")
         if name.startswith("terrain/environment/") and name.endswith(".iff"):
-            yield name, None if usize == 0 else expand(kind, raw[payload_offset:payload_offset + csize], usize)
+            stored_size = usize if kind == 0 else csize
+            yield name, None if usize == 0 else expand(kind, raw[payload_offset:payload_offset + stored_size], usize)
 
 
 def cstring(data: bytes, offset: int) -> tuple[str, int]:

@@ -18,7 +18,7 @@ Configured D3D9 backend compiler `0x62A0B340` maps PASS fields directly to D3DRS
 
 ### Effective asset overlay
 
-The read-only overlay audit implements confirmed precedence: descending configured priority, first winner, with tombstones preventing fallback. Across 48 archives it found 23,393 winning `.sht/.eft` paths, comprising 23,286 live records and 107 tombstones, with zero scan errors.
+The read-only overlay audit implements confirmed precedence: descending configured priority, first winner, with tombstones preventing fallback. Across 48 archives it found 23,393 winning `.sht/.eft` paths. Correction (2026-09-22): 23,306 are live and 87 are true masks, with zero scan errors; the original 23,286/107 split misclassified 20 kind-0 uncompressed SHT records. See the appearance-fetch fallback checkpoint.
 
 Twenty-seven live winners contain IMPL 0009/PASS 0010: 24 SHT assets in priority-47 `mtg_patch_018.tre` and three EFT assets in priority-40 `mtg_patch_011_files_01.tre`. Raw IMPL 0008 assets are shadowed. The newer forms are visible to `TreeFile::open`; whether every asset is requested in normal gameplay remains Unknown.
 

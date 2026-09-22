@@ -28,7 +28,8 @@ def members(path):
         end = names.find(b"\0", noff)
         name = names[noff:end].decode("ascii", "replace").lower().replace("\\", "/")
         if name.startswith("datatables/clientregion/") and name.endswith(".iff"):
-            yield name, expand(kind, raw[poff:poff + csize], usize)
+            stored_size = usize if kind == 0 else csize
+            yield name, expand(kind, raw[poff:poff + stored_size], usize)
 
 
 def parse(raw):
