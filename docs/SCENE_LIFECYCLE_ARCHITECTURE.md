@@ -31,7 +31,7 @@ The original sends the first client `CmdSceneReady` only from `scene_ready_ack_t
 
 ## Replacement invariant
 
-Each transition must own a monotonically increasing scene-generation token. Network decode can continue, but world-mutating messages must be tagged/staged for the intended generation until the minimum scene barrier opens. Old terrain/file/mesh tasks must be cancelled or allowed to finish into discardable generation-owned results. GPU commits, object registration and callbacks must verify generation before mutation.
+Each transition must own a monotonically increasing scene-generation token. Network decode can continue, but world-mutating messages must be tagged/staged for the intended generation until the minimum scene barrier opens. Old work follows its ownership scope: the scene-owned terrain worker is stopped, signalled and joined during terrain destruction; process-global asynchronous asset work may finish, but exact callback/context cancellation suppresses publication and cleanup remains unconditional; file-streamer requests finish synchronously for their request owner. GPU commits, object registration and callbacks in the replacement must verify generation before mutation.
 
 Recommended state machine:
 
@@ -50,7 +50,7 @@ An engine integration must permit deterministic scene-generation ownership, stag
 ## Bounded unknowns
 
 - Names of every predicate in the client readiness conjunction.
-- Whether all old scene workers are actively joined or some completions are discarded.
+- Historical names and exact call sites for every scene owner's async-loader cancellation request.
 - Exact ordering of every scene-change subscriber.
 - Failure recovery after partial terrain/resource initialization.
 

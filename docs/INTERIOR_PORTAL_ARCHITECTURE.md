@@ -67,6 +67,14 @@ The clean client should preserve four separate representations:
 
 Object replication must refer to logical cells independently of render-node identity. Loading and visibility may be redesigned, but cell containment, portal target semantics, door transforms, collision boundaries and file-coordinate conversion must remain compatible.
 
+## Interior furnishing layouts (`.ilf`)
+
+`INLY/0000` is a separate client-local furnishing layer over a portalized building. It contains repeated `NODE` chunks, each holding an object-template path, a portal-cell name and twelve little-endian F32 transform values (inside the usual big-endian IFF chunk envelope). The configured overlay has 297 live effective layouts and 87,937 nodes with no parse failures; 411 is the raw archive-copy count.
+
+`client_interior_layout_manager_apply_building_layout_VA_0059B7B0` resolves the authored cell name on the owning building, creates the named object template, attaches the result to that cell, copies the 3x4 transform, runs transform notification/world insertion, and releases the creation reference. A missing cell or failed object creation skips only that node. `client_interior_layout_manager_apply_pending_world_layouts_VA_0059B5A0` provides automatic lazy world scanning unless `ClientGame.disableLazyInteriorLayoutCreation` is set. `ClientGame.useInteriorLayoutFiles` is a distinct default-true feature option.
+
+ILF nodes are therefore presentation objects, not substitutes for server-spawned gameplay objects. A replacement must keep them cell-relative and lifecycle-bound to their building while preventing duplicate materialization. See `../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_INTERIOR_LAYOUT_ILF_RUNTIME.md`.
+
 ## Representative installed chain
 
 The reusable read-only probe `tools/tre_probe.py` resolved the highest-priority installed `appearance/yt1300.pob` from `stardust_3_00.tre`. It is `PRTO/0004`, contains eight indexed portal-geometry (`IDTL/0000`) groups and eight `CELL/0005` records (exterior plus seven interior cells). Cell data includes EXBX/CMSH or NULL bounds, repeated portal forms and per-cell `LGHT` chunks. The layout references one exterior APT plus seven cell meshes and seven floor meshes, then supplies a building-wide `PGRF/0001` (`META`, `PNOD`, `PEDG`, `ECNT`, `ESTR`) and CRC.

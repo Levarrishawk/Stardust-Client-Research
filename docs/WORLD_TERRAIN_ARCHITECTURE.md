@@ -63,7 +63,7 @@ The optional real/proxy occlusion model at ClientChunk `+0xDC` is not used by ei
 
 ## Auxiliary generated channels
 
-Constructor callbacks now identify most remaining ClientChunk grids. `+0xA4` carries static-collidable flora samples; `+0xC8` is static non-collidable flora; `+0xCC` and `+0xD0` are dynamic-near and dynamic-far flora; `+0xC4` supplies their packed three-byte color; `+0xD4` selects an environment family; and `+0xD8` contains surface normals. The byte mask at `+0xA8` remains only tentatively passability.
+Constructor callbacks identify the retained ClientChunk grids. `+0xA4` carries static-collidable flora samples; `+0xC8` is static non-collidable flora; `+0xCC` and `+0xD0` are dynamic-near and dynamic-far flora; `+0xC4` supplies their packed three-byte color; `+0xD4` selects an environment family; and `+0xD8` contains surface normals. Later executable tracing confirms `+0xA8` is a binary baked-lighting/shading mask used during terrain vertex-color construction, not passability.
 
 Stardust source identifies PTAT `WMAP` and `SMAP` as water and seed maps. Executable loader `0x00B9A520` proves that MAPS/0001 is two F32 values (`worldSize`, `metersPerBit`), two U32 values (`bytesPerRow`, `bitDimension`), then two `bytesPerRow * bitDimension` LSB-first bit grids. Effective Tatooine stores 16384.0, 8.0, 256 and 2048, yielding two 2,048-square 524,288-byte masks.
 
@@ -99,7 +99,7 @@ Godot or another engine should be tested for large terrain chunk streaming, cust
 
 ## Remaining analysis
 
-1. Label the remaining ClientChunk scalar/mask grids and exact per-vertex blend encoding.
+1. Preserve the now-closed ClientChunk vertex declaration, ARGB lighting color, auxiliary blend UVs and `ALP1..3` texture roles in implementation fixtures; original unpublished field names are not required.
 2. Decode the supplied water shader/material contract and local polygon construction.
 3. Decode PTAT `DATA` from representative zones and compare with server parsing.
 4. Determine whether SMAP is consumed by an indirect/plugin/editor path absent from the direct Stardust.exe call graph; its format and dormant client interface are already closed.

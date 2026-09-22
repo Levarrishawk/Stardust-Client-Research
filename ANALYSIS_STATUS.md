@@ -450,3 +450,18 @@ bounded. Estimates remain **96% implementation-grade / 90% comprehensive**;
 the registry contains **2,151 distinct addresses / 0 duplicates** and packet
 coverage remains **345 / 0**. See
 `ANALYSIS_SESSION_2026-09-22_TO_1300.md`.
+
+## 2026-09-22 continuation through 14:30
+
+Three original-asset runtime families are now closed. `INLY/0000` supplies
+client-local building furnishings: 297 effective layouts and 87,937 nodes are
+resolved by cell name, instantiated from object templates and bound to the
+owning building. `CMPA` versions 0001-0005 compose owned child appearances and
+transforms; 165 effective winners contain 779 parts, ten nested-CMP edges, no
+cycles and eight tolerated legacy missing mesh children. Shared `SPRT`/`QUAD`
+v0000 defines center, size, RGBA and shader-backed quad presentation; all 469
+effective winners parse cleanly. Stale terrain, PTEX, mesh-tombstone, SPS and
+PASS wording was reconciled. Estimates remain **96% implementation-grade / 90%
+comprehensive**; the normalized registry contains **2,171 distinct addresses / 0
+duplicates** and packet coverage remains **345 / 0**. See
+`ANALYSIS_SESSION_2026-09-22_TO_1430.md`.

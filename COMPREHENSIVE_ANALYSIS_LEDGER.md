@@ -1408,3 +1408,20 @@ question is Cancel behavior for custom collections that bypass scalar restore
 objects. See
 `ANALYSIS_CHECKPOINT_2026-09-22_OPTIONS_PREFERENCES_ARCHITECTURE.md` and
 `ANALYSIS_SESSION_2026-09-22_TO_1300.md`.
+
+### ILF, CMPA and sprite/quad asset closure (2026-09-22)
+
+The effective configured overlay now has complete, zero-error inventories for
+three previously broad or tentative presentation families. `INLY/0000` has 297
+live layouts and 87,937 cell-relative furnishing nodes; executable manager code
+confirms local object creation, portal-cell binding, transform application and
+building lifecycle ownership. `CMPA` has 165 live winners across deployed
+versions 0003-0005 and 779 transformed child appearances; its runtime owns the
+child/visibility hierarchy and fans operations across it. Ten nested-component
+edges are acyclic, while eight legacy missing laser-bolt mesh children establish
+part-local failure tolerance. Shared `SPRT`/`QUAD` v0000 has 469 effective
+winners and supplies center, size, RGBA and shader identity to a runtime quad
+primitive with explicit bounds. See the ILF, CMPA and sprite/quad checkpoints.
+
+These closures deepen the original-asset requirement without changing the
+conservative rounded estimates: **90% comprehensive / 96% implementation-grade**.

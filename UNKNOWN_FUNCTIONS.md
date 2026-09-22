@@ -2612,3 +2612,42 @@ bounded through typed preference notifications and the `OPTN/0002`
 machine-options writer. The unknown is historical class/member naming, not
 page behavior or persistence. See
 `ANALYSIS_CHECKPOINT_2026-09-22_OPTIONS_PREFERENCES_ARCHITECTURE.md`.
+# Interior-layout manager names added 2026-09-22
+
+| Address | Stable provisional name | Evidence |
+|---|---|---|
+| `0x0059B500` | `client_interior_layout_manager_install_VA_0059B500` | Registers manager/config/removal callback; confirmed |
+| `0x0059B5A0` | `client_interior_layout_manager_apply_pending_world_layouts_VA_0059B5A0` | Frame-called eligible-building scan and local furnishing materialization; confirmed |
+| `0x0059B7B0` | `client_interior_layout_manager_apply_building_layout_VA_0059B7B0` | Per-building/cell ILF node creation, transform, insertion and release; confirmed |
+
+# Component-appearance names added 2026-09-22
+
+| Address | Stable provisional name | Evidence |
+|---|---|---|
+| `0x00798680` | `component_appearance_template_install_VA_00798680` | Registers/unregisters CMPA factory; confirmed |
+| `0x007986D0` | `component_appearance_template_factory_VA_007986D0` | Allocates and constructs 0x2c-byte template; confirmed |
+| `0x00798E40` | `component_appearance_template_load_VA_00798E40` | CMPA 0001-0005 dispatcher; confirmed |
+| `0x007989D0` | `component_appearance_load_matrix_parts_VA_007989D0` | Repeated path plus 3x4 transform PART loader; confirmed |
+| `0x007991D0` | `component_appearance_load_radar_policy_VA_007991D0` | v0005 RADR/INFO U32 and conditional auxiliary object; field label unknown |
+| `0x007A0320` | `component_appearance_construct_VA_007A0320` | Creates/owns child appearances and parent visibility hierarchy; confirmed |
+
+# Sprite/quad appearance names added 2026-09-22
+
+| Address | Stable provisional name | Evidence |
+|---|---|---|
+| `0x0079B8B0` | `sprite_quad_template_install_VA_0079B8B0` | Registers shared QUAD/SPRT factory; confirmed |
+| `0x0079B910` | `sprite_quad_template_factory_VA_0079B910` | Allocates/constructs 0x44-byte template; confirmed |
+| `0x0079BAE0` | `sprite_quad_template_load_VA_0079BAE0` | Outer QUAD/SPRT and v0000 dispatch; confirmed |
+| `0x0079BC50` | `sprite_quad_template_load_v0000_VA_0079BC50` | Center, size, RGBA and shader decoder; confirmed |
+| `0x00789AF0` | `sprite_quad_appearance_construct_VA_00789AF0` | Quad primitive, color/shader, bounds and visibility construction; confirmed |
+
+# BEAM appearance names added 2026-09-22
+
+| Address | Stable provisional name | Evidence |
+|---|---|---|
+| `0x00798240` | `beam_appearance_template_install_VA_00798240` | Registers/unregisters BEAM factory; confirmed |
+| `0x00798280` | `beam_appearance_template_factory_VA_00798280` | Allocates/constructs 0x3c-byte template; confirmed |
+| `0x00798460` | `beam_appearance_template_load_VA_00798460` | BEAM outer form and 0000 dispatcher; confirmed |
+| `0x00798540` | `beam_appearance_template_load_v0000_VA_00798540` | Two F32 dimensions, Vector4 and shader path; confirmed by loader/runtime |
+| `0x007983F0` | `beam_appearance_factory_VA_007983F0` | Creates runtime instance from template; confirmed |
+| `0x00792EC0` | `beam_appearance_construct_VA_00792EC0` | Owns shader-backed four-vertex primitive; confirmed |

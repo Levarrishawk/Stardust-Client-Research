@@ -1,10 +1,10 @@
 # Material client-analysis backlog
 
-Updated: 2026-09-21  
+Updated: 2026-09-22  
 Target: `Stardust.exe` SHA-256
 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`
 
-This is the actionable remainder behind the current **83% comprehensive
+This is the actionable remainder behind the current **90% comprehensive
 whole-client coverage**. It is separate from `UNKNOWN_FUNCTIONS.md`, which is a
 chronological address/evidence ledger rather than a to-do list.
 
@@ -30,6 +30,9 @@ Miles or DirectInput internals are not required.
 - Input assets are fully inventoried: 436 commands and 1,939 physical bindings.
 - File streamer, general async loader and procedural-terrain worker ownership/
   shutdown are closed.
+- Effective `INLY/0000` interior furnishings, `CMPA` component hierarchies and
+  shared `SPRT`/`QUAD` v0000 appearances are closed through complete configured-
+  overlay corpora and executable runtime consumers.
 
 ## Remaining workstreams
 
@@ -37,7 +40,7 @@ Miles or DirectInput internals are not required.
 |---:|---|---|
 | 1 | UI/gameplay workflow breadth | Finish remaining inventory, trade, crafting, mission, guild, social, combat and space mediator actions end to end; classify UI-only presentation separately. |
 | 1 | Active server/client contradictions | Preserve the risk register and resolve/fixture-test quest counter/timer IDs and VerifyPlayerName schema before a networking POC claims compatibility. |
-| 1 | Asset-format/runtime long tail | Close rare but effective specialized appearance, particle, portal/interior, space and client-data variants with corpus fixtures and runtime consumers. |
+| 1 | Asset-format/runtime long tail | Continue rare effective specialized appearance, particle, portal/interior, space and client-data variants. ILF, CMPA, SPRT/QUAD and the dormant BEAM executable contract are closed and should not be reopened without contradictory evidence. |
 | 2 | Animation/presentation exceptions | Finish appearance-specific controller/modifier exceptions, notification ordering and remaining action/event consumers. |
 | 2 | Renderer/world special cases | Finish particles, shadows, specialized scene primitives, visibility exceptions and remaining space/environment presentation semantics. |
 | 2 | Lifecycle/ownership breadth | Audit remaining worker threads, scheduled callbacks, pools, caches and shutdown ordering not covered by the closed loader/terrain blocks. |

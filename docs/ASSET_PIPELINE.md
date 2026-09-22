@@ -183,6 +183,10 @@ Base loader `appearance_template_load_appr_VA_00B2CB60` enters `FORM APPR` and a
 
 Confirmed tags are `LSAT`, `MESH`, `MKAT`, `BEAM`, `CMPA`, `DTLA`, `QUAD`, `SPRT`, `SWSH`, `LEFX`, `PEFT`, `SMAT`, `PLNT`, `MPTA`, `PTAT`, `APPR`, `NRND`, and `STAT`. RTTI and diagnostics identify the corresponding lightsaber, mesh, marker, beam, component, detail/LOD, sprite/quad, swoosh, lightning, particle, skeletal, planet, procedural terrain, base/shared, no-render, and space-terrain families.
 
+`CMPA` versions 0001-0005 compose resolved child appearance templates with one 3x4 local transform per `PART`. The configured overlay has 165 effective live records (13 v0003, six v0004, 146 v0005), 779 parts and zero parse failures. Child types span LOD, particle, mesh, sprite and nested CMPA resources. Runtime `component_appearance_construct_VA_007A0320` owns child instances, attaches their visibility objects under one parent and composes each authored transform during child operations. See `../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_COMPONENT_APPEARANCE_CMPA.md`.
+
+`SPRT` and `QUAD` share one v0000 loader and runtime: local center/offset (3 F32), radius/half-size (F32), RGBA (4 F32), then a shader path. There are 469 effective live `.spr` winners—369 QUAD and 100 SPRT—with zero parse errors and 385 distinct shaders. The runtime creates a shader-backed quad and explicit bounds; engine-native billboards are suitable only if shader indirection, authored geometry/color and bounds remain intact. See `../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_SPRITE_QUAD_APPEARANCE.md`.
+
 The replacement should preserve this separation: generic bounded IFF framing, explicit tag-to-decoder registration, per-type version validation, and engine-neutral decoded templates. Original assets remain runtime source-of-truth; derived caches are disposable accelerators only.
 
 ## PEFT particle-template boundary
@@ -211,7 +215,7 @@ Common `+0x114` enables random initialization of three per-particle interpolatio
 
 Versions `0004` and `0005` first load embedded `APPR` data, then copy the extent-derived center and radius into mesh bounds. Versions `0002` and `0003` read legacy explicit `CNTR` (three floats) and `RADI` (one float) chunks and then load older APPR fragments. If an extent is a `BoxExtent`, the client constructs a DPVS test model from it; otherwise it constructs a fallback sphere/box model from the derived bounds. The visibility/culling representation is therefore derived runtime state, not part of the portable mesh asset model.
 
-All four versions construct a shader-primitive-set container through `shader_primitive_set_ctor_load_VA_00770C30`. Its loader requires `FORM SPS ` and accepts versions `0000` and `0001`. These versions remain the next decoding boundary; individual primitive vertex/index layouts and shader references are not yet claimed.
+All four versions construct a shader-primitive-set container through `shader_primitive_set_ctor_load_VA_00770C30`. Its loader requires `FORM SPS ` and accepts versions `0000` and `0001`. Later SPS/VTXA/topology blocks close shader grouping, primitive/index envelopes, vertex declarations and all twelve topology IDs; these are no longer open decoding boundaries.
 
 Base APPR trailing data can contain optional `FORM HPTS`. It declares a count and repeated `HPNT` chunks, each containing a transform and a length-prefixed/name string. Loaded hardpoints are sorted after parsing. These names and transforms are required semantic attachment data for equipment, particles, lights and client effects and must not be discarded by a modern importer.
 

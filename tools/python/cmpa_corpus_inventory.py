@@ -41,11 +41,12 @@ def parse(data: bytes):
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('root',type=Path);p.add_argument('cfg',type=Path);p.add_argument('output',type=Path);a=p.parse_args()
-    winners=set(); rows=[]; versions=Counter(); suffixes=Counter(); counts=Counter(); auxiliaries=Counter(); sources=Counter(); errors=[]; tombstones=0
+    winners=set(); live_winners=set(); rows=[]; versions=Counter(); suffixes=Counter(); counts=Counter(); auxiliaries=Counter(); sources=Counter(); errors=[]; tombstones=0
     for priority,archive in archives(a.root,a.cfg):
         for name,usize,kind,packed in archive_records(archive):
             if name in winners: continue
             winners.add(name)
+            if packed: live_winners.add(name)
             if not name.endswith('.cmp'): continue
             if not packed: tombstones+=1; continue
             try: version,parts,auxiliary=parse(expand(kind,packed,usize))
@@ -61,5 +62,21 @@ def main():
     print(f'auxiliary_forms={dict(auxiliaries)}')
     print(f'reference_suffixes={dict(suffixes)}')
     print(f'archives={dict(sources)}')
+    def archive_name(reference):
+        return reference if reference.startswith('appearance/') else 'appearance/'+reference
+    missing=sorted({row[5] for row in rows if archive_name(row[5]) not in live_winners})
+    graph={name:set() for name in {row[2] for row in rows}}
+    for row in rows:
+        if row[5].endswith('.cmp'): graph[row[2]].add(archive_name(row[5]))
+    cycles=[]
+    def visit(node,path):
+        if node in path:
+            cycles.append(path[path.index(node):]+[node]); return
+        for child in graph.get(node,()): visit(child,path+[node])
+    for node in graph: visit(node,[])
+    canonical_cycles=sorted({tuple(cycle) for cycle in cycles})
+    print(f'missing_child_references={len(missing)} nested_cmp_edges={sum(map(len,graph.values()))} cycles={len(canonical_cycles)}')
+    for name in missing[:20]: print('MISSING\t'+name)
+    for cycle in canonical_cycles[:20]: print('CYCLE\t'+' -> '.join(cycle))
     for e in errors[:20]: print('ERROR\t'+'\t'.join(e))
 if __name__=='__main__': main()

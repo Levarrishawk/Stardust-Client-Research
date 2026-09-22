@@ -5,7 +5,7 @@
 - `PTCL` 0000-0003: common color/alpha/velocity, optional three-axis rotation and attachments.
 - `PTQD` detail 0000/0001: rotation, two size waveforms and PTEX; 0001 adds dimension locking.
 - `PTMH` detail 0000: a chunk-held `.apt` appearance-template path followed by uniform-scale and three rotation WVFM forms.
-- `PTEX` 0000: resource string, inclusive frame range, square sprite-sheet layout/timing and one unresolved Boolean.
+- `PTEX` 0000: resource string, inclusive frame range, square sprite-sheet layout/timing and a confirmed shader/render-enable Boolean.
 
 These are disk schemas, not legacy pointer-bearing runtime layouts.
 
@@ -23,7 +23,7 @@ Confirmed supported versions are `0002` through `0005`. Versions 0002/0003 conta
 
 SPS begins with `CNT ` and repeated shader groups. Shader groups use either external `NAME` or inline shader templates, then `INFO` primitive count. SPS 0001 primitive `0000/INFO` contains topology ID and has-index/has-sorted-index flags, followed by `VTXA`, optional U16 `INDX`, and optional `SIDX` sorted-index ranges. VTXA versions 0001-0003 encode a declaration, vertex count and interleaved DATA supporting position, packed colors/scalars, normal, and up to 15 dimensioned texture-coordinate sets.
 
-Corpus occurrence profile: 29,025 MESH-0005/SPS-0001/VTXA-0003; 11,814 MESH-0004/SPS-0001/VTXA-0003; six legacy MESH-0003/SPS-0000/VTXA-0002. There are 171 unresolved records requiring a separate audit.
+Corpus occurrence profile: 29,025 MESH-0005/SPS-0001/VTXA-0003; 11,814 MESH-0004/SPS-0001/VTXA-0003; six legacy MESH-0003/SPS-0000/VTXA-0002. The 171 formerly unresolved records are confirmed zero-payload SearchTree tombstones rather than live mesh variants.
 
 Source corpus: the 58 TRE archives configured under `C:\Stardust-DEV`. This inventory was produced by read-only header/index/name-block parsing. Counts include overridden copies in lower-priority archives.
 
@@ -72,7 +72,7 @@ PEFT/0002's four floats are initial time scale, transition time, sustaining time
 | `.prt` | 2,980 | particle template/data | Strong |
 | `.cef` | 1,714 | client effect | Strong |
 | `.qst` | 1,671 | quest data | Strong |
-| `.spr` | 1,282 | sprite appearance/data | Strong |
+| `.spr` | 1,282 archive copies / 469 effective live winners | shared `SPRT`/`QUAD` v0000 shader-backed quad appearance | Confirmed |
 | `.mp3` | 1,039 | compressed music/audio | Confirmed |
 | `.pal` | 708 | customization palette | Strong |
 | `.psh` | 694 | pixel shader program | Strong |
@@ -80,9 +80,9 @@ PEFT/0002's four floats are initial time scale, transition time, sustaining time
 | `.pob` | 498 | portalized building/object | Strong |
 | `.eft` | 467 | effect/pass definition referenced by `.sht` | Confirmed dependency |
 | `.skt` | 435 | skeleton template | Strong |
-| `.ilf` | 411 | interior layout/data | Tentative |
+| `.ilf` | 411 archive copies / 297 effective live winners | `INLY/0000` client-local building furnishing layout | Confirmed file/runtime path |
 | `.lat` | 337 | logical animation table | Strong |
-| `.cmp` | 253 | component appearance | Strong |
+| `.cmp` | 253 archive copies / 165 effective live winners | `CMPA` transformed child-appearance composition | Confirmed versions 0001-0005; deployed 0003-0005 |
 | `.trn` | 121 | ground/space terrain | Confirmed |
 | `.inc` | 511 | declarative UI include fragments plus shader includes | Confirmed by content sampling |
 | `.ui` | 9 record copies | declarative root/tool UI documents | Confirmed by content sampling |
@@ -127,7 +127,7 @@ owns children eagerly, exposes `min(count, 4)`, and shares optional
 
 Installed `effect/a_simple.eft` contains multiple `IMPL/PASS` implementations: a vertex/pixel shader 2.0 pair, a shader 1.1 pair, and a fixed-function pass. This confirms that an EFT selects among capability-specific implementations and that SHT supplies material/texture values into a chosen effect/pass. The replacement should compile these semantics into modern immutable material variants rather than retain runtime D3D9 capability fallback branches.
 
-Executable version dispatch now confirms `EFCT` versions 0000-0001, `IMPL` versions 0000-0007, and `PASS` versions 0000-0009. EFCT contains an ordered set of inline or NAME-referenced implementations and selects the first supported one. Later IMPL forms carry SCAP capability requirements and optional OPTN selectors before their pass count/data. Exact PASS render-state fields are not yet claimed.
+Executable version dispatch confirms `EFCT` versions 0000-0001, `IMPL` versions 0000-0007, and `PASS` versions 0000-0009. EFCT contains an ordered set of inline or NAME-referenced implementations and selects the first supported one. Later IMPL forms carry SCAP capability requirements and optional OPTN selectors before their pass count/data. Later backend tracing maps the PASS state compiler, sampler subset and fixed/program shader branches; forward overlay winners using IMPL 0009/PASS 0010 remain a separately documented compatibility boundary.
 
 The raw installed corpus contains 467 live EFT and 36,686 live SHT records with zero parse errors. Outer versions are EFCT 0000 (4), EFCT 0001 (463), SSHT 0000 (34,302), and SSHT 0001 (2,266). Embedded PASS counts are 0000=2, 0002=2, 0005=4, 0007=86, 0008=658, 0009=1,697, and 0010=108. Embedded IMPL 0008/0009 also occur 82 times. PASS 0010 and IMPL 0008/0009 exceed the traced main executable dispatch ranges and are retained as a compatibility/reachability issue, not discarded as scanner noise.
 
@@ -234,3 +234,9 @@ The three invalid extension records are `shader/pt_anim_atom_ring.dds`, `shader/
 `datatables/environment/<terrain>.iff` uses DTII/0001 with 25 explicit typed columns. The runtime loader consumes family name, weather index, gradient-sky texture, two cloud shader/size/speed triplets, a 256×8 lighting-ramp TGA, shadow/fog controls, two fog-density scalars, an optional attached-camera appearance template, day/night environment maps, seven audio paths and wind scale. Rows are indexed by the PTAT-resolved key `(familyId<<16)|weather`, with same-family weather-zero fallback. Fifty effective tables parse cleanly in the configured overlay, totaling 1,337 rows.
 
 `terrain/environment/<terrain>.iff` is a separate ENVM/0000 resource. The loader recognizes NSKY, STAR, SUN, SSUN, MOON, SMOO and repeated CELS chunks to construct shared night-sky and celestial resources. These two environment formats must not be conflated: DTII selects regional/weather descriptors, while ENVM defines planet-wide celestial content.
+
+## BEAM appearance template
+
+Stardust.exe registers outer tag `BEAM` at `0x00798240` and accepts only version `0000` through `0x00798460`. The v0000 loader at `0x00798540` reads two four-byte values, one Vector4 and a shader-template path. Runtime use confirms that the first two values are little-endian F32 dimensions rather than opaque integers; they are copied to the beam primitive and used to derive its bounding radius as `sqrt(dimension0^2 + dimension1^2)`. The Vector4 is passed to the shader-template instance-creation path, and its exact historical label remains unknown.
+
+The runtime path `0x00792EC0 -> 0x007928D0` owns a shader-backed four-vertex primitive, regenerates its geometry from the two dimensions, and maintains an extent used by visibility/culling. The effective configured archive overlay contains no BEAM winner, so this is a confirmed executable compatibility contract without a deployed corpus sample. A replacement importer should retain the decoder but must not manufacture semantics for the Vector4 until an authored sample or source-level corroboration is found.

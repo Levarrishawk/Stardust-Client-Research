@@ -905,3 +905,33 @@ Replacement consequence: an engine BVH or heightfield is suitable, provided it i
 - Camera-relative updates manage radial residency and fading; dynamic records support normalized color and optional time-driven sinusoidal motion.
 
 Replacement consequence: publish typed terrain-generation channels and use engine-native instancing, while preserving category separation, deterministic selection, transformations, color and distance policies.
+# 2026-09-22 — INLY/0000 interior-layout runtime
+
+- `client_interior_layout_manager_install_VA_0059B500` registers the manager and reads `ClientGame.disableLazyInteriorLayoutCreation`; this is distinct from default-true `useInteriorLayoutFiles`.
+- `client_interior_layout_manager_apply_pending_world_layouts_VA_0059B5A0` is called from the normal frame update and scans eligible world buildings when lazy creation is enabled.
+- `client_interior_layout_manager_apply_building_layout_VA_0059B7B0` resolves node cell names, creates object templates, binds them to building cells, copies authored 3x4 transforms, inserts the local objects into the world, and skips failed nodes independently.
+- Complete configured-overlay parsing found 297 effective `INLY/0000` winners, one tombstone, 87,937 nodes, 2,278 unique object templates, 664 cell names and zero parse failures. The former 411 count is raw archive copies.
+
+# 2026-09-22 — CMPA component-appearance composition
+
+- `component_appearance_template_load_VA_00798E40` accepts CMPA 0001-0005. Deployed effective winners are 13 v0003, six v0004 and 146 v0005.
+- Common `PART` records resolve an appearance-template path and retain twelve little-endian F32 transform values in a 0x34-byte pointer-plus-transform record.
+- All 165 effective CMPA winners parse without error: 779 children comprising 640 LOD, 87 particle, 26 mesh, 16 sprite and 10 nested component references.
+- `component_appearance_construct_VA_007A0320` instantiates/owns child objects and appearances, creates a parent visibility object and attaches each child's visibility object below it. Runtime operations compose per-part transforms and fan out across children.
+- v0005 `RADR/INFO` is a U32-gated auxiliary runtime object. Its exact historical semantic label remains unknown and is intentionally not invented.
+- Namespace-normalized dependency auditing found ten nested CMP edges, zero cycles and eight unresolved legacy laser-bolt mesh parts. The affected components retain sprite children; child resolution failure is therefore a bounded part-local compatibility condition.
+
+# 2026-09-22 — SPRT/QUAD v0000 appearance
+
+- `sprite_quad_template_install_VA_0079B8B0` registers both `SPRT` and `QUAD` to the same factory and unregisters both together.
+- `sprite_quad_template_load_v0000_VA_0079BC50` reads center/offset Vector3, radius/half-size F32, RGBA Vector4 and a shader-template path.
+- Configured-overlay parsing found 469 effective winners (369 QUAD, 100 SPRT), 385 shaders and zero parse failures. All deployed colors are white; geometry centers/sizes vary.
+- `sprite_quad_appearance_construct_VA_00789AF0` applies `sqrt(2)` size conversion, creates the shader-backed quad primitive and render/visibility object, and exposes the primitive bounds.
+
+# 2026-09-22 — BEAM/0000 dormant compatibility family
+
+- Stardust.exe registers BEAM at `0x00798240`; `0x00798460` accepts only version 0000.
+- `0x00798540` decodes two little-endian F32 dimensions, a Vector4 and shader-template path. Runtime use establishes the two scalar fields as geometry dimensions.
+- `0x00792EC0 -> 0x007928D0` owns a shader-backed four-vertex primitive, regenerates geometry and derives a bound as `sqrt(dimension0^2 + dimension1^2)`.
+- The Vector4 is passed to shader-instance creation, but its historical label is not established. It remains intentionally opaque.
+- No configured effective appearance winner has outer tag BEAM and no `.beam` namespace winner exists. This is supported dormant code, so its parser contract is retained without invented corpus ranges.
