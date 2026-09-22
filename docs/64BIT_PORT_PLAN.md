@@ -2,12 +2,12 @@
 
 ## Feasibility answers
 
-1. **Architecture reconstruction:** broad subsystem architecture is already recoverable with high confidence because RTTI, diagnostics, exports, config, and server source remain. Exact function graphs and data layouts are only at an early stage.
-2. **Protocol recovery:** application-message coverage can be recovered extensively from the Stardust server source, including opcodes and field order. Client handler semantics can often be correlated using retained class strings. The lower SOE transport still needs careful reconstruction/validation.
+1. **Architecture reconstruction:** the principal platform, transport, session, replication, scene, renderer, asset, UI, input and audio boundaries are address-backed in the verified executable. The normalized registry has 2,198 stable provisional function addresses, but this is not exhaustive function-by-function recovery. Specialized presentation policy and failure/lifetime tails remain open.
+2. **Protocol recovery:** the current Stardust server-source matrix classifies 345 packet definitions with zero reachable inventory gaps; this does not mean every optional client handler is fully characterized. SOE transport and key client dispatch paths have been reconstructed, but server-generated/live-server golden vectors and deployed-version checks still remain.
 3. **Asset dependence:** world, appearance, animation, terrain, shaders, UI, effects, and audio are deeply asset-dependent. The networking POC is not.
 4. **Conceptual reuse:** session sequencing, wire messages, template CRCs, replication views, containment/cell/scene concepts, and virtual paths. Redesign platform, allocation, jobs, renderer, UI internals, and resource ownership.
-5. **Major blockers:** complete client handler VAs; baseline/delta schema completeness; TRE/IFF format coverage; dynamic renderer module behavior; legal/provenance review for assets/middleware; and deployed server version/config mismatch. Core SOE transport behavior is source-recovered but still needs golden-vector and live-server validation.
-6. **Renderer/engine:** DX12 remains the leading custom-renderer candidate for a Windows-first project, but no renderer or engine choice is final. Before any substantial client build, complete the required analysis and run the pre-build engine decision gate below. See `RENDERING_ARCHITECTURE.md`.
+5. **Major blockers:** remaining long-tail asset/presentation semantics, unresolved-resource failure behavior, exhaustive ownership and optional workflow auditing, original-asset provenance/redistribution review, and validation against the actually deployed server build/configuration. The packet inventory is closed, while operational wire tests and fidelity tests still remain.
+6. **Renderer/engine:** no engine choice is final. DX12 is a viable Windows-first custom-renderer candidate and Godot remains a viable host-engine candidate; Vulkan's cross-platform case remains conditional. Compare them against the completed asset and lifecycle requirements at the pre-build decision gate, after the user-requested comprehensive analysis. See `RENDERING_ARCHITECTURE.md`.
 7. **Smallest POC:** a headless-capable x64 Windows executable that initializes logs/config, establishes the transport session, sends the minimum login message to a controlled Stardust test server, parses one known reply, records a deterministic structured log, disconnects, and exits cleanly.
 
 ## 32-to-64-bit hazards
@@ -28,7 +28,7 @@
 
 ## Pre-build engine decision gate
 
-**Status: analysis inputs complete; engine spikes and user decision are next.** See `FINAL_PREBUILD_ANALYSIS_REPORT.md` and `ENGINE_DECISION_REQUIREMENTS.md`.
+**Status: the original pre-build gate was reached, but the user subsequently chose to complete the broader client analysis before returning to engines or construction.** See [the archived historical pre-build report](../research/archive/superseded-progress-reports/FINAL_PREBUILD_ANALYSIS_REPORT.md), [current status](../ANALYSIS_STATUS.md), and `ENGINE_DECISION_REQUIREMENTS.md`. The archived report is historical, not the current completion claim.
 
 After the protocol, replication, object lifecycle, asset formats, world/cell model, animation, UI/input and audio dependencies are sufficiently characterized—and before substantial replacement-client implementation—compare at least:
 

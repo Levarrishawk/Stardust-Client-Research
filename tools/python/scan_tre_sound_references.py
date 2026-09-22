@@ -30,7 +30,8 @@ def archive_records(path):
         _, usize, payload_offset, kind, csize, name_offset = struct.unpack_from("<6I", record_data, index * 24)
         end = name_data.find(b"\0", name_offset)
         name = name_data[name_offset:end].decode("ascii", "replace").lower().replace("\\", "/")
-        yield name, usize, kind, raw[payload_offset:payload_offset + csize]
+        stored_size = usize if kind == 0 else csize
+        yield name, usize, kind, raw[payload_offset:payload_offset + stored_size]
 
 
 def main(root_value, cfg_value, scalar_csv_value, output_value):

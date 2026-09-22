@@ -462,6 +462,25 @@ cycles and eight tolerated legacy missing mesh children. Shared `SPRT`/`QUAD`
 v0000 defines center, size, RGBA and shader-backed quad presentation; all 469
 effective winners parse cleanly. Stale terrain, PTEX, mesh-tombstone, SPS and
 PASS wording was reconciled. Estimates remain **96% implementation-grade / 90%
-comprehensive**; the normalized registry contains **2,171 distinct addresses / 0
+comprehensive**; the normalized registry contains **2,178 distinct addresses / 0
 duplicates** and packet coverage remains **345 / 0**. See
 `ANALYSIS_SESSION_2026-09-22_TO_1430.md`.
+
+## 2026-09-22 DTLA detail-appearance block
+
+The general `.lod` appearance family is now address-backed separately from
+skeletal MLOD and terrain LOD. DTLA 0001–0007 are accepted; the effective
+overlay has 6,198 valid live DTLA assets, three tombstones and one non-DTLA
+extension outlier. The common loader maps authored IDs to distance intervals
+and child appearance paths. Runtime caps exposed levels at eight, loads child
+appearances lazily, and searches neighboring levels when the selected one is
+unavailable. Eight authored files repeat a child ID; 290 distinct mesh child
+paths do not resolve in the configured overlay. All 385 no-render APT/NRND
+references resolve after correctly reading uncompressed TRE records. Resource fetch
+behavior and RADR/flag effects remain bounded unknowns. TEST/WRIT model roles
+are confirmed by DPVS imports. See
+`ANALYSIS_CHECKPOINT_2026-09-22_DTLA_DETAIL_APPEARANCE.md`.
+
+Rounded estimates remain **96% implementation-grade / 90% comprehensive**;
+the stable registry contains **2,198 distinct addresses / 0 duplicates** and
+the packet matrix remains **345 documented / 0 reachable gaps**.

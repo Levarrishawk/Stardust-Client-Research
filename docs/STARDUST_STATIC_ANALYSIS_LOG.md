@@ -935,3 +935,12 @@ Replacement consequence: publish typed terrain-generation channels and use engin
 - `0x00792EC0 -> 0x007928D0` owns a shader-backed four-vertex primitive, regenerates geometry and derives a bound as `sqrt(dimension0^2 + dimension1^2)`.
 - The Vector4 is passed to shader-instance creation, but its historical label is not established. It remains intentionally opaque.
 - No configured effective appearance winner has outer tag BEAM and no `.beam` namespace winner exists. This is supported dormant code, so its parser contract is retained without invented corpus ranges.
+
+# 2026-09-22 — LEFX lightning appearance
+
+- `0x007B3570` registers LEFX; `0x007B3630` dispatches versions 0000, 0001 and 0002 to `0x007B37C0`, `0x007B3B80` and `0x007B3E90`.
+- All versions embed PTEX/0000 and a final 0000 scalar/string chunk; 0001/0002 additionally embed two WVFM channels.
+- Overlay-aware parsing found 49 live `.ltn` assets, no tombstones and zero errors: two v0000, six v0001 and 41 v0002.
+- Three strings are start appearance, end appearance and optional sound. Corpus positions confirm `.prt` start/end naming; only tractor beam supplies the third `.snd`.
+- V0000 has 16 F32 values; v0001 has 16 F32, two U32 attachment-transform flags and one discarded legacy byte; v0002 has 19 F32 and the two flags. Runtime tests at `0x007AB412` and `0x007AB4AA` gate full transform/orientation handling for start/end attachment objects. Every deployed legacy byte is zero. Unknown scalar labels remain ordered typed fields.
+- `0x007A9BE0` constructs a local shader primitive with five fixed branch records. Rendering samples template channels and allocates dynamic geometry proportional to active branches.

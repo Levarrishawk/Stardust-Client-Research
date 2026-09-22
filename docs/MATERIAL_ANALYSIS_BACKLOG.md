@@ -40,7 +40,7 @@ Miles or DirectInput internals are not required.
 |---:|---|---|
 | 1 | UI/gameplay workflow breadth | Finish remaining inventory, trade, crafting, mission, guild, social, combat and space mediator actions end to end; classify UI-only presentation separately. |
 | 1 | Active server/client contradictions | Preserve the risk register and resolve/fixture-test quest counter/timer IDs and VerifyPlayerName schema before a networking POC claims compatibility. |
-| 1 | Asset-format/runtime long tail | Continue rare effective specialized appearance, particle, portal/interior, space and client-data variants. ILF, CMPA, SPRT/QUAD and the dormant BEAM executable contract are closed and should not be reopened without contradictory evidence. |
+| 1 | Asset-format/runtime long tail | Continue rare effective specialized appearance, particle, portal/interior, space and client-data variants. ILF, CMPA, SPRT/QUAD, LEFX and the dormant BEAM executable contract are closed and should not be reopened without contradictory evidence. |
 | 2 | Animation/presentation exceptions | Finish appearance-specific controller/modifier exceptions, notification ordering and remaining action/event consumers. |
 | 2 | Renderer/world special cases | Finish particles, shadows, specialized scene primitives, visibility exceptions and remaining space/environment presentation semantics. |
 | 2 | Lifecycle/ownership breadth | Audit remaining worker threads, scheduled callbacks, pools, caches and shutdown ordering not covered by the closed loader/terrain blocks. |

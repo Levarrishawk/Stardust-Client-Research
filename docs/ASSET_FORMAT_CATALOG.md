@@ -17,6 +17,10 @@ These are disk schemas, not legacy pointer-bearing runtime layouts.
 
 Executable registration calls confirm `LSAT`, `MESH`, `MKAT`, `BEAM`, `CMPA`, `DTLA`, `QUAD`, `SPRT`, `SWSH`, `LEFX`, `PEFT`, `SMAT`, `PLNT`, `MPTA`, `PTAT`, `APPR`, `NRND`, and `STAT`. Each maps to a typed factory callback; factories then dispatch their own versions. `APT/0000/NAME` is a one-level logical-path indirection outside the renderable-type registry.
 
+### DTLA general detail appearance
+
+`DetailAppearanceTemplate` registers `DTLA` at `0x007992E0`. The loader accepts versions 0001–0007; 6,198 valid effective `.lod` resources use only 0005 (150), 0006 (66), or 0007 (5,982). These combine inherited `APPR/0003`, an optional one-byte `PIVT`, repeated `INFO` ID/F32-distance-bound triples, ID-keyed `DATA/CHLD` child paths, and `TEST`/`WRIT` policy forms; 0007 additionally contains `RADR`. The child references span mesh, APT, component, skeletal-generator and sprite appearance resources. Runtime `DetailAppearance` selects by camera distance, exposes at most eight children, loads them lazily and searches adjacent available levels. This is distinct from skeletal `.lmg`/MLOD and terrain LOD. See [DTLA checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_DTLA_DETAIL_APPEARANCE.md).
+
 ### MESH
 
 Confirmed supported versions are `0002` through `0005`. Versions 0002/0003 contain explicit `CNTR` and `RADI`; versions 0004/0005 derive those values from embedded APPR extent data. Every supported version owns a `FORM SPS ` shader-primitive-set child. SPS supports at least versions `0000` and `0001`. Optional APPR `HPTS` contains repeated transform-plus-name `HPNT` hardpoints.
@@ -63,7 +67,7 @@ PEFT/0002's four floats are initial time scale, transition time, sustaining time
 | `.stf` | 12,781 | string table/localization | Strong |
 | `.snd` | 11,570 | sound template/descriptor | Strong |
 | `.wav` | 10,932 | waveform audio | Confirmed |
-| `.lod` | 10,306 | level-of-detail appearance | Strong |
+| `.lod` | 10,306 archive copies / 6,198 valid effective DTLA | general detail-appearance selector | Confirmed |
 | `.apt` | 9,690 | appearance indirection/template | Confirmed |
 | `.cdf` | 8,484 | character data/customization definition | Strong |
 | `.flr` | 8,123 | floor/collision/navigation mesh | Strong; `FloorMesh` RTTI |
@@ -240,3 +244,11 @@ The three invalid extension records are `shader/pt_anim_atom_ring.dds`, `shader/
 Stardust.exe registers outer tag `BEAM` at `0x00798240` and accepts only version `0000` through `0x00798460`. The v0000 loader at `0x00798540` reads two four-byte values, one Vector4 and a shader-template path. Runtime use confirms that the first two values are little-endian F32 dimensions rather than opaque integers; they are copied to the beam primitive and used to derive its bounding radius as `sqrt(dimension0^2 + dimension1^2)`. The Vector4 is passed to the shader-template instance-creation path, and its exact historical label remains unknown.
 
 The runtime path `0x00792EC0 -> 0x007928D0` owns a shader-backed four-vertex primitive, regenerates its geometry from the two dimensions, and maintains an extent used by visibility/culling. The effective configured archive overlay contains no BEAM winner, so this is a confirmed executable compatibility contract without a deployed corpus sample. A replacement importer should retain the decoder but must not manufacture semantics for the Vector4 until an authored sample or source-level corroboration is found.
+
+## LEFX lightning appearance
+
+`LightningAppearanceTemplate` registers tag `LEFX` at `0x007B3570`. Dispatcher `0x007B3630` accepts versions 0000, 0001 and 0002 through loaders `0x007B37C0`, `0x007B3B80` and `0x007B3E90`. All versions embed `PTEX/0000`, followed by a scalar/string chunk named `0000`; versions 0001 and 0002 additionally serialize two matching `WVFM` waveform forms. Thirty-six assets use WVFM/0001 pairs and eleven outer-v0002 assets use WVFM/0002 pairs. The three strings are start appearance, end appearance and optional sound references, confirmed by the effective corpus: positions zero and one consistently contain start/end `.prt` resources, while position two is empty except for the tractor-beam `.snd`.
+
+The configured overlay contains 49 effective live `.ltn` assets and no tombstones or parser errors: two v0000, six v0001 and 41 v0002. The PTEX blocks use thirteen unique `.sht` resources; every shader and every non-empty start/end/sound dependency resolves. V0000 carries 16 F32 values. V0001 carries 16 F32 values, two U32 attachment-transform flags and one discarded legacy byte. V0002 carries 19 F32 values and the two U32 flags. Runtime `0x007AB412`/`0x007AB4AA` tests the respective flags against one before applying full transform/orientation handling to the start/end attachment objects. All six deployed legacy bytes are zero. Exact editor-facing names for many scalar channels remain unavailable, so their stable serialized order—not speculative labels—is the compatibility contract.
+
+Runtime construction at `0x007A9BE0` owns a local shader primitive and five fixed lightning branch/segment work records. Its update/render path samples the template channels, allocates a dynamic vertex range proportional to active branches and emits the procedural lightning geometry. A modern implementation may generate an equivalent ribbon/strip on the GPU, but must preserve PTEX animation/material identity, the two waveform channels, start/end attachments, optional looping/presentation sound and authored scalar order.

@@ -1425,3 +1425,46 @@ primitive with explicit bounds. See the ILF, CMPA and sprite/quad checkpoints.
 
 These closures deepen the original-asset requirement without changing the
 conservative rounded estimates: **90% comprehensive / 96% implementation-grade**.
+
+### BEAM, LEFX and scene-worker retirement closure (2026-09-22)
+
+The dormant BEAM/0000 executable contract is bounded as two F32 dimensions, an
+opaque Vector4 shader-instance parameter and shader path feeding a four-vertex
+primitive. No effective configured BEAM asset exists, so field-range claims are
+withheld.
+
+LEFX is active and fully inventoried: 49 live `.ltn` winners, zero tombstones,
+zero parse errors, all supported outer versions represented, thirteen PTEX
+shaders and no missing shader/attachment/sound dependencies. The two U32 flags
+control start/end attachment transform handling; the extra v0001 byte is read
+and discarded. Runtime owns five procedural branch records and dynamic shader
+geometry. See the BEAM and LEFX checkpoints.
+
+Scene retirement policy is now reconciled by ownership. Scene-owned terrain
+work is stopped/signalled/joined; process-global asynchronous asset work may
+finish but cancelled callback identity suppresses stale publication; synchronous
+file-streamer work reaches terminal completion. This closes the architectural
+join-versus-discard question without claiming exact historical subscriber order.
+
+Rounded estimates remain **90% comprehensive / 96% implementation-grade**.
+
+### DTLA general appearance LOD closure (2026-09-22)
+
+The next original-asset block reconstructs the distinct `DTLA` general
+appearance detail selector from executable loader/runtime code and all
+effective `.lod` records. The valid overlay has 6,198 live DTLA assets across
+versions 0005–0007, with ID-keyed child paths, camera-distance intervals,
+lazy runtime child construction, an eight-level cap and neighboring availability
+fallback. It also exposes three tombstones, one non-DTLA `.lod` outlier, eight
+duplicate-child-ID assets and 290 directly unresolved mesh child paths. The
+385 no-render APT references resolve through a valid high-priority NRND
+redirect after correcting the inventory helper's uncompressed-TRE size rule.
+Policy
+forms `TEST` and `WRIT` feed DPVS visibility models through nested `IDTL`
+geometry; RADR/flag effects remain open. Missing-child fetch failure is the immediate next targeted
+question. See the DTLA detail-appearance checkpoint.
+
+This deepens the mandatory original-asset compatibility contract, but does
+not justify moving the rounded estimates: **90% comprehensive / 96%
+implementation-grade**. The registry is **2,198 distinct addresses / 0
+duplicates**; the packet matrix remains **345 documented / 0 reachable gaps**.

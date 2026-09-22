@@ -2651,3 +2651,40 @@ page behavior or persistence. See
 | `0x00798540` | `beam_appearance_template_load_v0000_VA_00798540` | Two F32 dimensions, Vector4 and shader path; confirmed by loader/runtime |
 | `0x007983F0` | `beam_appearance_factory_VA_007983F0` | Creates runtime instance from template; confirmed |
 | `0x00792EC0` | `beam_appearance_construct_VA_00792EC0` | Owns shader-backed four-vertex primitive; confirmed |
+
+# LEFX lightning-appearance names added 2026-09-22
+
+| Address | Stable provisional name | Evidence |
+|---|---|---|
+| `0x007B3570` | `lightning_appearance_template_install_VA_007B3570` | Registers/unregisters LEFX factory; confirmed |
+| `0x007B3500` | `lightning_appearance_template_factory_VA_007B3500` | Allocates/constructs 0x100-byte template; confirmed |
+| `0x007B3630` | `lightning_appearance_template_load_VA_007B3630` | Versions 0000-0002 dispatcher; confirmed |
+| `0x007B37C0` | `lightning_appearance_template_load_v0000_VA_007B37C0` | PTEX and legacy scalar/attachment layout; confirmed |
+| `0x007B3B80` | `lightning_appearance_template_load_v0001_VA_007B3B80` | Adds two waveform forms and Boolean; confirmed |
+| `0x007B3E90` | `lightning_appearance_template_load_v0002_VA_007B3E90` | Current scalar layout; confirmed |
+| `0x007A9BE0` | `lightning_appearance_construct_VA_007A9BE0` | Procedural five-branch shader-primitive runtime; confirmed broad contract |
+
+# DTLA detail-appearance names added 2026-09-22
+
+| Address | Stable provisional name | Evidence |
+|---|---|---|
+| `0x007992E0` | `detail_appearance_template_install_VA_007992E0` | DTLA registration and skipL0 configuration; confirmed |
+| `0x00799390` | `detail_appearance_template_factory_VA_00799390` | Allocates typed template; confirmed |
+| `0x007993F0` | `detail_appearance_template_ctor_VA_007993F0` | Constructs loaded template; confirmed |
+| `0x00799770` | `detail_appearance_template_level_count_VA_00799770` | Counts 20-byte level records; confirmed |
+| `0x007997D0` | `detail_appearance_template_level_lower_bound_VA_007997D0` | Reads first F32 bound; confirmed |
+| `0x007997F0` | `detail_appearance_template_level_upper_bound_VA_007997F0` | Reads second F32 bound; confirmed |
+| `0x00799810` | `detail_appearance_template_lazy_fetch_child_VA_00799810` | Fetches child template; confirmed |
+| `0x00799880` | `detail_appearance_template_create_child_VA_00799880` | Creates runtime child from fetched template; confirmed |
+| `0x00799950` | `detail_appearance_template_find_level_by_id_VA_00799950` | Matches authored U32 ID; confirmed |
+| `0x007999F0` | `detail_appearance_template_load_levels_VA_007999F0` | INFO/DATA/CHLD parser; confirmed |
+| `0x0079A100` | `detail_appearance_template_load_radr_policy_VA_0079A100` | Reads RADR policy flag; precise semantic label unknown |
+| `0x0079A1C0` | `detail_appearance_template_load_test_policy_VA_0079A1C0` | Reads TEST policy flag; precise semantic label unknown |
+| `0x0079A280` | `detail_appearance_template_load_writ_policy_VA_0079A280` | Reads WRIT policy flag; precise semantic label unknown |
+| `0x0079A340` | `detail_appearance_template_compare_upper_bound_VA_0079A340` | Sort comparator on second F32 bound; confirmed |
+| `0x0079A370` | `detail_appearance_template_load_VA_0079A370` | Versions 0001–0007 dispatch; confirmed |
+| `0x00787400` | `detail_appearance_construct_VA_00787400` | RTTI-backed runtime constructor; confirmed |
+| `0x00787650` | `detail_appearance_ensure_child_VA_00787650` | Lazily creates/attaches a child; confirmed |
+| `0x00787710` | `detail_appearance_select_distance_detail_VA_00787710` | Distance selection plus adjacent availability fallback; confirmed broad behavior |
+| `0x00766700` | `indexed_detail_mesh_to_dpvs_model_VA_00766700` | Converts IDTL geometry through imported DPVS::MeshModel::create; confirmed |
+| `0x0079AA50` | `detail_appearance_template_build_test_model_VA_0079AA50` | Builds TEST model or bound fallback; confirmed |

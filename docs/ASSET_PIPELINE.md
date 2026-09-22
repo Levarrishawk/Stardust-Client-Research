@@ -353,3 +353,40 @@ shader render sets iterate passes; and each live RTFC selects one vertex buffer
 and issues a triangle fan. The effective face-composition path is therefore
 implementation-grade even though dormant command variants remain documented
 for later expansion.
+
+## Lightning appearances (LEFX)
+
+The effective overlay contains 49 live `.ltn` resources: two LEFX/0000, six
+LEFX/0001 and 41 LEFX/0002, with no tombstones or parse failures. Every version
+embeds the shared PTEX/0000 shader/atlas descriptor and a final scalar/string
+chunk. Versions 0001 and 0002 add two matching WVFM channels; deployed pairs
+are 36×WVFM/0001 and 11×WVFM/0002. The three strings identify
+start appearance, end/target appearance and optional sound. Runtime code owns
+five fixed procedural branch records and generates dynamic shader geometry.
+
+Import LEFX into an engine-neutral lightning description that retains version,
+ordered scalar fields, PTEX, both optional waveform channels, attachment
+resources and sound. Rendering may use modern GPU ribbons, but asset decoding
+must preserve the original packed-IFF rule: odd-sized chunks have no RIFF pad
+byte. See `ANALYSIS_CHECKPOINT_2026-09-22_LEFX_LIGHTNING_APPEARANCE.md`.
+
+## General detail appearances (DTLA)
+
+General `.lod` resources are `DTLA` detail-appearance templates, not skeletal
+MLOD generators. The configured overlay has 6,198 valid effective DTLA assets
+in versions 0005–0007, three tombstones, and one `.lod`-named non-DTLA outlier.
+The loader associates `INFO` distance intervals and `DATA/CHLD` paths by
+authored U32 ID; all live child IDs match an INFO record. Runtime caps exposed
+children at eight, creates children lazily and searches adjacent available
+details when the selected child is unavailable. The replacement resource
+manager must retain the authored distance bands and child paths. The `RADR`,
+`TEST` and `WRIT` forms carry flags and sometimes an `IDTL/0000` indexed model
+with 12-byte vertices and U32 indices; 1,836 such geometry records validate.
+Executable imports and call sites prove TEST and WRIT build DPVS visibility
+models (`setTestModel` and `setWriteModel`); RADR and flag effects remain open.
+The current
+overlay has 290 distinct `.msh` child paths absent by direct virtual-path
+lookup. All 385 `appearance/no_render.apt` references resolve through a valid
+high-priority APT-to-NRND redirect. The exact missing-mesh fetch consequence
+remains open. See
+`ANALYSIS_CHECKPOINT_2026-09-22_DTLA_DETAIL_APPEARANCE.md`.
