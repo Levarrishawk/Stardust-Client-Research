@@ -1,0 +1,11 @@
+# CLEF `FFBK` corpus and optional-device policy
+
+Date: 2026-09-22. Target: original `C:\Stardust-DEV\Stardust.exe`, SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. This refines the code path in `ANALYSIS_CHECKPOINT_2026-09-22_CLEF_RUNTIME_CONSUMERS.md` with full-overlay asset bytes.
+
+The `FFBK` leaf is a NUL-terminated `forcefeedback/*.ffe` path followed by a little-endian U32 iteration count and F32 spatial radius. The loader turns the path into a DirectInput feedback file object and stores that runtime pointer at record `+0x0C`; the iteration count and radius are stored at `+0x10` and `+0x14`. At runtime, the effect is started only when the relevant object/player context exists, the distance is less than radius, and the feedback pointer is non-null. **Confirmed by loader, call chain, DirectInput interface declaration, and x86 argument order.**
+
+All **75** live `FFBK` records parse without error and occur in 75 distinct CEFs. They use eight distinct `.ffe` paths, all present in the configured overlay. Every iteration count is exactly **1**; radii span **20..60** with no zero, negative or nonfinite value. The code supports other U32 iteration counts, but the installed corpus does not exercise them. This matters for a replacement haptic interface: one-shot feedback suffices for current assets, while the parser should preserve the U32 wire/file field.
+
+The loader has an explicit optional-device boundary. `0x00421620` returns the installed force-feedback enable flag. `0x00421ED0` returns null when that flag is off. `0x00420E20` attempts file-effect enumeration only when its selected DirectInput device is present and capable; otherwise it returns false without invoking enumeration. The CLEF execution helper checks for a nonzero feedback object before calling `Start`. Thus CEF playback does not require haptic hardware. This is **confirmed control flow**; exact diagnostics for a corrupt `.ffe`, unavailable file in a different installation, or DirectInput failure codes have not been exhaustively audited.
+
+Corpus reproduction: `tools/python/cef_ffbk_corpus.py` on the corrected configured TRE overlay. Aggregate JSON lives under ignored `local-private/`; no original `.ffe` bytes are stored in curated data. Three new stable names. Packet map and planning percentages unchanged.

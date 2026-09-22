@@ -1,5 +1,28 @@
 # Unknown and Provisional Functions
 
+## 2026-09-22 evening CLEF follow-up
+
+`CPAP` is now behaviorally mapped through managed-particle lifetime,
+expiration policy, randomized uniform geometry scale and instance time scale.
+One literal `.prt ` trailing-space reference was previously misclassified as
+live; the executable preserves the space and takes the default-appearance
+fallback. All 87 CEF-reached empty-name PTEX shader slots are enabled and use
+the installed `shader/3d_vertexcolorac.sht` fallback, rather than an unknown
+missing-file path. See the CPAP and PTEX checkpoints dated 2026-09-22.
+
+`CLGT`/CDF Light `+0x100..+0x108` remain **unknown** in exact render
+semantics. The Light constructor initializes them to `(1,0,0)`, suggestive of
+constant/linear/quadratic attenuation, but no final Direct3D consumer has been
+proven; do not upgrade this hypothesis to a field label. The archive-backed
+`.ffe` path passed to DirectInput is also an open runtime edge: SearchTree
+formats `archive[member]`, and static analysis has not established whether a
+separate materialization/interception layer makes it readable by
+`EnumEffectsInFile`. See `ANALYSIS_CHECKPOINT_2026-09-22_FFBK_RESOLVED_PATH.md`.
+The second CAMS scalar is stored at camera `+0x224`, but the traced per-frame
+shake update does not read it. A direct-offset scan of the camera-family code
+found no read; aliased or cross-module consumption is not excluded. Its units
+and behavioral role remain unknown.
+
 ## 2026-09-22 secure-trade workflow closure
 
 The secure-trade mediator family is no longer a material unknown. Stable names

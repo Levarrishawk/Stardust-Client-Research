@@ -1,5 +1,11 @@
 # CLEF template fetch, cache, and missing-path boundary
 
+Status update (2026-09-22 evening): the CAMS, FFBK, CPAP, PSND and CLGT
+runtime-consumer questions listed below as open at the time of this checkpoint
+have since been addressed in the corresponding later CLEF checkpoints.
+Remaining unknowns include the exact CLGT scalar-trio render semantics and
+whether archive-backed `.ffe` source notation is consumable by DirectInput.
+
 Date: 2026-09-22  
 Target: original `C:\Stardust-DEV\Stardust.exe`; Ghidra output is reconstructed pseudocode
 

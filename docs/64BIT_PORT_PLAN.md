@@ -132,3 +132,13 @@ Keep protocol codecs in a standalone library with golden fixtures; keep renderer
 The environment clock is a concrete 32-to-64-bit trap. The wire time is and remains LE64, but legacy GroundScene separately computes a signed-looking offset from only the low U32 and a 32-bit local wall clock. Do not reproduce that truncation in the new architecture. Parse to `uint64_t`, calculate modulo/corrections in full-width integer or double precision, use a monotonic local clock for frame advancement, and isolate any wrap-compatibility test behind the protocol layer. PTAT cycle duration is a serialized float read field-by-field, not a pointer-sized or packed host member.
 
 Particle descriptions require the same field-wise treatment. Legacy `ParticleEffectAppearance`, emitter and 0xA8-byte particle-record sizes are not disk contracts. Preserve PEFT time/scale composition, EMTR orientation modes, pool-admission priority and deterministic spawn/drop decisions while replacing 32-bit pointers, copied vector layouts and the global fixed-record particle pool.
+
+CLEF records make the boundary concrete: `CLGT` occupies **23 bytes on disk**
+but 24 bytes in the x86 runtime vector due to a color-byte alignment pad;
+`CPAP` uses a 40-byte runtime entry containing a 32-bit appearance handle,
+while its versioned disk leaf is a NUL path plus explicit scalar/byte fields.
+Decode each authored field, preserve literal logical paths (including a
+trailing space when present), and construct native x64 objects separately.
+Do not memcpy x86 vectors or trim a path to force an unintended asset lookup.
+An enabled PTEX empty name is a defined fallback-material case, distinct from
+a missing named resource.

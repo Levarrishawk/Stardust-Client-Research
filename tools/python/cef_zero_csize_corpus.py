@@ -51,7 +51,7 @@ def iff_shape(payload):
             children.append(child_tag.decode("ascii", "replace"))
         offset = stop
     refs = sorted({m.group().decode("ascii", "replace").lower().replace("\\", "/")
-                   for m in re.finditer(rb"(?:appearance|sound|clienteffect|forcefeedback)[/\\][A-Za-z0-9_./\\-]+\.(?:apt|swh|prt|snd|cef|sht|wav|ffe)", payload, re.I)})
+                   for m in re.finditer(rb"(?:appearance|sound|clienteffect|forcefeedback)[/\\][A-Za-z0-9_./\\-]+\.(?:apt|swh|prt|snd|cef|sht|wav|ffe)[ ]*", payload, re.I)})
     return tag, ";".join(children), ";".join(refs)
 
 

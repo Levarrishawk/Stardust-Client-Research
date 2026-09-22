@@ -1,5 +1,10 @@
 # One-hour Stardust.exe analysis session: TRE correction and CLEF asset boundary
 
+Correction recorded later on 2026-09-22: the 1,889 direct CLEF references split
+as **1,876 live / 13 absent**, not 1,877/12. The earlier regex omitted an
+authored trailing space from one `CPAP` path; TreeFile does not trim it. See
+`../checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_CLEF_CPAP_RUNTIME_AND_PATH_CORRECTION.md`.
+
 Date: 2026-09-22  
 Session window: 20:04:59–21:04:59 UTC (16:04:59–17:04:59 EDT)  
 Scope: read-only executable/asset analysis, corrected research tools and documentation; no replacement-client implementation
@@ -20,7 +25,7 @@ Eleven bounded blocks were completed. The main correction is to TRE kind-0 paylo
 8. **CLEF template cache/fetch.** Decompiled top-level CEF lookup: cache hit reuse; absent top-level CEF warns/returns null. Nested CPAP uses the distinct default-appearance fetch wrapper.
 9. **PSND missing-sound boundary.** Sound-template lookup uses allow-missing IFF open and returns null for absent child sound; CLEF reader still appends the entry. Downstream instance handling of null remains unknown.
 10. **MKAT marker appearance.** All 15 recovered markers parse as MKAT/0000/INFO and point to live shaders. Decompiled factory and INFO reader; first-level field order is now constrained.
-11. **Full CEF overlay breadth check.** All 1,145 live effective CEFs are supported CLEF versions (650 v0001, 39 v0002, 456 v0003); one true mask. Across them, 1,889 recognized direct references: 999 SND, 815 PRT, 75 FFE; 1,877 live, 12 absent from configured TREs, all 58 installed TRE archives, and installation-relative loose paths. No malformed first-level form or unsupported version was found.
+11. **Full CEF overlay breadth check.** All 1,145 live effective CEFs are supported CLEF versions (650 v0001, 39 v0002, 456 v0003); one true mask. Across them, 1,889 recognized direct references: 999 SND, 815 PRT, 75 FFE. A later literal-path correction gives **1,876 live / 13 absent** in the configured overlay; the thirteenth path has an authored trailing space. No malformed first-level form or unsupported version was found.
 
 ## Cross-references and corrections
 
@@ -39,7 +44,7 @@ The counts, bounded IFF/TGA structures, configured resource-path availability, a
 Highest-value remaining targeted work:
 
 1. Trace CLEF `CAMS` (`template +0x18`), `CLGT` (`+0x14`), and `FFBK` (`+0x1C`) consumer methods to establish scalar semantics and lifecycle.
-2. Trace effect-instance behavior when PSND caches a null sound handle; check whether the 12 absent direct CEF dependencies cause silent skip, warning, or another fallback.
+2. Trace effect-instance behavior when PSND caches a null sound handle; check whether absent direct CEF dependencies cause silent skip, warning, or another fallback. This has since been addressed for PSND and CPAP in the evening CLEF checkpoints.
 3. Continue descendant closure from CPAP `.prt` through particle shaders/textures and from cockpit MSH through materials/texture resources, then verify with runtime behavior where permitted.
 4. Audit the 84 corrected CDFs and 53 ramps against any previously generated aggregate tables that may still use stale denominators; the authoritative corrected CSVs are in ignored `local-private/generated-evidence/`.
 

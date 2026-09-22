@@ -32,7 +32,7 @@ The live-light constructor consumes:
 |---|---|
 | `value[0..2]` | RGB color |
 | `value[6]` | range/radius |
-| `value[10..12]` | local position |
+| `value[10..12]` | Copied to live `Light +0x100..+0x108`; exact light/render semantics unknown. Earlier “local position” label withdrawn by 2026-09-22 cross-check. |
 
 The second color triplet and the other point-flicker-only slots are ignored for type 1. The runtime computes luminance from the absolute RGB components, derives the packed/render color, and updates the light's DPVS/spatial range from `value[6]`.
 
@@ -50,7 +50,7 @@ The live-light constructor consumes:
 | `value[7]` | maximum range |
 | `value[8]` | minimum update interval |
 | `value[9]` | maximum update interval |
-| `value[10..12]` | local position |
+| `value[10..12]` | Copied to live `Light +0x100..+0x108`; exact light/render semantics unknown. Earlier “local position” label withdrawn by 2026-09-22 cross-check. |
 
 `Light_alter_VA_006E2EA0` waits for a randomly selected interval in the authored interval range. At each update it independently:
 
@@ -81,12 +81,14 @@ The corpus resolves the behavior: each ordinary streetlamp CDF sets the flag, wh
 ## Replacement-client contract
 
 - Preserve the type-discriminated 13-float stream exactly.
-- Type 1: RGB + fixed range + position.
-- Type 2: two RGB endpoints + random range bounds + random update-interval bounds + position.
+- Type 1: RGB + fixed range + three preserved, still-unlabeled light scalars; LOBJ/HLOB placement is separate.
+- Type 2: two RGB endpoints + random range bounds + random update-interval bounds + the same three preserved scalars; LOBJ/HLOB placement is separate.
 - Use independent random samples for color interpolation, range, and next interval as the legacy update does.
 - Preserve optional companion appearance creation and the LOBJ-vs-HLOB placement distinction.
 - When `dayNightControlled` is set, mirror light activation to the terrain/world night-light state; otherwise leave activation independent.
 - A modern renderer can translate these to ordinary point lights; no legacy `Light` memory layout is required.
+
+Correction (2026-09-22): The original `value[10..12]` “local position” label was overconfident. `LOBJ` appends a separate translation vector and `HLOB` a hardpoint selector after the base stream. The three common scalars are copied into `Light +0x100..+0x108`, as are three `CLGT` fields, but their final rendering consumer has not been identified. This affects field semantics, not the proven type IDs, color/range/flicker behavior, or placement-path distinction. See `ANALYSIS_CHECKPOINT_2026-09-22_CLEF_LIGHT_RUNTIME.md`.
 
 ## Stable provisional names
 
@@ -98,6 +100,6 @@ The corpus resolves the behavior: each ordinary streetlamp CDF sets the flag, wh
 
 ## Confidence
 
-- Type IDs, static-point mapping, point-flicker mapping, and update equations: **confirmed by code and diagnostic strings**.
+- Type IDs, color/range portions of static-point and point-flicker mapping, and update equations: **confirmed by code and diagnostic strings**. The final three common scalar meanings are **unknown**.
 - Placement distinction: **confirmed by parser/application code**.
 - Day/night-controlled behavior of the final flag: **confirmed by code plus paired streetlamp assets**; exact historic spelling is unknown.

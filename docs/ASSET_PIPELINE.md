@@ -410,11 +410,41 @@ plus one true mask, all in versions 0001–0003 supported by Stardust.exe. The
 five leaf families are `PSND` sound, `CPAP` appearance/particle, `CAMS`
 camera-effect numeric data, `CLGT` light numeric data, and `FFBK`
 `forcefeedback/*.ffe` references. There are 1,889 recognized direct child
-references, 12 absent from configured TREs. A modern renderer/audio/input
+references, 13 absent from configured TREs after preserving one authored
+trailing space. A modern renderer/audio/input
 backend may redesign implementation, but it must preserve versioned leaf
 behavior when consuming original CEF assets. See
 `ANALYSIS_CHECKPOINT_2026-09-22_FULL_CLEF_OVERLAY.md` and
 `ANALYSIS_CHECKPOINT_2026-09-22_CLEF_LOADER_VERSIONS.md`.
+
+Runtime execution now confirms that CLEF's `CPAP`, `PSND`, `CLGT`, `CAMS`, and
+`FFBK` vectors all feed effect instances, not just parsing. `CAMS` drives a
+distance-attenuated camera shake; `CLGT` supplies normalized RGB, lifetime,
+three still-unidentified light scalars and a visibility/range radius; `FFBK`
+attempts DirectInput `.ffe` enumeration and starts any created effect with an
+authored iteration count inside a distance gate. Whether archive-backed
+`archive[member]` notation is accepted by DirectInput remains unproven.
+A missing `PSND` child remains a path entry but
+is skipped by the traced playback functions when re-fetch returns null. See
+`../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_CLEF_RUNTIME_CONSUMERS.md`
+and `../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_CLEF_LIGHT_RUNTIME.md`.
+
+The CLEF direct-reference audit's 13 absent children comprise **ten** sounds
+and **three** particles; the third particle path ends in an authored trailing
+space that TreeFile does not trim.
+Following all CEF `CPAP` paths through recursive particle attachments reaches
+576 live `.prt` assets, 253 live attachment edges, 278 nonempty shader names,
+270 distinct named DDS textures (all live), and 11 distinct named effect
+programs. One EFT path is absent and referenced by seven shaders; the original
+effect-template fallback is already documented above. This is a bounded asset
+closure, not proof that every effect PASS has been reconstructed. See
+`../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_CEF_PARTICLE_SHADER_CLOSURE.md`.
+All 87 reached empty-name PTEX slots are enabled and use the installed
+`shader/3d_vertexcolorac.sht` through the primitive's fallback shader accessor;
+see `../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_PTEX_EMPTY_SHADER_FALLBACK.md`.
+`CPAP` also carries particle lifetime, an expiration policy, and (in CLEF/0003)
+separate randomized geometry-scale and time-scale ranges; see
+`../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_CLEF_CPAP_RUNTIME_AND_PATH_CORRECTION.md`.
 
 The corrected CDF corpus has 6,284 valid `CLDF/0000` files and four true
 masks. All 15 recovered MKAT marker appearances parse as `MKAT/0000/INFO`

@@ -9,13 +9,27 @@ This is a heuristic planning estimate, not a mechanically measurable completion 
 - Overall implementation-grade, replacement-relevant behavioral/specification research: **96%**.
 - Expanded comprehensive whole-client ledger: **90%** (see `COMPREHENSIVE_ANALYSIS_LEDGER.md`).
 
-The one-hour 2026-09-22 continuation closed 11 bounded analysis blocks. A
+The 2026-09-22 evening continuation adds executable-to-runtime closures for all
+five CLEF leaf families, their full-overlay numeric corpora, a corrected
+particle→shader dependency graph, and a PTEX empty-name fallback. It also
+records the unresolved archive-to-DirectInput `.ffe` filename boundary and
+withdraws an overconfident Light-field label. Exact-path scanning corrected
+the direct CEF dependency split to **1,876 live / 13 absent** out of 1,889,
+with one authored trailing-space `.prt` typo; the reached particle graph is
+576 nodes and 1,891 PTEX slots. Stable names are **2,249 unique addresses / 0
+duplicates**; the server packet matrix remains **345 documented / 0 reachable
+gaps**. The rounded 96%/90% judgments remain unchanged because these blocks
+deepen an already covered asset workstream rather than resolving the remaining
+whole-client denominator. See
+`research/sessions/ANALYSIS_SESSION_2026-09-22_TO_1900.md`.
+
+The earlier one-hour 2026-09-22 continuation closed 11 bounded analysis blocks. A
 repository-wide TRE reader re-audit corrected 15 additional legacy scripts
 after the earlier five targeted fixes. Its major corpus correction is **6,288
 effective CDF paths / 6,284 valid / four masks** (84 live files omitted by the
 old reader). The configured CLEF overlay is now 1,145 valid files plus one
 mask, all in executable-supported versions 0001–0003, with 1,889 recognized
-direct child references (1,877 live, 12 absent). Executable analysis closed
+direct child references (subsequently corrected to 1,876 live, 13 absent). Executable analysis closed
 the CLEF versioned loader, top-level template cache/missing-path behavior,
 and PSND null-template boundary. All 15 recovered MKAT marker files have live
 shader references; 53 recovered TGA files are one-row terrain color ramps.
@@ -108,7 +122,7 @@ The next customer-service block closes create-ticket and ticket-list responses, 
 
 The 2026-09-13 two-hour marathon completed seven bounded units. EMTR 0010-0014 flocking/cage fields, environment-color influence, collision/wind/local-space controls, and version-sensitive 39-versus-35-byte tail boundaries are now explicit. The legacy quad path is confirmed as six CPU-expanded dynamic vertices per particle, while PTMH references are proven to span APT/MSH/SAT and do not receive PTCL quad tint/alpha. A 345-class server packet cross-reference produced the first persistent gap matrix; ChatSystem, two PlayClientEffect messages, and Create/DestroyClientPath were then closed end-to-end. See the 2026-09-13 flocking, collision/wind, quad-batch, PTMH policy, packet-matrix, client-effect and client-path checkpoints.
 - Defined pre-build engine/POC decision analysis: **100% complete**.
-- Stable-name coverage is tracked separately in the Ghidra inventory and remains well below one percent of raw function objects; the raw inventory contains many tiny thunks/helpers and is not a replacement-readiness denominator.
+- Stable-name coverage is tracked separately from the 243,269 raw Ghidra function objects. The 2,249-address provisional registry is roughly 0.92% of that raw count, though the inventories are not identical measures and many raw entries are tiny thunks/helpers. This is not a replacement-readiness denominator.
 
 These denominators are intentionally separate. See `ANALYSIS_CHECKPOINT_2026-09-11.md` for the weighted model and `ANALYSIS_CHECKPOINT_2026-09-11_GHIDRA.md` for the latest evidence.
 

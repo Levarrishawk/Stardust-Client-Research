@@ -10,6 +10,17 @@ no work has regressed. The table immediately below is the 2026-09-21 baseline
 rubric snapshot retained for auditability; dated continuations record each
 increment and the latest entries are authoritative for the current totals.
 
+2026-09-22 evening continuation: CLEF runtime creation-to-retirement is now
+mapped for particles, sounds, lights, camera shake and optional feedback;
+version-sensitive CPAP/CLGT/CAMS/FFBK numeric fields are corpus-audited. A
+literal trailing-space CPAP path corrected the full CEF direct-reference
+availability from 1,877/12 to **1,876 live / 13 absent**, and the reachable
+particle closure from 577 to **576** nodes. Enabled empty-name PTEX records
+have a confirmed fallback material. Exact Light attenuation-like scalars and
+archive-backed `.ffe` handoff to DirectInput remain open. This narrows the
+asset/presentation risk but does not justify rounding comprehensive coverage
+above **90%**. See `research/sessions/ANALYSIS_SESSION_2026-09-22_TO_1900.md`.
+
 ## 2026-09-21 baseline reconciliation (historical 82% snapshot)
 
 The server packet matrix has reached 345 documented rows and zero reachable gaps for the current source tree. Subsequent blocks broadened the non-network denominator: UI mediator lifecycle, cameras, input and command policy, diagnostics, allocators, thread boundaries, gameplay managers, client effects/events, collision, weapon/ship presentation, and a corpus-backed reconstruction of the `ClientDataFile` dispatcher and its principal record families. The effective CDF corpus and runtime consumers now constrain object composition, damage/destruction, events, customization, wearables, lights, flora-clearing zones, movable wings, contrails, turrets/flags, ship-weapon recoil, and engine audio.
@@ -61,12 +72,21 @@ A workstream reaches 100% only when its lifecycle, important structures, input-t
 
 ## Current sequence
 
-1. Complete SearchPath/SearchAbsolute/SearchCache and TOC backing-file details.
-2. Expand MESH/SHT/EFT/texture and appearance-template decoding from logical path to GPU-neutral data.
-3. Reconstruct renderer, scene, terrain, animation, UI/input and audio.
-4. Continue message/handler and object-replication coverage in parallel with client gameplay families.
-5. Audit allocation/threading and remaining client simulation.
-6. Perform a final contradiction/unknown audit before considering engines.
+This list replaces the older 2026-09-11 ordering; the dated material below is
+retained for provenance.
+
+1. Resolve remaining active asset/render unknowns with bounded consumers:
+   Light `+0x100..+0x108`, archive-backed `.ffe` handoff, and forward-version
+   shader semantics where this executable has no decoder.
+2. Alternate each asset block with a distinct long-tail animation, UI,
+   simulation or lifecycle/ownership block; the remaining 10% comprehensive
+   denominator is not solely an asset-format problem.
+3. Re-audit exact original-asset path identity, fallback order, and any
+   server-triggered presentation families not already covered by the 345-row
+   packet matrix.
+4. Perform a final contradiction/unknown and reproducibility audit before
+   returning to engine/build selection. Do not equate this with naming every
+   raw compiler-generated function.
 
 ## 2026-09-12 continuation estimate
 

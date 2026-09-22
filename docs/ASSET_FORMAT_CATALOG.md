@@ -7,6 +7,14 @@
 - `PTMH` detail 0000: a chunk-held `.apt` appearance-template path followed by uniform-scale and three rotation WVFM forms.
 - `PTEX` 0000: resource string, inclusive frame range, square sprite-sheet layout/timing and a confirmed shader/render-enable Boolean.
 
+`CLEF/0001`–`0003` client effects carry versioned `CPAP`, `PSND`, `CLGT`,
+`CAMS` and `FFBK` leaves. `CPAP` is path + lifetime F32 in v0001, adds an
+expiration-policy byte in v0002, and adds four F32 scale/time-scale range
+endpoints in v0003. `CLGT` is exactly 23 on-disk bytes (RGB U8×3 plus five
+F32), not its 24-byte x86 runtime record. The original executable loads and
+executes all five families; see `ASSET_PIPELINE.md` and the dated CLEF
+checkpoints for field confidence and original-asset dependency closure.
+
 These are disk schemas, not legacy pointer-bearing runtime layouts.
 
 `PATT` supports 0000/0001 and occupies 0x24 bytes only in the legacy runtime. Version 0001 serializes appearance path, normalized-age minimum/maximum, kill-with-parent Boolean and U32 trigger. Version 0000 includes five obsolete words that this executable reads and discards, then defaults trigger to 2. Effective assets contain 774 PATT/0001 records and no PATT/0000.

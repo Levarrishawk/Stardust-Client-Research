@@ -1,5 +1,12 @@
 # Stardust.exe CLEF 0001–0003 loader and short-effect corpus
 
+Status update (2026-09-22 evening): later CLEF runtime and full-overlay
+checkpoints map CPAP lifetime/scale/termination fields, CLGT RGB/lifetime/range,
+CAMS duration/amplitude/radius, FFBK iteration count/radius and PSND missing
+sound behavior. This checkpoint's "unknown" language is historical. The final
+CLGT scalar trio, CAMS second scalar and archive-backed `.ffe` handoff remain
+unresolved; use the latest session report for current counts and confidence.
+
 Date: 2026-09-22  
 Target: `C:\Stardust-DEV\Stardust.exe`; decompiled output is reconstructed pseudocode, not source
 
