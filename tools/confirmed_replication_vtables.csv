@@ -1,0 +1,6 @@
+constructor_va,view,added_ordinal,vtable_va,evidence
+0x0065B800,9,16,0x015E0BA0,dynamic allocation body in constructor
+0x0065B800,9,17,0x015E0D8C,destructor 0x0065C030 and RTTI
+0x0065B800,8,1,0x015E0BA0,dynamic allocation body in constructor
+0x0065B800,8,5,0x015E0D44,destructor 0x0065C030 and RTTI
+0x0065B800,8,6,0x015E0D68,destructor 0x0065C030 and RTTI

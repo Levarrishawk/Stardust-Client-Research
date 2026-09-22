@@ -1,0 +1,15 @@
+* text=auto
+*.md text eol=lf
+*.csv text eol=lf
+*.tsv text eol=lf
+*.py text eol=lf
+*.ps1 text eol=crlf
+*.java text eol=lf
+*.godot text eol=lf
+
+# Avoid misleading Git diffs for binary fixtures retained after review.
+*.iff binary
+*.tre binary
+*.dds binary
+*.png binary
+*.mp4 binary

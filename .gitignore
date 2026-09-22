@@ -1,0 +1,36 @@
+# Private and heavyweight reverse-engineering state
+/local-private/
+
+# Local analysis caches
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.mypy_cache/
+**/.idea/
+**/.vscode/
+
+# Ghidra and local database state if accidentally created outside local-private
+*.gpr
+*.rep/
+*.gbf
+*.db
+*.lock
+
+# Native and packaged binaries are not part of the curated research repository
+*.exe
+*.dll
+*.pdb
+*.lib
+*.obj
+*.jar
+*.zip
+*.7z
+*.whl
+
+# Logs and transient output
+*.log
+*.tmp
+*.bak
+*.swp
+Thumbs.db
+Desktop.ini

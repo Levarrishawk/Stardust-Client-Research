@@ -1,0 +1,5 @@
+address,name
+0x0043F960,creature_group_changed_decode_VA_0043F960
+0x0118A840,autodelta_byte_stream_register_field_VA_0118A840
+0x0118AA00,autodelta_byte_stream_delta_decode_VA_0118AA00
+0x0118A970,autodelta_byte_stream_commit_VA_0118A970
