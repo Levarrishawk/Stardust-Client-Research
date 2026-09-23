@@ -1,0 +1,9 @@
+# Analysis checkpoint — full CKAT quaternion reconstruction audit
+
+Target: every deployed `CKAT/0001` packed rotation value, using the executable-derived quantizer-table formula in an ignored read-only corpus probe. This extends the prior one-key-per-AROT-channel sample; it is not a differential test against the original runtime's x87 floating-point output.
+
+The audit reconstructed the three stored quaternion components for **all 12,059,807 animated AROT keys** and **all 127,315 static SROT records**. With a threshold `sum(component²) > 1.00001`, it found **248** overshoots: **244 AROT keys and four SROT values**, spread across **16** effective clips. The largest reconstructed sum is about **1.0002971**. The top examples are probe-droid animations. The remaining **12,186,874** tested packed values are at or below that threshold. These are rare but real edge inputs for any implementation that computes the fourth component with `sqrt(1 - sum(component²))`.
+
+Do **not** infer that the original client crashes or that clamping is authorized. The probe uses Python's arithmetic from the recovered formula, not the executable's exact x87 intermediates, initialized float rounding, or a live playback trace. The decoder path as reconstructed shows a square root without an obvious clamp, so the next step is a bounded comparison of these specific 16 clips against original runtime output or exact instruction-level arithmetic. A future importer should preserve packed values and provenance; its production decode/error policy remains an explicit decision after that fixture.
+
+Evidence: executable initializer and decoder disassembly documented in `ANALYSIS_CHECKPOINT_2026-09-23_QUATERNION_QUANTIZER_TABLE_FORMULA.md`; exhaustive ignored `local-private/session-2026-09-23-marathon/probe_ckat.py` audit. Confidence: confirmed for corpus counts and probe result; uncertain for original-client numerical consequence.

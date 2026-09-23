@@ -1,0 +1,11 @@
+# AMSG animation-message gate (overnight block 9)
+
+The effective overlay contains ten `AMSG/0000` actions in temporary-weapon, queued-playback, throw-sword, and lightning scripts. Each six-byte INFO stores a 16-bit actor selector and a four-character variable tag (observed examples `PWRC`, `PWSD`, `ERIF`, `GMAA`, `GMST`, `GRTA`). `0x007F8A40` registers `AnimationMessageActionTemplate`; parser `0x007F8B70` accepts `0000`, with `0x007F8CB0` storing the selector at template `+0xC` and tag at `+8`.
+
+Template factory method `0x007F8A70` constructs a runtime through `0x00835B60`. The runtime retains the template, captures the actor selector, and installs vtable `0x015E6128`. Virtual methods `0x00835960` and `0x008359F0` respond to actor changes by subscribing/unsubscribing a callback on the selected actor's `SkeletalAppearance2` animation-message source. If actor/appearance/source cannot be resolved, it marks the gate complete to avoid an indefinite wait. Its update `0x00835A20` lazily resolves the template tag through the playback string-variable map and continues while its completion byte is clear.
+
+The registered callback `0x00835B40` forwards the incoming message and runtime pointer to `0x00835BD0`. Exact x86 instructions show `0x00835BD0` compares the incoming message against the retained string through `0x00AA2E80`; on a match it sets runtime completion byte `+0x14`. Thus `AMSG` is a **wait-for-authored-skeletal-animation-event** gate, not merely a timer. It is especially important for temporary-weapon attachment and lightning effects because subsequent thread actions may start only after that animation marker.
+
+The precise event strings are supplied by selected manager bindings and/or script defaults; this block does not claim every observed tag has a nonempty binding. A replacement animation system needs event-marker delivery to the playback scheduler as an explicit interface. It should handle actor loss and event-source teardown without retaining dangling callbacks.
+
+Provisional names: `0x007F8CB0` `parse_AMSG_0000_actor_and_event_tag`; `0x00835960` `subscribe_AMSG_skeletal_event_source`; `0x008359F0` `unsubscribe_AMSG_skeletal_event_source`; `0x00835A20` `update_AMSG_until_event_match`; `0x00835BD0` `mark_AMSG_complete_on_matching_event`.

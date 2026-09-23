@@ -12,7 +12,7 @@ This is the canonical entry point for reviewing the `Stardust.exe` research befo
 - Implementation-grade replacement research: **96%**
 - Comprehensive whole-client research ledger: **90%**
 - Server packet-source matrix: **345 documented / 0 reachable gaps**
-- Stable provisional-name registry: **2,249 distinct addresses / 0 duplicate rows**
+- Stable provisional-name registry: **2,305 distinct addresses / 0 duplicate rows**
 
 These percentages are planning estimates, not a claim that every compiler-emitted function has been decompiled. The remaining analysis must be completed before returning to engine selection or client construction.
 
@@ -26,7 +26,7 @@ These percentages are planning estimates, not a claim that every compiler-emitte
 6. [Asset pipeline](docs/ASSET_PIPELINE.md), [rendering](docs/RENDERING_ARCHITECTURE.md), [terrain](docs/WORLD_TERRAIN_ARCHITECTURE.md), and [platform/input/audio](docs/PLATFORM_INPUT_AUDIO_ARCHITECTURE.md)
 7. [Unknown-function ledger](UNKNOWN_FUNCTIONS.md) and [uncertainty audit](docs/FUNCTION_UNCERTAINTY_AUDIT.md)
 8. [64-bit port plan](docs/64BIT_PORT_PLAN.md) and [engine-decision requirements](docs/ENGINE_DECISION_REQUIREMENTS.md)
-9. [Latest session report](research/sessions/ANALYSIS_SESSION_2026-09-22_TO_1900.md), [CPAP/runtime correction](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_CLEF_CPAP_RUNTIME_AND_PATH_CORRECTION.md), [CEF particle/shader closure](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_CEF_PARTICLE_SHADER_CLOSURE.md), and [PTEX empty-shader fallback](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_PTEX_EMPTY_SHADER_FALLBACK.md)
+9. [Latest overnight session report](research/sessions/ANALYSIS_SESSION_2026-09-22_TO_2026-09-23_0500_REPORT.md) and [block index](research/sessions/ANALYSIS_SESSION_2026-09-22_TO_2026-09-23_0500_INDEX.md)
 
 ## Workspace map
 

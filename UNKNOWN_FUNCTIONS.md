@@ -2762,3 +2762,53 @@ page behavior or persistence. See
 | `0x00797740` | `marker_appearance_read_v0000_INFO_VA_00797740` | Reads shader path and numeric marker fields; confirmed |
 
 Open field-level semantics from this cluster: CLEF `CAMS` four scalars, `CLGT` byte/scalar record, `FFBK` two scalars, and downstream behavior of a null `PSND` template handle. The observed file/path contracts are in the 2026-09-22 CLEF and MKAT checkpoints; no semantics are assigned merely from the tag names.
+
+## 2026-09-23 XFMS transform-mask closure
+
+| Address | Stable provisional name | Evidence / status |
+|---:|---|---|
+| `0x008291B0` | `transform_mask_fetch_cached_VA_008291B0` | Path-existence check, VFS load and cache insertion; confirmed |
+| `0x0083CDD0` | `transform_mask_construct_and_dispatch_VA_0083CDD0` | XFMS tag/version dispatch, only 0000 accepted; confirmed |
+| `0x0083D000` | `transform_mask_read_v0000_INGR_VA_0083D000` | U16 count and counted transform-name set; confirmed |
+| `0x0083C950` | `transform_mask_contains_name_VA_0083C950` | CRC-string ordered-set membership lookup; confirmed |
+| `0x00817F80` | `masked_priority_template_read_VA_00817F80` | Mask and in/out/locomotion group references; confirmed |
+| `0x00818110` | `masked_priority_template_create_runtime_VA_00818110` | Passes loaded mask and group identities to runtime constructor; confirmed |
+| `0x0083D350` | `masked_priority_animation_construct_VA_0083D350` | Allocates per-skeleton-transform group array; confirmed |
+| `0x0083CA00` | `masked_priority_animation_build_group_map_VA_0083CA00` | Membership chooses transform-in versus transform-out group for each skeleton transform; confirmed |
+
+## 2026-09-23 deployed skeleton reader and pose route
+
+| Address | Stable provisional name | Evidence / status |
+|---:|---|---|
+| `0x0082B320` | `basic_skeleton_read_SKTM_v0002_VA_0082B320` | Exact INFO/NAME/PRNT/RPRE/RPST/BPTR/BPRO/JROR order and count-derived widths; confirmed |
+| `0x0082AC30` | `basic_skeleton_read_SKTM_v0001_VA_0082AC30` | Older variant includes BPMJ; confirmed route, no effective v0001 sample |
+| `0x0082BAE0` | `basic_skeleton_build_inverse_bind_chain_VA_0082BAE0` | Three quaternion inputs, BPTR translation, inverse and parent accumulation; output label strongly inferred |
+| `0x00ABA9F0` | `quaternion_multiply_scalar_first_VA_00ABA9F0` | Component formula and scalar-first ordering confirmed |
+| `0x00ABA530` | `quaternion_to_rotation_matrix_VA_00ABA530` | Direct 3×3 coefficient formula confirmed |
+| `0x00AB93B0` | `rigid_transform_inverse_VA_00AB93B0` | Transposed rotation and negative rotated translation confirmed |
+| `0x00AB9390` | `transform_multiply_dispatch_VA_00AB9390` | Indirect optimized/scalar backend; scalar contract `destination = left * right` confirmed via `0x00AB8FC0` |
+
+## 2026-09-23 compressed keyframe animation (CKAT) route
+
+| Address | Stable provisional name | Evidence / status |
+|---:|---|---|
+| `0x00825710` | `compressed_keyframe_template_ctor_load_VA_00825710` | CKAT version dispatch and root-motion optional-mode selection; confirmed |
+| `0x00825B30` | `compressed_keyframe_template_load_0001_VA_00825B30` | INFO, XFRM, AROT, SROT, ATRN, STRN, MSGS, LOCT and optional QCHN reader; confirmed |
+| `0x00824870` | `compressed_keyframe_quaternion_channel_load_VA_00824870` | U16 key count, three quantizer selectors, packed U32 keys, runtime interval setup; confirmed |
+| `0x00824B80` | `compressed_translation_channel_read_CHNL_VA_00824B80` | U16 key count and U16/F32 records; confirmed |
+| `0x00822FC0` | `compressed_animation_runtime_construct_VA_00822FC0` | Skeleton-name-to-XFIN match and per-transform evaluator creation; confirmed |
+| `0x00825310` | `compressed_animation_find_transform_XFIN_VA_00825310` | Binary search by transform name; confirmed |
+| `0x00825430` | `compressed_animation_decode_static_SROT_VA_00825430` | XFIN index to SROT table; instruction-level receiver verified |
+| `0x00825410` | `compressed_animation_select_animated_AROT_VA_00825410` | XFIN index to AROT channel; confirmed |
+| `0x00822710` | `compressed_animation_register_translation_dispatch_VA_00822710` | Installs eight axis-mask variants; confirmed |
+| `0x00822330` | `compressed_translation_channel_sample_linear_VA_00822330` | Cached interval and linear F32 interpolation; confirmed |
+| `0x00824F00` | `compressed_quaternion_channel_sample_VA_00824F00` | Key interval, packed decode and quaternion interpolation; confirmed |
+| `0x00AC0D90` | `packed_quaternion_decode_11_11_10_VA_00AC0D90` | Quantizer selectors, signed magnitudes, fourth-component reconstruction; confirmed |
+| `0x00AC0E20` | `packed_quaternion_quantizer_table_install_VA_00AC0E20` | SharedMath-init table build; exact numerical formula now resolved |
+| `0x00825070` | `compressed_LOCT_position_sample_linear_VA_00825070` | Cached 3D linear interpolation; confirmed |
+| `0x00826660` | `compressed_root_motion_identity_VA_00826660` | No optional channels; confirmed |
+| `0x008266B0` | `compressed_root_motion_rotation_only_VA_008266B0` | Optional top-level QCHN; confirmed |
+| `0x00826930` | `compressed_root_motion_translation_only_VA_00826930` | Optional LOCT; confirmed |
+| `0x008267A0` | `compressed_root_motion_rotation_and_translation_VA_008267A0` | Both optional channels; combined coordinate frame tentative |
+| `0x00824340` | `compressed_animation_read_MESG_VA_00824340` | Named message group with U16 occurrence frames; confirmed |
+| `0x00822F30` | `compressed_animation_collect_timed_messages_VA_00822F30` | Virtual message query and loop-time conversion; confirmed route, exact boundary rules pending |

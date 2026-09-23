@@ -1,6 +1,6 @@
 # Client Analysis Status
 
-Updated: 2026-09-22
+Updated: 2026-09-23
 
 This is a heuristic planning estimate, not a mechanically measurable completion counter. “Complete” means enough evidence to constrain a clean replacement architecture and make the pre-build engine decision; it does not mean every function in Stardust.exe has been named.
 
@@ -8,6 +8,22 @@ This is a heuristic planning estimate, not a mechanically measurable completion 
 
 - Overall implementation-grade, replacement-relevant behavioral/specification research: **96%**.
 - Expanded comprehensive whole-client ledger: **90%** (see `COMPREHENSIVE_ANALYSIS_LEDGER.md`).
+
+The 2026-09-23 overnight continuation completed 84 bounded checkpoints by
+the requested 05:00 EDT stop. It deepens playback actions, original-asset compatibility (PLNT, STAT,
+PRTO/FLOR, LSAT, XFMS, SKTM and CKAT), inventory/auction/crafting mediator
+paths, and server-side policy correlations. The most substantial new asset
+closure is the 7,771-file effective compressed-animation corpus: XFIN binding,
+171,000 animated quaternion channels, 40,701 translation channels, optional
+root motion, named messages, clip timing and the quaternion quantizer table
+formula now have executable and corpus evidence. The rounded **96%/90%**
+planning estimates remain unchanged: these are meaningful depth improvements
+inside already-recognized workstreams, not proof that every client function is
+understood. The current curated registry has **2,305 unique provisional
+addresses / zero duplicates** and the packet matrix retains **345 rows**.
+See the current overnight session index and its final report when
+the 05:00 EDT deadline is reached. The user handles all Git commits; no
+replacement-client build or engine decision occurs in this session.
 
 The 2026-09-22 evening continuation adds executable-to-runtime closures for all
 five CLEF leaf families, their full-overlay numeric corpora, a corrected

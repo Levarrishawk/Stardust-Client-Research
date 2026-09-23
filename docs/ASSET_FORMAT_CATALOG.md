@@ -53,6 +53,16 @@ All 6,373 emitters contain sixteen structurally valid waveforms: 1,882 use `WVFM
 
 PEFT/0002's four floats are initial time scale, transition time, sustaining time scale and spatial effect scale. EMTR common `+0x114` enables per-particle random seeds, `+0x118` selects one of three orientation/reference-frame modes, and invariant `+0x11C` remains compatibility metadata. EMTR/0014 `+0x229` selects reserve particle-pool admission under allocation pressure.
 
+### PLNT planet appearances
+
+The configured overlay has 23 live `.pln` files, all `PLNT/0000`. Their `INIT` tessellation, required `SURF` shader layer, optional `CLOD` cloud layer and optional `HALO` layer have executable-backed field widths. The runtime creates dedicated planet-sphere and optional halo primitives. See [PLNT checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-23_PLNT_PLANET_APPEARANCE.md).
+
+### Portal and interior floors
+
+The configured overlay has 291 live `PRTO` `.pob` layouts (versions 0001/0003/0004) plus one zero-length mask. Their `CELS` collections contain 3,470 `CELL/0004` or `0005` records; 288 layouts include `PGRF/0001`. It also has 4,730 live `FLOR` `.flr` meshes (versions 0003–0006) plus 46 masks. BTRE and PGRF are independently optional in deployed v0005/v0006 floors, so modern collision/pathing import must handle absent structures. See [PRTO corpus](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-23_PRTO_EFFECTIVE_CORPUS.md) and [FLOR corpus](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-23_FLOR_EFFECTIVE_CORPUS.md).
+
+The cross-resource audit found 3,442 cell floor references: 3,429 resolve, while 13 missing `.flr` paths belong to one `CELL/0004` police-station POB. Its deployed reachability is unproven; import must diagnose rather than silently synthesize a floor. See [PRTO→FLOR closure](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-23_PRTO_FLOR_REFERENCE_CLOSURE.md).
+
 ## Corpus totals
 
 | Measure | Count |
@@ -134,6 +144,46 @@ seven inline SKTM/0002 children (four children in 93 files). SLOD parses and
 owns children eagerly, exposes `min(count, 4)`, and shares optional
 `ClientSkeletalAnimation.skipL0`. See
 `ANALYSIS_CHECKPOINT_2026-09-12_SLOD_RUNTIME.md`.
+
+The deployed `SKTM/0002` disk order is `INFO` U32 count, `NAME` counted NUL
+strings, then count-strided `PRNT` U32, `RPRE` four-F32, `RPST` four-F32,
+`BPTR` three-F32, `BPRO` four-F32, and `JROR` U32. All 739 effective
+standalone/inline SKTM records validate these widths; two zero-joint hand
+skeletons require an empty-root case. Bind-pose multiplication is resolved as
+local inverse times parent/external transform by the scalar affine
+backend trace. See the 2026-09-23 SKTM field-order, hierarchy, bind-pose and
+multiply-backend checkpoints.
+
+The effective `appearance/mask/*.iff` corpus has nine `XFMS/0000` resources.
+Each contains an `INGR` chunk with a U16 count and that many zero-terminated
+transform names. A masked-priority animation template loads the mask by path;
+at runtime each skeleton transform name is tested against the mask, selecting
+the authored transform-in group for members and transform-out group for
+nonmembers. The common `all_f.lat` and `all_m.lat` graphs directly reference
+four of these masks. See the 2026-09-23 XFMS transform-mask, runtime-routing
+and authoring-reachability checkpoints.
+
+All 7,771 effective `CKAT/0001` clips carry a 16-byte INFO record: F32 frame
+rate (7,188 at 30 fps; 583 at 24 fps), then six S16 fields beginning with the
+clip end frame and transform/rotation/translation channel counts. XFIN is a
+NUL transform name plus ten fixed bytes selecting static/animated rotation and
+three independently static/animated translation axes. All 298,315 transform
+records have valid indices. SROT uses seven disk bytes per static quaternion;
+STRN uses four per static translation scalar. AROT holds 171,000 nested QCHN
+rotation curves (12,059,807 keys), while ATRN holds 40,701 CHNL translation
+curves (1,979,749 keys). Channel times strictly increase; translation values
+are F32 and interpolate linearly. The rotation U32 is packed 11/11/10 with
+three quantizer selectors, a reconstructed fourth component, and quaternion
+interpolation. Thirty-two clips additionally carry a top-level QCHN used for
+relative root rotation. LOCT supplies optional root translation in 1,354 clips;
+its leading F32 equals net displacement times frame rate divided by frame
+span in the entire corpus. MSGS contains 6,952 named timing groups across
+2,954 clips and feeds the skeletal-animation message callback route. The
+quaternion quantizer table formula is reconstructed; rare numerical overshoots,
+the combined root-motion coordinate convention, exact final-frame message
+delivery and some non-prefix message consumers remain open. See the 2026-09-23 CKAT
+checkpoints, especially the XFIN index, packed-quaternion, root-motion and
+timed-message checkpoints.
 
 ## Shader/effect fallback structure
 
@@ -260,3 +310,13 @@ The runtime path `0x00792EC0 -> 0x007928D0` owns a shader-backed four-vertex pri
 The configured overlay contains 49 effective live `.ltn` assets and no tombstones or parser errors: two v0000, six v0001 and 41 v0002. The PTEX blocks use thirteen unique `.sht` resources; every shader and every non-empty start/end/sound dependency resolves. V0000 carries 16 F32 values. V0001 carries 16 F32 values, two U32 attachment-transform flags and one discarded legacy byte. V0002 carries 19 F32 values and the two U32 flags. Runtime `0x007AB412`/`0x007AB4AA` tests the respective flags against one before applying full transform/orientation handling to the start/end attachment objects. All six deployed legacy bytes are zero. Exact editor-facing names for many scalar channels remain unavailable, so their stable serialized order—not speculative labels—is the compatibility contract.
 
 Runtime construction at `0x007A9BE0` owns a local shader primitive and five fixed lightning branch/segment work records. Its update/render path samples the template channels, allocates a dynamic vertex range proportional to active branches and emits the procedural lightning geometry. A modern implementation may generate an equivalent ribbon/strip on the GPU, but must preserve PTEX animation/material identity, the two waveform channels, start/end attachments, optional looping/presentation sound and authored scalar order.
+
+## LSAT lightsaber-blade appearance
+
+The configured overlay contains 45 live `.lsb` assets, all `LSAT/0000`.
+The executable loader accepts BASE and ASND paths, one or more BLAD forms
+with SHDR plus four F32 blade fields, and optional LGHT with four-byte color,
+two F32 ranges, two F32 times and a U8 day/night flag. There are 50 blade
+forms (five dual-blade assets), 19 optional light forms and zero unresolved
+literal dependencies. See
+`../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-23_LSAT_LIGHTSABER_ASSETS.md`.

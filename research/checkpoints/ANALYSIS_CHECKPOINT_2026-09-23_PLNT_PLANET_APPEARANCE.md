@@ -1,0 +1,14 @@
+# PLNT planet appearance and effective `.pln` corpus (overnight block 19)
+
+`Stardust.exe` registers appearance tag `PLNT` at `0x00852BC0` with factory `0x00852BF0`, constructs a 0x60-byte template at `0x00852C50`, and accepts **only** `PLNT/0000` at `0x00852F60`. The version-0 parser `0x00853030` loops over named children `INIT`, `SURF`, `CLOD`, and `HALO`. The configured overlay contains exactly **23 effective `.pln` files**, all `PLNT/0000`: all 23 have `INIT` and `SURF`, 15 additionally have `CLOD`, and 16 have `HALO`. No other immediate child tag was observed. This is a complete configured-corpus grammar for this version, not a claim about all historical SWG assets.
+
+| Child | On-disk fields established by parser | Runtime role |
+| --- | --- | --- |
+| `INIT` | two little-endian U32 values (eight bytes) | Sphere tessellation dimensions. Loader clamps each to at least 2 and rounds odd values up to even. Effective pairs span `(16,8)` to `(64,32)`. |
+| `SURF` | F32 angle, NUL-terminated shader path, five F32 parameters | Required surface sphere layer. Angle is multiplied by `pi/180` (`0x015E6BE8` and `0x015DC5F0`), so the file value is degrees. Shader is resolved by `0x0075AC60`. Exact semantic names of five trailing floats remain open. |
+| `CLOD` | F32 angle, NUL-terminated shader path, three F32 parameters | Optional cloud sphere layer. Same degree conversion and shader fetch. |
+| `HALO` | NUL-terminated shader path, F32 parameter | Optional billboard/quad-like halo layer. Shader fetch is explicit; exact float meaning requires its drawing consumer. |
+
+All **54** shader references in the 23 files (37 unique names) resolve to a named entry in the configured archives; this checks name presence, not nonzero/live payload or shader compile success. The template's runtime factory `0x00852D90` creates a 0xf0-byte appearance (`0x008673E0`). It builds surface geometry and optional cloud geometry from the tessellation/parameter records through `0x00867BB0`, creates per-layer primitive arrays, and creates a four-vertex halo primitive when a halo shader exists. This is a dedicated shader-driven celestial appearance, not an ordinary MESH or terrain tile. Its object sizes, vtables and dynamic vertex allocations are original x86 implementation details, not disk contracts.
+
+Provisional names: `0x00853030` `load_PLNT_v0000`; `0x008673E0` `construct_planet_appearance`; `0x00867BB0` `build_planet_sphere_layer` (last semantic name strongly inferred from call context and tessellation). Confidence: **confirmed** for registration/version, field counts/widths, degree conversion, shader fetch, corpus counts and object/primitive construction; **strongly inferred** for the surface/cloud/halo rendering roles; **unknown** for exact trailing-float labels, transparency ordering, camera-facing halo scale, and per-frame planet rotation policy.

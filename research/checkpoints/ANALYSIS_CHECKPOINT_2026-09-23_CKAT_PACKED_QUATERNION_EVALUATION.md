@@ -1,0 +1,9 @@
+# Analysis checkpoint — CKAT packed quaternion playback route
+
+Target: verified `C:\Stardust-DEV\Stardust.exe`; Ghidra is reconstructed pseudocode. This follows the dynamic AROT evaluator rather than inferring from asset names.
+
+The dynamic-rotation object's vtable at `0x015E5DB4` routes evaluation through `0x00822480` to `0x00824F00`. That routine chooses a key interval using the 12-byte runtime records, caches the interval index, and uses the precomputed reciprocal interval to obtain an interpolation fraction. It decodes adjacent packed U32 key values via `0x00AC1380`/`0x00AC0D90`, then invokes quaternion interpolation `0x00ABA7C0`. The decoder splits the 32-bit word at shifts 21 and 10 into two **11-bit sign/magnitude** fields and one **10-bit sign/magnitude** field (`0x00AC0B30`, `0x00AC0AD0`). It scales the three components according to channel parameters and reconstructs the fourth from `sqrt(1 - sum(component²))`. The interpolation routine uses the quaternion dot product to choose the shorter path and has near-equal/other branches consistent with normalized spherical interpolation. This explains why rotation U32 bit patterns must not be read as IEEE floats.
+
+Subsequent checkpoints resolve the selector-to-base/scale table formula and confirm that an optional top-level QCHN supplies relative root rotation. Numerical overshoot, float-rounding fidelity and malformed-input handling still need targeted validation before production implementation.
+
+Evidence: read-only decompilation `0x00822420`, `0x00822480`, `0x00824F00`, `0x00AC1380`, `0x00AC0D90`, `0x00AC0B30`, `0x00AC0AD0`, `0x00ABA7C0`, and static vtable entries at `0x015E5DB4`. Confidence: confirmed for bit partition, evaluation route and quaternion interpolation call; strong inference for the high-level interpolation label; unknown for exact base/scale parameters.

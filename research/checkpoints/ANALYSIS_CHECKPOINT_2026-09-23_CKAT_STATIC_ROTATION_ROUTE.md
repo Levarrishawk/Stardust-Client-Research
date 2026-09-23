@@ -1,0 +1,7 @@
+# Analysis checkpoint — CKAT static-rotation routing
+
+Target: verified `Stardust.exe` and the effective original CKAT asset corpus. This checkpoint explicitly corrects an ambiguity caused by decompiler call-convention reconstruction.
+
+`CKAT/0001` `SROT` entries are seven disk bytes: **three U8 quantizer selectors followed by a U32 packed quaternion value**. The loader `0x00825B30` expands each to an eight-byte runtime record with U32 first and selectors at `+4..6`, in the template array at offset `+0x44` (`0x00824210`). For an XFIN record whose animated-rotation flag is zero, runtime constructor `0x00822FC0` calls `0x00825430`. Instruction-level disassembly shows that function selects `template.SROT[XFIN.rotationIndex]`; `0x00825460` passes its U32 and three U8 parameters to the same packed-quaternion decoder `0x00AC1380` used by animated AROT keys. It then constructs a constant quaternion evaluator (`0x00821F50`). For flag one, XFIN's index instead selects `template.AROT[index]`, as documented separately.
+
+All **127,315** static-rotation XFIN indices in the deployed corpus lie within INFO's static-rotation count. The offset `+4..6` accessed in `0x00825460` belongs to the selected **SROT record**, not to XFIN. Ghidra pseudocode for `0x00825430` hides the implicit animation-template receiver, so disassembly `0x00825430`–`0x00825485` is the decisive evidence for that pointer flow. Confidence: confirmed for disk layout, table selection and decoder sharing; numerical base/scale details of the packed quaternion remain to be checked.

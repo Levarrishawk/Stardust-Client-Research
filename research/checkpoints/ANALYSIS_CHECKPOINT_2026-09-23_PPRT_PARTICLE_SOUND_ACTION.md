@@ -1,0 +1,11 @@
+# PPRT particle-system playback action (overnight block 5)
+
+`0x005FA6A0` installs the executable's `PlayParticleSystemActionTemplate`. The configured overlay contains six effective `PPRT/0000` action instances in five scripts. Their `INFO` is a 16-bit actor selector followed by six four-byte variable tags: `TPHE`, `TPAP`, `LTTA`, `LDNS`, `BDNS`, `EDNS`. The second particle-system action in `use_2_particle_systems.pst` substitutes different tags in some fields, confirming these are *keys*, not literal asset paths.
+
+Factory `0x005FA810` allocates a 0x24-byte template; `0x005FA870` accepts only `0000` and parser `0x005FA9C0` stores the actor selector at `+8` and six tags at `+0xC..+0x20`. Template method `0x005FA720` builds the 0x230-byte runtime `0x005FAC20`. The runtime update `0x005FAB90` accumulates an initial 0.25-second-like delay, then looks up an `LTTA` float (default 3.0) and starts resources through `0x005FAD40`. Once active, it accumulates time against that duration and stops through `0x005FAFF0`. The decompiled elapsed values have float units consistent with the playback update path, but an external timing test is still needed for exact clock semantics.
+
+`0x005FAD40` resolves the selected actor and a `TPHE` string/hardpoint-like value, resolves `TPAP` as an appearance/resource path, fetches/constructs an appearance object, and attaches it to the actor through client effect helpers. It also resolves `BDNS` and `LDNS` string variables and routes nonempty paths into sound/effect helpers; `0x005FAFF0` releases/ends the appearance and resolves `EDNS` for teardown. Because the underlying helper `0x00410660` is shared and not fully decoded here, exact begin/loop/end sound timing and whether each path is strictly audio should remain marked **strongly inferred**, not confirmed by this block alone.
+
+This action is a concrete original-asset dependency: replacing only its visuals without reading the configured `TPAP` appearance and hardpoint data would not preserve authored behavior. A headless networking proof of concept still need not instantiate this action.
+
+Provisional names: `0x005FA9C0` `parse_PPRT_0000_actor_and_tags`; `0x005FAB90` `update_PPRT_delay_active_duration`; `0x005FAD40` `start_PPRT_attached_appearance`; `0x005FAFF0` `stop_PPRT_appearance_and_end_resource`.

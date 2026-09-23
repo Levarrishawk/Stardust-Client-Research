@@ -20,7 +20,7 @@ already documented controller transport and are not native C++ object layouts.
 | Inner type | Direction | Executable codec | Inner typed payload | Stardust action / client effect |
 |---:|---|---|---|---|
 | `0x102` | Z→C | `0x00AF6D00` | `U64 toolId`, `U64 stationId`, `S32 count`, repeated `{U32 serverCrc, U32 clientCrc, S32 toolTab}` | `CraftingSession::startSession` supplies the allowed schematic list; `CuiCraftManager` publishes `DraftSchematicsReceived`. |
-| `0x107` | C→Z | `0x00AEC240` | `U64 ingredientId`, `S32 slot`, `S32 quantity/amount`, `U8 counter` | `CraftingAddIngredientCallback` resolves a tangible, aborts concurrent trade, and calls `session->addIngredient`. |
+| `0x107` | C→Z | `0x00AEC240` | `U64 ingredientId`, `S32 slot`, `S32 extra field (ignored by current server)`, `U8 counter` | `CraftingAddIngredientCallback` resolves a tangible, aborts concurrent trade, and calls `session->addIngredient`. |
 | `0x108` | C→Z | `0x00AF5430` | `S32 slot`, `U64 ingredientId`, `U8 counter` | `CraftingRemoveIngredientCallback` validates session/object and calls `session->removeIngredient`. |
 | `0x106` | C→Z | `0x00AF5DF0` | `U8 counter`, `S32 count`, repeated `{S32 row, S32 points}` | Server requires crafting state 3 and calls `session->experiment`; client record also accumulates total requested points locally. |
 | `0x15A` | C→Z | `0x00AF57B0` | `Unicode16 name`, `U8 templateChoice`, `S32 schematicCount`, `U8 pairCount`, repeated `{S32 index, S32 value}` | Server calls `session->customization` with the name, template selection, schematic count and customization pairs. |

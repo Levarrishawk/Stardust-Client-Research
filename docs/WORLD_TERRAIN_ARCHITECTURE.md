@@ -1,5 +1,7 @@
 # World and Terrain Architecture
 
+The separate space-terrain family is `STAT/0000`, not a ground `PTAT` variant. All 16 effective space `.trn` files and their eleven child-form families have executable-backed grammar, including repeated `PLAN`, `DIST`, and `CELE` entries and active `SKYB` parsing. See [STAT space-terrain checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-23_STAT_SPACE_TERRAIN_GRAMMAR.md). Runtime rendering/visibility is still open.
+
 ## Confirmed ground-terrain container
 
 `terrain/corellia.trn` is a `PTAT` version `0014` IFF form. Its top-level children are:

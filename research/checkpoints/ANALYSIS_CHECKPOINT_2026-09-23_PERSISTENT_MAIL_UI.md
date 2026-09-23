@@ -1,0 +1,11 @@
+# Persistent-mail composer/browser UI boundary (overnight block 32)
+
+The persistent-mail packet and manager were previously closed; this block adds concrete mediator ownership and a send-button bridge.
+
+`SwgCuiPersistentMessageComposer` has primary mediator vtable `0x015F1BE8`. Its activation `0x00D6D7C0` enables the composition controls, joins a process-wide active-composer collection, and ensures a shared `AttachObject` callback exists; the collection count is published back to the mail manager. Deactivation `0x00D6DA70` removes the composer and releases the shared attachment listener when the last composer closes. Thus attachment routing is shared across open composer windows but the pages themselves are separately owned.
+
+The composer send action `0x00D6E280` requires a nonempty recipient widget, copies the entered recipient text, calls the mail manager's recipient validator `0x008F21D0`, and on success collects subject/body/widget text before invoking `0x008F0DA0`. That routes to `0x008F0E90` and ultimately the already mapped `0x008F0790` `ChatPersistentMessageToServer` send path (`0x25A29FA6`). Failure paths produce a UI message and do not submit. The exact formatting of every attachment/OOB widget field is not established in this block; those records remain governed by the manager's typed OOB serializer.
+
+`SwgCuiPersistentMessageBrowser` vtable `0x015F1B08` activation `0x00D685E0` subscribes to `HeaderReceived`, `BodyReceived`, and `EmailListChanged` typed manager events, then rebuilds presentation from the manager's existing mailbox state. Deactivation `0x00D686C0` identifies and removes its owned transceivers. Its body event callback `0x00D68EF0` refreshes the selected message only when the received mail ID matches the current selection; this prevents an unrelated delayed body response from replacing the open message.
+
+Replacement boundary: keep mail repository, outgoing sequence correlation, and OOB attachments in the domain layer. Composer/browser lifetimes own only subscriptions, selected-message identity, validation feedback, and widget state. Confidence: **confirmed** for vtable/typed-event identities, direct send call chain, nonempty-recipient gate, shared attach listener lifetime and selected-ID refresh guard; **unknown** for complete recipient syntax UX and all attachment-widget behavior.

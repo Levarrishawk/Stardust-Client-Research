@@ -1,0 +1,9 @@
+# Analysis checkpoint — CKAT completion and outer-track event order
+
+Target: verified `Stardust.exe` compressed animation and physical track. This narrows the end-frame message question without claiming every possible callback path.
+
+The physical-track alter `0x0083E630` invokes the active skeletal animation's advance method with the remaining delta, then extracts/accumulates root motion and calls `0x00830170` to enumerate messages **before** it releases or installs a returned replacement animation. For CKAT, the advance vtable slot is `0x00822C40`, which saves previous frame, caps current frame at the declared end and returns overrun time. Its message slot `0x00822F30` passes previous/current integer-converted frames to the half-open collector `0x008245D0`. Thus the normal completion substep still queries the outgoing clip's events before replacement; they are not lost simply because the clip finished.
+
+However, in that ordinary path the capped current frame equals the declared end frame, and the collector excludes the upper endpoint. This implies that an event authored exactly at the end frame is **not selected by that specific interval query**, despite 1,517 such occurrences in the deployed corpus. Whether another animation/callback path intentionally delivers them is not proved. A replacement should not silently change this edge without a differential fixture; the current compatibility specification records the observed half-open query and flags final-frame delivery as unresolved at whole-system scope.
+
+Evidence: `0x0083E630` and `0x00830170` read-only pseudocode, CKAT runtime vtable `0x015E5DC4`, `0x00822C40`, `0x00822F30`, binary-search disassembly `0x008245D0`–`0x00824662`, endpoint corpus. Confidence: confirmed for normal substep ordering and query exclusion; unknown for other delivery routes.

@@ -1,8 +1,21 @@
 # Comprehensive Client Analysis Ledger
 
-Updated: 2026-09-22
+Updated: 2026-09-23
 
 This ledger measures the expanded objective: an implementation-grade picture of every material Stardust.exe subsystem before engine selection or construction begins. It excludes compiler thunks, standard-library internals and trivial forwarding functions unless they affect behavior or ABI boundaries.
+
+2026-09-23 overnight continuation: 84 bounded blocks completed by the 05:00
+EDT stop extend original-asset and runtime coverage, most notably the effective
+CKAT/SKTM/XFMS animation chain, plus specialized playback actions, space
+terrain/planet and portal/floor resources, lightsaber behavior, and
+inventory/auction/crafting UI-to-server paths. The CKAT corpus validates
+298,315 transform bindings, 171,000 animated rotation channels, 40,701
+animated translation channels, four optional root-motion modes, 6,952 named
+message groups and exact quantizer-table generation. Rare numerical edge
+cases and cross-system long tails remain. This does **not** justify changing
+the rounded **90% comprehensive / 96% implementation-grade** estimates;
+additional bounded closures should be judged against remaining workstream
+breadth, not raw block count. See the 2026-09-23 overnight session index.
 
 2026-09-22 late continuation: playback-script `PBSC/0001` and `PBSC/0002` dispatch, the effective 32-file v0002 corpus, 25 direct action factory registrations, per-thread scheduler and scene-update placement are now evidence-backed. One installed script has `FIPL`/`PPRL` tags absent from the observed direct registry; five `PSKA/0003` actions in four installed files exceed this executable's `0002` PSKA ceiling. Ordinary reachability of these files remains unproven. The supported PSKA start path reaches skeletal animation. This adds animation/presentation breadth but does not yet warrant a whole-point increase over the current **90% comprehensive / 96% implementation-grade** planning estimates. See `research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_PLAYBACK_SCRIPT_CORPUS_AND_FACTORY.md` and `research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_PSKA_FORWARD_VERSION_AND_RUNTIME.md`.
 
