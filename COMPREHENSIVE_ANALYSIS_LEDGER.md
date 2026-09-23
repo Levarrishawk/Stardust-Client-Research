@@ -4,6 +4,8 @@ Updated: 2026-09-22
 
 This ledger measures the expanded objective: an implementation-grade picture of every material Stardust.exe subsystem before engine selection or construction begins. It excludes compiler thunks, standard-library internals and trivial forwarding functions unless they affect behavior or ABI boundaries.
 
+2026-09-22 late continuation: playback-script `PBSC/0001` and `PBSC/0002` dispatch, the effective 32-file v0002 corpus, 25 direct action factory registrations, per-thread scheduler and scene-update placement are now evidence-backed. One installed script has `FIPL`/`PPRL` tags absent from the observed direct registry; five `PSKA/0003` actions in four installed files exceed this executable's `0002` PSKA ceiling. Ordinary reachability of these files remains unproven. The supported PSKA start path reaches skeletal animation. This adds animation/presentation breadth but does not yet warrant a whole-point increase over the current **90% comprehensive / 96% implementation-grade** planning estimates. See `research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_PLAYBACK_SCRIPT_CORPUS_AND_FACTORY.md` and `research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_PSKA_FORWARD_VERSION_AND_RUNTIME.md`.
+
 The current weighted completion estimate is **90%**. This is a stricter
 denominator than the replacement-relevant implementation estimate (**96%**);
 no work has regressed. The table immediately below is the 2026-09-21 baseline

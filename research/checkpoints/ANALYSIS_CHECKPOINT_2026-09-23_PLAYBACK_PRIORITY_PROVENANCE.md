@@ -1,0 +1,9 @@
+# Playback actor modes and priority provenance (block 3 of 3)
+
+`0x004079E0` counts 8-byte actor slots, `0x004079F0` returns a slot's actor pointer, and `0x00407A70` decides whether it contributes to conflict arbitration. Its mode comes through `0x00407A50` → `0x00404280`, an indexed integer in the playback template's array at `+0x18`. Mode 1 accepts a non-null actor; mode 2 additionally requires `0x00408080` to resolve an `AEPS`/`DEPS`-like tag to a nonnegative index. Other modes do not mark the slot. The semantic meaning of those mode numbers and the tag lookup is still uncertain; this is an implementation-level predicate, not a proposed gameplay rule.
+
+The priority compared at playback instance `+0x68` is set by constructor `0x00408790` from its priority argument. In the combat `SNGL` path, `0x00467370` initializes that argument from selector field `+0x20`, then conditionally adds `0x00503490` or `0x005034A0` (global integers `DAT_01911174` and `DAT_01911170`) when the selected actor matches `0x00425140` and combat context field `[8] == 1`. It passes the resulting value through `0x00404200` to the instance constructor. This confirms a **base priority plus conditional local-actor adjustment** for this path. The configuration source and numeric values of the two globals were not established here. Other playback constructors exist and may use different priority sources.
+
+`0x0040AA40` exposes the global arbitration-bypass byte `DAT_01907EE0`; its write sites and intended configuration are not yet established. The prior checkpoint's maximum-priority and tie-break rules remain valid. The original pointer-identity conflict comparison and x86 object layout are not network-visible requirements for an x64 client.
+
+Provisional identifiers: `0x00407A70` `actor_slot_contributes_to_playback_conflict`; `0x00408790` `construct_playback_instance_with_priority`; `0x00467370` `construct_SNGL_playback_with_actor_priority_adjustment`.

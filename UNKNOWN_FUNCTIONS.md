@@ -1,5 +1,28 @@
 # Unknown and Provisional Functions
 
+## 2026-09-22 playback-script boundary
+
+The `PBSC/0002` template grammar and scheduler are now bounded, but this is not a closure of all individual action semantics. The effective overlay has 32 scripts, 68 threads and 124 action nodes. One installed script contains `FIPL` and `PPRL`, which were not found among 25 direct factory registrations; its ordinary runtime reachability is unproven. See `research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_PLAYBACK_SCRIPT_CORPUS_AND_FACTORY.md`.
+
+Follow-up: Five installed `PSKA/0003` actions in four scripts exceed this executable's `PSKA/0002` ceiling. Their `INFO` extends seven to eleven bytes with a nonzero four-byte tag; its semantics and ordinary reachability remain unknown. The supported PSKA runtime does resolve a playback actor, require `SkeletalAppearance2` and apply an animation name/tag. See `research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_PSKA_FORWARD_VERSION_AND_RUNTIME.md`.
+
+| Address | Stable provisional name | Evidence / status |
+|---:|---|---|
+| `0x00402FA0` | `playback_template_cache_fetch_VA_00402FA0` | Confirmed cache/VFS fetch and null-on-missing path |
+| `0x00404490` | `playback_template_pbsc_dispatch_VA_00404490` | Confirmed PBSC v0001/v0002 dispatch |
+| `0x00404DF0` | `playback_template_load_v0002_VA_00404DF0` | Confirmed variables, thread list and action-factory dispatch; some INFO byte semantics open |
+| `0x00404130` | `playback_action_factory_register_VA_00404130` | Confirmed tag/factory registration into lookup tree |
+| `0x00407090` | `playback_action_factory_lookup_VA_00407090` | Confirmed key lookup and sentinel on miss |
+| `0x00467370` | `playback_script_launch_from_action_VA_00467370` | Confirmed template fetch, instance creation and actor-variable setup |
+| `0x00401AB0` | `playback_script_manager_alter_VA_00401AB0` | Confirmed active-script iteration, update and retirement |
+| `0x004078C0` | `playback_script_alter_threads_VA_004078C0` | Confirmed per-thread action index, virtual update and timeout-like comparison |
+| `0x005FA1E0` | `pska_template_version_dispatch_VA_005FA1E0` | Confirmed v0000–v0002 dispatch; installed v0003 unsupported by observed branch |
+| `0x005FA4C0` | `pska_template_load_v0002_VA_005FA4C0` | Confirmed seven-byte INFO and optional PSTR/FTRK widths |
+| `0x005F9AA0` | `pska_action_alter_VA_005F9AA0` | Confirmed one-time start then actor/animation state check |
+| `0x005F9B50` | `pska_action_start_animation_VA_005F9B50` | Confirmed actor/SkeletalAppearance2 guard and animation-name/track application |
+| `0x00407A20` | `playback_script_actor_by_index_VA_00407A20` | Confirmed bounds-checked actor table lookup at eight-byte stride |
+| `0x00407D10` | `playback_script_string_variable_lookup_VA_00407D10` | Confirmed four-byte tag lookup in string-variable map, warning/null on missing tag |
+
 ## 2026-09-22 evening CLEF follow-up
 
 `CPAP` is now behaviorally mapped through managed-particle lifetime,

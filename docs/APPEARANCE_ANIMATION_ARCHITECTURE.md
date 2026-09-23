@@ -38,6 +38,12 @@ Stardust.exe RTTI confirms:
 
 This is a layered graph/controller system, not a simple “play clip by name” interface. A replacement can redesign execution, but it needs an intermediate animation graph capable of selectors, priorities, masks, time scaling, directional/yaw selection, state transitions and logical track mapping.
 
+## Playback-script bridge
+
+The executable also runs `PBSC` playback scripts as ordered action threads. A cached IFF template loader dispatches `PBSC/0001` and `PBSC/0002`, resolves each action FORM through a registered factory, and creates runtime scripts. The ground-scene update advances the active-script manager; each script advances current actions per thread and retires when no thread remains active. The `PSKA` action is a concrete bridge into skeletal animation: it resolves the playback actor, requires `SkeletalAppearance2`, resolves an animation-name tag and applies the animation through the existing animation/controller path. This is **confirmed** at the loader/scheduler/PSKA start boundary, not a complete action-by-action behavioral specification.
+
+The installed overlay has 32 effective `PBSC/0002` scripts (68 threads, 124 actions). It also exposes a forward-compatibility risk: five `PSKA/0003` actions have an extra nonzero four-byte field, while this Stardust.exe recognizes PSKA only through `0002`; one of those scripts additionally contains `FIPL` and `PPRL` tags absent from direct factory registrations. The four affected scripts are exactly the four without literal full-path or basename references in the configured TRE payload audit; common scripts do have references in the combat-manager asset that the executable loads. That makes dormancy plausible, but ordinary runtime reachability remains unknown. A replacement must preserve the newer records for original-asset compatibility and resolve their semantics before claiming complete playback support. See the 2026-09-22 playback and PSKA checkpoints.
+
 ## Wearables and skeletal attachment
 
 Wearable replication supplies customization text, containment/arrangement, network object ID and client template CRC. `AutoDeltaVector<WearableEntry,CreatureObject>` decodes these into 0x20-byte legacy runtime values. Stardust.exe diagnostics state that a wearable is attached to a `SkeletalAppearance` and reject null or non-skeletal wearable appearances.
@@ -246,3 +252,54 @@ loaders preserve a named blueprint texture-renderer template plus one or more
 `MAIN`. Face texture composition is therefore part of the original skeletal
 appearance contract. See
 `ANALYSIS_CHECKPOINT_2026-09-22_MGN_TEXTURE_RENDERER_BINDINGS.md`.
+
+## Combat playback selection (2026-09-23)
+
+For ground combat, the server sends a 32-bit animation hash in object-controller
+`0xCC`. The client uses that value as an exact key in the local
+`combat/combat_manager.iff` selector table. The effective `CBTM/0002` asset
+contains 406 named entries referring to 24 playback script paths. The
+selector graph chooses a `.pst` and binds context/variables before the
+playback manager schedules it; it is not part of the wire protocol. Confirmed
+`Stardust.exe` edges run from `0x006E4950` to `0x00469550`, lookup
+`0x0046A0A0`, then a selector virtual call; the `SNGL` launcher is
+`0x00467370`. Full predicate semantics and emitted-key coverage remain open.
+See `ANALYSIS_CHECKPOINT_2026-09-23_COMBAT_PLAYBACK_SELECTION.md`.
+
+Follow-on selector reconstruction identifies seven supported node types:
+`SNGL`, `RAND`, `ATYP`, `DTYP`, `AEPS`, `DEPS`, and `DDSP`. The installed
+manager uses five of them (no `ATYP`/`DTYP`). It resolves appearance class,
+attacker/defender posture, defender disposition, or weighted random choice
+before reaching a script. The current server's Lua command strings and
+default name generator account for 237 distinct manager keys, all present;
+169 additional keys remain outside that bounded inventory. See
+`ANALYSIS_CHECKPOINT_2026-09-23_COMBAT_SELECTOR_PREDICATES_AND_SERVER_COVERAGE.md`.
+
+Special-command overrides and direct server `CombatAction` emitters expand the
+bounded static inventory to 297 distinct names, all present in the effective
+manager; 109 keys remain unclassified. The executable's 256-entry CRC table
+exactly matches the server table, and the algorithms agree for this manager's
+lowercase, separator-free ASCII keys. The client applies filename normalization
+before hashing, so arbitrary mixed-case or path-like strings do not inherit
+that guarantee. See
+`ANALYSIS_CHECKPOINT_2026-09-23_COMBAT_SPECIAL_EMISSIONS_AND_CRC.md`.
+
+The remaining 109 manager keys have been grouped by naming family and checked
+for exact current-server source references; none of the seven exact textual
+hits proves a direct `CombatAction` emission. They remain required asset data,
+not candidates for deletion. Read-only `CBTM/0002` fixtures now pin the
+`fire_single` disposition/posture fallback tree and an equal-weight three-way
+`RAND` subtree. See
+`ANALYSIS_CHECKPOINT_2026-09-23_COMBAT_RESIDUAL_KEYS_AND_SELECTOR_FIXTURES.md`.
+
+Three follow-on checkpoints close the combat playback handoff at the typed-data
+and scheduler levels. `SNGL/VARS` supports separate `STRN`, `FLOT`, and `INT `
+fillers; the effective manager contains 7,418 binding instances across 31
+type/tag combinations. The `fire_single` path binds `TCAA` into
+`fire_projectiles.pst`, whose `PSKA` action reads that tag for skeletal
+animation; the lightning script carries original appearance and sound paths.
+Selected scripts become owned playback instances, pass actor-conflict/priority
+arbitration, and are advanced/retired by the scene-driven playback manager.
+See `ANALYSIS_CHECKPOINT_2026-09-23_COMBAT_PLAYBACK_VARIABLE_BINDINGS.md`,
+`ANALYSIS_CHECKPOINT_2026-09-23_COMBAT_PST_VARIABLE_CONSUMPTION.md`, and
+`ANALYSIS_CHECKPOINT_2026-09-23_PLAYBACK_SCHEDULER_LIFETIME.md`.
