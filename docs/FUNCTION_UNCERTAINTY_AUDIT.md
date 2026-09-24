@@ -1,5 +1,7 @@
 # Function uncertainty audit
 
+**Current routing (2026-09-24):** The 2026-09-22 queue below is a historical snapshot and omits later-confirmed material animation and forward-shader issues. Use the [2026-09-24 material-uncertainty reconciliation](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-24_MATERIAL_UNCERTAINTY_RECONCILIATION.md) and [workstream inventory](../WORKSTREAM_INVENTORY.md) as the active list. The 2,000-plus provisional-name addresses are identified evidence, not unresolved original functions.
+
 Date opened: 2026-09-12  
 Target: `C:\Stardust-DEV\Stardust.exe`  
 SHA-256: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`

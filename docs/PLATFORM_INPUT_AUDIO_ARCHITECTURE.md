@@ -12,6 +12,8 @@ This is evidence of available primitives, not proof that every imported function
 
 The UI/game layer adds an action-map abstraction above raw devices. Evidence includes `InputMap::SparseMap` loaders for keyboard, mouse buttons, joystick buttons, axes, POVs and sliders; action tokens such as `toggle_mouse_mode`; and Cui messages for keyboard toggling and mouse-edge hits. Ground and space have distinct mouse-mode defaults, while space adds cockpit/virtual-joystick behavior.
 
+Text composition is a distinct platform boundary. IMM32 is **dynamically**, not statically, loaded from the Windows system directory at `0x009B5540`; named Unicode composition and candidate APIs are resolved with `GetProcAddress`. `0x009B5FF0` copies `ImmGetCompositionStringW` output into local UTF-16 state and `0x009B6310` enumerates `ImmGetCandidateListW` offset-addressed UTF-16 candidates. A separate `SwgCuiIMEInput` mediator binds `listCandidate` and positions a candidate overlay. The exact service-vector→widget edge and commit/cancel semantics remain open. See the [platform bridge](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-24_DYNAMIC_IMM32_TEXT_COMPOSITION.md) and [mediator](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-24_IME_INPUT_MEDIATOR_BOUNDARY.md) checkpoints.
+
 **Architectural conclusion:** preserve action names, bindings, modifier semantics and ground/space mode behavior; replace DirectInput acquisition with modern Windows raw/gamepad input or an engine input facade. DirectInput device objects themselves should not be reproduced.
 
 ## Audio

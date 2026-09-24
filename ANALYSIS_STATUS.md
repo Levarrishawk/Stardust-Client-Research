@@ -1,6 +1,6 @@
 # Client Analysis Status
 
-Updated: 2026-09-23
+Updated: 2026-09-24
 
 This is a heuristic planning estimate, not a mechanically measurable completion counter. “Complete” means enough evidence to constrain a clean replacement architecture and make the pre-build engine decision; it does not mean every function in Stardust.exe has been named.
 
@@ -8,6 +8,8 @@ This is a heuristic planning estimate, not a mechanically measurable completion 
 
 - Overall implementation-grade, replacement-relevant behavioral/specification research: **96%**.
 - Expanded comprehensive whole-client ledger: **90%** (see `COMPREHENSIVE_ANALYSIS_LEDGER.md`).
+
+The 2026-09-24 overnight session adds 57 numbered bounded blocks (including deliberately labeled refinements and corrections), notably login/character/delete UI paths, harvester/chat/auction workflows, both ground and space HUD composition roots, a dynamic IMM32 bridge, and original-asset/CKAT edge analysis. The [session report](research/sessions/ANALYSIS_SESSION_2026-09-23_TO_2026-09-24_0500_REPORT.md) and [index](research/sessions/ANALYSIS_SESSION_2026-09-23_TO_2026-09-24_0500_INDEX.md) are the current detailed record. Curated names now total **2,528 unique addresses / zero duplicate rows** and the server packet-source map still has **345 rows**. A [denominator audit](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-24_FUNCTION_DENOMINATOR_AUDIT.md) shows that these planning percentages must not be interpreted as percentages of all original functions reversed: the Ghidra export contains 93,287 non-unwind entries, most of which are not semantically named or reviewed. Original-asset Class C and other whole-client unknowns remain open. No build or engine selection was started.
 
 The 2026-09-23 overnight continuation completed 84 bounded checkpoints by
 the requested 05:00 EDT stop. It deepens playback actions, original-asset compatibility (PLNT, STAT,
@@ -19,11 +21,9 @@ root motion, named messages, clip timing and the quaternion quantizer table
 formula now have executable and corpus evidence. The rounded **96%/90%**
 planning estimates remain unchanged: these are meaningful depth improvements
 inside already-recognized workstreams, not proof that every client function is
-understood. The current curated registry has **2,305 unique provisional
-addresses / zero duplicates** and the packet matrix retains **345 rows**.
-See the current overnight session index and its final report when
-the 05:00 EDT deadline is reached. The user handles all Git commits; no
-replacement-client build or engine decision occurs in this session.
+understood. At that prior checkpoint, the curated registry had **2,305 unique provisional
+addresses / zero duplicates** and the packet matrix had **345 rows**.
+The user handles all Git commits; no replacement-client build or engine decision occurred in that session.
 
 The 2026-09-22 evening continuation adds executable-to-runtime closures for all
 five CLEF leaf families, their full-overlay numeric corpora, a corrected

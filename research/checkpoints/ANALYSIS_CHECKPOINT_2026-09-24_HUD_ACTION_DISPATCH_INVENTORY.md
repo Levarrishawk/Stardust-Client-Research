@@ -1,0 +1,26 @@
+# HUD action dispatch inventory and representative routes
+
+Date: 2026-09-24. Question W10/A09: where do named HUD/input actions enter ground and space client behavior? Target: verified `C:\Stardust-DEV\Stardust.exe` SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Read-only vtables, constructor/delegation pseudocode and original executable string initializers are the evidence. Decompiled code is reconstructed, not source.
+
+## Structure and complete name census
+
+`SwgCuiHudAction` constructor `0x00EDB570` registers **79** identifier objects through the shared action registry call `0x008CC650`. `SwgCuiHudActionGround` constructor `0x00E29DD0` adds **seven**, and `SwgCuiHudActionSpace` constructor `0x00E21060` adds **twelve**: **98 registrations total**. The 62,920-byte decompilation of base callback `0x00EDBAA0` compares the incoming action name by length and bytes against the registered identifier strings, then branches to UI/gameplay managers. Ground callback `0x00E29EE0` handles specialized names and delegates unmatched names to the base; space callback `0x00E211D0` handles its specialized names and also invokes the base callback. These are action-dispatch entry points, **not 98 wire opcodes or complete handler specifications**.
+
+`tools/python/map_action_registration_strings.py` extracts registered global addresses from the three constructor decompilations, matches direct static initializer `push literal; mov ecx, global; call` patterns in the original PE, and uses 15 separately decompiled long-string initializers as a fallback. The run resolves **83 direct + 15 fallback = 98 names, zero unresolved**. It is a discovery map only. Ground names are `showSurvey`, `survey`, `droidCommand`, `shipChoose`, `shipView`, `spawnGroupLootLottery`, `closeGroupLootLottery`. Space names are `spaceConversation`, `dogfightTauntPlayer`, `autopilotLevelShip`, `boosterToggleDown`, `boosterToggleUp`, `hyperspaceMap`, `shipComponentDetail`, `weaponGroupAssignment`, `targetLockDown`, `targetLockUp`, `spaceTargetStationAndComm`, `onPointerToggled`. Base names include `questJournal`, `service`, `bugReport`, `holocron`, `ticketSubmission`, `targetAtCursor`, `targetGroup0..7`, `defaultAction`, `inventoryClose`, `missionBrowser`, `community`, `chatRoomBrowser`, `spaceZoneMap` and many local UI commands; obtain the full address/name output by rerunning the script with the three private decompilation files and the private static-initializer directory. These original names are identifiers, not inferred semantics.
+
+## Representative verified branches
+
+| Action | Executable branch and effect | Confidence |
+|---|---|---|
+| `questJournal` global `0x01978064` | In base `0x00EDBAA0`, nonempty parameter activates `WS_QuestJournal`; empty parameter toggles/opens the workspace entry. It does not directly send a packet in the inspected branch. | Confirmed branch; exact workspace helper mode Strongly inferred |
+| `service` global `0x01978628` | Base dispatcher calls `0x00E41DB0`, which explicitly looks up `SwgCuiService` RTTI, reuses an existing mediator or creates/activates one. Any later `ConnectPlayerMessage` is triggered by the [service shell](ANALYSIS_CHECKPOINT_2026-09-24_SERVICE_SHELL_CONNECT_PLAYER.md) activation's gated manager call, not this string comparison itself. | Confirmed |
+| `bugReport` global `0x01978088` | Base dispatcher opens `WS_BugSubmission`, casts to `CuiBugSubmissionPage`, supplies manager-derived context and returns handled; actual ticket send remains the separately mapped submit path. | Confirmed |
+| `targetAtCursor` / `targetAtCursorStop` globals `0x0197816C/0x01978160` | Distinct base branches call `0x00BD6900(1)` and `0x00BD6900(0)` respectively. This is a local targeting-state toggle at this layer; downstream target protocol is not established here. | Confirmed call/argument |
+| `survey` global `0x0196D27C` | Ground callback calls `0x00A14AD0`; the survey request/result paths are independently mapped in earlier checkpoints. This branch does not itself expose a new wire codec. | Confirmed branch; exact helper effect deferred |
+| `spaceConversation` global `0x0196C850` | Space callback activates `WS_SpaceConversation`; its numbered-choice route was already mapped and is not recounted. | Confirmed |
+
+The base constructor also registers a debug flag literally named `ClientUserInterface.allowServiceWindow`; its presence does not prove the current deployment enables every service page. Registration names and branch reachability are separate questions. The current server's policy remains authoritative for any action that ultimately queues a game command.
+
+## Consequence and remaining work
+
+A replacement needs an engine-neutral named-action router, with ground/space contexts and explicit adapters for UI presentation versus queued/network authority. Preserve original action identifiers for input-map/UI data compatibility; do not convert the 98 names into protocol opcodes. A later action matrix must classify the remaining branch effects, argument syntax, failure handling and server command paths. This block inventories the dispatcher and verifies representative branches, but does **not** close all 98 action semantics or change either whole-client percentage estimate.

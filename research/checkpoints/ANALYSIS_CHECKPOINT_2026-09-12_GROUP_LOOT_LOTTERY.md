@@ -5,7 +5,7 @@ Subject: `C:\Stardust-DEV\Stardust.exe`, correlated with current Stardust server
 
 ## Result
 
-The active group-loot lottery protocol is completely bounded by three ObjectController types: `0x43C` opens the UI for a container, `0x43D` closes it, and `0x43F` submits a ballot. `0x43E` is a reserved/unsupported gap in both the recovered client registry and current Stardust endpoint registrations.
+The ordinary **server-driven ballot sequence** uses three ObjectController types: `0x43C` opens the UI for a container, `0x43D` closes it, and `0x43F` submits a ballot. `0x43E` is a reserved/unsupported gap in both the recovered client registry and current Stardust endpoint registrations. Correction (2026-09-24): a separately registered ground-HUD `spawnGroupLootLottery` action also queues `0x43C` **C→Z**; current Stardust has no receive registration for that direction. It is not part of the confirmed active server-driven sequence. See [directional correction](ANALYSIS_CHECKPOINT_2026-09-24_LOTTERY_ACTION_DIRECTION_CORRECTION.md).
 
 ```mermaid
 sequenceDiagram

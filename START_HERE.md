@@ -12,7 +12,7 @@ This is the canonical entry point for reviewing the `Stardust.exe` research befo
 - Implementation-grade replacement research: **96%**
 - Comprehensive whole-client research ledger: **90%**
 - Server packet-source matrix: **345 documented / 0 reachable gaps**
-- Stable provisional-name registry: **2,305 distinct addresses / 0 duplicate rows**
+- Stable provisional-name registry: **2,528 distinct addresses / 0 duplicate rows** (2026-09-24 session closeout)
 
 These percentages are planning estimates, not a claim that every compiler-emitted function has been decompiled. The remaining analysis must be completed before returning to engine selection or client construction.
 
@@ -20,13 +20,14 @@ These percentages are planning estimates, not a claim that every compiler-emitte
 
 1. [Executable overview](docs/EXECUTABLE_OVERVIEW.md)
 2. [Current analysis status](ANALYSIS_STATUS.md)
+   [Workstream inventory and deduplication gate](WORKSTREAM_INVENTORY.md) identifies closed boundaries, named open questions, and evidence required before counting a new block.
 3. [Client architecture](docs/CLIENT_ARCHITECTURE.md) and [client subsystems](docs/CLIENT_SUBSYSTEMS.md)
 4. [Network architecture](docs/NETWORK_ARCHITECTURE.md), [SOE transport](docs/SOE_TRANSPORT_PROTOCOL.md), and [packet-handler map](docs/PACKET_HANDLER_MAP.md)
 5. [Replication schemas](docs/REPLICATION_SCHEMA_MAP.md) and [object-controller protocol](docs/OBJECT_CONTROLLER_PROTOCOL.md)
 6. [Asset pipeline](docs/ASSET_PIPELINE.md), [rendering](docs/RENDERING_ARCHITECTURE.md), [terrain](docs/WORLD_TERRAIN_ARCHITECTURE.md), and [platform/input/audio](docs/PLATFORM_INPUT_AUDIO_ARCHITECTURE.md)
 7. [Unknown-function ledger](UNKNOWN_FUNCTIONS.md) and [uncertainty audit](docs/FUNCTION_UNCERTAINTY_AUDIT.md)
 8. [64-bit port plan](docs/64BIT_PORT_PLAN.md) and [engine-decision requirements](docs/ENGINE_DECISION_REQUIREMENTS.md)
-9. [Latest overnight session report](research/sessions/ANALYSIS_SESSION_2026-09-22_TO_2026-09-23_0500_REPORT.md) and [block index](research/sessions/ANALYSIS_SESSION_2026-09-22_TO_2026-09-23_0500_INDEX.md)
+9. [Latest overnight session index](research/sessions/ANALYSIS_SESSION_2026-09-23_TO_2026-09-24_0500_INDEX.md) and [report](research/sessions/ANALYSIS_SESSION_2026-09-23_TO_2026-09-24_0500_REPORT.md)
 
 ## Workspace map
 

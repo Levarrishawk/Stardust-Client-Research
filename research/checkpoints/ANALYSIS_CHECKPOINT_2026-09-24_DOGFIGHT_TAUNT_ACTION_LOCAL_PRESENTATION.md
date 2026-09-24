@@ -1,0 +1,9 @@
+# Dogfight-taunt HUD action is a local presentation entry
+
+Date: 2026-09-24. Scope W10/W04. Verified original `C:\Stardust-DEV\Stardust.exe` SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Ghidra output is reconstructed pseudocode.
+
+The space HUD action constructor registers `dogfightTauntPlayer` at global `0x0196C844`; the callback `0x00E211D0` branches on that name. It tokenizes its Unicode argument on whitespace, converts the first token to presentation text and another token through a scalar conversion, opens `WS_SpaceConversation`, and calls `0x00DC5280` with the parsed content. That helper sets the space-conversation text/timer state and can update local target state. If a local player exists, the action also constructs an in-memory spatial-chat record and calls the already mapped `spatial_chat_apply_VA_0091BA10`. There is **no direct command-queue or packet send in this inspected action branch**. The synthetic record reuses the normal chat presentation sink; it should not be treated as a received `0xF4` packet.
+
+This is distinct from the previously mapped *incoming* `DogfightTauntPlayerMessage` opcode `0xCA2A548B`, decoded by `0x0051DBD6`. Same semantic wording does not establish that the HUD action is that network handler or that it emits the message. Exact token meanings, scalar unit, and what triggers the action at runtime remain open. The replacement should keep server message decoding separate from optional local action/presentation plumbing.
+
+Confidence: **Confirmed by executable** for the action branch, whitespace tokenization, space UI call and local spatial-chat apply; **Strongly inferred** that this particular branch is local presentation only, because no direct send occurs in the inspected path. Broader trigger/caller semantics and scalar meaning: **Unknown**. This adds no opcode or whole-client percentage change.

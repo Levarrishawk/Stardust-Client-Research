@@ -2812,3 +2812,49 @@ Open field-level semantics from this cluster: CLEF `CAMS` four scalars, `CLGT` b
 | `0x008267A0` | `compressed_root_motion_rotation_and_translation_VA_008267A0` | Both optional channels; combined coordinate frame tentative |
 | `0x00824340` | `compressed_animation_read_MESG_VA_00824340` | Named message group with U16 occurrence frames; confirmed |
 | `0x00822F30` | `compressed_animation_collect_timed_messages_VA_00822F30` | Virtual message query and loop-time conversion; confirmed route, exact boundary rules pending |
+
+## Ground HUD window-manager composition (2026-09-24)
+
+| Address | Stable provisional name | Evidence and limits |
+|---:|---|---|
+| `0x00E34BE0` | `ground_hud_window_manager_construct_VA_00E34BE0` | Binds named RadarPage/AllTargets/AttribMod/MfdStatusPage/group children; confirmed |
+| `0x00E35090` | `ground_hud_window_manager_destroy_VA_00E35090` | Releases radar/attribute child references and calls base destruction; confirmed |
+| `0x00E357D0` | `ground_hud_window_manager_update_VA_00E357D0` | Procedural-terrain/survey visibility gate then base update; confirmed route, refresh internals open |
+
+Existing `0x00E35550` retains its stable name `survey_listener_dispatch_messages_VA_00E35550`; the new checkpoint broadens its documented role to tutorial-HUD and scene-change dispatch without minting a duplicate alias.
+
+## Data Storage POI provider (2026-09-24)
+
+| Address | Stable provisional name | Evidence and limits |
+|---:|---|---|
+| `0x00E9F870` | `poi_container_provider_construct_VA_00E9F870` | Initializes provider and object-reference collections; confirmed |
+| `0x00E9F930` | `poi_container_provider_destroy_VA_00E9F930` | Releases reference collections and base; confirmed |
+| `0x00E9FF80` | `poi_container_provider_apply_index_permutation_VA_00E9FF80` | Size/range-validated local reordering and change notice; confirmed; persistence unknown |
+
+Existing `0x00D414C0` retains its stable name `swg_cui_data_storage_construct_VA_00D414C0` from the 2026-09-22 Data Storage checkpoint.
+
+## Space HUD window-manager composition (2026-09-24)
+
+| Address | Stable provisional name | Evidence and limits |
+|---:|---|---|
+| `0x00E21B40` | `space_hud_window_manager_construct_VA_00E21B40` | Binds six space-specific HUD child pages; confirmed |
+| `0x00E22030` | `space_hud_window_manager_destroy_VA_00E22030` | Releases four retained child references and calls base; confirmed |
+| `0x00E220E0` | `space_hud_window_manager_dispatch_VA_00E220E0` | Two-key tutorial HUD branch then base dispatch; confirmed route, literals open |
+
+## IME input mediator (2026-09-24)
+
+| Address | Stable provisional name | Evidence and limits |
+|---:|---|---|
+| `0x00CA8D00` | `swg_cui_ime_input_construct_VA_00CA8D00` | Binds `listCandidate` and registers `IMEInput`; confirmed |
+| `0x00CA8EB0` | `swg_cui_ime_input_activate_VA_00CA8EB0` | Candidate-overlay placement and UI registration; confirmed route, geometry semantics partial |
+| `0x00CA91B0` | `swg_cui_ime_input_deactivate_VA_00CA91B0` | De-registers overlay and restores active input behavior; confirmed route |
+
+## Dynamic IMM32 text-composition bridge (2026-09-24)
+
+| Address | Stable provisional name | Evidence and limits |
+|---:|---|---|
+| `0x009B4FF0` | `ime_platform_initialize_once_VA_009B4FF0` | Calls dynamic loader, captures keyboard layout and registers callbacks; confirmed |
+| `0x009B5540` | `ime_platform_resolve_system_dll_exports_VA_009B5540` | Loads IMM32 and VERSION from system directory, resolves named APIs; confirmed |
+| `0x009B51F0` | `ime_platform_dispatch_win32_messages_VA_009B51F0` | Routes IME composition/candidate Win32 message codes to local readers/events; confirmed |
+| `0x009B5FF0` | `ime_platform_read_unicode_composition_VA_009B5FF0` | Calls `ImmGetCompositionStringW` and copies UTF-16 state; confirmed; full flag behavior open |
+| `0x009B6310` | `ime_platform_enumerate_unicode_candidates_VA_009B6310` | Calls `ImmGetCandidateListW` and converts offset-addressed UTF-16 entries; confirmed; UI sink edge open |
