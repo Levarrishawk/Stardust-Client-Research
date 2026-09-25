@@ -21,8 +21,8 @@ Date: 2026-09-25. This review covers the GPT-6 Sol work added after the prior 20
 
 | Measure | Current status | Meaning |
 |---|---|---|
-| Replacement-relevant comprehensive research | Last historical estimate: **90%**, pending final evidence-backed rescore | Architecture and observable behavioral coverage; not function percentage |
-| First-build/engine-decision readiness | Last historical estimate: **96%**, pending final gate audit | Whether the evidence constrains architecture and initial milestones |
+| Replacement-relevant comprehensive research | Superseded historical estimate: **90%**; current rescore: **89%** | Architecture and observable behavioral coverage; not function percentage |
+| First-build/engine-decision readiness | Superseded historical estimate: **96%**; current rescore: **94%** | Whether the evidence constrains architecture and initial milestones |
 | Function/address accounting | **Uncalibrated** | Reachable application routines with stable roles; not every compiler/library fragment |
 
 No percentage changes merely because a function, RTTI name, asset, packet, or block was counted. A substantive block must close or materially narrow an observable contract. Address-level work earns behavioral credit only when it identifies a reachable class/callback path or resolves behavior needed by such a contract.

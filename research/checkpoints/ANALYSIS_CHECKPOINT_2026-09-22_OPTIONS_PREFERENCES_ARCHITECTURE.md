@@ -158,6 +158,18 @@ roll back on Cancel, while Chat Colors and Alarm collection edits and AFK custom
 state bypass that rollback. A modern UI can improve atomicity, but compatibility
 tests should capture the original behavior before changing it.
 
+### Combat-page runtime effects
+
+The Combat page's three settings are confirmed client-side presentation only.
+Config install `0x009B2F30` reads `showDamageOverHeadOthers=true`,
+`showDamageOverHeadSelf=true`, and the historically misspelled
+`damageOverHeadSizeModifer=1.5`. `CuiCombatManager` install `0x008C74A0` copies
+them into live state. Runtime path `0x00956A10` chooses the self or others flag
+by comparing the affected object with the local player before allocating an
+overhead-damage record; `0x009563B0` forwards the live size factor to the text
+constructor. The slider range is `0.25..2.0`. No network send occurs in these
+inspected paths. See the dedicated [runtime-effects checkpoint](ANALYSIS_CHECKPOINT_2026-09-25_COMBAT_OPTIONS_RUNTIME_EFFECTS.md).
+
 ## Replacement-client implications
 
 1. Implement a typed settings registry independent of the UI toolkit. Preserve

@@ -9,7 +9,7 @@ This is the canonical entry point for reviewing the `Stardust.exe` research befo
 - Server correlation source: the local Stardust/Core3 source tree
 - Canonical workspace: `C:\Users\ancie\Documents\GitHub\Stardust-Client`
 - Objective: behavioral, wire-protocol, and original-asset compatibility in a native 64-bit replacement client
-- Replacement-relevant planning baseline: **90% comprehensive / 96% engine-decision readiness**, retained as historical heuristic estimates pending a final evidence-backed rescore. Function/address coverage is separately **uncalibrated**. See the [measurement reset](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md) and [model-transition audit](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_MODEL_TRANSITION_AUDIT.md).
+- Current evidence-backed baseline: **89% comprehensive behavioral coverage / 94% implementation-and-engine-decision research readiness**. These are weighted observable-contract scores, not function percentages. Function/address coverage is separately **uncalibrated**. See the [current rescore](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_EVIDENCE_BASED_COVERAGE_RESCORE.md), [measurement reset](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md), and [model-transition audit](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_MODEL_TRANSITION_AUDIT.md).
 - Server packet-source matrix: **345 documented / 0 reachable gaps**
 - Stable provisional-name registry: **2,528 distinct addresses / 0 duplicate rows** (2026-09-24 session closeout)
 

@@ -2,11 +2,11 @@
 
 Updated: 2026-09-25
 
-**Measurement correction and course correction:** 96% implementation-grade and 90% comprehensive remain the last historical planning estimates, pending a final current-evidence rescore. They are not mechanically verified percentages: the stale 2026-09-21 table arithmetically produces 55.59% from its printed rows, not its nearby 82% prose. That stale arithmetic also does not replace the later planning estimate with 55.59% or zero. Function/address accounting is separately **uncalibrated** and must not displace behavioral research. See the [research coverage rebaseline](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md) and [model-transition audit](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_MODEL_TRANSITION_AUDIT.md).
+**Current measurement:** the evidence-backed rescore is **89% comprehensive behavioral coverage / 94% implementation-and-engine-decision research readiness**. These supersede the historical 90%/96% planning estimates. They are weighted observable-contract scores, not percentages of executable functions. Function/address accounting remains separately **uncalibrated** and must not displace behavioral research. See the [current rescore](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_EVIDENCE_BASED_COVERAGE_RESCORE.md), [research coverage rebaseline](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md), and [model-transition audit](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_MODEL_TRANSITION_AUDIT.md).
 
 This is a heuristic planning estimate, not a mechanically measurable completion counter. “Complete” means enough evidence to constrain a clean replacement architecture and make the pre-build engine decision; it does not mean every function in Stardust.exe has been named.
 
-The 2026-09-25 focused session closed exact-end CKAT event behavior, ordinary AROT NaN propagation, ordinary non-prefix animation-message scope, and the Light attenuation consumer; it also narrowed the two combined-root clips to a dormant-looking configured-content edge. See the [session report](research/sessions/ANALYSIS_SESSION_2026-09-25_TO_1600.md). The next material static boundary is the external actor/basis convention for combined root motion, followed by genuinely reachable original-asset/UI/lifecycle gaps rather than denominator churn.
+The 2026-09-25 focused session closed exact-end CKAT event behavior, ordinary AROT NaN propagation, ordinary non-prefix animation-message scope, and the Light attenuation consumer; it also narrowed the two combined-root clips to a dormant-looking configured-content edge. See the [session report](research/sessions/ANALYSIS_SESSION_2026-09-25_TO_1600.md). The ordered follow-up then established a 217-row UI workflow register; closed Controls/Rebinding and Cluster Selection; added login/zone and RCNO fixtures; closed GameScheduler lifetime semantics; and proved the four forward playback scripts dormant for the current server/configuration. See the [ordered follow-up](research/sessions/ANALYSIS_SESSION_2026-09-25_ORDERED_FOLLOWUP.md). Next work should continue from the registers and named live/conditional gaps rather than denominator churn.
 
 ## Historical estimates (suspended as current scores)
 
@@ -554,3 +554,28 @@ are confirmed by DPVS imports. See
 Rounded estimates remain **96% implementation-grade / 90% comprehensive**;
 the stable registry then contained **2,198 distinct addresses / 0 duplicates** and
 the packet matrix remains **345 documented / 0 reachable gaps**.
+
+## 2026-09-25 continuation through 16:55
+
+Six bounded blocks close the external object-space application of CKAT root
+motion, bound the four true PASS/0010 records as currently unreferenced, connect
+Combat options to their overhead-damage-text consumers, identify News as a
+factory-present page disabled by a zero-byte effective asset, and reconstruct
+the normal timed Splash -> `scene/intro.iff` startup handoff, and the local
+six-column data-table-driven Credits workflow. Splash timing is confirmed to
+pause for active `CuiMessageBox` entries. The historical **96%
+implementation-grade / 90% comprehensive** estimates remain suspended pending
+the evidence-based rescore; no percentage was advanced from block count. See
+`research/sessions/ANALYSIS_SESSION_2026-09-25_TO_1655.md`.
+
+## 2026-09-25 evidence-based coverage rescore
+
+The current weighted evidence supports **89% comprehensive behavioral research
+coverage** (88.71 unrounded) and **94% implementation/engine-decision research
+readiness** (94.15 unrounded). These supersede the historical 90%/96% planning
+estimates. The largest comprehensive residual is reachable UI/gameplay breadth,
+followed by lifecycle/failure fixtures and conditional original-asset behavior.
+Exhaustive function recovery remains separate and unscored: 2,568 curated
+semantic addresses against 93,287 non-unwind analyzer entries is a 2.75% raw
+registry ratio, not a behavioral-completion measure. See
+`research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_EVIDENCE_BASED_COVERAGE_RESCORE.md`.

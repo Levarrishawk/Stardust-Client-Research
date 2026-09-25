@@ -2862,3 +2862,37 @@ Existing `0x00D414C0` retains its stable name `swg_cui_data_storage_construct_VA
 | `0x009B51F0` | `ime_platform_dispatch_win32_messages_VA_009B51F0` | Routes IME composition/candidate Win32 message codes to local readers/events; confirmed |
 | `0x009B5FF0` | `ime_platform_read_unicode_composition_VA_009B5FF0` | Calls `ImmGetCompositionStringW` and copies UTF-16 state; confirmed; full flag behavior open |
 | `0x009B6310` | `ime_platform_enumerate_unicode_candidates_VA_009B6310` | Calls `ImmGetCandidateListW` and converts offset-addressed UTF-16 entries; confirmed; UI sink edge open |
+
+## Controls menu and cluster selection (2026-09-25)
+
+| Address | Stable provisional name | Evidence and limits |
+|---:|---|---|
+| `0x00CEC180` | `swg_controls_menu_activate_VA_00CEC180` | Clones working input scheme and populates controls/presets/categories; confirmed |
+| `0x00CECE90` | `swg_controls_menu_commit_and_save_VA_00CECE90` | Copies working scheme, saves, reports failure without closing; confirmed |
+| `0x00CED470` | `swg_controls_menu_modal_chat_confirmation_VA_00CED470` | Applies scene-scoped toggle only on accepted message-box results; confirmed |
+| `0x013DC0B0` | `controls_bind_entry_validate_and_commit_VA_013DC0B0` | Enforces input mask, conflict confirmation/removal and emits change; confirmed |
+| `0x013DC500` | `controls_bind_entry_message_box_continue_VA_013DC500` | Clears retained box and retries accepted confirmation; confirmed |
+| `0x00C7A180` | `swg_cluster_selection_activate_VA_00C7A180` | Connects status/result transceivers, resets connection and rebuilds table; confirmed |
+| `0x00C7A3C0` | `swg_cluster_selection_deactivate_VA_00C7A3C0` | Disconnects transceivers/callbacks and clears pending/table state; confirmed |
+| `0x00C7A730` | `swg_cluster_selection_rebuild_table_VA_00C7A730` | Projects login-manager cluster records into status/population/distance rows; confirmed route |
+| `0x00C7B220` | `swg_cluster_selection_request_selected_VA_00C7B220` | Validates selected record, opens attempt UI and hands endpoint to login manager; confirmed |
+| `0x00C7B920` | `cluster_connection_result_apply_VA_00C7B920` | Existing stable name; rejects false/unsolicited/wrong-cluster results and enters avatar selection on matched success; confirmed |
+
+## GameScheduler lifecycle (2026-09-25)
+
+| Address | Stable provisional name | Evidence and limits |
+|---:|---|---|
+| `0x013E5D80` | `game_scheduler_queue_construct_VA_013E5D80` | Creates deferred vector, deadline heap, clock and drain flag; confirmed |
+| `0x013E60A0` | `game_scheduler_enqueue_callback_VA_013E60A0` | Allocates callback/context event at current time plus delay; confirmed |
+| `0x013E6110` | `game_scheduler_advance_and_invoke_due_VA_013E6110` | Invokes/destroys due callbacks then merges reentrant insertions; confirmed |
+| `0x013E5DF0` | `game_scheduler_queue_destroy_VA_013E5DF0` | Frees queued events without invoking callbacks and destroys both containers; confirmed |
+| `0x00D83720` | `ticket_purchase_delayed_location_callback_VA_00D83720` | Frees 12-byte context then performs delayed point/location work using copied generation/index/raw-owner values; exact owner-retention guarantee unknown |
+
+## Playback-template fetch reachability (2026-09-25)
+
+| Address | Stable provisional name | Evidence and limits |
+|---:|---|---|
+| `0x00402FA0` | `playback_template_cache_fetch_VA_00402FA0` | Existing stable name; complete static xrefs now enumerate fixed install, combat preload/runtime and generic instantiate routes; confirmed |
+| `0x005F4D60` | `game_playback_script_install_fixed_templates_VA_005F4D60` | Fetches only posture-align and restore-scale fixed literals; confirmed |
+| `0x00469E80` | `combat_playback_prefetch_templates_VA_00469E80` | Fetches every path retained from the combat manager table; confirmed |
+| `0x004030E0` | `playback_template_fetch_and_instantiate_VA_004030E0` | Generic caller-supplied path remains a future/debug reachability route; confirmed API shape |
