@@ -9,18 +9,18 @@ This is the canonical entry point for reviewing the `Stardust.exe` research befo
 - Server correlation source: the local Stardust/Core3 source tree
 - Canonical workspace: `C:\Users\ancie\Documents\GitHub\Stardust-Client`
 - Objective: behavioral, wire-protocol, and original-asset compatibility in a native 64-bit replacement client
-- Implementation-grade replacement research: **96%**
-- Comprehensive whole-client research ledger: **90%**
+- Research completion percentage: **uncalibrated**; prior 96% implementation-grade and 90% comprehensive figures are historical planning judgments, not verified measurements. See the [measurement reset](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md).
 - Server packet-source matrix: **345 documented / 0 reachable gaps**
 - Stable provisional-name registry: **2,528 distinct addresses / 0 duplicate rows** (2026-09-24 session closeout)
 
-These percentages are planning estimates, not a claim that every compiler-emitted function has been decompiled. The remaining analysis must be completed before returning to engine selection or client construction.
+The remaining analysis must be completed before returning to engine selection or client construction. The function-level accounting objective is tracked separately from behavioral readiness.
 
 ## Recommended review order
 
 1. [Executable overview](docs/EXECUTABLE_OVERVIEW.md)
 2. [Current analysis status](ANALYSIS_STATUS.md)
    [Workstream inventory and deduplication gate](WORKSTREAM_INVENTORY.md) identifies closed boundaries, named open questions, and evidence required before counting a new block.
+   [Research coverage measurement reset](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md) is the current priority and score policy.
 3. [Client architecture](docs/CLIENT_ARCHITECTURE.md) and [client subsystems](docs/CLIENT_SUBSYSTEMS.md)
 4. [Network architecture](docs/NETWORK_ARCHITECTURE.md), [SOE transport](docs/SOE_TRANSPORT_PROTOCOL.md), and [packet-handler map](docs/PACKET_HANDLER_MAP.md)
 5. [Replication schemas](docs/REPLICATION_SCHEMA_MAP.md) and [object-controller protocol](docs/OBJECT_CONTROLLER_PROTOCOL.md)
