@@ -2527,3 +2527,4 @@
 "0x009B5FF0","ime_platform_read_unicode_composition_VA_009B5FF0","Confirmed ImmGetCompositionStringW and UTF-16 state copy; 2026-09-24 dynamic IMM32 block"
 "0x009B6310","ime_platform_enumerate_unicode_candidates_VA_009B6310","Confirmed ImmGetCandidateListW and UTF-16 candidate vector; 2026-09-24 dynamic IMM32 block"
 "0x009B51F0","ime_platform_dispatch_win32_messages_VA_009B51F0","Confirmed IME Win32 message dispatch to composition/candidate readers; 2026-09-24 dynamic IMM32 block"
+"0x00822D30","ckat_playback_reset_time_and_frames_VA_00822D30","Confirmed CKAT vtable reset slot zeros elapsed, previous and current frame without message query; 2026-09-25 A02 closure"

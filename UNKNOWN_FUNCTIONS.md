@@ -33,10 +33,14 @@ fallback. All 87 CEF-reached empty-name PTEX shader slots are enabled and use
 the installed `shader/3d_vertexcolorac.sht` fallback, rather than an unknown
 missing-file path. See the CPAP and PTEX checkpoints dated 2026-09-22.
 
-`CLGT`/CDF Light `+0x100..+0x108` remain **unknown** in exact render
-semantics. The Light constructor initializes them to `(1,0,0)`, suggestive of
-constant/linear/quadratic attenuation, but no final Direct3D consumer has been
-proven; do not upgrade this hypothesis to a field label. The archive-backed
+`CLGT`/CDF Light `+0x100..+0x108` are **closed to replacement depth** as the
+ordered point-light attenuation coefficient vector. The typed visible-light
+path reaches s207 shader-constant packing, which reads all three fields beside
+point-light position and color. Constant/linear/quadratic member names are
+strongly inferred from the order and `(1,0,0)` constructor default; only the
+historic spellings and every legacy shader branch remain unknown. See
+`research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_LIGHT_ATTENUATION_CONSUMER.md`.
+The archive-backed
 `.ffe` path passed to DirectInput is also an open runtime edge: SearchTree
 formats `archive[member]`, and static analysis has not established whether a
 separate materialization/interception layer makes it readable by

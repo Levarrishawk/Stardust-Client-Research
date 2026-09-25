@@ -6,6 +6,8 @@ Updated: 2026-09-25
 
 This is a heuristic planning estimate, not a mechanically measurable completion counter. “Complete” means enough evidence to constrain a clean replacement architecture and make the pre-build engine decision; it does not mean every function in Stardust.exe has been named.
 
+The 2026-09-25 focused session closed exact-end CKAT event behavior, ordinary AROT NaN propagation, ordinary non-prefix animation-message scope, and the Light attenuation consumer; it also narrowed the two combined-root clips to a dormant-looking configured-content edge. See the [session report](research/sessions/ANALYSIS_SESSION_2026-09-25_TO_1600.md). The next material static boundary is the external actor/basis convention for combined root motion, followed by genuinely reachable original-asset/UI/lifecycle gaps rather than denominator churn.
+
 ## Historical estimates (suspended as current scores)
 
 - Overall implementation-grade, replacement-relevant behavioral/specification research: **96%**.

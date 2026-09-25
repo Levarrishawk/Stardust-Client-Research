@@ -420,7 +420,7 @@ behavior when consuming original CEF assets. See
 Runtime execution now confirms that CLEF's `CPAP`, `PSND`, `CLGT`, `CAMS`, and
 `FFBK` vectors all feed effect instances, not just parsing. `CAMS` drives a
 distance-attenuated camera shake; `CLGT` supplies normalized RGB, lifetime,
-three still-unidentified light scalars and a visibility/range radius; `FFBK`
+an ordered point-light attenuation coefficient vector and a visibility/range radius; `FFBK`
 attempts DirectInput `.ffe` enumeration and starts any created effect with an
 authored iteration count inside a distance gate. Whether archive-backed
 `archive[member]` notation is accepted by DirectInput remains unproven.
@@ -428,6 +428,10 @@ A missing `PSND` child remains a path entry but
 is skipped by the traced playback functions when re-fetch returns null. See
 `../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_CLEF_RUNTIME_CONSUMERS.md`
 and `../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_CLEF_LIGHT_RUNTIME.md`.
+The attenuation role is confirmed at the typed s207 shader-constant consumer;
+constant/linear/quadratic member names are strongly inferred from ordering and
+the `(1,0,0)` default. See
+`../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_LIGHT_ATTENUATION_CONSUMER.md`.
 
 The CLEF direct-reference audit's 13 absent children comprise **ten** sounds
 and **three** particles; the third particle path ends in an authored trailing

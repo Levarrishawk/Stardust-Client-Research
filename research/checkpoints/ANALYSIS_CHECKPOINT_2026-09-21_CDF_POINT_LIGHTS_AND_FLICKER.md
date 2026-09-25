@@ -90,6 +90,8 @@ The corpus resolves the behavior: each ordinary streetlamp CDF sets the flag, wh
 
 Correction (2026-09-22): The original `value[10..12]` “local position” label was overconfident. `LOBJ` appends a separate translation vector and `HLOB` a hardpoint selector after the base stream. The three common scalars are copied into `Light +0x100..+0x108`, as are three `CLGT` fields, but their final rendering consumer has not been identified. This affects field semantics, not the proven type IDs, color/range/flicker behavior, or placement-path distinction. See `ANALYSIS_CHECKPOINT_2026-09-22_CLEF_LIGHT_RUNTIME.md`.
 
+Resolution (2026-09-25): a typed Light-to-s207 trace confirms `value[10..12]` form the ordered point-light attenuation coefficient vector uploaded beside point-light position and color. Conventional constant/linear/quadratic member names remain strongly inferred. See `ANALYSIS_CHECKPOINT_2026-09-25_LIGHT_ATTENUATION_CONSUMER.md`.
+
 ## Stable provisional names
 
 | Address | Name | Confidence |
