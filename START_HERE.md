@@ -9,7 +9,7 @@ This is the canonical entry point for reviewing the `Stardust.exe` research befo
 - Server correlation source: the local Stardust/Core3 source tree
 - Canonical workspace: `C:\Users\ancie\Documents\GitHub\Stardust-Client`
 - Objective: behavioral, wire-protocol, and original-asset compatibility in a native 64-bit replacement client
-- Research completion percentage: **uncalibrated**; prior 96% implementation-grade and 90% comprehensive figures are historical planning judgments, not verified measurements. See the [measurement reset](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md).
+- Replacement-relevant planning baseline: **90% comprehensive / 96% engine-decision readiness**, retained as historical heuristic estimates pending a final evidence-backed rescore. Function/address coverage is separately **uncalibrated**. See the [measurement reset](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md) and [model-transition audit](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_MODEL_TRANSITION_AUDIT.md).
 - Server packet-source matrix: **345 documented / 0 reachable gaps**
 - Stable provisional-name registry: **2,528 distinct addresses / 0 duplicate rows** (2026-09-24 session closeout)
 
@@ -21,6 +21,7 @@ The remaining analysis must be completed before returning to engine selection or
 2. [Current analysis status](ANALYSIS_STATUS.md)
    [Workstream inventory and deduplication gate](WORKSTREAM_INVENTORY.md) identifies closed boundaries, named open questions, and evidence required before counting a new block.
    [Research coverage measurement reset](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md) is the current priority and score policy.
+   [Latest vtable methodology audit](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_TEN_VTABLE_AUDIT_BLOCKS.md) corrects mixed export attribution and identifies executable slot targets missing from the Ghidra inventory; it is one audit with ten findings, not ten behavioral blocks.
 3. [Client architecture](docs/CLIENT_ARCHITECTURE.md) and [client subsystems](docs/CLIENT_SUBSYSTEMS.md)
 4. [Network architecture](docs/NETWORK_ARCHITECTURE.md), [SOE transport](docs/SOE_TRANSPORT_PROTOCOL.md), and [packet-handler map](docs/PACKET_HANDLER_MAP.md)
 5. [Replication schemas](docs/REPLICATION_SCHEMA_MAP.md) and [object-controller protocol](docs/OBJECT_CONTROLLER_PROTOCOL.md)

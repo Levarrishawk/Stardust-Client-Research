@@ -1,6 +1,6 @@
 # Stardust.exe research workstream inventory
 
-Updated: 2026-09-25. Target: `C:\Stardust-DEV\Stardust.exe` (SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`). Server comparisons use the current local Stardust-3 source. This is a **planning and deduplication gate**, not a fresh percentage calculation. The historical 90% comprehensive / 96% implementation-grade judgments are suspended as current scores; see the [measurement reset](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md). The 2026-09-21 percentage table in `COMPREHENSIVE_ANALYSIS_LEDGER.md` is a historical, internally inconsistent snapshot, not current per-workstream scoring.
+Updated: 2026-09-25. Target: `C:\Stardust-DEV\Stardust.exe` (SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`). Server comparisons use the current local Stardust-3 source. This is a **planning and deduplication gate**, not a fresh percentage calculation. The historical 90% comprehensive / 96% implementation-grade judgments remain the last planning baseline pending a final rescore; they are not raw-function percentages. See the [measurement reset](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md) and [model-transition audit](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_MODEL_TRANSITION_AUDIT.md). The 2026-09-21 percentage table is an internally inconsistent historical snapshot, not current per-workstream scoring.
 
 ## Rules for new blocks
 

@@ -2,7 +2,7 @@
 
 Updated: 2026-09-25
 
-**Measurement correction:** the previously repeated 96% implementation-grade and 90% comprehensive values are suspended as current completion measures. They were planning judgments without a current reproducible weighted table. The historical rubric shown in `COMPREHENSIVE_ANALYSIS_LEDGER.md` arithmetically produces 55.59% from its own dated entries, not the nearby 82% claim; it is too stale to supply today's number either. See [research coverage rebaseline](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md). The current honest percentage is **uncalibrated**, not zero and not 55.59%. Separate protocol, original-asset, behavior and function-accounting gates are now defined.
+**Measurement correction and course correction:** 96% implementation-grade and 90% comprehensive remain the last historical planning estimates, pending a final current-evidence rescore. They are not mechanically verified percentages: the stale 2026-09-21 table arithmetically produces 55.59% from its printed rows, not its nearby 82% prose. That stale arithmetic also does not replace the later planning estimate with 55.59% or zero. Function/address accounting is separately **uncalibrated** and must not displace behavioral research. See the [research coverage rebaseline](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md) and [model-transition audit](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_MODEL_TRANSITION_AUDIT.md).
 
 This is a heuristic planning estimate, not a mechanically measurable completion counter. “Complete” means enough evidence to constrain a clean replacement architecture and make the pre-build engine decision; it does not mean every function in Stardust.exe has been named.
 

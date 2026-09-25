@@ -2,7 +2,7 @@
 
 Updated: 2026-09-25 measurement note; historical entries below retained unchanged
 
-**Current scoring status: uncalibrated.** The dated 90% comprehensive / 96% implementation-grade figures below are historical planning judgments, not validated current coverage. The displayed 14-row weighted table under the “2026-09-21 baseline reconciliation” heading has weights totaling 100 but computes to **55.59%** from its printed coverage entries, despite the adjacent 82% prose. The table is stale, so 55.59% is **not** a defensible present-day replacement score. Do not extrapolate from block counts. The [2026-09-25 research coverage rebaseline](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md) defines the present work queue and future scoring standard.
+**Current scoring status:** 90% comprehensive / 96% implementation-grade are retained only as the last historical planning estimates pending a final evidence-backed rescore. The displayed 14-row table under “2026-09-21 baseline reconciliation” computes to **55.59%** from its printed entries despite the adjacent 82% prose; it is stale and cannot validate or replace the later estimate. Function/address coverage is separately uncalibrated. Do not extrapolate from block counts. The [research coverage rebaseline](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md) and [model-transition audit](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_MODEL_TRANSITION_AUDIT.md) define the corrected queue and scoring standard.
 
 This ledger measures the expanded objective: an implementation-grade picture of every material Stardust.exe subsystem before engine selection or construction begins. It excludes compiler thunks, standard-library internals and trivial forwarding functions unless they affect behavior or ABI boundaries.
 
