@@ -6,6 +6,14 @@ Updated: 2026-09-25
 
 This is a heuristic planning estimate, not a mechanically measurable completion counter. “Complete” means enough evidence to constrain a clean replacement architecture and make the pre-build engine decision; it does not mean every function in Stardust.exe has been named.
 
+**Development transition (2026-09-27):** after the research gate and bounded
+feasibility proof, the user selected Godot 4.7.2 .NET x64 as the host and moved
+the project to a development-led workflow. The engine-neutral core now runs the
+fixture-backed offline SOE session and login enumeration path described in
+[the prototype README](poc/README.md). Further executable/server analysis is
+targeted at concrete implementation uncertainty; research metrics remain
+separate and are not increased by implementation progress.
+
 The 2026-09-25 focused session closed exact-end CKAT event behavior, ordinary AROT NaN propagation, ordinary non-prefix animation-message scope, and the Light attenuation consumer; it also narrowed the two combined-root clips to a dormant-looking configured-content edge. See the [session report](research/sessions/ANALYSIS_SESSION_2026-09-25_TO_1600.md). The ordered follow-up then established a 217-row UI workflow register; closed Controls/Rebinding and Cluster Selection; added login/zone and RCNO fixtures; closed GameScheduler lifetime semantics; and proved the four forward playback scripts dormant for the current server/configuration. See the [ordered follow-up](research/sessions/ANALYSIS_SESSION_2026-09-25_ORDERED_FOLLOWUP.md). Next work should continue from the registers and named live/conditional gaps rather than denominator churn.
 
 ## Historical estimates (suspended as current scores)

@@ -28,6 +28,11 @@ def ascii16(value: str) -> bytes:
     return struct.pack("<H", len(raw)) + raw
 
 
+def unicode32(value: str) -> bytes:
+    raw = value.encode("utf-16-le")
+    return struct.pack("<I", len(raw) // 2) + raw
+
+
 def message(operands: int, opcode: int, body: bytes) -> bytes:
     return struct.pack("<HI", operands, opcode) + body
 
@@ -80,6 +85,23 @@ def parse_permissions(data: bytes) -> dict:
     return {"can_connect": flags[0], "can_create_regular": flags[1], "can_create_jedi": flags[2], "skip_tutorial": flags[3] if len(flags) == 4 else None}
 
 
+def parse_characters(data: bytes) -> list[tuple[str, int, int, int, int]]:
+    operands, opcode, count = struct.unpack_from("<HII", data, 0)
+    assert operands == 2 and opcode == 0x65EA4574
+    cursor = 10
+    rows = []
+    for _ in range(count):
+        units = struct.unpack_from("<I", data, cursor)[0]
+        cursor += 4
+        name = data[cursor:cursor + units * 2].decode("utf-16-le")
+        cursor += units * 2
+        race_crc, object_id, galaxy_id, character_type = struct.unpack_from("<IQII", data, cursor)
+        cursor += 20
+        rows.append((name, race_crc, object_id, galaxy_id, character_type))
+    assert cursor == len(data)
+    return rows
+
+
 def main() -> None:
     assert swg_hash("LoginEnumCluster") == 0xC11C63B9
     assert swg_hash("LoginClusterStatus") == 0x3436AEB6
@@ -90,19 +112,22 @@ def main() -> None:
     denied = message(4, permission_opcode, bytes((0, 0, 0, 0)))
     allowed = message(4, permission_opcode, bytes((1, 1, 0, 0)))
     historical = message(4, permission_opcode, bytes((1, 1, 0)))
+    characters = message(2, 0x65EA4574, struct.pack("<I", 1) + unicode32("A") + struct.pack("<IQII", 0x11223344, 0x1122334455667788, 7, 1))
 
     assert parse_enum(enum) == {"rows": [(7, "Stardust", 0xFFFF8F80)], "footer": 8}
     assert parse_status(status)["rows"] == [(7, "127.0.0.1", 44453, 44462, 100, 0xCB2, 8, 0xFFFF8F80, 2, 0)]
     assert parse_permissions(denied)["can_connect"] is False
     assert parse_permissions(allowed) == {"can_connect": True, "can_create_regular": True, "can_create_jedi": False, "skip_tutorial": False}
     assert parse_permissions(historical)["skip_tutorial"] is None
+    assert parse_characters(characters) == [("A", 0x11223344, 0x1122334455667788, 7, 1)]
 
     print(f"PASS ClientPermissionsMessage hash 0x{permission_opcode:08X}")
     print(f"PASS LoginEnumCluster {enum.hex(' ')}")
     print(f"PASS LoginClusterStatus {status.hex(' ')}")
     print(f"PASS ClientPermissions denied {denied.hex(' ')}")
     print(f"PASS ClientPermissions allowed {allowed.hex(' ')}")
-    print("ALL 8 LOGIN/ZONE APPLICATION ASSERTIONS PASSED")
+    print(f"PASS EnumerateCharacterId {characters.hex(' ')}")
+    print("ALL LOGIN/ZONE APPLICATION ASSERTIONS PASSED")
 
 
 if __name__ == "__main__":

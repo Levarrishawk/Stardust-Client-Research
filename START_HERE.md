@@ -13,7 +13,11 @@ This is the canonical entry point for reviewing the `Stardust.exe` research befo
 - Server packet-source matrix: **345 documented / 0 reachable gaps**
 - Stable provisional-name registry: **2,528 distinct addresses / 0 duplicate rows** (2026-09-24 session closeout)
 
-The remaining analysis must be completed before returning to engine selection or client construction. The function-level accounting objective is tracked separately from behavioral readiness.
+The user has selected Godot 4.7.2 .NET x64 as the host after the bounded
+feasibility proof passed. Work is now development-led: implement the smallest
+fixture-backed compatibility slice, and return to targeted executable/server
+analysis only when a concrete implementation uncertainty blocks or risks it.
+Function-level accounting remains separate from behavioral readiness.
 
 ## Recommended review order
 
@@ -53,6 +57,15 @@ See [WORKSPACE_HYGIENE.md](WORKSPACE_HYGIENE.md) for maintenance rules and [PUBL
 - **Tentative**: plausible interpretation requiring more evidence.
 - **Unknown**: no semantic claim should be made yet.
 
-## First future implementation milestone
+## Current implementation milestone
 
-The first executable milestone remains a native x64 program that initializes configuration and logging, performs the minimum Stardust handshake, parses a known server response, logs it, and exits cleanly. It requires no world rendering, character rendering, gameplay UI, or asset conversion.
+The engine-neutral .NET 8 core now completes an offline SOE session-to-login
+transcript through cluster and character enumeration, hosted by Godot in
+headless mode. It includes fixture-backed session codecs, seeded CRC,
+selector-4, bounded zlib receive, four reliable channels, ACK/reorder/retry,
+multipayload, and fragmentation. See [prototype status](poc/README.md) and the
+[Phase 1 status](docs/64BIT_PORT_PLAN.md#implementation-status-2026-09-27).
+
+The remaining first executable milestone is the bounded socket/config/logging
+adapter and a separately authorized controlled-server run. It still requires
+no world rendering, character rendering, gameplay UI, or asset conversion.

@@ -7,7 +7,10 @@
 3. **Asset dependence:** world, appearance, animation, terrain, shaders, UI, effects, and audio are deeply asset-dependent. The networking POC is not.
 4. **Conceptual reuse:** session sequencing, wire messages, template CRCs, replication views, containment/cell/scene concepts, and virtual paths. Redesign platform, allocation, jobs, renderer, UI internals, and resource ownership.
 5. **Major blockers:** remaining long-tail asset/presentation semantics, unresolved-resource failure behavior, exhaustive ownership and optional workflow auditing, original-asset provenance/redistribution review, and validation against the actually deployed server build/configuration. The packet inventory is closed, while operational wire tests and fidelity tests still remain.
-6. **Renderer/engine:** no engine choice is final. DX12 is a viable Windows-first custom-renderer candidate and Godot remains a viable host-engine candidate; Vulkan's cross-platform case remains conditional. Compare them against the completed asset and lifecycle requirements at the pre-build decision gate, after the user-requested comprehensive analysis. See `RENDERING_ARCHITECTURE.md`.
+6. **Renderer/engine:** the user selected Godot 4.7.2 .NET x64 as the host after
+   its bounded feasibility proof passed with an engine-neutral .NET 8 core and
+   Direct3D 12 Forward+. Protocol, state, simulation, and original-asset logic
+   remain outside Godot behind adapter boundaries. See `RENDERING_ARCHITECTURE.md`.
 7. **Smallest POC:** a headless-capable x64 Windows executable that initializes logs/config, establishes the transport session, sends the minimum login message to a controlled Stardust test server, parses one known reply, records a deterministic structured log, disconnects, and exits cleanly.
 
 ## 32-to-64-bit hazards
@@ -28,7 +31,12 @@
 
 ## Pre-build engine decision gate
 
-**Status: the original pre-build gate was reached, but the user subsequently chose to complete the broader client analysis before returning to engines or construction.** See [the archived historical pre-build report](../research/archive/superseded-progress-reports/FINAL_PREBUILD_ANALYSIS_REPORT.md), [current status](../ANALYSIS_STATUS.md), and `ENGINE_DECISION_REQUIREMENTS.md`. The archived report is historical, not the current completion claim.
+**Status: completed.** After the broader client analysis and bounded feasibility
+proof, the user selected Godot 4.7.2 .NET x64 as the host. The comparison below
+is retained as the decision record; implementation must continue to enforce its
+engine-neutral compatibility boundaries. See [the archived historical pre-build
+report](../research/archive/superseded-progress-reports/FINAL_PREBUILD_ANALYSIS_REPORT.md),
+[current status](../ANALYSIS_STATUS.md), and `ENGINE_DECISION_REQUIREMENTS.md`.
 
 After the protocol, replication, object lifecycle, asset formats, world/cell model, animation, UI/input and audio dependencies are sufficiently characterized—and before substantial replacement-client implementation—compare at least:
 
@@ -87,6 +95,27 @@ Use the engine/renderer selected at the pre-build decision gate for a window, pl
 Add vertical slices with trace comparisons and compatibility tests.
 
 ## Concrete Phase 1 specification
+
+### Implementation status (2026-09-27)
+
+The engine-neutral .NET 8 core under `poc/Stardust.Core` now implements and
+tests the offline portion of this phase: exact SessionRequest/SessionResponse,
+seeded CRC widths 1–4, selector-4 transformation, uncompressed send framing,
+bounded zlib receive framing, four-channel sequence retention/reorder/ACK and
+retransmission, 16-bit wrap, 1/3/7-byte sizes, multipayload expansion, and
+bounded inbound/outbound fragmentation. It also matches the documented
+`LoginClientId` datagram and parses the synthetic `LoginClientToken` and
+`ErrorMessage` fixtures while preserving credential bytes. Cluster list/status
+fixtures and a bounded `EnumerateCharacterId` parser retain separate zone/ping
+ports, explicit LE64 object IDs, and strict UTF-16LE names. A socket-independent
+client transport drives the Godot-hosted offline transcript through these four
+login responses. A socket-independent coordinator now exposes the complete
+tick/receive/outbound flow with validated endpoint-redacted options.
+
+Still open in Phase 1: the actual UDP/config-loading/clock adapters, endpoint
+resolution, disconnect handling, outbound compression policy, structured
+redacted logging sinks, and controlled-server validation.
+No live endpoint has been contacted.
 
 ### Inputs
 

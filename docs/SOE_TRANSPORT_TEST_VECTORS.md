@@ -133,10 +133,39 @@ This is still not claimed as a complete deployed data packet because selector 1 
 
 ## Required next fixtures
 
-1. Selector-1 compression vectors for beneficial and non-beneficial inputs.
-2. A complete deployed-transform, CRC-appended `00 09` data datagram.
-3. First, middle, and final fragment datagrams with reassembled payload.
-4. ACK and out-of-order behavior at `0xFFFF -> 0x0000` sequence wrap.
+1. Byte-exact selector-1 compressed output from the identified historical zlib
+   1.1.4 implementation for beneficial input. Modern zlib round trips are not a
+   historical encoder golden.
+2. A sanitized controlled-server transcript after that run is separately
+   authorized.
+
+## Two-fragment golden hashes
+
+The deterministic 600-byte application payload is byte `i & 0xFF` at offset
+`i`, with seed `0x12345678`, channel zero, compression flag 0, and CRC width 2.
+The first fragment carries sequence 0, BE32 total 600, and the first 485 bytes;
+the final fragment carries sequence 1 and the remaining 115 bytes.
+
+| Fragment | UDP length | SHA-256 of complete transformed+CRC datagram |
+|---|---:|---|
+| first | 496 | `4ae6870e65d8c69dc50305226e489dc1364336ac647718a40909ff485198a6ba` |
+| final | 122 | `0f3a79ad759b761a16aa6ed5d10c69024b062c823cadc41fe1d1cadcac04fa26` |
+
+`tools/verify_transport_vectors.py` independently constructs both datagrams
+and checks these hashes. The C# implementation checks the same constants before
+its ordered and reordered reassembly scenarios. This records first/final wire
+coverage.
+
+The companion 1,100-byte payload uses the same `i & 0xFF` pattern and produces
+an actual first/middle/final split:
+
+| Fragment | Sequence | UDP length | SHA-256 |
+|---|---:|---:|---|
+| first | 0 | 496 | `1970b660cc4019fd8cc99cae115932c20f81fad03c05b0a0e3fa6a1131e0039f` |
+| middle | 1 | 496 | `3b5dd8e17138ba36a1f414ad047df6111570cc3e2dd0d36119886c3382488ea4` |
+| final | 2 | 133 | `be71a3c08dae3227c01bd8f8d36382b480ee8360de68b983c1c5199385f01b63` |
+
+Both independent verifiers check all three complete datagrams.
 
 ## Selective out-of-order acknowledgement scenario
 
@@ -156,6 +185,12 @@ Assertions:
 - The same scenario must be repeated across `0xFFFF -> 0x0000` wrap using logical sequence expansion, not raw unsigned-16 comparison.
 
 The current Stardust server's `resendPackets(int seq)` returns immediately and therefore is not evidence against this executable behavior; it is a server-side divergence to preserve in the compatibility record.
+
+The independent Python verifier and C# suite both expand wire sequence `0000`
+near logical `0xFFFF` to `0x10000`, expand wire `FFFF` near `0x10000` back to
+`0xFFFF`, and verify that selective release of wire `0000` leaves logical
+`0xFFFF` retained. The C# suite additionally sends and cumulatively acknowledges
+all 65,537 logical sequences through the actual channel state machine.
 
 ## Compression framing status
 

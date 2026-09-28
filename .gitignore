@@ -8,6 +8,9 @@
 **/.mypy_cache/
 **/.idea/
 **/.vscode/
+**/bin/
+**/obj/
+**/.godot/
 
 # Ghidra and local database state if accidentally created outside local-private
 *.gpr

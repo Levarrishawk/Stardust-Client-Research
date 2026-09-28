@@ -6,9 +6,10 @@ public partial class Main : Node
 {
     public override void _Ready()
     {
-        IReadOnlyList<string> events = ProofScenario.Run();
+        if (!System.Environment.Is64BitProcess) { GD.PushError("Stardust client requires a 64-bit host process"); GetTree().Quit(1); return; }
+        IReadOnlyList<string> events = OfflineTransportScenario.Run();
         foreach (string entry in events) GD.Print($"[core] {entry}");
-        if (OS.GetCmdlineUserArgs().Contains("--self-test")) { GD.Print("PASS: Godot hosted the engine-neutral core without a render window"); GetTree().Quit(); return; }
+        if (OS.GetCmdlineUserArgs().Contains("--self-test")) { GD.Print("PASS: Godot hosted the offline SOE transport transcript without a render window"); GetTree().Quit(); return; }
         BuildWorld(); BuildInterface(events);
     }
     private void BuildWorld()
@@ -30,10 +31,10 @@ public partial class Main : Node
         Label title = new() { Text = "STARDUST 64-BIT CLIENT — GODOT FEASIBILITY PROOF", Position = new Vector2(28, 18) }; title.AddThemeFontSizeOverride("font_size", 24); header.AddChild(title);
         PanelContainer panel = new() { Position = new Vector2(32, 120), Size = new Vector2(470, 345) }; layer.AddChild(panel);
         VBoxContainer stack = new(); stack.AddThemeConstantOverride("separation", 12); panel.AddChild(stack);
-        Label heading = new() { Text = "Architecture boundary validated" }; heading.AddThemeFontSizeOverride("font_size", 20); stack.AddChild(heading);
-        stack.AddChild(new Label { Text = "Godot host → engine-neutral core → validated state", AutowrapMode = TextServer.AutowrapMode.WordSmart });
+        Label heading = new() { Text = "Offline transport boundary validated" }; heading.AddThemeFontSizeOverride("font_size", 20); stack.AddChild(heading);
+        stack.AddChild(new Label { Text = "Godot host → engine-neutral SOE core → fixture-driven login state", AutowrapMode = TextServer.AutowrapMode.WordSmart });
         foreach (string entry in events) stack.AddChild(new Label { Text = $"✓  {entry}" });
         stack.AddChild(new HSeparator());
-        stack.AddChild(new Label { Text = "This is intentionally not a game client yet. No live network connection or legacy asset decoding is claimed by this spike.", AutowrapMode = TextServer.AutowrapMode.WordSmart });
+        stack.AddChild(new Label { Text = "This offline transcript uses synthetic credentials and no network access. Legacy asset decoding is outside this milestone.", AutowrapMode = TextServer.AutowrapMode.WordSmart });
     }
 }

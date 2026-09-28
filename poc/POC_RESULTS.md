@@ -28,6 +28,19 @@ This supports continuing the Godot evaluation. It does not establish Stardust pr
 - No baseline/delta, network-object, terrain, portal, animation or customization behavior was tested.
 - C# was selected for the lowest-friction host-boundary test; this does not decide the final native-core implementation language.
 
-## Decision impact
+## Historical decision impact (2026-09-11)
 
 Godot remains viable and advances to the next spike. The next implementation step should replace the synthetic envelope with a bounded, transcript-driven subset of the recovered SOE/Stardust handshake while keeping all protocol code outside Godot. After that passes, return to deeper `Stardust.exe` analysis before implementing broad gameplay systems.
+
+## 2026-09-27 implementation follow-up
+
+The synthetic envelope has been removed from the active core and Godot host.
+Godot 4.7.2 headless mode now runs the engine-neutral offline transcript through
+the recovered SessionRequest/SessionResponse, protected reliable
+`LoginClientId`, `LoginClientToken`, cluster list/status, and character-list
+fixtures. The host printed the six expected transcript events and its PASS line.
+
+With its user-data path redirected to an ignored writable directory, the
+managed desktop sandbox emitted only a nonfatal denial while reading the Windows
+root-certificate store. That did not affect compilation or the offline
+transcript; no network access was attempted.
