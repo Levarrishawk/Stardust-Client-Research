@@ -69,7 +69,7 @@ internal static class FloorWalkScenarios
         Console.WriteLine("PASS: single-cell floor movement, adjacency, slopes, boundary/portal priority, unsupported continuation, malformed topology and owned cleanup-free results");
     }
     private static void Require(bool value,string label){if(!value)throw new Exception("Floor walk: "+label);}
-    internal static void ProbeOptional(string[] args)
+    internal static void ProbeOptional(string[] args,bool trace=false,bool boxes=false)
     {
         if(args.Length!=8 || args[2]!="--configuration" || args[4]!="--fixtures" || args[6]!="--expected-sha256")throw new ArgumentException("Floor walks require pinned fixtures/configuration.");
         if(new FileInfo(args[5]).Length>32_000_000)throw new InvalidDataException("Floor walk fixture budget.");byte[] bytes=File.ReadAllBytes(args[5]);
@@ -82,12 +82,35 @@ internal static class FloorWalkScenarios
             string member=fixture.GetProperty("member").GetString()!;TreLookupResult source=overlay.Lookup(member);
             Require(source.Kind==TreLookupKind.Present && source.Payload is not null,"Source availability");
             Require(Convert.ToHexString(SHA256.HashData(source.Payload!))==fixture.GetProperty("sha256").GetString(),"Source identity");
-            SingleCellFloorWalker walker=new(FloorMeshDecoder.Decode(source.Payload!));int index=0;
+            FloorMeshDescription description=FloorMeshDecoder.Decode(source.Payload!);SingleCellFloorWalker walker=new(description);int index=0;
             Require(fixture.GetProperty("queries").GetArrayLength()<=100,"Query count");
             foreach(JsonElement query in fixture.GetProperty("queries").EnumerateArray())
             {
-                FloorWalkResult result=walker.Walk(query.GetProperty("triangle").GetInt32(),Vector(query.GetProperty("start")),Vector(query.GetProperty("end")));
-                Console.WriteLine("walk="+JsonSerializer.Serialize(new{member,index=index++,status=result.Status.ToString(),triangle=result.TriangleIndex,parameter=result.Parameter,edge=result.EdgeIndex,portal=result.PortalId,position=new[]{result.Position.X,result.Position.Y,result.Position.Z}}));
+                int initialTriangle=query.GetProperty("triangle").GetInt32();Vector3 start=Vector(query.GetProperty("start")),end=Vector(query.GetProperty("end"));
+                FloorWalkPath? path=trace?walker.Trace(initialTriangle,start,end):null;
+                FloorWalkResult result=path?.Result??walker.Walk(initialTriangle,start,end);
+                if(path is not null)Require(result==walker.Walk(initialTriangle,start,end),"Trace result equivalence");
+                FloorWalkResult resumed=walker.Walk(result.TriangleIndex,result.Position,result.Position);
+                Console.WriteLine("walk="+JsonSerializer.Serialize(new{member,index=index++,status=result.Status.ToString(),triangle=result.TriangleIndex,parameter=result.Parameter,edge=result.EdgeIndex,portal=result.PortalId,position=new[]{result.Position.X,result.Position.Y,result.Position.Z},resume_status=resumed.Status.ToString()}));
+                if(path is not null)Console.WriteLine("floor_path="+JsonSerializer.Serialize(new{member,index=index-1,status=result.Status.ToString(),parameter=result.Parameter,position=InteriorDoorScenarios.V(result.Position),segments=path.Segments.Select(s=>new{triangle=s.TriangleIndex,start_parameter=s.StartParameter,end_parameter=s.EndParameter,start=new[]{s.Start.X,s.Start.Y,s.Start.Z},end=new[]{s.End.X,s.End.Y,s.End.Z}})}));
+                if(boxes)
+                {
+                    var row=query.GetProperty("box");var p=row.GetProperty("pose");var pose=new AppearanceTransform(Vector(p[0]),Vector(p[1]),Vector(p[2]),Vector(p[3]));
+                    var collider=new PortalBarrierCollider(Vector(row.GetProperty("minimum")),Vector(row.GetProperty("maximum")),pose);
+                    Vector3 half=Vector(row.GetProperty("half"));var boxWalker=new SingleCellFloorBoxWalker(description,new[]{collider});var boxed=boxWalker.Walk(initialTriangle,start,end,half,_=>false,true);
+                    var resume=walker.Walk(boxed.Floor.TriangleIndex,boxed.Floor.Position,boxed.Floor.Position);
+                    var repeated=boxed;double repeatDistance=0;bool repeatReusable=true;
+                    for(int step=0;step<20;step++)
+                    {
+                        repeated=boxWalker.Walk(repeated.Floor.TriangleIndex,repeated.Floor.Position,end,half,_=>false,true);
+                        repeatDistance=Math.Max(repeatDistance,Vector3.Distance(repeated.Floor.Position,boxed.Floor.Position));
+                        repeatReusable &= walker.Walk(repeated.Floor.TriangleIndex,repeated.Floor.Position,repeated.Floor.Position).Status==FloorWalkStatus.Accepted;
+                    }
+                    var retreat=boxWalker.Walk(repeated.Floor.TriangleIndex,repeated.Floor.Position,start,half,_=>false,true);
+                    Console.WriteLine("floor_box_corpus="+JsonSerializer.Serialize(new{member,index=index-1,status=boxed.Status.ToString(),floor_status=boxed.Floor.Status.ToString(),triangle=boxed.Floor.TriangleIndex,parameter=boxed.Floor.Parameter,position=InteriorDoorScenarios.V(boxed.Floor.Position),resume_status=resume.Status.ToString(),diagnostic=boxed.Diagnostic,
+                        repeated_status=repeated.Status.ToString(),repeat_distance=repeatDistance,repeat_reusable=repeatReusable,retreat_status=retreat.Status.ToString(),retreat_source_distance=Vector3.Distance(retreat.Floor.Position,start),
+                        contact=boxed.Contact is null?null:new{status=boxed.Contact.Status.ToString(),parameter=boxed.Contact.Parameter,segment=boxed.Contact.SegmentIndex,center=new[]{boxed.Contact.Center.X,boxed.Contact.Center.Y,boxed.Contact.Center.Z},normal=InteriorDoorScenarios.V(boxed.Contact.Normal)}}));
+                }
             }
         }
     }

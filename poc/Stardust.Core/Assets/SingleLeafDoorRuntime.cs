@@ -12,19 +12,22 @@ public sealed class SingleLeafDoorRuntime : IDisposable
     private readonly AppearanceTransform doorPose;
     private readonly Vector3 minimum, maximum;
     private readonly int cell;
+    private readonly int? pairedCell;
     private readonly HashSet<ulong> actors = new();
     private readonly PortalDoorController controller;
     private bool disposed;
     public DoorLeafState State { get; private set; }
     public int OwningCell => cell;
+    public bool AcceptsCell(int value) => value == cell || pairedCell.HasValue && value == pairedCell.Value;
     public PortalBarrierCollider SnapshotLeafCollider()
     {
         ObjectDisposedException.ThrowIf(disposed, this);
         return new(minimum, maximum, State.LeafPose);
     }
-    public SingleLeafDoorRuntime(DoorStyle style, AppearanceExtent leafExtent, AppearanceTransform doorPose, int cell)
+    public SingleLeafDoorRuntime(DoorStyle style, AppearanceExtent leafExtent, AppearanceTransform doorPose, int cell, int? pairedCell = null)
     {
         ArgumentNullException.ThrowIfNull(style); ArgumentNullException.ThrowIfNull(leafExtent);
+        if (pairedCell.HasValue && (pairedCell.Value < 0 || pairedCell.Value == cell)) throw new InvalidDataException("Invalid paired contact cell.");
         if (style.IsForceField || style.SecondaryAppearance.Length != 0 || style.PrimaryAppearance.Length == 0 || style.FlipSecondaryRaw != 0)
             throw new InvalidDataException("Only one normal unflipped authored leaf is supported.");
         if (cell < 0 || leafExtent.Kind != "EXBX" || !leafExtent.Minimum.HasValue || !leafExtent.Maximum.HasValue || !Finite(style.Movement) ||
@@ -34,14 +37,14 @@ public sealed class SingleLeafDoorRuntime : IDisposable
         _ = new PortalBarrierCollider(minimum, maximum, doorPose); // Validate the rigid authored frame once.
         AppearanceTransform openPose = doorPose.Compose(AppearanceTransform.Identity with { Translation = style.Movement });
         _ = new PortalBarrierCollider(minimum, maximum, openPose); // Reject overflow before any contact changes state.
-        this.style = style; this.doorPose = doorPose; this.cell = cell; controller = new(style.OpenSeconds, style.CloseSeconds);
+        this.style = style; this.doorPose = doorPose; this.cell = cell; this.pairedCell = pairedCell; controller = new(style.OpenSeconds, style.CloseSeconds);
         State = BuildState();
     }
     public DoorContactResult NotifyContact(ulong actor, int startCell, int endCell, Vector3 actorPosition, bool? allowEntry, long frame)
     {
         ObjectDisposedException.ThrowIf(disposed, this);
         if (actor == 0 || frame < 0 || !Finite(actorPosition)) throw new ArgumentOutOfRangeException(nameof(actor));
-        if (startCell != cell && endCell != cell) return DoorContactResult.WrongCell;
+        if (!AcceptsCell(startCell) && !AcceptsCell(endCell)) return DoorContactResult.WrongCell;
         if (allowEntry is null) return DoorContactResult.PermissionUnknown;
         if (!allowEntry.Value) return DoorContactResult.EntryDenied;
         Vector3 center = doorPose.TransformPoint(new(0, 1, 0));

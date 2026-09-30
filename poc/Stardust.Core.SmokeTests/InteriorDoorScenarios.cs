@@ -4,7 +4,7 @@ using Stardust.Core.Assets;
 
 internal static class InteriorDoorScenarios
 {
-    internal static void Run()
+    internal static PortalSingleLeafDoorBundle Fixture()
     {
         PortalLayoutDescription basis = PortalLayoutDecoder.Decode(PortalLayoutScenarios.Fixture());
         DoorStyle style = DoorStyleTableDecoder.Decode(DoorLeafScenarios.Fixture()).Resolve("synthetic").Style;
@@ -20,6 +20,14 @@ internal static class InteriorDoorScenarios
             [1] = floor with { Vertices = new Vector3[] { new(0, 0, -2), new(2, 0, -2), new(2, 0, 2), new(0, 0, 2) }, Triangles = new[] { T(new[] { 0, 1, 2 }, new[] { -1, -1, 1 }, new[] { -1, -1, -1 }), T(new[] { 0, 2, 3 }, new[] { 0, -1, -1 }, new[] { -1, -1, 0 }) } }
         };
         AppearanceExtent box = new("EXBX", "0001", new(0, 1, 0), 2, new(-1, 0, -.1f), new(1, 2, .1f));
+        var sources = new Dictionary<string, AssetSourceIdentity>();
+        var graph = new AppearanceGeometryGraph(new("synthetic", null, null, null, Array.Empty<AppearanceGeometryChild>(), Array.Empty<string>()), sources);
+        return new(layout, 0, 0, 1, new(new(style, false), graph, box, sources), doorPose, floors, sources);
+    }
+    internal static void Run()
+    {
+        var fixture = Fixture();
+        var layout = fixture.Layout; var floors = fixture.Floors; var style = fixture.Leaf.Selection.Style; var box = fixture.Leaf.Extent; var doorPose = fixture.DoorToCell;
         foreach (AppearanceTransform owner in new[] { AppearanceTransform.Identity, new AppearanceTransform(new(0, 0, 1), Vector3.UnitY, new(-1, 0, 0), new(10, 3, 7)) })
         {
             using SingleLeafDoorRuntime leaf = new(style, box, owner.Compose(doorPose), 0);

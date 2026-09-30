@@ -22,6 +22,7 @@ public partial class Main
         using(ConfiguredTreOverlay overlay=ConfiguredTreOverlay.Open(Read("--asset-root"),config))
             bundle=PortalSingleLeafDoorBundleReader.Load(overlay.Lookup,Read("--asset-member"),Read("--asset-sha256"),int.Parse(Read("--door-cell")),int.Parse(Read("--door-portal")),Read("--door-table-sha256"),Read("--door-leaf-sha256"));
         if(bundle.Leaf.Selection.Style.Name!=Read("--door-style"))throw new InvalidDataException("Door reference style differs from inspector selection.");
+        if(args.Contains("--door-walk")){await BuildPersistentDoorActorPreview(bundle,args,Read);return;}
         geometryPreview=new(bundle.Leaf.Geometry);AddChild(geometryPreview.Root);
         floorPreview=new(bundle.Floors);AddChild(floorPreview.Root);
         var floorFrame=new Node3D();AddChild(floorFrame);RemoveChild(floorPreview.Root);floorFrame.AddChild(floorPreview.Root);
@@ -30,6 +31,7 @@ public partial class Main
         interiorDoorResources.Add(actorMaterial);interiorDoorResources.Add(actorMesh);
         var actor=new MeshInstance3D{Mesh=actorMesh};AddChild(actor);
         var camera=new Camera3D{Current=true};AddChild(camera);
+        cameraLodUpdate=()=>geometryPreview.SelectFromCamera(camera.GlobalPosition);
         AddChild(new WorldEnvironment{Environment=new Godot.Environment{BackgroundMode=Godot.Environment.BGMode.Color,BackgroundColor=new Color(.08f,.10f,.14f)}});
         var layer=new CanvasLayer();AddChild(layer);var panel=new VBoxContainer{Position=new Vector2(18,18)};layer.AddChild(panel);
         panel.AddChild(new Label{Text=$"Original doorway: {bundle.Layout.Cells[bundle.Cell].Name} → {bundle.Layout.Cells[bundle.TargetCell].Name} / {bundle.Leaf.Selection.Style.Name}"});
@@ -47,6 +49,7 @@ public partial class Main
         void Refresh()
         {
             geometryPreview.Root.Transform=GodotAppearanceTransform.ToGodot(doorRuntime!.State.LeafPose);
+            cameraLodUpdate();
             var foot=result?.Movement.WorldPosition??WorldStart();actor.Position=new(foot.X,foot.Y+.9f,-foot.Z);
             status.Text=$"Fraction: {doorRuntime.State.Controller.Fraction:F3} / displacement: {doorRuntime.State.DisplacementFraction:F3}\nMovement: {result?.Movement.Status.ToString()??"not queried"}\nOwner: {result?.Movement.Locator.CellIndex??bundle.Cell}; transfers: {result?.Movement.Transfers??0}\nContact: {result?.ContactKind?.ToString()??"none"}";
         }

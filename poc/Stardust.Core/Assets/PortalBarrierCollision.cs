@@ -71,7 +71,7 @@ public sealed class PortalBarrierCollider
         return new(geometry.Vertices, pose);
     }
 
-    public PortalBarrierContact Sweep(Vector3 startCenter, Vector3 endCenter, Vector3 worldHalfExtents, bool? passageAllowed)
+    public PortalBarrierContact Sweep(Vector3 startCenter, Vector3 endCenter, Vector3 worldHalfExtents, bool? passageAllowed, bool allowSeparatingContact = false)
     {
         if (!Finite(startCenter) || !Finite(endCenter) || !Finite(worldHalfExtents) || worldHalfExtents.X < 0 || worldHalfExtents.Y < 0 || worldHalfExtents.Z < 0)
             throw new InvalidDataException("Invalid barrier sweep bounds.");
@@ -84,6 +84,17 @@ public sealed class PortalBarrierCollider
         Vector3 min = Minimum - extent, max = Maximum + extent;
         if (!Finite(start) || !Finite(end) || !Finite(min) || !Finite(max)) throw new InvalidDataException("Barrier sweep overflow.");
         bool inside = start.X >= min.X && start.X <= max.X && start.Y >= min.Y && start.Y <= max.Y && start.Z >= min.Z && start.Z <= max.Z;
+        // Owned locomotion policy: a touching face may be left outward. Genuine interior overlap still stops.
+        // Tolerance only recognizes a rounded contact face; it does not enlarge passage clearance.
+        if (allowSeparatingContact)
+        {
+            for (int axis = 0; axis < 3; axis++)
+            {
+                float s = Component(start, axis), e = Component(end, axis), lo = Component(min, axis), hi = Component(max, axis);
+                if (Math.Abs(s - lo) <= 1e-5f && e < s || Math.Abs(s - hi) <= 1e-5f && e > s)
+                    return new(PortalBarrierContactStatus.Clear, 1, endCenter, Vector3.Zero);
+            }
+        }
         double enter = 0, exit = 1; Vector3 localNormal = Vector3.Zero;
         for (int axis = 0; axis < 3; axis++)
         {

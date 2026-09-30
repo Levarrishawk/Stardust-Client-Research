@@ -2969,3 +2969,20 @@ Constructor 0128FF40 stores squared 1.5-times-radius retention distance; trigger
 ## 2026-09-30 — Interior door integration boundary
 
 The [integration contract](docs/INTERIOR_DOOR_MOVEMENT_CONTRACT.md) reuses existing door/permission evidence and adds original POB/floor instance validation. No new executable semantic names: canonical registry remains 2,599. Original general actor collision ordering, physical narrow-phase selection and legacy paired-controller coordination remain Unknown. Modern source-contact ordering and directional instance tests do not close those executable questions.
+
+
+## 2026-09-30 — Persistent actor implementation seam
+
+The [persistent actor contract](docs/PERSISTENT_DOOR_ACTOR_CONTRACT.md) implements modern shared-leaf and outward-touch retreat policies. These do not resolve legacy paired-controller synchronization, original solver tolerances, moving-leaf overlap or global collision ordering. No address naming change; registry remains 2,599.
+
+## 2026-09-30 — Modern fixed-step input boundary
+
+The [timing contract](docs/FIXED_STEP_ACTOR_CONTRACT.md) adds replacement timing/input policies. Original timer behavior, paired-controller synchronization, narrow-phase ordering and moving-leaf overlap remain unresolved; no naming change (2,599 rows).
+
+## 2026-09-30 — Input timeline policy
+
+The [timeline](docs/ACTOR_INPUT_TIMELINE_CONTRACT.md) defines modern tick-start quantization; original input timestamp/quantization semantics remain Unknown. Canonical names remain 2,599.
+
+## 2026-09-30 — Detail-leaf envelope boundary
+
+The [capability matrix](docs/DOOR_STYLE_CAPABILITY_MATRIX.md) adds modern DTLA root-box support. Original physical extent selection/narrow phase and secondary flip/controller coordination remain Unknown. Canonical names remain 2,599.

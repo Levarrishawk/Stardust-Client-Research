@@ -252,3 +252,51 @@ The [door contract](../docs/SINGLE_LEAF_DOOR_CONTRACT.md) adds a standalone orig
 ## Original interior doorway inspector
 
 Use the same launcher with a pinned POB member plus `-DoorStyle cantina_door`, `-DoorTableSha256`, `-DoorCell 3`, `-DoorPortal 10` and `-DoorLeafSha256`. It displays the original leaf and both floors with actor-box crossing, permission, contact, step/reset and owner placement controls. See [exact command](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_DOOR_MOVEMENT.md). Reverse inspection uses cell 12 / portal 0. Crossing replays fixed source/target points; persistent actor movement is next.
+
+
+## Persistent doorway stepping
+
+Add `-DoorWalk` to the pinned interior door launcher command. Forward/backward/wait controls move from the current actor locator and update actual cell ownership; current proximity drives one shared leaf. Permission, owner placement and reset controls remain explicit. See [contract](../docs/PERSISTENT_DOOR_ACTOR_CONTRACT.md) and [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PERSISTENT_DOOR_ACTOR.md).
+
+## Continuous doorway movement
+
+In `-DoorWalk`, enable continuous movement and hold physical W/S to move along the selected doorway axis at 1.6 m/s. Pause/focus loss suspends a bounded 50 Hz engine-neutral host; reset starts a new epoch. Manual step buttons are disabled while continuous mode owns input. See [timing contract](../docs/FIXED_STEP_ACTOR_CONTRACT.md).
+
+## Timestamped movement input
+
+Continuous doorway controls now queue physical key/permission transitions at monotonic timestamps and apply them at fixed tick starts. Focus/pause and render reconciliation preserve no-backdating behavior. See [timeline contract](../docs/ACTOR_INPUT_TIMELINE_CONTRACT.md).
+
+## Planar doorway controls
+
+Continuous `-DoorWalk` now uses W/A/S/D: W/S toward target/source, A/D doorway-relative left/right, with normalized 1.6 m/s diagonal speed. Floor navigation remains a feet query and actor bounds apply to door/barrier clearance. See [planar contract](../docs/PLANAR_DOORWAY_ACTOR_CONTRACT.md).
+
+## Rigid detail door assets
+
+Single normal door primaries now accept complete static-mesh DTLA bands whose geometry fits the authored root EXBX. The collider stays fixed across visual LOD changes. Installed acceptance: 91 rows; secondary/force/flip and declaration failures remain separate. See [capability matrix](../docs/DOOR_STYLE_CAPABILITY_MATRIX.md).
+
+## Second original detail-door instance
+
+The selected Mustafar mining 5/1 ↔ 6/0 pair verifies upward primary motion with fixed DTLA root bounds, persistent actor/timed planar input and headless/GPU controls. The generic persistent verifier accepts explicit member/layout/cell/portal/leaf pins. See [readiness record](../docs/DETAIL_DOOR_INSTANCE_READINESS.md).
+
+## Stable returned floor contacts
+
+Returned floor-edge positions are canonicalized inward within 0.1 mm when float rounding would make the next start invalid. Unrepresentable contacts hold the validated source explicitly. See [stability contract](../docs/FLOOR_CONTACT_STABILITY_CONTRACT.md).
+
+## Piecewise floor paths
+
+The core exposes double-precision triangle-plane movement segments alongside the unchanged reusable float locator. See [trace contract](../docs/FLOOR_PATH_TRACE_CONTRACT.md).
+
+
+## Piecewise actor-box sweep
+
+The core sweeps fixed actor bounds along actual floor heights against one immutable rigid box. Earliest contacts preserve request parameters; locator adoption remains separate. See [sweep contract](../docs/FLOOR_PATH_BOX_SWEEP_CONTRACT.md).
+
+
+## Single-cell floor and box movement
+
+The core now returns validated reusable floor locators at piecewise box contacts, with explicit holds when float precision cannot meet the contact budget. See [single-cell contract](../docs/SINGLE_CELL_FLOOR_BOX_CONTRACT.md).
+
+
+## Original floor-box contact and level guard
+
+Original sloped-plane/synthetic-obstacle fixtures verify reusable stops, bounded rounding correction and zero repeated-contact drift. Portal barrier movement remains level-only and now checks source/target intermediate planes. See [floor-box contract](../docs/SINGLE_CELL_FLOOR_BOX_CONTRACT.md) and [guard checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LEVEL_PATH_GUARD.md).

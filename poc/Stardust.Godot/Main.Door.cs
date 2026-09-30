@@ -23,6 +23,7 @@ public partial class Main
         geometryPreview=new(asset.Geometry);AddChild(geometryPreview.Root);
         doorRuntime=new(asset.Selection.Style,asset.Extent,AppearanceTransform.Identity,0);
         var camera=new Camera3D{Position=new Vector3(1,3,8),Current=true};AddChild(camera);camera.LookAt(new Vector3(-1,1,0));
+        cameraLodUpdate=()=>geometryPreview.SelectFromCamera(camera.GlobalPosition);
         var environment=new WorldEnvironment{Environment=new Godot.Environment{BackgroundMode=Godot.Environment.BGMode.Color,BackgroundColor=new Color(.08f,.10f,.14f)}};AddChild(environment);
         var layer=new CanvasLayer();AddChild(layer);
         var panel=new VBoxContainer{Position=new Vector2(18,18)};layer.AddChild(panel);
@@ -36,6 +37,7 @@ public partial class Main
         void Refresh()
         {
             geometryPreview.Root.Transform=GodotAppearanceTransform.ToGodot(doorRuntime.State.LeafPose);
+            cameraLodUpdate();
             var hit=doorRuntime.SweepLeaf(new(0,1,-2),new(0,1,2),new(.25f,.9f,.25f));
             status.Text=$"Opening fraction: {doorRuntime.State.Controller.Fraction:F3}\nLeaf displacement: {doorRuntime.State.DisplacementFraction:F3}\nActor crossing: {hit.Status}\nEffect event: {doorRuntime.State.Effect}";
         }
@@ -47,14 +49,16 @@ public partial class Main
         reset.Pressed+=()=>{doorRuntime.Reset();frame=0;Refresh();};Refresh();
         if(args.Contains("--asset-self-test") || args.Contains("--capture"))
         {
-            for(int i=0;i<6;i++)step.EmitSignal(Button.SignalName.Pressed);
+            int openingSteps=(int)Math.Min(1000,Math.Ceiling(asset.Selection.Style.OpenSeconds/.1)+2),closingSteps=(int)Math.Min(1000,Math.Ceiling(asset.Selection.Style.CloseSeconds/.1)+4);
+            for(int i=0;i<openingSteps;i++)step.EmitSignal(Button.SignalName.Pressed);
             if(doorRuntime.State.Controller.Fraction!=1 || doorRuntime.SweepLeaf(new(0,1,-2),new(0,1,2),new(.25f,.9f,.25f)).Status!=PortalBarrierContactStatus.Clear)throw new InvalidDataException("Door open controls failed.");
             permission.ButtonPressed=false;
-            for(int i=0;i<8;i++)step.EmitSignal(Button.SignalName.Pressed);
+            for(int i=0;i<closingSteps;i++)step.EmitSignal(Button.SignalName.Pressed);
             if(doorRuntime.State.Controller.Fraction!=0)throw new InvalidDataException("Door permission controls failed.");
             reset.EmitSignal(Button.SignalName.Pressed);permission.ButtonPressed=true;
-            for(int i=0;i<6;i++)step.EmitSignal(Button.SignalName.Pressed);
+            for(int i=0;i<openingSteps;i++)step.EmitSignal(Button.SignalName.Pressed);
             if(geometryPreview.Root.Transform!=GodotAppearanceTransform.ToGodot(doorRuntime.State.LeafPose))throw new InvalidDataException("Door adapter pose failed.");
+            geometryPreview.VerifyCameraSwitches();Refresh();
             GD.Print($"PASS: door inspector controls, leaf pose and clearance; style={asset.Selection.Style.Name} meshes={geometryPreview.MeshInstances}");
         }
         if(DisplayServer.GetName()=="headless"){GetTree().Quit();return;}

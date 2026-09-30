@@ -17,6 +17,7 @@ param(
     [int]$DoorCell=-1,
     [int]$DoorPortal=-1,
     [ValidatePattern('^[0-9A-Fa-f]{64}$')][string]$DoorLeafSha256,
+    [switch]$DoorWalk,
     [int]$Cell=-1,
     [switch]$InteriorFloors,
     [switch]$InteriorPaths,
@@ -39,6 +40,7 @@ if ($Headless -and $CapturePath) { throw 'Headless validation cannot capture GPU
 if (([int][bool]$Component+[int][bool]$Detail+[int][bool]$Interior+[int][bool]$PaletteInspector+[int][bool]$DoorStyle) -gt 1) { throw 'Choose one asset inspector.' }
 if ([bool]$DoorStyle -ne [bool]$DoorTableSha256) { throw 'DoorStyle and DoorTableSha256 are required together.' }
 if (($DoorCell -ne -1 -or $DoorPortal -ne -1 -or $DoorLeafSha256) -and (-not $DoorStyle -or $DoorCell -lt 0 -or $DoorPortal -lt 0 -or -not $DoorLeafSha256)) { throw 'Interior door inspection requires style, cell, portal and leaf identity together.' }
+if ($DoorWalk -and $DoorPortal -lt 0) { throw 'DoorWalk requires a pinned interior door instance.' }
 if ($DoorStyle -and ($CameraLod -or $MainTextureOnly -or $InspectHardpoints -or $InteriorFloors -or $InteriorPaths -or $InteriorTextures -or $ComponentTextures -or $AuthoredTextureDefaults -or $FloorOnly -or $Cell -ne -1)) { throw 'Door inspector accepts style and pinned table/leaf identity only.' }
 if ($PaletteInspector -and ($CameraLod -or $MainTextureOnly -or $InteriorFloors -or $InteriorPaths -or $InteriorTextures -or $ComponentTextures -or $AuthoredTextureDefaults -or $FloorOnly -or $Cell -ne -1)) { throw 'PaletteInspector accepts shader identity and capture/interactive options.' }
 if ($InteriorPaths -and -not $InteriorFloors) { throw 'InteriorPaths requires InteriorFloors.' }
@@ -61,6 +63,7 @@ if($Component){$taskArguments+='--asset-component'}
 if($PaletteInspector){$taskArguments+='--palette-inspector'}
 if($DoorStyle){$taskArguments+=@('--door-style',$DoorStyle,'--door-table-sha256',$DoorTableSha256)}
 if($DoorPortal -ge 0){$taskArguments+=@('--door-cell',[string]$DoorCell,'--door-portal',[string]$DoorPortal,'--door-leaf-sha256',$DoorLeafSha256)}
+if($DoorWalk){$taskArguments+='--door-walk'}
 if($Interior){$taskArguments+='--asset-interior';$taskArguments+=@('--cell',[string]$Cell)}
 if($AuthoredTextureDefaults){$taskArguments+='--authored-texture-defaults'}
 if($InteriorTextures){$taskArguments+='--interior-textures'}

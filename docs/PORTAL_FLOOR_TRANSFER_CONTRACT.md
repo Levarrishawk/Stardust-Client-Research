@@ -41,3 +41,7 @@ See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-3
 ## 2026-09-30 permission barrier follow-up
 
 The [barrier contract](PORTAL_BARRIER_COLLISION_CONTRACT.md) adds normal-controller primitives and bounded source-cell actor-box contact before transfer. Runtime fields are LeadingByte exclusion, SolidByte support and separate WindingByte; B43E80 inversion is specific to PRTO/0002. Current permission, mutable portal state and physical door-leaf clearance remain distinct. Independent 291-layout / 21,693-probe agreement and 12-link Godot actor contact gates pass; nonlevel requests stop explicitly. Physical leaf collision and global actor solver ordering remain next.
+
+## Complete level-path guard — 2026-09-30
+
+The [guard checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LEVEL_PATH_GUARD.md) adds read-only source/target floor traces using the actual validated transfer bridge. The level-only barrier adapter now checks every segment endpoint, so equal-height terminal points cannot hide an intermediate ridge. This rejects unsupported movement before adoption; full slope collision remains separate.

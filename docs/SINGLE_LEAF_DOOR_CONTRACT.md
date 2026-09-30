@@ -2,7 +2,7 @@
 
 ## Boundary and confidence
 
-This bounded offline implementation loads one original named style, retains explicit actor handles, advances its primary controller and moves one static-mesh leaf. The Godot adapter renders neutral geometry and provides contact, permission, step and reset controls. Original controller/curve/trigger facts below are **Confirmed** by static executable evidence. Physical leaf clearance against the primary appearance box is an **owned conservative policy**; original narrow-phase shape selection and global actor ordering remain **Unknown**. This is separate from the permission barrier and mutable portal state described in the [barrier contract](PORTAL_BARRIER_COLLISION_CONTRACT.md).
+This bounded offline implementation loads one original named style, retains explicit actor handles, advances its primary controller and moves one rigid primary leaf. Complete static-mesh detail bands are now accepted under the [fixed root-box gate](DOOR_STYLE_CAPABILITY_MATRIX.md). The Godot adapter renders neutral geometry and provides contact, permission, step and reset controls. Original controller/curve/trigger facts below are **Confirmed** by static executable evidence. Physical leaf clearance against the primary appearance box is an **owned conservative policy**; original narrow-phase shape selection and global actor ordering remain **Unknown**. This is separate from the permission barrier and mutable portal state described in the [barrier contract](PORTAL_BARRIER_COLLISION_CONTRACT.md).
 
 ## Original style schema
 

@@ -6,6 +6,8 @@ public readonly record struct PortalTransferPermission(bool? AllowEntry,bool? Ba
 public sealed record PortalFloorLink(int SourceCell,int SourceTriangle,int SourceEdge,int SourcePortal,int GeometryIndex,int TargetCell,int TargetTriangle,int TargetEdge,int TargetPortal);
 public enum CellFloorWalkStatus { Accepted, FloorStopped, UnpairedPortal, MissingTargetFloor, GeometryMismatch, EntryDenied, PortalBlocked, PermissionUnknown, LandingFailed, TransferLimit, InvalidStart }
 public sealed record CellFloorWalkResult(CellFloorWalkStatus Status,CellFloorLocator Locator,Vector3 WorldPosition,double Parameter,int Transfers,PortalFloorLink? Link,FloorWalkResult? FloorResult);
+public sealed record CellFloorTrace(int CellIndex,FloorWalkPath Path);
+public sealed record CellFloorWalkPath(CellFloorWalkResult Result,IReadOnlyList<CellFloorTrace> Floors);
 
 /// <summary>One paired-portal transfer with explicit owner poses and caller-supplied current permission/barrier state. Offline compatibility slice, not full actor collision.</summary>
 public sealed class PortalFloorTransferQuery
@@ -63,11 +65,20 @@ public sealed class PortalFloorTransferQuery
         Links=Array.AsReadOnly(links.Values.OrderBy(l=>l.SourceCell).ThenBy(l=>l.SourceTriangle).ThenBy(l=>l.SourceEdge).ToArray());
     }
     public CellFloorWalkResult Walk(CellFloorLocator start,Vector3 worldDesired,Func<PortalFloorLink,PortalTransferPermission> permission,int maximumCrossings=4096)
+        =>WalkCore(start,worldDesired,permission,maximumCrossings,null);
+    public CellFloorWalkPath Trace(CellFloorLocator start,Vector3 worldDesired,Func<PortalFloorLink,PortalTransferPermission> permission,int maximumCrossings=4096)
+    {
+        List<CellFloorTrace> paths=new();var result=WalkCore(start,worldDesired,permission,maximumCrossings,paths.Add);
+        return new(result,paths.AsReadOnly());
+    }
+    private CellFloorWalkResult WalkCore(CellFloorLocator start,Vector3 worldDesired,Func<PortalFloorLink,PortalTransferPermission> permission,int maximumCrossings,Action<CellFloorTrace>? observe)
     {
         ArgumentNullException.ThrowIfNull(permission);if(!Finite(worldDesired) || !Finite(start.LocalPosition))throw new InvalidDataException("Nonfinite portal movement.");
         if(maximumCrossings is <0 or >4096)throw new ArgumentOutOfRangeException(nameof(maximumCrossings));
         if(!walkers.TryGetValue(start.CellIndex,out var walker))return new(CellFloorWalkStatus.InvalidStart,start,start.LocalPosition,0,0,null,null);
-        FloorWalkResult source=walker.Walk(start.TriangleIndex,start.LocalPosition,Local(start.CellIndex,worldDesired),maximumCrossings);
+        FloorWalkPath? sourcePath=observe is null?null:walker.Trace(start.TriangleIndex,start.LocalPosition,Local(start.CellIndex,worldDesired),maximumCrossings);
+        FloorWalkResult source=sourcePath?.Result??walker.Walk(start.TriangleIndex,start.LocalPosition,Local(start.CellIndex,worldDesired),maximumCrossings);
+        if(sourcePath is not null)observe!(new(start.CellIndex,sourcePath));
         CellFloorWalkResult Stop(CellFloorWalkStatus status)=>Result(status,start.CellIndex,source,source.Parameter,0,null);
         if(source.Status==FloorWalkStatus.Accepted)return Stop(CellFloorWalkStatus.Accepted);
         if(source.Status!=FloorWalkStatus.PortalBoundary)return Stop(source.Status==FloorWalkStatus.InvalidStart?CellFloorWalkStatus.InvalidStart:CellFloorWalkStatus.FloorStopped);
@@ -97,7 +108,9 @@ public sealed class PortalFloorTransferQuery
         if(!decision.AllowEntry.HasValue || !decision.BarrierOpen.HasValue)return Stop(CellFloorWalkStatus.PermissionUnknown);
         if(!decision.AllowEntry.Value)return Stop(CellFloorWalkStatus.EntryDenied);
         if(!decision.BarrierOpen.Value)return Stop(CellFloorWalkStatus.PortalBlocked);
-        FloorWalkResult next=walkers[link.TargetCell].Walk(link.TargetTriangle,landing,desired,maximumCrossings-source.Crossings);
+        FloorWalkPath? targetPath=observe is null?null:walkers[link.TargetCell].Trace(link.TargetTriangle,landing,desired,maximumCrossings-source.Crossings);
+        FloorWalkResult next=targetPath?.Result??walkers[link.TargetCell].Walk(link.TargetTriangle,landing,desired,maximumCrossings-source.Crossings);
+        if(targetPath is not null)observe!(new(link.TargetCell,targetPath));
         double progress=source.Parameter+(1-source.Parameter)*next.Parameter;
         return Result(next.Status==FloorWalkStatus.Accepted?CellFloorWalkStatus.Accepted:next.Status==FloorWalkStatus.PortalBoundary?CellFloorWalkStatus.TransferLimit:CellFloorWalkStatus.FloorStopped,link.TargetCell,next,progress,1,link);
     }

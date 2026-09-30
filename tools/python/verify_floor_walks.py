@@ -86,8 +86,9 @@ def main():
     assert expected.keys()==observed.keys();mismatches=[]
     for key,value in expected.items():
         row=observed[key];counts[value['status']]+=1
+        assert row['resume_status']=='Accepted',('Returned floor locator is not reusable',key,row)
         if any(row[k]!=value[k] for k in ('status','triangle','edge','portal')) or abs(row['parameter']-value['parameter'])>1e-6 or max(abs(x-y) for x,y in zip(row['position'],value['position']))>1e-4:mismatches.append((key,value,row))
-    (a.private_output/'summary.json').write_text(json.dumps(dict(floors=len(fixtures),queries=len(expected),outcomes=counts,mismatches=mismatches[:30]),indent=2),encoding='utf-8')
+    (a.private_output/'summary.json').write_text(json.dumps(dict(floors=len(fixtures),queries=len(expected),reusable_return_locators=len(observed),outcomes=counts,mismatches=mismatches[:30]),indent=2),encoding='utf-8')
     if mismatches:raise ValueError(f'Walk disagreements={len(mismatches)} first={mismatches[:2]}')
     print(f'PASS independent line/edge agreement: {dict(counts)}')
 if __name__=='__main__':main()

@@ -2,11 +2,11 @@
 
 This is the canonical entry point for reviewing the `Stardust.exe` research before designing or implementing a replacement client.
 
-Latest development session: [interior door movement milestone](research/sessions/IMPLEMENTATION_SESSION_2026-09-30_INTERIOR_DOOR_MILESTONE.md).
+Latest development session: [development run until 15:00 Eastern](research/sessions/IMPLEMENTATION_SESSION_2026-09-30_UNTIL_1500.md).
 Current executable acceptance gates: [implementation record](docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
 Latest checkpoint: [status observation boundary](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_STATUS_BOUNDARY.md).
 Latest follow-up: [direct status CRC receive rule](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-29_STATUS_CRC_RECEIVE.md).
-Latest implementation checkpoint: [interior door movement](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_DOOR_MOVEMENT.md).
+Latest implementation checkpoint: [complete portal level-path guard](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LEVEL_PATH_GUARD.md).
 
 ## Scope and current position
 

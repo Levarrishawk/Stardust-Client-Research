@@ -96,13 +96,13 @@ internal static class DetailAppearanceScenarios
         Console.WriteLine($"PASS: original owned detail levels={detail.Levels.Count} diagnostics={detail.Diagnostics.Count}");
     }
 
-    private static byte[] Fixture(string version, bool duplicate=false,bool reversed=false,bool unknownId=false,bool badIndex=false,bool nonfinite=false)
+    internal static byte[] Fixture(string version, bool duplicate=false,bool reversed=false,bool unknownId=false,bool badIndex=false,bool nonfinite=false,byte[]? appearanceBase=null)
     {
         byte[] bands=new byte[24];
         BinaryPrimitives.WriteUInt32LittleEndian(bands,42); Float(bands,4,reversed?201:100);Float(bands,8,nonfinite?float.NaN:200);
         BinaryPrimitives.WriteUInt32LittleEndian(bands.AsSpan(12),7);Float(bands,16,0);Float(bands,20,100);
         byte[] Child(uint id,string path) => Chunk("CHLD",Word(id).Concat(Encoding.ASCII.GetBytes(path+"\0")).ToArray());
-        List<byte[]> children=new(){Form("APPR",Form("0003",Chunk("ODD ",new byte[]{1})))};
+        List<byte[]> children=new(){appearanceBase??Form("APPR",Form("0003",Chunk("ODD ",new byte[]{1})))};
         if(version!="0005") children.Add(Chunk("PIVT",new byte[]{1}));
         children.Add(Chunk("INFO",bands));
         List<byte[]> refs=new(){Child(42,"mesh/far.msh"),Child(unknownId?9u:7u,"mesh/near.msh")};

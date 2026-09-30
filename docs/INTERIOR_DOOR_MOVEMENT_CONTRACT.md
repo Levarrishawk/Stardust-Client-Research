@@ -59,3 +59,6 @@ Inputs and runnable commands are in the [checkpoint](../research/checkpoints/IMP
 ## Next milestone
 
 Replace fixed crossing replays with a persistent actor locator in this two-cell scene: advance the door from current actor contact, consume movement results into actor ownership, reverse direction through the opposite reference, and verify contact retention across repeated steps and cell changes. Establish how one visible leaf and two directional references share a modern runtime without claiming recovered legacy paired-door synchronization. Continue tracing original general collision order when it becomes a fidelity gate.
+
+
+The [persistent actor follow-up](PERSISTENT_DOOR_ACTOR_CONTRACT.md) now closes repeated stepped ownership and shared modern leaf coordination. Continuous render/input scheduling remains next; original paired-controller behavior remains unresolved.

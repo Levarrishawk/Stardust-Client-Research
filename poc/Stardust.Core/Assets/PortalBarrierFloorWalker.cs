@@ -13,11 +13,13 @@ public sealed class PortalBarrierFloorWalker
     private readonly Dictionary<PortalFloorLink, PortalBarrierCollider> barriers = new();
     private readonly Dictionary<PortalFloorLink, SingleLeafDoorRuntime> leaves = new();
     private readonly Dictionary<int, AppearanceTransform> poses = new();
+    private readonly bool allowSeparatingContacts;
     public int BarrierCount => barriers.Count;
     public PortalBarrierFloorWalker(PortalLayoutDescription layout, IReadOnlyDictionary<int, FloorMeshDescription> cellFloors,
         IReadOnlyDictionary<int, AppearanceTransform>? ownerPoses = null,
-        IReadOnlyDictionary<(int Cell, int Portal), SingleLeafDoorRuntime>? doorLeaves = null)
+        IReadOnlyDictionary<(int Cell, int Portal), SingleLeafDoorRuntime>? doorLeaves = null, bool allowSeparatingContacts = false)
     {
+        this.allowSeparatingContacts = allowSeparatingContacts;
         transfers = new(layout, cellFloors, ownerPoses);
         foreach (var pair in cellFloors)
         {
@@ -34,7 +36,7 @@ public sealed class PortalBarrierFloorWalker
             }
             if (doorLeaves is not null && doorLeaves.TryGetValue((link.SourceCell, link.SourcePortal), out var leaf))
             {
-                if (leaf.OwningCell != link.SourceCell || !barriers.ContainsKey(link)) throw new InvalidDataException("Door leaf owner/eligibility mismatch.");
+                if (!leaf.AcceptsCell(link.SourceCell) || !barriers.ContainsKey(link)) throw new InvalidDataException("Door leaf owner/eligibility mismatch.");
                 leaves.Add(link, leaf);
             }
         }
@@ -54,12 +56,14 @@ public sealed class PortalBarrierFloorWalker
             if (!decisions.TryGetValue(link, out var value)) decisions.Add(link, value = permission(link));
             return value;
         }
-        CellFloorWalkResult movement = transfers.Walk(start, desired, Current, maximumCrossings);
+        CellFloorWalkPath path = transfers.Trace(start, desired, Current, maximumCrossings);
+        CellFloorWalkResult movement = path.Result;
         if (movement.Status == CellFloorWalkStatus.InvalidStart || !floors.ContainsKey(start.CellIndex)) return new(movement, null, null);
         AppearanceTransform owner = poses[start.CellIndex]; Vector3 worldStart = owner.TransformPoint(start.LocalPosition);
         PortalBarrierFloorResult Unsupported() => new(new(CellFloorWalkStatus.FloorStopped, start, worldStart, 0, 0, null, null), null, null, "UnsupportedNonlevelBarrierSweep");
         // This integration is deliberately level-only; sloped/vertical sweeps need the full floor contact path.
-        if (Math.Abs(worldStart.Y - desired.Y) > 1e-4f) return Unsupported();
+        if (Math.Abs(worldStart.Y - desired.Y) > 1e-4f || Math.Abs(movement.WorldPosition.Y - worldStart.Y) > 1e-4f) return Unsupported();
+        if(path.Floors.Any(f=>f.Path.Segments.Any(s=>Math.Abs(s.Start.Y+poses[f.CellIndex].Translation.Y-worldStart.Y)>1e-4 || Math.Abs(s.End.Y+poses[f.CellIndex].Translation.Y-worldStart.Y)>1e-4)))return Unsupported();
         PortalBarrierContact? nearest = null; PortalFloorLink? chosen = null; CellFloorWalkResult? stopped = null;
         PortalActorContactKind? kind = null;
         Vector3 offset = new(0, actorHalfExtents.Y, 0);
@@ -92,12 +96,12 @@ public sealed class PortalBarrierFloorWalker
         {
             PortalTransferPermission policy = Current(pair.Key);
             bool? allowed = !policy.AllowEntry.HasValue || !policy.BarrierOpen.HasValue ? null : policy.AllowEntry.Value && policy.BarrierOpen.Value;
-            PortalBarrierContact hit = pair.Value.Sweep(worldStart + offset, desired + offset, actorHalfExtents, allowed);
+            PortalBarrierContact hit = pair.Value.Sweep(worldStart + offset, desired + offset, actorHalfExtents, allowed, allowSeparatingContacts);
             CellFloorWalkStatus status = allowed is null ? CellFloorWalkStatus.PermissionUnknown : !policy.AllowEntry!.Value ? CellFloorWalkStatus.EntryDenied : CellFloorWalkStatus.PortalBlocked;
             Consider(pair.Key, hit, status, PortalActorContactKind.PermissionBarrier);
         }
         foreach (var snapshot in leafSnapshots)
-            Consider(snapshot.Key, snapshot.Collider.Sweep(worldStart + offset, desired + offset, actorHalfExtents, false), CellFloorWalkStatus.PortalBlocked, PortalActorContactKind.DoorLeaf);
+            Consider(snapshot.Key, snapshot.Collider.Sweep(worldStart + offset, desired + offset, actorHalfExtents, false, allowSeparatingContacts), CellFloorWalkStatus.PortalBlocked, PortalActorContactKind.DoorLeaf);
         string? diagnostic = stopped?.FloorResult is null && nearest is not null ? "UnsupportedSourceContactLanding" : null;
         return new(stopped ?? movement, nearest, chosen, diagnostic, kind);
     }

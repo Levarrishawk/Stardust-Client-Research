@@ -1,8 +1,15 @@
 using System.Numerics;
 namespace Stardust.Core.Assets;
 
-public enum FloorWalkStatus { Accepted, BlockedEdge, OpenBoundary, PortalBoundary, UnsupportedEdgePolicy, UnsupportedSurface, InvalidStart, InvalidTopology, AmbiguousVertex, TraversalLimit }
+public enum FloorWalkStatus { Accepted, BlockedEdge, OpenBoundary, PortalBoundary, UnsupportedEdgePolicy, UnsupportedSurface, InvalidStart, InvalidTopology, AmbiguousVertex, TraversalLimit, UnrepresentableContact }
 public sealed record FloorWalkResult(FloorWalkStatus Status,int TriangleIndex,Vector3 Position,double Parameter,int EdgeIndex,int PortalId,int Crossings);
+public readonly record struct FloorPathPoint(double X,double Y,double Z)
+{
+    public static implicit operator FloorPathPoint(Vector3 point)=>new(point.X,point.Y,point.Z);
+    public Vector3 ToVector3()=>new((float)X,(float)Y,(float)Z);
+}
+public sealed record FloorWalkSegment(int TriangleIndex,double StartParameter,double EndParameter,FloorPathPoint Start,FloorPathPoint End);
+public sealed record FloorWalkPath(FloorWalkResult Result,IReadOnlyList<FloorWalkSegment> Segments);
 
 /// <summary>Owned horizontal single-cell inspection walk. Numerical policy is modern; cross-floor collision and cell transitions are deliberately unresolved.</summary>
 public sealed class SingleCellFloorWalker
@@ -22,24 +29,42 @@ public sealed class SingleCellFloorWalker
                 t.VertexIndices.Any(i=>i<0 || i>=vertices.Length) || t.Neighbors.Any(i=>i< -1 || i>=triangles.Length))throw new InvalidDataException("Invalid floor walk topology record.");
     }
     public FloorWalkResult Walk(int triangleIndex,Vector3 start,Vector3 desired,int maximumCrossings=4096)
+        =>WalkCore(triangleIndex,start,desired,maximumCrossings,null);
+    public FloorWalkPath Trace(int triangleIndex,Vector3 start,Vector3 desired,int maximumCrossings=4096)
+    {
+        List<FloorWalkSegment> segments=new();
+        FloorWalkResult result=WalkCore(triangleIndex,start,desired,maximumCrossings,segments.Add);
+        if(result.Status==FloorWalkStatus.UnrepresentableContact)segments.Clear();
+        return new(result,segments.AsReadOnly());
+    }
+    private FloorWalkResult WalkCore(int triangleIndex,Vector3 start,Vector3 desired,int maximumCrossings,Action<FloorWalkSegment>? observe)
     {
         if(!Finite(start) || !Finite(desired))throw new InvalidDataException("Nonfinite floor movement.");
         if(maximumCrossings is <0 or >4096)throw new ArgumentOutOfRangeException(nameof(maximumCrossings));
         if(triangleIndex<0 || triangleIndex>=triangles.Length)return new(FloorWalkStatus.InvalidStart,-1,start,0,-1,-1,0);
-        int current=triangleIndex,crossings=0;double parameter=0;Vector3 position=start;
-        FloorWalkResult Stop(FloorWalkStatus status,int edge=-1,int portal=-1)=>new(status,current,position,parameter,edge,portal,crossings);
+        int current=triangleIndex,crossings=0;double parameter=0;Vector3 position=start,canonicalStart=start;
+        FloorWalkResult Stop(FloorWalkStatus status,int edge=-1,int portal=-1)
+        {
+            Vector3 valid=position;
+            if(edge>=0 && !TryCanonicalContact(current,position,out valid))
+                return new(FloorWalkStatus.UnrepresentableContact,triangleIndex,canonicalStart,0,-1,-1,0);
+            return new(status,current,edge>=0?valid:position,parameter,edge,portal,crossings);
+        }
         if(!Coordinates(current,start,out double[] initial))return Stop(FloorWalkStatus.UnsupportedSurface);
         if(initial.Any(v=>v< -Tolerance))return Stop(FloorWalkStatus.InvalidStart);
         Vector3 projectedStart=Project(current,start,initial);
         if(Math.Abs((double)projectedStart.Y-start.Y)>1e-4)return Stop(FloorWalkStatus.InvalidStart);
-        position=projectedStart;
+        position=canonicalStart=projectedStart;
         HashSet<int> visited=new();
         while(true)
         {
             if(triangles[current].NonSolidByte!=0)return Stop(FloorWalkStatus.UnsupportedSurface);
             if(!visited.Add(current))return Stop(FloorWalkStatus.InvalidTopology);
             if(!Coordinates(current,start,out double[] from) || !Coordinates(current,desired,out double[] to))return Stop(FloorWalkStatus.UnsupportedSurface);
-            if(to.All(v=>v>=-Tolerance)){parameter=1;position=Project(current,desired,to);return Stop(FloorWalkStatus.Accepted);}
+            double segmentParameter=parameter;
+            double sx=start.X+((double)desired.X-start.X)*parameter,sz=start.Z+((double)desired.Z-start.Z)*parameter;
+            Coordinates(current,sx,sz,out double[] segmentWeights);FloorPathPoint segmentStart=PrecisePoint(current,sx,sz,segmentWeights);
+            if(to.All(v=>v>=-Tolerance)){parameter=1;position=Project(current,desired,to);observe?.Invoke(new(current,segmentParameter,parameter,segmentStart,PrecisePoint(current,desired.X,desired.Z,to)));return Stop(FloorWalkStatus.Accepted);}
             double exit=double.PositiveInfinity;int opposite=-1;bool tied=false;
             for(int i=0;i<3;i++)
             {
@@ -52,6 +77,7 @@ public sealed class SingleCellFloorWalker
             parameter=Math.Clamp(exit,parameter,1);Vector3 point=new((float)(start.X+((double)desired.X-start.X)*parameter),0,(float)(start.Z+((double)desired.Z-start.Z)*parameter));
             double px=start.X+((double)desired.X-start.X)*parameter,pz=start.Z+((double)desired.Z-start.Z)*parameter;
             Coordinates(current,px,pz,out double[] at);position=Project(current,point,at);
+            observe?.Invoke(new(current,segmentParameter,parameter,segmentStart,PrecisePoint(current,px,pz,at)));
             int edge=(opposite+1)%3;
             if(tied)return Stop(FloorWalkStatus.AmbiguousVertex,edge);
             FloorTriangle triangle=triangles[current];int portal=triangle.PortalIds[edge];
@@ -85,6 +111,44 @@ public sealed class SingleCellFloorWalker
     {
         FloorTriangle t=triangles[index];double y=0;for(int i=0;i<3;i++)y+=vertices[t.VertexIndices[i]].Y*weights[i];
         return new(p.X,(float)y,p.Z);
+    }
+    private FloorPathPoint PrecisePoint(int index,double x,double z,double[] weights)
+    {
+        FloorTriangle t=triangles[index];double y=0;for(int i=0;i<3;i++)y+=vertices[t.VertexIndices[i]].Y*weights[i];
+        return new(x,y,z);
+    }
+    private bool TryCanonicalContact(int index,Vector3 point,out Vector3 valid)
+    {
+        valid=point;
+        if(!Coordinates(index,point,out double[] at))return false;
+        if(at.All(v=>v>=-Tolerance))return true;
+        // A double edge intersection rounded to float may lie outside its own triangle.
+        // Move only toward the triangle interior, within a strict geometric budget; never relax start validation.
+        FloorTriangle triangle=triangles[index];
+        double cx=triangle.VertexIndices.Sum(i=>(double)vertices[i].X)/3,cz=triangle.VertexIndices.Sum(i=>(double)vertices[i].Z)/3;
+        double dx=cx-point.X,dz=cz-point.Z,length=Math.Sqrt(dx*dx+dz*dz);if(length==0)return false;
+        List<(double X,double Z)> directions=new();
+        for(int i=0;i<3;i++)
+        {
+            if(at[i]>=-Tolerance)continue;
+            Vector3 a=vertices[triangle.VertexIndices[(i+1)%3]],b=vertices[triangle.VertexIndices[(i+2)%3]],inside=vertices[triangle.VertexIndices[i]];
+            double nx=-((double)b.Z-a.Z),nz=(double)b.X-a.X,norm=Math.Sqrt(nx*nx+nz*nz);
+            if(norm==0)continue;
+            double sign=(inside.X-a.X)*nx+(inside.Z-a.Z)*nz;if(sign<0){nx=-nx;nz=-nz;}
+            directions.Add((nx/norm,nz/norm));
+        }
+        directions.Add((dx/length,dz/length));
+        foreach(var direction in directions)
+        foreach(double distance in new[]{1e-6,2e-6,5e-6,1e-5,2e-5,5e-5,1e-4})
+        {
+            Vector3 candidate=new((float)(point.X+direction.X*distance),point.Y,(float)(point.Z+direction.Z*distance));
+            if(!Coordinates(index,candidate,out double[] weights) || weights.Any(v=>v< -Tolerance))continue;
+            candidate=Project(index,candidate,weights);
+            double x=(double)candidate.X-point.X,y=(double)candidate.Y-point.Y,z=(double)candidate.Z-point.Z;
+            if(x*x+y*y+z*z>1e-8)continue;
+            valid=candidate;return true;
+        }
+        return false;
     }
     private static bool Finite(Vector3 p)=>float.IsFinite(p.X)&&float.IsFinite(p.Y)&&float.IsFinite(p.Z);
 }

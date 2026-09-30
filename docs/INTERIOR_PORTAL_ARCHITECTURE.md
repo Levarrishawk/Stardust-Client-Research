@@ -141,3 +141,20 @@ The [single-leaf contract](SINGLE_LEAF_DOOR_CONTRACT.md) refines trigger input, 
 ## 2026-09-30 named doorway movement
 
 The [movement contract](INTERIOR_DOOR_MOVEMENT_CONTRACT.md) closes one original cantina/private-room instance connection. Authored door/cell transforms, conservative physical leaf snapshots and current permission feed a source-owned contact or one floor transfer. Both directions and two supplied owner poses match independent probes; headless/GPU inspection passes. Next: persistent actor ownership and repeated movement rather than fixed crossing replays.
+
+
+## 2026-09-30 persistent doorway ownership
+
+The [persistent actor follow-up](PERSISTENT_DOOR_ACTOR_CONTRACT.md) consumes source/target locators on every step and shares one modern normal leaf between matching incident references. Retained contact, retreat, reset and repeated bidirectional ownership pass original/synthetic/host gates. Fixed-step scheduling and live input remain next.
+
+## Modern continuous actor timing
+
+The [fixed-step host](FIXED_STEP_ACTOR_CONTRACT.md) separates rendering from the persistent doorway actor, with bounded catch-up, pause/focus suspension and continuous W/S input. This is replacement policy and does not close original timer or collision-order unknowns.
+
+## Timestamped movement events
+
+The [input timeline](ACTOR_INPUT_TIMELINE_CONTRACT.md) applies ordered physical-key/permission changes at tick starts and bounds pending history. Equal tick inputs now survive nonaligned render changes. Original input semantics remain separate.
+
+## Planar doorway actor
+
+The [planar input contract](PLANAR_DOORWAY_ACTOR_CONTRACT.md) extends timestamped movement to normalized lateral/diagonal axes. Floor navigation is still a feet query; full world actor collision is outside this gate.

@@ -12,12 +12,28 @@ public partial class Main : Node
     private FloorMeshPreview? floorPreview;
     private PathGraphPreview? pathPreview;
     private System.Action<Vector2>? floorPick;
+    public override void _Input(InputEvent input)
+    {
+        if(input is InputEventKey key)
+        {
+            try{actorKeyInput?.Invoke(key);}
+            catch(System.Exception failure){actorKeyInput=null;actorUpdate=null;GD.PushError("Actor input boundary failed: "+failure.GetType().Name);GetTree().Quit(1);}
+        }
+    }
     public override void _UnhandledInput(InputEvent input){if(input is InputEventMouseButton mouse && mouse.Pressed && mouse.ButtonIndex==MouseButton.Right){try{floorPick?.Invoke(mouse.Position);}catch(System.Exception failure){GD.PushError("Floor inspection failed: "+failure.GetType().Name);GetTree().Quit(1);}}}
     private System.Action? cameraLodUpdate;
+    public override void _Notification(int what)
+    {
+        if(what==NotificationWMWindowFocusIn || what==NotificationWMWindowFocusOut)
+        {
+            try{actorFocus?.Invoke(what==NotificationWMWindowFocusIn);}
+            catch(System.Exception failure){actorUpdate=null;actorFocus=null;GD.PushError("Actor focus boundary failed: "+failure.GetType().Name);GetTree().Quit(1);}
+        }
+    }
     public override void _Process(double delta)
     {
-        try{cameraLodUpdate?.Invoke();}
-        catch(System.Exception failure){cameraLodUpdate=null;GD.PushError("Camera LOD checkpoint failed: "+failure.GetType().Name);GetTree().Quit(1);}
+        try{actorUpdate?.Invoke(delta);cameraLodUpdate?.Invoke();}
+        catch(System.Exception failure){actorUpdate=null;cameraLodUpdate=null;GD.PushError("Frame update checkpoint failed: "+failure.GetType().Name);GetTree().Quit(1);}
     }
     public override async void _Ready()
     {
@@ -50,7 +66,7 @@ public partial class Main : Node
             GetTree().Quit(1);
         }
     }
-    public override void _ExitTree(){DisposeInteriorDoorResources();doorRuntime?.Dispose();doorRuntime=null;pathPreview?.Dispose();pathPreview=null;floorPick=null;floorPreview?.Dispose();floorPreview=null;cameraLodUpdate=null;assetPreview?.Dispose();assetPreview=null;detailPreview?.Dispose();detailPreview=null;geometryPreview?.Dispose();geometryPreview=null;}
+    public override void _ExitTree(){actorUpdate=null;actorFocus=null;actorKeyInput=null;actorTimeline=null;actorHost=null;actorSimulation?.Dispose();actorSimulation=null;DisposeInteriorDoorResources();doorRuntime?.Dispose();doorRuntime=null;pathPreview?.Dispose();pathPreview=null;floorPick=null;floorPreview?.Dispose();floorPreview=null;cameraLodUpdate=null;assetPreview?.Dispose();assetPreview=null;detailPreview?.Dispose();detailPreview=null;geometryPreview?.Dispose();geometryPreview=null;}
     private async System.Threading.Tasks.Task BuildPalettePreview(string[] args)
     {
         string Read(string key)

@@ -1779,3 +1779,55 @@ The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SINGL
 ## 2026-09-30 — Original interior door movement milestone
 
 The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_DOOR_MOVEMENT.md) binds original cantina cell 3/reference 10 and private-room cell 12/reference 0 to the normal leaf runtime and actor-box transfer query. Authored transform composition, captured physical poses, source floor contacts and permission separation pass 24 independent original cases. Headless/GPU controls pass 12 cases over two owner poses; YT-1300 regression gates pass. No new semantic names or coverage rescore. Next: persistent actor movement and directional runtime coordination.
+
+
+## 2026-09-30 — Persistent doorway actor
+
+The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PERSISTENT_DOOR_ACTOR.md) adopts actual movement locators per tick and shares one modern normal leaf across matching incident references. Contact survives owner changes; explicit separating-face policy permits blocked retreat while genuine overlap remains unresolved. Original independent trace passes 948 ticks / 44 transfers; synthetic and Godot repeated-owner controls pass. No new original semantic names or coverage rescore.
+
+## 2026-09-30 — Fixed-step actor and keyboard adapter
+
+The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_FIXED_STEP_ACTOR.md) closes modern render/simulation separation, bounded stall accounting, pause/focus suspension and continuous W/S controls. Independent three-partition/two-pose original verification passes 1,428 updates and 1,260 ticks. Core/headless/GPU controls pass. No new executable names or coverage rescore.
+
+## 2026-09-30 — Timestamped actor inputs
+
+The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_ACTOR_INPUT_TIMELINE.md) closes six between-boundary transitions across three render partitions and two original owner poses. Independent replay passes 1,488 updates / 1,320 ticks / 18 transfers; bounded queue, skipped/pause history and Godot event routing pass. No new VA names or rescore.
+
+## 2026-09-30 — Planar doorway movement
+
+The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PLANAR_DOORWAY_ACTOR.md) closes normalized planar input, transformed lateral/diagonal round trips and explicit authored-floor stops. Independent original 268 ticks / four transfers plus native/headless/GPU checks pass. No new semantic labels or rescore.
+
+## 2026-09-30 — Rigid detail door capabilities
+
+The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_DETAIL_DOOR_CAPABILITIES.md) inventories all installed styles/POBs and adds complete DTLA primary leaves with fixed authored root boxes. Acceptance rises 53 to 91 rows; 38 new rows pass 3,556 independent vertex checks. Current and former boundaries are reproducible; native/headless/GPU/actor regression gates pass. No new semantic names or coverage rescore.
+
+## 2026-09-30 — Detail-door instances
+
+The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_DETAIL_DOOR_INSTANCES.md) reconciles floor pairing/identities for 782 candidates and screens 31,980 native actor ticks. Selected upward Mustafar leaf passes 1,896 independent ticks / 88 transfers over both directions/two poses and headless/GPU adapter gates. Six boundary-locator failures are preserved as the next numerical probe; no rescore/new names.
+
+## 2026-09-30 — Floor contact stability
+
+The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_FLOOR_CONTACT_STABILITY.md) fixes six returned-contact failures while preserving strict input rejection. Seeded 5,000 and installed 17,658 reuse checks pass; YT transfer/cantina/host regressions pass. No new semantic names or rescore.
+
+## 2026-09-30 — Piecewise floor paths
+
+The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_FLOOR_PATH_TRACES.md) establishes ordered double-precision triangle-plane traces without changing walk outcomes. Installed 17,658 requests / 22,063 segments / 110,315 independent plane checks and seeded crease gates pass. No rescore or new names.
+
+
+## 2026-09-30 — Piecewise actor-box sweep
+
+The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_FLOOR_PATH_BOX_SWEEP.md) adds precise segment collision with bounded validation, earliest global parameters and explicit permission/overlap/retreat policy. Six thousand independent synthetic cases pass. No original solver-fidelity claim or rescore.
+
+
+## 2026-09-30 — Single-cell actor-box contact landing
+
+The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SINGLE_CELL_FLOOR_BOX.md) closes stateless earliest-contact landing and reusable locators under bounded precision. Independent 6,000 synthetic cases plus retreat/order/error/large-coordinate hold gates pass. No original-corpus claim or rescore.
+
+
+## 2026-09-30 — Original floor-box contact stability
+
+The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_ORIGINAL_FLOOR_BOX_CONTACTS.md) verifies 600 original sloped floors with synthetic obstacles: 480 box stops, 120 clear, 28 bounded corrections and all locators reusable. Twelve thousand repeat queries have zero drift; 530 retreat to source and 70 initial overlaps remain blocked. No new original semantic labels or rescore.
+
+## 2026-09-30 — Complete portal level-path guard
+
+The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LEVEL_PATH_GUARD.md) rejects hidden source/target ridges through exact transfer traces. Native counterexamples, cantina/Mustafar independent actors and Godot host checks pass. Candidate screening counts remain unchanged. Full portal slope collision remains next.

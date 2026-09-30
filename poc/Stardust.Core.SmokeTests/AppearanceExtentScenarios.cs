@@ -26,7 +26,7 @@ internal static class AppearanceExtentScenarios
         HostAccountingScenarios.Reject<ArgumentOutOfRangeException>(()=>DetailAppearanceDistance.Measure(0,extent,world,new(float.NaN,0,0)));
         Console.WriteLine("PASS: owned APPR primary bounds, authored sphere center, maximum/minimum order and PIVT world-camera origins");
     }
-    private static byte[] Fixture(bool nullExtent=false,bool nonfinite=false,bool negativeRadius=false,bool reversed=false)
+    internal static byte[] Fixture(bool nullExtent=false,bool nonfinite=false,bool negativeRadius=false,bool reversed=false)
     {
         byte[] Floats(params float[] values)
         {using MemoryStream bytes=new();using BinaryWriter writer=new(bytes);foreach(float value in values)writer.Write(value);return bytes.ToArray();}

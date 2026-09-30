@@ -774,3 +774,51 @@ The [door contract](docs/SINGLE_LEAF_DOOR_CONTRACT.md) closes a standalone norma
 ## Integrated original interior doorway — 2026-09-30
 
 The [movement contract](docs/INTERIOR_DOOR_MOVEMENT_CONTRACT.md) connects the cantina/private-room original door reference to physical actor clearance and one floor owner transfer. Two references × two owner poses × six states match 24 independent cases. Godot headless/GPU controls and existing YT-1300 regression gates pass. Conservative authored-box and source-cell-only limits remain explicit. Next: persistent actor locator and repeated bidirectional movement. Scores remain 89% / 94%, packet rows 345 and canonical names 2,599.
+
+
+## Persistent original doorway actor — 2026-09-30
+
+The [actor contract](docs/PERSISTENT_DOOR_ACTOR_CONTRACT.md) preserves locator/ownership across forward and reverse steps with one modern shared leaf and current contact. Independent 948-tick trace: 44 transfers / 34 blocked ticks. Synthetic 124 transfers and headless/GPU 20 control transfers pass. Next: bounded fixed-step timing and continuous keyboard input. Research/packet/name metrics unchanged.
+
+## Fixed-step actor and live input — 2026-09-30
+
+The [timing contract](docs/FIXED_STEP_ACTOR_CONTRACT.md) provides integer 50 Hz ticks, bounded catch-up, suspension and explicit fault reset. Independent original checks pass 1,428 clock updates / 1,260 ticks / 30 phase-end states; core and headless/GPU physical-key/pause/focus controls pass. Next: timestamped transitions between render frames. Metrics unchanged.
+
+## Timestamped actor inputs — 2026-09-30
+
+The [timeline contract](docs/ACTOR_INPUT_TIMELINE_CONTRACT.md) bounds ordered input history and applies changes at tick starts without backdating. Independent 1,488 updates / 1,320 ticks / 18 transfers and Godot event-route/GPU checks pass. Next: planar movement. Metrics unchanged.
+
+## Planar doorway movement — 2026-09-30
+
+The [planar contract](docs/PLANAR_DOORWAY_ACTOR_CONTRACT.md) adds normalized W/A/S/D and analog axes in native coordinates. Independent original 268 ticks / four transfers, synthetic floor stops and headless/GPU diagonal/key checks pass. Feet-only floor navigation and conservative door boxes remain explicit; metrics unchanged.
+
+## Rigid detail door leaves — 2026-09-30
+
+The [capability matrix](docs/DOOR_STYLE_CAPABILITY_MATRIX.md) reconciles 124 styles and 291 effective POBs. Normal primary asset/controller acceptance rises 53 → 91 rows (38 DTLA roots); all visual bands fit fixed authored boxes across 3,556 independent vertex checks. Accepted styles occur in 1,497 named references; this is not instance movement coverage. Core/headless/GPU gates pass. Scores/names/packets unchanged.
+
+## Detail-door instance readiness — 2026-09-30
+
+The [readiness record](docs/DETAIL_DOOR_INSTANCE_READINESS.md) screens 782 authored DTLA candidates: 647 unique floor pairs, 533 instantiated actors, 131 exact short round trips across 28 layouts / 19 styles. Selected Mustafar upward leaf passes 1,896 independent ticks / 88 transfers and headless/GPU controls. Six returned edge contacts expose a numerical InvalidStart risk, now the next probe. Metrics unchanged.
+
+## Reusable floor contacts — 2026-09-30
+
+The [stability contract](docs/FLOOR_CONTACT_STABILITY_CONTRACT.md) fixes returned edge rounding with bounded inward correction and explicit precision holds. All six instance InvalidStart failures disappear; 5,000 seeded cases and all 17,658 installed probes pass, with reusable return locators. Start tolerance and round-trip/slope counts remain unchanged.
+
+## Piecewise floor traces — 2026-09-30
+
+The [trace contract](docs/FLOOR_PATH_TRACE_CONTRACT.md) preserves 17,658 existing walk results across 22,063 double-precision segments and 110,315 independent triangle-plane checks. This is a collision prerequisite; current portal actors remain level-only. Metrics unchanged.
+
+
+## Piecewise actor-box collision — 2026-09-30
+
+The [sweep contract](docs/FLOOR_PATH_BOX_SWEEP_CONTRACT.md) passes 6,000 independent synthetic rotated-box/crease cases and native endpoint-chord counterexamples. Locator adoption and portal slope integration remain separate; metrics unchanged.
+
+
+## Single-cell box-contact locators — 2026-09-30
+
+The [single-cell contract](docs/SINGLE_CELL_FLOOR_BOX_CONTRACT.md) verifies 6,000 independent synthetic collision/landing results with reusable locators. Native retreat, ordering, callback and precision-hold gates pass. Original sloped floors and portal integration remain next; metrics unchanged.
+
+
+## Original sloped-floor contacts and portal guard — 2026-09-30
+
+The [contact checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_ORIGINAL_FLOOR_BOX_CONTACTS.md) verifies 600 original floors with synthetic boxes, 28 bounded corrections and zero drift over 12,000 repeated queries. The [portal guard](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LEVEL_PATH_GUARD.md) rejects source/target ridges hidden by equal-height endpoints. Existing 782-candidate screening remains 131 round trips / 113 nonlevel / 289 other Accepted results; scores/names/packets unchanged.

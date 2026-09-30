@@ -299,3 +299,51 @@ The [door contract](SINGLE_LEAF_DOOR_CONTRACT.md) supplies strict original style
 ## 2026-09-30 original interior door follow-up
 
 The [movement contract](INTERIOR_DOOR_MOVEMENT_CONTRACT.md) connects a selected named original POB instance to physical actor clearance and one owner transfer. Twenty-four independent cases cover both references, two owner poses and six states. Native failure/cleanup gates, headless/GPU controls and existing YT-1300 regression checks pass. Fixed inspection crossing replays are complete; persistent locomotion, paired-controller fidelity and full original solver ordering remain open.
+
+
+## 2026-09-30 persistent actor follow-up
+
+The [actor contract](PERSISTENT_DOOR_ACTOR_CONTRACT.md) closes repeated owned actor steps across the original doorway. Independent 948-tick traces, synthetic lifetime/error gates and headless/GPU persistent controls pass. Continuous input timing, general world collision and legacy paired-controller fidelity remain open.
+
+## Fixed-step doorway actor gate — 2026-09-30
+
+The [timing gate](FIXED_STEP_ACTOR_CONTRACT.md) passes three render partitions, two owner poses, independent original trajectory, stall/suspension/failure gates and Godot physical-key/pause/focus adapter checks. Input snapshots require equal fixed-tick sequences; timestamped transitions and general locomotion remain open.
+
+## Timestamped actor input gate — 2026-09-30
+
+The [timeline gate](ACTOR_INPUT_TIMELINE_CONTRACT.md) passes between-render changes under three partitions, independent original trajectories, capacity/late-history rejection and suspension/drop behavior. Godot event routing and GPU checks pass; general planar locomotion remains next.
+
+## Planar doorway movement gate — 2026-09-30
+
+The [planar gate](PLANAR_DOORWAY_ACTOR_CONTRACT.md) passes original lateral/diagonal trajectories, transformed-owner round trips, normalized speed and synthetic floor stops. Headless/GPU W/A/S/D checks pass. General actor/world collision and moving-leaf response remain separate.
+
+## Rigid detail-door asset gate — 2026-09-30
+
+The [capability gate](DOOR_STYLE_CAPABILITY_MATRIX.md) passes 124-row / 291-layout reconciliation and 38 newly accepted detail leaves with 3,556 all-band envelope checks. Native/headless/GPU fixed-root/LOD controls pass. Style occurrence is distinct from usable paired-floor instance coverage.
+
+## Detail-door instance gate — 2026-09-30
+
+The [instance gate](DETAIL_DOOR_INSTANCE_READINESS.md) records bounded candidate screening and an independently verified upward Mustafar primary: 1,896 ticks / 88 transfers. Host gates pass; matching authored references remain distinct from usable floor instances. Six rounded floor contacts remain a concrete follow-up risk.
+
+## Returned floor-locator gate — 2026-09-30
+
+The [stability gate](FLOOR_CONTACT_STABILITY_CONTRACT.md) preserves 17,658 independent floor outcomes and verifies every returned corpus locator is reusable. Five thousand seeded correction/precision-hold/retreat/rejection cases pass; all six former actor InvalidStart cases disappear. Sloped door motion remains separate.
+
+## Piecewise floor-path gate — 2026-09-30
+
+The [trace gate](FLOOR_PATH_TRACE_CONTRACT.md) preserves 17,658 installed walk results and checks 22,063 segments against independent authored planes. Crease, reverse, stationary, invalid and traversal-prefix cases pass. Collision integration remains separate.
+
+
+## Piecewise actor-box gate — 2026-09-30
+
+The [box sweep gate](FLOOR_PATH_BOX_SWEEP_CONTRACT.md) passes 6,000 independently reconstructed synthetic queries and crease/chord disagreement plus negative/resource tests. Contact landing and portal slope integration remain separate.
+
+
+## Single-cell box-contact locator gate — 2026-09-30
+
+The [landing gate](SINGLE_CELL_FLOOR_BOX_CONTRACT.md) passes 6,000 independent synthetic contact/locator results plus reuse, retreat, tie ordering, callback failure and explicit precision holds. Portal integration remains separate.
+
+
+## Original sloped-floor box and level-guard gates — 2026-09-30
+
+The [floor-box gate](SINGLE_CELL_FLOOR_BOX_CONTRACT.md) passes 600 original-plane fixtures with synthetic boxes and 12,000 zero-drift repeated queries. All locators are reusable; 530 retreat and 70 genuine overlaps remain blocked. The [portal guard](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LEVEL_PATH_GUARD.md) rejects equal-endpoint source/target ridges; original actor/host and candidate-count regressions pass.

@@ -55,3 +55,11 @@ Trace `0x012792B0` / `0x01275FE0` and `0x0126AA80`: establish contact/projection
 ## 2026-09-30 portal transfer follow-up
 
 The [bounded transfer contract](PORTAL_FLOOR_TRANSFER_CONTRACT.md) adds one owner transfer and remaining motion with current offline entry/barrier policy. Floor portal IDs index the owning cell reference vector; they are distinct from global geometry/PGRF keys. The prior tentative 0126AA80 owner-transfer interpretation is corrected: it preserves the same floor wrapper; 012670E0 / 00B2B3F0 perform cell continuation. Fourteen original directed links, 56 independent probes and 28 Godot adapter probes pass. Full actor collision, door lifecycle and exterior continuation remain open.
+
+## Returned-contact stability
+
+The [bounded output contact policy](FLOOR_CONTACT_STABILITY_CONTRACT.md) preserves strict start validation and makes returned edge locators reusable. It introduces an explicit precision-budget hold instead of returning an unusable float contact.
+
+## Piecewise path extension — 2026-09-30
+
+[Trace](FLOOR_PATH_TRACE_CONTRACT.md) returns ordered double-precision plane segments and the same walk result. Geometric terminal points and canonical reusable locators remain distinct.
