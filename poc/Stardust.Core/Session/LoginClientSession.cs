@@ -14,7 +14,12 @@ public enum LoginClientState
     Closed
 }
 
-public sealed record LoginSessionReceiveResult(byte[]? ControlDatagram, IReadOnlyList<uint> ApplicationOpcodes);
+public sealed record LoginSessionReceiveResult(byte[]? ControlDatagram, IReadOnlyList<uint> ApplicationOpcodes,
+    bool RejectedFraming = false, bool PeerDisconnected = false)
+{
+    public IReadOnlyList<byte[]> ControlDatagrams { get; init; } = ControlDatagram is null
+        ? Array.Empty<byte[]>() : new[] { ControlDatagram };
+}
 
 /// <summary>Owns login-phase state and sensitive token lifetime above the SOE transport.</summary>
 public sealed class LoginClientSession : IDisposable
@@ -25,6 +30,7 @@ public sealed class LoginClientSession : IDisposable
     private bool tokenReceived;
     private bool clusterStatusReceived;
     private bool charactersReceived;
+    private long authenticationStartedAt;
 
     public LoginClientState State { get; private set; }
     public uint AccountId { get; private set; }
@@ -57,8 +63,7 @@ public sealed class LoginClientSession : IDisposable
         try { return handshake!.Poll(nowMilliseconds); }
         catch (TimeoutException)
         {
-            transport.Close();
-            State = LoginClientState.Failed;
+            Fail();
             throw;
         }
     }
@@ -74,11 +79,13 @@ public sealed class LoginClientSession : IDisposable
         string username, string password, string version, long nowMilliseconds)
     {
         Require(LoginClientState.ReadyToAuthenticate);
+        if (nowMilliseconds < 0) throw new ArgumentOutOfRangeException(nameof(nowMilliseconds));
         byte[] application = LoginProtocolCodec.EncodeLoginClientId(username, password, version);
         try
         {
             byte[] datagram = transport.CreateReliableDatagram(application, nowMilliseconds);
             State = LoginClientState.AwaitingResponses;
+            authenticationStartedAt = nowMilliseconds;
             return datagram;
         }
         finally
@@ -94,26 +101,29 @@ public sealed class LoginClientSession : IDisposable
         try
         {
             SoeInboundDatagramResult received = transport.AcceptDatagram(datagram);
+            if (received.PeerDisconnected) Fail();
             List<uint> opcodes = new(received.ApplicationPayloads.Count);
-            foreach (byte[] application in received.ApplicationPayloads)
+            try
             {
-                try
+                foreach (byte[] application in received.ApplicationPayloads)
                 {
+                    if (State == LoginClientState.Failed) break;
                     DecodedLoginApplicationMessage decoded = LoginApplicationDecoder.Decode(application);
                     opcodes.Add(decoded.Opcode);
                     Apply(decoded.Value);
                 }
-                finally
-                {
-                    CryptographicOperations.ZeroMemory(application);
-                }
             }
-            return new(received.ControlDatagram, opcodes);
+            finally
+            {
+                foreach (byte[] application in received.ApplicationPayloads)
+                    CryptographicOperations.ZeroMemory(application);
+            }
+            return new(received.ControlDatagram, opcodes, received.RejectedFraming, received.PeerDisconnected)
+                { ControlDatagrams = received.ControlDatagrams };
         }
         catch (InvalidDataException)
         {
-            transport.Close();
-            State = LoginClientState.Failed;
+            Fail();
             throw;
         }
     }
@@ -122,6 +132,16 @@ public sealed class LoginClientSession : IDisposable
     {
         if (credentialBlob is null) throw new InvalidOperationException("No login credential has been received.");
         return (byte[])credentialBlob.Clone();
+    }
+
+    public void CheckResponseDeadline(long nowMilliseconds, long timeoutMilliseconds)
+    {
+        if (timeoutMilliseconds <= 0) throw new ArgumentOutOfRangeException(nameof(timeoutMilliseconds));
+        if (State != LoginClientState.AwaitingResponses) return;
+        if (nowMilliseconds < authenticationStartedAt ||
+            nowMilliseconds - authenticationStartedAt < timeoutMilliseconds) return;
+        Fail();
+        throw new TimeoutException("Login responses did not complete before the local deadline.");
     }
 
     public IReadOnlyList<byte[]> GetRetransmissionDatagrams(long nowMilliseconds, long timeoutMilliseconds)
@@ -181,7 +201,7 @@ public sealed class LoginClientSession : IDisposable
                 break;
             case LoginError error:
                 LastError = error;
-                if (error.Fatal) State = LoginClientState.Failed;
+                if (error.Fatal) Fail();
                 break;
             default:
                 throw new InvalidDataException("Unsupported decoded login message type.");
@@ -194,6 +214,14 @@ public sealed class LoginClientSession : IDisposable
         if (State == LoginClientState.AwaitingResponses && tokenReceived && ClusterList is not null &&
             clusterStatusReceived && charactersReceived)
             State = LoginClientState.Complete;
+    }
+
+    private void Fail()
+    {
+        LoginError? failure = LastError;
+        Close();
+        LastError = failure;
+        State = LoginClientState.Failed;
     }
 
     private void Require(LoginClientState expected)

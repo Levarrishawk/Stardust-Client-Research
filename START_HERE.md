@@ -2,6 +2,12 @@
 
 This is the canonical entry point for reviewing the `Stardust.exe` research before designing or implementing a replacement client.
 
+Latest development session: [interior door movement milestone](research/sessions/IMPLEMENTATION_SESSION_2026-09-30_INTERIOR_DOOR_MILESTONE.md).
+Current executable acceptance gates: [implementation record](docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
+Latest checkpoint: [status observation boundary](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_STATUS_BOUNDARY.md).
+Latest follow-up: [direct status CRC receive rule](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-29_STATUS_CRC_RECEIVE.md).
+Latest implementation checkpoint: [interior door movement](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_DOOR_MOVEMENT.md).
+
 ## Scope and current position
 
 - Primary executable: `C:\Stardust-DEV\Stardust.exe`
@@ -11,7 +17,7 @@ This is the canonical entry point for reviewing the `Stardust.exe` research befo
 - Objective: behavioral, wire-protocol, and original-asset compatibility in a native 64-bit replacement client
 - Current evidence-backed baseline: **89% comprehensive behavioral coverage / 94% implementation-and-engine-decision research readiness**. These are weighted observable-contract scores, not function percentages. Function/address coverage is separately **uncalibrated**. See the [current rescore](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_EVIDENCE_BASED_COVERAGE_RESCORE.md), [measurement reset](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md), and [model-transition audit](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_MODEL_TRANSITION_AUDIT.md).
 - Server packet-source matrix: **345 documented / 0 reachable gaps**
-- Stable provisional-name registry: **2,528 distinct addresses / 0 duplicate rows** (2026-09-24 session closeout)
+- Stable provisional-name registry: **2,599 distinct addresses / 0 duplicate rows** (current canonical registry)
 
 The user has selected Godot 4.7.2 .NET x64 as the host after the bounded
 feasibility proof passed. Work is now development-led: implement the smallest
@@ -66,6 +72,13 @@ selector-4, bounded zlib receive, four reliable channels, ACK/reorder/retry,
 multipayload, and fragmentation. See [prototype status](poc/README.md) and the
 [Phase 1 status](docs/64BIT_PORT_PLAN.md#implementation-status-2026-09-27).
 
-The remaining first executable milestone is the bounded socket/config/logging
-adapter and a separately authorized controlled-server run. It still requires
-no world rendering, character rendering, gameplay UI, or asset conversion.
+The 2026-09-29 increment hardens corruption/failure recovery, adds queued
+fragmentation and independent peer scenarios, outer multipacket dispatch,
+strict configuration loading and redacted diagnostics. An engine-neutral TRE
+0005 reader also reproduces an original entry's Python-verified bytes.
+
+The injected socket/clock/journal adapter is implemented. Live networking still
+requires status/liveness policy and a separately authorized controlled-server
+run. One original textured static mesh now renders in an explicit Godot preview.
+Next asset milestone: parent appearance and LOD selection; modern DDS next: BC7.
+See the acceptance record and latest session for verified scope and limits.

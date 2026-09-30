@@ -1,6 +1,6 @@
 # Client Analysis Status
 
-Updated: 2026-09-25
+Updated: 2026-09-30 (portal barrier milestone; research scores unchanged)
 
 **Current measurement:** the evidence-backed rescore is **89% comprehensive behavioral coverage / 94% implementation-and-engine-decision research readiness**. These supersede the historical 90%/96% planning estimates. They are weighted observable-contract scores, not percentages of executable functions. Function/address accounting remains separately **uncalibrated** and must not displace behavioral research. See the [current rescore](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_EVIDENCE_BASED_COVERAGE_RESCORE.md), [research coverage rebaseline](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md), and [model-transition audit](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_MODEL_TRANSITION_AUDIT.md).
 
@@ -13,6 +13,43 @@ fixture-backed offline SOE session and login enumeration path described in
 [the prototype README](poc/README.md). Further executable/server analysis is
 targeted at concrete implementation uncertainty; research metrics remain
 separate and are not increased by implementation progress.
+
+**Implementation increment (2026-09-29):** transport corruption recovery,
+deterministic owned-state cleanup, queued large-message fragmentation, outer
+SOE dispatch, strict configuration and redacted diagnostics now have independent
+offline scenarios. A TREE 0005 reader matches one original archive entry
+against Python. See the [acceptance gates](docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md)
+and [one-hour session](research/sessions/IMPLEMENTATION_SESSION_2026-09-29_ONE_HOUR.md).
+Socket/live-server validation, status/liveness, full asset mounting and original
+mesh/texture rendering remain open. No research-score or registry changes follow.
+
+**Status checkpoint (2026-09-29):** bounded CRC-validated status observations now
+accept short/extended requests and extended responses. The server's CRC-disabled
+response retains two zero trailer bytes; direct client instructions now confirm
+no opcode-08 CRC exception at positive width. The mismatch remains unresolved
+operationally, and the normal CRC gate is preserved. Automatic replies and
+liveness scheduling remain open. See the [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_STATUS_BOUNDARY.md).
+The [receive-rule follow-up](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-29_STATUS_CRC_RECEIVE.md)
+adds a baseline-identity/instruction verifier and per-byte status corruption tests.
+
+The [extended reply checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_STATUS_REPLY.md)
+recovers reply structure and pre-send counter ownership. An explicit builder
+matches independent protected wire fixtures. Caller accounting/clock binding is
+implemented by the host increment below; automatic replies and missing-field
+policy for short requests remain open.
+
+**Host and asset hour (2026-09-29, 20:46–21:46 EDT):** I/O accounting and guarded
+monotonic clock now bind to a cancellable injected-I/O login host. The concrete
+UDP adapter compiles but has not been run. Bounded allowlisted JSONL persistence
+and failure cleanup pass offline tests; Godot runs the same async host headlessly.
+One original mesh's CPU geometry independently matches Python (9 batches,
+190 vertices, 159 triangles), and all 48 configured archives mount with its
+9 shaders/9 DDS envelopes/1 effect resolved. A mixed-case raw TRE key exposed
+and corrected overly strict index CRC validation without creating a lookup alias.
+See the [five-checkpoint session](research/sessions/IMPLEMENTATION_SESSION_2026-09-29_HOST_AND_ASSET_HOUR.md).
+Next: DDS pixels and one material/coordinate conversion into Godot. Original
+rendering, real UDP interoperability and automatic liveness remain open.
+Research scores and curated registry counts do not change.
 
 The 2026-09-25 focused session closed exact-end CKAT event behavior, ordinary AROT NaN propagation, ordinary non-prefix animation-message scope, and the Light attenuation consumer; it also narrowed the two combined-root clips to a dormant-looking configured-content edge. See the [session report](research/sessions/ANALYSIS_SESSION_2026-09-25_TO_1600.md). The ordered follow-up then established a 217-row UI workflow register; closed Controls/Rebinding and Cluster Selection; added login/zone and RCNO fixtures; closed GameScheduler lifetime semantics; and proved the four forward playback scripts dormant for the current server/configuration. See the [ordered follow-up](research/sessions/ANALYSIS_SESSION_2026-09-25_ORDERED_FOLLOWUP.md). Next work should continue from the registers and named live/conditional gaps rather than denominator churn.
 
@@ -587,3 +624,153 @@ Exhaustive function recovery remains separate and unscored: 2,568 curated
 semantic addresses against 93,287 non-unwind analyzer entries is a 2.75% raw
 registry ratio, not a behavioral-completion measure. See
 `research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_EVIDENCE_BASED_COVERAGE_RESCORE.md`.
+
+## Textured preview implementation hour (2026-09-29)
+
+The [four-checkpoint session](research/sessions/IMPLEMENTATION_SESSION_2026-09-29_TEXTURED_PREVIEW_HOUR.md) implements owned DDS pixels (including DX10/BC4/BC5), static material/effect graphs and an original unlit Godot mesh preview. All 80 original texture mips match independent decoding and GPU upload readback. An asymmetric GPU fixture confirms UV/front-face conversion. BC7/BC6H, faithful lighting, parent appearance/LOD and other mesh declarations remain open. Research scores and curated registries are unchanged. Current asset resume point supersedes the earlier DDS-next paragraph: parent appearance/LOD selection, with BC7 as the next modern DDS extension.
+
+## Overnight increment: DTLA and additional vertex sets
+
+The [DTLA implementation checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_DTLA_READER.md) adds owned deployed-version bands, ID child references and visibility geometry. All four original L0–L3 meshes match independent geometry hashes. L0/L1 require the verified 56-byte `0x55405` declaration, now preserving four 2D coordinate sets. The prior L4 preview is not a child of this parent. Runtime selection and richer pixel-program bindings remain next; research scores and curated counts are unchanged.
+
+## Overnight increment: original authored LOD inspector
+
+The [LOD inspector](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_GODOT_LOD_INSPECTOR.md) now switches all four original children using a baseline-backed distance-only selector and explicit offline slider. Richer PPSH bindings preserve one five-byte record per PTXM form; L0/L1 each pass 134 independent mip comparisons. Godot verifies all uploads and GPU UV/front-face behavior. Rendering uses an authored opaque MAIN fallback under explicit unlit policy. Camera/PIVT origin, APT/composition, lazy runtime loading and full lighting remain open. No research metric or registry changes.
+
+## Overnight increment: strict appearance entry point
+
+The [APT exterior checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_APT_EXTERIOR_CHAIN.md) implements strict versus proven default fetch, preserves broken-target failure and loads the exterior's three authored levels. Auxiliary coordinate dimensions/components are retained for D205/D5405. All three geometry hashes and 99 exterior L0 texture mips match independent readers. GPU inspection passes in explicit unlit MAIN texture-only mode; default fallback mode rejects the unsupported material. Composition, real pivot origin and faithful lighting remain open; scores/registries are unchanged.
+
+## Overnight increment: verified BC7 extension
+
+The [BC7 checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_BC7_DECODER.md) supports DXGI 98/99 through a pinned managed codec under existing DDS guards. All eight modes pass 20 synthetic fixtures: 147 valid mip levels match Pillow; reserved output is tested against the standard with Pillow's discrepancy retained. Godot loads the codec and verifies a nine-mip GPU upload. BC6H needs HDR output and remains unsupported. No research metric or registry change.
+
+## Overnight increment: component geometry
+
+The [CMPA checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_COMPONENT_GEOMETRY.md) verifies 165 effective templates and 779 part transforms, preserves optional RADR geometry and adds a bounded immutable graph. Four vent-pillar LODs independently match and pass neutral Godot readback/switch checks; an unsupported particle is counted. Nested garage sorted-index/declaration gaps are next. No research metric or registry change.
+
+## Overnight increment: sorted meshes and nested garage
+
+The [garage checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SORTED_MESH_GARAGE.md) retains SIDX direction/index variants and declarations 0x5205/0x35305. Fourteen original sources, nine meshes and all 400 sorted variants independently agree; the nested neutral inspector passes headless/GPU readback and LOD switches with zero omissions. Original material rendering and camera/PIVT semantics remain open. No score or registry count change.
+
+## Overnight increment: shared component materials
+
+The [shared-material checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SHARED_COMPONENT_MATERIALS.md) loads all nine garage material bundles with fifty source identities and 151 independent mip matches. Immutable core descriptions and seventeen GPU textures are shared; 35 textured/ten explicitly neutral surfaces pass upload readback and LOD switches. Faithful programs/blending and PIVT origin remain open. No research metric or registry change.
+
+
+## APPR/PIVT camera selection increment — 2026-09-30
+
+The [camera LOD checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_APPR_PIVT_CAMERA_LOD.md) closes the primary extent distance origin: false/absent pivot uses the transformed authored sphere center, true uses world translation, and NULL uses zero local offset. All 6,198 original primary extents agree independently. Native malformed/transform fixtures and standalone/composed headless/GPU selection gates pass. The inspector supports opt-in camera distance and manual selection. Original DPVS, lazy residency and full lighting remain deferred. Five confirmed address labels bring the canonical registry to 2,590 distinct entries; research scores and packet counts are unchanged.
+
+
+## BC6H HDR extension — 2026-09-30
+
+The [HDR checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BC6H_HDR.md) adds a separate owned RGB half output for typed signed/unsigned BC6H. Forty standards-only fixtures/264 mips match independent Godot bcdec bit for bit and pass real GPU half upload/readback. Native endpoint, truncation, surface and budget gates pass. Static material integration and HDR presentation remain separate; this is not original executable acceptance evidence. Existing pinned dependencies, research metrics and registry counts are unchanged.
+
+
+## APPR hardpoints — 2026-09-30
+
+The [hardpoint checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_APPR_HARDPOINTS.md) adds owned exact names/CRC/transforms and explicit duplicate queries to mesh/detail/component templates. All 31,151 effective APPR bases/13,253 hardpoints agree independently. The old serialized count/name-prefix claim is corrected. Ninety-one duplicate-name groups contain different transforms; ambiguous attachment choice remains unverified. Native and focused host gates pass; metrics/registry counts are unchanged.
+
+
+## Owned portal layout — 2026-09-30
+
+The [portal reader checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LAYOUT_READER.md) closes native deployed PRTO/CELL/PRTL parsing against all 291 layouts, 3,470 cells and 7,642 portal references. Owned geometry, names/door fields, optional bounds and paired zero-based adjacency pass independent agreement and negative fixtures. Scene loading, floor behavior and runtime visibility remain separate. The older 00B43E80 neighbor-helper attribution is corrected to a byte toggle. Metrics and registry counts are unchanged.
+
+
+## Portal cell scene increment — 2026-09-30
+
+The [cell scene checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_CELL_SCENE.md) closes shared bounded cell appearance loading and named-cell offline inspection. The pinned original YT-1300 matches independently across eight cells, 14 sources, 11 meshes, 66,617 vertices, 55,916 triangles and 310 sorted variants. VTXA `0x110D` preserves its packed word and correct UV offset. Native ownership/budget/identity tests and Godot headless/GPU gates pass. Manual visibility is distinct from unimplemented portal culling, floors, doors and lighting. Research scores, packet rows and address counts are unchanged.
+
+
+## Owned floor reader — 2026-09-30
+
+The [FLOR checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_FLOOR_MESH_READER.md) verifies all 4,730 deployed floors: 414,301 vertices, 604,429 triangles and 189,927 boundary records. Owned adjacency, authored normals/raw flags and optional payload hashes agree independently. Negative and ownership fixtures pass. Floor navigation/movement remains separate; metrics and registry counts are unchanged.
+
+
+## Floor surface inspection — 2026-09-30
+
+The [query checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_FLOOR_SURFACE_INSPECTION.md) closes a modern owned deterministic BVH surface inspector: 32,918 exhaustive independent probes across 4,730 floors agree. The original scene now includes seven floors/149 triangles under 21 shared sources; headless/GPU geometry and reflected picking pass. Native analytic/negative/ownership cases pass. Original adjacency path walking, permission and portal transitions remain unimplemented. Metrics and registry counts are unchanged.
+
+
+## Owned path graph — 2026-09-30
+
+The [PGRF checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PATH_GRAPH_READER.md) closes deployed graph field decoding against all 3,914 graphs, 39,647 nodes and 86,964 directed edges. Raw positions/keys/types, width floats and ECNT/ESTR ranges agree independently. Empty zero-count/start-minus-one entries are preserved. Native malformed/ownership gates pass. Original navigation cost, cross-cell mapping and dynamic permission remain separate; metrics and registry counts are unchanged.
+
+
+## Directed route inspection — 2026-09-30
+
+The [route checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_DIRECTED_ROUTE_INSPECTOR.md) closes modern owned Euclidean/Dijkstra inspection against 25,847 independent Bellman–Ford probes, with exact edge-chain validation. Eight original floor/layout graphs upload and route-display in Godot; hidden GPU capture passes. Original client cost, cross-cell association and dynamic permission remain distinct. Metrics and registry counts are unchanged.
+
+
+## Portal/floor association audit — 2026-09-30
+
+The [association checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_PATH_ASSOCIATIONS.md) rejects floor-key-as-layout-ordinal and verifies conservative geometry-key bindings for all 291 layouts: 14,783 valid bindings, 3,581 paired candidates, 977 multi-node groups and 14 incomplete groups. Thirty-one bunker contradictions and 13 missing police-station floors remain explicit. Candidates do not establish legal movement. Shared cache failure accounting/pin guards pass; headless MultiMesh readback limits are reported accurately. Metrics and registry counts are unchanged.
+
+
+## Textured interior inspection — 2026-09-30
+
+The [textured portal checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_TEXTURED_PORTAL_SCENE.md) closes bounded shared interior materials and baseline IMPL0004/PASS0008 decoding. The original eight-cell scene independently agrees on 77 sources, seven complete material meshes, 23 textures/221 mips and 18 effect records. Four customizable exterior bundles remain explicit omissions. GPU unlit MAIN inspection uploads all texture mips and displays 78 textured/ten neutral surfaces; strict headless and native negative/budget fixtures pass. Original lighting/customization remain separate; metrics and registry counts are unchanged.
+
+
+## Owned customizable shader reader — 2026-09-30
+
+The [CSHD checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_CUSTOMIZABLE_SHADER_READER.md) verifies all 5,173 deployed version 0001 shaders,5,446 choices,856 selections and 7,908 palette factors. Native owned records agree independently on exact names, signed ranges/defaults, flags and inline shader identity. Static calls confirm private/shared-owner namespaces and clamped texture indexing. Inline values and authored defaults remain separate; runtime customization/palette translation is open. Metrics and registry counts are unchanged.
+
+
+## Authored customization texture inspection — 2026-09-30
+
+The [authored texture checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_AUTHORED_TEXTURE_INSPECTION.md) verifies856 selections under 2,568 default/extreme cases and completes all 11 original scene material bundles under explicit preview policy. Independent agreement covers87 sources,33 textures/321 mips and 39 effect records. GPU inspection shows85 textured/three neutral surfaces; unused choices are not loaded. Palette colors, original lighting and live customization remain open. Metrics and registry counts are unchanged.
+
+
+## BC6H material integration — 2026-09-30
+
+The [HDR material checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BC6H_MATERIAL_BUNDLES.md) preserves typed BC6H RGB-half data through shared core material caches and actual Godot MAIN samplers. Independent40-fixture/264-mip agreement and 80 template bindings pass on GPU and separately headless. Mixed RGBA/HDR aggregate budgets pass exact/fatal gates. Original87-source/321-mip scene agreement remains intact. HDR tone mapping/full lighting remain separate; metrics and registry counts are unchanged.
+
+
+## Owned palette reader — 2026-09-30
+
+The [palette checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PALETTE_READER.md) verifies264 palettes/23,410 entries and 24,730 index queries. Raw flags, opaque ARGB, three ignored tails and low-version warning policy pass. The prior missing-fallback color label is corrected to cyan 0xFF00FFFF. CSHD references expose one missing palette and 16 out-of-range authored defaults; these remain explicit. Metrics and registry counts are unchanged.
+
+
+## Palette-factor bundles — 2026-09-30
+
+The [factor checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PALETTE_FACTOR_BUNDLES.md) closes bounded pinned palette dependencies and explicit supplied/authored factor queries. All 7,908 factors agree under 23,724 independent cases. Exact namespaces, owned results, missing/masked cyan, empty/malformed distinctions and aggregate budgets pass native gates. One missing factor and sixteen invalid defaults remain explicit. Original lighting/live customization are separate; research scores and registry counts are unchanged.
+
+
+## Palette-factor inspector — 2026-09-30
+
+The [swatch checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PALETTE_FACTOR_INSPECTOR.md) adds editable authored/supplied color inspection with exact variable namespaces and shared-key controls. Original YT-1300 and missing-palette swamp-trooper shaders pass two-swatch GPU readback; headless and synthetic shared-control gates pass. Captures remain private. Scene material lighting/live owner state remain separate; metrics and registry counts are unchanged.
+
+
+## Hardpoint instance inspection — 2026-09-30
+
+The [placement checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_HARDPOINT_INSTANCE_INSPECTION.md) verifies owned per-instance hardpoint composition against two original graphs: 26 placements/312 fields. Exact name ambiguity, occurrence paths, cycles and limits pass native gates. Godot reflected marker transforms and cell/LOD visibility pass headless/GPU inspection with readable selected labels. Original runtime attachment lookup remains separate; metrics and registry counts are unchanged.
+
+
+## Same-cell surface route selection — 2026-09-30
+
+The [connection checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SURFACE_ROUTE_SELECTION.md) verifies owned floor-hit-to-nearest-node selection against all 149 original scene probes. Missing/empty graph and cell isolation policies pass native gates. Seven reflected floor samples drive named-cell/route-start controls in headless/GPU hosts. Original walking, costs and portal transitions remain separate; metrics and registry counts are unchanged.
+
+
+## Single-cell floor movement — 2026-09-30
+
+The [movement checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SINGLE_CELL_FLOOR_MOVEMENT.md) closes an owned horizontal single-cell walker and two-pick Godot inspector. Static edge/caller evidence, 500 seeded grid walks, 17,658 independent probes across 4,441 eligible installed floors, and seven reflected cell adapters pass. Portals override raw flags; missing-neighbor transitions, special collision edges and nearly vertical surfaces stop explicitly. Cross-cell permission/owner continuation remains next. Research scores, packet rows and stable-name counts are unchanged.
+
+## 2026-09-30 portal transfer milestone
+
+One-portal floor owner transfer and remaining motion now pass 56 independent probes over 14 original YT-1300 links, synthetic transforms/failures/budgets, and 28 Godot adapter probes with current offline entry/barrier controls. Canonical names: 2,593 addresses. Scores remain 89% / 94%; packet matrix remains 345. Full actor/door collision and exterior continuation remain open. See [contract](docs/PORTAL_FLOOR_TRANSFER_CONTRACT.md).
+
+## Portal permission barrier and actor bounds — 2026-09-30
+
+The [barrier contract](docs/PORTAL_BARRIER_COLLISION_CONTRACT.md) adds normal door-controller primitives and source-cell actor-box contact before one portal transfer. Nonlevel requests stop explicitly. Independent comparison passes 291 layouts / 7,642 references / 21,693 probes; Godot verifies 12 level links / 24 current-policy probes and two nonlevel stops. Four canonical names bring the registry to 2,597. Scores and packet coverage remain unchanged. Next: original style loading and physical leaf clearance; full actor solver ordering remains unresolved.
+
+
+## Original single-leaf door — 2026-09-30
+
+The [door contract](docs/SINGLE_LEAF_DOOR_CONTRACT.md) closes a standalone normal leaf: strict 124-row original style decoding, authored curve, contact hysteresis and conservative authored-box clearance. Independent 100-frame agreement, synthetic failure/lifecycle gates and headless/GPU Godot controls pass. Two names bring the current registry to 2,599. Scores remain 89% / 94%; packet rows remain 345. Next: one named original POB door instance connected to the interior walker. Original narrow-phase shape and global solver ordering remain Unknown.
+
+
+## Integrated original interior doorway — 2026-09-30
+
+The [movement contract](docs/INTERIOR_DOOR_MOVEMENT_CONTRACT.md) connects the cantina/private-room original door reference to physical actor clearance and one floor owner transfer. Two references × two owner poses × six states match 24 independent cases. Godot headless/GPU controls and existing YT-1300 regression gates pass. Conservative authored-box and source-cell-only limits remain explicit. Next: persistent actor locator and repeated bidirectional movement. Scores remain 89% / 94%, packet rows 345 and canonical names 2,599.

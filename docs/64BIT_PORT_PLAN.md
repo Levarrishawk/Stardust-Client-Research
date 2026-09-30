@@ -1,5 +1,14 @@
 # 64-bit Replacement Plan
 
+## Host and asset increment — 2026-09-29
+
+A cancellable engine-neutral login host now binds guarded monotonic time,
+I/O accounting and bounded safe JSONL persistence. Godot runs injected offline
+I/O; the IPv4 UDP adapter is compiled but unexecuted. One original CPU mesh
+matches Python and its dependencies resolve through the configured archive set.
+Next: independently verified DDS pixels/mips and one material/axis adapter.
+See the [session resume point](../research/sessions/IMPLEMENTATION_SESSION_2026-09-29_HOST_AND_ASSET_HOUR.md).
+
 ## Feasibility answers
 
 1. **Architecture reconstruction:** the principal platform, transport, session, replication, scene, renderer, asset, UI, input and audio boundaries are address-backed in the verified executable. The normalized registry has 2,198 stable provisional function addresses, but this is not exhaustive function-by-function recovery. Specialized presentation policy and failure/lifetime tails remain open.
@@ -112,10 +121,25 @@ client transport drives the Godot-hosted offline transcript through these four
 login responses. A socket-independent coordinator now exposes the complete
 tick/receive/outbound flow with validated endpoint-redacted options.
 
-Still open in Phase 1: the actual UDP/config-loading/clock adapters, endpoint
+At that checkpoint, still open in Phase 1: the actual UDP/config-loading/clock adapters, endpoint
 resolution, disconnect handling, outbound compression policy, structured
 redacted logging sinks, and controlled-server validation.
 No live endpoint has been contacted.
+
+### Implementation update (2026-09-29)
+
+The core adds framing-corruption recovery, failure/deadline cleanup, queued
+fragmentation across ACK windows, outer SOE multipackets, ping and matching
+peer disconnect, strict JSON configuration and redacted diagnostic events.
+Independent peer scenarios exercise these paths. The resource-core slice also
+starts TREE 0005 mounting/extraction against one original archive; it does not
+establish mesh/texture rendering or complete Phase 4.
+
+Current open Phase 1 gates: status/liveness and CRC exceptions, actual UDP
+ownership/endpoint filtering, clock and journal binding, outbound compression
+policy, and a separately authorized controlled-server run. See the
+[implementation acceptance record](CLIENT_IMPLEMENTATION_ACCEPTANCE.md) and
+[session handoff](../research/sessions/IMPLEMENTATION_SESSION_2026-09-29_ONE_HOUR.md).
 
 ### Inputs
 
@@ -171,3 +195,31 @@ trailing space when present), and construct native x64 objects separately.
 Do not memcpy x86 vectors or trim a path to force an unintended asset lookup.
 An enabled PTEX empty name is a defined fallback-material case, distinct from
 a missing named resource.
+
+## Textured preview increment (2026-09-29)
+
+Engine-neutral DDS and owned material graphs feed an explicit original Godot preview with byte-verified uploads and GPU coordinate tests. See the [session](../research/sessions/IMPLEMENTATION_SESSION_2026-09-29_TEXTURED_PREVIEW_HOUR.md). Next asset gate is parent appearance/LOD loading; faithful lighting and BC7/HDR extensions remain bounded follow-ups.
+
+## Overnight implementation progression
+
+Owned DTLA parsing, explicit authored LOD inspection, strict APT exterior loading, dimensioned auxiliary coordinates and verified BC7 are now implemented. See the [overnight session](../research/sessions/IMPLEMENTATION_SESSION_2026-09-29_TO_2026-09-30_OVERNIGHT.md). Bounded CMPA neutral geometry composition now passes; the garage sorted-index mesh boundary now passes; shared material composition now passes; next is APPR/PIVT distance origin; BC6H requires HDR representation. Live networking and faithful full materials remain separate gates.
+
+
+## APPR/PIVT camera selection increment — 2026-09-30
+
+The [camera LOD checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_APPR_PIVT_CAMERA_LOD.md) closes the primary extent distance origin: false/absent pivot uses the transformed authored sphere center, true uses world translation, and NULL uses zero local offset. All 6,198 original primary extents agree independently. Native malformed/transform fixtures and standalone/composed headless/GPU selection gates pass. The inspector supports opt-in camera distance and manual selection. Original DPVS, lazy residency and full lighting remain deferred. Five confirmed address labels bring the canonical registry to 2,590 distinct entries; research scores and packet counts are unchanged.
+
+
+## BC6H HDR extension — 2026-09-30
+
+The [HDR checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BC6H_HDR.md) adds a separate owned RGB half output for typed signed/unsigned BC6H. Forty standards-only fixtures/264 mips match independent Godot bcdec bit for bit and pass real GPU half upload/readback. Native endpoint, truncation, surface and budget gates pass. Static material integration and HDR presentation remain separate; this is not original executable acceptance evidence. Existing pinned dependencies, research metrics and registry counts are unchanged.
+
+
+## APPR hardpoints — 2026-09-30
+
+The [hardpoint checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_APPR_HARDPOINTS.md) adds owned exact names/CRC/transforms and explicit duplicate queries to mesh/detail/component templates. All 31,151 effective APPR bases/13,253 hardpoints agree independently. The old serialized count/name-prefix claim is corrected. Ninety-one duplicate-name groups contain different transforms; ambiguous attachment choice remains unverified. Native and focused host gates pass; metrics/registry counts are unchanged.
+
+
+## Owned portal layout — 2026-09-30
+
+The [portal reader checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LAYOUT_READER.md) closes native deployed PRTO/CELL/PRTL parsing against all 291 layouts, 3,470 cells and 7,642 portal references. Owned geometry, names/door fields, optional bounds and paired zero-based adjacency pass independent agreement and negative fixtures. Scene loading, floor behavior and runtime visibility remain separate. The older 00B43E80 neighbor-helper attribution is corrected to a byte toggle. Metrics and registry counts are unchanged.

@@ -2,7 +2,7 @@
 
 ## Scope and evidence
 
-This model correlates installed `PRTO`/`.pob` and `FLOR`/`.flr` assets, Stardust.exe RTTI (`CellProperty`, `PortalProperty`, floor/collision and RenderWorld/DPVS families), and the Stardust server readers in `templates/appearance/PortalLayout.cpp`, `CellProperty.cpp` and `FloorMesh.cpp`. Binary factory/visibility call paths are not yet fully named, so file layouts below are **Confirmed by server source**, while precise client runtime scheduling is **Strongly inferred** unless stated otherwise.
+This model correlates installed `PRTO`/`.pob` and `FLOR`/`.flr` assets, Stardust.exe RTTI and versioned readers, and the Stardust server readers in `templates/appearance/PortalLayout.cpp`, `CellProperty.cpp` and `FloorMesh.cpp`. The [native portal contract](PORTAL_LAYOUT_DECODER_CONTRACT.md) now confirms deployed parsing through direct client readers and all 291 effective layouts. Rendering, collision and runtime scheduling remain separate boundaries.
 
 ## Portalized object structure
 
@@ -38,7 +38,7 @@ The server accepts `CELL/0004` and `CELL/0005`. `DATA` contains:
 4. appearance/mesh virtual path string;
 5. presence flag and optional floor-file virtual path.
 
-Version `0005` additionally loads a bounding-volume object after `DATA`, commonly a collision-mesh form. Repeated `PRTL` forms define cell-side portal references:
+Version `0005` can additionally load a bounding-volume object after `DATA`, commonly a collision-mesh form. It is optional: the client factory leaves an unregistered next tag unconsumed. Repeated `PRTL` forms contain version **chunks** defining cell-side portal references:
 
 | Version | Fields |
 |---|---|
@@ -46,7 +46,7 @@ Version `0005` additionally loads a bounding-volume object after `DATA`, commonl
 | `0004` | `0002` fields plus door-name string, transform-present byte and 12 transform floats |
 | `0005` | an additional leading unknown byte, then the `0004` layout |
 
-The server identifies a world/exterior portal when the target-cell index is `<= 1`. Exact index conventions need validation against representative assets before being copied into a new loader.
+The server identifies a world/exterior portal when the target-cell index is `<= 1`; that server predicate is not the file index convention. All 7,642 current references use zero-based CELS ordinals and match their geometry's opposite side. Twelve transform floats are retained even when the transform-present byte is false. Original runtime post-load flag handling remains separate.
 
 ## Floor mesh and navigation data
 
@@ -87,9 +87,57 @@ Before choosing Godot versus a custom renderer, the engine spike must load one r
 
 ## Remaining unknowns
 
-- Stardust.exe PRTO/CELL/FLOR factory VAs and exact lifecycle ownership.
+- Exact runtime visibility/lazy lifecycle ownership beyond the established PRTO/CELL/FLOR version dispatch and loader VAs.
 - Nonempty legacy `FLOR/0004` `PNOD`/`PEDG` payloads, if any exist outside this corpus.
 - Whether the client consumes stored BTRE data or rebuilds acceleration structures.
 - DPVS portal/occlusion integration and fallback behavior.
 - Door-object binding rules and replication events.
-- Precise exterior-cell index conventions across all installed portal versions.
+- Original post-load flag transformations and complete dynamic exterior/cell membership policy. Current serialized adjacency indices are closed by corpus agreement.
+
+
+## Owned floor reader — 2026-09-30
+
+The [FLOR checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_FLOOR_MESH_READER.md) verifies all 4,730 deployed floors: 414,301 vertices, 604,429 triangles and 189,927 boundary records. Owned adjacency, authored normals/raw flags and optional payload hashes agree independently. Negative and ownership fixtures pass. Floor navigation/movement remains separate; metrics and registry counts are unchanged.
+
+
+## Floor surface inspection — 2026-09-30
+
+The [query checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_FLOOR_SURFACE_INSPECTION.md) closes a modern owned deterministic BVH surface inspector: 32,918 exhaustive independent probes across 4,730 floors agree. The original scene now includes seven floors/149 triangles under 21 shared sources; headless/GPU geometry and reflected picking pass. Native analytic/negative/ownership cases pass. Original adjacency path walking, permission and portal transitions remain unimplemented. Metrics and registry counts are unchanged.
+
+
+## Owned path graph — 2026-09-30
+
+The [PGRF checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PATH_GRAPH_READER.md) closes deployed graph field decoding against all 3,914 graphs, 39,647 nodes and 86,964 directed edges. Raw positions/keys/types, width floats and ECNT/ESTR ranges agree independently. Empty zero-count/start-minus-one entries are preserved. Native malformed/ownership gates pass. Original navigation cost, cross-cell mapping and dynamic permission remain separate; metrics and registry counts are unchanged.
+
+
+## Directed route inspection — 2026-09-30
+
+The [route checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_DIRECTED_ROUTE_INSPECTOR.md) closes modern owned Euclidean/Dijkstra inspection against 25,847 independent Bellman–Ford probes, with exact edge-chain validation. Eight original floor/layout graphs upload and route-display in Godot; hidden GPU capture passes. Original client cost, cross-cell association and dynamic permission remain distinct. Metrics and registry counts are unchanged.
+
+
+## Portal/floor association audit — 2026-09-30
+
+The [association checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_PATH_ASSOCIATIONS.md) rejects floor-key-as-layout-ordinal and verifies conservative geometry-key bindings for all 291 layouts: 14,783 valid bindings, 3,581 paired candidates, 977 multi-node groups and 14 incomplete groups. Thirty-one bunker contradictions and 13 missing police-station floors remain explicit. Candidates do not establish legal movement. Shared cache failure accounting/pin guards pass; headless MultiMesh readback limits are reported accurately. Metrics and registry counts are unchanged.
+
+
+## Bounded single-cell movement — 2026-09-30
+
+The [movement contract](SINGLE_CELL_FLOOR_MOVEMENT_CONTRACT.md) now separates original edge predicate/caller observations from a modern owned horizontal walker. Godot floor inspection exposes two-pick attained-contact/status visualization. Missing-neighbor portal/open-floor exits and special collision edges stop explicitly; cross-cell ownership/entry permission and full original collision remain open.
+
+## 2026-09-30 portal transfer follow-up
+
+The [bounded transfer contract](PORTAL_FLOOR_TRANSFER_CONTRACT.md) adds one owner transfer and remaining motion with current offline entry/barrier policy. Floor portal IDs index the owning cell reference vector; they are distinct from global geometry/PGRF keys. The prior tentative 0126AA80 owner-transfer interpretation is corrected: it preserves the same floor wrapper; 012670E0 / 00B2B3F0 perform cell continuation. Fourteen original directed links, 56 independent probes and 28 Godot adapter probes pass. Full actor collision, door lifecycle and exterior continuation remain open.
+
+## 2026-09-30 permission barrier follow-up
+
+The [barrier contract](PORTAL_BARRIER_COLLISION_CONTRACT.md) adds normal-controller primitives and bounded source-cell actor-box contact before transfer. Runtime fields are LeadingByte exclusion, SolidByte support and separate WindingByte; B43E80 inversion is specific to PRTO/0002. Current permission, mutable portal state and physical door-leaf clearance remain distinct. Independent 291-layout / 21,693-probe agreement and 12-link Godot actor contact gates pass; nonlevel requests stop explicitly. Physical leaf collision and global actor solver ordering remain next.
+
+
+## 2026-09-30 original single-leaf follow-up
+
+The [single-leaf contract](SINGLE_LEAF_DOOR_CONTRACT.md) refines trigger input, 1.5-times-radius retention and authored power/cosine motion, with a standalone original-style runtime and Godot inspector. Conservative primary-box clearance passes independent checks; original narrow-phase collision and global actor ordering remain Unknown. Next: compose one named POB door instance with cell ownership and integrate its current leaf clearance before one portal transfer.
+
+
+## 2026-09-30 named doorway movement
+
+The [movement contract](INTERIOR_DOOR_MOVEMENT_CONTRACT.md) closes one original cantina/private-room instance connection. Authored door/cell transforms, conservative physical leaf snapshots and current permission feed a source-owned contact or one floor transfer. Both directions and two supplied owner poses match independent probes; headless/GPU inspection passes. Next: persistent actor ownership and repeated movement rather than fixed crossing replays.

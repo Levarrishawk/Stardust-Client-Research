@@ -135,7 +135,7 @@ order-independent validated lookup rather than reproduce the miss.
 `.pal` is RIFF `PAL `/`data`: version `0x0300`, a 16-bit entry count, then
 RGBA-like four-byte records. Stardust.exe imports RGB as opaque
 `0xFFRRGGBB`, deliberately ignores the file flags byte, clamps invalid indices
-to entry zero, and uses opaque magenta when a named resource is absent. All
+to entry zero, and uses opaque cyan `0xFF00FFFF` when a named resource is absent. All
 264 effective palettes validate; all 226 ACST references resolve. Three files
 contain ignored bytes after their shorter declared RIFF extent, a behavior the
 replacement must accept. Full evidence is in
@@ -303,3 +303,6 @@ arbitration, and are advanced/retired by the scene-driven playback manager.
 See `ANALYSIS_CHECKPOINT_2026-09-23_COMBAT_PLAYBACK_VARIABLE_BINDINGS.md`,
 `ANALYSIS_CHECKPOINT_2026-09-23_COMBAT_PST_VARIABLE_CONSUMPTION.md`, and
 `ANALYSIS_CHECKPOINT_2026-09-23_PLAYBACK_SCHEDULER_LIFETIME.md`.
+
+
+The [owned palette implementation](PALETTE_DECODER_CONTRACT.md) verifies all current entries/index queries and corrects the dated fallback color label.

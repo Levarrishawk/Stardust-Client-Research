@@ -103,7 +103,25 @@ This transform is protocol obfuscation/integrity, not an authentication or acces
 
 The implementation uses the standard reflected CRC-32 table with a nonstandard seed initialization. It folds the four bytes of `crcSeed` into the CRC state, processes every byte except the reserved CRC suffix, complements the result, masks it to the requested CRC length, and writes two bytes in big-endian order.
 
-For normal packets `crcLength = 2`. `NetStatusResponseMessage` explicitly disables CRC checking on send; handshake messages also bypass normal processing. The exact behavior expected for CRC-disabled incoming status responses needs a compatibility test because the main receive dispatcher currently skips processing opcode `0x0800`.
+For normal packets `crcLength = 2`. `NetStatusResponseMessage` explicitly disables CRC checking on send; handshake messages also bypass normal processing. The server receive dispatcher skips opcode `0x0800`. Direct baseline client instructions establish no opcode-08 CRC exception at positive trailer width; see the [receive-rule checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-29_STATUS_CRC_RECEIVE.md).
+
+The [2026-09-29 status checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_STATUS_BOUNDARY.md)
+traces the server send chain: `BasePacket::close` still reserves two zero CRC
+bytes, disables compression below 100 body bytes, and selector-4 excludes those
+two bytes. Thus its status response is 43 bytes, including the encrypted marker
+and two unchanged zeros. This is confirmed server-source behavior; the original
+client requires CRC equality for that standalone packet at positive width.
+The source/client mismatch remains unresolved operationally. The replacement observes
+CRC-validated request bodies of 4/40 bytes and response bodies of 40 bytes, with
+an explicit tick and unnamed wire words. It sends no automatic status response.
+
+The [extended reply checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_STATUS_REPLY.md)
+recovers the 40-byte client reply: opcode/tick, BE32 local timestamp, two BE64
+echoed peer counters, then BE64 local sent and received counts. Local counters
+are sampled before sending the reply; receive accounting precedes validation.
+An explicit engine-neutral builder now creates normally protected unsequenced
+replies for full requests. Short requests lack echo counters and are rejected
+by that builder. Request fields at offsets 4–23 remain unnamed.
 
 Golden-vector tests should be generated directly from the server algorithm before implementing an independent version.
 
@@ -374,7 +392,7 @@ Still requiring validation:
 - byte-exact zlib 1.1.4 compressed output and malformed-stream behavior;
 - original-client behavior at sequence wraparound and prolonged loss;
 - deployed values of compression/encryption-related server properties;
-- CRC-disabled net-status response handling;
+- operational significance of the server zero-CRC status response/client CRC-gate mismatch;
 - outer Multi-SOE extended sizes;
 - observed server build flags (`LOCKFREE_BCLIENT_BUFFERS`, `WITH_STM`) and their timing effects;
 - byte-for-byte golden datagrams from the running Stardust server.
@@ -406,3 +424,20 @@ The shared constructor also contains a real nonblocking TCP stream path. Its dep
 The stream path does not use the UDP SOE reliability envelope. Each application payload is framed as `length:u32le` followed by `length` raw bytes. Sends may be coalesced until the queued byte count reaches `tcpMinimumFrame=1000`; the common pump flushes smaller pending batches. Receives retain partial header and payload state across overlapped completions and dispatch multiple complete frames serially.
 
 The legacy receive boundary has no proven maximum-frame guard before accumulation. A replacement TCP compatibility path must reject zero/oversized or arithmetically invalid lengths before allocation and should make its cap independent of pointer size.
+
+## Replacement implementation increment (2026-09-29)
+
+The engine-neutral core now discards invalid established framing before channel
+mutation, clears owned login/transport state on fatal/malformed/deadline paths,
+and pumps bounded queued fragments across ACK windows. Selective releases do
+not allow the logical outstanding span to outrun the reorder budget. Outer
+`00 03` uses one-byte lengths, bounded nesting and all-control return values;
+protected ping is ignored, and matching peer disconnect closes without a reply.
+The server's request-ID read/re-emission chain preserves the original wire bytes.
+
+These paths have independent synthetic peer tests, including fragmented
+multipayload and loss/corruption/reorder traces. They do not close status/liveness,
+CRC-disabled status framing, optional leaves, adaptive timing, historical zlib,
+or live-server validation. The fixed response deadline and storage limits are
+replacement policies. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_TRANSPORT_RECOVERY.md)
+and [acceptance register](CLIENT_IMPLEMENTATION_ACCEPTANCE.md).

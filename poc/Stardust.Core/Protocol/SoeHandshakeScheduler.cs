@@ -34,9 +34,12 @@ public sealed class SoeHandshakeScheduler
     public byte[] Start(uint connectionId, uint maximumDatagramSize, long nowMilliseconds)
     {
         if (State != SoeHandshakeState.Idle) throw new InvalidOperationException("Handshake has already started.");
+        if (nowMilliseconds < 0 || nowMilliseconds > long.MaxValue - timeoutMilliseconds)
+            throw new ArgumentOutOfRangeException(nameof(nowMilliseconds));
+        long retryAt = checked(nowMilliseconds + retryIntervalMilliseconds);
         request = transport.BeginSession(connectionId, maximumDatagramSize);
         startedAt = nowMilliseconds;
-        nextRetryAt = checked(nowMilliseconds + retryIntervalMilliseconds);
+        nextRetryAt = retryAt;
         State = SoeHandshakeState.WaitingForResponse;
         return (byte[])request.Clone();
     }
@@ -51,7 +54,9 @@ public sealed class SoeHandshakeScheduler
             throw new TimeoutException("SOE session response timed out.");
         }
         if (nowMilliseconds < nextRetryAt) return null;
-        nextRetryAt = checked(nowMilliseconds + retryIntervalMilliseconds);
+        // A later poll may approach Int64.MaxValue; the deadline wins on that poll.
+        nextRetryAt = nowMilliseconds > long.MaxValue - retryIntervalMilliseconds
+            ? long.MaxValue : nowMilliseconds + retryIntervalMilliseconds;
         return (byte[])request!.Clone();
     }
 

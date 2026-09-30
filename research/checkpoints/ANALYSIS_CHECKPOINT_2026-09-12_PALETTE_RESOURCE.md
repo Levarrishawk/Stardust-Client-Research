@@ -93,3 +93,8 @@ The `.pal` binary format and runtime lookup policy are closed. The remaining
 palette-related question is not file decoding: it is the separate
 `datatables/customization/palette_columns.iff` permission/column policy used
 by character creation and image design.
+
+
+## Correction recorded 2026-09-30
+
+The historical word “magenta” above is incorrect: original00AB69FC writes0xFF00FFFF, and00AB8135–00AB8182 confirms0xFFRRGGBB packing. The actual missing-resource sentinel is opaque cyan. Historical counts/wording are preserved; the current [owned palette contract](../../docs/PALETTE_DECODER_CONTRACT.md) governs implementation.

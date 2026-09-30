@@ -14,17 +14,17 @@ public static class LoginProtocolCodec
 
     public static byte[] EncodeLoginClientId(string username, string password, string version)
     {
-        byte[] user = EncodeAscii(username, nameof(username));
-        byte[] secret = EncodeAscii(password, nameof(password));
-        byte[] build = EncodeAscii(version, nameof(version));
-        int length = checked(6 + 2 + user.Length + 2 + secret.Length + 2 + build.Length);
+        ValidateAscii(username, nameof(username));
+        ValidateAscii(password, nameof(password));
+        ValidateAscii(version, nameof(version));
+        int length = checked(6 + 2 + username.Length + 2 + password.Length + 2 + version.Length);
         byte[] message = new byte[length];
         BinaryPrimitives.WriteUInt16LittleEndian(message, 4);
         BinaryPrimitives.WriteUInt32LittleEndian(message.AsSpan(2), LoginClientIdOpcode);
         int cursor = 6;
-        cursor = WriteAscii16(message, cursor, user);
-        cursor = WriteAscii16(message, cursor, secret);
-        WriteAscii16(message, cursor, build);
+        cursor = WriteAscii16(message, cursor, username);
+        cursor = WriteAscii16(message, cursor, password);
+        WriteAscii16(message, cursor, version);
         return message;
     }
 
@@ -35,12 +35,12 @@ public static class LoginProtocolCodec
         uint credentialLength = reader.ReadUInt32();
         if (credentialLength < sizeof(uint))
             throw new InvalidDataException("Login credential blob is shorter than its embedded account ID.");
-        byte[] credential = reader.ReadBytes(credentialLength);
-        uint accountId = BinaryPrimitives.ReadUInt32LittleEndian(credential.AsSpan(credential.Length - 4));
+        ReadOnlySpan<byte> credential = reader.ReadBytes(credentialLength);
+        uint accountId = BinaryPrimitives.ReadUInt32LittleEndian(credential[^4..]);
         uint stationId = reader.ReadUInt32();
         string username = reader.ReadAscii16();
         reader.RequireEnd();
-        return new LoginClientToken(credential, accountId, stationId, username);
+        return new LoginClientToken(credential.ToArray(), accountId, stationId, username);
     }
 
     public static LoginError DecodeErrorMessage(ReadOnlySpan<byte> message)
@@ -54,19 +54,18 @@ public static class LoginProtocolCodec
         return new LoginError(type, text, fatal);
     }
 
-    private static byte[] EncodeAscii(string value, string parameter)
+    private static void ValidateAscii(string value, string parameter)
     {
+        ArgumentNullException.ThrowIfNull(value, parameter);
         if (value.Any(character => character > 0x7F))
             throw new ArgumentException("SOE ASCII16 fields must contain ASCII characters.", parameter);
-        byte[] bytes = Encoding.ASCII.GetBytes(value);
-        if (bytes.Length > ushort.MaxValue) throw new ArgumentOutOfRangeException(parameter);
-        return bytes;
+        if (value.Length > ushort.MaxValue) throw new ArgumentOutOfRangeException(parameter);
     }
 
-    private static int WriteAscii16(Span<byte> target, int cursor, ReadOnlySpan<byte> value)
+    private static int WriteAscii16(Span<byte> target, int cursor, string value)
     {
         BinaryPrimitives.WriteUInt16LittleEndian(target[cursor..], checked((ushort)value.Length));
-        value.CopyTo(target[(cursor + 2)..]);
+        Encoding.ASCII.GetBytes(value, target[(cursor + 2)..]);
         return cursor + 2 + value.Length;
     }
 
@@ -105,11 +104,11 @@ public static class LoginProtocolCodec
             return value;
         }
 
-        public byte[] ReadBytes(uint length)
+        public ReadOnlySpan<byte> ReadBytes(uint length)
         {
             if (length > int.MaxValue) throw new InvalidDataException("Length exceeds supported bounds.");
             Require((int)length);
-            byte[] value = source.Slice(cursor, (int)length).ToArray();
+            ReadOnlySpan<byte> value = source.Slice(cursor, (int)length);
             cursor += (int)length;
             return value;
         }

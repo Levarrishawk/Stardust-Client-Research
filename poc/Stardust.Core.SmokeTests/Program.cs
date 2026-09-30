@@ -6,6 +6,8 @@ using System.Buffers.Binary;
 using System.IO.Compression;
 using System.Security.Cryptography;
 
+try
+{
 if (!Environment.Is64BitProcess) throw new Exception("Stardust client smoke tests require a 64-bit process.");
 Console.WriteLine("PASS: running engine-neutral core in a 64-bit process");
 
@@ -94,6 +96,18 @@ compressibleTransport[1] = 0x09;
 byte[] compressedWire = CreateCompressedDatagram(compressibleTransport, crcSeed, 2);
 AssertBytes(compressibleTransport, SoeDatagramCodec.Decode(compressedWire, crcSeed, 2, 496));
 Reject(() => SoeDatagramCodec.Decode(compressedWire, crcSeed, 2, 100));
+byte[] compressedPlain = compressedWire[..^2];
+SoeSelector4.Decrypt(compressedPlain, crcSeed);
+byte[] missingZlibTrailer = new byte[compressedPlain.Length - 4];
+compressedPlain.AsSpan(0, compressedPlain.Length - 5).CopyTo(missingZlibTrailer);
+missingZlibTrailer[^1] = 1;
+SoeSelector4.Encrypt(missingZlibTrailer, crcSeed);
+byte[] truncatedCompressedWire = new byte[missingZlibTrailer.Length + 2];
+missingZlibTrailer.CopyTo(truncatedCompressedWire, 0);
+SoeSeededCrc.WriteTrailer(missingZlibTrailer, crcSeed, truncatedCompressedWire.AsSpan(missingZlibTrailer.Length));
+Reject(() => SoeDatagramCodec.Decode(truncatedCompressedWire, crcSeed, 2, 496));
+if (SoeDatagramCodec.TryDecode(truncatedCompressedWire, crcSeed, 2, 496, out _))
+    throw new Exception("Valid-CRC datagram with a missing zlib trailer was accepted.");
 Console.WriteLine("PASS: bounded receive-side zlib framing");
 
 SoeReliableChannel sender = new();
@@ -225,7 +239,8 @@ try { clientTransport.CreateReliableDatagram(new byte[490], 20); throw new Excep
 catch (InvalidDataException) { }
 if (clientTransport.RetainedOutboundPackets != 0)
     throw new Exception("Rejected oversized payload polluted retention state.");
-Reject(() => clientTransport.AcceptDatagram(Changed(retainedDatagram, 4, 0)));
+if (!clientTransport.AcceptDatagram(Changed(retainedDatagram, 4, 0)).RejectedFraming)
+    throw new Exception("Corrupt datagram was not discarded.");
 byte[] channelThreeWire = clientTransport.CreateReliableDatagram(new byte[] { 0xBB }, 30, channel: 3);
 byte[] channelThreePacket = SoeDatagramCodec.Decode(channelThreeWire, 0xA1B2C3D4, 2, 496);
 if (channelThreePacket[1] != 0x0C) throw new Exception("Channel-three data opcode is incorrect.");
@@ -497,6 +512,62 @@ using (LoginClientCoordinator coordinator = new(coordinatorOptions))
 }
 Console.WriteLine("PASS: socket-independent login coordinator tick, receive, ACK, and retry flow");
 
+IndependentPeerScenarios.Run(responseVector, tokenVector, clusterListVector, clusterStatusVector, charactersVector, errorVector);
+ConfigurationAndPrivacyScenarios.Run(responseVector, tokenVector, errorVector);
+TreAssetScenarios.Run();
+MeshScenarios.Run();
+DdsScenarios.Run();
+DdsHdrScenarios.Run();
+MaterialScenarios.Run();
+DetailAppearanceScenarios.Run();
+AppearanceResolutionScenarios.Run();
+ComponentAppearanceScenarios.Run();
+AppearanceExtentScenarios.Run();
+AppearanceHardpointScenarios.Run();
+PortalLayoutScenarios.Run();
+PortalSceneScenarios.Run();
+FloorMeshScenarios.Run();
+FloorQueryScenarios.Run();
+FloorWalkScenarios.Run();
+PortalTransferScenarios.Run();
+PortalBarrierScenarios.Run();
+DoorLeafScenarios.Run();
+InteriorDoorScenarios.Run();
+PathGraphScenarios.Run();
+PathRouteScenarios.Run();
+PortalAssociationScenarios.Run();
+CustomizableShaderScenarios.Run();
+PaletteScenarios.Run();
+ShaderOverlayScenarios.Run();
+StatusScenarios.Run(responseVector);
+HostAccountingScenarios.Run();
+await LoginHostScenarios.RunAsync(responseVector, tokenVector, clusterListVector, clusterStatusVector, charactersVector, errorVector);
+await JournalScenarios.RunAsync();
+foreach (string entry in await OfflineHostedLoginScenario.RunAsync()) Console.WriteLine("HOST: " + entry);
+if (args.Length > 0 && args[0] is "--dds-tre" or "--dds-file") DdsScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0] is "--detail-overlay" or "--detail-bundle") DetailAppearanceScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0] is "--component-overlay" or "--geometry-graph" or "--textured-graph") ComponentAppearanceScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0]=="--extent-list") AppearanceExtentScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0] is "--cshd-list" or "--cshd-palette-list") CustomizableShaderScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0]=="--palette-list") PaletteScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0]=="--hardpoint-list") AppearanceHardpointScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0]=="--hardpoint-scene") AppearanceHardpointScenarios.ProbeSceneOptional(args);
+else if (args.Length > 0 && args[0]=="--portal-associations") PortalAssociationScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0]=="--path-routes") PathRouteScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0]=="--path-graph-list") PathGraphScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0]=="--floor-queries") FloorQueryScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0]=="--floor-walks") FloorWalkScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0]=="--portal-transfers") PortalTransferScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0]=="--portal-barriers") PortalBarrierScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0]=="--door-style") DoorLeafScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0]=="--interior-door") InteriorDoorScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0]=="--floor-list") FloorMeshScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0] is "--portal-scene" or "--portal-floors" or "--portal-paths" or "--portal-textures" or "--portal-textures-defaults" or "--portal-surface-paths") PortalSceneScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0]=="--portal-list") PortalLayoutScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0] == "--mesh-overlay") ShaderOverlayScenarios.ProbeOptional(args);
+else if (args.Length > 0 && args[0] == "--mesh-tre") MeshScenarios.ProbeOptional(args);
+else TreAssetScenarios.ProbeOptional(args);
+
 static void AssertBytes(byte[] expected, byte[] actual)
 {
     if (!expected.AsSpan().SequenceEqual(actual)) throw new Exception("SOE request vector mismatch.");
@@ -554,4 +625,10 @@ static byte[] CreateServerApplicationDatagram(byte[] application, ushort sequenc
     BinaryPrimitives.WriteUInt16BigEndian(packet.AsSpan(2), sequence);
     application.CopyTo(packet, 4);
     return SoeDatagramCodec.EncodeUncompressed(packet, 0xA1B2C3D4, 2, 496);
+}
+}
+catch (Exception error)
+{
+    Console.Error.WriteLine($"FAIL: {error.GetType().Name}: {error.Message}");
+    Environment.ExitCode = 1;
 }

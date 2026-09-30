@@ -1,5 +1,25 @@
 # Asset Pipeline
 
+## Native implementation slice (2026-09-29)
+
+The engine-neutral core owns a bounded unpadded IFF tree and decodes a strict
+MESH/0004-0005, SPS/0001, VTXA/0003 declaration `0x1105` indexed-triangle slice.
+One original mesh's 9 batches / 190 vertices / 159 triangles match independent
+Python geometry SHA-256. Raw positions/normals/UVs/winding remain unchanged;
+APPR metadata remains opaque. See the [mesh checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_STATIC_MESH_SLICE.md).
+
+Explicit mounting opens all 48 current configured TREE/0005 archives and
+resolves that mesh's 9 shaders, 9 DDS envelopes and 1 EFCT. SSHT/TXM decoding
+extracts references and preserves other metadata. The later owned textured mesh
+increment below implements DDS pixels and an explicit unlit Godot adapter.
+Faithful lighting and full appearance behavior remain open. See the [dependency checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_SHADER_OVERLAY.md).
+
+TRE CRCs validate raw index-name bytes; requests normalize before lookup.
+Mixed-case raw names do not gain normalized aliases. The installed
+`snapshot/mustafar - Copy.ws` has a valid raw CRC but a different normalized CRC;
+rejecting its entire archive was overly strict. Normalized corpus aggregation
+alone therefore does not prove runtime lookup reachability.
+
 ## PTCL/PTQD particle visual descriptions (2026-09-13)
 
 Common `PTCL` versions 0000-0003 supply color, alpha, velocity modulation, optional three-axis rotation, resource/policy data and repeated attachments. `PTQD` adds rotation, primary/secondary size curves, a lock-dimensions flag and `PTEX/0000` sprite-sheet data. `PTMH/0000` names a general appearance resource and adds uniform scale plus three rotation curves. Its 399 effective records reference 275 `.apt`, 79 `.msh`, and 45 `.sat` resources, so lookup must use the shared appearance factory. Corrected effective nested counts are PTCL 0000/0002/0003 = 1/1,803/4,569, PTQD 0000/0001 = 8/5,965 and PTMH/0000 = 399. Treat these as explicit IFF schemas and preserve unresolved fields. See the PTCL/PTQD and PTMH checkpoints.
@@ -225,13 +245,13 @@ Versions `0004` and `0005` first load embedded `APPR` data, then copy the extent
 
 All four versions construct a shader-primitive-set container through `shader_primitive_set_ctor_load_VA_00770C30`. Its loader requires `FORM SPS ` and accepts versions `0000` and `0001`. Later SPS/VTXA/topology blocks close shader grouping, primitive/index envelopes, vertex declarations and all twelve topology IDs; these are no longer open decoding boundaries.
 
-Base APPR trailing data can contain optional `FORM HPTS`. It declares a count and repeated `HPNT` chunks, each containing a transform and a length-prefixed/name string. Loaded hardpoints are sorted after parsing. These names and transforms are required semantic attachment data for equipment, particles, lights and client effects and must not be discarded by a modern importer.
+Base APPR trailing data can contain optional `FORM HPTS`, directly containing repeated `HPNT` chunks with no serialized count. Each has twelve F32 transform fields followed by the name in the remaining bytes including NUL; there is no length prefix. Loaded hardpoints sort by unsigned CRC then exact string bytes. Names/transforms are required attachment data and must not be discarded. The [owned hardpoint contract](APPEARANCE_HARDPOINT_CONTRACT.md) corrects the prior count/name claim and preserves duplicate ambiguity explicitly.
 
 ## Shader primitive-set and vertex-array structure
 
 Both `SPS / 0000` and `0001` begin with `CNT `, then repeat anonymous shader groups. Each group first resolves a shader template: a `NAME` chunk fetches an external `.sht` through the shader-template list, while a non-NAME child is parsed as an inline shader template. Group `INFO` supplies its primitive count. Each primitive becomes a 0x18-byte legacy record retaining the group shader pointer plus topology, vertex buffer, optional index buffer, and optional sorted-index ranges.
 
-SPS 0000 primitive records use an older flat layout: U32 topology ID, `VTXA`, and for topology IDs 6-11 an `INDX` chunk whose count and entries are stored as U32 but truncated into a 16-bit runtime index buffer. SPS 0001 moves each primitive under its own `0000` form. Its `INFO` is U32 topology ID plus two boolean bytes: has-index-buffer and has-sorted-index-data. `INDX` then stores U32 count followed by U16 indices. Optional `SIDX` begins with U32 range count and contains repeated 12-byte Vector3 plus a 16-bit-index-buffer payload. The loader disables SIDX when a graphics capability/limit is below 0x101.
+SPS 0000 primitive records use an older flat layout: U32 topology ID, `VTXA`, and for topology IDs 6-11 an `INDX` chunk whose count and entries are stored as U32 but truncated into a 16-bit runtime index buffer. SPS 0001 moves each primitive under its own versioned form. Its `INFO` is U32 topology ID plus two boolean bytes: has-index-buffer and has-sorted-index-data. Primitive version `0000` (`0x00770220`) calls the U32-entry reader (`0x007700A0`), truncating entries to U16; primitive version `0001` (`0x007704E0`) calls the U16-entry reader (`0x00770160`). Both use U32 count. Thus SPS version alone does not determine index width. Optional `SIDX` begins with U32 range count and contains repeated 12-byte Vector3 plus a version-selected index-buffer payload. The loader disables SIDX when a graphics capability/limit is below 0x101. This 2026-09-29 correction is reproduced in the [native mesh checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_STATIC_MESH_SLICE.md).
 
 `VTXA` supports versions 0001, 0002, and 0003. Version 0001 expands an older flags/count description; 0002/0003 use a packed U32 declaration bitfield followed by U32 vertex count and `DATA`. Confirmed semantics include optional position (three floats), primary packed color, normal (three floats), additional packed scalar/color channels, up to 15 texture-coordinate sets, and 1-4 floats per texture coordinate according to two-bit dimensions in the declaration. Version 0003 adds one optional packed channel absent from 0002. An optional trailing four-float value is read and discarded/converted when a declared DOT3 texture coordinate is unsupported by the active graphics path; exact tangent semantics remain strongly inferred rather than claimed.
 
@@ -457,3 +477,103 @@ color ramps (24- or 32-bit). Twenty-five named cockpit-frame APT references
 resolve through immediate targets and, where applicable, live DTLA children.
 Path closure is not proof of complete runtime rendering. See the respective
 2026-09-22 CDF, marker, terrain-ramp, and cockpit-frame checkpoints.
+
+## Replacement resource-core increment (2026-09-29)
+
+`poc/Stardust.Core/Assets` now implements a bounded read-only TREE 0005 reader
+and priority/tombstone overlay. Its synthetic tests preserve stored `usize`
+semantics even when `csize=0`, verify path CRC and normalization, and reject
+invalid indices/output lengths. Shared zlib decoding explicitly checks the
+header and Adler trailer after reproducing .NET's acceptance of a missing trailer.
+
+One installed 1,477-entry archive and one original compressed entry were
+verified against independent Python byte digests. This establishes extraction,
+not IFF interpretation or rendering. TREE 0004/0006, TOC, loose nodes,
+equal-priority ties, non-ASCII names, MD5 and the complete configured overlay
+remain open. See the [implementation checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_TRE_READER.md)
+and [acceptance record](CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
+
+## Owned textured mesh increment (2026-09-29)
+
+The [DDS contract](DDS_DECODER_CONTRACT.md) and [material graph checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_MATERIAL_GRAPH.md) now implement the previously open pixel/dependency slice. EFCT/0001, IMPL/0005, PASS/0009, MATS/0000 and TCSS/0000 are bounded owned descriptions. STAG/0000 has 18 U8 fields, tags at offsets 18/22, then seven U8 fields. All 80 original texture mips match independent reference bytes. Original material scalar interpretation and full format breadth remain open. Godot's explicit unlit adapter is described in the [GPU preview checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_ORIGINAL_GODOT_PREVIEW.md).
+
+## Native DTLA and four-coordinate vertices (2026-09-29)
+
+`DetailAppearanceDecoder` now owns deployed DTLA/0005–0007 bands, PIVT, ID-keyed children and visibility policy geometry. Declaration `0x55405` preserves position/normal plus four 2D coordinate sets (56 bytes); all selected L0–L3 meshes match independent hashes. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_DTLA_READER.md). Duplicate children retain the last path with a diagnostic as explicit replacement policy; runtime selection and original duplicate-policy verification remain open. RADR geometry is not rendered or assigned an unverified role.
+
+## Owned detail bundle and repeated pixel bindings
+
+The [selector/material checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_DETAIL_SELECTOR_AND_MATERIALS.md) establishes that PPSH/0001 owns one FORM PTXM/chunk 0002 per declared binding, each exactly U8 stage plus LE U32 tag. The native reader now preserves multiple records and rejects duplicate/out-of-range stages. `TexturedDetailAppearanceReader` provides a bounded eager inspector bundle with a shared dependency cache. This is separate from lazy runtime appearances and fetch-or-default. See the [Godot LOD inspector](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_GODOT_LOD_INSPECTOR.md) for limits and verification.
+
+## Strict APT entry points and coordinate dimensions
+
+`AppearanceResolver` separates strict targets from explicit path-default call sites. A live broken redirect never receives blanket default substitution; APT-to-APT is rejected. `TexturedDetailAppearanceReader` accepts strict APT-to-DTLA chains. Additional D205/D5405 declarations preserve dimensioned 4D coordinate data alongside primary UV0. See the [APT exterior checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_APT_EXTERIOR_CHAIN.md). Auxiliary tangent interpretation, original default-MESH rendering and runtime composition remain open.
+
+## Owned component geometry increment
+
+CMPA 0003–0005, optional RADR geometry and a bounded static MESH/DTLA/CMPA/APT graph now have executable acceptance. All 165 templates match independent part/transform decoding. See [component contract](COMPONENT_APPEARANCE_CONTRACT.md). Unsupported component parts are explicit diagnostics; aggregate limits abort. Neutral vent inspection passes four LODs and counts an omitted particle.
+
+## Owned sorted-index mesh increment
+
+The current native triangle slice retains SIDX variants and two additional coordinate declarations. See [sorted-index contract](STATIC_MESH_SORTED_INDEX_CONTRACT.md). The nested garage now loads nine meshes from fourteen sources without omissions, matching all geometry and 400 sorted variants independently. The core selector uses minimum local-displacement dot product with first ties; neutral inspection still draws ordinary indices.
+
+## Shared component bundle increment
+
+The [component contract](COMPONENT_APPEARANCE_CONTRACT.md) now covers shared material/effect/pixel bundles and strict identity-aware terminal mesh sources. Complete garage CPU dependencies and 151 mip levels independently agree. Failures preserve neutral geometry with diagnostics; aggregate limits abort. GPU inspection substitutes neutral materials per rejected shader batch rather than rejecting complete meshes.
+
+
+## APPR/PIVT camera selection increment — 2026-09-30
+
+The [camera LOD checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_APPR_PIVT_CAMERA_LOD.md) closes the primary extent distance origin: false/absent pivot uses the transformed authored sphere center, true uses world translation, and NULL uses zero local offset. All 6,198 original primary extents agree independently. Native malformed/transform fixtures and standalone/composed headless/GPU selection gates pass. The inspector supports opt-in camera distance and manual selection. Original DPVS, lazy residency and full lighting remain deferred. Five confirmed address labels bring the canonical registry to 2,590 distinct entries; research scores and packet counts are unchanged.
+
+Canonical contract: [extent and distance](APPEARANCE_EXTENT_DISTANCE_CONTRACT.md).
+
+
+## BC6H HDR extension — 2026-09-30
+
+The [HDR checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BC6H_HDR.md) adds a separate owned RGB half output for typed signed/unsigned BC6H. Forty standards-only fixtures/264 mips match independent Godot bcdec bit for bit and pass real GPU half upload/readback. Native endpoint, truncation, surface and budget gates pass. Static material integration and HDR presentation remain separate; this is not original executable acceptance evidence. Existing pinned dependencies, research metrics and registry counts are unchanged.
+
+
+## Owned portal layout — 2026-09-30
+
+The [portal reader checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LAYOUT_READER.md) closes native deployed PRTO/CELL/PRTL parsing against all 291 layouts, 3,470 cells and 7,642 portal references. Owned geometry, names/door fields, optional bounds and paired zero-based adjacency pass independent agreement and negative fixtures. Scene loading, floor behavior and runtime visibility remain separate. The older 00B43E80 neighbor-helper attribution is corrected to a byte toggle. Metrics and registry counts are unchanged.
+
+
+## Portal cell scene increment — 2026-09-30
+
+The [cell scene checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_CELL_SCENE.md) closes shared bounded cell appearance loading and named-cell offline inspection. The pinned original YT-1300 matches independently across eight cells, 14 sources, 11 meshes, 66,617 vertices, 55,916 triangles and 310 sorted variants. VTXA `0x110D` preserves its packed word and correct UV offset. Native ownership/budget/identity tests and Godot headless/GPU gates pass. Manual visibility is distinct from unimplemented portal culling, floors, doors and lighting. Research scores, packet rows and address counts are unchanged.
+
+
+## Owned floor reader — 2026-09-30
+
+The [FLOR checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_FLOOR_MESH_READER.md) verifies all 4,730 deployed floors: 414,301 vertices, 604,429 triangles and 189,927 boundary records. Owned adjacency, authored normals/raw flags and optional payload hashes agree independently. Negative and ownership fixtures pass. Floor navigation/movement remains separate; metrics and registry counts are unchanged.
+
+
+## Floor surface inspection — 2026-09-30
+
+The [query checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_FLOOR_SURFACE_INSPECTION.md) closes a modern owned deterministic BVH surface inspector: 32,918 exhaustive independent probes across 4,730 floors agree. The original scene now includes seven floors/149 triangles under 21 shared sources; headless/GPU geometry and reflected picking pass. Native analytic/negative/ownership cases pass. Original adjacency path walking, permission and portal transitions remain unimplemented. Metrics and registry counts are unchanged.
+
+
+## Owned path graph — 2026-09-30
+
+The [PGRF checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PATH_GRAPH_READER.md) closes deployed graph field decoding against all 3,914 graphs, 39,647 nodes and 86,964 directed edges. Raw positions/keys/types, width floats and ECNT/ESTR ranges agree independently. Empty zero-count/start-minus-one entries are preserved. Native malformed/ownership gates pass. Original navigation cost, cross-cell mapping and dynamic permission remain separate; metrics and registry counts are unchanged.
+
+
+## Directed route inspection — 2026-09-30
+
+The [route checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_DIRECTED_ROUTE_INSPECTOR.md) closes modern owned Euclidean/Dijkstra inspection against 25,847 independent Bellman–Ford probes, with exact edge-chain validation. Eight original floor/layout graphs upload and route-display in Godot; hidden GPU capture passes. Original client cost, cross-cell association and dynamic permission remain distinct. Metrics and registry counts are unchanged.
+
+
+## Portal/floor association audit — 2026-09-30
+
+The [association checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_PATH_ASSOCIATIONS.md) rejects floor-key-as-layout-ordinal and verifies conservative geometry-key bindings for all 291 layouts: 14,783 valid bindings, 3,581 paired candidates, 977 multi-node groups and 14 incomplete groups. Thirty-one bunker contradictions and 13 missing police-station floors remain explicit. Candidates do not establish legal movement. Shared cache failure accounting/pin guards pass; headless MultiMesh readback limits are reported accurately. Metrics and registry counts are unchanged.
+
+
+## Baseline older effect implementation boundary — 2026-09-30
+
+Native IMPL0004/PASS0008 now preserve version-specific absent fields; see the [textured interior contract](TEXTURED_PORTAL_SCENE_CONTRACT.md) for exact offsets and independent original sample agreement.
+
+
+## Deployed customizable shader structure — 2026-09-30
+
+All5,173 CSHD0001 resources now pass [owned structure and namespace agreement](CUSTOMIZABLE_SHADER_DECODER_CONTRACT.md); inline shader state and authored control defaults must remain distinct.

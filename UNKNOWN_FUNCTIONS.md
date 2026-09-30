@@ -230,11 +230,11 @@ Use `subsystem_role_VA_XXXXXXXX`. Addresses are valid only for SHA-256 `E782BF1C
 | `0x012C1D02` | `udp_manager_recvfrom_site_VA_012C1D02` | receives datagrams with source address | Confirmed | trace datagram decode branches |
 | `0x012C20ED` | `udp_manager_sendto_site_VA_012C20ED` | sends constructed datagram to peer address | Confirmed | trace final CRC/transform producer |
 | `0x012C2190` | `udp_manager_packet_dispatch_VA_012C2190` | handles session/mapping control before established-peer lookup; accepts valid 14-byte version-2 session requests | Confirmed behavior | label `1D`/`1E` management packets |
-| `0x012C36B0` | `udp_connection_packet_receive_VA_012C36B0` | established receive accounting, seeded CRC trailer validation, inverse callbacks for the two negotiated selectors, SOE dispatch | Confirmed | characterize malformed-transform failure results |
+| `0x012C36B0` | `udp_connection_packet_receive_VA_012C36B0` | established receive accounting, seeded CRC trailer validation, inverse callbacks for the two negotiated selectors, SOE dispatch; 2026-09-29 direct instructions confirm no standalone opcode-08 CRC exception at positive width | Confirmed | characterize malformed-transform failure results; resolve operational server zero-trailer mismatch |
 | `0x012C3B60` | `soe_opcode_dispatch_VA_012C3B60` | compact dispatch for leading-zero SOE opcodes and channel variants | Confirmed | finish `15`-`19` branch boundary |
 | `0x012C3D0E` | `session_response_handler_VA_012C3D0E` | verifies echoed connection ID; parses seed, CRC width, two transform selectors, and maximum datagram; installs transforms and marks connected | Confirmed | recover callback failure/error paths |
 | `0x012C3FB5` | `soe_multi_packet_handler_VA_012C3FB5` | walks one-byte length blocks and recursively dispatches embedded SOE packets | Confirmed | test extended-length behavior |
-| `0x012C3FF7` | `soe_net_status_request_handler_VA_012C3FF7` | parses request and builds a `00 08` statistics response | Confirmed behavior | label response fields |
+| `0x012C3FF7` | `soe_net_status_request_handler_VA_012C3FF7` | parses 40-byte request and builds `00 08`: tick, local timestamp, two echoed peer counters and two local counters; structure Confirmed, packet-counter labels Strong | Confirmed behavior | label five request words; resolve short server request policy |
 | `0x012C446F` | `soe_net_status_response_handler_VA_012C446F` | parses large timing/statistics response and updates connection metrics | Strong | label every field |
 | `0x012C484D` | `soe_reliable_channel_dispatch_VA_012C484D` | maps data `09`-`0C` and fragment `0D`-`10` forms to four channel indices, creates receiver state, calls `0x012C7CF0` | Confirmed mechanics; labels Strong | analyze data/fragment receiver state machine |
 | `0x012C48D2` | `soe_out_of_order_selective_ack_dispatch_VA_012C48D2` | maps `11`-`14` to per-channel state, expands 16-bit sequence, selectively releases that exact retained entry via `0x012C82C0`; does not directly resend | Confirmed | characterize wraparound and malformed references |
@@ -595,7 +595,7 @@ Tooling note: Ghidra 12.1.3 missed valid functions at `0x0043F960`, `0x0118A840`
 | `0x00770C30` | `shader_primitive_set_ctor_load_VA_00770C30` | Constructs primitive vector and invokes SPS loader. Confirmed broad role. |
 | `0x00770C80` | `shader_primitive_set_require_form_VA_00770C80` | Requires outer `SPS ` form. Confirmed. |
 | `0x00770CE0` | `shader_primitive_set_version_dispatch_VA_00770CE0` | Dispatches SPS versions 0000/0001. Confirmed. |
-| `0x00B2CD40` | `appearance_hardpoints_load_VA_00B2CD40` | Optional HPTS count plus repeated HPNT transform/name records; sorts result. Confirmed. |
+| `0x00B2CD40` | `appearance_hardpoints_load_VA_00B2CD40` | Optional HPTS physical child count; repeated HPNT 12-F32 transform plus remaining NUL-name bytes. No serialized count/name prefix. Sorts unsigned CRC then exact bytes. Confirmed; 2026-09-30 correction. |
 
 # SPS/VTXA names added 2026-09-11
 
@@ -605,20 +605,26 @@ Tooling note: Ghidra 12.1.3 missed valid functions at `0x0043F960`, `0x0118A840`
 | `0x00770F70` | `shader_primitive_set_load_v0001_VA_00770F70` | Same group envelope with versioned primitive records. Confirmed. |
 | `0x0075B020` | `shader_template_fetch_or_inline_load_VA_0075B020` | NAME fetch or inline shader-template construction/cache. Confirmed. |
 | `0x0076FA20` | `static_shader_primitive_load_legacy_VA_0076FA20` | Legacy topology/VTXA and conditional U32-on-disk to U16 INDX. Confirmed. |
-| `0x00770220` | `static_shader_primitive_load_v0000_VA_00770220` | Topology/flags, VTXA, optional compact INDX/SIDX. Confirmed. |
+| `0x00770220` | `static_shader_primitive_load_v0000_VA_00770220` | Topology/flags, VTXA, optional INDX via U32-entry reader 007700A0 with low-16 truncation; optional SIDX. Confirmed. |
 | `0x00784750` | `vertex_array_version_dispatch_VA_00784750` | VTXA versions 0001-0003. Confirmed. |
 | `0x007847D0` | `vertex_array_load_v0001_VA_007847D0` | Legacy declaration expansion and interleaved DATA decode. Confirmed broad layout. |
 | `0x00784AA0` | `vertex_array_load_v0002_VA_00784AA0` | Packed declaration/count and DATA decode. Confirmed. |
-| `0x00784D90` | `vertex_array_load_v0003_VA_00784D90` | V0002 family plus additional packed channel. Confirmed. |
+| `0x00784D90` | `vertex_array_load_v0003_VA_00784D90` | V0002 family plus additional packed channel. Coordinate count bits 8–11 and two-bit dimensions from bit 12 now drive verified native 1105/55405/D205/D5405/5205/35305 slices. Final 4D tangent semantics remain inferred. Confirmed structure. |
 | `0x007700A0` | `index_buffer_load_u32_legacy_to_u16_VA_007700A0` | U32 count/U32 entries truncated to U16 runtime buffer. Confirmed. |
 | `0x00770160` | `index_buffer_load_u16_VA_00770160` | U32 count followed by U16 entries. Confirmed. |
+
+2026-09-29 reconciliation: primitive/0000 calls 007700A0 at `0x007702FD`
+(INDX) and `0x007703B5` (SIDX); primitive/0001 loader entry `0x007704E0`
+calls 00770160 at `0x007705BD` and `0x00770675` respectively. SPS/0001
+alone does not select U16 file entries. No names were repurposed or registry
+rows added. See the [geometry checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_STATIC_MESH_SLICE.md).
 
 # Topology and shader/effect names added 2026-09-12
 
 | Address | Stable provisional name | Evidence / remaining uncertainty |
 |---:|---|---|
 | `0x0076F890` | `static_primitive_topology_table_install_VA_0076F890` | Installs twelve consecutive draw wrappers for topology IDs 0-11. Confirmed by raw disassembly and consumers. |
-| `0x007707D0` | `static_shader_primitive_prepare_VA_007707D0` | Binds vertex/default index data or chooses SIDX by minimum local camera-direction dot product. Confirmed. |
+| `0x007707D0` | `static_shader_primitive_prepare_VA_007707D0` | Binds vertex/default index data or chooses SIDX by minimum local camera-direction dot product, retaining the first entry on strict-less ties. Confirmed. |
 | `0x007709F0` | `static_shader_primitive_accumulate_metrics_VA_007709F0` | Accumulates vertex, primitive and fill metrics using topology-wrapper identity. Confirmed; supplied output field labels provisional. |
 | `0x0075AA50` | `shader_template_fetch_cached_VA_0075AA50` | Cache lookup, TreeFile open, defaultshader fallback, parse. Confirmed. |
 | `0x0075B240` | `shader_template_create_by_tag_VA_0075B240` | Dispatches outer shader-template tag through registered factory. Confirmed. |
@@ -672,7 +678,7 @@ Tooling note: Ghidra 12.1.3 missed valid functions at `0x0043F960`, `0x0118A840`
 | `0x62A0EF30` | `d3d9_apply_compiled_pass_state_VA_62A0EF30` | Applies shader constants, alpha/stencil/fog data, textures and derived flags. Confirmed. |
 | `0x62A0E910` | `d3d9_apply_texture_and_sampler_state_VA_62A0E910` | Binds texture and applies cached D3DSAMP/value pairs. Confirmed. |
 | `0x00762C20` | `texture_stage_version_dispatch_VA_00762C20` | Texture-stage versions 0000/0001. Confirmed. |
-| `0x00762CA0` | `texture_stage_load_v0000_VA_00762CA0` | Full legacy stage payload. Confirmed widths; individual labels pending. |
+| `0x00762CA0` | `texture_stage_load_v0000_VA_00762CA0` | STAG/0000: 18 U8 fields, texture/coordinate LE U32 tags at offsets 18/22, then seven U8 fields (33 bytes). Confirmed widths and corpus tag offsets; individual labels pending. |
 | `0x00762F10` | `texture_stage_load_v0001_VA_00762F10` | Reduced/current stage payload. Confirmed widths; individual labels pending. |
 | `0x62A0B340` | `d3d9_compile_pass_render_state_vector_VA_62A0B340` | Converts PASS offsets into cached D3DRS/value pairs; core state map confirmed. |
 | `0x62A0E570` | `d3d9_compile_texture_sampler_state_VA_62A0E570` | Resolves texture data and compiles anisotropy/address/filter D3DSAMP pairs. Confirmed. |
@@ -909,7 +915,7 @@ Follow-up 2026-09-21: dynamic flora residency is a fixed jittered radial grid wh
 
 | Address | Provisional name | Evidence/confidence |
 |---|---|---|
-| `0x012647B0` | `test_floor_collision_VA_012647B0` | Walks from a starting FloorLocator, interprets PathWalkResult, returns point and destination owner. Confirmed. |
+| `0x012647B0` | `test_floor_collision_VA_012647B0` | Walks from a starting FloorLocator; result 2/4/10 returns boolean zero; other owner-resolved collision outputs can return one. Missing start floor returns one. Boolean is not a universal legal-movement flag. Confirmed; see single-cell movement contract. |
 | `0x01267380` | `collision_world_can_move_on_floor_VA_01267380` | Contact-height-aware floor movement solver with boundary recursion capped at five. Confirmed broad role. |
 | `0x01273B80` | `floor_mesh_load_VA_01273B80` | FLOR version dispatcher for 0000 through 0006 and common post-load processing. Confirmed. |
 | `0x012751E0` | `floor_mesh_load_0006_VA_012751E0` | Loads VERT, TRIS, optional BTRE, BEDG and PGRF. Confirmed. |
@@ -1264,7 +1270,7 @@ evidence is in `ANALYSIS_CHECKPOINT_2026-09-12_CUSTOMIZATION_MANAGER_TABLES.md`.
 
 | Address | Stable provisional name | Status |
 |---:|---|---|
-| `0x00AB6910` | `palette_cache_fetch_VA_00AB6910` | Confirmed name cache, TreeFile validation, and magenta fallback |
+| `0x00AB6910` | `palette_cache_fetch_VA_00AB6910` | Confirmed name cache, TreeFile validation, and cyan 0xFF00FFFF fallback |
 | `0x00AB7B00` | `palette_argb_list_get_count_VA_00AB7B00` | Confirmed |
 | `0x00AB7B10` | `palette_argb_list_get_const_clamped_VA_00AB7B10` | Confirmed invalid-index clamp to zero |
 | `0x00AB7B40` | `palette_argb_list_get_mutable_clamped_VA_00AB7B40` | Confirmed diagnostic and clamp |
@@ -2896,3 +2902,70 @@ Existing `0x00D414C0` retains its stable name `swg_cui_data_storage_construct_VA
 | `0x005F4D60` | `game_playback_script_install_fixed_templates_VA_005F4D60` | Fetches only posture-align and restore-scale fixed literals; confirmed |
 | `0x00469E80` | `combat_playback_prefetch_templates_VA_00469E80` | Fetches every path retained from the combat manager table; confirmed |
 | `0x004030E0` | `playback_template_fetch_and_instantiate_VA_004030E0` | Generic caller-supplied path remains a future/debug reachability route; confirmed API shape |
+
+
+## APPR/PIVT distance-origin closure — 2026-09-30
+
+See [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_APPR_PIVT_CAMERA_LOD.md). Primary extent ownership and center offset are confirmed statically; original malformed extent failure policy remains bounded uncertainty.
+
+| Address | Canonical name | Evidence/confidence |
+|---|---|---|
+| `0x00B2C2F0` | `appearance_extent_center_or_zero_VA_00B2C2F0` | Confirmed: appearance virtual returns primary extent center at +8 or initialized zero vector; 2026-09-30 APPR/PIVT checkpoint |
+| `0x00788300` | `detail_appearance_template_extent_VA_00788300` | Confirmed: DTLA extent virtual fetches template primary extent at +0x0C; 2026-09-30 APPR/PIVT checkpoint |
+| `0x01271450` | `sphere_extent_load_sphr_v0001_VA_01271450` | Confirmed: SPHR center vector and F32 radius stored at +8/+0x14; 2026-09-30 APPR/PIVT checkpoint |
+| `0x012703F0` | `extent_factory_null_VA_012703F0` | Confirmed: registered NULL extent factory consumes form and returns zero; 2026-09-30 APPR/PIVT checkpoint |
+| `0x0125F690` | `box_extent_load_v0001_VA_0125F690` | Confirmed: EXBX/0001 dispatches EXSP then maximum/minimum BOX reader; 2026-09-30 APPR/PIVT checkpoint |
+
+
+## Portal implementation correction — 2026-09-30
+
+The [portal reader checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LAYOUT_READER.md) corroborates deployed readers against all 291 layouts. Helper 00B43E80 toggles the second reference byte; its older attribution as neighbor resolution is superseded. CELL v5 uses optional extent factory 01270770. Complete post-load flag/link semantics remain open. Canonical names/counts are unchanged.
+
+
+## CSHD observations — 2026-09-30
+
+Static/corpus observations at0077C7D0 (version dispatch),0077CE70 (0001 loader),0077BD80 (TX1D),0077C020 (PAL),0077D640 (exact-name/namespace variable lookup),0077BEE0 (clamped texture choice) and007859B0 (private/shared-owner runtime lookup) are consolidated in the [owned CSHD contract](docs/CUSTOMIZABLE_SHADER_DECODER_CONTRACT.md). No provisional name was added or repurposed; complete registration/lifecycle remains open.
+
+
+Palette fallback label correction (2026-09-30): original00AB69FC writesFF00FFFF and import00AB8135–00AB8182 confirmsFFRRGGBB packing. [Owned palette contract](docs/PALETTE_DECODER_CONTRACT.md). Stable names/counts unchanged.
+
+
+### Floor movement caller refinement — 2026-09-30
+
+The [single-cell contract](docs/SINGLE_CELL_FLOOR_MOVEMENT_CONTRACT.md) records the existing 0x012647B0 / 0x01267380 result branches and the subordinate wrapper/classifier/predicate chain. No new semantic name was added: special collision modes and exact enum names remain unknown. The constant at 0x015FFCA4 is FLT_MAX, not normalized progress one. Stable-address count remains 2,590.
+
+## 2026-09-30 — Cell transfer and entry permission refinement
+
+| VA | Canonical name | Evidence / confidence |
+|---|---|---|
+| `00422CB0` | `cell_entry_permission_callback_VA_00422CB0` | Confirmed registered callback; state-bit 1B rejection, world/null-owner allow, CellObject+29C read. Actor-state semantics Unknown. |
+| `00B2B3F0` | `cell_property_resolve_floor_portal_destination_VA_00B2B3F0` | Confirmed owner portal-vector indexing by local floor portal ordinal and linked CellProperty return. |
+| `00B2BDB0` | `cell_property_query_entry_permission_VA_00B2BDB0` | Confirmed global callback dispatch; default true without callback. |
+
+0126AA80 preserves the same wrapper. 01267380 boundary recursion is same-floor candidate continuation; its five-step bound does not establish a cross-cell bound. Actual owner continuation is 012670E0 / 00B2B3F0. Full actor/barrier ordering remains Unknown. See [contract](docs/PORTAL_FLOOR_TRANSFER_CONTRACT.md).
+
+## 2026-09-30 — Portal barrier/controller refinement
+
+| VA | Canonical name | Evidence / confidence |
+|---|---|---|
+| `012A4C40` | `portal_barrier_object_ctor_VA_012A4C40` | Confirmed BarrierObject RTTI, linked door +A8, dedicated collision property and padded extent construction. |
+| `012A4E60` | `portal_barrier_create_padded_extent_VA_012A4E60` | Confirmed portal-frame bounds through B52DD0 expanded by F32 0.05 and assigned collision extent. |
+| `012A50A0` | `portal_barrier_test_permission_block_VA_012A50A0` | Confirmed BarrierObject +64 predicate returns 1 when linked DoorObject +5C eligibility is false. |
+| `012A4A30` | `door_controller_advance_fraction_VA_012A4A30` | Confirmed open/close-duration update, first transition-index selection, fraction clamp and active cleanup. |
+
+The supported-version template fields are LeadingByte at +0, SolidByte at +1, WindingByte at +2. Only the PRTO/0002 loader calls B43E80 inversion. Permission blocking and active-controller candidate filtering are separate; collision mode 1 semantics remain Unknown. See [contract](docs/PORTAL_BARRIER_COLLISION_CONTRACT.md).
+
+
+## 2026-09-30 — Single-leaf motion refinement
+
+| VA | Canonical name | Evidence / confidence |
+|---|---|---|
+| `012901E0` | `door_object_compute_leaf_displacement_VA_012901E0` | Confirmed: calls primary fraction curve then multiplies authored movement at D0/D4/D8. |
+| `01290B60` | `door_object_shape_displacement_fraction_VA_01290B60` | Confirmed: reciprocal springiness power and F32-pi cosine blend with smoothness. |
+
+Constructor 0128FF40 stores squared 1.5-times-radius retention distance; trigger 01290560 uses authored radius at local (0,1,0). These refine earlier generic proximity/motion summaries. Original physical leaf collision extent choice and global actor ordering remain Unknown. See [contract](docs/SINGLE_LEAF_DOOR_CONTRACT.md).
+
+
+## 2026-09-30 — Interior door integration boundary
+
+The [integration contract](docs/INTERIOR_DOOR_MOVEMENT_CONTRACT.md) reuses existing door/permission evidence and adds original POB/floor instance validation. No new executable semantic names: canonical registry remains 2,599. Original general actor collision ordering, physical narrow-phase selection and legacy paired-controller coordination remain Unknown. Modern source-contact ordering and directional instance tests do not close those executable questions.

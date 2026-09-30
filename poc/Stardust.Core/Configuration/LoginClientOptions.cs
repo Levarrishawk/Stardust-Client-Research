@@ -10,11 +10,13 @@ public sealed class LoginClientOptions
         uint requestedMaximumDatagramSize = 496,
         TimeSpan? sessionRetryInterval = null,
         TimeSpan? sessionTimeout = null,
-        TimeSpan? reliableRetransmitInterval = null)
+        TimeSpan? reliableRetransmitInterval = null,
+        TimeSpan? loginResponseTimeout = null)
     {
-        if (string.IsNullOrWhiteSpace(host)) throw new ArgumentException("Login host is required.", nameof(host));
+        if (string.IsNullOrWhiteSpace(host) || host.Length > 253 || host.Any(character => char.IsWhiteSpace(character) || char.IsControl(character)))
+            throw new ArgumentException("Login host must be a bounded host name or IP literal.", nameof(host));
         if (port is < 1 or > ushort.MaxValue) throw new ArgumentOutOfRangeException(nameof(port));
-        if (string.IsNullOrEmpty(clientVersion) || clientVersion.Any(character => character > 0x7F))
+        if (string.IsNullOrEmpty(clientVersion) || clientVersion.Any(character => character < 0x20 || character > 0x7E))
             throw new ArgumentException("Client version must be nonempty ASCII.", nameof(clientVersion));
         if (Encoding.ASCII.GetByteCount(clientVersion) > ushort.MaxValue)
             throw new ArgumentOutOfRangeException(nameof(clientVersion));
@@ -24,9 +26,11 @@ public sealed class LoginClientOptions
         TimeSpan retry = sessionRetryInterval ?? TimeSpan.FromSeconds(1);
         TimeSpan timeout = sessionTimeout ?? TimeSpan.FromSeconds(15);
         TimeSpan retransmit = reliableRetransmitInterval ?? TimeSpan.FromSeconds(2);
+        TimeSpan responseTimeout = loginResponseTimeout ?? TimeSpan.FromSeconds(30);
         if (retry.TotalMilliseconds < 1) throw new ArgumentOutOfRangeException(nameof(sessionRetryInterval));
         if (timeout < retry) throw new ArgumentOutOfRangeException(nameof(sessionTimeout));
         if (retransmit.TotalMilliseconds < 1) throw new ArgumentOutOfRangeException(nameof(reliableRetransmitInterval));
+        if (responseTimeout.TotalMilliseconds < 1) throw new ArgumentOutOfRangeException(nameof(loginResponseTimeout));
 
         Host = host;
         Port = (ushort)port;
@@ -35,6 +39,7 @@ public sealed class LoginClientOptions
         SessionRetryInterval = retry;
         SessionTimeout = timeout;
         ReliableRetransmitInterval = retransmit;
+        LoginResponseTimeout = responseTimeout;
     }
 
     public string Host { get; }
@@ -44,11 +49,12 @@ public sealed class LoginClientOptions
     public TimeSpan SessionRetryInterval { get; }
     public TimeSpan SessionTimeout { get; }
     public TimeSpan ReliableRetransmitInterval { get; }
+    public TimeSpan LoginResponseTimeout { get; }
 
     public string ToSafeSummary() =>
         $"endpoint_configured=true version={ClientVersion} max_datagram={RequestedMaximumDatagramSize} " +
         $"session_retry_ms={SessionRetryInterval.TotalMilliseconds:F0} session_timeout_ms={SessionTimeout.TotalMilliseconds:F0} " +
-        $"retransmit_ms={ReliableRetransmitInterval.TotalMilliseconds:F0}";
+        $"retransmit_ms={ReliableRetransmitInterval.TotalMilliseconds:F0} login_response_timeout_ms={LoginResponseTimeout.TotalMilliseconds:F0}";
 
     public override string ToString() => ToSafeSummary();
 }

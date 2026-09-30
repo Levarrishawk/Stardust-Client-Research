@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+
 namespace Stardust.Core.Protocol;
 
 /// <summary>Codec for the 00 19 application multipayload carried inside a data channel packet.</summary>
@@ -30,17 +32,25 @@ public static class SoeMultiPayloadCodec
             throw new InvalidDataException("Invalid SOE multipayload header.");
         List<byte[]> messages = new();
         int cursor = 2;
-        while (cursor < payload.Length)
+        try
         {
-            if (messages.Count == maximumMessages) throw new InvalidDataException("SOE multipayload contains too many messages.");
-            uint length = SoeVariableLengthCodec.Decode(payload[cursor..], out int consumed);
-            cursor += consumed;
-            if (length == 0 || length > int.MaxValue || cursor > payload.Length - (int)length)
-                throw new InvalidDataException("Invalid SOE multipayload message length.");
-            messages.Add(payload.Slice(cursor, (int)length).ToArray());
-            cursor += (int)length;
+            while (cursor < payload.Length)
+            {
+                if (messages.Count == maximumMessages) throw new InvalidDataException("SOE multipayload contains too many messages.");
+                uint length = SoeVariableLengthCodec.Decode(payload[cursor..], out int consumed);
+                cursor += consumed;
+                if (length == 0 || length > int.MaxValue || cursor > payload.Length - (int)length)
+                    throw new InvalidDataException("Invalid SOE multipayload message length.");
+                messages.Add(payload.Slice(cursor, (int)length).ToArray());
+                cursor += (int)length;
+            }
+            if (messages.Count == 0) throw new InvalidDataException("SOE multipayload is empty.");
+            return messages;
         }
-        if (messages.Count == 0) throw new InvalidDataException("SOE multipayload is empty.");
-        return messages;
+        catch
+        {
+            foreach (byte[] message in messages) CryptographicOperations.ZeroMemory(message);
+            throw;
+        }
     }
 }

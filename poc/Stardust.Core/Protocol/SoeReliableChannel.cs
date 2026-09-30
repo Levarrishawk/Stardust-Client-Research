@@ -34,14 +34,15 @@ public sealed class SoeReliableChannel
 
     public SoeReliableChannel(int maximumOutstanding = 50, int maximumReorderDistance = 50)
     {
-        if (maximumOutstanding <= 0) throw new ArgumentOutOfRangeException(nameof(maximumOutstanding));
-        if (maximumReorderDistance <= 0) throw new ArgumentOutOfRangeException(nameof(maximumReorderDistance));
+        if (maximumOutstanding is <= 0 or > 0x7FFF) throw new ArgumentOutOfRangeException(nameof(maximumOutstanding));
+        if (maximumReorderDistance is <= 0 or > 0x7FFF) throw new ArgumentOutOfRangeException(nameof(maximumReorderDistance));
         this.maximumOutstanding = maximumOutstanding;
         this.maximumReorderDistance = maximumReorderDistance;
     }
 
     public int RetainedCount => outbound.Count;
-    public int AvailableOutboundSlots => maximumOutstanding - outbound.Count;
+    public int AvailableOutboundSlots => outbound.Count == 0 ? maximumOutstanding :
+        Math.Max(0, maximumOutstanding - checked((int)(nextOutboundSequence - outbound.First().Key)));
     public long NextOutboundSequence => nextOutboundSequence;
     public long ExpectedInboundSequence => expectedInboundSequence;
 
@@ -51,7 +52,7 @@ public sealed class SoeReliableChannel
     public byte[] CreateSequencedPacket(byte opcode, ReadOnlySpan<byte> payload, long nowMilliseconds)
     {
         if (opcode is < 0x09 or > 0x10) throw new ArgumentOutOfRangeException(nameof(opcode));
-        if (outbound.Count >= maximumOutstanding)
+        if (AvailableOutboundSlots == 0)
             throw new InvalidOperationException("Reliable send window is full.");
         ushort wireSequence = unchecked((ushort)nextOutboundSequence);
         byte[] packet = new byte[4 + payload.Length];
@@ -106,7 +107,11 @@ public sealed class SoeReliableChannel
         long logicalSequence = ExpandNear(outbound.First().Key, wireSequence);
         if (logicalSequence >= nextOutboundSequence) return 0;
         List<long> released = outbound.Keys.Where(key => key <= logicalSequence).ToList();
-        foreach (long key in released) outbound.Remove(key);
+        foreach (long key in released)
+        {
+            CryptographicOperations.ZeroMemory(outbound[key].Packet);
+            outbound.Remove(key);
+        }
         return released.Count;
     }
 
@@ -114,7 +119,9 @@ public sealed class SoeReliableChannel
     {
         if (outbound.Count == 0) return false;
         long logicalSequence = ExpandNear(outbound.First().Key, wireSequence);
-        return outbound.Remove(logicalSequence);
+        if (!outbound.Remove(logicalSequence, out Retained? retained)) return false;
+        CryptographicOperations.ZeroMemory(retained.Packet);
+        return true;
     }
 
     public IReadOnlyList<byte[]> GetPacketsDueForRetransmission(long nowMilliseconds, long timeoutMilliseconds)

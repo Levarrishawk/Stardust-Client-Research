@@ -313,3 +313,44 @@ The renderer-facing outdoor state is selected by `(PTAT environmentFamilyId << 1
 
 All eight lighting-ramp consumer roles are now closed. Rows drive, in order: ambient color/repeated-CELS opacity; main-light primary RGB/intensity; main-light secondary RGB/intensity; fill RGB/intensity; bounce RGB/intensity; fallback sky RGB/SUN-MOON visibility; fog RGB/sky-family opacity; and shadow-volume RGBA. The legacy renderer has distinct generic-celestial, principal sun/moon, and ShadowVolume alpha paths plus two main-light banks; collapsing them would discard authored behavior. When no sky source resource exists, GroundEnvironment builds a solid six-face `_SKY` cube texture from row 5.
 4. Trace resource-loss/recreation policy independently of the deployment post-processing proxy.
+
+## Native preview boundary (2026-09-29)
+
+The [original GPU preview](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_ORIGINAL_GODOT_PREVIEW.md) renders one verified mesh section in Godot. Z reflection, reversed triangle winding and unchanged UV0 pass numerical and asymmetric GPU tests; uploaded geometry and all 80 mip levels match CPU inputs. Explicit opaque unlit MAIN sampling is preview policy. Candidate graphs and program names are preserved without translating legacy lighting or selecting a legacy capability branch. Parent appearance/LOD, faithful lighting and world rendering remain open.
+
+## Original detail inspection boundary
+
+Godot now uploads and switches the four authored L0–L3 children. Explicit offline selection distance drives a baseline-backed selector; orbit-camera zoom does not implicitly establish the unimplemented PIVT origin. The material adapter chooses an authored opaque MAIN/MAIN fixed fallback for unlit sampling, preserving other candidate metadata without executing programs. All child geometry/texture uploads and GPU UV/front-face checks pass. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_GODOT_LOD_INSPECTOR.md).
+
+## Explicit texture-only inspection
+
+`-MainTextureOnly` permits unlit MAIN/UV0 inspection where an opaque retained candidate binds MAIN but no default single-MAIN fallback exists. Default inspection still requires its authored fallback. This opt-in mode does not translate material programs or establish lighting fidelity. The [exterior checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_APT_EXTERIOR_CHAIN.md) verifies the original APT-to-three-LOD graph and GPU resources.
+
+## Neutral component inspector
+
+The [component contract](COMPONENT_APPEARANCE_CONTRACT.md) separates shared meshes from independent transform/LOD nodes. S R S conversion matches reflected mesh coordinates. Asymmetric fixtures, original geometry readback and vent LOD switches pass. Neutral materials and omitted-part counts do not imply translated original presentation or PIVT distance.
+
+## Nested static assembly increment
+
+The neutral component inspector now loads the nested garage without omissions. Geometry upload readback and every loaded LOD midpoint pass on the host GPU. [SIDX variants](STATIC_MESH_SORTED_INDEX_CONTRACT.md) remain available in core; this neutral renderer uses ordinary INDX and does not establish alpha/material fidelity.
+
+## Shared component texture inspection
+
+The [component material boundary](COMPONENT_APPEARANCE_CONTRACT.md) owns one GPU texture cache per preview. Seventeen unique images support nine garage mesh templates; 35 textured and ten neutral surfaces pass readback and LOD checks. Explicit MAIN inspection remains unlit, with original program/blend/SIDX presentation deferred.
+
+
+## APPR/PIVT camera selection increment — 2026-09-30
+
+The [camera LOD checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_APPR_PIVT_CAMERA_LOD.md) closes the primary extent distance origin: false/absent pivot uses the transformed authored sphere center, true uses world translation, and NULL uses zero local offset. All 6,198 original primary extents agree independently. Native malformed/transform fixtures and standalone/composed headless/GPU selection gates pass. The inspector supports opt-in camera distance and manual selection. Original DPVS, lazy residency and full lighting remain deferred. Five confirmed address labels bring the canonical registry to 2,590 distinct entries; research scores and packet counts are unchanged.
+
+Canonical contract: [extent and distance](APPEARANCE_EXTENT_DISTANCE_CONTRACT.md).
+
+
+## BC6H HDR extension — 2026-09-30
+
+The [HDR checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BC6H_HDR.md) adds a separate owned RGB half output for typed signed/unsigned BC6H. Forty standards-only fixtures/264 mips match independent Godot bcdec bit for bit and pass real GPU half upload/readback. Native endpoint, truncation, surface and budget gates pass. Static material integration and HDR presentation remain separate; this is not original executable acceptance evidence. Existing pinned dependencies, research metrics and registry counts are unchanged.
+
+
+## Portal cell scene increment — 2026-09-30
+
+The [cell scene checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_CELL_SCENE.md) closes shared bounded cell appearance loading and named-cell offline inspection. The pinned original YT-1300 matches independently across eight cells, 14 sources, 11 meshes, 66,617 vertices, 55,916 triangles and 310 sorted variants. VTXA `0x110D` preserves its packed word and correct UV offset. Native ownership/budget/identity tests and Godot headless/GPU gates pass. Manual visibility is distinct from unimplemented portal culling, floors, doors and lighting. Research scores, packet rows and address counts are unchanged.

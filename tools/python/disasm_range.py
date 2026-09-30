@@ -12,6 +12,8 @@ p.add_argument("exe")
 p.add_argument("start", type=lambda s: int(s, 0))
 p.add_argument("end", type=lambda s: int(s, 0))
 a = p.parse_args()
+if not 0 < a.end-a.start <= 1_048_576:
+    p.error("Specify an increasing VA range of at most 1 MiB.")
 pe = pefile.PE(a.exe, fast_load=True)
 base = pe.OPTIONAL_HEADER.ImageBase
 rva = a.start - base

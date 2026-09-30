@@ -1,4 +1,5 @@
-using System.IO.Compression;
+using System.Security.Cryptography;
+using Stardust.Core.Compression;
 
 namespace Stardust.Core.Protocol;
 
@@ -7,6 +8,23 @@ public static class SoeDatagramCodec
 {
     private const byte Uncompressed = 0;
     private const byte Compressed = 1;
+
+    /// <summary>Reject damaged wire framing before changing reliable-channel state.</summary>
+    public static bool TryDecode(ReadOnlySpan<byte> datagram, uint seed, int crcWidth,
+        int maximumDatagramSize, out byte[] packet)
+    {
+        ValidateConfiguration(crcWidth, maximumDatagramSize);
+        try
+        {
+            packet = Decode(datagram, seed, crcWidth, maximumDatagramSize);
+            return true;
+        }
+        catch (InvalidDataException)
+        {
+            packet = Array.Empty<byte>();
+            return false;
+        }
+    }
 
     public static byte[] EncodeUncompressed(
         ReadOnlySpan<byte> transportPacket, uint seed, int crcWidth, int maximumDatagramSize)
@@ -39,12 +57,16 @@ public static class SoeDatagramCodec
             throw new InvalidDataException("SOE datagram CRC mismatch.");
 
         byte[] decoded = datagram[..^crcWidth].ToArray();
-        SoeSelector4.Decrypt(decoded, seed);
-        byte compressionFlag = decoded[^1];
-        if (compressionFlag == Uncompressed) return decoded[..^1];
-        if (compressionFlag != Compressed)
-            throw new InvalidDataException("Invalid SOE compression marker.");
-        return Inflate(decoded[..^1], maximumDatagramSize - 1 - crcWidth);
+        try
+        {
+            SoeSelector4.Decrypt(decoded, seed);
+            byte compressionFlag = decoded[^1];
+            if (compressionFlag == Uncompressed) return decoded[..^1];
+            if (compressionFlag != Compressed)
+                throw new InvalidDataException("Invalid SOE compression marker.");
+            return Inflate(decoded.AsSpan(0, decoded.Length - 1), maximumDatagramSize - 1 - crcWidth);
+        }
+        finally { CryptographicOperations.ZeroMemory(decoded); }
     }
 
     private static void ValidateConfiguration(int crcWidth, int maximumDatagramSize)
@@ -55,22 +77,18 @@ public static class SoeDatagramCodec
 
     private static byte[] Inflate(ReadOnlySpan<byte> packet, int maximumDecodedLength)
     {
+        if (packet.IsEmpty) throw new InvalidDataException("Compressed SOE packet is empty.");
         int prefixLength = packet[0] == 0 ? 2 : 1;
         if (packet.Length <= prefixLength)
             throw new InvalidDataException("Compressed SOE datagram has no zlib payload.");
-        using MemoryStream input = new(packet[prefixLength..].ToArray(), writable: false);
-        using ZLibStream zlib = new(input, CompressionMode.Decompress);
-        using MemoryStream output = new();
-        output.Write(packet[..prefixLength]);
-        byte[] buffer = new byte[256];
-        while (true)
+        byte[] body = BoundedZlib.Decode(packet[prefixLength..], maximumDecodedLength - prefixLength);
+        try
         {
-            int read = zlib.Read(buffer);
-            if (read == 0) break;
-            if (output.Length + read > maximumDecodedLength)
-                throw new InvalidDataException("Inflated SOE datagram exceeds the negotiated maximum.");
-            output.Write(buffer, 0, read);
+            byte[] result = new byte[prefixLength + body.Length];
+            packet[..prefixLength].CopyTo(result);
+            body.CopyTo(result, prefixLength);
+            return result;
         }
-        return output.ToArray();
+        finally { CryptographicOperations.ZeroMemory(body); }
     }
 }

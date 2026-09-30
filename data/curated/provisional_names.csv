@@ -1471,7 +1471,7 @@
 "0x00B28AA0","client_template_lookup_by_crc_VA_00B28AA0",
 "0x00B2B240","cell_property_find_destination_cell_VA_00B2B240",
 "0x00B2CB60","appearance_template_load_appr_VA_00B2CB60",
-"0x00B2CD40","appearance_hardpoints_load_VA_00B2CD40",
+"0x00B2CD40","appearance_hardpoints_load_VA_00B2CD40","Confirmed: HPTS physical child count; HPNT twelve F32 plus remaining NUL name bytes; unsigned CRC/exact-name sort; 2026-09-30 correction"
 "0x00B2E760","object_instance_create_by_template_name_VA_00B2E760",
 "0x00B353E0","RotationDynamics_ctor_VA_00B353E0","Confirmed RTTI-backed continuous angular velocity controller constructor"
 "0x00B35470","RotationDynamics_alter_VA_00B35470","Confirmed delta-time-scaled three-axis rotation update"
@@ -2584,3 +2584,17 @@
 "0x005F4D60","game_playback_script_install_fixed_templates_VA_005F4D60","Confirmed two fixed posture/scale template fetches"
 "0x00469E80","combat_playback_prefetch_templates_VA_00469E80","Confirmed combat-manager path prefetch"
 "0x004030E0","playback_template_fetch_and_instantiate_VA_004030E0","Confirmed generic caller-supplied path fetch and instance construction"
+"0x00B2C2F0","appearance_extent_center_or_zero_VA_00B2C2F0","Confirmed: appearance virtual returns primary extent center at +8 or initialized zero vector; 2026-09-30 APPR/PIVT checkpoint"
+"0x00788300","detail_appearance_template_extent_VA_00788300","Confirmed: DTLA extent virtual fetches template primary extent at +0x0C; 2026-09-30 APPR/PIVT checkpoint"
+"0x01271450","sphere_extent_load_sphr_v0001_VA_01271450","Confirmed: SPHR center vector and F32 radius stored at +8/+0x14; 2026-09-30 APPR/PIVT checkpoint"
+"0x012703F0","extent_factory_null_VA_012703F0","Confirmed: registered NULL extent factory consumes form and returns zero; 2026-09-30 APPR/PIVT checkpoint"
+"0x0125F690","box_extent_load_v0001_VA_0125F690","Confirmed: EXBX/0001 dispatches EXSP then maximum/minimum BOX reader; 2026-09-30 APPR/PIVT checkpoint"
+"0x00422CB0","cell_entry_permission_callback_VA_00422CB0","Confirmed: installed by Game::install via 0x00B2A8A0; actor state bit 0x1B veto then destination CellProperty owner +0x29C permission; 2026-09-30 portal transfer"
+"0x00B2B3F0","cell_property_resolve_floor_portal_destination_VA_00B2B3F0","Confirmed: owner-associated runtime portal vector indexed by floor portal ID, returns linked CellProperty; caller 0x012670E0; 2026-09-30 portal transfer"
+"0x00B2BDB0","cell_property_query_entry_permission_VA_00B2BDB0","Confirmed: invokes registered callback at 0x01946898 with destination CellProperty; returns true when no callback; 2026-09-30 portal transfer"
+"0x012A4C40","portal_barrier_object_ctor_VA_012A4C40","Confirmed: DoorObject creates RTTI BarrierObject with stored door link at +A8 and dedicated BarrierCollisionProperty; 2026-09-30 barrier milestone"
+"0x012A4E60","portal_barrier_create_padded_extent_VA_012A4E60","Confirmed: portal vertices transformed into barrier frame via B52DD0; min/max expanded by F32 0.05 and assigned collision extent; 2026-09-30 barrier milestone"
+"0x012A50A0","portal_barrier_test_permission_block_VA_012A50A0","Confirmed: BarrierObject vtable +64 returns 1 when linked DoorObject vtable +5C permission predicate is false; 2026-09-30 barrier milestone"
+"0x012A4A30","door_controller_advance_fraction_VA_012A4A30","Confirmed: frame pulse chooses open/close duration, fraction update, first matching event index and 0..1 clamp; 2026-09-30 barrier milestone"
+"0x012901E0","door_object_compute_leaf_displacement_VA_012901E0","Confirmed: primary controller fraction calls slot +64 curve and scales D0/D4/D8 movement; 2026-09-30 single leaf milestone"
+"0x01290B60","door_object_shape_displacement_fraction_VA_01290B60","Confirmed: reciprocal springiness power, F32 pi cosine and smoothness blend; 2026-09-30 single leaf milestone"
