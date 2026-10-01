@@ -2986,3 +2986,47 @@ The [timeline](docs/ACTOR_INPUT_TIMELINE_CONTRACT.md) defines modern tick-start 
 ## 2026-09-30 — Detail-leaf envelope boundary
 
 The [capability matrix](docs/DOOR_STYLE_CAPABILITY_MATRIX.md) adds modern DTLA root-box support. Original physical extent selection/narrow phase and secondary flip/controller coordination remain Unknown. Canonical names remain 2,599.
+
+## 2026-10-01 — Static mesh collision dispatch
+
+[Selection specification](docs/STATIC_MESH_COLLISION_SELECTION.md) records confirmed observations at runtime dispatch00793640, primitive query00770BA0, selector01269040, shader getters0077FF60/0077FF90 and first-pass predicate0075E4E0. No canonical semantic names added (2,599 rows). Original actor selector assignment, bypass enabling caller policy and receiver intersection tolerances remain Unknown.
+
+
+## 2026-10-01 — Actor extent participation
+
+[Durable boundary](docs/GROUNDED_ACTOR_COLLISION_PARTICIPATION.md) records confirmed transformed extent accessor012A09C0, object-pair dispatcher012A0AB0/012A12D0, RTTI SimpleExtent constructor01293CB0 and refresh01260E40. Inspected body/floor paths01267A90/01266960 remain distinct from MeshAppearance segment queries. No canonical names added; shape-source ownership, controller reachability and global ordering remain Unknown.
+
+
+## 2026-10-01 — Creature fallback fields
+
+[Fallback evidence](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-01_CREATURE_COLLISION_FALLBACK.md) maps stepHeight011AF1B0, radius011AF8D0, X/Z offsets011B05B0/011B0940 and length011B0CD0 through loader011B13F0 and property configuration012604D0. No canonical names added. Controller reachability, flag transitions and full template parameter semantics remain open.
+
+
+## 2026-10-01 — Original template parameter codecs
+
+[Object profile contract](docs/OBJECT_TEMPLATE_COLLISION_PROFILE_CONTRACT.md) records float loader013FA200 at vtable01609AB8 and string loader013FADA0 at01609B48, with inheritance versus literal modes. No canonical names added; complete random/relative/default semantics remain outside the deterministic slice.
+
+
+## 2026-10-01 skeleton name normalization observation
+
+Verified baseline0082B320 constructs transform names with00AA4050(name,1). Direct instructions trace through00AA4320/00AA4250/00AA2D10 to0131D6E8, whose default ASCII branch folds A-Z by+0x20. Locale branch is separate. This narrows original human head/Head attachment matching; no new canonical names or arbitrary CRC-map equivalence. See [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_HUMAN_SKELETON_DESCRIPTORS.md).
+
+
+## 2026-10-01 deployed MGN prefix observation
+
+Existing canonical skeletal_mesh_generator_load_v0004_VA_00800EF0 now has bounded INFO/SKTM/XFNM/POSN/TWHD/TWDT/NORM width/count evidence and original body/head agreement. Influence-group/index-weight interpretation is Strongly inferred; primitive/generation consumers remain next. No canonical rename. See [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_HUMAN_SKIN_SOURCES.md).
+
+
+## 2026-10-01 skeletal shader primitive observations
+
+007FCB50 reads PSDT maps/coordinates and dispatches ITL007FB380 or OITL007FBA00. Both map shader-local triangle indices through PIDX to POSN and omit exact zero-area triangles; OITL retains leading I16 field. 007FD900 only stores two words and does not close weighted skinning semantics. No new canonical names. See [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_HUMAN_MGN_GEOMETRY.md).
+
+
+## 2026-10-01 skeletal influence consumers
+
+[Skeletal influence consumers](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-01_SKELETAL_INFLUENCE_CONSUMERS.md) confirms TWHD/TWDT position groups, complete transfer without four-weight truncation, and PIDX-selected influence ownership for NIDX normals. Weighted position/direction evaluator and direct normal output traced; animated matrix producer remains open. Metrics unchanged.
+
+
+## 2026-10-01 logical animation tables
+
+[Logical animation tables](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_LOGICAL_ANIMATION_TABLES.md) independently matches14 original sources/710,463 bytes and1,046 serialized entries. Four duplicated body names retained; authored/synthetic default and opaque typed subtrees validated. Selected clip/proxy execution remains next; metrics unchanged.

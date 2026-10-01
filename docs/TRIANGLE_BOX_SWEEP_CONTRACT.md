@@ -41,3 +41,23 @@ Native controlled tests establish clear rise/drop, ceiling-held source,100 stabl
 ## Original source selection constraint
 
 The [selected hidden-helper audit](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SELECTED_HELPER_GEOMETRY.md) finds 96 triangles across the two omitted room surfaces, with no helper in the connecting hall. Their bounds are disjoint from the current walking route. They fit the query budget but cannot alone enclose that route. Shader names and zero-pass rendering are insufficient evidence to select legacy collision geometry; trace the original static-mesh eligibility boundary before adopting an original obstacle set.
+
+## Recovered segment eligibility follow-up
+
+[Original selection rules](STATIC_MESH_COLLISION_SELECTION.md) now explain why visible hall geometry qualifies under both selectors. All164 selected candidates agree independently. Hall6 fits the current1,984-triangle slice; full rooms exceed2,048. Original actor selector remains Unknown. The SAT volume guard is replacement policy, separate from the recovered segment query.
+
+## Portal triangle contact
+
+[One-transfer guard](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_PORTAL_TRIANGLE_CONTACT.md) owns cell-local triangles transformed into world space and queries all owned sets on both precise floor legs. Target geometry can stop source-side feet. Supported target contact maps request progress and preserves owner; unrepresentable contact holds source. Limits2,048 triangles/262,144 segment pairs; no steps/sliding.512 independent synthetic slope/seam/LP cases and native ownership/negative/repeat/retreat gates pass. Original actor policy and scene activation remain separate.
+
+## Original hall contact and explicit feet clearance
+
+[Hall checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_ORIGINAL_HALL_COLLISION.md) verifies unchanged indexed extraction,4 wall/12 floor stops,1,600 stable repeats and16 retreats independently. Tangent-enabled SAT also ignores later finite-triangle entry when a fixed separating plane prevents penetration throughout. Closed-contact queries retain that touch. Path/walk/step/portal adapters accept explicit finite feet clearance0–0.05 metres, default0; center offset and landing subtraction agree. The original probe uses0.0001 metres to separate visible-floor float32 micro-offsets from FLOR. This shifts the entire unchanged-size body box and is modern policy. Original actor selector/tolerance and host integration remain separate.
+
+## Conservative bounds hierarchy and explicit capacity
+
+[Hierarchy checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_TRIANGLE_BOUNDS_HIERARCHY.md) records deterministic owned median subdivision, at most8 triangles per leaf, conservative double swept AABBs and restored source-ID query order. Exact SAT remains unchanged. Per-query statistics report visited nodes and admitted/narrow-phase triangles; exhaustive mode supports verification. Default capacity remains2,048, optional capacity at most65,536, including total portal-owned triangles. Complete path/source-pair budget262,144 remains. Step continuation shares its prepared collider.512 exact exhaustive comparisons and unchanged original hall gates pass.
+
+## Full original scene verification boundary
+
+[Complete-set probe](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_COMPLETE_ROOM_TRIANGLES.md) retains42,986 triangles, matches independent extraction hashes and contact, and validates supported one-transfer/reverse behavior under two poses. Four of eight requests stop on rendered0.1 m rises above flat FLOR. This is a conservative modern body result, not recovered actor behavior. The complete obstacle set is not yet active in the persistent host. `StaticMeshCollisionVerification` hashes four signed little-endian counters then ascending source ID plus nine raw float32 coordinates per retained triangle; this fingerprint is not game serialization.

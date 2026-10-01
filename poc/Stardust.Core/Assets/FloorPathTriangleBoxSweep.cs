@@ -9,17 +9,17 @@ public sealed record FloorPathTriangleContact(TriangleBoxContactStatus Status,do
 public static class FloorPathTriangleBoxSweep
 {
     public static FloorPathTriangleContact Sweep(FloorWalkPath path,StaticTriangleBoxCollider collider,
-        Vector3 half,bool allowSeparatingContact=false)
+        Vector3 half,bool allowSeparatingContact=false,float feetClearance=0)
     {
         ArgumentNullException.ThrowIfNull(path);ArgumentNullException.ThrowIfNull(collider);
         if(!float.IsFinite(half.X)||!float.IsFinite(half.Y)||!float.IsFinite(half.Z)||
-            half.X<0||half.Y<0||half.Z<0||half.X>100||half.Y>100||half.Z>100||
+            half.X<0||half.Y<0||half.Z<0||half.X>100||half.Y>100||half.Z>100||!float.IsFinite(feetClearance)||feetClearance<0||feetClearance>.05f||
             path.Segments.Count>4097||!double.IsFinite(path.Result.Parameter)||path.Result.Parameter is <0 or >1||
             !Finite(path.Result.Position))throw new InvalidDataException("Invalid triangle feet-path bounds.");
         // Snapshot and validate the entire path before returning any early contact.
         var segments=path.Segments.ToArray();
         if((long)segments.Length*collider.TriangleCount>262144)throw new InvalidDataException("Triangle feet-path work budget.");
-        FloorPathPoint Center(FloorPathPoint feet)=>feet with{Y=feet.Y+half.Y};
+        FloorPathPoint Center(FloorPathPoint feet)=>feet with{Y=feet.Y+half.Y+feetClearance};
         for(int i=0;i<segments.Length;i++)
         {
             var s=segments[i];

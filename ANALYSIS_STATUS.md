@@ -1,6 +1,6 @@
 # Client Analysis Status
 
-Updated: 2026-09-30 (development through triangle steps and selected-helper audit; research scores unchanged)
+Updated: 2026-10-01 (development through original-profile sphere scene and human skeletal geometry; research scores unchanged)
 
 **Current measurement:** the evidence-backed rescore is **89% comprehensive behavioral coverage / 94% implementation-and-engine-decision research readiness**. These supersede the historical 90%/96% planning estimates. They are weighted observable-contract scores, not percentages of executable functions. Function/address accounting remains separately **uncalibrated** and must not displace behavioral research. See the [current rescore](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_EVIDENCE_BASED_COVERAGE_RESCORE.md), [research coverage rebaseline](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md), and [model-transition audit](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_MODEL_TRANSITION_AUDIT.md).
 
@@ -958,3 +958,158 @@ Connected approach screen: 524 exact short round trips / 528 constructed; 1,056 
 ## 2026-09-30 selected hidden-helper boundary
 
 [Same-scene audit](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SELECTED_HELPER_GEOMETRY.md) finds96 helper triangles across rooms5/7, none in hall6, with bounds disjoint from the current route. Hidden-helper-only collision would leave corridor walls unresolved. Original static-mesh eligibility remains the next source decision. Metrics unchanged.
+
+## 2026-10-01 static mesh collision selection
+
+[Recovered segment predicates](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-01_MESH_COLLISION_SELECTION.md) and independent original parsing agree on164 candidate records. Selector1 admits44 primitives/42,986 triangles; selector0 excludes only96 hidden-helper triangles. Hall6 admits1,984 under both. Actor selector and volume ordering remain open. Metrics unchanged.
+
+## 2026-10-01 supported portal triangle contact
+
+[Owned one-transfer guard](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_PORTAL_TRIANGLE_CONTACT.md) passes native transformed-owner/source-approach/target-support/repeat/retreat gates and512 independent synthetic slope/seam/LP comparisons. Original hall geometry and door composition remain next. Metrics unchanged.
+
+## 2026-10-01 original hall body contact
+
+[Pinned original slice](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_ORIGINAL_HALL_COLLISION.md) matches1,984 extracted triangles/zero degenerates,16 requests with4 wall/12 floor stops,1,600 stable repeats and16 retreats. Independent original LP/floor checks pass. Tangent-entry correction and explicit modern0.1 mm feet clearance address authored micro-offsets. Prior1,536 synthetic comparisons remain passing. Wider rooms/host composition remain next; metrics unchanged.
+
+## 2026-10-01 conservative triangle hierarchy
+
+[Owned bounds index](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_TRIANGLE_BOUNDS_HIERARCHY.md) matches512 exhaustive varied queries exactly;8,445/65,536 candidates. Explicit3,072-source grid selects1 candidate/19 nodes. Opt-in capacity65,536 retains default2,048 and complete path work limits. Original hall gates pass; metrics unchanged.
+
+## 2026-10-01 complete selected room collision geometry
+
+[Full42,986-triangle probe](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_COMPLETE_ROOM_TRIANGLES.md) retains all original geometry with zero degenerates, independently matching hashes/contact. Eight portal requests yield4 clear/4 target contacts,8 reverse transfers and400 stable holds. Rendered0.1 m rises overlap flat FLOR; conservative body stops expose original actor participation/offset as the next decision. Wider persistent-host activation is not claimed. Metrics unchanged.
+
+
+## 2026-10-01 actor collision extent boundary
+
+[Static participation trace](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-01_ACTOR_EXTENT_PARTICIPATION.md) confirms transformed collision extents, nested SimpleExtent shape dispatch, local/transformed invalidation and separate floor/body selection in inspected paths. It does not establish every controller's reachability or original actor triangle participation. Conservative full-triangle host activation remains deferred while extent sources are traced. Metrics unchanged.
+
+
+## 2026-10-01 authored secondary extent slice
+
+[Bounded decoder](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_AUTHORED_COLLISION_EXTENTS.md) separates primary bounds and secondary APPR collision extents. Six pinned original room/door appearances agree independently on primary F32 values and NULL secondaries. Native gates and Godot build pass; runtime fallback/actor selection remain open. Metrics unchanged.
+
+
+## 2026-10-01 creature fallback dimensions
+
+[Static fallback trace](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-01_CREATURE_COLLISION_FALLBACK.md) confirms appearance secondary, layout cell0 extent and conditional creature sphere precedence. Ordinary sphere center uses step height plus radius; collision height is a separate template field. Original template values and controller reachability remain next. Metrics unchanged.
+
+
+## 2026-10-01 original creature template profile
+
+[Object-root slice](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_ORIGINAL_CREATURE_TEMPLATE_PROFILE.md) resolves five unchanged inherited IFF sources and eight deterministic fields with independent value/provenance agreement. Human fallback sphere is center(0,1,0), radius0.5; lowest point0.5 above origin. Native negative gates and Godot build pass. Preview actor volume and controller equivalence remain separate; metrics unchanged.
+
+
+## 2026-10-01 continuous sphere contact
+
+[Modern sphere kernel](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_TRIANGLE_SPHERE_CONTACT.md) passes analytic feature/ownership/negative gates,512 exact bounds/exhaustive comparisons and512 independent convex-distance queries.249 moving/134 clear/129 initial; max time error1.55e-15. Profile-offset floor adoption remains next; no actor-host or original solver claim. Metrics unchanged.
+
+
+## 2026-10-01 sphere floor adoption
+
+[Precise floor adapter](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SPHERE_FLOOR_ADOPTION.md) passes synthetic contact/reuse/rollback gates and independent unchanged hall checks.16 boundary stops,1,600 stable repeats,16 retreats; raised sphere uses explicit center offset without feet clearance. Portal ramp composition remains next. Metrics unchanged.
+
+
+## 2026-10-01 portal sphere profile
+
+[Original-profile portal adapter](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_PORTAL_SPHERE_PROFILE.md) passes512 independent synthetic cases and the unchanged42,986-triangle route. All eight original requests clear, including the low render rises;800 endpoint repeats/eight reverse transfers pass. Sphere dimensions come from the original five-file human template chain. Door-box composition remains next; original actor participation and metrics unchanged.
+
+
+## 2026-10-01 solid box sphere contact
+
+[Captured solid-box kernel](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SOLID_BOX_SPHERE_CONTACT.md) passes analytic gates and512 independent distance comparisons:269 blocked/115 clear/128 initial overlap, max time error6.88e-15. Rounded features and deep interior overlap are preserved. Floor/door composition follows; metrics unchanged.
+
+
+## 2026-10-01 sphere-box floor transfer
+
+[Captured-box floor adapter](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SPHERE_BOX_FLOOR_TRANSFER.md) passes native ownership/snapshot/negative gates,512 independent slope/seam/rotated-box cases and Godot build.36 accepted/281 obstacle stops/195 floor stops; physical door composition follows. Metrics unchanged.
+
+
+## 2026-10-01 persistent sphere doors
+
+[Explicit scene sphere option](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_PERSISTENT_SPHERE_DOORS.md) passes80 synthetic transfers and2,880 original-profile ticks:24 transfers/182 contacts.14 sources and all returned floor planes are audited; dynamic controllers are not independently reimplemented. Conservative closing cube passes synthetic hold/release gates; original occupied-threshold/preview work follows. Metrics unchanged.
+
+
+## 2026-10-01 original-profile preview
+
+[Pinned object-root preview option](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_ORIGINAL_PROFILE_PREVIEW.md) loads70 unchanged sources/9,622,375 bytes once through the worker/cache. Native content frame audit and original headless/GPU route/occupied closing/cancellation gates pass; default box host regression passes. Character appearance is referenced, not rendered. Combined modern room/door obstruction is next; metrics unchanged.
+
+
+## 2026-10-01 combined sphere scene
+
+[Combined sphere guard](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_COMBINED_SPHERE_SCENE.md) retains42,986 selected original triangles and composes earliest supported room/door contact. Full native, original2,880-tick source/geometry/frame audit and combined headless host gates pass. Local mean tick0.702 ms; oversized work rejects before mutation. Character descriptors follow; original participation and metrics unchanged.
+
+
+## 2026-10-01 human appearance descriptors
+
+[Object-root SAT/MLOD slice](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_HUMAN_APPEARANCE_DESCRIPTORS.md) matches eight unchanged sources/9,080 bytes and every dependency/flag/band independently. Full native and original pin/mask/budget gates pass. Character skeleton/mesh/rendering remain next; metrics unchanged.
+
+
+## 2026-10-01 human skeleton descriptors
+
+[Owned SKTM/SLOD slice](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_HUMAN_SKELETON_DESCRIPTORS.md) independently matches ten unchanged sources/19,394 bytes and five levels/131 joints. Full native/original negative and field-hash gates pass. Head/ head case mismatch resolves under instruction-backed default ASCII folding; locale behavior remains separate. Bind matrices/rendering follow; metrics unchanged.
+
+
+## 2026-10-01 human bind transforms
+
+[Engine-neutral bind builder](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_HUMAN_BIND_TRANSFORMS.md) passes noncommuting known poses and independently agrees on176 original body/face matrices (max4.141e-7). Original ten-source descriptors and Godot build pass. MGN geometry/rendering follows; metrics unchanged.
+
+
+## 2026-10-01 human skin sources
+
+[Bounded original MGN prefix](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_HUMAN_SKIN_SOURCES.md) independently matches twelve sources/329,296 bytes,1,454 positions/2,170 weights and all named-joint correspondence. Native/negative gates pass. Blend/occlusion/TRTS are retained metadata; primitive decoding follows. Metrics unchanged.
+
+
+## 2026-10-01 human MGN geometry
+
+[Owned shader geometry](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_HUMAN_MGN_GEOMETRY.md) independently matches1,790 original shader vertices/2,810 triangles/five shaders/zero degenerates and retains the face texture-renderer binding. Native/negative gates pass. Neutral preview follows; skinning/customization/occlusion/face generation remain separate. Metrics unchanged.
+
+
+## 2026-10-01 neutral original character preview
+
+[Object-root inspector](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_NEUTRAL_CHARACTER_PREVIEW.md) passes original headless/cancellation/GPU upload and inspected capture. Twelve sources/five surfaces/2,810 triangles display an aligned neutral bind-pose human. Skinning/material customization/face generation/animation remain open; persistent scene placement follows. Metrics unchanged.
+
+
+## 2026-10-01 interior character visual
+
+[Interior character visual](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_CHARACTER_VISUAL.md) passes77-source independent audit,2,880 original ticks, both-pose placement, cancellation and inspected GPU capture. Five neutral surfaces now follow persistent actor feet in the original interior. Binding/skinning/animation remain pending; metrics unchanged.
+
+
+## 2026-10-01 skeletal joint binding
+
+[Skeletal joint binding](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_JOINT_BINDING.md) resolves53 original attached joints/52 mesh names and independently verifies4,362 modern position diagnostics. Bind preservation error below4e-7; original consumer/normal/tangent semantics remain open. Metrics unchanged.
+
+
+## 2026-10-01 skeletal influence consumers
+
+[Skeletal influence consumers](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-01_SKELETAL_INFLUENCE_CONSUMERS.md) confirms TWHD/TWDT position groups, complete transfer without four-weight truncation, and PIDX-selected influence ownership for NIDX normals. Weighted position/direction evaluator and direct normal output traced; animated matrix producer remains open. Metrics unchanged.
+
+
+## 2026-10-01 skeletal shader deformation
+
+[Skeletal shader deformation](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_SHADER_DEFORMATION.md) passes unequal-map/raw-direction/negative fixtures and independently agrees on5,370 original shader vertex diagnostics. Complete PIDX weights deform NIDX normals and DOT3 tangents; generated animation remains open. Metrics unchanged.
+
+
+## 2026-10-01 weighted character pose preview
+
+[Weighted character pose preview](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_WEIGHTED_CHARACTER_POSE_PREVIEW.md) shows a visibly bent original forearm under explicit synthetic pose. Eight headless/GPU switches/reset, complete upload and cancellation gates pass; original animation playback remains open. Metrics unchanged.
+
+
+## 2026-10-01 logical animation tables
+
+[Logical animation tables](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_LOGICAL_ANIMATION_TABLES.md) independently matches14 original sources/710,463 bytes and1,046 serialized entries. Four duplicated body names retained; authored/synthetic default and opaque typed subtrees validated. Selected clip/proxy execution remains next; metrics unchanged.
+
+
+## 2026-10-01 selected animation proxy
+
+[Selected animation proxy](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SELECTED_ANIMATION_PROXY.md) independently matches15 original sources/726,134 bytes and one original ambient idle CKAT envelope. Owned proxy/scale and masked/wrong-pin gates pass; channel decoding/playback remain next. Metrics unchanged.
+
+
+## 2026-10-01 compressed keyframe structure
+
+[Compressed clip structure](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_COMPRESSED_KEYFRAME_STRUCTURE.md) independently matches all selected original channel arrays and 2,284 keys through fifteen unchanged sources. Thirty-seven clip names match the body skeleton; `rifle` remains unresolved. Packed quaternion evaluation/playback remain next. Native truncation/negative/ownership gates pass; metrics unchanged.
+
+
+## 2026-10-01 packed quaternion numerical decoding
+
+[Packed quaternion decoder](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_PACKED_QUATERNION_DECODE.md) independently agrees with executable-table decoding of all 2,225 selected original rotations (maximum error9.14e-8, zero selected repairs). All deployed-selector native gates and explicit overshoot diagnostic/repair pass. Interpolation, unmatched transform handling and playback remain next; metrics unchanged.

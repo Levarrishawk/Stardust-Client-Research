@@ -2,11 +2,12 @@
 
 This is the canonical entry point for reviewing the `Stardust.exe` research before designing or implementing a replacement client.
 
-Latest development session: [development run until 22:00 Eastern](research/sessions/IMPLEMENTATION_SESSION_2026-09-30_UNTIL_2200.md).
+Latest development session: [development run through October 1, 05:00 Eastern](research/sessions/IMPLEMENTATION_SESSION_2026-09-30_TO_2026-10-01_0500.md).
 Current executable acceptance gates: [implementation record](docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
 Latest checkpoint: [status observation boundary](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_STATUS_BOUNDARY.md).
 Latest follow-up: [direct status CRC receive rule](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-29_STATUS_CRC_RECEIVE.md).
-Latest implementation checkpoint: [selected hidden-helper geometry](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SELECTED_HELPER_GEOMETRY.md).
+Latest implementation checkpoint: [packed quaternion decoding](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_PACKED_QUATERNION_DECODE.md).
+Latest collision research: [creature fallback dimensions](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-01_CREATURE_COLLISION_FALLBACK.md).
 
 ## Scope and current position
 

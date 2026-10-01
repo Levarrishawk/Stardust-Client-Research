@@ -14,17 +14,18 @@ public sealed class SingleCellFloorStepTriangleBoxWalker
     private readonly StaticTriangleBoxCollider collider;
     private readonly FloorStepPolicy policy;
     public SingleCellFloorStepTriangleBoxWalker(FloorMeshDescription description,IReadOnlyList<CollisionTriangle> triangles,
-        FloorStepPolicy? stepPolicy=null)
+        FloorStepPolicy? stepPolicy=null,int maximumTriangles=2048)
     {
         ArgumentNullException.ThrowIfNull(triangles);
-        if(triangles.Count>2048)throw new InvalidDataException("Triangle step collider budget.");
+        if(maximumTriangles is <0 or >StaticTriangleBoxCollider.MaximumSupportedTriangles)throw new ArgumentOutOfRangeException(nameof(maximumTriangles));
+        if(triangles.Count>maximumTriangles)throw new InvalidDataException("Triangle step collider budget.");
         policy=stepPolicy??new();policy.Validate();var captured=triangles.ToArray();
-        floor=new(description);boxed=new(description,captured);steps=new(description);collider=new(captured);
+        floor=new(description);collider=new(captured,maximumTriangles);boxed=new(floor,collider);steps=new(description);
     }
     public FloorStepTriangleBoxWalkResult Walk(int triangle,Vector3 start,Vector3 desired,Vector3 half,
-        bool allowSeparatingContact=false,int maximumCrossings=4096)
+        bool allowSeparatingContact=false,int maximumCrossings=4096,float feetClearance=0)
     {
-        var prefix=boxed.Walk(triangle,start,desired,half,allowSeparatingContact,maximumCrossings);
+        var prefix=boxed.Walk(triangle,start,desired,half,allowSeparatingContact,maximumCrossings,feetClearance);
         if(prefix.Status!=FloorBoxWalkStatus.FloorStopped||prefix.Floor.Status!=FloorWalkStatus.UnsupportedSurface)
             return new(prefix,null,0);
         var proposal=steps.Probe(floor.Trace(triangle,start,desired,maximumCrossings),desired,policy);
@@ -34,7 +35,7 @@ public sealed class SingleCellFloorStepTriangleBoxWalker
         var lifted=new FloorWalkPath(new(FloorWalkStatus.Accepted,proposal.TargetTriangle,proposal.Landing,1,-1,-1,0),
             new[]{new FloorWalkSegment(proposal.TargetTriangle,0,1,proposal.SourceContact,proposal.TargetContact),
                 new FloorWalkSegment(proposal.TargetTriangle,1,1,proposal.TargetContact,proposal.Landing)});
-        var contact=FloorPathTriangleBoxSweep.Sweep(lifted,collider,half,allowSeparatingContact);
+        var contact=FloorPathTriangleBoxSweep.Sweep(lifted,collider,half,allowSeparatingContact,feetClearance);
         if(contact.Status!=TriangleBoxContactStatus.Clear)
         {
             var blocked=new FloorTriangleBoxWalkResult(FloorBoxWalkStatus.BoxStopped,prefix.Floor,
@@ -42,7 +43,7 @@ public sealed class SingleCellFloorStepTriangleBoxWalker
             return new(blocked,proposal,0,"VerticalStepBlocked");
         }
         var continuation=boxed.Walk(proposal.TargetTriangle,proposal.Landing,desired,half,allowSeparatingContact,
-            maximumCrossings-prefix.Floor.Crossings-cost);
+            maximumCrossings-prefix.Floor.Crossings-cost,feetClearance);
         if(continuation.Contact is not null&&continuation.Floor.Parameter==0)
             return new(new(FloorBoxWalkStatus.BoxStopped,prefix.Floor,continuation.Contact with{Parameter=prefix.Floor.Parameter},
                 "StepLandingOverlap"),proposal,0,"StepLandingOverlap");

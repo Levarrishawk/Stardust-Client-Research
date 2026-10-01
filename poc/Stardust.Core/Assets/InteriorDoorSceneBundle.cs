@@ -8,8 +8,10 @@ public sealed record InteriorDoorSceneBundle(PortalLayoutDescription Layout, IRe
     IReadOnlyList<PortalSingleLeafDoorBundle> Doorways, IReadOnlyList<InteriorDoorBinding> Bindings,
     IReadOnlyDictionary<string, AssetSourceIdentity> Sources, string SpecificationSha256, string LayoutPath)
 {
-    public InteriorDoorActorScene CreateActor(CellFloorLocator initial, AppearanceTransform? owner = null, FloorStepPolicy? stepPolicy = null, bool holdClosingLeaves = false) =>
-        new(Layout, Floors, Bindings, initial, owner, stepPolicy: stepPolicy, holdClosingLeaves: holdClosingLeaves);
+    public InteriorDoorActorScene CreateActor(CellFloorLocator initial, AppearanceTransform? owner = null, FloorStepPolicy? stepPolicy = null, bool holdClosingLeaves = false,
+        ActorSphereVolume? actorSphere = null,IReadOnlyDictionary<int,IReadOnlyList<CollisionTriangle>>? staticTriangles=null,int maximumTriangles=2048) =>
+        new(Layout, Floors, Bindings, initial, owner, stepPolicy: stepPolicy, holdClosingLeaves: holdClosingLeaves,actorSphere:actorSphere,
+            staticTriangles:staticTriangles,maximumTriangles:maximumTriangles);
 }
 
 /// <summary>Explicit bounded scene selection. No asset search, style fallback or inferred doorway selection.</summary>

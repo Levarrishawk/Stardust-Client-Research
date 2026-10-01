@@ -25,3 +25,17 @@ The host now uses the [owned combined content reader](INTERIOR_SCENE_CONTENT_CON
 The current visual adapter owns one composite graph for rooms and both doors. Independent leaf nodes share both immutable LOD meshes; camera LOD and world transforms remain per instance. One GPU texture cache serves the graph. [Shared scene gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SHARED_SCENE_VISUALS.md) passes headless/GPU resource identity and placement: five textured templates / 44 unique textured surfaces / two omitted / zero neutral / 28 GPU textures. Door MAIN textures are now included.
 
 CPU content loading now uses the [owned cancellable worker](BACKGROUND_ASSET_LOAD_CONTRACT.md). Configuration/TRE streams belong to the worker and close before transfer; Godot resources are created on the main thread. A responsive loading panel supplies Cancel. [Success/cancellation gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BACKGROUND_SCENE_LOAD.md) passes original headless/GPU success and headless pending-lookup cancellation with no scene publication.
+
+
+## Explicit original-profile sphere
+
+Launcher `-ActorTemplate` and `-ActorTemplateSha256` require a pinned scene specification and select the deterministic object-root profile. Background loading delivers owned profile values and the70-source content union before GPU creation. The displayed collision sphere uses recovered center(0,1,0)/radius0.5 for the original human sample; camera height remains the separate preview policy. Character skeletal appearance is not loaded by this option.
+
+Sphere mode preserves the existing controls but supplies no step/slide policy. Room triangles remain visual. Closing safety uses the declared enclosing cube. Original headless/GPU gates pass existing route/input/placement checks plus occupied closing hold, denial, retreat and release under two poses. Pending lookup cancellation yields zero scene publication. Private GPU capture was inspected. Default box host regression passes. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_ORIGINAL_PROFILE_PREVIEW.md).
+
+
+## Explicit modern room-triangle sphere guard
+
+Optional `InteriorSceneTriangleGuard` owns direct static-mesh room triangles selected by explicit collision selector0/1. Source/retained capacity and cell limits are enforced before publication. Content creation requires actor profile, appearances and materials; the original host selects selector1/capacity65,536 using `-SceneTriangleGuard`. All42,986 original triangles and the70-source union agree independently.
+
+The sphere scene preflights static work before controller mutation, compares static and captured door/barrier progress, and validates moved landings against both obstacle sets. Door contact wins exact ties; unsupported combined landing retains initial owner/position. No stepping/sliding or original actor selection claim follows. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_COMBINED_SPHERE_SCENE.md) records native positive contacts, original2,880-tick audit, resource atomicity, local timing and headless host acceptance.

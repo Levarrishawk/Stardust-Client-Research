@@ -19,3 +19,11 @@ The adapter converts transforms using S R S and translation S t, with S=diag(1,1
 `verify_detail_extents.py ROOT CONFIG EXISTING_DTLA_CSV CORE_DLL PRIVATE_OUTPUT` independently compares original primary extent float bits, pivot bytes, effective priority and SHA with a one-process native inventory. The supplied inventory is not independently discovered by this verifier. All 6,198 current entries agree: 6,048 EXBX/0001 and 150 NULL. Of the box extents, 6,001 centers are nonzero; 3,146 differ exactly from midpoint, mostly by rounding. One differs by more than 1e-4, with maximum coordinate difference about 0.46737. No proprietary position corpus belongs in curated output.
 
 See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_APPR_PIVT_CAMERA_LOD.md) for input identity, validation and the next bounded probe.
+
+## Authored secondary extent — October 1
+
+`DecodeCollisionBase` reads the second APPR/0003 extent independently of primary bounds. Missing secondary data rejects; empty FORM NULL returns null. `DecodeExtent` shares the owned NULL/EXSP/EXBX grammar above. Unsupported composite/mesh families reject explicitly. Primary distance behavior is unchanged.
+
+Confirmed baseline `00B2CCA0` calls `00B2CCF0` then `00B2CD10`; primary stores template `+0C`, secondary stores `+10`, both through factory `012707C0`. The nonnull secondary receives virtual `+40`. This source metadata does not establish runtime actor fallback or participation.
+
+The [bounded six-source probe](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_AUTHORED_COLLISION_EXTENTS.md) independently agrees on original primary F32 values and six NULL secondaries: three selected rooms, door DTLA and both leaf meshes. Synthetic primitive/NULL/malformed/unsupported gates and Godot build pass. Actor collision extent source policy remains in the [separate participation trace](GROUNDED_ACTOR_COLLISION_PARTICIPATION.md).

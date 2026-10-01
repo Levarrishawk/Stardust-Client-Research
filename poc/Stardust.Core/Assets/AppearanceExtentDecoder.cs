@@ -5,7 +5,7 @@ namespace Stardust.Core.Assets;
 
 public sealed record AppearanceExtent(string Kind,string Version,Vector3 Center,float Radius,Vector3? Minimum=null,Vector3? Maximum=null);
 
-/// <summary>Primary APPR/0003 extent only. Collision mesh, hardpoints and floor remain separate metadata.</summary>
+/// <summary>Owned bounded primary/secondary APPR extents. Unsupported collision families remain explicit.</summary>
 public static class AppearanceExtentDecoder
 {
     public static AppearanceExtent? DecodeBase(IffNode appearance)
@@ -13,10 +13,22 @@ public static class AppearanceExtentDecoder
         Require(appearance.IsForm("APPR") && appearance.Children.Count==1 && appearance.Children[0].IsForm("0003"),"Unsupported appearance base version.");
         IReadOnlyList<IffNode> children=appearance.Children[0].Children;
         if(children.Count==0)return null;
-        IffNode extent=children[0];
+        return DecodeExtent(children[0]);
+    }
+    /// <summary>Authored secondary extent, not the selected runtime actor collider or primary fallback.</summary>
+    public static AppearanceExtent? DecodeCollisionBase(IffNode appearance)
+    {
+        Require(appearance.IsForm("APPR") && appearance.Children.Count==1 && appearance.Children[0].IsForm("0003"),"Unsupported appearance base version.");
+        IReadOnlyList<IffNode> children=appearance.Children[0].Children;
+        Require(children.Count>=2,"Missing authored secondary appearance extent.");
+        return DecodeExtent(children[1]);
+    }
+    /// <summary>NULL, EXSP/0001 or EXBX/0001 only; no mesh/composite extent substitution.</summary>
+    public static AppearanceExtent? DecodeExtent(IffNode extent)
+    {
         if(extent.IsForm("NULL")){Require(extent.Children.Count==0,"Invalid NULL extent.");return null;}
         if(extent.IsForm("EXSP"))return Sphere(extent);
-        Require(extent.IsForm("EXBX") && extent.Children.Count==1 && extent.Children[0].IsForm("0001"),"Unsupported primary extent family/version.");
+        Require(extent.IsForm("EXBX") && extent.Children.Count==1 && extent.Children[0].IsForm("0001"),"Unsupported extent family/version.");
         IReadOnlyList<IffNode> box=extent.Children[0].Children;
         Require(box.Count==2 && box[0].IsForm("EXSP") && box[1].Tag=="BOX " && box[1].Payload.Length==24,"Invalid box extent.");
         AppearanceExtent sphere=Sphere(box[0]);ReadOnlySpan<byte> data=box[1].Payload.Span;

@@ -35,3 +35,19 @@ Reset and dispose clear every controller and retained contact. They reject calls
 ## 2026-09-30 explicit closing safety
 
 [Optional closing sweep](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_DOOR_CLOSING_SAFETY.md) holds an obstructed close without granting entry. Native lifecycle/event/failure/scene-retreat gates and independent 240 ticks / 52 holds pass; original unguarded 2,880-tick scene regression unchanged. Original obstruction policy remains unknown.
+
+
+## Explicit sphere volume
+
+Optional `ActorSphereVolume(WorldCenterOffset, Radius)` selects precise rounded sphere movement through captured doors/barriers. The offset is declared world space; it is not rotated automatically at owner changes. Simultaneous explicit box bounds or a floor-step policy reject. The default constructor retains its existing box behavior. Sphere mode supplies no stepping or sliding and does not enable room triangles.
+
+Door sensors use the sphere center. External permission callbacks still complete before mutation. Closing protection, when selected, uses the established swept-box policy with a cube enclosing the sphere; cube feet are center minus radius on Y, preserving every offset component. This is conservative closing protection, distinct from exact rounded movement contact.
+
+Native80-transfer synthetic gates and a2,880-tick original-profile route pass. Original route:24 transfers/182 contacts, fourteen unchanged sources/95,306 bytes. All returned floor planes and source/profile values are audited independently; dynamic door simulation is not independently reimplemented. The original route has no closing holds; synthetic tests cover occupied holds/release. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_PERSISTENT_SPHERE_DOORS.md).
+
+
+## Explicit modern room-triangle sphere guard
+
+Optional `InteriorSceneTriangleGuard` owns direct static-mesh room triangles selected by explicit collision selector0/1. Source/retained capacity and cell limits are enforced before publication. Content creation requires actor profile, appearances and materials; the original host selects selector1/capacity65,536 using `-SceneTriangleGuard`. All42,986 original triangles and the70-source union agree independently.
+
+The sphere scene preflights static work before controller mutation, compares static and captured door/barrier progress, and validates moved landings against both obstacle sets. Door contact wins exact ties; unsupported combined landing retains initial owner/position. No stepping/sliding or original actor selection claim follows. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_COMBINED_SPHERE_SCENE.md) records native positive contacts, original2,880-tick audit, resource atomicity, local timing and headless host acceptance.

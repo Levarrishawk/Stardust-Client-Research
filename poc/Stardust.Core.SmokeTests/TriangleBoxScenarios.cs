@@ -18,6 +18,9 @@ internal static class TriangleBoxScenarios
         hit=small.Sweep(new(.25f,.25f,-1),new(.25f,.25f,1),Vector3.Zero);if(hit.Status!=TriangleBoxContactStatus.Blocked||hit.Parameter!=.5)throw new Exception("Triangle zero-box ray failed.");
         var floor=new StaticTriangleBoxCollider(new[]{new CollisionTriangle(1,new(-10,0,-10),new(10,0,-10),new(0,0,10))});
         if(floor.Sweep(new(0,.5f,0),new(1,.5f,0),new(.5f,.5f,.5f),true).Status!=TriangleBoxContactStatus.Clear)throw new Exception("Triangle tangent support failed.");
+        var tile=new StaticTriangleBoxCollider(new[]{new CollisionTriangle(0,Vector3.Zero,Vector3.UnitX,Vector3.UnitZ)});
+        if(tile.Sweep(new(-1,.5f,.25f),new(.25f,.5f,.25f),new(.25f,.5f,.25f),true).Status!=TriangleBoxContactStatus.Clear)throw new Exception("Later tangent floor-tile entry blocked lateral movement.");
+        if(tile.Sweep(new(-1,.5f,.25f),new(.25f,.5f,.25f),new(.25f,.5f,.25f)).Status!=TriangleBoxContactStatus.Blocked)throw new Exception("Closed-contact query unexpectedly ignored tangent floor-tile entry.");
         var tied=new StaticTriangleBoxCollider(new[]{wall with{Id=9},wall with{Id=3}});if(tied.Sweep(new(-3,0,0),new(3,0,0),new(.5f,.5f,.5f)).TriangleId!=3)throw new Exception("Triangle contact tie unstable.");
         HostAccountingScenarios.Reject<ArgumentException>(()=>collider.Sweep(Vector3.Zero,Vector3.One,new(-1,1,1)));
         HostAccountingScenarios.Reject<ArgumentException>(()=>collider.Sweep(Vector3.Zero,new(101,0,0),Vector3.One));
@@ -51,6 +54,8 @@ internal static class TriangleBoxScenarios
         var hit=blocked.Walk(0,start,end,half,true);
         if(hit.Steps!=0||hit.Diagnostic!="VerticalStepBlocked"||hit.Movement.Floor.Position!=new Vector3(1,0,.5f))throw new Exception("Triangle step ceiling did not hold source.");
         var held=hit.Movement.Floor;
+        var shifted=blocked.Walk(0,start,end,half,true,feetClearance:.0001f);
+        if(shifted.Steps!=0||shifted.Diagnostic!="VerticalStepBlocked"||shifted.Movement.Floor.Position!=held.Position)throw new Exception("Explicit feet clearance changed supported step rollback.");
         for(int i=0;i<100;i++)
         {
             hit=blocked.Walk(held.TriangleIndex,held.Position,end,half,true);
@@ -134,6 +139,10 @@ internal static class TriangleBoxScenarios
         var floor=new StaticTriangleBoxCollider(new[]{new CollisionTriangle(1,new(-10,0,-10),new(10,0,-10),new(0,0,10))});
         path=Path(new FloorWalkSegment(3,0,1,new(0,0,0),new(1,0,0)));
         if(FloorPathTriangleBoxSweep.Sweep(path,floor,new(.5f,.5f,.5f),true).Status!=TriangleBoxContactStatus.Clear)throw new Exception("Triangle feet-path support prevented walking.");
+        var mismatchedFloor=new StaticTriangleBoxCollider(new[]{new CollisionTriangle(1,new(-10,.000002f,-10),new(10,.000002f,-10),new(0,.000002f,10))});
+        if(FloorPathTriangleBoxSweep.Sweep(path,mismatchedFloor,new(.5f,.5f,.5f),true).Status!=TriangleBoxContactStatus.InitialOverlap)throw new Exception("Authored floor mismatch was silently tolerated.");
+        if(FloorPathTriangleBoxSweep.Sweep(path,mismatchedFloor,new(.5f,.5f,.5f),true,.0001f).Status!=TriangleBoxContactStatus.Clear)throw new Exception("Explicit feet clearance did not separate floor geometry.");
+        HostAccountingScenarios.Reject<InvalidDataException>(()=>FloorPathTriangleBoxSweep.Sweep(path,mismatchedFloor,Vector3.One,true,-.01f));
         var many=new StaticTriangleBoxCollider(Enumerable.Range(0,2048).Select(i=>new CollisionTriangle(i,new(0,-10,-10),new(0,10,-10),new(0,0,10))).ToArray());
         path=Path(Enumerable.Range(0,129).Select(i=>new FloorWalkSegment(0,i/129.0,(i+1)/129.0,new(0,0,0),new(0,0,0))).ToArray());
         HostAccountingScenarios.Reject<InvalidDataException>(()=>FloorPathTriangleBoxSweep.Sweep(path,many,Vector3.One));

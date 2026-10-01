@@ -12,12 +12,21 @@ param(
     [switch]$Component,
     [switch]$Interior,
     [switch]$PaletteInspector,
+    [switch]$Creature,
+    [ValidatePattern('^[0-9A-Fa-f]{64}$')][string]$CreatureAppearanceSha256,
+    [switch]$CancelCreatureLoad,
+    [switch]$CreaturePose,
     [string]$DoorStyle,
     [string]$SceneSpecification,
     [ValidatePattern('^[0-9A-Fa-f]{64}$')][string]$SceneSpecificationSha256,
     [switch]$HoldClosingDoors,
+    [string]$ActorTemplate,
+    [ValidatePattern('^[0-9A-Fa-f]{64}$')][string]$ActorTemplateSha256,
     [switch]$SceneGeometry,
     [switch]$SceneTextures,
+    [switch]$SceneTriangleGuard,
+    [switch]$SceneCharacter,
+    [ValidatePattern('^[0-9A-Fa-f]{64}$')][string]$SceneCharacterAppearanceSha256,
     [switch]$PortalVisibility,
     [switch]$CancelSceneLoad,
     [ValidatePattern('^[0-9A-Fa-f]{64}$')][string]$DoorTableSha256,
@@ -48,12 +57,20 @@ $taskRoot=(Resolve-Path -LiteralPath $ArchiveRoot).Path
 $taskConfiguration=(Resolve-Path -LiteralPath $Configuration).Path
 if ($Interactive -and ($Headless -or $CapturePath)) { throw 'Choose interactive inspection or bounded validation/capture.' }
 if ($Headless -and $CapturePath) { throw 'Headless validation cannot capture GPU rendering.' }
-if (([int][bool]$Component+[int][bool]$Detail+[int][bool]$Interior+[int][bool]$PaletteInspector+[int][bool]$DoorStyle+[int][bool]$SceneSpecification) -gt 1) { throw 'Choose one asset inspector.' }
+if (([int][bool]$Component+[int][bool]$Detail+[int][bool]$Interior+[int][bool]$PaletteInspector+[int][bool]$DoorStyle+[int][bool]$SceneSpecification+[int][bool]$Creature) -gt 1) { throw 'Choose one asset inspector.' }
+if ([bool]$Creature -ne [bool]$CreatureAppearanceSha256) { throw 'Creature and CreatureAppearanceSha256 are required together.' }
+if ($CancelCreatureLoad -and (-not $Creature -or -not $Headless)) { throw 'CancelCreatureLoad requires a headless creature inspector.' }
+if ($CreaturePose -and -not $Creature) { throw 'CreaturePose requires the standalone creature inspector.' }
 if ([bool]($DoorStyle -or $SceneSpecification) -ne [bool]$DoorTableSha256) { throw 'Door style or scene specification requires DoorTableSha256.' }
 if ([bool]$SceneSpecification -ne [bool]$SceneSpecificationSha256) { throw 'SceneSpecification and SceneSpecificationSha256 are required together.' }
 if ($HoldClosingDoors -and -not $SceneSpecification) { throw 'HoldClosingDoors requires an explicit scene specification.' }
+if ([bool]$ActorTemplate -ne [bool]$ActorTemplateSha256) { throw 'ActorTemplate and ActorTemplateSha256 are required together.' }
+if ($ActorTemplate -and -not $SceneSpecification) { throw 'ActorTemplate requires an explicit scene specification.' }
 if ($SceneGeometry -and -not $SceneSpecification) { throw 'SceneGeometry requires an explicit scene specification.' }
 if ($SceneTextures -and -not $SceneGeometry) { throw 'SceneTextures requires SceneGeometry.' }
+if ($SceneTriangleGuard -and (-not $ActorTemplate -or -not $SceneTextures)) { throw 'SceneTriangleGuard requires a pinned ActorTemplate and SceneTextures.' }
+if ([bool]$SceneCharacter -ne [bool]$SceneCharacterAppearanceSha256) { throw 'SceneCharacter and SceneCharacterAppearanceSha256 are required together.' }
+if ($SceneCharacter -and (-not $ActorTemplate -or -not $SceneGeometry)) { throw 'SceneCharacter requires a pinned ActorTemplate and SceneGeometry.' }
 if ($PortalVisibility -and -not $SceneGeometry) { throw 'PortalVisibility requires SceneGeometry.' }
 if ($CancelSceneLoad -and (-not $SceneSpecification -or -not $Headless)) { throw 'CancelSceneLoad requires a headless pinned scene specification.' }
 if ($SceneSpecification -and ($DoorCell -ne -1 -or $DoorPortal -ne -1 -or $DoorLeafSha256 -or $DoorWalk -or $PreciseDoorWalk -or $StepDoorWalk -or $LocalStepDoorWalk -or $ConnectedDoorApproach)) { throw 'Scene specification selects its pinned door instances and precise local-step movement.' }
@@ -83,11 +100,17 @@ $taskArguments+=@('--','--asset-root',$taskRoot,'--asset-config',$taskConfigurat
 if($Detail){$taskArguments+='--asset-detail'}
 if($Component){$taskArguments+='--asset-component'}
 if($PaletteInspector){$taskArguments+='--palette-inspector'}
+if($Creature){$taskArguments+=@('--asset-creature','--creature-appearance-sha256',$CreatureAppearanceSha256)}
+if($CancelCreatureLoad){$taskArguments+='--cancel-creature-load'}
+if($CreaturePose){$taskArguments+='--creature-pose'}
 if($DoorStyle){$taskArguments+=@('--door-style',$DoorStyle,'--door-table-sha256',$DoorTableSha256)}
 if($SceneSpecification){$taskSceneSpecification=(Resolve-Path -LiteralPath $SceneSpecification).Path;$taskArguments+=@('--interior-scene-spec',$taskSceneSpecification,'--interior-scene-sha256',$SceneSpecificationSha256,'--door-table-sha256',$DoorTableSha256)}
 if($HoldClosingDoors){$taskArguments+='--hold-closing-doors'}
+if($ActorTemplate){$taskArguments+=@('--actor-template',$ActorTemplate,'--actor-template-sha256',$ActorTemplateSha256)}
 if($SceneGeometry){$taskArguments+='--scene-geometry'}
 if($SceneTextures){$taskArguments+='--scene-textures'}
+if($SceneTriangleGuard){$taskArguments+='--scene-triangle-guard'}
+if($SceneCharacter){$taskArguments+=@('--scene-character','--scene-character-appearance-sha256',$SceneCharacterAppearanceSha256)}
 if($PortalVisibility){$taskArguments+='--portal-visibility'}
 if($CancelSceneLoad){$taskArguments+='--cancel-scene-load'}
 if($DoorPortal -ge 0){$taskArguments+=@('--door-cell',[string]$DoorCell,'--door-portal',[string]$DoorPortal,'--door-leaf-sha256',$DoorLeafSha256)}

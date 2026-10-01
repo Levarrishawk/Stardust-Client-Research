@@ -32,6 +32,23 @@ def nodes(data, start=0, end=None, depth=0):
     return result
 
 
+def indexed_triangles(data):
+    """Validated source-ordinal indexed positions, including exact degenerates."""
+    inspect(data)
+    root, = nodes(data); version, = root[1]; sps, = version[1][1][1]
+    result = []
+    for _, group in sps[1][1:]:
+        for primitive_version, primitive in group[2:]:
+            _, vtxa, indx, *_ = primitive; vv, = vtxa[1]; vi, vd = vv[1]
+            _, count = struct.unpack('<II', vi[1]); stride = len(vd[1]) // count if count else 0
+            vertices = [struct.unpack_from('<3f', vd[1], i * stride) for i in range(count)]
+            n, = struct.unpack_from('<I', indx[1])
+            values = struct.unpack_from('<' + ('I' if primitive_version == b'0000' else 'H') * n, indx[1], 4)
+            for i in range(0, n, 3):
+                result.append((len(result), [vertices[values[i+j] & 65535] for j in range(3)]))
+    return result
+
+
 def inspect(data):
     root, = nodes(data)
     assert root[0] == b"MESH"

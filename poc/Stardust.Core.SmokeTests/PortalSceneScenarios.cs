@@ -103,6 +103,17 @@ internal static class PortalSceneScenarios
         Visit(scene.Geometry.Root);
         if(textured is not null)
         {
+            foreach(var mesh in textured.Materials.Meshes)
+            foreach(var primitive in mesh.Value.Mesh.Primitives.Select((value,index)=>(value,index)))
+            {
+                string effectPath=mesh.Value.Materials[primitive.value.ShaderPath].References.EffectPath;
+                var candidates=mesh.Value.Effects[effectPath].Implementations;
+                for(int i=0;i<candidates.Count;i++)
+                {
+                    var flags=MeshPrimitiveCollisionPolicy.FromSelectedImplementation(candidates[i]);
+                    Console.WriteLine("portal_collision_predicate="+System.Text.Json.JsonSerializer.Serialize(new{mesh=mesh.Key,primitive=primitive.index,shader=primitive.value.ShaderPath,effect=effectPath,implementation=i,version=candidates[i].Version,opaque=flags.OpaqueFirstPass,selector_one=flags.SelectorOne,triangles=primitive.value.Indices.Count/3}));
+                }
+            }
             foreach(string meshPath in textured.Materials.Meshes.Keys)Console.WriteLine("portal_material_mesh="+meshPath);
             Dictionary<string,StaticEffectDescription> effectGraphs=new();
             foreach(var mesh in textured.Materials.Meshes.Values)foreach(var effect in mesh.Effects)effectGraphs.TryAdd(effect.Key,effect.Value);

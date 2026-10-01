@@ -577,3 +577,17 @@ Native IMPL0004/PASS0008 now preserve version-specific absent fields; see the [t
 ## Deployed customizable shader structure — 2026-09-30
 
 All5,173 CSHD0001 resources now pass [owned structure and namespace agreement](CUSTOMIZABLE_SHADER_DECODER_CONTRACT.md); inline shader state and authored control defaults must remain distinct.
+
+## 2026-10-01 static mesh collision source selection
+
+[Selection specification](STATIC_MESH_COLLISION_SELECTION.md) closes original segment-query primitive eligibility and selected implementation predicates. Native and independent original parsing agree across164 candidates/44 primitives/42,986 triangles. Hall6 qualifies under both selectors; original actor selector and volume collision remain separate. Metrics unchanged.
+
+
+## Original creature object-root profile
+
+The [bounded template contract](OBJECT_TEMPLATE_COLLISION_PROFILE_CONTRACT.md) starts at unchanged object IFF, owns SCOT/STOT/SHOT structure and resolves deterministic inherited collision fields plus appearanceFilename. Five human sources/eight field provenance agree independently. Appearance instantiation, random/relative parameter modes and full controller behavior remain separate requirements.
+
+
+## Object-root skeletal descriptor slice
+
+The [SAT/MLOD contract](SKELETAL_APPEARANCE_DESCRIPTOR_CONTRACT.md) now has owned engine-neutral readers and a pinned inherited object-root loader. The unchanged human eight-source chain agrees independently; skeleton/LAT/MGN references are preserved but not instantiated.

@@ -15,6 +15,7 @@ public partial class Main
     private PortalActorInputTimeline<InteriorDoorActorSceneState>? interiorSceneTimeline;
     private readonly List<Node3D> interiorSceneLeaves = new();
     private GeometryAppearancePreview? interiorSceneVisuals;
+    private SkeletalMeshPreview? interiorSceneCharacter;
     private OwnedBackgroundAssetLoad<InteriorSceneContentBundle>? interiorSceneLoad;
     private void DisposeInteriorScene()
     {
@@ -22,6 +23,7 @@ public partial class Main
         if(actorMouseInput is not null){Input.MouseMode=Input.MouseModeEnum.Visible;actorMouseInput=null;}
         interiorSceneTimeline=null;interiorSceneHost=null;interiorScene?.Dispose();interiorScene=null;
         interiorSceneLeaves.Clear();interiorSceneVisuals?.Dispose();interiorSceneVisuals=null;
+        interiorSceneCharacter?.Dispose();interiorSceneCharacter=null;
     }
     private async System.Threading.Tasks.Task BuildInteriorScenePreview(string[] args)
     {
@@ -36,6 +38,14 @@ public partial class Main
         InteriorSceneContentBundle content;
         string rootPath=Read("--asset-root"),configurationPath=Read("--asset-config"),member=Read("--asset-member"),layoutPin=Read("--asset-sha256"),specPin=Read("--interior-scene-sha256"),tablePin=Read("--door-table-sha256");
         byte[] specification=File.ReadAllBytes(specPath);bool loadRooms=args.Contains("--scene-geometry"),loadMaterials=args.Contains("--scene-textures"),cancelTest=args.Contains("--cancel-scene-load");
+        bool profileRequested=args.Contains("--actor-template");
+        if(profileRequested!=args.Contains("--actor-template-sha256"))throw new ArgumentException("Actor template and pin are required together.");
+        string? actorTemplate=profileRequested?Read("--actor-template"):null,actorTemplatePin=profileRequested?Read("--actor-template-sha256"):null;
+        bool triangleGuardRequested=args.Contains("--scene-triangle-guard");
+        bool characterRequested=args.Contains("--scene-character");
+        if(characterRequested!=args.Contains("--scene-character-appearance-sha256")||characterRequested&&(!profileRequested||!loadRooms))throw new ArgumentException("Scene character requires actor profile, rooms and appearance pin.");
+        string? characterPin=characterRequested?Read("--scene-character-appearance-sha256"):null;
+        if(triangleGuardRequested&&(!profileRequested||!loadMaterials||!loadRooms))throw new ArgumentException("Scene triangle guard requires original profile and selected room/material content.");
         var loadingLayer=new CanvasLayer();AddChild(loadingLayer);var loadingPanel=new VBoxContainer{Position=new(24,24)};loadingLayer.AddChild(loadingPanel);
         loadingPanel.AddChild(new Label{Text="Loading selected interior assets…"});var cancelLoad=new Button{Text="Cancel loading"};loadingPanel.AddChild(cancelLoad);
         int mainThread=System.Environment.CurrentManagedThreadId,workerThread=mainThread,workerClosed=0,loadingFrames=0;
@@ -52,7 +62,9 @@ public partial class Main
                     if(cancelTest&&!firstLookup.Task.IsCompleted){firstLookup.TrySetResult(true);token.WaitHandle.WaitOne(TimeSpan.FromSeconds(15));token.ThrowIfCancellationRequested();throw new InvalidOperationException("Cancellation fixture did not cancel pending lookup.");}
                     return overlay.Lookup(path);
                 }
-                var result=InteriorSceneContentBundleReader.Load(Resolve,specification,specPin,tablePin,member,layoutPin,loadRooms,loadMaterials);token.ThrowIfCancellationRequested();return result;
+                var result=InteriorSceneContentBundleReader.Load(Resolve,specification,specPin,tablePin,member,layoutPin,loadRooms,loadMaterials,
+                    actorTemplatePath:actorTemplate,actorTemplateSha256:actorTemplatePin,createTriangleGuard:triangleGuardRequested,
+                    maximumCollisionTriangles:65536,characterAppearanceSha256:characterPin);token.ThrowIfCancellationRequested();return result;
             }
             finally{Volatile.Write(ref workerClosed,1);}
         });
@@ -72,7 +84,7 @@ public partial class Main
         {
             if(GodotObject.IsInstanceValid(this)&&IsInsideTree())
             {
-                if(cancelTest&&(Volatile.Read(ref workerClosed)!=1||interiorScene is not null||interiorSceneVisuals is not null))throw new AssetPreviewException("Canceled load leaked scene publication.");
+                if(cancelTest&&(Volatile.Read(ref workerClosed)!=1||interiorScene is not null||interiorSceneVisuals is not null||interiorSceneCharacter is not null))throw new AssetPreviewException("Canceled load leaked scene publication.");
                 GD.Print(cancelTest?"PASS: canceled interior worker; pending first lookup, archive cleanup and zero scene/GPU publication":"Interior loading canceled.");GetTree().Quit();
             }
             return;
@@ -91,6 +103,16 @@ public partial class Main
         var last=bundle.Doorways[1].ConnectedApproach(stepPolicy:new(UseLocalRayCoverage:true));
         var direction=last.End-first.Start.LocalPosition;direction.Y=0;direction=NVector.Normalize(direction);
         bool holdClosing=args.Contains("--hold-closing-doors");
+        var recoveredSphere=content.ActorProfile?.Collision.CreateFallbackSphere();
+        ActorSphereVolume? sphereVolume=recoveredSphere is null?null:new(recoveredSphere.LocalCenter,recoveredSphere.Radius);
+        if(profileRequested!=(sphereVolume is not null))throw new AssetPreviewException("Requested actor profile was not delivered.");
+        if(sphereVolume is not null)GD.Print($"PASS: original actor profile sources={content.ActorProfile!.Sources.Count} radius={sphereVolume.Radius} center_offset={sphereVolume.WorldCenterOffset}");
+        var actorCenterOffset=sphereVolume?.WorldCenterOffset??new NVector(0,.9f,0);
+        var triangleGeometry=content.TriangleGuard?.Geometry.ToDictionary(p=>p.Key,p=>p.Value.Triangles);
+        if(triangleGuardRequested!=(triangleGeometry is not null))throw new AssetPreviewException("Requested triangle guard was not delivered.");
+        if(content.TriangleGuard is not null)GD.Print($"PASS: explicit modern room triangle guard selector={content.TriangleGuard.Selector} source={content.TriangleGuard.SourceTriangles} eligible={content.TriangleGuard.EligibleTriangles} retained={content.TriangleGuard.Triangles} degenerate={content.TriangleGuard.DegenerateTriangles}");
+        float occupancyAdvance=sphereVolume is null?.48f:.8f-sphereVolume.Radius-PortalBarrierCollider.Padding-.03f;
+        if(holdClosing&&occupancyAdvance<=0)throw new AssetPreviewException("Selected sphere lacks the occupied-threshold fixture clearance.");
         int secondGeometry=bundle.Layout.Cells[bundle.Doorways[1].Cell].Portals[bundle.Doorways[1].Portal].GeometryIndex;
         var geometries=bundle.Doorways.Select(d=>bundle.Layout.Cells[d.Cell].Portals[d.Portal].GeometryIndex).ToArray();
         interiorSceneVisuals=new(content.Geometry,roomMaterials?.Meshes,allowMainTextureOnly:roomMaterials is not null);AddChild(interiorSceneVisuals.Root);
@@ -105,8 +127,16 @@ public partial class Main
         var visibility=rooms is null?null:new PortalCellVisibilityQuery(bundle.Layout,rooms.CellAppearances.Keys.ToArray());
         floorPreview=new(bundle.Floors);var floorFrame=new Node3D();AddChild(floorFrame);floorFrame.AddChild(floorPreview.Root);
         var material=new StandardMaterial3D{ShadingMode=BaseMaterial3D.ShadingModeEnum.Unshaded,AlbedoColor=new Color(.95f,.65f,.18f,.65f),Transparency=BaseMaterial3D.TransparencyEnum.Alpha};
-        var mesh=new BoxMesh{Size=new(.5f,1.8f,.5f),Material=material};interiorDoorResources.Add(material);interiorDoorResources.Add(mesh);
+        Mesh mesh=sphereVolume is null?new BoxMesh{Size=new(.5f,1.8f,.5f),Material=material}:
+            new SphereMesh{Radius=sphereVolume.Radius,Height=sphereVolume.Radius*2,RadialSegments=24,Rings=12,Material=material};
+        interiorDoorResources.Add(material);interiorDoorResources.Add(mesh);
         var actor=new MeshInstance3D{Mesh=mesh};AddChild(actor);var camera=new Camera3D{Current=true,Near=.02f,Far=200,Fov=70,KeepAspect=Camera3D.KeepAspectEnum.Height};AddChild(camera);
+        if(characterRequested!=(content.Character is not null))throw new AssetPreviewException("Requested scene character was not delivered.");
+        if(content.Character is not null)
+        {
+            interiorSceneCharacter=new(content.Character,true);AddChild(interiorSceneCharacter.Root);interiorSceneCharacter.VerifyBoundary(!args.Contains("--headless"));
+            GD.Print("PASS: owned interior neutral character; placement=world_feet animation=false generated_face=false");
+        }
         cameraLodUpdate=()=>interiorSceneVisuals.SelectFromCamera(camera.GlobalPosition);
         AddChild(new WorldEnvironment{Environment=new Godot.Environment{BackgroundMode=Godot.Environment.BGMode.Color,BackgroundColor=new Color(.08f,.10f,.14f)}});
         var layer=new CanvasLayer();AddChild(layer);var frame=new PanelContainer{Position=new(18,18),Size=new(404,GetViewport().GetVisibleRect().Size.Y-36)};layer.AddChild(frame);
@@ -117,6 +147,10 @@ public partial class Main
         panel.AddChild(new Label{Text=$"Interior route: {bundle.Layout.Cells[bundle.Doorways[0].Cell].Name} → {bundle.Layout.Cells[bundle.Doorways[1].Cell].Name} → {bundle.Layout.Cells[bundle.Doorways[1].TargetCell].Name}",AutowrapMode=TextServer.AutowrapMode.WordSmart,CustomMinimumSize=new(380,0)});
         var permission=new CheckBox{Text="Second doorway: entry allowed",ButtonPressed=true};panel.AddChild(permission);
         if(holdClosing)panel.AddChild(new Label{Text="Closing doors wait for actor clearance"});
+        if(sphereVolume is not null)panel.AddChild(new Label{Text=$"Actor collision sphere: radius {sphereVolume.Radius:F2} m"});
+        CheckBox? collisionMarker=null;
+        if(characterRequested){panel.AddChild(new Label{Text="Neutral character shown in overview"});collisionMarker=new CheckBox{Text="Show collision sphere"};panel.AddChild(collisionMarker);}
+        if(triangleGuardRequested)panel.AddChild(new Label{Text="Room geometry blocks movement"});
         var transformed=new CheckBox{Text="Rotate and translate building owner"};panel.AddChild(transformed);
         var follow=new CheckBox{Text="View inside the rooms",ButtonPressed=rooms is not null};if(rooms is not null)panel.AddChild(follow);
         var portalVisibility=new CheckBox{Text="Select rooms through portal openings",ButtonPressed=args.Contains("--portal-visibility")};if(rooms is not null)panel.AddChild(portalVisibility);
@@ -138,8 +172,9 @@ public partial class Main
         }
         void Refresh()
         {
-            var state=interiorScene!.State;var p=state.WorldPosition;actor.Position=new(p.X,p.Y+.9f,-p.Z);
-            actor.Visible=!follow.ButtonPressed;
+            var state=interiorScene!.State;var p=state.WorldPosition;var bodyCenter=p+actorCenterOffset;actor.Position=new(bodyCenter.X,bodyCenter.Y,-bodyCenter.Z);
+            actor.Visible=!follow.ButtonPressed&&(collisionMarker?.ButtonPressed??true);
+            if(interiorSceneCharacter is not null){interiorSceneCharacter.Root.Position=new(p.X,p.Y,-p.Z);interiorSceneCharacter.Root.Visible=!follow.ButtonPressed;}
             if(follow.ButtonPressed){var view=p+NVector.UnitY*1.6f;var target=view+owner.TransformDirection(orientation.LookForward(direction))*4;camera.Position=new(view.X,view.Y,-view.Z);camera.LookAt(new(target.X,target.Y,-target.Z));}
             PortalCellVisibilityResult? visible=null;
             if(visibility is not null&&follow.ButtonPressed&&portalVisibility.ButtonPressed)
@@ -156,7 +191,8 @@ public partial class Main
         void Configure(bool rotated)
         {
             interiorScene?.Dispose();owner=rotated?new(new(0,0,1),NVector.UnitY,new(-1,0,0),new(20,4,-9)):AppearanceTransform.Identity;
-            interiorScene=bundle.CreateActor(first.Start,owner,new(UseLocalRayCoverage:true),holdClosing);
+            interiorScene=bundle.CreateActor(first.Start,owner,sphereVolume is null?new(UseLocalRayCoverage:true):null,holdClosing,sphereVolume,
+                triangleGeometry,65536);
             interiorSceneHost=new(()=>interiorScene.State,(seconds,delta,entry)=>interiorScene.Tick(seconds,delta,l=>new(l.GeometryIndex==secondGeometry?entry:true,true)),interiorScene.Reset);
             mouseLook.ButtonPressed=false;orientation=new();w=s=a=d=false;long now=checked((long)Time.GetTicksUsec());interiorSceneTimeline=new(interiorSceneHost,now,InputState());
             interiorSceneTimeline.AdvanceTo(now,automatic.ButtonPressed&&!paused.ButtonPressed&&GetWindow().HasFocus());floorFrame.Transform=GodotAppearanceTransform.ToGodot(owner);floorPreview.SelectCell(-1);
@@ -173,6 +209,7 @@ public partial class Main
         transformed.Toggled+=Configure;Configure(false);
         follow.Toggled+=_=>{if(!follow.ButtonPressed)mouseLook.ButtonPressed=false;mouseLook.Disabled=!follow.ButtonPressed||!interiorSceneHost!.State.Active;Overview();Refresh();};
         portalVisibility.Toggled+=_=>Refresh();
+        if(collisionMarker is not null)collisionMarker.Toggled+=_=>Refresh();
         void Boundary(bool focused)
         {
             bool active=automatic.ButtonPressed&&!paused.ButtonPressed&&focused;w=active&&Input.IsPhysicalKeyPressed(Key.W);s=active&&Input.IsPhysicalKeyPressed(Key.S);a=active&&Input.IsPhysicalKeyPressed(Key.A);d=active&&Input.IsPhysicalKeyPressed(Key.D);
@@ -232,7 +269,9 @@ public partial class Main
                 permission.ButtonPressed=true;reset.EmitSignal(Button.SignalName.Pressed);Go(last.End,bundle.Doorways[1].TargetCell);
                 if(portalVisibility.ButtonPressed&&(roomNodes!.Values.Count(node=>node.Visible)!=1||!roomNodes[bundle.Doorways[1].TargetCell].Visible))throw new AssetPreviewException("Target-cell portal room visibility failed.");
                 var state=interiorScene.State;var foot=state.WorldPosition;
-                if(actor.Position.DistanceTo(new(foot.X,foot.Y+.9f,-foot.Z))>1e-5f||floorFrame.Transform!=GodotAppearanceTransform.ToGodot(owner)||geometries.Select((g,i)=>interiorSceneLeaves[i].Transform!=GodotAppearanceTransform.ToGodot(state.Doors[g].LeafPose)).Any(v=>v))throw new AssetPreviewException("Multi-door reflected placement failed.");
+                var bodyCenter=foot+actorCenterOffset;
+                if(actor.Position.DistanceTo(new(bodyCenter.X,bodyCenter.Y,-bodyCenter.Z))>1e-5f||floorFrame.Transform!=GodotAppearanceTransform.ToGodot(owner)||geometries.Select((g,i)=>interiorSceneLeaves[i].Transform!=GodotAppearanceTransform.ToGodot(state.Doors[g].LeafPose)).Any(v=>v))throw new AssetPreviewException("Multi-door reflected placement failed.");
+                if(interiorSceneCharacter is not null&&interiorSceneCharacter.Root.GlobalPosition.DistanceTo(new(state.WorldPosition.X,state.WorldPosition.Y,-state.WorldPosition.Z))>1e-5f)throw new AssetPreviewException("Character world-feet placement failed.");
                 if(roomRoot.Transform!=GodotAppearanceTransform.ToGodot(owner))throw new AssetPreviewException("Selected room reflected placement failed.");
             }
             if(holdClosing)
@@ -240,7 +279,7 @@ public partial class Main
                 foreach(bool rotated in new[]{false,true})
                 {
                     Configure(rotated);permission.ButtonPressed=true;Go(last.End,bundle.Doorways[1].TargetCell);Go(last.Start.LocalPosition,last.Start.CellIndex);
-                    Go(last.Start.LocalPosition+direction*.48f,last.Start.CellIndex);permission.ButtonPressed=false;
+                    Go(last.Start.LocalPosition+direction*occupancyAdvance,last.Start.CellIndex);permission.ButtonPressed=false;
                     for(int i=0;i<80;i++)Manual(NVector.Zero);
                     if(!interiorScene!.State.Doors[secondGeometry].ClosingHeld)throw new AssetPreviewException("Original occupied close did not hold.");
                     long total=interiorScene.State.TotalTransfers;forward.EmitSignal(Button.SignalName.Pressed);
@@ -311,12 +350,20 @@ public partial class Main
             interiorSceneTimeline.AdvanceTo(now+=2_000_007);if(interiorSceneHost!.State.StepsThisUpdate!=8||interiorSceneHost.State.DroppedMicroseconds!=1_840_000)throw new AssetPreviewException("Multi-door bounded stall failed.");
             long before=interiorScene.State.Frame;interiorSceneTimeline.AdvanceTo(now+=100_000,false);interiorSceneTimeline.AdvanceTo(now+=100_000,true);if(interiorScene.State.Frame!=before||interiorSceneHost.State.PendingMicroseconds!=0)throw new AssetPreviewException("Multi-door pause/resume failed.");
             transformed.ButtonPressed=true;Configure(true);Go(last.End,bundle.Doorways[1].TargetCell);
-            if(holdClosing){Go(last.Start.LocalPosition,last.Start.CellIndex);Go(last.Start.LocalPosition+direction*.48f,last.Start.CellIndex);permission.ButtonPressed=false;for(int i=0;i<80;i++)Manual(NVector.Zero);forward.EmitSignal(Button.SignalName.Pressed);}
+            if(holdClosing){Go(last.Start.LocalPosition,last.Start.CellIndex);Go(last.Start.LocalPosition+direction*occupancyAdvance,last.Start.CellIndex);permission.ButtonPressed=false;for(int i=0;i<80;i++)Manual(NVector.Zero);forward.EmitSignal(Button.SignalName.Pressed);}
             GD.Print($"PASS: original multi-door host; manual_transfers={checkedTransfers} owner_poses=2 second-denial/retreat/reset, physical key route/diagonal round trip, typed timestamped four-transfer route, stall/pause/focus and all-leaf reflected placement verified");
         }
         if(DisplayServer.GetName()=="headless"){GetTree().Quit();return;}
         if(fixture)
         {
+            if(sphereVolume is not null)
+            {
+                // Bounded capture shows the selected collision volume using the existing overview visibility policy.
+                follow.ButtonPressed=false;Refresh();
+                var center=interiorScene!.State.WorldPosition+actorCenterOffset;
+                var view=center+owner.TransformDirection(new(.6f,.8f,-2.5f));
+                camera.Position=new(view.X,view.Y,-view.Z);camera.LookAt(new(center.X,center.Y,-center.Z));
+            }
             await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
             using var image=GetViewport().GetTexture().GetImage();if(args.Contains("--capture")&&image.SavePng(Read("--capture"))!=Error.Ok)throw new IOException("Multi-door capture failed.");
             GD.Print("PASS: original multi-door GPU rendering.");GetTree().Quit();

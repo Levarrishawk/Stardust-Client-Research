@@ -56,6 +56,7 @@ public partial class Main : Node
             DdsHdrVerification.Verify(args[option+1],DisplayServer.GetName()!="headless",args.Contains("--hdr-materials"));GetTree().Quit();return;
         }
         if(args.Contains("--dds-self-test")){await VerifyDdsFile(args);return;}
+        if(args.Contains("--asset-creature")){await BuildSkeletalPreview(args);return;}
         if(args.Contains("--interior-scene-spec")){await BuildInteriorScenePreview(args);return;}
         if(args.Contains("--door-style")){if(args.Contains("--door-portal"))await BuildInteriorDoorPreview(args);else await BuildDoorPreview(args);return;}
         if(args.Contains("--palette-inspector")){await BuildPalettePreview(args);return;}
@@ -73,7 +74,7 @@ public partial class Main : Node
             GetTree().Quit(1);
         }
     }
-    public override void _ExitTree(){actorUpdate=null;actorFocus=null;actorKeyInput=null;actorTimeline=null;actorHost=null;actorSimulation?.Dispose();actorSimulation=null;DisposeInteriorScene();DisposeInteriorDoorResources();doorRuntime?.Dispose();doorRuntime=null;pathPreview?.Dispose();pathPreview=null;floorPick=null;floorPreview?.Dispose();floorPreview=null;cameraLodUpdate=null;assetPreview?.Dispose();assetPreview=null;detailPreview?.Dispose();detailPreview=null;geometryPreview?.Dispose();geometryPreview=null;}
+    public override void _ExitTree(){actorUpdate=null;actorFocus=null;actorKeyInput=null;actorTimeline=null;actorHost=null;actorSimulation?.Dispose();actorSimulation=null;DisposeSkeletalPreview();DisposeInteriorScene();DisposeInteriorDoorResources();doorRuntime?.Dispose();doorRuntime=null;pathPreview?.Dispose();pathPreview=null;floorPick=null;floorPreview?.Dispose();floorPreview=null;cameraLodUpdate=null;assetPreview?.Dispose();assetPreview=null;detailPreview?.Dispose();detailPreview=null;geometryPreview?.Dispose();geometryPreview=null;}
     private async System.Threading.Tasks.Task BuildPalettePreview(string[] args)
     {
         string Read(string key)

@@ -306,3 +306,6 @@ See `ANALYSIS_CHECKPOINT_2026-09-23_COMBAT_PLAYBACK_VARIABLE_BINDINGS.md`,
 
 
 The [owned palette implementation](PALETTE_DECODER_CONTRACT.md) verifies all current entries/index queries and corrects the dated fallback color label.
+
+
+[Logical animation tables](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_LOGICAL_ANIMATION_TABLES.md) independently matches14 original sources/710,463 bytes and1,046 serialized entries. Four duplicated body names retained; authored/synthetic default and opaque typed subtrees validated. Selected clip/proxy execution remains next; metrics unchanged.

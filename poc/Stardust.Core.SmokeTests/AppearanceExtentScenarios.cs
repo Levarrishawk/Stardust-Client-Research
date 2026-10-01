@@ -22,9 +22,34 @@ internal static class AppearanceExtentScenarios
         Reject(()=>AppearanceExtentDecoder.DecodeBase(IffDocument.Parse(Fixture(nonfinite:true)).Root));
         Reject(()=>AppearanceExtentDecoder.DecodeBase(IffDocument.Parse(Fixture(negativeRadius:true)).Root));
         Reject(()=>AppearanceExtentDecoder.DecodeBase(IffDocument.Parse(Fixture(reversed:true)).Root));
+        CollisionExtentCases();
         HostAccountingScenarios.Reject<ArgumentOutOfRangeException>(()=>DetailAppearanceDistance.Measure(2,extent,world,camera));
         HostAccountingScenarios.Reject<ArgumentOutOfRangeException>(()=>DetailAppearanceDistance.Measure(0,extent,world,new(float.NaN,0,0)));
         Console.WriteLine("PASS: owned APPR primary bounds, authored sphere center, maximum/minimum order and PIVT world-camera origins");
+    }
+    private static void CollisionExtentCases()
+    {
+        IffNode primary=IffDocument.Parse(Fixture()).Root.Children[0].Children[0];
+        byte[] primaryBytes=Fixture();
+        // Extracting the fixture's single extent preserves its deliberately asymmetric authored values.
+        byte[] raw=primaryBytes.AsSpan(24).ToArray();
+        byte[] Envelope(byte[] secondary)=>MeshScenarios.Form("APPR",MeshScenarios.Form("0003",raw,secondary));
+        IffNode noCollision=IffDocument.Parse(Envelope(MeshScenarios.Form("NULL"))).Root;
+        if(AppearanceExtentDecoder.DecodeCollisionBase(noCollision) is not null || AppearanceExtentDecoder.DecodeBase(noCollision)!=AppearanceExtentDecoder.DecodeExtent(primary))
+            throw new Exception("Secondary NULL substituted primary display bounds.");
+        AppearanceExtent? authored=AppearanceExtentDecoder.DecodeCollisionBase(IffDocument.Parse(Envelope(raw)).Root);
+        if(authored!=AppearanceExtentDecoder.DecodeExtent(primary))throw new Exception("Secondary primitive extent changed authored values.");
+        byte[] sphere=raw.AsSpan(24,48).ToArray();
+        // EXBX header + version header precedes the nested EXSP fixture.
+        AppearanceExtent? spherical=AppearanceExtentDecoder.DecodeCollisionBase(IffDocument.Parse(Envelope(sphere)).Root);
+        if(spherical?.Kind!="EXSP" || spherical.Center!=new Vector3(2,3,4) || spherical.Radius!=7 || spherical.Minimum is not null)
+            throw new Exception("Secondary sphere extent mismatch.");
+        Reject(()=>AppearanceExtentDecoder.DecodeCollisionBase(IffDocument.Parse(Fixture()).Root));
+        Reject(()=>AppearanceExtentDecoder.DecodeCollisionBase(IffDocument.Parse(Envelope(MeshScenarios.Form("CMSH"))).Root));
+        Reject(()=>AppearanceExtentDecoder.DecodeCollisionBase(IffDocument.Parse(Envelope(MeshScenarios.Form("NULL",MeshScenarios.Chunk("DATA",new byte[]{0})))).Root));
+        byte[] invalid=raw.ToArray();System.Buffers.Binary.BinaryPrimitives.WriteInt32LittleEndian(invalid.AsSpan(68),BitConverter.SingleToInt32Bits(-1));
+        Reject(()=>AppearanceExtentDecoder.DecodeCollisionBase(IffDocument.Parse(Envelope(invalid)).Root));
+        Console.WriteLine("PASS: separate authored secondary NULL/sphere/box extents, no primary substitution and explicit missing/unsupported/malformed rejection");
     }
     internal static byte[] Fixture(bool nullExtent=false,bool nonfinite=false,bool negativeRadius=false,bool reversed=false)
     {

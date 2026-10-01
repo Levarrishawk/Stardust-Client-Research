@@ -390,3 +390,39 @@ The triangle query also consumes precise piecewise feet paths, including slopes 
 The same-cell triangle floor walker adopts validated supported contact and conservatively holds the source when a float landing cannot be represented. Flat/ramp/ceiling, repeat and retreat tests pass; step/portal integration remains open.
 
 The bounded same-cell step walker now guards lift/landing and continuation against triangles. Ceiling blocking retains supported source feet; rise/drop, repeated hold/retreat and source/target walls pass synthetic tests.
+
+
+### Original object-root skeletal source stages
+
+Native optional probes now support `--skeletal-descriptors`, `--skeletal-skeletons`, `--skeletal-bind-pose`, `--skeletal-skin-sources` and `--skeletal-geometry`, with explicit object/SAT/configuration inputs. The [geometry contract](../docs/SKELETAL_MESH_GEOMETRY_CONTRACT.md) links independent original auditors and preceding descriptor/bind specifications. Current original human L0 union is twelve sources/329,296 bytes; character rendering/animation remains next.
+
+
+Standalone `-Creature -CreatureAppearanceSha256 SAT_PIN` now draws the original object-root human bind geometry under [neutral inspection policy](../docs/NEUTRAL_CHARACTER_PREVIEW_CONTRACT.md). Headless/cancellation/GPU capture gates pass; animation, generated face textures and customization are pending.
+
+
+[Interior character visual](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_CHARACTER_VISUAL.md) passes77-source independent audit,2,880 original ticks, both-pose placement, cancellation and inspected GPU capture. Five neutral surfaces now follow persistent actor feet in the original interior. Binding/skinning/animation remain pending; metrics unchanged.
+
+
+[Skeletal joint binding](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_JOINT_BINDING.md) resolves53 original attached joints/52 mesh names and independently verifies4,362 modern position diagnostics. Bind preservation error below4e-7; original consumer/normal/tangent semantics remain open. Metrics unchanged.
+
+
+[Skeletal shader deformation](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_SHADER_DEFORMATION.md) passes unequal-map/raw-direction/negative fixtures and independently agrees on5,370 original shader vertex diagnostics. Complete PIDX weights deform NIDX normals and DOT3 tangents; generated animation remains open. Metrics unchanged.
+
+
+[Weighted character pose preview](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_WEIGHTED_CHARACTER_POSE_PREVIEW.md) shows a visibly bent original forearm under explicit synthetic pose. Eight headless/GPU switches/reset, complete upload and cancellation gates pass; original animation playback remains open. Metrics unchanged.
+
+
+[Logical animation tables](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_LOGICAL_ANIMATION_TABLES.md) independently matches14 original sources/710,463 bytes and1,046 serialized entries. Four duplicated body names retained; authored/synthetic default and opaque typed subtrees validated. Selected clip/proxy execution remains next; metrics unchanged.
+
+
+[Selected animation proxy](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SELECTED_ANIMATION_PROXY.md) independently matches15 original sources/726,134 bytes and one original ambient idle CKAT envelope. Owned proxy/scale and masked/wrong-pin gates pass; channel decoding/playback remain next. Metrics unchanged.
+
+
+## 2026-10-01 compressed keyframe structure
+
+[Compressed clip structure](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_COMPRESSED_KEYFRAME_STRUCTURE.md) independently matches all selected original channel arrays and 2,284 keys through fifteen unchanged sources. Thirty-seven clip names match the body skeleton; `rifle` remains unresolved. Packed quaternion evaluation/playback remain next. Native truncation/negative/ownership gates pass; metrics unchanged.
+
+
+## 2026-10-01 packed quaternion numerical decoding
+
+[Packed quaternion decoder](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_PACKED_QUATERNION_DECODE.md) independently agrees with executable-table decoding of all 2,225 selected original rotations (maximum error9.14e-8, zero selected repairs). All deployed-selector native gates and explicit overshoot diagnostic/repair pass. Interpolation, unmatched transform handling and playback remain next; metrics unchanged.

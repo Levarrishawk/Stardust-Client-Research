@@ -10,24 +10,26 @@ public sealed class SingleCellFloorTriangleBoxWalker
 {
     private readonly SingleCellFloorWalker floor;
     private readonly StaticTriangleBoxCollider collider;
-    public SingleCellFloorTriangleBoxWalker(FloorMeshDescription description,IReadOnlyList<CollisionTriangle> triangles)
+    public SingleCellFloorTriangleBoxWalker(FloorMeshDescription description,IReadOnlyList<CollisionTriangle> triangles,int maximumTriangles=2048)
+        :this(new SingleCellFloorWalker(description),new StaticTriangleBoxCollider(triangles,maximumTriangles)){}
+    internal SingleCellFloorTriangleBoxWalker(SingleCellFloorWalker floor,StaticTriangleBoxCollider collider)
     {
-        floor=new(description);collider=new(triangles);
+        this.floor=floor;this.collider=collider;
     }
     public FloorTriangleBoxWalkResult Walk(int triangle,Vector3 start,Vector3 desired,Vector3 half,
-        bool allowSeparatingContact=false,int maximumCrossings=4096)
+        bool allowSeparatingContact=false,int maximumCrossings=4096,float feetClearance=0)
     {
         var path=floor.Trace(triangle,start,desired,maximumCrossings);
-        var contact=FloorPathTriangleBoxSweep.Sweep(path,collider,half,allowSeparatingContact);
+        var contact=FloorPathTriangleBoxSweep.Sweep(path,collider,half,allowSeparatingContact,feetClearance);
         if(contact.Status==TriangleBoxContactStatus.Clear)
             return new(path.Result.Status==FloorWalkStatus.Accepted?FloorBoxWalkStatus.Accepted:FloorBoxWalkStatus.FloorStopped,path.Result,null);
-        var feet=contact.Center with{Y=contact.Center.Y-half.Y};
+        var feet=contact.Center with{Y=contact.Center.Y-half.Y-feetClearance};
         bool Validate(Vector3 position)
         {
             var candidate=floor.Trace(triangle,start,position,maximumCrossings);
             var stationary=floor.Trace(candidate.Result.TriangleIndex,position,position);
-            if(FloorPathTriangleBoxSweep.Sweep(stationary,collider,half,true).Status!=TriangleBoxContactStatus.Clear)return false;
-            var swept=FloorPathTriangleBoxSweep.Sweep(candidate,collider,half,true);
+            if(FloorPathTriangleBoxSweep.Sweep(stationary,collider,half,true,feetClearance).Status!=TriangleBoxContactStatus.Clear)return false;
+            var swept=FloorPathTriangleBoxSweep.Sweep(candidate,collider,half,true,feetClearance);
             return swept.Status==TriangleBoxContactStatus.Clear||
                 swept.Status==TriangleBoxContactStatus.Blocked&&swept.Parameter==candidate.Result.Parameter;
         }
