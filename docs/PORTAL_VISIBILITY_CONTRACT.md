@@ -1,0 +1,15 @@
+# Bounded portal visibility
+
+`PortalCellVisibilityQuery` is a modern engine-neutral rendering query in layout coordinates. It owns snapshots of up to 64 selected cells and their selected-target portal triangles. Logical cell ownership remains the actor scene's responsibility. It does not reproduce DPVS, door occlusion, original winding/solid flags, exterior traversal, asset residency or object visibility.
+
+`PortalPerspectiveView` supplies eye, forward/up axes, vertical FOV, aspect and far distance. Axes are normalized/orthogonalized; invalid/nonfinite/parallel axes and invalid ranges reject. Start cell must belong to the selected set. The source is always visible.
+
+Each directed portal triangle is clipped against the forward/far/side planes and accumulated aperture edge planes through the eye. Surviving polygons carry narrowed planes to adjacent cells; each simple cell path is evaluated independently, permitting alternative apertures without dropping them because another path already visited a cell. Results are the sorted visible-cell union. Cycles cannot revisit cells in the current path. Triangle unions preserve nonconvex/tessellated portals without imposing a single convex hull.
+
+Portal clipping uses the forward hemisphere rather than the camera near plane: an aperture inside the near distance can still reveal geometry farther away. At a portal plane within 10 micrometers, aperture projection is conservatively omitted and the adjacent cell is admitted. Overdraw is permitted at this boundary. Other clipping uses a 10-micrometer inside tolerance.
+
+Limits: selected references 128 per cell; 4,096 triangles per geometry / 8,192 selected incidence triangles; configurable 1–65,536 traversal states (default 4,096) and 6–512 planes (default 256); 65,536 examined triangles and 1,000,000 polygon vertex clipping operations per query. Traversal/plane/operation exhaustion returns all selected cells with `BudgetFallback=true`, preventing false invisible rooms due to a budget. Input construction rejects malformed indices and nonfinite or above-one-million coordinate values.
+
+Godot `-PortalVisibility` requires `-SceneGeometry`. The interior camera uses the persisted actor cell and exact actor X/Z, 1.6m eye height and shared owner pose. Overview shows all rooms because its camera is outside the actor's cell. Room node visibility and leaf visibility update independently of simulation ownership; a leaf is shown if either incident cell is visible. Visibility selection never changes actor/controller state or unloads decoded assets.
+
+[Acceptance](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_VISIBILITY.md) covers synthetic aperture, behind/side/reverse views, portal-plane degeneracy, cycles, owned selection/geometry, fail-open budgets and malformed input; six original views agree with 384 independent sampled rays. Sampling validates those representative views, not general visibility completeness.

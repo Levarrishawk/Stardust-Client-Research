@@ -21,7 +21,7 @@ public sealed class PortalDoorController
         if (frame < 0 || frame < lastFrame || requestFrame.HasValue && frame < requestFrame.Value) throw new ArgumentOutOfRangeException(nameof(frame));
         requestFrame = frame; State = State with { Active = true };
     }
-    public DoorControllerState Advance(long frame, float seconds)
+    public DoorControllerState PreviewAdvance(long frame, float seconds)
     {
         if (frame < 0 || frame <= lastFrame || requestFrame.HasValue && frame < requestFrame.Value || !float.IsFinite(seconds) || seconds < 0)
             throw new ArgumentOutOfRangeException(nameof(frame), "Door frames must advance; delta must be finite and nonnegative.");
@@ -32,7 +32,14 @@ public sealed class PortalDoorController
             previous < 1 && raw >= 1 ? DoorTransitionEvent.OpenEnd : previous == 1 && raw < 1 ? DoorTransitionEvent.CloseBegin :
             previous > 0 && raw <= 0 ? DoorTransitionEvent.CloseEnd : DoorTransitionEvent.None;
         float fraction = (float)Math.Clamp(raw, 0, 1);
-        State = new(fraction, State.Active && fraction > 0, opening, transition); lastFrame = frame;
+        return new(fraction, State.Active && fraction > 0, opening, transition);
+    }
+    public DoorControllerState Advance(long frame, float seconds, bool holdClosing = false)
+    {
+        var candidate = PreviewAdvance(frame, seconds);
+        State = holdClosing && candidate.Fraction < State.Fraction ?
+            new(State.Fraction, State.Active && State.Fraction > 0, false, DoorTransitionEvent.None) : candidate;
+        lastFrame = frame;
         return State;
     }
     public void Reset() { requestFrame = null; lastFrame = -1; State = new(0, false, false, DoorTransitionEvent.None); }

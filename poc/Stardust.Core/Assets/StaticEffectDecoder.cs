@@ -12,9 +12,12 @@ public sealed record StaticEffectPass(byte FixedStageCount, IReadOnlyDictionary<
 public sealed record StaticEffectImplementation(IReadOnlyList<uint> Capabilities, IReadOnlyList<uint> Options,
     uint PhaseTag, byte? Flag5, byte? Flag6, IReadOnlyList<StaticEffectPass> Passes, string Version = "0005");
 public sealed record StaticEffectDescription(bool ContainsPrecalculatedVertexLighting,
-    IReadOnlyList<StaticEffectImplementation> Implementations, IffNode Metadata);
+    IReadOnlyList<StaticEffectImplementation> Implementations, IffNode Metadata)
+{
+    public bool HasRenderPasses=>Implementations.Any(implementation=>implementation.Passes.Count!=0);
+}
 
-/// <summary>Bounded EFCT 0001 / inline IMPL 0004-0005 / PASS 0008-0009 graph. Preserves raw enums; does not choose capabilities.</summary>
+/// <summary>Bounded EFCT 0001 / inline IMPL 0004-0007 / PASS 0008-0009 graph. Preserves raw enums; does not choose capabilities.</summary>
 public static class StaticEffectDecoder
 {
     public static StaticEffectDescription Decode(ReadOnlySpan<byte> source)
@@ -28,9 +31,9 @@ public static class StaticEffectDecoder
         List<StaticEffectImplementation> implementations = new();
         foreach (IffNode impl in children.Skip(1))
         {
-            Require(impl.IsForm("IMPL") && impl.Children.Count == 1 && (impl.Children[0].IsForm("0004") || impl.Children[0].IsForm("0005")), "Unsupported implementation version or external reference.");
+            Require(impl.IsForm("IMPL") && impl.Children.Count == 1 && impl.Children[0].FormType is "0004" or "0005" or "0006" or "0007", "Unsupported implementation version or external reference.");
             string implementationVersion = impl.Children[0].FormType!;
-            bool hasFlags = implementationVersion == "0005";
+            bool hasFlags = implementationVersion != "0004";
             IReadOnlyList<IffNode> parts = impl.Children[0].Children;
             int cursor = 0;
             Require(parts.Count >= 2 && parts[cursor].Tag == "SCAP", "Missing implementation capabilities.");

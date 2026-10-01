@@ -2,6 +2,7 @@
 import argparse
 import contextlib
 import hashlib
+import json
 import re
 import struct
 import subprocess
@@ -54,7 +55,9 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("root",type=Path);parser.add_argument("configuration",type=Path)
     parser.add_argument("member");parser.add_argument("expected_sha256");parser.add_argument("core_project",type=Path)
+    parser.add_argument('--source-manifest',type=Path)
     args=parser.parse_args()
+    if args.source_manifest:args.source_manifest.resolve().relative_to((Path(__file__).resolve().parents[2]/'local-private').resolve())
     mounts=[]
     for line in args.configuration.read_text().splitlines():
         match=re.fullmatch(r"\s*searchTree_00_(\d+)\s*=\s*([^\s;]+)\s*(?:;.*)?",line)
@@ -65,10 +68,13 @@ def main():
     if len({priority for priority,_ in mounts})!=len(mounts):raise ValueError("Duplicate priorities")
     with contextlib.ExitStack() as stack:
         indices=[(priority,Index(stack.enter_context((args.root/filename).open("rb")))) for priority,filename in sorted(mounts,reverse=True)]
+        sources={}
         def lookup(path):
             for priority,index in indices:
                 data=index.lookup(path)
-                if data is not None:return priority,data
+                if data is not None:
+                    sources[path]=dict(Path=path,Priority=priority,Bytes=len(data),Sha256=hashlib.sha256(data).hexdigest().upper())
+                    return priority,data
             raise ValueError("Missing required resource")
         priority,mesh_bytes=lookup(args.member)
         if hashlib.sha256(mesh_bytes).hexdigest().upper()!=args.expected_sha256.upper():raise ValueError("Original mesh identity mismatch")
@@ -102,6 +108,9 @@ def main():
             r"^texture_mip=(\S+) level=(\d+) rgba_sha256=([0-9A-F]{64})$",result.stdout,re.MULTILINE)}
         if actual!=expected:raise ValueError("Bundle native/reference texture mip mismatch")
         if geometry["geometry_sha256"] not in result.stdout:raise ValueError("Bundle geometry mismatch")
+        if args.source_manifest:
+            args.source_manifest.parent.mkdir(parents=True,exist_ok=True)
+            args.source_manifest.write_text(json.dumps([sources[path] for path in sorted(sources)],indent=2)+'\n',encoding='utf-8')
         print(f"PASS: mounts={len(indices)} mesh_priority={priority} shaders={len(shader_names)} textures={len(texture_names)} effects={len(effect_names)} matched_texture_mips={len(expected)} geometry_sha256={geometry['geometry_sha256']}")
 
 

@@ -27,6 +27,18 @@ internal static class InteriorDoorScenarios
     internal static void Run()
     {
         var fixture = Fixture();
+        var connected = fixture.ConnectedApproach();
+        Require(Vector3.Distance(connected.Start.LocalPosition, new(-.8f, 0, 0)) < 1e-5 && Vector3.Distance(connected.End, new(.8f, 0, 0)) < 1e-5, "Connected approach follows paired edge normal");
+        var stackedFloors = fixture.Floors.ToDictionary(p => p.Key, p => p.Value with
+        {
+            Vertices = p.Value.Vertices.Concat(p.Value.Vertices.Select(v => v + Vector3.UnitY * 2)).ToArray(),
+            Triangles = p.Value.Triangles.Concat(p.Value.Triangles.Select(t => t with
+            { VertexIndices = t.VertexIndices.Select(i => i + p.Value.Vertices.Count).ToArray(), Neighbors = new[] { -1, -1, -1 }, PortalIds = new[] { -1, -1, -1 } })).ToArray()
+        });
+        var stacked = fixture with { Floors = stackedFloors };
+        Require(stacked.InspectionApproach().Start.LocalPosition.Y == 2 && stacked.ConnectedApproach().Start.LocalPosition.Y == 0 && stacked.ConnectedApproach().End.Y == 0, "Connected approach retains selected lower sheet under stacked floor");
+        HostAccountingScenarios.Reject<ArgumentOutOfRangeException>(() => fixture.ConnectedApproach(float.NaN));
+        HostAccountingScenarios.Reject<InvalidDataException>(() => fixture.ConnectedApproach(3));
         var layout = fixture.Layout; var floors = fixture.Floors; var style = fixture.Leaf.Selection.Style; var box = fixture.Leaf.Extent; var doorPose = fixture.DoorToCell;
         foreach (AppearanceTransform owner in new[] { AppearanceTransform.Identity, new AppearanceTransform(new(0, 0, 1), Vector3.UnitY, new(-1, 0, 0), new(10, 3, 7)) })
         {

@@ -45,3 +45,7 @@ The [barrier contract](PORTAL_BARRIER_COLLISION_CONTRACT.md) adds normal-control
 ## Complete level-path guard — 2026-09-30
 
 The [guard checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LEVEL_PATH_GUARD.md) adds read-only source/target floor traces using the actual validated transfer bridge. The level-only barrier adapter now checks every segment endpoint, so equal-height terminal points cannot hide an intermediate ridge. This rejects unsupported movement before adoption; full slope collision remains separate.
+
+## Thin target landing follow-up
+
+[Bounded inward-edge fallback](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LANDING_NORMAL.md) supplements centroid-directed float target bridging when a thin slanted triangle remains invalid. Correction is at most 10 micrometres from the projected target landing; source/world reconciliation remains at most 0.1 mm. External start tolerance is unchanged. 1,000 synthetic target landings and the pinned 948-tick Yavin reference pass; YT-1300 56-probe results remain unchanged.

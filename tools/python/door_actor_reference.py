@@ -74,6 +74,9 @@ class ReferenceDoorActor:
         if math.dist(self.position,self.world_pose[3])>=1.5*style['radius']:self.retained=False
         if self.retained and allowed is True:self.request=self.frame
         leaf_pose=self.world_pose[:3]+[cast(point(self.world_pose,[f32(v*curve) for v in style['move']]))];contacts=[]
+        if hasattr(self,'precise_move'):
+            result=self.precise_move(desired,leaf_pose,allowed);self.frame+=1
+            return dict(frame=self.frame,total=self.total,cell=self.cell,retained=int(self.retained),transition=event,fraction=self.fraction,curve=curve,world=self.position,**result)
         if allowed is not True:
             t=hit_box(self.world_pose,r['barrier_lower'],r['barrier_upper'],self.position,desired)
             if t is not None:contacts.append((t,'PermissionBarrier','EntryDenied' if allowed is False else 'PermissionUnknown'))

@@ -34,40 +34,10 @@ public sealed class SingleCellFloorBoxWalker
             chosen=contact;boxIndex=i;
         }
         if(chosen is null)return new(path.Result.Status==FloorWalkStatus.Accepted?FloorBoxWalkStatus.Accepted:FloorBoxWalkStatus.FloorStopped,path.Result,null,null);
-        if(chosen.Parameter==0)return new(FloorBoxWalkStatus.BoxStopped,floor.Walk(triangle,start,start) with{Parameter=0,Crossings=0},chosen,boxIndex);
         FloorPathPoint feet=chosen.Center with{Y=chosen.Center.Y-actorHalf.Y};
-        FloorWalkResult landing=floor.Walk(triangle,start,feet.ToVector3(),maximumCrossings);
-        bool Valid(FloorWalkResult candidate)
-        {
-            double dx=candidate.Position.X-feet.X,dy=candidate.Position.Y-feet.Y,dz=candidate.Position.Z-feet.Z;
-            return candidate.Status==FloorWalkStatus.Accepted && dx*dx+dy*dy+dz*dz<=1e-8 &&
-                dx*chosen.Normal.X+dy*chosen.Normal.Y+dz*chosen.Normal.Z>=-1e-6 &&
-                floor.Walk(candidate.TriangleIndex,candidate.Position,candidate.Position).Status==FloorWalkStatus.Accepted;
-        }
-        // Preserve strict input checks while seeking a representable contact on the approach side.
-        if(!Valid(landing))
-        {
-            var segment=path.Segments[chosen.SegmentIndex];
-            (double X,double Z)[] directions={(chosen.Normal.X,chosen.Normal.Z),(segment.Start.X-segment.End.X,segment.Start.Z-segment.End.Z)};
-            bool found=false;
-            foreach(var direction in directions)
-            {
-                double length=Math.Sqrt(direction.X*direction.X+direction.Z*direction.Z);if(length==0)continue;
-                foreach(double distance in new[]{1e-6,2e-6,5e-6,1e-5,2e-5,5e-5,1e-4})
-                {
-                    FloorPathPoint biased=feet with{X=feet.X+direction.X/length*distance,Z=feet.Z+direction.Z/length*distance};
-                    var candidate=floor.Walk(triangle,start,biased.ToVector3(),maximumCrossings);
-                    if(!Valid(candidate))continue;landing=candidate;found=true;break;
-                }
-                if(found)break;
-            }
-        }
-        if(!Valid(landing))
-        {
-            var held=floor.Walk(triangle,start,start) with{Parameter=0,Crossings=0};
-            return new(FloorBoxWalkStatus.ContactLandingUnsupported,held,chosen,boxIndex,"UnrepresentableBoxContactLanding");
-        }
-        return new(FloorBoxWalkStatus.BoxStopped,landing with{Parameter=chosen.Parameter},chosen,boxIndex);
+        var landing=FloorBoxContactLanding.Resolve(floor,path,triangle,start,feet,chosen.Normal,chosen.SegmentIndex,chosen.Parameter,maximumCrossings);
+        return new(landing.Accepted?FloorBoxWalkStatus.BoxStopped:FloorBoxWalkStatus.ContactLandingUnsupported,
+            landing.Floor,chosen,boxIndex,landing.Accepted?null:"UnrepresentableBoxContactLanding");
     }
     private static bool Finite(Vector3 p)=>float.IsFinite(p.X)&&float.IsFinite(p.Y)&&float.IsFinite(p.Z);
 }

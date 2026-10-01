@@ -29,7 +29,7 @@ def project_near_height(f,p):
     assert hits,'No independent floor projection'
     return min(hits,key=lambda h:(abs(h[1][1]-p[1]),h[0]))
 
-def load_doorway_reference(root,configuration,member,layout_sha,source,portal,leaf_sha):
+def load_doorway_reference(root,configuration,member,layout_sha,source,portal,leaf_sha,connected=False):
     pins={}
     with contextlib.ExitStack() as stack:
         indices=[Index(stack.enter_context(path.open('rb'))) for _,path in archives(root,configuration)]
@@ -65,6 +65,17 @@ def load_doorway_reference(root,configuration,member,layout_sha,source,portal,le
     a,b=matches[0];vertices,rows=floors[source];center=[sum(vertices[i][k] for i in rows[a[0]][:3])/3 for k in range(3)]
     normal=[pose[i][2] for i in range(3)];side=sum((center[i]-pose[3][i])*normal[i] for i in range(3));assert abs(side)>1e-6;side=1 if side>0 else -1
     initial=cast(vertical_hit(floors[source],point(pose,[0,0,side*.8]))[1]);end=cast(vertical_hit(floors[target],point(pose,[0,0,-side*.8]))[1])
+    if connected:
+        from step_door_actor_reference import StepReferenceDoorActor
+        oracle=StepReferenceDoorActor.__new__(StepReferenceDoorActor);oracle.r={'floors':floors};oracle.local_ray=True
+        def endpoint(cell,edge):
+            vs,rows=floors[cell];ti,_,(a,b)=edge;mid=[(u+v)*.5 for u,v in zip(a,b)]
+            center=[sum(vs[i][k] for i in rows[ti][:3])/3 for k in range(3)]
+            nx,nz=-(b[2]-a[2]),b[0]-a[0];length=math.hypot(nx,nz)
+            if nx*(center[0]-mid[0])+nz*(center[2]-mid[2])<0:nx,nz=-nx,-nz
+            desired=[mid[0]+nx/length*.8,mid[1],mid[2]+nz/length*.8]
+            return cast(oracle.leg(cell,mid,desired)[-1][3])
+        initial,end=endpoint(source,a),endpoint(target,b)
     delta=[end[i]-initial[i] for i in range(3)];length=math.hypot(delta[0],delta[2]);assert length>1e-6;direction=[delta[0]/length,0,delta[2]/length]
     anchor=a[2][0];edge=[a[2][1][i]-anchor[i] for i in range(3)];n=[edge[2],0,-edge[0]];length=math.hypot(n[0],n[2]);assert length>1e-6;n=[v/length for v in n]
     sign=sum((center[i]-anchor[i])*n[i] for i in range(3));assert abs(sign)>1e-6

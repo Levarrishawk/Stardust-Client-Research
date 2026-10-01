@@ -20,6 +20,14 @@ internal static class PortalSceneScenarios
         Array.Clear(inputs["appearance/mesh/test.msh"]);
         if(scene.CellAppearances[1].Mesh?.VertexCount!=3)throw new Exception("Cell scene borrowed input.");
         inputs["appearance/mesh/test.msh"]=MeshScenarios.Mesh("0001");
+        var selected=new[]{1};
+        TreLookupResult MutateSelection(string path){selected[0]=0;return Resolve(path);}
+        var narrow=PortalSceneBundleReader.Load(MutateSelection,"appearance/test.pob",pin,selectedAppearanceCells:selected);
+        if(narrow.CellAppearances.Count!=1||!narrow.CellAppearances.ContainsKey(1)||narrow.Geometry.Root.Children.Single().AuthoredIndex!=1)throw new Exception("Selected appearance set borrowed or renumbered.");
+        narrow=PortalSceneBundleReader.Load(Resolve,"appearance/test.pob",pin,selectedAppearanceCells:Array.Empty<int>());
+        if(narrow.CellAppearances.Count!=0||narrow.Sources.Count!=1)throw new Exception("Empty appearance selection loaded unrelated resources.");
+        HostAccountingScenarios.Reject<InvalidDataException>(()=>PortalSceneBundleReader.Load(Resolve,"appearance/test.pob",pin,selectedAppearanceCells:new[]{1,1}));
+        HostAccountingScenarios.Reject<InvalidDataException>(()=>PortalSceneBundleReader.Load(Resolve,"appearance/test.pob",pin,selectedAppearanceCells:new[]{2}));
         HostAccountingScenarios.Reject<AppearanceGraphBudgetException>(()=>PortalSceneBundleReader.Load(Resolve,"appearance/test.pob",pin,new(MaximumResources:2)));
         HostAccountingScenarios.Reject<AppearanceGraphBudgetException>(()=>PortalSceneBundleReader.Load(Resolve,"appearance/test.pob",pin,new(MaximumSourceBytes:inputs["appearance/test.pob"].Length)));
         HostAccountingScenarios.Reject<InvalidDataException>(()=>PortalSceneBundleReader.Load(Resolve,"appearance/test.pob",new string('0',64)));
@@ -41,6 +49,10 @@ internal static class PortalSceneScenarios
         inputs["shader/synthetic.sht"]=MaterialScenarios.Shader();inputs["effect/synthetic.eft"]=MaterialScenarios.Effect();inputs["texture/synthetic.dds"]=DdsScenarios.Fixture("DXT1",4,4,1,new byte[8]);reads.Clear();
         TexturedPortalScene textured=TexturedPortalSceneReader.Load(Resolve,"appearance/test.pob",pin);
         if(textured.Sources.Count!=6 || textured.Materials.Meshes.Count!=1 || textured.Diagnostics.Count!=0 || reads.Values.Any(count=>count!=1))throw new Exception("Shared textured cell scene mismatch.");
+        reads.Clear();textured=TexturedPortalSceneReader.Load(Resolve,"appearance/test.pob",pin,selectedAppearanceCells:new[]{1});
+        if(textured.Scene.CellAppearances.Count!=1||!textured.Scene.CellAppearances.ContainsKey(1)||textured.Materials.Meshes.Count!=1||reads.Values.Any(count=>count!=1))throw new Exception("Selected textured cell sharing mismatch.");
+        textured=TexturedPortalSceneReader.Load(Resolve,"appearance/test.pob",pin,selectedAppearanceCells:Array.Empty<int>());
+        if(textured.Sources.Count!=1||textured.Materials.Meshes.Count!=0)throw new Exception("Empty selected texture scene loaded materials.");
         HostAccountingScenarios.Reject<AppearanceGraphBudgetException>(()=>TexturedPortalSceneReader.Load(Resolve,"appearance/test.pob",pin,maximumDecodedBytes:4));
         HostAccountingScenarios.Reject<AppearanceGraphBudgetException>(()=>TexturedPortalSceneReader.Load(Resolve,"appearance/test.pob",pin,new(MaximumResources:5)));
         inputs.Remove("texture/synthetic.dds");textured=TexturedPortalSceneReader.Load(Resolve,"appearance/test.pob",pin);
@@ -56,10 +68,11 @@ internal static class PortalSceneScenarios
     }
     internal static void ProbeOptional(string[] args)
     {
-        if(args.Length!=8 || args[2]!="--configuration" || args[4]!="--member" || args[6]!="--expected-sha256")throw new ArgumentException("Portal scene probe needs pinned root/configuration.");
+        if(args.Length is not (8 or 10) || args[2]!="--configuration" || args[4]!="--member" || args[6]!="--expected-sha256" || args.Length==10&&args[8]!="--appearance-cells")throw new ArgumentException("Portal scene probe needs pinned root/configuration.");
+        int[]? selected=args.Length==10?args[9].Split(',').Select(int.Parse).ToArray():null;
         using StreamReader config=File.OpenText(args[3]);using ConfiguredTreOverlay overlay=ConfiguredTreOverlay.Open(args[1],config);
-        TexturedPortalScene? textured=args[0] is "--portal-textures" or "--portal-textures-defaults"?TexturedPortalSceneReader.Load(overlay.Lookup,args[5],args[7],loadFloors:true,loadPathGraphs:true,customizationMode:args[0]=="--portal-textures-defaults"?CustomizableShaderInspectionMode.AuthoredTextureDefaults:CustomizableShaderInspectionMode.Reject):null;
-        PortalSceneBundle scene=textured?.Scene??PortalSceneBundleReader.Load(overlay.Lookup,args[5],args[7],loadFloors:args[0] is "--portal-floors" or "--portal-paths" or "--portal-textures" or "--portal-textures-defaults" or "--portal-surface-paths",loadPathGraphs:args[0] is "--portal-paths" or "--portal-surface-paths");
+        TexturedPortalScene? textured=args[0] is "--portal-textures" or "--portal-textures-defaults" or "--portal-materials" or "--portal-materials-defaults"?TexturedPortalSceneReader.Load(overlay.Lookup,args[5],args[7],loadFloors:args[0] is "--portal-textures" or "--portal-textures-defaults",loadPathGraphs:args[0] is "--portal-textures" or "--portal-textures-defaults",customizationMode:args[0] is "--portal-textures-defaults" or "--portal-materials-defaults"?CustomizableShaderInspectionMode.AuthoredTextureDefaults:CustomizableShaderInspectionMode.Reject,selectedAppearanceCells:selected):null;
+        PortalSceneBundle scene=textured?.Scene??PortalSceneBundleReader.Load(overlay.Lookup,args[5],args[7],loadFloors:args[0] is "--portal-floors" or "--portal-paths" or "--portal-textures" or "--portal-textures-defaults" or "--portal-surface-paths",loadPathGraphs:args[0] is "--portal-paths" or "--portal-surface-paths",selectedAppearanceCells:selected);
         if(args[0]=="--portal-surface-paths")
         {
             var picker=new PortalSurfacePathQuery(scene.CellFloors.ToDictionary(pair=>pair.Key,pair=>new FloorSurfaceQuery(pair.Value)),scene.CellPathGraphs.ToDictionary(pair=>pair.Key,pair=>new DirectedPathGraphQuery(pair.Value)));int total=0;

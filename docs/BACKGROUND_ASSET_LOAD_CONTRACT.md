@@ -1,0 +1,11 @@
+# Owned background asset loading
+
+`OwnedBackgroundAssetLoad<T>` owns one cooperative worker, cancellation source and one result request. Callers snapshot input requests before dispatch. `TakeAsync` can be requested once; it propagates active-owner worker faults and rejects null results. Cancellation or disposal before transfer rejects successful stale results. Repeated cancellation/disposal is safe; requesting after disposal rejects. Worker completion can be awaited for shutdown; cleanup observes faults and disposes cancellation resources after the worker finishes.
+
+Cancellation does not forcibly abort arbitrary loader code. Factories must honor the token and release their owned resources in finally/using scopes. A canceled/closed owner never publishes a newly accepted result; already transferred decoded data belongs to the caller. The host additionally checks cancellation/tree lifetime before scene publication.
+
+The interior host snapshots options/specification and opens configuration/TRE overlay on the worker. All overlay reads and CPU decoding stay there; token checks occur before lookup and before transfer. Existing individual decoders are bounded but do not poll cancellation inside every decode loop. Owned archive streams close before result delivery. Godot UI remains active during loading; Cancel requests cooperative shutdown. Every node/GPU allocation and scene-state publication occurs on the main thread after delivery. Exit cancels pending work.
+
+`-CancelSceneLoad` is a bounded headless-only test option requiring a pinned scene specification. It cancels at the pending first asset lookup, verifies archive scope closure and rejects any scene/GPU publication. It does not alter installed assets.
+
+[Acceptance](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BACKGROUND_SCENE_LOAD.md) passes synthetic worker affinity, single-transfer, closed-owner stale completion, cancellation cleanup, null/fault and repeated-disposal gates. Original headless/GPU scene success confirms main-thread delivery and a responsive loading phase; pending-lookup cancellation passes. This is a modern replacement lifecycle, not a claim about original streamer threads.

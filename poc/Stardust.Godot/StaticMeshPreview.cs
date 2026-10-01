@@ -15,6 +15,8 @@ public sealed class StaticMeshPreview : IDisposable
     public IReadOnlyList<string> MaterialDiagnostics=>materialDiagnostics;
     public int TexturedSurfaces {get;private set;}
     public int NeutralSurfaces {get;private set;}
+    public int OmittedSurfaces {get;private set;}
+    private readonly List<int> uploadedPrimitiveIndices=new();
     public ArrayMesh Mesh { get; }
     public StaticMeshPreview(TexturedStaticMesh asset,bool allowMainTextureOnly=false,bool allowNeutralMaterialFallback=false)
         :this(asset,allowMainTextureOnly,allowNeutralMaterialFallback,null){}
@@ -29,6 +31,7 @@ public sealed class StaticMeshPreview : IDisposable
             Dictionary<DdsColorSpace,Shader> shaders = new();
             Dictionary<string,ShaderMaterial> materials = new(StringComparer.Ordinal);
             HashSet<string> neutralPaths=new(StringComparer.Ordinal);
+            HashSet<string> noDrawPaths=new(StringComparer.Ordinal);
             foreach ((string path,DdsImage texture) in asset.Textures)
             {
                 int required=1; for(int d=Math.Max(texture.Width,texture.Height);d>1;d>>=1)required++;
@@ -55,6 +58,7 @@ public sealed class StaticMeshPreview : IDisposable
             }
             foreach ((string path,StaticMeshMaterial material) in asset.Materials)
             {
+                if(!asset.Effects[material.References.EffectPath].HasRenderPasses){noDrawPaths.Add(path);continue;}
                 try
                 {
                     if(material.Customization is not null && !allowMainTextureOnly)throw new AssetPreviewException("Customizable material inspection requires explicit texture-only mode; palette colors remain untranslated.");
@@ -98,11 +102,14 @@ public sealed class StaticMeshPreview : IDisposable
                     materials.Add(path,Own(new ShaderMaterial{Shader=shader}));neutralPaths.Add(path);materialDiagnostics.Add(path+": "+failure.Message);
                 }
             }
-            foreach(MeshPrimitive primitive in asset.Mesh.Primitives)
+            for(int primitiveIndex=0;primitiveIndex<asset.Mesh.Primitives.Count;primitiveIndex++)
             {
+                MeshPrimitive primitive=asset.Mesh.Primitives[primitiveIndex];
+                if(noDrawPaths.Contains(primitive.ShaderPath)){OmittedSurfaces++;continue;}
                 using Godot.Collections.Array arrays=CreateArrays(primitive);
                 Mesh.AddSurfaceFromArrays(Godot.Mesh.PrimitiveType.Triangles,arrays);
                 Mesh.SurfaceSetMaterial(Mesh.GetSurfaceCount()-1,materials[primitive.ShaderPath]);
+                uploadedPrimitiveIndices.Add(primitiveIndex);
                 if(neutralPaths.Contains(primitive.ShaderPath))NeutralSurfaces++;else TexturedSurfaces++;
             }
         }
@@ -140,7 +147,7 @@ public sealed class StaticMeshPreview : IDisposable
 
     public void VerifyUploadedAsset(TexturedStaticMesh source)
     {
-        VerifyUploadedGeometry(Mesh,source.Mesh);
+        VerifyUploadedGeometry(Mesh,source.Mesh,uploadedPrimitiveIndices);
         foreach((string path,DdsImage original) in source.Textures)
         {
             using Image uploaded=uploadedTextures[path].GetImage();
@@ -157,9 +164,18 @@ public sealed class StaticMeshPreview : IDisposable
                 uploaded.GetMipmapCount()!=original.Mips.Count-1 || !uploaded.GetData().AsSpan().SequenceEqual(expected))throw new InvalidOperationException("Godot RGB-half material upload readback mismatch.");
         }
     }
-    internal static void VerifyUploadedGeometry(ArrayMesh mesh,StaticMeshDescription source)
+    internal static void VerifyZeroPassPolicy(TexturedStaticMesh source)
     {
-        if(mesh.GetSurfaceCount()!=source.Primitives.Count)throw new InvalidOperationException("Godot surface count mismatch.");
+        // Explicit synthetic policy variant; no original effect bytes are changed.
+        var noPass=source with{Effects=source.Effects.ToDictionary(pair=>pair.Key,pair=>pair.Value with{Implementations=pair.Value.Implementations.Select(candidate=>candidate with{Passes=Array.Empty<StaticEffectPass>()}).ToArray()})};
+        using var preview=new StaticMeshPreview(noPass);
+        preview.VerifyUploadedAsset(noPass);
+        if(preview.Mesh.GetSurfaceCount()!=0||preview.OmittedSurfaces!=source.Mesh.Primitives.Count||preview.TexturedSurfaces!=0||preview.NeutralSurfaces!=0||preview.MaterialDiagnostics.Count!=0)throw new AssetPreviewException("Zero-pass geometry omission policy failed.");
+    }
+    internal static void VerifyUploadedGeometry(ArrayMesh mesh,StaticMeshDescription source,IReadOnlyList<int>? primitiveIndices=null)
+    {
+        if(mesh.GetSurfaceCount()!=(primitiveIndices?.Count??source.Primitives.Count))throw new InvalidOperationException("Godot surface count mismatch.");
+        if(primitiveIndices is not null&&(primitiveIndices.Any(i=>i<0||i>=source.Primitives.Count)||!primitiveIndices.SequenceEqual(primitiveIndices.Distinct().OrderBy(i=>i))))throw new InvalidOperationException("Godot primitive mapping mismatch.");
         for(int surface=0;surface<mesh.GetSurfaceCount();surface++)
         {
             using Godot.Collections.Array arrays=mesh.SurfaceGetArrays(surface);
@@ -167,7 +183,7 @@ public sealed class StaticMeshPreview : IDisposable
             Vector3[] normals=arrays[(int)Godot.Mesh.ArrayType.Normal].AsVector3Array();
             Vector2[] uv=arrays[(int)Godot.Mesh.ArrayType.TexUV].AsVector2Array();
             int[] indices=arrays[(int)Godot.Mesh.ArrayType.Index].AsInt32Array();
-            MeshPrimitive original=source.Primitives[surface];
+            MeshPrimitive original=source.Primitives[primitiveIndices?[surface]??surface];
             if(vertices.Length!=original.Vertices.Count || normals.Length!=vertices.Length || uv.Length!=vertices.Length || indices.Length!=original.Indices.Count)throw new InvalidOperationException("Godot uploaded cardinality mismatch.");
             for(int i=0;i<vertices.Length;i++)
             {

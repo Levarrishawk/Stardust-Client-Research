@@ -31,6 +31,7 @@ public sealed class GeometryAppearancePreview : IDisposable
     public int TexturedSurfaces=>texturedAdapters.Sum(adapter=>adapter.TexturedSurfaces);
     public int UniqueGpuTextures=>gpuTextures.Count;
     public int NeutralSurfaces=>neutralGeometrySurfaces+texturedAdapters.Sum(adapter=>adapter.NeutralSurfaces);
+    public int OmittedSurfaces=>texturedAdapters.Sum(adapter=>adapter.OmittedSurfaces);
     public IReadOnlyList<string> MaterialDiagnostics=>materialDiagnostics;
     public int HardpointMarkers=>hardpointMarkers.Count;
     public int VisibleHardpointLabels=>hardpointLabels.Count(label=>label.Visible);
@@ -67,12 +68,14 @@ public sealed class GeometryAppearancePreview : IDisposable
         {
             if(!meshes.TryGetValue(template.Path,out ArrayMesh? mesh))
             {
+                bool uploadedVerified=false;
                 if(materialBundles is not null && materialBundles.TryGetValue(template.Path,out TexturedStaticMesh? bundle))
                 {
                     try
                     {
                         StaticMeshPreview adapter=new(bundle,allowMainTextureOnly,true,gpuTextures);texturedAdapters.Add(adapter);
                         adapter.VerifyUploadedAsset(bundle);mesh=adapter.Mesh;
+                        uploadedVerified=true;
                         materialDiagnostics.AddRange(adapter.MaterialDiagnostics.Select(diagnostic=>template.Path+": "+diagnostic));
                     }
                     catch(AssetPreviewException failure){materialDiagnostics.Add(template.Path+": "+failure.Message);}
@@ -91,7 +94,7 @@ public sealed class GeometryAppearancePreview : IDisposable
                     }
                 }
                 meshes.Add(template.Path,mesh);
-                StaticMeshPreview.VerifyUploadedGeometry(mesh,description);
+                if(!uploadedVerified)StaticMeshPreview.VerifyUploadedGeometry(mesh,description);
             }
             node.AddChild(new MeshInstance3D{Mesh=mesh});MeshInstances++;
         }

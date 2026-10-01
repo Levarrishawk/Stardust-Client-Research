@@ -28,3 +28,27 @@ The [persistent verifier](../tools/python/verify_persistent_door_actor.py) now a
 ## Resolved contact risk and next work
 
 The six InvalidStart fixtures exposed a modern rounding problem, now resolved by the [bounded contact policy](FLOOR_CONTACT_STABILITY_CONTRACT.md). The dated screening counts above preserve the initial result; current screening has zero InvalidStart cases and 289 Accepted nonpasses. Next: piecewise floor paths for slope-aware collision. World actor bounds and moving-leaf collision remain separate.
+
+## Precise adapter follow-up, September 30 evening
+
+The [precise actor screen](PRECISE_DOOR_ACTOR_CONTRACT.md) uses the same 782 authored candidates and 533 instantiated simulations. It completes 495 exact short round trips; 37 end Accepted without exact return and one ends LandingFailed. Zero InvalidStart or UnsupportedNonlevel outcomes remain after bounded returned-height repair. Historical level-only counts above retain their original scope. Short round-trip success is not full doorway or locomotion acceptance.
+
+## Target bridge follow-up
+
+The [thin target landing correction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LANDING_NORMAL.md) raises the same precise screen to 496 exact short round trips; 37 remain Accepted without exact return. LandingFailed and InvalidStart are zero. Historical screen counts above remain dated evidence.
+
+## First forward boundary audit
+
+[Independent remaining-boundary audit](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_DOOR_BOUNDARY_AUDIT.md) categorizes all 37 non-round-trips: 19 solid near-vertical neighbors, six unloaded other target floors, four physical leaf contacts, one precision hold, six blocked edges and one accepted approach without transfer. Named other floors are present in layout references; MissingTargetFloor here describes two-cell fixture scope. Vertical triangles remain explicitly unsupported by the height-field walker pending a bounded step policy.
+
+## Explicit step-enabled screen
+
+[World step/portal gate](PORTAL_FLOOR_STEP_CONTRACT.md) yields 504 exact short round trips on the same 782 authored / 533 instantiated selections. Eight small-house cases now pass; 29 Accepted non-round-trips remain. Level, precise and precise-step modes have separate denominators and declared policies.
+
+## Explicit local-step screen
+
+[Local doorway gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_RAY_STEP_DOOR_ACTOR.md): 509 exact short round trips on the unchanged 782 authored / 533 instantiated cohort. Remaining 24 first boundaries: seven unloaded other floor targets, four leaf contacts, five vertical neighbors, one precision hold, six blocked edges and one no-stop/no-transfer approach. Newly passing black-sun original trace independently verified.
+
+## 2026-09-30 connected approach
+
+Connected fixture screen: 782 authored, 647 paired, 528 constructed, 524 exact round trips, four leaf holds. 119 paired approaches reject before simulation. Seventeen gained and two lost keys relative to vertical inspection; no single coverage denominator. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_CONNECTED_DOOR_APPROACH.md).

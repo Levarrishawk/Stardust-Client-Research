@@ -9,6 +9,10 @@ internal static class MaterialScenarios
     {
         byte[] effectBytes = Effect();
         StaticEffectDescription effect = StaticEffectDecoder.Decode(effectBytes);
+        var emptyImplementation=Form("IMPL",Form("0005",Chunk("SCAP",Word(0x300)),Chunk("DATA",new byte[]{0,0x4E,0x49,0x41,0x4D,0,0})));
+        var noPass=StaticEffectDecoder.Decode(Form("EFCT",Form("0001",Chunk("DATA",new byte[]{1,0}),emptyImplementation)));
+        if(noPass.HasRenderPasses||!effect.HasRenderPasses||(effect with{Implementations=Array.Empty<StaticEffectImplementation>()}).HasRenderPasses)throw new Exception("Zero-pass effect classification failed.");
+        if(!(effect with{Implementations=new[]{noPass.Implementations[0],effect.Implementations[0]}}).HasRenderPasses)throw new Exception("Mixed effect candidates classified no-draw.");
         if (effect.Implementations.Count != 2 || effect.ContainsPrecalculatedVertexLighting ||
             effect.Implementations[0].Capabilities.Single() != 0x300 || effect.Implementations[0].Options.Single() != 0x444F5433 ||
             effect.Implementations[0].Passes[0].PixelProgram != "pixel_program/synthetic.psh" ||
@@ -39,6 +43,15 @@ internal static class MaterialScenarios
             if(raw[0x4C]!=30 || raw[0x50]!=0x23222120 || raw[0x60]!=39 || raw[0x74]!=0x2F2E2D2C || raw[0x78]!=0x33323130 || (version=="0009" && (raw[0x4D]!=31 || raw[0x64]!=40 || raw[0x70]!=43)))throw new Exception("Asymmetric older/current pass field offsets differ.");
         }
         byte[] olderBytes=Effect(passVersion:"0008",implementationVersion:"0004");
+        foreach(string implementationVersion in new[]{"0006","0007"})
+        {
+            byte[] versioned=Effect(implementationVersion:implementationVersion,asymmetric:true);
+            var candidate=StaticEffectDecoder.Decode(versioned).Implementations[0];
+            if(candidate.Version!=implementationVersion||candidate.Flag5!=1||candidate.Flag6!=1||candidate.Passes[0].Fields[0x74]!=0x2F2E2D2C)throw new Exception("Later inline implementation metadata/field preservation failed.");
+            for(int length=0;length<versioned.Length;length++)Reject(()=>StaticEffectDecoder.Decode(versioned.AsSpan(0,length)));
+        }
+        Reject(()=>StaticEffectDecoder.Decode(Effect(implementationVersion:"0008")));
+        Reject(()=>StaticEffectDecoder.Decode(Effect(implementationVersion:"0009")));
         for(int length=0;length<olderBytes.Length;length++)Reject(()=>StaticEffectDecoder.Decode(olderBytes.AsSpan(0,length)));
         StaticEffectDescription multi = StaticEffectDecoder.Decode(Effect(bindingCount:4));
         if(multi.Implementations[0].Passes[0].PixelTextures.Count != 4 || multi.Implementations[0].Passes[0].PixelTextures[3].Stage != 3)

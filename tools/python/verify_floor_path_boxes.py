@@ -16,7 +16,7 @@ def reference(row):
 def reference_path(row,times,points):
     half=row['half'];pose=row['pose']
     terminal=[points[-1][0],points[-1][1]+half[1],points[-1][2]]
-    clear=dict(status='Clear',parameter=1,segment=-1,center=terminal,normal=[0,0,0])
+    clear=dict(status='Clear',parameter=times[-1],segment=-1,center=terminal,normal=[0,0,0])
     if row['allowed'] is True: return clear
     extent=[sum(abs(pose[j][i])*half[j] for j in range(3)) for i in range(3)]
     lo=[row['minimum'][i]-extent[i] for i in range(3)]; hi=[row['maximum'][i]+extent[i] for i in range(3)]

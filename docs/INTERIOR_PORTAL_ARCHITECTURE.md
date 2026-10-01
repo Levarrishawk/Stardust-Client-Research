@@ -158,3 +158,15 @@ The [input timeline](ACTOR_INPUT_TIMELINE_CONTRACT.md) applies ordered physical-
 ## Planar doorway actor
 
 The [planar input contract](PLANAR_DOORWAY_ACTOR_CONTRACT.md) extends timestamped movement to normalized lateral/diagonal axes. Floor navigation is still a feet query; full world actor collision is outside this gate.
+
+## 2026-09-30 selected scene collision limit
+
+The [selected Mustafar source boundary](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_SCENE_CONTENT.md) has NULL CELL and appearance collision bounds for cells5/6/7. Loaded FLOR triangles are upward/sloped walking surfaces (76 total); no vertical or ceiling triangles were present. This does not prove absent legacy collision, and visual meshes have not been promoted into authoritative obstacle behavior.
+
+## Continuous obstacle query foundation
+
+The [triangle-box contract](TRIANGLE_BOX_SWEEP_CONTRACT.md) supplies bounded continuous contact math with an independent synthetic oracle. It does not promote visual meshes into original collision or adopt a floor locator.
+
+## Selected hidden helpers
+
+[Existing three-room helper audit](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SELECTED_HELPER_GEOMETRY.md) finds96 hidden-surface triangles outside the walking-route body bounds, none in the hall. These cannot alone fill the route obstacle gap. Original static-mesh collision eligibility remains unverified.

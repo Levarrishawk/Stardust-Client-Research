@@ -64,17 +64,18 @@ public sealed class PortalFloorTransferQuery
         }
         Links=Array.AsReadOnly(links.Values.OrderBy(l=>l.SourceCell).ThenBy(l=>l.SourceTriangle).ThenBy(l=>l.SourceEdge).ToArray());
     }
-    public CellFloorWalkResult Walk(CellFloorLocator start,Vector3 worldDesired,Func<PortalFloorLink,PortalTransferPermission> permission,int maximumCrossings=4096)
-        =>WalkCore(start,worldDesired,permission,maximumCrossings,null);
-    public CellFloorWalkPath Trace(CellFloorLocator start,Vector3 worldDesired,Func<PortalFloorLink,PortalTransferPermission> permission,int maximumCrossings=4096)
+    public CellFloorWalkResult Walk(CellFloorLocator start,Vector3 worldDesired,Func<PortalFloorLink,PortalTransferPermission> permission,int maximumCrossings=4096,int maximumTransfers=1)
+        =>WalkCore(start,worldDesired,permission,maximumCrossings,null,maximumTransfers);
+    public CellFloorWalkPath Trace(CellFloorLocator start,Vector3 worldDesired,Func<PortalFloorLink,PortalTransferPermission> permission,int maximumCrossings=4096,int maximumTransfers=1)
     {
-        List<CellFloorTrace> paths=new();var result=WalkCore(start,worldDesired,permission,maximumCrossings,paths.Add);
+        List<CellFloorTrace> paths=new();var result=WalkCore(start,worldDesired,permission,maximumCrossings,paths.Add,maximumTransfers);
         return new(result,paths.AsReadOnly());
     }
-    private CellFloorWalkResult WalkCore(CellFloorLocator start,Vector3 worldDesired,Func<PortalFloorLink,PortalTransferPermission> permission,int maximumCrossings,Action<CellFloorTrace>? observe)
+    private CellFloorWalkResult WalkCore(CellFloorLocator start,Vector3 worldDesired,Func<PortalFloorLink,PortalTransferPermission> permission,int maximumCrossings,Action<CellFloorTrace>? observe,int maximumTransfers)
     {
         ArgumentNullException.ThrowIfNull(permission);if(!Finite(worldDesired) || !Finite(start.LocalPosition))throw new InvalidDataException("Nonfinite portal movement.");
         if(maximumCrossings is <0 or >4096)throw new ArgumentOutOfRangeException(nameof(maximumCrossings));
+        if(maximumTransfers is <0 or >1)throw new ArgumentOutOfRangeException(nameof(maximumTransfers));
         if(!walkers.TryGetValue(start.CellIndex,out var walker))return new(CellFloorWalkStatus.InvalidStart,start,start.LocalPosition,0,0,null,null);
         FloorWalkPath? sourcePath=observe is null?null:walker.Trace(start.TriangleIndex,start.LocalPosition,Local(start.CellIndex,worldDesired),maximumCrossings);
         FloorWalkResult source=sourcePath?.Result??walker.Walk(start.TriangleIndex,start.LocalPosition,Local(start.CellIndex,worldDesired),maximumCrossings);
@@ -82,6 +83,7 @@ public sealed class PortalFloorTransferQuery
         CellFloorWalkResult Stop(CellFloorWalkStatus status)=>Result(status,start.CellIndex,source,source.Parameter,0,null);
         if(source.Status==FloorWalkStatus.Accepted)return Stop(CellFloorWalkStatus.Accepted);
         if(source.Status!=FloorWalkStatus.PortalBoundary)return Stop(source.Status==FloorWalkStatus.InvalidStart?CellFloorWalkStatus.InvalidStart:CellFloorWalkStatus.FloorStopped);
+        if(maximumTransfers==0)return Stop(CellFloorWalkStatus.TransferLimit);
         var key=(start.CellIndex,source.TriangleIndex,source.EdgeIndex);
         if(!links.TryGetValue(key,out var link))return Stop(failures.GetValueOrDefault(key,CellFloorWalkStatus.UnpairedPortal));
         // Reconcile independently authored paired edges within the declared geometric tolerance.
@@ -91,6 +93,7 @@ public sealed class PortalFloorTransferQuery
         Vector3 landingWorld=a+span*(float)fraction;
         if(Vector3.Distance(worldContact,landingWorld)>EdgeTolerance)return Stop(CellFloorWalkStatus.GeometryMismatch);
         Vector3 landing=Local(link.TargetCell,landingWorld),desired=Local(link.TargetCell,worldDesired);
+        Vector3 projectedLanding=landing;
         FloorWalkResult landingCheck=walkers[link.TargetCell].Walk(link.TargetTriangle,landing,landing,0);
         if(landingCheck.Status==FloorWalkStatus.InvalidStart)
         {
@@ -102,6 +105,14 @@ public sealed class PortalFloorTransferQuery
             if(distance>0)landing+=inward*Math.Min(1,1e-5f/distance);
             if(Vector3.Distance(worldContact,poses[link.TargetCell].TransformPoint(landing))>EdgeTolerance)return Stop(CellFloorWalkStatus.GeometryMismatch);
             landingCheck=walkers[link.TargetCell].Walk(link.TargetTriangle,landing,landing,0);
+            if(landingCheck.Status==FloorWalkStatus.InvalidStart &&
+                walkers[link.TargetCell].TryCanonicalContact(link.TargetTriangle,projectedLanding,out var canonical,1e-5) &&
+                Vector3.Distance(worldContact,poses[link.TargetCell].TransformPoint(canonical))<=EdgeTolerance)
+            {
+                // A thin slanted triangle's centroid direction can round tangentially.
+                // Reuse bounded inward edge normals, retaining strict external start validation.
+                landing=canonical;landingCheck=walkers[link.TargetCell].Walk(link.TargetTriangle,landing,landing,0);
+            }
         }
         if(landingCheck.Status!=FloorWalkStatus.Accepted)return Stop(CellFloorWalkStatus.LandingFailed);
         PortalTransferPermission decision=permission(link);

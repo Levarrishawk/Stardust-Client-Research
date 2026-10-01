@@ -25,3 +25,7 @@ The 782-candidate actor screen retains 131 exact round trips and 113 unsupported
 ## Remaining work
 
 The [piecewise trace contract](FLOOR_PATH_TRACE_CONTRACT.md) now exposes triangle-plane paths with independently verified height/ordering. Next: collision along those segments. The current door actor remains level-only. Full actor/world collision, moving-leaf overlap and original global ordering remain separate.
+
+## Precise-path returned height follow-up
+
+Rounded XZ inside the same triangle is now reprojected onto its plane, rather than retaining height computed at an unrounded edge. A correction exceeding the existing 0.1 mm budget yields UnrepresentableContact and a validated source hold. The black-sun transport 15/0 screen exposed a 0.307798 mm plane mismatch; no external-start tolerance was changed. The 1,000 thin steep-plane gates pass 593 bounded/accepted outputs and 407 explicit holds. All 17,658 installed floor probes remain reusable with unchanged outcomes. The [precise actor contract](PRECISE_DOOR_ACTOR_CONTRACT.md) records the expanded doorway screen and original slope gates.

@@ -347,3 +347,139 @@ The [landing gate](SINGLE_CELL_FLOOR_BOX_CONTRACT.md) passes 6,000 independent s
 ## Original sloped-floor box and level-guard gates — 2026-09-30
 
 The [floor-box gate](SINGLE_CELL_FLOOR_BOX_CONTRACT.md) passes 600 original-plane fixtures with synthetic boxes and 12,000 zero-drift repeated queries. All locators are reusable; 530 retreat and 70 genuine overlaps remain blocked. The [portal guard](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LEVEL_PATH_GUARD.md) rejects equal-endpoint source/target ridges; original actor/host and candidate-count regressions pass.
+
+## Precise portal floor-box gate — 2026-09-30 evening
+
+The [query gate](PORTAL_FLOOR_BOX_CONTRACT.md) passes 2,400 independent synthetic requests plus ownership, asymmetric-frame, snapshot, failure and precision rollback tests. Door integration remains separate; the existing level-only adapter is still default.
+
+## Precise sloped persistent door gate
+
+[Bounded native acceptance](PRECISE_DOOR_ACTOR_CONTRACT.md): snapshot-before-callback and directional permission gates pass; original YT-2400 passes 1,896 independent ticks / 88 transfers / 53 blocked ticks. The installed screen improves from 131 to 495 exact short round trips on the same 782 candidates. Default host path remains level-only pending explicit Godot verification.
+
+## Precise sloped Godot gate
+
+[Host milestone](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PRECISE_DOOR_GODOT.md) passes pinned YT-2400 forward headless and reverse GPU controls, including scheduling/input/reflection. Build has zero warnings/errors; private capture inspected. Explicit -PreciseDoorWalk opts in; default stays level-only.
+
+## Thin portal target acceptance
+
+[Target bridge gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LANDING_NORMAL.md): 1,000 synthetic slanted landings and pinned Yavin 948-tick independent reference pass. Existing source/world and local correction budgets preserved. Same precise screen now has 496 round trips and no LandingFailed.
+
+## Riser proposal gate
+
+[Bounded proposal](FLOOR_STEP_PROPOSAL_CONTRACT.md): synthetic rise/drop and rejection gates pass; nine original proposals independently verified among 19 audited vertical transitions. Ten explicit holds. Actor clearance/adoption is not yet accepted.
+
+## One-step box gate
+
+[Same-space clearance contract](FLOOR_STEP_BOX_CONTRACT.md) passes low-ceiling rollback, zero-drift holds, retreat, target contact and policy/resource guards. Nine original floors pass 36 movement/blocker cases and 360 repeated transitions. Portal/door integration remains next.
+
+## World step/portal gate
+
+[Contract](PORTAL_FLOOR_STEP_CONTRACT.md): native rollback/snapshot/permission/transfer-limit guards pass. Original small-house both directions/two poses match 1,896 ticks / 88 transfers / 88 steps / 58 blocked. Step-enabled screen passes 504 short round trips; explicit host exposure remains next.
+
+## Step doorway Godot gate
+
+[Host checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_STEP_DOOR_GODOT.md): pinned small-house headless/GPU controls, scheduling/input and placement pass. 20 repeated manual transfers / 23 step events; private capture inspected; zero-warning build.
+
+## Local step coverage gate
+
+[Explicit local option](FLOOR_STEP_RAY_CONTRACT.md): side-wall/hole negatives, 16 independently checked original proposals, 64 movement/blocker cases and 640 repeat step transitions pass. Portal actor screening and host exposure remain next; whole-strip default stays unchanged.
+
+## Local-step original doorway gate
+
+[Black-sun actor checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_RAY_STEP_DOOR_ACTOR.md) passes both directions/two poses, independent per-tick status/owner/step/transfer checks. Explicit local screen yields 509 round trips; host local-option exposure remains next.
+
+## 2026-09-30 local-step host gate
+
+[Black-sun host gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_RAY_STEP_DOOR_GODOT.md) passes forward headless/reverse GPU controls and placement with explicit local coverage; 20 manual transfers per direction, 23/25 manual step events. Native actor oracle counts remain separate.
+
+## 2026-09-30 local-step host gate
+
+[Black-sun host gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_RAY_STEP_DOOR_GODOT.md) passes forward headless/reverse GPU controls and placement with explicit local coverage; 20 manual transfers per direction, 23/25 manual step events. Native actor oracle counts remain separate.
+
+## 2026-09-30 connected approach
+
+Selected-edge approach gate passes stacked-sheet and negative routes, 1,056 independent original endpoints and lower black-sun repeated trace. Connected screen 524/528 is separate from vertical inspection 509/533. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_CONNECTED_DOOR_APPROACH.md).
+
+## 2026-09-30 connected host gate
+
+[Lower-floor host](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_CONNECTED_DOOR_GODOT.md) passes forward headless/reverse GPU controls, scheduling/input and reflected placement; 20 manual transfers each, 48/50 manual step events. Explicit `-ConnectedDoorApproach` requires local, step and precise movement.
+
+## 2026-09-30 multi-door scene
+
+[Bounded owned scene](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_DOOR_SCENE.md) passes synthetic three-cell/two-leaf lifecycle and 80 repeated native transfers. Independent reference matches 1,440 ticks / 24 transfers / 128 blocked ticks. Original scene gate is next; no coverage score changes.
+
+## 2026-09-30 original multi-door route
+
+[Existing Mustafar scene](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_ORIGINAL_INTERIOR_SCENE.md) independently passes 2,880 ticks / 24 transfers / 172 blocked ticks / zero steps across three cells, two physical leaves and two owner poses. Directional denial/unknown/retreat/recovery and controller lifecycle checked. No broad new POB survey or score change.
+
+## 2026-09-30 shared typed scheduling
+
+[Shared scheduler/timeline](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_TYPED_SCENE_SCHEDULING.md) preserves single-door API and complete multi-door snapshots. Three render partitions and direct 420-tick scene reference match; stall/pause/partial fault/reset/dispose/reentrancy and existing single-door native/original headless gates pass.
+
+## 2026-09-30 pinned scene bundle
+
+[Reusable bundle](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_SCENE_BUNDLE.md) pins bounded explicit selections and shares normalized asset lookup. Malformed/duplicate/bad identity gates and unchanged 2,880-tick original scene reference pass. No score changes.
+
+## 2026-09-30 original scene host
+
+[Godot multi-door scene](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_SCENE_GODOT.md) passes headless/GPU: 16 manual transfers / two poses, second denial/retreat/reset, physical timestamped keys and diagonal round trips, typed four-transfer route, stall/pause/focus and both-leaf reflected placement. Private capture inspected.
+
+## 2026-09-30 explicit closing safety
+
+[Optional closing sweep](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_DOOR_CLOSING_SAFETY.md) holds an obstructed close without granting entry. Native lifecycle/event/failure/scene-retreat gates and independent 240 ticks / 52 holds pass; original unguarded 2,880-tick scene regression unchanged. Original obstruction policy remains unknown.
+
+## 2026-09-30 original occupied close
+
+[Original closing/host gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_ORIGINAL_DOOR_CLOSING_SAFETY.md) independently matches 692 guarded/default ticks over two poses: 156 holds in guarded mode, 314 physical stops in unguarded replacement mode. Explicit `-HoldClosingDoors` headless/GPU denied-entry/retreat/release and existing timing/input/placement gates pass. Original game obstruction behavior remains unknown.
+
+## 2026-09-30 selected scene rooms
+
+[Selected appearance and host gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SELECTED_SCENE_ROOMS.md) passes native selection negatives, independent geometry identity and original headless/GPU room-owner placement. View switches preserve state; room collision remains unimplemented.
+
+## 2026-09-30 selected room textures
+
+[Selected material gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SELECTED_SCENE_TEXTURES.md) passes later inline implementation asymmetric/truncation tests, selected shared loading, independent DDS/effect comparisons and original headless/GPU host controls/upload readback. MAIN rendering remains an inspection policy.
+
+## 2026-09-30 zero-pass surfaces
+
+[Decoded no-pass gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_ZERO_PASS_SURFACES.md) passes native classification and original mapped upload plus synthetic all-surface omission in headless/GPU hosts. Rendering omission leaves decoded collision geometry intact.
+
+## 2026-09-30 portal visibility
+
+[Visibility query/host gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_VISIBILITY.md) passes native clipping/negative/fail-open checks, independent representative ray samples and original node visibility in both owner poses. Legacy DPVS and exterior traversal remain separate.
+
+## 2026-09-30 actor camera heading
+
+[View/input gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_ACTOR_VIEW_INPUT.md) passes horizontal heading and timestamp semantics plus original rendered/headless motion events, camera placement, portal selection and focus/pause release in both poses. Pitch remains presentation-only.
+
+## 2026-09-30 combined scene content
+
+[Content gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_SCENE_CONTENT.md) independently reconciles exact source union and preserves original trace; source budget and wrong-layout substitution negatives plus host regressions pass.
+
+## 2026-09-30 shared scene visuals
+
+[Sharing gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SHARED_SCENE_VISUALS.md) passes independent original leaf geometry/mips/source union, decoded sharing/budgets, headless/GPU identical mesh resources with independent leaf nodes, and unchanged original movement trace.
+
+## 2026-09-30 background scene load
+
+[Worker/host gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BACKGROUND_SCENE_LOAD.md) passes cooperative cancellation, stale-owner rejection and original success/cancelled publication boundaries. Archives close on the worker; GPU and scene creation stay on the main thread.
+
+## 2026-09-30 continuous triangle-box query
+
+[Contact gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_TRIANGLE_BOX_SWEEP.md) passes native analytic/negative cases and512 independent synthetic LP contact-time comparisons. Movement integration and original obstacle selection remain outside this gate.
+
+## 2026-09-30 triangle contact along precise paths
+
+[Path gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_TRIANGLE_FLOOR_PATH.md) passes double-coordinate/sloped/vertical lift cases and512 independent LP segment/global-time comparisons. Contact query does not adopt an actor locator.
+
+## 2026-09-30 supported triangle floor contact
+
+[Adoption gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_TRIANGLE_FLOOR_WALK.md) passes flat/ramp/ceiling supported locators,100 repeat holds, retreat, precision rollback and invalid/prefix recovery. Original scene collision is not integrated.
+
+## 2026-09-30 triangle step clearance
+
+[Step gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_TRIANGLE_FLOOR_STEP.md) passes rise/drop, ceiling source hold,100 repeats/retreat, source/target wall contact and height limits. Original host obstacle integration remains separate.
+
+## 2026-09-30 original obstacle-source constraint
+
+[Helper geometry audit](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SELECTED_HELPER_GEOMETRY.md) verifies existing source identities and aggregate geometry; its route-disjoint result prevents claiming full scene collision from hidden surfaces alone.

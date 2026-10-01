@@ -22,3 +22,9 @@ Build/run the native smoke project and run `verify_portal_scene.py ROOT CONFIG M
 Optional floor resources and inspection now follow the [surface query contract](FLOOR_SURFACE_QUERY_CONTRACT.md). They share the scene source budget; floor walking remains deferred.
 
 Shared material bundles and explicit unlit MAIN inspection follow the [textured scene contract](TEXTURED_PORTAL_SCENE_CONTRACT.md).
+
+## Selected appearance cells
+
+`PortalSceneBundleReader.Load(..., selectedAppearanceCells: cells)` snapshots a unique nonnegative cell set before lookup, rejects invalid/out-of-range indices, and preserves authored CELS ordinals. Null selects all appearances; empty selects none. Floor/path loading flags remain independent and still apply to the full layout. The independent verifier accepts `--appearance-cells` for neutral geometry. [Selected-room acceptance](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SELECTED_SCENE_ROOMS.md) covers mutation isolation, empty/invalid selections and original geometry hashes.
+
+`TexturedPortalSceneReader` accepts the same selected appearance set. The independent verifier now supports selection with texture, floor and path flags; floor/path traversal remains across the full layout. [Selected texture acceptance](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SELECTED_SCENE_TEXTURES.md) records the different source-accounting boundaries.

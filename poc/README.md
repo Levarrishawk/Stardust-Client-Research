@@ -300,3 +300,93 @@ The core now returns validated reusable floor locators at piecewise box contacts
 ## Original floor-box contact and level guard
 
 Original sloped-plane/synthetic-obstacle fixtures verify reusable stops, bounded rounding correction and zero repeated-contact drift. Portal barrier movement remains level-only and now checks source/target intermediate planes. See [floor-box contract](../docs/SINGLE_CELL_FLOOR_BOX_CONTRACT.md) and [guard checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LEVEL_PATH_GUARD.md).
+
+## Precise portal floor-box query
+
+The core can sweep captured world-space boxes along source and target floor planes, including target geometry reached by actor bounds before feet cross. Door actor integration remains separate. See [query contract](../docs/PORTAL_FLOOR_BOX_CONTRACT.md).
+
+## Precise persistent doorway option
+
+PortalDoorActorSimulation accepts usePreciseMovement: true for connected sloped triangle-plane paths and conservative captured box collision. [Contract and bounded original gates](../docs/PRECISE_DOOR_ACTOR_CONTRACT.md). The existing level movement default is preserved.
+
+The Godot launcher accepts -DoorWalk -PreciseDoorWalk for this explicit sloped actor mode; pinned YT-2400 headless/GPU gates pass.
+
+## Bounded riser proposals
+
+[Floor step proposal](../docs/FLOOR_STEP_PROPOSAL_CONTRACT.md) identifies a supported landing through reciprocal solid vertical strips under explicit modern limits. It does not move an actor or establish collider clearance.
+
+## One-step collision query
+
+[One-step floor box walker](../docs/FLOOR_STEP_BOX_CONTRACT.md) checks vertical actor clearance before adopting a supported landing and continuing horizontally. It is a separate modern same-space query; door movement integration remains next.
+
+## Portal actor modern steps
+
+[World step/portal contract](../docs/PORTAL_FLOOR_STEP_CONTRACT.md): usePreciseMovement: true plus an explicit FloorStepPolicy enables bounded steps through original thresholds. One step/one cell transfer per request, upright owners, captured world boxes and supported-floor rollback. Host exposure remains next.
+
+The Godot launcher now accepts -DoorWalk -PreciseDoorWalk -StepDoorWalk for the explicit bounded step policy. Pinned small-house headless/GPU controls and reflected placement pass.
+
+## Local vertical coverage option
+
+[Explicit local step policy](../docs/FLOOR_STEP_RAY_CONTRACT.md) uses UseLocalRayCoverage: true to require a covered vertical contact line, excluding distant attached walls and rejecting gaps. Whole-strip behavior remains default.
+
+## Explicit local step preview
+
+Add `-LocalStepDoorWalk` with `-StepDoorWalk -PreciseDoorWalk -DoorWalk` to select local vertical ray coverage. The pinned black-sun 1/1 and 2/1 host gates pass. This is modern bounded policy; original solver tolerances remain unknown.
+
+## 2026-09-30 connected approach
+
+Optional `ConnectedApproach` anchors inspection to the selected paired floor sheet; it requires a separate actor clearance gate. Core original screen and repeated lower-floor trace pass. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_CONNECTED_DOOR_APPROACH.md).
+
+Use `-ConnectedDoorApproach` with `-LocalStepDoorWalk -StepDoorWalk -PreciseDoorWalk -DoorWalk` for the explicitly paired connected-floor fixture. Black-sun lower-floor 2/0 and 3/0 host gates pass.
+
+## 2026-09-30 multi-door scene
+
+[Bounded owned scene](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_DOOR_SCENE.md) passes synthetic three-cell/two-leaf lifecycle and 80 repeated native transfers. Independent reference matches 1,440 ticks / 24 transfers / 128 blocked ticks. Original scene gate is next; no coverage score changes.
+
+## 2026-09-30 original multi-door route
+
+[Existing Mustafar scene](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_ORIGINAL_INTERIOR_SCENE.md) independently passes 2,880 ticks / 24 transfers / 172 blocked ticks / zero steps across three cells, two physical leaves and two owner poses. Directional denial/unknown/retreat/recovery and controller lifecycle checked. No broad new POB survey or score change.
+
+## 2026-09-30 shared typed scheduling
+
+[Shared scheduler/timeline](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_TYPED_SCENE_SCHEDULING.md) preserves single-door API and complete multi-door snapshots. Three render partitions and direct 420-tick scene reference match; stall/pause/partial fault/reset/dispose/reentrancy and existing single-door native/original headless gates pass.
+
+## 2026-09-30 pinned scene bundle
+
+[Reusable bundle](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_SCENE_BUNDLE.md) pins bounded explicit selections and shares normalized asset lookup. Malformed/duplicate/bad identity gates and unchanged 2,880-tick original scene reference pass. No score changes.
+
+## 2026-09-30 original scene host
+
+[Godot multi-door scene](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_SCENE_GODOT.md) passes headless/GPU: 16 manual transfers / two poses, second denial/retreat/reset, physical timestamped keys and diagonal round trips, typed four-transfer route, stall/pause/focus and both-leaf reflected placement. Private capture inspected.
+
+## 2026-09-30 explicit closing safety
+
+[Optional closing sweep](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_DOOR_CLOSING_SAFETY.md) holds an obstructed close without granting entry. Native lifecycle/event/failure/scene-retreat gates and independent 240 ticks / 52 holds pass; original unguarded 2,880-tick scene regression unchanged. Original obstruction policy remains unknown.
+
+## 2026-09-30 original occupied close
+
+[Original closing/host gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_ORIGINAL_DOOR_CLOSING_SAFETY.md) independently matches 692 guarded/default ticks over two poses: 156 holds in guarded mode, 314 physical stops in unguarded replacement mode. Explicit `-HoldClosingDoors` headless/GPU denied-entry/retreat/release and existing timing/input/placement gates pass. Original game obstruction behavior remains unknown.
+
+## Selected rooms in the persistent scene
+
+Add `-SceneGeometry` to the pinned scene preview to render the route rooms. Interior view and floor overlay controls are independent; room geometry currently uses neutral materials and supplies no wall collision. See the [host contract](../docs/INTERIOR_SCENE_HOST_CONTRACT.md).
+
+Add `-SceneTextures` with `-SceneGeometry` to use explicit MAIN-only inspection in the pinned scene. Specular/emissive effects and lighting remain untranslated; fallbacks are reported.
+
+Add `-PortalVisibility` with `-SceneGeometry` for bounded aperture selection in interior view. Overview shows all selected rooms. See the [visibility contract](../docs/PORTAL_VISIBILITY_CONTRACT.md).
+
+Continuous interior view now provides mouse look: Tab toggles, Escape releases; pause/focus loss/manual/overview release. W/A/S/D follow camera heading while pitch remains visual. See the [input contract](../docs/ACTOR_VIEW_INPUT_CONTRACT.md).
+
+The pinned scene now shares one visual graph/material/GPU texture owner across rooms and both door instances. Door MAIN textures are included; leaf transforms/controllers and camera LOD remain independent.
+
+Scene CPU loading now runs on an owned cancellable worker with a responsive loading panel. Godot resources remain on the main thread. `-CancelSceneLoad -Headless` runs the bounded pending-lookup cancellation test; see the [worker contract](../docs/BACKGROUND_ASSET_LOAD_CONTRACT.md).
+
+## Continuous triangle-box collision foundation
+
+The engine-neutral stationary-triangle query supports continuous world-axis box translation and owned geometry. Native tests plus an independent512-case synthetic LP oracle pass; see the [contract](../docs/TRIANGLE_BOX_SWEEP_CONTRACT.md). It is not yet connected to actor movement or original obstacle sources.
+
+The triangle query also consumes precise piecewise feet paths, including slopes and vertical lift segments;512 independent two-segment LP cases pass. Actor response and original collision-source selection remain future work.
+
+The same-cell triangle floor walker adopts validated supported contact and conservatively holds the source when a float landing cannot be represented. Flat/ramp/ceiling, repeat and retreat tests pass; step/portal integration remains open.
+
+The bounded same-cell step walker now guards lift/landing and continuation against triangles. Ceiling blocking retains supported source feet; rise/drop, repeated hold/retreat and source/target walls pass synthetic tests.

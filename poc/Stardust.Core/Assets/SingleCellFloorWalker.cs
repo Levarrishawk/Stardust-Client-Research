@@ -117,11 +117,16 @@ public sealed class SingleCellFloorWalker
         FloorTriangle t=triangles[index];double y=0;for(int i=0;i<3;i++)y+=vertices[t.VertexIndices[i]].Y*weights[i];
         return new(x,y,z);
     }
-    private bool TryCanonicalContact(int index,Vector3 point,out Vector3 valid)
+    internal bool TryCanonicalContact(int index,Vector3 point,out Vector3 valid,double maximumCorrection=1e-4)
     {
         valid=point;
         if(!Coordinates(index,point,out double[] at))return false;
-        if(at.All(v=>v>=-Tolerance))return true;
+        if(at.All(v=>v>=-Tolerance))
+        {
+            // Rounded XZ can be inside a steep triangle while the unrounded-intersection height is no longer on its plane.
+            valid=Project(index,point,at);double height=(double)valid.Y-point.Y;
+            return height*height<=maximumCorrection*maximumCorrection;
+        }
         // A double edge intersection rounded to float may lie outside its own triangle.
         // Move only toward the triangle interior, within a strict geometric budget; never relax start validation.
         FloorTriangle triangle=triangles[index];
@@ -145,7 +150,7 @@ public sealed class SingleCellFloorWalker
             if(!Coordinates(index,candidate,out double[] weights) || weights.Any(v=>v< -Tolerance))continue;
             candidate=Project(index,candidate,weights);
             double x=(double)candidate.X-point.X,y=(double)candidate.Y-point.Y,z=(double)candidate.Z-point.Z;
-            if(x*x+y*y+z*z>1e-8)continue;
+            if(x*x+y*y+z*z>maximumCorrection*maximumCorrection)continue;
             valid=candidate;return true;
         }
         return false;

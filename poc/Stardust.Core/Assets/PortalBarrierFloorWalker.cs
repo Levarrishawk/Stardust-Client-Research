@@ -3,7 +3,7 @@ using System.Numerics;
 namespace Stardust.Core.Assets;
 
 public enum PortalActorContactKind { PermissionBarrier, DoorLeaf }
-public sealed record PortalBarrierFloorResult(CellFloorWalkResult Movement, PortalBarrierContact? Contact, PortalFloorLink? Barrier, string? Diagnostic = null, PortalActorContactKind? ContactKind = null);
+public sealed record PortalBarrierFloorResult(CellFloorWalkResult Movement, PortalBarrierContact? Contact, PortalFloorLink? Barrier, string? Diagnostic = null, PortalActorContactKind? ContactKind = null,int Steps=0);
 
 /// <summary>Offline source-cell actor-box barrier and optional leaf inspection before one transfer. Rigid yaw owners and level motion only.</summary>
 public sealed class PortalBarrierFloorWalker

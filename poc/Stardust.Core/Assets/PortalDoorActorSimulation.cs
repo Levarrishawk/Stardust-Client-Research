@@ -12,15 +12,18 @@ public sealed class PortalDoorActorSimulation : IDisposable
     private readonly Vector3 half;
     private readonly CellFloorLocator initial;
     private readonly SingleLeafDoorRuntime leaf;
-    private readonly PortalBarrierFloorWalker walker;
+    private readonly PortalBarrierFloorWalker? walker;
+    private readonly PortalDoorBoxFloorWalker? preciseWalker;
     private readonly ulong actor;
     private long frame, total;
     private bool disposed;
     public PortalDoorActorState State { get; private set; }
     public PortalDoorActorSimulation(PortalSingleLeafDoorBundle bundle, CellFloorLocator initial,
-        AppearanceTransform? ownerPose = null, Vector3? actorHalfExtents = null, ulong actorHandle = 1)
+        AppearanceTransform? ownerPose = null, Vector3? actorHalfExtents = null, ulong actorHandle = 1,bool usePreciseMovement=false,FloorStepPolicy? stepPolicy=null)
     {
         ArgumentNullException.ThrowIfNull(bundle);
+        if(stepPolicy is not null&&!usePreciseMovement)throw new ArgumentException("Step policy requires precise movement.");
+        stepPolicy?.Validate();
         owner = ownerPose ?? AppearanceTransform.Identity; half = actorHalfExtents ?? new(.25f, .9f, .25f); actor = actorHandle;
         if (actor == 0 || !Finite(half) || half.X <= 0 || half.Y <= 0 || half.Z <= 0 || !bundle.Floors.ContainsKey(initial.CellIndex) || !Finite(initial.LocalPosition))
             throw new InvalidDataException("Invalid persistent actor inputs.");
@@ -41,8 +44,9 @@ public sealed class PortalDoorActorSimulation : IDisposable
         leaf = new(bundle.Leaf.Selection.Style, bundle.Leaf.Extent, owner.Compose(bundle.DoorToCell), bundle.Cell, bundle.TargetCell);
         try
         {
-            walker = new(bundle.Layout, bundle.Floors, poses,
-                new Dictionary<(int, int), SingleLeafDoorRuntime> { [(bundle.Cell, bundle.Portal)] = leaf, [(bundle.TargetCell, links[0].TargetPortal)] = leaf }, true);
+            var bindings=new Dictionary<(int,int),SingleLeafDoorRuntime>{{(bundle.Cell,bundle.Portal),leaf},{(bundle.TargetCell,links[0].TargetPortal),leaf}};
+            if(usePreciseMovement)preciseWalker=new(bundle.Layout,bundle.Floors,poses,bindings,true,stepPolicy);
+            else walker=new(bundle.Layout,bundle.Floors,poses,bindings,true);
         }
         catch { leaf.Dispose(); throw; }
         State = new(this.initial, owner.TransformPoint(this.initial.LocalPosition), leaf.State, 0, 0, null, null);
@@ -57,7 +61,8 @@ public sealed class PortalDoorActorSimulation : IDisposable
         if (!Finite(actorCenter)) throw new InvalidDataException("Actor center overflow.");
         leaf.NotifyContact(actor, State.Locator.CellIndex, State.Locator.CellIndex, actorCenter, entryAllowed, frame);
         leaf.Advance(frame, seconds, id => id == actor ? State.WorldPosition : null, entryAllowed);
-        PortalBarrierFloorResult movement = walker.Walk(State.Locator, desired, half, _ => new(entryAllowed, true));
+        PortalBarrierFloorResult movement = preciseWalker is not null?preciseWalker.Walk(State.Locator,desired,half,_=>new(entryAllowed,true)):
+            walker!.Walk(State.Locator,desired,half,_=>new(entryAllowed,true));
         // One owned leaf is shared by both directions; the returned locator becomes the next tick's source.
         total += movement.Movement.Transfers; frame++;
         State = new(movement.Movement.Locator, movement.Movement.WorldPosition, leaf.State, frame, total, movement, entryAllowed);

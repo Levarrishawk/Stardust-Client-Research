@@ -9,16 +9,19 @@ public sealed record PortalSceneBundle(PortalLayoutDescription Layout,Appearance
 /// <summary>Offline cell appearance composition; floor/door/visibility runtime behavior remains separate.</summary>
 public static class PortalSceneBundleReader
 {
-    public static PortalSceneBundle Load(Func<string,TreLookupResult> resolve,string path,string expectedSha256,AppearanceGraphLimits? limits=null,bool loadFloors=false,bool loadPathGraphs=false)
+    public static PortalSceneBundle Load(Func<string,TreLookupResult> resolve,string path,string expectedSha256,AppearanceGraphLimits? limits=null,bool loadFloors=false,bool loadPathGraphs=false,IReadOnlyCollection<int>? selectedAppearanceCells=null)
     {
         ArgumentNullException.ThrowIfNull(resolve);limits??=new();
         if(limits.MaximumResources<1 || limits.MaximumSourceBytes<1 || limits.MaximumDepth<1 || limits.MaximumEdges<1)throw new ArgumentOutOfRangeException(nameof(limits));
+        int[]? selection=selectedAppearanceCells?.ToArray();
+        if(selection is not null && (selection.Length>4096 || selection.Any(c=>c<0) || selection.Distinct().Count()!=selection.Length))throw new InvalidDataException("Invalid selected appearance cell set.");
         OwnedAssetSourceCache cache=new(resolve,limits);IReadOnlyDictionary<string,AssetSourceIdentity> sources=cache.Sources;
         TreLookupResult Read(string resource)=>cache.Read(resource);
         path=LegacyAssetPath.Normalize(path);PortalLayoutDescription layout=PortalLayoutDecoder.Decode(cache.ReadPinned(path,expectedSha256));
+        if(selection is not null && selection.Any(c=>c>=layout.Cells.Count))throw new InvalidDataException("Selected appearance cell outside layout.");
         List<(int Cell,AppearanceGeometryRequest Request)> requested=new();
         for(int cell=0;cell<layout.Cells.Count;cell++)
-            if(layout.Cells[cell].AppearancePath.Length!=0)requested.Add((cell,new(layout.Cells[cell].AppearancePath)));
+            if((selection is null || selection.Contains(cell)) && layout.Cells[cell].AppearancePath.Length!=0)requested.Add((cell,new(layout.Cells[cell].AppearancePath)));
         Dictionary<int,AppearanceGeometryTemplate> appearances=new();List<string> diagnostics=new(layout.Diagnostics);List<AppearanceGeometryChild> children=new();
         AppearanceGeometryCollection? collection=requested.Count==0?null:AppearanceGeometryGraphReader.LoadMany(Read,requested.Select(value=>value.Request).ToArray(),limits,true);
         if(collection is not null)

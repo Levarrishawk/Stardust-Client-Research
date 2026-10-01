@@ -9,6 +9,48 @@ public sealed record PortalSingleLeafDoorBundle(PortalLayoutDescription Layout, 
     public SingleLeafDoorRuntime CreateRuntime(AppearanceTransform? cellToWorld = null) =>
         new(Leaf.Selection.Style, Leaf.Extent, (cellToWorld ?? AppearanceTransform.Identity).Compose(DoorToCell), Cell);
 
+    // Optional modern fixture construction: walk the selected connected sheet from its portal edge.
+    public (CellFloorLocator Start, System.Numerics.Vector3 End) ConnectedApproach(float distance = .8f, FloorStepPolicy? stepPolicy = null)
+    {
+        if (!float.IsFinite(distance) || distance <= 0 || distance > 100) throw new ArgumentOutOfRangeException(nameof(distance));
+        var policy = stepPolicy ?? new(); policy.Validate();
+        var link = new PortalFloorTransferQuery(Layout, Floors).Links.Where(l => l.SourceCell == Cell && l.SourcePortal == Portal)
+            .OrderBy(l =>
+            {
+                var f = Floors[Cell]; var t = f.Triangles[l.SourceTriangle];
+                var midpoint = (f.Vertices[t.VertexIndices[l.SourceEdge]] + f.Vertices[t.VertexIndices[(l.SourceEdge + 1) % 3]]) * .5f;
+                return System.Numerics.Vector3.DistanceSquared(midpoint, DoorToCell.Translation);
+            }).ThenBy(l => l.SourceTriangle).ThenBy(l => l.SourceEdge).First();
+        var source = ConnectedEndpoint(Floors[Cell], link.SourceTriangle, link.SourceEdge, distance, policy);
+        var target = ConnectedEndpoint(Floors[TargetCell], link.TargetTriangle, link.TargetEdge, distance, policy);
+        return (new(Cell, source.TriangleIndex, source.Position), target.Position);
+    }
+
+    internal static FloorWalkResult ConnectedEndpoint(FloorMeshDescription floor, int triangle, int edge, float distance, FloorStepPolicy policy)
+    {
+        var t = floor.Triangles[triangle];
+        var a = floor.Vertices[t.VertexIndices[edge]]; var b = floor.Vertices[t.VertexIndices[(edge + 1) % 3]];
+        var midpoint = (a + b) * .5f;
+        var center = (floor.Vertices[t.VertexIndices[0]] + floor.Vertices[t.VertexIndices[1]] + floor.Vertices[t.VertexIndices[2]]) / 3;
+        var inward = new System.Numerics.Vector3(-(b.Z - a.Z), 0, b.X - a.X);
+        if (inward.LengthSquared() <= 1e-12f) throw new InvalidDataException("Portal edge lacks a horizontal approach normal.");
+        inward = System.Numerics.Vector3.Normalize(inward);
+        if (System.Numerics.Vector3.Dot(inward, center - midpoint) < 0) inward = -inward;
+        var walker = new SingleCellFloorWalker(floor);
+        if (!walker.TryCanonicalContact(triangle, midpoint, out var start)) throw new InvalidDataException("Portal midpoint is not a reusable supported contact.");
+        var desired = midpoint + inward * distance;
+        var query = new SingleCellFloorStepBoxWalker(floor, Array.Empty<PortalBarrierCollider>(), policy);
+        for (int count = 0; count < 8; count++)
+        {
+            var result = query.Walk(triangle, start, desired, System.Numerics.Vector3.Zero, _ => true);
+            if (result.Movement.Floor.Status == FloorWalkStatus.Accepted) return result.Movement.Floor;
+            if (result.Steps == 0 || System.Numerics.Vector3.DistanceSquared(start, result.Movement.Floor.Position) <= 1e-12f)
+                throw new InvalidDataException("Selected connected doorway approach is obstructed: " + result.Movement.Floor.Status);
+            triangle = result.Movement.Floor.TriangleIndex; start = result.Movement.Floor.Position;
+        }
+        throw new InvalidDataException("Selected connected doorway approach exceeds eight step requests.");
+    }
+
     // Modern deterministic inspection points; this is not an original navigation rule.
     public (CellFloorLocator Start, System.Numerics.Vector3 End) InspectionApproach(float distance = .8f)
     {

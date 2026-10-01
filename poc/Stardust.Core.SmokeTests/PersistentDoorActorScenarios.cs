@@ -46,23 +46,23 @@ internal static class PersistentDoorActorScenarios
         Console.WriteLine("PASS: persistent shared-leaf actor ownership, 124 repeated transfers, retreat/reset/dispose and invalid pair/input gates");
     }
     private static void Require(bool value, string label) { if (!value) throw new Exception("Persistent actor: " + label); }
-    internal static void ProbeOptional(string[] args)
+    internal static void ProbeOptional(string[] args,bool precise=false,bool stepPolicy=false,bool localRay=false,bool connected=false)
     {
         if (args.Length != 16 || args[2] != "--configuration" || args[4] != "--member" || args[6] != "--expected-sha256" || args[8] != "--cell" || args[10] != "--portal" || args[12] != "--table-sha256" || args[14] != "--leaf-sha256") throw new ArgumentException("Persistent door actor requires the explicit pinned doorway arguments.");
         using StreamReader cfg = File.OpenText(args[3]);using ConfiguredTreOverlay overlay = ConfiguredTreOverlay.Open(args[1], cfg);
         var bundle = PortalSingleLeafDoorBundleReader.Load(overlay.Lookup, args[5], args[7], int.Parse(args[9]), int.Parse(args[11]), args[13], args[15]);
-        var approach = bundle.InspectionApproach();Vector3 direction = approach.End - approach.Start.LocalPosition;direction.Y = 0;direction = Vector3.Normalize(direction);
+        var approach = connected?bundle.ConnectedApproach(stepPolicy:new(UseLocalRayCoverage:localRay)):bundle.InspectionApproach();Vector3 direction = approach.End - approach.Start.LocalPosition;direction.Y = 0;direction = Vector3.Normalize(direction);
         foreach (var source in bundle.Sources.Values) Console.WriteLine("persistent_source=" + JsonSerializer.Serialize(source));
         foreach (bool transformed in new[] { false, true })
         {
             AppearanceTransform pose = transformed ? new(new(0, 0, 1), Vector3.UnitY, new(-1, 0, 0), new(30, 4, -11)) : AppearanceTransform.Identity;
-            using PortalDoorActorSimulation actor = new(bundle, approach.Start, pose);
+            using PortalDoorActorSimulation actor = new(bundle, approach.Start, pose,usePreciseMovement:precise,stepPolicy:stepPolicy?new(UseLocalRayCoverage:localRay):null);
             int sequence = 0;
             void Step(string phase, float step, bool? allowed, bool reset = false)
             {
                 if (reset) actor.Reset();
                 Vector3 delta = pose.TransformDirection(direction * step);var state = actor.Tick(.05f, delta, allowed);
-                Console.WriteLine("persistent_actor=" + JsonSerializer.Serialize(new { sequence = sequence++, phase, transformed, reset, seconds = .05f, delta = InteriorDoorScenarios.V(delta), allowed, frame = state.Frame, total = state.TotalTransfers, cell = state.Locator.CellIndex, triangle = state.Locator.TriangleIndex, local = InteriorDoorScenarios.V(state.Locator.LocalPosition), world = InteriorDoorScenarios.V(state.WorldPosition), fraction = state.Door.Controller.Fraction, curve = state.Door.DisplacementFraction, retained = state.Door.RetainedActors, transition = (int)state.Door.Controller.Transition, status = state.Movement!.Movement.Status.ToString(), kind = state.Movement.ContactKind?.ToString(), diagnostic = state.Movement.Diagnostic, transfers = state.Movement.Movement.Transfers, parameter = state.Movement.Movement.Parameter }));
+                Console.WriteLine("persistent_actor=" + JsonSerializer.Serialize(new { sequence = sequence++, phase, transformed, reset, seconds = .05f, delta = InteriorDoorScenarios.V(delta), allowed, frame = state.Frame, total = state.TotalTransfers, cell = state.Locator.CellIndex, triangle = state.Locator.TriangleIndex, local = InteriorDoorScenarios.V(state.Locator.LocalPosition), world = InteriorDoorScenarios.V(state.WorldPosition), fraction = state.Door.Controller.Fraction, curve = state.Door.DisplacementFraction, retained = state.Door.RetainedActors, transition = (int)state.Door.Controller.Transition, status = state.Movement!.Movement.Status.ToString(), kind = state.Movement.ContactKind?.ToString(), diagnostic = state.Movement.Diagnostic, transfers = state.Movement.Movement.Transfers, parameter = state.Movement.Movement.Parameter,steps=state.Movement.Steps }));
             }
             for (int trip = 0; trip < 10; trip++)
             {

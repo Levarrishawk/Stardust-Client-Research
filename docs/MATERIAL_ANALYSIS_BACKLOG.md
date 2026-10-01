@@ -73,3 +73,11 @@ reader and runtime contract, active schema contradictions have explicit codec
 profiles/tests, lifecycle boundaries are documented, and all remaining raw
 function groups are either reachable through a closed workflow or classified
 as redesignable machinery.
+
+## 2026-09-30 inline implementation extension
+
+Inline IMPL/0006 and /0007 are structurally decoded and version/phase/raw flags/candidate order preserved. [Selected original material acceptance](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SELECTED_SCENE_TEXTURES.md) passes asymmetric/truncation negatives and independent original effect/texture comparisons. Flag semantics and original capability selection remain separate; zero-pass collision-only presentation is the immediate renderer gap.
+
+## 2026-09-30 zero-pass presentation
+
+The immediate zero-pass gap is closed by [decoded effect classification and mapped upload verification](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_ZERO_PASS_SURFACES.md). Mixed candidates remain renderable. Legacy collision selection and capability choice remain separate.

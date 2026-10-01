@@ -15,7 +15,12 @@ from verify_floor_queries import read_geometry,reference,f32,cross,sub
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('root',type=Path);p.add_argument('configuration',type=Path);p.add_argument('member');p.add_argument('sha256');p.add_argument('core_dll',type=Path)
-    p.add_argument('--floors',action='store_true');p.add_argument('--paths',action='store_true');p.add_argument('--textures',action='store_true');p.add_argument('--authored-defaults',action='store_true');p.add_argument('--surface-paths',action='store_true');a=p.parse_args();a.textures=a.textures or a.authored_defaults;a.paths=a.paths or a.textures or a.surface_paths;a.floors=a.floors or a.paths;sources={};meshes={};floors={}
+    p.add_argument('--appearance-cells');p.add_argument('--floors',action='store_true');p.add_argument('--paths',action='store_true');p.add_argument('--textures',action='store_true');p.add_argument('--authored-defaults',action='store_true');p.add_argument('--surface-paths',action='store_true');p.add_argument('--materials-only',action='store_true');p.add_argument('--source-manifest',type=Path);a=p.parse_args()
+    if a.materials_only and (a.floors or a.paths or a.surface_paths):p.error('Material-only probe cannot request floor/path traversal')
+    if a.source_manifest:a.source_manifest.resolve().relative_to((Path(__file__).resolve().parents[2]/'local-private').resolve())
+    a.textures=a.textures or a.authored_defaults or a.materials_only;a.paths=a.paths or a.textures and not a.materials_only or a.surface_paths;a.floors=a.floors or a.paths;sources={};meshes={};floors={}
+    selected=None if a.appearance_cells is None else [int(c) for c in a.appearance_cells.split(',')]
+    if selected is not None and (len(selected)!=len(set(selected)) or any(c<0 for c in selected)):p.error('Invalid selected cell set')
     assert not(a.surface_paths and a.textures),'Choose surface/path or material comparison'
     with contextlib.ExitStack() as stack:
         indices=[(priority,Index(stack.enter_context(path.open('rb')))) for priority,path in archives(a.root,a.configuration)]
@@ -28,6 +33,7 @@ def main():
             raise ValueError('Missing source '+path)
         root=read(a.member);assert hashlib.sha256(root).hexdigest().upper()==a.sha256.upper()
         layout=portal(root)
+        if selected is not None:assert all(c<len(layout['cells']) for c in selected)
         def walk(path,parents=()):
             if not path.startswith('appearance/'):path='appearance/'+path
             assert path not in parents and len(parents)<32
@@ -38,7 +44,8 @@ def main():
             elif family==b'APT ':children=[nodes(value)[0][1][0][1][0][1].rstrip(b'\0').decode('ascii')]
             else:raise ValueError('Unsupported scene family '+repr(family))
             for child in children:walk(child,parents+(path,))
-        for cell in layout['cells']:
+        for ci,cell in enumerate(layout['cells']):
+            if selected is not None and ci not in selected:continue
             if cell['appearance']:walk(cell['appearance'])
         if a.floors:
             for ci,cell in enumerate(layout['cells']):
@@ -63,7 +70,7 @@ def main():
                     root_effect,=nodes(read(effect_path));assert root_effect[0]==b'EFCT'
                     effect_version,=root_effect[1];assert effect_version[0]==b'0001'
                     for ii,(_,implementation) in enumerate(effect_version[1][1:]):
-                        iv,=implementation;assert iv[0] in (b'0004',b'0005')
+                        iv,=implementation;assert iv[0] in (b'0004',b'0005',b'0006',b'0007')
                         info=next(value for tag,value in iv[1] if tag==b'DATA');phase=struct.unpack_from('<I',info,1)[0]
                         mesh_effect_lines.add(f'portal_effect={effect_path} implementation={ii} version={iv[0].decode()} phase={phase:08X} flag5={info[5] if len(info)==7 else "absent"} flag6={info[6] if len(info)==7 else "absent"}')
                         pi=0
@@ -90,7 +97,9 @@ def main():
             for path in texture_paths:
                 with contextlib.redirect_stdout(io.StringIO()):hashes=dds(read(path))
                 for level,digest in enumerate(hashes):expected_mips[(path,level)]=digest
-        output=subprocess.run(['dotnet',str(a.core_dll),'--portal-surface-paths' if a.surface_paths else '--portal-textures-defaults' if a.authored_defaults else '--portal-textures' if a.textures else '--portal-paths' if a.paths else '--portal-floors' if a.floors else '--portal-scene',str(a.root),'--configuration',str(a.configuration),'--member',a.member,'--expected-sha256',a.sha256],capture_output=True,text=True,check=True,timeout=60).stdout
+        command=['dotnet',str(a.core_dll),'--portal-materials-defaults' if a.materials_only and a.authored_defaults else '--portal-materials' if a.materials_only else '--portal-surface-paths' if a.surface_paths else '--portal-textures-defaults' if a.authored_defaults else '--portal-textures' if a.textures else '--portal-paths' if a.paths else '--portal-floors' if a.floors else '--portal-scene',str(a.root),'--configuration',str(a.configuration),'--member',a.member,'--expected-sha256',a.sha256]
+        if selected is not None:command+=['--appearance-cells',a.appearance_cells]
+        output=subprocess.run(command,capture_output=True,text=True,check=True,timeout=60).stdout
         if a.surface_paths:
             observed={(r['cell'],r['probe']):r['hit'] for r in (json.loads(line.split('=',1)[1]) for line in output.splitlines() if line.startswith('surface_path='))};expected={}
             for ci,cell in enumerate(layout['cells']):
@@ -112,7 +121,8 @@ def main():
                     assert n is not None and all(e[k]==n[k] for k in ('cell','triangle','node','status')),(key,e,n)
                     assert all(math.isclose(x,y,rel_tol=1e-6,abs_tol=1e-5) for x,y in zip(e['position'],n['position']))
             print(f'PASS independent_surface_path probes={len(expected)} hits={sum(v is not None for v in expected.values())} same_cell_nodes={sum(v is not None and v["node"] is not None for v in expected.values())}')
-        assert f"portal_scene cells={len(layout['cells'])} loaded={len(layout['cells'])} sources={geometry_source_count} diagnostics=0" in output
+        loaded=sum(bool(c['appearance']) and (selected is None or ci in selected) for ci,c in enumerate(layout['cells']))
+        assert f"portal_scene cells={len(layout['cells'])} loaded={loaded} sources={geometry_source_count} diagnostics=0" in output
         if a.textures:
             actual_effect_lines=set(line for line in output.splitlines() if line.startswith(('portal_effect=','portal_effect_pass=')))
             assert effect_lines==actual_effect_lines,('Effect field disagreement',sorted(effect_lines-actual_effect_lines)[:1],sorted(actual_effect_lines-effect_lines)[:1])
@@ -140,5 +150,8 @@ def main():
             assert f'portal_floors count={len(floors)}' in output
             for ci,value in floors.items():assert f"portal_floor={ci} vertices={value['vertices']} triangles={value['triangles']} sha256={value['geometry_sha256']}" in output
             print(f'PASS floors={len(floors)} triangles={sum(v["triangles"] for v in floors.values())}')
-        print(f"PASS cells={len(layout['cells'])} sources={len(sources)} mesh_templates={len(meshes)} vertices={sum(v['vertices'] for v in meshes.values())} triangles={sum(v['triangles'] for v in meshes.values())} sorted_variants={sum(v['sorted_variants'] for v in meshes.values())} sha256={a.sha256.upper()}")
+        if a.source_manifest:
+            a.source_manifest.parent.mkdir(parents=True,exist_ok=True)
+            a.source_manifest.write_text(json.dumps([dict(Path=path,Priority=priority,Bytes=len(value),Sha256=hashlib.sha256(value).hexdigest().upper()) for path,(priority,value) in sorted(sources.items())],indent=2)+'\n',encoding='utf-8')
+        print(f"PASS cells={len(layout['cells'])} loaded={loaded} sources={len(sources)} mesh_templates={len(meshes)} vertices={sum(v['vertices'] for v in meshes.values())} triangles={sum(v['triangles'] for v in meshes.values())} sorted_variants={sum(v['sorted_variants'] for v in meshes.values())} sha256={a.sha256.upper()}")
 if __name__=='__main__':main()

@@ -14,6 +14,13 @@ public partial class Main
     private Action<bool>? actorFocus;
     private async System.Threading.Tasks.Task BuildPersistentDoorActorPreview(PortalSingleLeafDoorBundle bundle,string[] args,Func<string,string> read)
     {
+        bool preciseMovement=args.Contains("--precise-door-walk");
+        bool stepMovement=args.Contains("--step-door-walk");
+        bool localStepMovement=args.Contains("--local-step-door-walk");
+        bool connectedApproach=args.Contains("--connected-door-approach");
+        if(stepMovement&&!preciseMovement)throw new AssetPreviewException("Step movement requires precise movement.");
+        if(localStepMovement&&!stepMovement)throw new AssetPreviewException("Local step coverage requires step movement.");
+        if(connectedApproach&&!localStepMovement)throw new AssetPreviewException("Connected approach preview requires local step coverage.");
         geometryPreview=new(bundle.Leaf.Geometry);AddChild(geometryPreview.Root);
         floorPreview=new(bundle.Floors);var floorFrame=new Node3D();AddChild(floorFrame);floorFrame.AddChild(floorPreview.Root);
         var mesh=new BoxMesh{Size=new(.5f,1.8f,.5f)};
@@ -27,9 +34,11 @@ public partial class Main
         var panel=new VBoxContainer();panelFrame.AddChild(panel);
         panel.AddChild(new Label{Text=$"Persistent actor: {bundle.Layout.Cells[bundle.Cell].Name} ↔ {bundle.Layout.Cells[bundle.TargetCell].Name}"});
         panel.AddChild(new Label{Text="Actor .5 × 1.8 × .5 • conservative leaf clearance"});
+        panel.AddChild(new Label{Text=stepMovement?"Sloped floor movement with bounded steps":preciseMovement?"Sloped floor movement":"Level floor movement"});
         var permission=new CheckBox{Text="Entry allowed",ButtonPressed=true};panel.AddChild(permission);
         var transformed=new CheckBox{Text="Rotate and translate building owner"};panel.AddChild(transformed);
         bool fixture=args.Contains("--asset-self-test") || args.Contains("--capture");
+        int manualStepEvents=0;
         var automatic=new CheckBox{Text="Continuous movement (W / A / S / D)",ButtonPressed=!fixture};panel.AddChild(automatic);
         panel.AddChild(new Label{Text=$"W: {bundle.Layout.Cells[bundle.TargetCell].Name} • S: {bundle.Layout.Cells[bundle.Cell].Name}"});
         panel.AddChild(new Label{Text="A / D: doorway left / right • normalized diagonals"});
@@ -39,7 +48,7 @@ public partial class Main
         var wait=new Button{Text="Wait 0.1 seconds"};panel.AddChild(wait);
         var reset=new Button{Text="Reset actor and closed door"};panel.AddChild(reset);
         var status=new Label();panel.AddChild(status);
-        var approach=bundle.InspectionApproach();var direction=approach.End-approach.Start.LocalPosition;direction.Y=0;direction=System.Numerics.Vector3.Normalize(direction);
+        var approach=connectedApproach?bundle.ConnectedApproach(stepPolicy:new(UseLocalRayCoverage:true)):bundle.InspectionApproach();var direction=approach.End-approach.Start.LocalPosition;direction.Y=0;direction=System.Numerics.Vector3.Normalize(direction);
         float KeyAxis()=>(Input.IsPhysicalKeyPressed(Key.W)?1:0)-(Input.IsPhysicalKeyPressed(Key.S)?1:0);
         AppearanceTransform owner=AppearanceTransform.Identity;
         bool wHeld=false,sHeld=false,aHeld=false,dHeld=false;
@@ -55,13 +64,14 @@ public partial class Main
         void Configure(bool change)
         {
             actorSimulation?.Dispose();owner=change?new(new(0,0,1),System.Numerics.Vector3.UnitY,new(-1,0,0),new(30,4,-11)):AppearanceTransform.Identity;
-            actorSimulation=new(bundle,approach.Start,owner);actorHost=new(actorSimulation);wHeld=sHeld=aHeld=dHeld=false;long now=checked((long)Time.GetTicksUsec());actorTimeline=new(actorHost,now,CurrentInput());actorTimeline.AdvanceTo(now,automatic.ButtonPressed&&!paused.ButtonPressed&&GetWindow().HasFocus());floorFrame.Transform=GodotAppearanceTransform.ToGodot(owner);floorPreview.SelectCell(-1);
+            actorSimulation=new(bundle,approach.Start,owner,usePreciseMovement:preciseMovement,stepPolicy:stepMovement?new(UseLocalRayCoverage:localStepMovement):null);actorHost=new(actorSimulation);wHeld=sHeld=aHeld=dHeld=false;long now=checked((long)Time.GetTicksUsec());actorTimeline=new(actorHost,now,CurrentInput());actorTimeline.AdvanceTo(now,automatic.ButtonPressed&&!paused.ButtonPressed&&GetWindow().HasFocus());floorFrame.Transform=GodotAppearanceTransform.ToGodot(owner);floorPreview.SelectCell(-1);
             var p=owner.TransformPoint(bundle.DoorToCell.Translation);var n=owner.TransformDirection(bundle.DoorToCell.TransformDirection(System.Numerics.Vector3.UnitZ));var view=p+n*7+System.Numerics.Vector3.UnitY*4;
             camera.Position=new(view.X,view.Y,-view.Z);camera.LookAt(new Vector3(p.X,p.Y+1,-p.Z));Refresh();
         }
         void Tick(float seconds,float meters)
         {
             var from=actorSimulation!.State.WorldPosition;var state=actorSimulation.Tick(seconds,owner.TransformDirection(direction*meters),permission.ButtonPressed);
+            if(fixture)manualStepEvents+=state.Movement?.Steps??0;
             floorPreview.ShowActorWalk(from,state.Movement!);Refresh();
         }
         forward.Pressed+=()=>Tick(.05f,.08f);backward.Pressed+=()=>Tick(.05f,-.08f);wait.Pressed+=()=>Tick(.1f,0);
@@ -120,7 +130,7 @@ public partial class Main
             }
             transformed.ButtonPressed=true;
             for(int i=0;i<20;i++)forward.EmitSignal(Button.SignalName.Pressed);
-            GD.Print($"PASS: persistent original actor controls; repeated_transfers={checkedTransfers} owner_poses=2 retreat/reset/contact/reflection verified");
+            GD.Print($"PASS: persistent original actor controls; repeated_transfers={checkedTransfers} manual_step_events={manualStepEvents} owner_poses=2 retreat/reset/contact/reflection verified");
             actorHost!.Reset(0);var input=new PortalActorInput(owner.TransformDirection(direction*1.6f),true);
             for(long t=10_000;t<=1_200_000;t+=10_000)actorHost.AdvanceTo(t,input);
             if(actorSimulation!.State.Locator.CellIndex!=bundle.TargetCell || actorHost.State.Actor.Frame!=60 || actorHost.State.FaultType is not null)throw new AssetPreviewException("Continuous fixed-step adapter failed.");

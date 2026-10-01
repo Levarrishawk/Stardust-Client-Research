@@ -39,3 +39,7 @@ The Godot inspector adds `-DoorWalk` to the prior explicit POB/table/leaf comman
 Original global collision ordering and narrow-phase leaf shape remain Unknown. Physical clearance continues to use a conservative primary appearance box. Slopes, arbitrary cell owner differences, sliding, animated overlap response, effects/audio and general world obstacle collision are deferred.
 
 The [fixed-step follow-up](FIXED_STEP_ACTOR_CONTRACT.md) closes bounded scheduling and keyboard adaptation. Next: timestamped input transitions between render frames.
+
+## Precise movement opt-in
+
+The [precise door actor contract](PRECISE_DOOR_ACTOR_CONTRACT.md) adds usePreciseMovement to the engine-neutral simulation. Connected sloped source/target paths are supported under this option; the historical level adapter remains the default. Pinned YT-2400 traces pass 1,896 ticks and 88 transfers across both starting directions and two owner poses. Moving-leaf overlap and original global ordering remain unresolved.
