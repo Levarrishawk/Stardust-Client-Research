@@ -133,7 +133,7 @@ def main():
     sources, row, skeleton_rows, skin_rows, logical_rows, selected_clip = {}, None, {}, {}, {}, None
     locomotion_bank=[]
     compressed = binding = None; quaternion_rows = []; sample_rows = []; sampler_row = None
-    blend_targets=[]; blend_applications=[];texture_choice_rows=[];normal_materials={};normal_programs={};normal_samples=[];normal_images=[];material_fields={};specular_materials={};specular_samples=[];vertex_lit_materials={};vertex_lit_programs={};vertex_lit_samples=[]
+    blend_targets=[]; blend_applications=[];texture_choice_rows=[];normal_materials={};normal_programs={};normal_samples=[];normal_images=[];material_fields={};specular_materials={};specular_samples=[];vertex_lit_materials={};vertex_lit_programs={};vertex_lit_samples=[];mouth_vertex_sources=[];tangent_source_sets=[]
     customization_values=None
     animation_names = {}; animation_poses = {}; animation_vertices = {}; materials = {}; textures = {}; palettes = {}; blueprints = {}; face_resources = None; face_preparations = []; face_programs = []; face_compositions = []; generated_bindings = []; albedo_materials = {}; albedo_programs = {}
     for line in a.native_output.read_text(encoding='utf-8-sig').splitlines():
@@ -141,6 +141,10 @@ def main():
             locomotion_bank.append(json.loads(line.split('=',1)[1]))
         elif line.startswith('skeletal_albedo='):
             value=json.loads(line.split('=',1)[1]); assert value['path'] not in albedo_materials; albedo_materials[value['path']]=value
+        elif line.startswith('skeletal_tangent_vertex='):
+            value=json.loads(line.split('=',1)[1]);tangent_source_sets.append(value['vertexSources'])
+        elif line.startswith('mouth_vertex_sources='):
+            mouth_vertex_sources.append(json.loads(line.split('=',1)[1]))
         elif line.startswith('skeletal_vertex_lit_material='):
             r=json.loads(line.split('=',1)[1]);assert r['path'] not in vertex_lit_materials;vertex_lit_materials[r['path']]=r
         elif line.startswith('skeletal_vertex_lit_program='):
@@ -345,6 +349,16 @@ def main():
         from verify_skeletal_normals import verify as verify_normals
         required,result=verify_normals(raw,normal_materials,normal_programs,normal_samples,normal_images)
         expected|=required;print(json.dumps(result,indent=2))
+    if tangent_source_sets:
+        from verify_tangent_source_closure import verify as verify_tangent_sources
+        assert len(tangent_source_sets)==1
+        print("tangent_source_closure_audit="+json.dumps(verify_tangent_sources(raw,tangent_source_sets[0])))
+        expected|=set(tangent_source_sets[0])
+    if mouth_vertex_sources:
+        from verify_skeletal_vertex_lit_sources import EXPECTED,verify as verify_mouth
+        assert mouth_vertex_sources==[EXPECTED]
+        expected|=set(EXPECTED)
+        print("mouth_vertex_source_audit="+json.dumps(verify_mouth(raw,{p:r["Priority"] for p,r in sources.items()},a.native_output)))
     if vertex_lit_materials:
         from verify_skeletal_specular import verify_vertex_lit
         required,result=verify_vertex_lit(raw,vertex_lit_programs,vertex_lit_materials,vertex_lit_samples);expected|=required;print(json.dumps(result,indent=2))
@@ -394,7 +408,7 @@ def main():
         for prepared in face_preparations:
             assert all(customization_values[v['VariableName'],v['FactoryFlag']]==v['Value'] for v in prepared['values'])
         print(json.dumps(dict(shared_customization_keys=len(required),exact_namespace_value_agreement=True)))
-    assert set(sources) == expected
+    assert set(sources) == expected, (sorted(set(sources)-expected),sorted(expected-set(sources)))
     if compressed:
         assert selected_clip and compressed['path'] == selected_clip['path']
         decoded, names = compressed_clip(raw[compressed['path']])

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Godot;
 using Stardust.Core.Assets;
 
@@ -29,12 +30,13 @@ internal sealed class SkeletalMaterialPreview : IDisposable
         {if(material.Path!=path)throw new AssetPreviewException("Generated face shader identity differs.");return material.Material;}
         return materials[path];
     }
-    internal SkeletalMaterialPreview(SkeletalMaterialBundle source,BlueprintGeneratedFaces? generated=null,bool specularPreview=false)
+    internal SkeletalMaterialPreview(SkeletalMaterialBundle source,BlueprintGeneratedFaces? generated=null,bool specularPreview=false,bool vertexLitOnly=false)
     {
         this.source=source;
         this.generated=generated;
-        specular=specularPreview?SkeletalSpecularMaterials.Describe(source):null;
-        vertexLit=specularPreview?(source.VertexLitSpecular??throw new AssetPreviewException("Owned vertex-lit specular programs required.")):null;
+        if(vertexLitOnly&&(specularPreview||source.CompressedNormals is not null||source.VertexLitSpecular is null||!source.VertexLitSpecular.Materials.Keys.ToHashSet().SetEquals(source.Materials.Keys)))throw new AssetPreviewException("Explicit vertex-only preview requires an entirely owned no-normal material family.");
+        specular=vertexLitOnly?new Dictionary<string,SkeletalSpecularMaterial>():specularPreview?SkeletalSpecularMaterials.Describe(source):null;
+        vertexLit=(specularPreview||vertexLitOnly)?(source.VertexLitSpecular??throw new AssetPreviewException("Owned vertex-lit specular programs required.")):null;
         if(specularPreview&&(source.TangentLighting is null||!specular!.Keys.ToHashSet().SetEquals(source.TangentLighting.Materials.Keys)))throw new AssetPreviewException("Owned tangent vertex programs required for normal/specular materials.");
         try
         {
@@ -58,7 +60,7 @@ internal sealed class SkeletalMaterialPreview : IDisposable
                         "filter_linear_mipmap, repeat_enable; void fragment() { ALBEDO=texture(albedo_texture, UV).rgb; }"});shaders.Add(key,shader);
                 }
                 var rendered=Own(new ShaderMaterial{Shader=shader});rendered.SetShaderParameter("albedo_texture",textures.Get(image));if(factors is not null)SkeletalAlbedoPreview.Apply(rendered,factors);
-                if(diffuse)SkeletalNormalDiffusePreview.ApplyLighting(rendered);
+                if(diffuse||hasVertexLit)SkeletalNormalDiffusePreview.ApplyLighting(rendered);
                 if(normal)rendered.SetShaderParameter("normal_texture",NormalTexture(path));
                 if(hasSpecular||hasVertexLit){var description=SpecularDescription(path)!;SkeletalSpecularPreview.Apply(rendered,description);if(!description.MaskUsesMainAlpha)rendered.SetShaderParameter("specular_texture",SpecularTexture(path));}
                 if(hasSpecular){var color=specular![path].Material.EmissiveRgba;rendered.SetShaderParameter("material_emissive",new Vector3(color.X,color.Y,color.Z));}
@@ -84,6 +86,39 @@ internal sealed class SkeletalMaterialPreview : IDisposable
             }
         }
         catch{Dispose();throw;}
+    }
+
+    internal static async Task VerifyVertexOnlyGpuBoundary(Node owner)
+    {
+        using var mainImage=Image.CreateFromData(1,1,false,Image.Format.Rgba8,new byte[]{160,112,64,192});using var main=ImageTexture.CreateFromImage(mainImage);
+        using var maskImage=Image.CreateFromData(1,1,false,Image.Format.Rgba8,new byte[]{0,0,0,96});using var mask=ImageTexture.CreateFromImage(maskImage);
+        using var shader=new Shader{Code=SkeletalVertexLitSpecularPreview.Code(DdsColorSpace.Unspecified,true)};using var material=new ShaderMaterial{Shader=shader};
+        var factors=new SkeletalAlbedoFactors("synthetic single-color",false,0,0,0xFF4080E0,0xFFE06020);SkeletalAlbedoPreview.Apply(material,factors);
+        material.SetShaderParameter("albedo_texture",main);material.SetShaderParameter("specular_texture",mask);material.SetShaderParameter("fixed_vertex_lighting",true);
+        material.SetShaderParameter("ambient_color",new Vector3(.2f,.4f,.6f));material.SetShaderParameter("vertex_specular",new Vector3(.3f,.2f,.1f));material.SetShaderParameter("fade_opacity",.6f);
+        using var mesh=new QuadMesh{Size=new(2,2),Material=material};var viewport=new SubViewport{Size=new(64,64),OwnWorld3D=true,RenderTargetUpdateMode=SubViewport.UpdateMode.Always};owner.AddChild(viewport);
+        int cases=0;float maximum=0,bloomDifference=0;
+        var metadata=IffDocument.Parse(new byte[]{70,79,82,77,0,0,0,4,84,69,83,84}).Root;var program=new SkeletalVertexLitSpecularProgram(false,true,"synthetic",metadata);
+        try
+        {
+            viewport.AddChild(new MeshInstance3D{Mesh=mesh});var camera=new Camera3D{Projection=Camera3D.ProjectionType.Orthogonal,Size=2,Position=new(0,0,3),Current=true};viewport.AddChild(camera);camera.LookAt(Vector3.Zero);
+            foreach(bool bloom in new[]{false,true})foreach(bool fade in new[]{false,true})foreach(bool alpha in new[]{false,true})
+            {
+                material.SetShaderParameter("bloom_enabled",bloom);material.SetShaderParameter("fade_enabled",fade);material.SetShaderParameter("visualize_alpha",alpha);
+                var value=SkeletalVertexLitSpecularEvaluator.Evaluate(new(160/255f,112/255f,64/255f,192/255f),96/255f,factors,program,new(.2f,.4f,.6f),new(.3f,.2f,.1f),bloom,fade,.6f);
+                var rgb=alpha?new System.Numerics.Vector3(value.W):new(value.X,value.Y,value.Z);
+                if(ProjectSettings.GetSetting("rendering/renderer/rendering_method").AsString()=="gl_compatibility")
+                {float Display(float v){float linear=v*(v*(v*.305306011f+.682171111f)+.012522878f);return Math.Max(0,1.055f*MathF.Pow(linear,.416666667f)-.055f);}rgb=new(Display(rgb.X),Display(rgb.Y),Display(rgb.Z));}
+                await owner.ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);await owner.ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
+                using var image=viewport.GetTexture().GetImage();var actual=image.GetPixel(32,32);float error=Math.Max(Math.Abs(actual.R-rgb.X),Math.Max(Math.Abs(actual.G-rgb.Y),Math.Abs(actual.B-rgb.Z)));maximum=Math.Max(maximum,error);cases++;
+                if(error>2/255f)throw new AssetPreviewException($"Single-color vertex-lit GPU bloom/fade/alpha differs case={cases} error={error}.");
+                var unscaled=SkeletalVertexLitSpecularEvaluator.Evaluate(new(160/255f,112/255f,64/255f,192/255f),96/255f,factors,program with{ScalesBloomRgb=false},new(.2f,.4f,.6f),new(.3f,.2f,.1f),bloom,fade,.6f);
+                bloomDifference=Math.Max(bloomDifference,Math.Abs(value.X-unscaled.X));
+            }
+            if(bloomDifference<.04f)throw new AssetPreviewException("Single-color fixture did not distinguish bloom scaling.");
+        }
+        finally{viewport.Free();}
+        GD.Print($"PASS: single-color nodot3 GPU mask/factor/bloom/fade/alpha fixtures={cases} maximum_error={maximum:0.######} bloom_discriminator={bloomDifference:0.######} cleanup=deterministic");
     }
     private ImageTexture NormalTexture(string path)
     {
@@ -130,6 +165,12 @@ internal sealed class SkeletalMaterialPreview : IDisposable
                     var main=source.Materials[path].References.Textures.Single(t=>t.Tag==0x4D41494E).AssetPath!;var expected=TangentSpecularPreview.Code(source.Textures[main].ColorSpace,description.MaskUsesMainAlpha,true);
                     if(target.Shader.Code!=expected)throw new AssetPreviewException("Retained skeletal shader mask/vertex-stage identity differs.");
                     var e=description.Material.EmissiveRgba;if(target.GetShaderParameter("material_emissive").AsVector3()!=new Vector3(e.X,e.Y,e.Z))throw new AssetPreviewException("Retained skeletal emissive constant differs.");
+                }
+                else if(vertexLit?.Materials.TryGetValue(path,out var vertex)==true)
+                {
+                    var main=source.Materials[path].References.Textures.Single(t=>t.Tag==0x4D41494E).AssetPath!;var program=vertexLit.Programs[vertex.PixelProgram];
+                    if(target.Shader.Code!=SkeletalVertexLitSpecularPreview.Code(source.Textures[main].ColorSpace,program.ScalesBloomRgb))throw new AssetPreviewException("Retained vertex-lit shader/bloom-family identity differs.");
+                    var e=description.Material.EmissiveRgba;if(target.GetShaderParameter("emissive_color").AsVector3()!=new Vector3(e.X,e.Y,e.Z))throw new AssetPreviewException("Vertex-lit emissive constant differs.");
                 }
                 if(!description.MaskUsesMainAlpha&&(target.GetShaderParameter("specular_texture").AsGodotObject() is not ImageTexture image||image.GetInstanceId()!=SpecularTexture(path).GetInstanceId()))throw new AssetPreviewException("Specular mask binding differs.");
             }

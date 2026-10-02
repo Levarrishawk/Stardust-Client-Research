@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+<PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><TreatWarningsAsErrors>true</TreatWarningsAsErrors><GodotManagedReference Condition="'$(GodotManagedReference)'==''">$(USERPROFILE)/.nuget/packages/godotsharp/4.7.2/lib/net8.0/GodotSharp.dll</GodotManagedReference></PropertyGroup>
+<ItemGroup><ProjectReference Include="../../Stardust.Core/Stardust.Core.csproj"/><Reference Include="Stardust.Godot"><HintPath>../../Stardust.Godot/.godot/mono/temp/bin/Debug/Stardust.Godot.dll</HintPath></Reference><Reference Include="GodotSharp"><HintPath>$(GodotManagedReference)</HintPath></Reference></ItemGroup>
+</Project>

@@ -2,7 +2,7 @@ using System.Buffers.Binary;
 
 namespace Stardust.Core.Assets;
 
-public enum DdsFormat { Bc1, Bc2, Bc3, Bc4, Bc5, Bgra32, Rgba32, R8, Rg8, Bc7 }
+public enum DdsFormat { Bc1, Bc2, Bc3, Bc4, Bc5, Bgra32, Rgba32, R8, Rg8, Bc7, Bgr24, Bgrx32 }
 public enum DdsColorSpace { Unspecified, Linear, Srgb }
 public enum DdsAlphaMode { Unknown, Straight, Premultiplied, Opaque, Custom }
 public sealed record DdsMip(int Width, int Height, ReadOnlyMemory<byte> Rgba);
@@ -47,7 +47,7 @@ public static class DdsDecoder
                     "Only one 2D DDS DX10 surface is supported; arrays/cubes/volumes are unsupported.");
                 Require(alpha <= 4, "Invalid DDS DX10 alpha mode/reserved bits.");
                 dxgiFormat = dxgi; alphaMode = (DdsAlphaMode)alpha; payloadStart = 148;
-                colorSpace = dxgi is 29 or 72 or 75 or 78 or 91 or 99 ? DdsColorSpace.Srgb : DdsColorSpace.Linear;
+                colorSpace = dxgi is 29 or 72 or 75 or 78 or 91 or 93 or 99 ? DdsColorSpace.Srgb : DdsColorSpace.Linear;
                 format = dxgi switch
                 {
                     28 or 29 => DdsFormat.Rgba32,
@@ -59,6 +59,7 @@ public static class DdsDecoder
                     80 => DdsFormat.Bc4,
                     83 => DdsFormat.Bc5,
                     87 or 91 => DdsFormat.Bgra32,
+                    88 or 93 => DdsFormat.Bgrx32,
                     95 or 96 => throw new InvalidDataException("DDS BC6H requires DdsHdrDecoder; RGBA8 cannot preserve its values."),
                     98 or 99 => DdsFormat.Bc7,
                     81 or 84 => throw new InvalidDataException("DDS signed BC4/BC5 require a signed-channel output contract."),
@@ -77,13 +78,30 @@ public static class DdsDecoder
         }
         else
         {
-            Require(pixelFlags == 0x41 && U32(source, 88) == 32 && U32(source, 92) == 0x00FF0000 &&
-                U32(source, 96) == 0x0000FF00 && U32(source, 100) == 0x000000FF && U32(source, 104) == 0xFF000000,
-                "Only tightly packed BGRA32 uncompressed DDS is supported.");
-            Require((flags & 8) == 0 || U32(source, 20) == width * 4, "Padded uncompressed DDS pitch is unsupported.");
-            format = DdsFormat.Bgra32;
+            Require(fourCc == 0 && U32(source, 92) == 0x00FF0000 && U32(source, 96) == 0x0000FF00 &&
+                U32(source, 100) == 0x000000FF, "Unsupported legacy DDS color masks/FourCC.");
+            uint bits = U32(source, 88), alphaMask = U32(source, 104);
+            format = (pixelFlags, bits, alphaMask) switch
+            {
+                (0x41, 32, 0xFF000000) => DdsFormat.Bgra32,
+                (0x40, 24, 0) => DdsFormat.Bgr24,
+                (0x40, 32, 0) => DdsFormat.Bgrx32,
+                _ => throw new InvalidDataException("Unsupported legacy DDS color flags/bits/alpha mask.")
+            };
         }
-        int bytesPerPixel = format switch { DdsFormat.Bgra32 or DdsFormat.Rgba32 => 4, DdsFormat.Rg8 => 2, DdsFormat.R8 => 1, _ => 0 };
+        int bytesPerPixel = format switch { DdsFormat.Bgra32 or DdsFormat.Rgba32 or DdsFormat.Bgrx32 => 4,
+            DdsFormat.Bgr24 => 3, DdsFormat.Rg8 => 2, DdsFormat.R8 => 1, _ => 0 };
+        if (format == DdsFormat.Bgrx32 && payloadStart == 148)
+            Require(pixelFlags == 4 && U32(source, 88) == 0 && U32(source, 92) == 0 && U32(source, 96) == 0 &&
+                U32(source, 100) == 0 && U32(source, 104) == 0, "Inconsistent DX10 opaque pixel fields.");
+        if (format is DdsFormat.Bgr24 or DdsFormat.Bgrx32)
+        {
+            Require((flags & ~(0x1007u | 8u | 0x20000u | 0x80000u)) == 0 && (flags & 0x80008) != 0x80008,
+                "Unsupported or conflicting opaque DDS header flags.");
+            // Original tightly packed BGR24 uses LINEARSIZE for the whole top mip, not PITCH.
+            Require((flags & 0x80000) == 0 || U32(source, 20) == (long)width * height * bytesPerPixel,
+                "Opaque DDS top-level linear size mismatch.");
+        }
         Require(bytesPerPixel == 0 || (flags & 8) == 0 || U32(source, 20) == width * bytesPerPixel,
             "Padded uncompressed DDS pitch is unsupported.");
         uint mipCount = Math.Max(1u, U32(source, 28));
@@ -116,10 +134,11 @@ public static class DdsDecoder
                 for (int offset = 0; offset < rgba.Length; offset += 4)
                 {
                     int input = offset / 4 * bytesPerPixel;
-                    rgba[offset] = data[input + (format == DdsFormat.Bgra32 ? 2 : 0)];
+                    bool bgr = format is DdsFormat.Bgra32 or DdsFormat.Bgr24 or DdsFormat.Bgrx32;
+                    rgba[offset] = data[input + (bgr ? 2 : 0)];
                     rgba[offset + 1] = bytesPerPixel >= 2 ? data[input + 1] : (byte)0;
-                    rgba[offset + 2] = bytesPerPixel == 4 ? data[input + (format == DdsFormat.Bgra32 ? 0 : 2)] : (byte)0;
-                    rgba[offset + 3] = bytesPerPixel == 4 ? data[input + 3] : (byte)255;
+                    rgba[offset + 2] = bytesPerPixel >= 3 ? data[input + (bgr ? 0 : 2)] : (byte)0;
+                    rgba[offset + 3] = format is DdsFormat.Bgra32 or DdsFormat.Rgba32 ? data[input + 3] : (byte)255;
                 }
             else if(format == DdsFormat.Bc7) Bc7Pixels.Decode(data,range.Width,range.Height,rgba);
             else DecodeBlocks(data, range.Width, range.Height, format, rgba);

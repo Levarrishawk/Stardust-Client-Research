@@ -10,7 +10,7 @@ String parameter constructor `013FA9B0` installs vtable `01609B48`, whose loader
 
 ## Owned structural decoder
 
-`SharedObjectTemplateDecoder` accepts a bounded nested hierarchy: SCOT/0012 or0013 → STOT/0007 or0009 → SHOT/0007,0009 or0010. STOT and SHOT may also be roots. These are the observed input versions accepted by this replacement slice, not the original executable's complete version set.
+`SharedObjectTemplateDecoder` accepts a bounded nested hierarchy: SCOT/0012 or0013 → STOT/0007 or0009 → SHOT/0007,0008,0009 or0010. SHOT/0008 is the bounded original terminal observation added in [Round7](SCENE_STATIC_RESOURCE_CONTRACT.md). STOT and SHOT may also be roots. These are the observed input versions accepted by this replacement slice, not the original executable's complete version set.
 
 Each layer has optional DERV containing one XXXX terminated ASCII parent path, then its version form, then its required nested base family. The version contains PCNT U32LE and exactly that many XXXX parameter chunks. Each parameter begins with a terminated ASCII name and retains its separately encoded payload. Names are case-sensitive and unique within their layer. Nested derivation paths must agree in this slice; differing paths reject explicitly.
 

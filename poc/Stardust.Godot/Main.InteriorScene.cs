@@ -10,6 +10,7 @@ using NVector = System.Numerics.Vector3;
 
 public partial class Main
 {
+    private InteriorLocomotionEventDiagnostics? interiorEvents;
     private InteriorDoorActorScene? interiorScene;
     private FixedStepActorHost<InteriorDoorActorSceneState>? interiorSceneHost;
     private PortalActorInputTimeline<InteriorDoorActorSceneState>? interiorSceneTimeline;
@@ -21,6 +22,7 @@ public partial class Main
     private OwnedBackgroundAssetLoad<InteriorSceneContentBundle>? interiorSceneLoad;
     private void DisposeInteriorScene()
     {
+        interiorEvents?.Dispose();interiorEvents=null;
         interiorSceneLoad?.Dispose();interiorSceneLoad=null;
         if(actorMouseInput is not null){Input.MouseMode=Input.MouseModeEnum.Visible;actorMouseInput=null;}
         interiorSceneTimeline=null;interiorSceneHost=null;interiorScene?.Dispose();interiorScene=null;
@@ -35,6 +37,9 @@ public partial class Main
         {
             int i=Array.IndexOf(args,key);if(i<0||i+1>=args.Length||args.Count(v=>v==key)!=1)throw new ArgumentException("Missing/duplicate scene option.");return args[i+1];
         }
+        InteriorLocomotionEventDiagnostics.ValidateArguments(args);
+        bool characterEventsRequested=args.Contains("--scene-character-events");
+        if(characterEventsRequested&&args.Contains("--asset-self-test"))InteriorLocomotionEventDiagnostics.VerifyArgumentPolicy(args);
         string specPath=Read("--interior-scene-spec");if(new FileInfo(specPath).Length>16384)throw new AssetPreviewException("Scene specification byte budget.");
         InteriorDoorSceneBundle bundle;
         PortalSceneBundle? rooms=null;
@@ -205,6 +210,7 @@ public partial class Main
             var bank=content.Character!.AdditionalAnimations??throw new AssetPreviewException("Owned movement bank missing.");
             if(bank.Count!=2||!bank.ContainsKey("walk")||!bank.ContainsKey("run"))throw new AssetPreviewException("Interior movement preview requires explicit walk/run keys.");
             locomotion=new(LocomotionPreviewClock.Describe(characterAnimation!),LocomotionPreviewClock.Describe(bank["walk"]),LocomotionPreviewClock.Describe(bank["run"]),3);
+            if(characterEventsRequested)interiorEvents=new(content.Character!,panelCapacity:16);
             GD.Print("PASS: owned original movement bank; explicit run threshold=3 accepted planar distance controls phase root motion is inert");
         }
         var cameraProfile=content.CameraProfile;var chaseRig=cameraProfile is null?null:ChaseCameraObstruction.FromInterior(content.TriangleGuard!);
@@ -246,6 +252,7 @@ public partial class Main
         var forward=new Button{Text="Step forward 0.08m"};var reverse=new Button{Text="Step backward 0.08m"};var wait=new Button{Text="Wait 0.1 seconds"};var reset=new Button{Text="Reset actor and both doors"};
         foreach(var button in new[]{forward,reverse,wait,reset})panel.AddChild(button);
         var status=new Label();panel.AddChild(status);
+        if(interiorEvents is not null)interiorEvents.Install(panel);
         AppearanceTransform owner=AppearanceTransform.Identity;bool w=false,s=false,a=false,d=false;var orientation=new ActorViewOrientation();
         PortalActorInput InputState()=>PlanarActorInputMapping.Create(owner.TransformDirection(orientation.PlanarForward(direction)),(w?1:0)-(s?1:0),(d?1:0)-(a?1:0),runSpeed.ButtonPressed?5.2f:1.6f,permission.ButtonPressed);
         runSpeed.Toggled+=_=>Submit(checked((long)Time.GetTicksUsec()));
@@ -313,6 +320,7 @@ public partial class Main
             if(locomotion is not null)
             {
                 if(locomotion.Advance(seconds,next.WorldPosition-before,characterClock!.Playing))pendingPresentationSeconds+=seconds;
+                interiorEvents?.Tick(seconds,next.WorldPosition-before,characterClock!.Playing,locomotion.State);
                 gaitTicks[locomotion.State.Mode]=gaitTicks.GetValueOrDefault(locomotion.State.Mode)+1;
             }
             return next;
@@ -323,7 +331,7 @@ public partial class Main
             interiorScene=bundle.CreateActor(first.Start,owner,sphereVolume is null?new(UseLocalRayCoverage:true):null,holdClosing,sphereVolume,
                 triangleGeometry,65536);
             interiorSceneHost=new(()=>interiorScene.State,(seconds,delta,entry)=>TickScene(seconds,delta,entry),interiorScene.Reset);
-            if(locomotion is not null){locomotion.Reset(owner.TransformDirection(direction));presentedLocomotion=null;pendingPresentationSeconds=0;}
+            if(locomotion is not null){locomotion.Reset(owner.TransformDirection(direction));interiorEvents?.Reset(owner.TransformDirection(direction));presentedLocomotion=null;pendingPresentationSeconds=0;}
             mouseLook.ButtonPressed=false;orientation=new();w=s=a=d=false;long now=checked((long)Time.GetTicksUsec());interiorSceneTimeline=new(interiorSceneHost,now,InputState());
             interiorSceneTimeline.AdvanceTo(now,automatic.ButtonPressed&&!paused.ButtonPressed&&GetWindow().HasFocus());floorFrame.Transform=GodotAppearanceTransform.ToGodot(owner);floorPreview.SelectCell(-1);
             if(characterClock is not null){characterClock.Seek(0);interiorSceneCharacter!.SetOriginalFrame(0);}
@@ -332,11 +340,12 @@ public partial class Main
         }
         void Manual(NVector localDelta,float seconds=.05f)
         {
+            if(interiorEvents is not null&&paused.ButtonPressed)return;
             var from=interiorScene!.State.WorldPosition;var state=TickScene(seconds,owner.TransformDirection(localDelta),permission.ButtonPressed);
             floorPreview.ShowActorWalk(from,state.Movement!);Refresh(Math.Min(seconds,.25f));
         }
         forward.Pressed+=()=>Manual(direction*.08f);reverse.Pressed+=()=>Manual(-direction*.08f);wait.Pressed+=()=>Manual(NVector.Zero,.1f);
-        reset.Pressed+=()=>{cameraRecovery.Reset();mouseLook.ButtonPressed=false;orientation=new();w=s=a=d=false;long now=checked((long)Time.GetTicksUsec());interiorSceneTimeline!.Reset(now,InputState());if(locomotion is not null){locomotion.Reset(owner.TransformDirection(direction));presentedLocomotion=null;pendingPresentationSeconds=0;}if(characterClock is not null){characterClock.Seek(0);interiorSceneCharacter!.SetOriginalFrame(0);}floorPreview.SelectCell(-1);Refresh();};
+        reset.Pressed+=()=>{cameraRecovery.Reset();mouseLook.ButtonPressed=false;orientation=new();w=s=a=d=false;long now=checked((long)Time.GetTicksUsec());interiorSceneTimeline!.Reset(now,InputState());if(locomotion is not null){locomotion.Reset(owner.TransformDirection(direction));interiorEvents?.Reset(owner.TransformDirection(direction));presentedLocomotion=null;pendingPresentationSeconds=0;}if(characterClock is not null){characterClock.Seek(0);interiorSceneCharacter!.SetOriginalFrame(0);}floorPreview.SelectCell(-1);Refresh();};
         transformed.Toggled+=Configure;Configure(false);
         follow.Toggled+=_=>{cameraRecovery.Reset();if(!follow.ButtonPressed)mouseLook.ButtonPressed=false;mouseLook.Disabled=!follow.ButtonPressed||!interiorSceneHost!.State.Active;Overview();Refresh();};
         portalVisibility.Toggled+=_=>Refresh();thirdPerson.Toggled+=_=>{cameraRecovery.Reset();Refresh();};cameraZoom.ItemSelected+=_=>Refresh();
@@ -440,8 +449,10 @@ public partial class Main
                 permission.ButtonPressed=true;
                 GD.Print("PASS: original guarded closing host; two poses, occupied hold, denied entry, retreat and completed release verified");
             }
+            var eventFocusState=interiorEvents?.State;long eventFocusTotal=interiorEvents?.DeliveredTotal??0;
             automatic.ButtonPressed=true;_Notification((int)NotificationWMWindowFocusOut);
             if(interiorSceneHost!.State.Active||interiorSceneHost.State.PendingMicroseconds!=0)throw new AssetPreviewException("Multi-door focus loss failed.");
+            if(interiorEvents is not null&&(interiorEvents.State!=eventFocusState||interiorEvents.DeliveredTotal!=eventFocusTotal))throw new AssetPreviewException("Focus boundary created events.");
             _Notification((int)NotificationWMWindowFocusIn);if(!interiorSceneHost.State.Active)throw new AssetPreviewException("Multi-door focus resume failed.");
             paused.ButtonPressed=true;if(interiorSceneHost.State.Active||!forward.Disabled)throw new AssetPreviewException("Multi-door pause control failed.");
             automatic.ButtonPressed=false;paused.ButtonPressed=false;if(forward.Disabled||reverse.Disabled||wait.Disabled)throw new AssetPreviewException("Multi-door manual control ownership failed.");
@@ -547,6 +558,13 @@ public partial class Main
             if(!gaitTicks.TryGetValue(PreviewLocomotionMode.Run,out int runs)||runs==0||!gaitTicks.ContainsKey(PreviewLocomotionMode.Walk)||!gaitTicks.ContainsKey(PreviewLocomotionMode.Idle))throw new AssetPreviewException("Accepted route did not exercise all locomotion modes.");
             var held=locomotion.State;characterPlay!.EmitSignal(BaseButton.SignalName.Toggled,false);Manual(NVector.Zero);if(!ReferenceEquals(held,locomotion.State))throw new AssetPreviewException("Movement animation pause changed phase.");characterPlay.EmitSignal(BaseButton.SignalName.Toggled,true);
             Manual(NVector.Zero);if(locomotion.State.Mode!=PreviewLocomotionMode.Idle)throw new AssetPreviewException("Stationary accepted tick did not select idle.");
+            if(interiorEvents is not null)
+            {
+                var events=interiorEvents;long lifetime=events.DeliveredTotal;var snapshot=events.State;
+                paused.ButtonPressed=true;Manual(direction*.08f);if(events.State!=snapshot||events.DeliveredTotal!=lifetime)throw new AssetPreviewException("Paused manual event route advanced.");paused.ButtonPressed=false;
+                reset.EmitSignal(Button.SignalName.Pressed);events.VerifyReset(lifetime);
+                events.VerifyOriginalRoute(content.Character!,()=>Configure(false),()=>Configure(true),(delta,seconds)=>Manual(delta,seconds),direction,interiorSceneCharacter!);
+            }
             GD.Print($"PASS: original movement playback;480 retained clip updates gait_ticks={string.Join(',',gaitTicks.Select(p=>$"{p.Key}:{p.Value}"))} actor_feet_authoritative=true root_translation_inert=true heading_reflected=true pause_reset=true cache={textureCount}/{textureBytes}");
         }
         if(fixture&&chaseRig is not null)
@@ -657,6 +675,10 @@ public partial class Main
                 var center=interiorScene!.State.WorldPosition+actorCenterOffset;
                 var view=center+owner.TransformDirection(new(.6f,.8f,-2.5f));
                 camera.Position=new(view.X,view.Y,-view.Z);camera.LookAt(new(center.X,center.Y,-center.Z));
+            }
+            if(args.Contains("--capture")&&interiorEvents is not null)
+            {
+                await ToSignal(GetTree(),SceneTree.SignalName.ProcessFrame);interiorEvents.RevealCapture(scroll);
             }
             await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
             using var image=GetViewport().GetTexture().GetImage();if(args.Contains("--capture")&&image.SavePng(Read("--capture"))!=Error.Ok)throw new IOException("Multi-door capture failed.");

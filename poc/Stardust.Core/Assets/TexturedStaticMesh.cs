@@ -6,7 +6,7 @@ namespace Stardust.Core.Assets;
 
 public sealed record AssetSourceIdentity(string Path, int? Priority, int Bytes, string Sha256);
 public sealed record StaticMeshMaterial(StaticShaderReferenceDescription References, StaticShaderParameters Parameters,
-    CustomizableShaderDescription? Customization = null);
+    CustomizableShaderDescription? Customization = null, SwitchTextureMaterialInspection? SwitchTexture = null);
 public sealed record TexturedStaticMesh(StaticMeshDescription Mesh,
     IReadOnlyDictionary<string, StaticMeshMaterial> Materials, IReadOnlyDictionary<string, DdsImage> Textures,
     IReadOnlyDictionary<string, StaticEffectDescription> Effects, IReadOnlyDictionary<string, AssetSourceIdentity> Sources)
@@ -20,30 +20,32 @@ public sealed record TexturedStaticMesh(StaticMeshDescription Mesh,
 public static class TexturedStaticMeshReader
 {
     public static TexturedStaticMesh Load(Func<string, TreLookupResult> resolve, string meshPath, string expectedMeshSha256,
-        CustomizableShaderInspectionMode customizationMode=CustomizableShaderInspectionMode.Reject)
-        =>LoadImplementation(resolve,meshPath,expectedMeshSha256,null,customizationMode);
+        CustomizableShaderInspectionMode customizationMode=CustomizableShaderInspectionMode.Reject, SwitchTextureFrameSelection? switchTextureFrame=null)
+        =>LoadImplementation(resolve,meshPath,expectedMeshSha256,null,customizationMode,switchTextureFrame);
     internal static TexturedStaticMesh LoadShared(Func<string,TreLookupResult> resolve,string meshPath,string expectedMeshSha256,StaticMeshDecodeCache cache)
-        =>LoadImplementation(resolve,meshPath,expectedMeshSha256,cache);
+        =>LoadImplementation(resolve,meshPath,expectedMeshSha256,cache,switchTextureFrame:cache.SwitchTextureFrame);
     private static TexturedStaticMesh LoadImplementation(Func<string,TreLookupResult> resolve,string meshPath,string expectedMeshSha256,StaticMeshDecodeCache? cache,
-        CustomizableShaderInspectionMode customizationMode=CustomizableShaderInspectionMode.Reject)
+        CustomizableShaderInspectionMode customizationMode=CustomizableShaderInspectionMode.Reject, SwitchTextureFrameSelection? switchTextureFrame=null)
     {
-        ArgumentNullException.ThrowIfNull(resolve);
+        ArgumentNullException.ThrowIfNull(resolve); switchTextureFrame?.Validate();
         Dictionary<string, AssetSourceIdentity> sources = new(StringComparer.Ordinal);
         Dictionary<string, StaticMeshMaterial> materials = new(StringComparer.Ordinal);
         Dictionary<string, DdsImage> textures = new(StringComparer.Ordinal);
         Dictionary<string,DdsHdrImage> hdrTextures=new(StringComparer.Ordinal);
         Dictionary<string, StaticEffectDescription> effects = new(StringComparer.Ordinal);
+        Dictionary<string,byte[]> payloads=new(StringComparer.Ordinal);
         long sourceBytes = 0;
         byte[] Read(string path)
         {
+            if(payloads.TryGetValue(path,out byte[]? prior))return prior;
             StaticEffectDecoder.Require(sources.Count < 192, "Static mesh dependency budget exceeded.");
             TreLookupResult selected = resolve(path);
             StaticEffectDecoder.Require(selected.Kind == TreLookupKind.Present && selected.Payload is not null, "Static mesh dependency is missing or masked.");
-            byte[] payload = selected.Payload!;
+            byte[] payload = selected.Payload!.ToArray();
             sourceBytes += payload.Length;
             StaticEffectDecoder.Require(sourceBytes <= 134_217_728, "Static mesh source-byte budget exceeded.");
             sources.Add(path, new(path, selected.Priority, payload.Length, Convert.ToHexString(SHA256.HashData(payload))));
-            return payload;
+            payloads.Add(path,payload); return payload;
         }
         meshPath = LegacyAssetPath.Normalize(meshPath);
         byte[] meshBytes = Read(meshPath);
@@ -54,7 +56,20 @@ public static class TexturedStaticMeshReader
         {
             StaticEffectDecoder.Require(materials.Count < 64, "Static mesh material budget exceeded.");
             byte[] shaderBytes=Read(shaderPath);
-            StaticMeshMaterial material=cache?.Material(shaderBytes)??DecodeMaterial(shaderBytes,customizationMode);
+            StaticMeshMaterial material;
+            if(switchTextureFrame is not null && shaderPath==switchTextureFrame.ShaderPath &&
+                shaderBytes.Length>=12 && shaderBytes.AsSpan(8,4).SequenceEqual("SWTS"u8))
+            {
+                StaticEffectDecoder.Require(sources[shaderPath].Sha256.Equals(switchTextureFrame.ShaderSha256,StringComparison.OrdinalIgnoreCase),"Switch texture source identity mismatch.");
+                var description=SwitchTextureShaderDecoder.Decode(shaderBytes);
+                StaticEffectDecoder.Require(switchTextureFrame.FrameIndex<description.Frames.Count,"Switch texture frame index outside authored references.");
+                byte[] baseBytes=Read(description.BaseShaderPath);
+                StaticEffectDecoder.Require(baseBytes.Length>=12 && baseBytes.AsSpan(8,4).SequenceEqual("SSHT"u8),"Switch texture base must be SSHT.");
+                var baseMaterial=cache?.Material(baseBytes)??DecodeMaterial(baseBytes);
+                var selected=SwitchTextureShaderDecoder.Select(description,baseMaterial.References,switchTextureFrame.FrameIndex);
+                material=new(selected,baseMaterial.Parameters,SwitchTexture:new(description,switchTextureFrame with { },sources[description.BaseShaderPath]));
+            }
+            else material=cache?.Material(shaderBytes)??DecodeMaterial(shaderBytes,customizationMode);
             StaticShaderReferenceDescription shader=material.References;
             materials.Add(shaderPath,material);
             if (!effects.ContainsKey(shader.EffectPath))
@@ -101,8 +116,9 @@ public static class TexturedStaticMeshReader
 }
 
 /// <summary>Per-load immutable decode sharing by content identity, never a global or cross-corpus mutable cache.</summary>
-internal sealed class StaticMeshDecodeCache(long maximumDecodedBytes,CustomizableShaderInspectionMode customizationMode=CustomizableShaderInspectionMode.Reject)
+internal sealed class StaticMeshDecodeCache(long maximumDecodedBytes,CustomizableShaderInspectionMode customizationMode=CustomizableShaderInspectionMode.Reject,SwitchTextureFrameSelection? switchTextureFrame=null)
 {
+    internal SwitchTextureFrameSelection? SwitchTextureFrame {get;}=switchTextureFrame;
     private readonly Dictionary<string,StaticMeshMaterial> materials=new(StringComparer.Ordinal);
     private readonly Dictionary<string,StaticEffectDescription> effects=new(StringComparer.Ordinal);
     private readonly Dictionary<string,DdsImage> textures=new(StringComparer.Ordinal);

@@ -29,7 +29,7 @@ The owning client-object constructor at `0x00554240` creates six `Archive::AutoD
 
 All six fixed members have RTTI `Archive::AutoDeltaByteStream` and vtable `0x015FE388`; they are not separate C++ types. Their actual schemas are lists of registered per-field decoder objects. Dynamic view 7 uses a wrapper whose constructor `0x006F24D0` stores a view/package key and embeds another `AutoDeltaByteStream` at wrapper `+0x08`. This is **Confirmed executable layout and dispatch**, not a proposed x64 layout.
 
-The payload size excludes the common 27-byte header used by the server builders. Baseline payloads begin with a U16 declared variable count and delta payloads begin with a U16 update count; every delta update then begins with a U16 schema index. Client behavior adds a compatibility-critical qualification: `autodelta_byte_stream_snapshot_decode_VA_0118B740` consumes the baseline count but iterates the complete locally registered decoder list rather than using the declared value as its loop bound. `autodelta_byte_stream_delta_decode_VA_0118AA00` likewise consumes the declared update count but loops while the bounded payload has bytes remaining; it reads each U16 index and directly selects the registered decoder pointer by `index * 4`. No explicit index bound check is visible. A replacement must preserve characterized count tolerance while adding strict delta-index and enclosing-payload bounds.
+The payload size excludes the server builders' 27-byte framed header: four SOE opcode/sequence bytes plus the 23-byte application envelope. After transport removal, application offsets are count0, opcode2, object ID6, raw tag14, view18 and payload size19; the inner U16 count begins at23. The size includes that inner count and excludes all23 application-envelope bytes. Server setSize writes at framed offset23 (application offset19). This distinction was checked during Round6 implementation; no four-byte padding belongs in an application codec. Baseline payloads begin with a U16 declared variable count and delta payloads begin with a U16 update count; every delta update then begins with a U16 schema index. Client behavior adds a compatibility-critical qualification: `autodelta_byte_stream_snapshot_decode_VA_0118B740` consumes the baseline count but iterates the complete locally registered decoder list rather than using the declared value as its loop bound. `autodelta_byte_stream_delta_decode_VA_0118AA00` likewise consumes the declared update count but loops while the bounded payload has bytes remaining; it reads each U16 index and directly selects the registered decoder pointer by `index * 4`. No explicit index bound check is visible. A replacement must preserve characterized count tolerance while adding strict delta-index and enclosing-payload bounds.
 
 Count tolerance is not truncation tolerance. A baseline still attempts to decode every registered field, so a payload that ends before the schema does is malformed regardless of its declared count. A delta with any nonzero remainder attempts to read another U16 index, so a one-byte tail is malformed. The replacement parser should accept characterized surplus tails only where this executable demonstrably does, reject missing field bytes and partial index/value encodings, and never commit a partially validated mutation plan.
 
@@ -239,13 +239,13 @@ The field payload passed to the delta decoder begins:
 
 `U32 operationCount | U32 newUpdateCounter | operation...`
 
-For `E = U32`, Stardust.exe recognizes:
+For this four-byte signed-integer specialization, Stardust.exe recognizes:
 
 | Command | Wire body | Client action | Validation observed |
 |---:|---|---|---|
 | 0 | U16 index | remove element | requires `index < size`; invalid request is ignored |
-| 1 | U16 index, E value | insert/add at index | grows/inserts as necessary |
-| 2 | U16 index, E value | set/replace at index | grows to at least `index + 1`; preserves previous value for callbacks |
+| 1 | U16 index, E value | insert/add at index | zero-fills to index before inserting |
+| 2 | U16 index, E value | set/replace at index | equal existing value is a no-op; otherwise zero-fills to `index + 1` |
 | 3 | U16 count, repeated E | replace/assign from counted sequence | allocates temporary sequence from count, then assigns it |
 | 4 | no body | clear all | empties vector and fires callbacks |
 
@@ -253,9 +253,9 @@ Commands 0, 1, 2 and 4 match the current server `DeltaVector` methods directly. 
 
 ### Update-counter reconciliation
 
-The client does not blindly reapply every operation. `0x0043B1A0` compares the incoming operation count and new update counter with the container's current counter, computes how many leading operations are already represented locally, consumes those operations without applying them, then applies the remaining suffix. Parsing of skipped operations is command-aware so the archive remains aligned.
+The representative integer-vector decoder `0x0043B1A0` computes unsigned `R = (N - C + L) mod 2^32`, then skips to cursor threshold `min(R,N)`. N is the raw operation-loop bound, C incoming counter and L local counter. Ordinary commands consume one cursor unit; assign of k values consumes k+1, including a skipped assignment and final overshoot. Fully parsed skipped commands preserve archive alignment. See the instruction-backed [bounded legacy kernel](CREATURE_WOUNDS_LEGACY_POLICY_CONTRACT.md).
 
-This behavior is **Confirmed mechanically**. Exact wraparound semantics at U32 overflow and the intended public name of the reconciliation formula remain Unknown. A replacement implementation should model counters modulo 2^32, test wraparound explicitly, and reject counter relationships that would imply impossible operation counts.
+The arithmetic/cursor rules and mutation-dependent local counter are **Confirmed by direct pinned instructions**. This specialization does not force L to C or max(L,C). Invalid remove, equal replace and empty clear do not advance L; insert/changed replace/remove advance once, assign advances k+1. Bounds and atomic commit remain modern policy. These vector rules must not be generalized to other map/set specializations without direct evidence.
 
 ### Map and set commands
 
@@ -278,7 +278,7 @@ Their serializers/decoders confirm the common count/counter framing and command-
 
 Representative specialization `Archive::AutoDeltaSet<SkillObject const*, CreatureObject>` uses vtable `0x015DCF30`, snapshot decoder `0x0043D820`, and delta decoder `0x0043D9A0`.
 
-The snapshot reads U32 element count, U32 update counter, then that many keys into a newly cleared set. The delta decoder uses the same stale-prefix reconciliation pattern as the vector decoder and recognizes:
+The snapshot reads U32 element count, U32 update counter, then that many keys into a newly cleared set. The delta decoder reconciles update counters and recognizes the following commands. Do not generalize its arithmetic from the recovered integer-vector kernel; the integer-set specialization below records its own exact gate:
 
 | Command | Body | Behavior |
 |---:|---|---|
@@ -294,7 +294,7 @@ For creature skills, the current server's specialized `SkillList` uses ASCII16 s
 
 Representative specialization `Archive::AutoDeltaMap<int,float,...>` uses vtable `0x015DE068`. Its baseline decoder `0x00540E30` clears the map and reads U32 count, U32 counter, then repeated U8 command, U32 key and F32 value. Baseline builders emit command 0 for every entry.
 
-Its delta decoder `0x00540F60` applies the same update-counter stale-prefix reconciliation and recognizes the server `DeltaMapCommands` values:
+Its delta decoder `0x00540F60` reconciles update counters and recognizes the server `DeltaMapCommands` values:
 
 | Command | Body | Behavior |
 |---:|---|---|
@@ -670,3 +670,27 @@ sender writes ID zero; the server selects the ship from the pilot session and
 broadcasts using the actual recipient-visible ID. Local controllers reconcile;
 remote controllers interpolate. See
 `ANALYSIS_CHECKPOINT_2026-09-15_SHIP_TRANSFORM_CONTROL.md`.
+
+
+## Bounded implementation update — October 2, 2026
+
+The replacement now decodes the complete eighteen-field [CREO:3 baseline](CREATURE_VIEW3_BASELINE_CONTRACT.md) and ordered [scalar deltas at indices11–16](CREATURE_VIEW3_SCALAR_DELTA_CONTRACT.md). It preserves raw byte strings/UTF16 units, collection entries/counters, scalar bits and declared-count tolerance; malformed tails and budgets reject before state publication. Raw component-entry preservation does not establish original duplicate-set semantics. [Scalar state](SCENE_CREATURE_SCALAR_STORE_CONTRACT.md) requires an explicit caller seed and exact registry revision. The offline world still records opaque envelope history rather than automatically applying these codecs. These are implementation gates for previously documented schemas; the345-row packet matrix and research denominators do not change.
+
+## Round9 implementation boundary
+
+[Stable-incarnation binding](SCENE_CREATURE_REPLICATION_STORE_CONTRACT.md) now preserves complete CREO3 baselines and current scalar overlays across containment/finalization. [Wounds field17](CREATURE_VIEW3_WOUNDS_DELTA_CONTRACT.md) decodes all five established vector commands with atomic bounded application. Its strict modulo-interval/index policy is modern; original counter overflow/growth/ignore details remain open. These implementations change no schema/name/packet denominator and are not yet automatically applied by the world coordinator.
+
+## 2026-10-02: exact CREO3 components integer-set kernel
+
+[Components contract](CREATURE_VIEW3_COMPONENTS_DELTA_CONTRACT.md) closes field5 at object+0x328 from pinned snapshot00642F00/delta00643050 and signed tree/serializer helpers. Snapshot raw S32 order/duplicates remain evidence; original runtime deduplicates and serializes signed ascending members while copying the raw counter unchanged. Confidence: Confirmed direct instructions plus27 anchors/69 independent fixtures. Replacement raw snapshot encoding deliberately preserves original input entries separately from normalized runtime state.
+
+For N commands, C incoming and L local U32 counter: skip0 if unsigned (L+N) mod2^32 <= C; otherwise skip=min_unsigned((L-C+N) mod2^32,N). Apply remaining drop/add/clear in order; increment L moduloU32 only for actual membership changes. Finish each field with unsigned max(L,C), even for zero commands. Future-gap and wrap cases discriminate this kernel from the wounds vector, which has no initial sum gate or final forced counter. This conclusion is specific to the directly checked integer set; no uninspected skill/map specialization is silently assigned its exact arithmetic. Unknown commands reject in the modern bounded codec; original installed callbacks/outer partial effects remain unresolved. Components-world integration is deferred.
+
+
+## Round13 bounded implementation composition
+
+The [composite CREO3 codec](CREATURE_VIEW3_COMPOSITE_DELTA_CONTRACT.md) and [optional Mode3 world](SCENE_WORLD_REPLICATION_CONTRACT.md) now compose recovered field5 set membership and fields11..17 scalar/vector updates into one incarnation-bound result/acknowledged observation. Raw full baseline order/duplicates/counter remain separate from normalized current membership; distinct set/vector arithmetic is unchanged. Synthetic18 codec cases,69 recovered-set runtime cases and original-resource framed integration agree. This adds implementation composition, no new wire keys, executable semantic names, notification callback or gameplay claims.
+
+## Round14 bounded mixed-world routing
+
+The [generic coordinator](SCENE_MIXED_WORLD_CONTRACT.md) resolves explicit catalog recipe during ordered replay before applying owned replication envelopes. CREO typed modes remain creature-only; static TANO is bounded opaque history and has no inferred field schema. Static CREO or creature TANO rejects before state/history publication and retires the modern world generation. Legacy early typed decoding remains unchanged. This is implementation policy over accepted envelope bytes; no wire keys, server packet rows, executable names or protocol coverage counts change. Original typed static families/views remain separate work.

@@ -93,6 +93,7 @@ internal static class SkeletalSpecularPreview
             }
         }
         finally{viewport.Free();}
+        if(vertexLit&&!cellLighting&&!legacyHdr&&!staticDoor)await SkeletalMouthLightingGpuVerification.VerifyAsync(owner);
         GD.Print($"PASS: sampled {(vertexLit?"vertex-lit":"normal-mapped")} specular GPU mask/hue/bloom/fade/alpha-display cell_lighting={cellLighting} legacy_hdr={legacyHdr} fixtures={cases} maximum_error={maximum:0.######}");
     }
 }

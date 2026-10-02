@@ -3083,3 +3083,11 @@ Existing backend0x62A0A3C0 is now tied to [original source attenuation](docs/LEG
 ## Light-scaling configuration snapshot —2026-10-01
 
 `0x00779E50` is canonically `client_graphics_light_scaling_enabled_VA_00779E50`: getter for global0x01923544, written from [ClientGraphics] enableLightScaling(default true) by existing0x00779A50. Both StaticShader constructors capture engine shader+0x12; copies preserve it and0x62A046B0 selects scaled/raw RGB/scores. Prior generic graphics-data wording is superseded by this engine-object owner evidence. [Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_LIGHT_SCALING_SELECTOR.md). Current canonical count2602; no function-coverage claim.
+
+## 2026-10-02 — integer-vector kernel correction
+
+Existing canonical autodelta_vector_int_delta_decode_VA_0043B1A0 is unchanged. Direct pinned decoder/helper instructions now establish unsigned min((N-C+L) mod2^32,N), assignment k+1 cursor units and mutation-dependent local counters without forced incoming publication. Confirmed kernel mechanics; downstream callback effects and unsafe recovery remain unresolved. [Evidence and bounded replacement policy](docs/CREATURE_WOUNDS_LEGACY_POLICY_CONTRACT.md). No new addresses/names or denominator change.
+
+## 2026-10-02 — integer-set kernel and normalization
+
+Existing canonical autodelta_set_int_snapshot_parse_VA_00642F00 and autodelta_set_int_delta_parse_VA_00643050 retain their names. Pinned direct instructions establish raw-counter copy, signed unique tree/in-order serialization, conditional unsigned sum gate, membership-dependent increments and final unsigned maximum. [Exact components contract](docs/CREATURE_VIEW3_COMPONENTS_DELTA_CONTRACT.md) separates raw snapshot preservation and modern atomic bounds from original callbacks/unsafe recovery. No new names, packet boundaries or denominator changes.

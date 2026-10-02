@@ -25,7 +25,7 @@ public static class SharedObjectTemplateDecoder
             }
             if(first){parent=inherited;first=false;}else Require(inherited==parent,"Different nested derivation paths are outside this template slice.");
             Require(cursor<family.Children.Count,"Missing shared template version.");IffNode version=family.Children[cursor++];
-            bool supported=family.FormType switch{"SCOT"=>version.FormType is "0012" or "0013","STOT"=>version.FormType is "0007" or "0009","SHOT"=>version.FormType is "0007" or "0009" or "0010",_=>false};
+            bool supported=family.FormType switch{"SCOT"=>version.FormType is "0012" or "0013","STOT"=>version.FormType is "0007" or "0009","SHOT"=>version.FormType is "0007" or "0008" or "0009" or "0010",_=>false};
             Require(supported,"Unsupported shared template version.");
             var fields=version.Children;Require(fields.Count>0 && fields[0].Tag=="PCNT" && fields[0].Payload.Length==4,"Missing template parameter count.");
             uint count=BinaryPrimitives.ReadUInt32LittleEndian(fields[0].Payload.Span);Require(count<=512 && count==fields.Count-1,"Template parameter count/budget mismatch.");

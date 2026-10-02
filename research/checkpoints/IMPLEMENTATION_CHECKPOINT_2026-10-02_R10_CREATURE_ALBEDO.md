@@ -1,0 +1,41 @@
+# R10-ASSETS-01: optional scene creature authored albedo factors
+
+Date: October 2, 2026. Bounded question: can SceneCreatureResourceReader optionally return its existing descriptor reader's owned authored albedo factors/programs while preserving default counts, exact caller pins, ownership, cancellation, budgets and initializer accounting?
+
+Stopping condition: original human default and true-mode closures, independently verified source/factor/program/mip/sample identities, meaningful negative and alias/cleanup tests and accepted initializer transfer. No same-round rendering change, full-lighting claim or Round 11 work.
+
+## Baseline, inputs and tools
+
+Accepted Round 10 dirty-main baseline: 2,000 public files, HEAD `65de8c88141071744dc75594be126b3bab3696a5`, ZIP SHA-256 `b22195465dd313d509571ca0d732a5fffb058658d41ee2a41750b82448fb4e2a`, manifest SHA-256 `58c635c920215d7fbb47de5d8d7b9c636f96291b8b841e61593e195529072f82`. Bundle file set, containment, sizes and hashes were checked before copying and every destination hash afterward; ignored/unlisted private material was preserved. Review is baseline-relative, not solely Git-relative, because accepted files remain intentionally dirty.
+
+Orientation: AGENTS, START_HERE/latest named implementation session, accepted Round 9 report, status/ledger/unknown-function terminology, existing creature/descriptor/material/palette/albedo/initializer code and contracts, prior original albedo and resource checkpoints, existing native fixtures and Python producer/auditors. No new source format or executable interpretation was needed. No executable VAs used or original execution performed.
+
+Explicit read-only original inputs: `C:/Stardust-DEV`, `swgemu_live.cfg` SHA-256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`, accepted public catalog and human locomotion profiles, original pinned human object/appearance plus accepted idle clip. Exact paths/pins and commands are in the [durable contract](../../docs/SCENE_CREATURE_ALBEDO_RESOURCE_CONTRACT.md).
+
+Offline cached .NET 8 SDK/runtime restore used an empty NuGet source configuration, existing private package cache and `NuGetAudit=false`; no downloads. Build uses `--no-restore`, `UseSharedCompilation=false` and `UseAppHost=false`, zero warnings/errors. Python: `C:/Users/ancie/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe`, UTF-8 enabled. No network/DNS/socket, GPU, engine or original executable execution.
+
+## Change and evidence
+
+**Confirmed implementation observation:** one existing file has exactly two focused replacements: append final `bool loadAlbedoFactors = false`, and forward it as the descriptor reader's named option. Existing material/palette flags are already true and satisfy the accepted albedo prerequisite. No catalog, profile, shader, palette, descriptor/evaluator or initializer code changes.
+
+**Confirmed original closure:** default/explicit false retain 37 read-once sources /4,683,848 bytes and null albedo factors. True retains exactly that union plus two priority40 original programs: `h_color2_specmap_ps11.psh`, 1,399 bytes, SHA `95E44154F4107866CF23FD5C77E082573211135BE17E1CE679243A2AEB85EB92`; `h_specmap_ps11.psh`, 1,124 bytes, SHA `4A3155359640270C2274495AFD1E8E68E6139CCBC358DDA14B66D50BAF8B340C`. Total39 /4,686,371 bytes, four material factor descriptions, two programs and unchanged ten textures /80 mip hashes. The five inherited object templates and SAT/MLOD/detail0 selected body/head MGN identities are checked with existing parsers.
+
+**Confirmed factor/pixel observation:** the accepted Python albedo verifier independently checks original compiled/source/pass/TFNS/CSHD/RIFF identities and all four factor records. Current authored defaults give body/head MAIN `FFE2B7AF`, mouth MAIN `FF412D1C`, body/mouth HUEB `FFD5D5D5`, face two `FFFFFFFF` factors. Three actual selected MAIN pixels produce different factor-derived RGB, and white-factor face is unchanged. All four selected source pixels are independently decoded with Pillow and hand-evaluated within2e-7. These are source-encoding CPU RGB results; no display/light/specular/opacity/GPU fidelity claim.
+
+**Contradictory descriptive evidence retained:** the earlier albedo contract says HUEB white. This pinned scene-resource authored-default probe and raw palette oracle instead agree on D5D5D5. Shared behavior was not changed to match prose; the new contract records exact current values and identifies older wording as a lead-owned reconciliation point, without speculating about provenance.
+
+**Confirmed ownership/failure observation:** clearing all39 resolver-owned source arrays leaves factor records, two program metadata fingerprints and all10 textures' mip hashes intact. Default/true texture hashes match. Missing/masked programs, changed unsupported final PEXE word and truncated payload reject; wrong object/appearance caller pins and altered pinned payloads reject. Program hashes are measured identities, not new production pins; structurally supported metadata/comment changes are not claimed to reject. False remains independent of masked optional programs.
+
+**Confirmed budget/cancellation observation:** reader rejects38 resources and4,686,370 bytes, then succeeds fresh at exact39 /4,686,371. Pre-canceled and first-lookup-canceled loads return no resource result, latter with exactly one resolver call. All modified payloads are in-memory fixtures, not external original-file mutation. Existing palette fallback and decoded limits remain unchanged.
+
+**Confirmed initializer composition:** unchanged injected-loader initializer accepts an original true-mode bundle at exact source limits. Real Task worker archive disposal completes before owner Poll; source/factor identity agrees, transfer is one-shot and outstanding jobs become zero. Forged returned39-source bundle under requests38 resources or4,686,370 bytes faults accounting with null resources. Dispose/drain and registry Close complete. No new initializer option or albedo-semantic validator is claimed.
+
+**Interpretation / confidence:** Confirmed bounded composition/finite-fixture behavior, reusing established albedo source semantics. **Compatibility consequence:** callers may explicitly opt into owned factor/program data without changing old resource closures or choosing a renderer. Hardware capability choice, full lighting/effect behavior, generated face pipeline and global template coverage remain separate.
+
+## Verification and handoff
+
+Own native suite passes16 reader rejection cases plus two initializer accounting failures, original true/default/explicit-false/masked-program-positive modes, ownership, exact budgets, sampled color and worker cleanup. Independent new Python audit checks all39 original effective source priority/size/SHA identities, exact default-plus-two-program union, caller object/appearance CRC/pins, raw47-byte create, inheritance/selected meshes, two original program instruction/source/factor records, all80 mip hashes and four sampled pixel/equation results. Existing albedo/DDS parsers are reused.
+
+Unchanged prior SceneCreatureResourceScenarios and its unchanged Python auditor pass75 rejection cases and the accepted37-source default closure/raw-create/clip identities. Exact commands and private output paths are in the durable contract. Workspace validation passes with zero broken/private links,2,602 provisional rows/zero duplicates and345 packet rows. Baseline-relative whitespace and `git diff --check` pass. Exact scope review confirms one existing file changed by exactly the two byte-preserving replacements, six additions and1,999 baseline files unchanged; HEAD is unchanged and index empty. Baseline/current file hashes, focused diff and status receipt are retained privately; evidence and runner bin/obj outputs are ignored. Source/program/pixel content remains private and original assets are not promoted.
+
+Lead-owned catalog/readers other than the permitted file, shared projects/runners, root status/ledger, curated registries and shaders/profiles are preserved. Lead reviews/integrates this milestone and reconciles the older HUEB wording. Remain idle until explicit Round11 dispatch; none was started.

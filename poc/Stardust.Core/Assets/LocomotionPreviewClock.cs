@@ -19,10 +19,13 @@ public sealed class LocomotionPreviewClock
         this.idle=idle;this.walk=walk;this.run=run;this.runThreshold=runThreshold;
     }
     public static PreviewLocomotionClip Describe(PreparedSkeletalAnimation clip)=>new(clip.FrameRate,clip.EndFrame,clip.ProxyTimeScale,clip.Locomotion?.AuthoredSpeed??0);
+    internal double LastPhaseIncrement { get; private set; }
+    internal LocomotionPreviewClock Fork() => (LocomotionPreviewClock)MemberwiseClone();
     public void Reset(Vector3 heading)
     {
         heading=Planar(heading);if(heading.LengthSquared()<1e-12f)throw new InvalidDataException("Locomotion heading required.");
         State=new(PreviewLocomotionMode.Idle,0,0,0,0,Vector3.Normalize(heading));
+        LastPhaseIncrement=0;
     }
     public bool Advance(double seconds,Vector3 acceptedWorldDelta,bool active=true)
     {
@@ -35,6 +38,7 @@ public sealed class LocomotionPreviewClock
         double increment=mode==PreviewLocomotionMode.Idle?seconds*clip.FrameRate*clip.IdleTimeScale/clip.EndFrame:distance*clip.FrameRate/(clip.AuthoredSpeed*clip.EndFrame);
         double phase=(State.NormalizedPhase+increment)%1;
         State=new(mode,phase*clip.EndFrame,phase,State.AcceptedDistance+distance,checked(State.Switches+(State.Mode==mode?0:1)),distance>1e-6?Vector3.Normalize(planar):State.Heading);
+        LastPhaseIncrement=increment;
         return true;
     }
     private static Vector3 Planar(Vector3 value)

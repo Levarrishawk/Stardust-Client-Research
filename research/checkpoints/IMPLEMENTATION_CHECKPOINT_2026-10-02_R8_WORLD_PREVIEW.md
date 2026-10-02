@@ -1,0 +1,35 @@
+# R8-RENDER-01: offline world-owned creature visual
+
+Date: October 2, 2026. Question: can the accepted offline world coordinator own staged application flow, barrier and asynchronous resources, then publish a current Godot visual with exact placement and safe retirement? Stop condition: authentic world-publication guard, independent actual wire/source/placement audits, native/headless/GPU/cancellation/retention/drain, capture inspection, options rejection, and exact baseline-relative scope pass. This is the final authorized round.
+
+## Inputs and orientation
+
+Read START_HERE, the accepted [Round 7 report](../sessions/PARALLEL_DEVELOPMENT_ROUND_7_2026-10-02.md), world/visual/async/placement/resource contracts, prior coordinator checkpoints and proof/oracle tools, and current status/ledger/unknown terminology. No executable-address claims or original executable execution were used.
+
+Accepted baseline: HEAD `65de8c88141071744dc75594be126b3bab3696a5`, 1,924 public files. Manifest SHA-256 `5c6d703a5f6a6ccdb90548b89070356a6ba6b26e8dbbe49376f3cf195131cbdb`; ZIP SHA-256 `c878c4e17f1f6d8b2dbcc1778efbe77b1ec8eb310c5ad89e704be8694d3d79c2`. Verified safe paths and every file hash before/after synchronization; ignored/unlisted work preserved.
+
+Original input is the accepted pinned `C:/Stardust-DEV` configured human closure, root/SAT/idle/walk/run identities and catalog. Protocol packets are independently authored Python fixtures. Tools: .NET 8.0.300, Godot 4.7.2 .NET, Python, PowerShell, compatibility OpenGL/NVIDIA RTX 4070 SUPER. No downloads or lock edits. Exact inputs, bounds, policies and reproduction are in the [durable contract](../../docs/OFFLINE_SCENE_WORLD_PREVIEW_CONTRACT.md).
+
+## Findings and compatibility consequences
+
+Confirmed: real select/start/create/baseline/delta/end/contain/ready application layouts pass through existing offline SOE transport. Reordered create waits for start; duplicates are suppressed; bad CRC never reaches world. Five owned messages remain staged until an explicit caller barrier. Barrier replay gives Finalized before resources; current transfer gives Prepared while AwaitingServerReady; the server echo gives Ready. Client-ready retry is byte-identical and defensive copies survive mutation. Envelopes retain synthetic count99/opaque7F00FF without schema interpretation; application header23/minimum25 remains separate from server-framed27.
+
+Confirmed: a worker opens/closes its owned original overlay before owner-thread transfer. All 37 read-once source identities / 4,683,848 bytes match native/headless/GPU. Independent Python effective-overlay lookup verifies priority, length and SHA for every source and rejects a tampered export. Borrowed buffer/configuration mutation preserves owned descriptor and pose/mip inputs. The raw create preserves negative zero and subnormal bits; the cross-product placement oracle checks actual managed adapter rows, reflected columns and five points. Source translation `(123.5, binary32(1e-40), -45.25)` becomes engine `(123.5, binary32(1e-40), 45.25)` with one reflection. Normalization/zero Reject are explicit modern policies.
+
+Confirmed: authentic world `IsCurrent` guards preflight, staged allocation, hidden attachment and updates. Private delegate refactoring preserves R6 registry/create and R7 attempt behavior; both prior headless fixtures pass. Fifteen native foreign/stale world-publication negatives pass without native Godot allocations. Controlled task barriers prove immediate queued-restart retirement, no stale allocation, pre/postattachment cleanup, two-job backpressure, generation/destroy/contain cancellation, late success/fault suppression, and awaited close drain. The controlled results reuse parsed original resources and are synthetic scheduling tests, not extra original runtime evidence.
+
+Confirmed: original task tracking prunes completed tasks at schedule/transfer/poll; no completed result history remains after initial transfer, and tracked unfinished jobs are capped at two. Diagnostic controls/apps are bounded; 80 repeated native ready duplicates retain at most64 controls and exactly7 delivered applications. Configuration and packet export boundaries are documented. The world initializer owns late-fault observation and drain.
+
+Confirmed GPU/headless: 96 idle and64 movement updates preserve topology/resource identities through visibility/focus/pause. Fresh capture inspected at idle45: complete authored MAIN character at derived tilted pose, ten textures and verified original mips. First-lookup cancellation resets generation, closes archives and publishes zero. Seven invalid options reject before engine launch. Builds have zero warnings/errors. Known certificate-store diagnostics remain; no error-free startup claim.
+
+A first invalidation fixture allowed a replacement load to start and overwrote the token it was checking. Restricting that independent case to one outstanding job makes old-job cancellation deterministic; final tests pass. A focus-notification pattern used incompatible constant types; equality comparisons correct the compile error. Failed/pre-correction logs are excluded from final evidence. No Core/world product repair was required.
+
+Interpretation/confidence: confirmed replacement behavior and fixture algebra. Original readiness, quaternion repair, container placement and lifecycle reconciliation remain Unknown. The selected identity scene parent does not convert containment into a transform. No typed scalar/baseline presentation, terrain, full customization/normal/specular, arbitrary species, Vulkan or live networking claim is made.
+
+## Scope, verification, and handoff
+
+Existing allowed edits: SceneCreatureVisual narrow world overload/private identity-check refactor; Main.cs one exact byte-preserving world-preview dispatch branch beside async. Eleven additions: preview/partial Main, launcher, contract/checkpoint, and six rendering diagnostic files. Core world/registry/initializer/readers/placement, mesh/shaders/clocks, shared runners, living ledgers/status and curated registries remain baseline-identical. All new public files use UTF-8/LF. Removing the exact Main branch restores baseline bytes.
+
+Final baseline/hash audit checks all1,924 files and the two authorized existing paths; scoped manifest/receipt keep exact hashes. Workspace validator reports no broken/private links or registry duplicates; full/focused diff whitespace passes. Index remains empty. Detailed logs/capture/exports stay ignored private artifacts. No staging, commit, push, publication, worker messaging, original client execution, sockets/DNS/server contact, packet capture, fuzzing or external mutation occurred. The GPU image is a replacement viewport screenshot.
+
+Exact next action: lead review/integration and acceptance of R8-RENDER-01. Stop/idle after handoff; no Round9 is authorized. Later work on schema-bound presentation or actual parent/world readiness requires a separate authorized bounded milestone and its own evidence.

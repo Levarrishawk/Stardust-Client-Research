@@ -23,3 +23,7 @@ Optional skeleton loading is now implemented under the [owned SKTM/SLOD contract
 
 
 Optional selected MGN skin-source loading is implemented under the [prefix contract](SKELETAL_MESH_SKIN_SOURCE_CONTRACT.md). Detail0 twelve-source union agrees independently; primitive generation/rendering remains separate.
+
+## Explicit detail1 verification — 2026-10-01
+
+[Selected detail contract](SKELETAL_LOD_SELECTION_CONTRACT.md) verifies the original human object/SAT/MLOD chain at explicit mesh detail1, including selected body/head MGN records, level0 skeleton bind identity, material/texture closure, missing/masked resources, invalid detail and budgets. Independent bytes agree: 29 sources / 4,167,914 bytes, 968 positions / 1,904 triangles. Automatic mesh/skeleton level coupling and distance-driven selection remain unknown or unimplemented; this result establishes explicit resource selection only.

@@ -1,0 +1,46 @@
+# R9-RUNTIME-01: stable incarnation and baseline-backed replication store
+
+2026-10-02. Question: can complete immutable CREO:3 baseline state plus six-scalar overlays survive nonreplacement lifecycle revisions while old same-ID objects can never mutate their replacements? Stop after focused/native regression/oracle/ownership/rollback gates and exact scoped handoff. Latest authorization supersedes historical Round 8 stopping notes; this assignment is Round 9 only.
+
+## Input identity and orientation
+
+Accepted dirty-main public baseline: 1,963 files, HEAD 65de8c88141071744dc75594be126b3bab3696a5. Manifest SHA-256 29BDFD7C8BAC3898AA219D68D0B9189B518C7F7934A1B1C1E248FDDF494A4B56; ZIP DA266E684B8318AA605B0EF8730331915F7BA803BDCCB2B693A2402AD9017DD8. Verified both hashes, safe unique relative member paths/no symlinks, every member size/hash before overlay and every resulting file hash afterward. Only this existing worker checkout was synchronized; ignored/unlisted material preserved.
+
+Read AGENTS/START_HERE, accepted Round 8 session, current status/ledger/function terminology, relevant baseline/delta/registry/exact-store contracts, prior baseline/scalar checkpoints, existing codec/registry implementation and curated CreatureObjectDeltaMessage3 row. Reused accepted independently authored baseline and scalar/envelope oracles instead of inventing another protocol schema. No new executable addresses, names or coverage claims; no executable input, hence no executable identity dependency.
+
+Installed dotnet 8 and Python; existing offline package cache, own sources-cleared NuGet.Config, task-specific temporary APPDATA, NuGetAudit=false and UseSharedCompilation=false. No downloads, lock edits, original execution, asset extraction, live/socket/DNS contact, capture/fuzzing, GPU/engine work, worker messaging, staging/commit/push/publication. Shared code outside the assigned registry file, old exact-revision scalar store, codecs/world, runners/ledgers/status/curated data remain read-only.
+
+## Observation, interpretation, confidence, consequence
+
+- Observation: existing registry revision counter is checked and never rewound; record copies already preserve unrelated snapshot properties. Creation/replacement now assign a separate incarnation from the unique creation revision, while containment/end/detachment retain it. IsCurrent(handle) is unchanged; the new overload checks exact incarnation. Interpretation: stable object identity and exact resource revision are independent capabilities. Confidence: **Confirmed native tests and focused source diff**. Consequence: exact resource freshness must still use handles/initializer attempts; replication continuity may use incarnation.
+- Observation: store Seed accepts a complete accepted immutable baseline with matching object ID; repeated baseline Seed replaces it and resets scalar overlay. Apply uses an accepted complete six-field plan and current caller incarnation, computes a new state, checks the local revision, then commits once. Interpretation: fixed baseline fields and mutable-in-time scalar meaning can coexist as separate immutable observations. Confidence: **Confirmed synthetic native/oracle results; modern policy**. Consequence: baseline.Scalars remains its original seed values, snapshot.Scalars is the current overlay. No invented defaults or baseline/container delta merge.
+- Observation: stale/foreign/missing incarnation returns null; wrong object or absent baseline rejects; replacement/destroy/recreate/reset/close retire owned entries without resurrection. Containment/end retain state despite exact-handle invalidation. Capacity, aggregate logical bytes, seed/apply/replacement counter overflow and registry create/replace overflow leave live state unchanged. Interpretation: stable continuity can be bounded without weakening rejection or allowing old object traffic into a recreated ID. Confidence: **Confirmed native negatives**. Consequence: every new incarnation needs its own explicit full seed; wire messages have no added generation field.
+- Observation: native encoded baseline exactly equals the accepted independent full eighteen-field fixture after scalar application; all six overlay bits, duplicate order and negative-zero height match independent calculation before and after lifecycle changes. Seed replacement returns all six original baseline values. Confidence: **Confirmed independent synthetic wire/state audit**. Consequence: ownership/prefix/Unicode/collection details remain preserved by the accepted codec; no presentation, original scheduler, gameplay or live compatibility claim.
+
+## Implementation and validation
+
+The [contract](../../docs/SCENE_CREATURE_REPLICATION_STORE_CONTRACT.md) specifies exact public signatures and policies for subsequent world binding. Registry change preserves the five-argument snapshot constructor via an init property; existing mixed line endings are preserved outside focused edits; inserted lines match the edited LF regions. New files are UTF-8/LF. The new store retains at most configured entries and logical baseline bytes, exposes immutable owned results, lazily retires stale entries, and enforces construction-thread/reentrancy/close rules. There are no callback paths; reentrancy guard is inspected, not a fabricated callback execution test.
+
+Passed isolated offline restore/build (zero warnings/errors), focused native scenarios and Verify-Store.py. Positive/negative coverage: create/duplicate, containment/end retention, child detachment on replacement, exact-handle invalidation versus stable incarnation, same-ID replacement/destroy/recreation, foreign registry/store, wrong baseline/delta object, unseeded application, immutable byte/list/snapshot ownership, deterministic reseed, count/aggregate-byte/replacement-budget rollback, seed/apply/replacement overflow, checked registry creation/replacement overflow, reset/registry/store close, dedicated foreign-thread rejection and constructor bounds.
+
+Shared native build/execution with --creature-replication passed, including accepted R5 registry, R6 initializer, R7 scalar codec and R8 complete-baseline/exact-store scenarios. Isolated accepted R7 world runner build/execution passed. Existing exact-revision ScalarStore and shared runners were not edited.
+
+Executed reproduction from this checkout (installed Python path C:/Users/ancie/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe): focused commands in contract use input local-private/round9/peer.json and output local-private/round9/export.json. Regression inputs were accepted generated local-private/round8/peer.json and local-private/round7/peer.json; local-private/round9/baseline.bin was extracted from peer JSON's baseline hex. These are synthetic ignored files, not assets/captures. Regenerate old peer fixtures with their accepted Generate-Peer.py scripts when absent.
+
+```powershell
+python poc/round8-tests/Runtime/Generate-Peer.py local-private/round8/peer.json
+python poc/round7-tests/Runtime/Generate-Peer.py local-private/round7/peer.json
+python -c "import json;from pathlib import Path;p=json.loads(Path('local-private/round9/peer.json').read_text());Path('local-private/round9/baseline.bin').write_bytes(bytes.fromhex(p['baseline']))"
+dotnet build poc/Stardust.Core.SmokeTests/Stardust.Core.SmokeTests.csproj --no-restore -p:UseAppHost=false -p:UseSharedCompilation=false -p:NuGetAudit=false
+dotnet poc/Stardust.Core.SmokeTests/bin/Debug/net8.0/Stardust.Core.SmokeTests.dll --creature-replication local-private/round9/baseline.bin local-private/round8/peer.json
+dotnet build poc/round7-tests/Runtime/Runtime.csproj --no-restore -p:UseSharedCompilation=false -p:NuGetAudit=false
+dotnet poc/round7-tests/Runtime/bin/Debug/net8.0/Runtime.dll local-private/round7/peer.json
+python tools/python/validate_organized_workspace.py .
+git diff --check
+```
+
+Passed final gates: workspace validator (zero broken/private links, 2,602 unique names and 345 packet rows), whitespace/encoding, baseline-relative review (nine assigned additions and one focused registry edit, no other accepted public change), unchanged HEAD and empty index. Final git status inspected. The independent oracle rejects a deliberately corrupted signed-zero export. An initial encoding check incorrectly assumed uniformly CRLF registry input; baseline-relative inspection found mixed line endings, and inserted separators were matched to edited LF regions while all original separators were retained. The scope records before/after hashes for the one permitted existing registry change and additions. No proprietary/private output is embedded or linked from curated files. Research/function/protocol denominators remain unchanged; lead owns registration and living-document consolidation.
+
+## Exact next action
+
+Lead review/integrate scoped files, generate the synthetic peer JSON, and register SceneCreatureReplicationStoreScenarios.Run(peer, optionalExportPath). The documented API is available for separately dispatched Round 10 world binding. No world/engine baseline adapter, component-set delta reconciliation, original readiness, parent/height presentation or live work is included. Worker stops after Round 9 and waits for the next explicit assignment.

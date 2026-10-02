@@ -30,7 +30,7 @@ internal sealed class SkeletalMeshPreview : IDisposable
     internal void ApplyCellLighting(CellLightingPreview rig)=>materialPreview!.ApplyCellLighting(rig);
     internal int TextureCount=>materialPreview?.TextureCount??0;
     internal long TextureBytes=>materialPreview?.TextureBytes??0;
-    internal SkeletalMeshPreview(CreatureAppearanceDescriptorBundle bundle,bool unshaded=false,bool specularPreview=false)
+    internal SkeletalMeshPreview(CreatureAppearanceDescriptorBundle bundle,bool unshaded=false,bool specularPreview=false,int meshDetail=0,bool vertexLitOnly=false)
     {
         original=bundle;
         uploadTangents=bundle.MaterialBundle?.CompressedNormals is not null;
@@ -42,10 +42,10 @@ internal sealed class SkeletalMeshPreview : IDisposable
         try
         {
             if(bundle.GeneratedFaces is not null&&bundle.MaterialBundle is null)throw new AssetPreviewException("Generated face display requires owned materials.");
-            if(bundle.MaterialBundle is not null)materialPreview=new SkeletalMaterialPreview(bundle.MaterialBundle,bundle.GeneratedFaces,specularPreview);
+            if(bundle.MaterialBundle is not null)materialPreview=new SkeletalMaterialPreview(bundle.MaterialBundle,bundle.GeneratedFaces,specularPreview,vertexLitOnly);
             foreach(string generator in bundle.Appearance.MeshGenerators)
             {
-                string path=bundle.LodMeshes[generator].ExposedPaths()[0];var source=bundle.Geometries[path];var mesh=Own(new ArrayMesh());var materials=new List<Material>();
+                string path=bundle.LodMeshes[generator].ExposedPaths()[meshDetail];var source=bundle.Geometries[path];var mesh=Own(new ArrayMesh());var materials=new List<Material>();
                 for(int shaderIndex=0;shaderIndex<source.Shaders.Count;shaderIndex++)
                 {
                     var shader=source.Shaders[shaderIndex];

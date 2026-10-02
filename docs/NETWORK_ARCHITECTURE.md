@@ -428,3 +428,7 @@ Vendor ownership uses C→Z `0x21B55A3B` with a U64 target and Z→C
 `0xCE04173E` with U32 rights/error, U64 object ID, ASCII vendor UID and an
 unknown U16 currently `0x64`. See
 `ANALYSIS_CHECKPOINT_2026-09-15_VENDOR_OWNERSHIP.md`.
+
+## Offline zone-scene codec implementation — 2026-10-01
+
+[ZoneSceneProtocolCodec contract](ZONE_SCENE_PROTOCOL_CODEC_CONTRACT.md) records accepted SelectCharacter encoder/decoder and CmdStartScene decoder with immutable DTOs, hand-authored fixtures and independent wire audit. Raw flag, U64 values, ASCII16 strings and X/Z/Y order are preserved. Header/truncation/trailing/non-ASCII/non-finite failures are rejected. Zone connection, scene application and CmdSceneReady remain unfinished boundaries.

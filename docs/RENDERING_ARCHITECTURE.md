@@ -360,3 +360,7 @@ Original CELL/LGHT creation, HDR colors, corrected poses and separate specular i
 The [cell-lighting preview](CELL_LIGHTING_PREVIEW_CONTRACT.md) now consumes authored owner-cell inputs with retained character GPU resources. Its light selection/ambient/near-light/vertex power policies are explicit replacement choices.
 
 The [bounded legacy light-selection contract](LEGACY_LIGHT_SELECTION_CONTRACT.md) now closes material participation masks, slot capacities, ranking and channel roles. Live visibility/order and vertex LIT remain open; the prior explicit modern policy is not original slot selection.
+
+## Bounded replicated-state presentation —Round10
+
+[Creature state presentation](CREATURE_STATE_PRESENTATION_CONTRACT.md) checks state revision/incarnation separately from resource revision and applies modern bounded Height/visibility without new GPU resources. Original Height/posture behavior remains unresolved. Original albedo data are available through the optional [scene resource path](SCENE_CREATURE_ALBEDO_RESOURCE_CONTRACT.md); the full interior presentation remains separate.

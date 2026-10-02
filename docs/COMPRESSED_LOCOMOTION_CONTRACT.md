@@ -26,3 +26,7 @@ Walk SHA256 FF86567A4CDBFC1EB574C5C8FC399144A37DAD218AA49DE0070AC9F1F19F65A6; ru
 Native `--compressed-locomotion <owned-clip-file> <exact-SHA256>` validates input identity and emits owned keys/messages and every quarter-frame sample. `tools/python/verify_compressed_locomotion.py <archive-root> <configuration> <member> <native-rows> --configuration-sha256 <pin>` independently resolves effective archive bytes, checks fields/F32 bits and interpolation plus the speed invariant. Original222 samples agree with maximum1.6398468005718314e-7 at tolerance2e-6. Synthetic endpoint, ownership, translation difference, malformed width/count/time/float, truncation and unsupported-root checks pass.
 
 Unknown: complete animation graph execution, original speed-node blend/transition policy, message scheduling at loop boundaries and effect delivery. Next: retain explicitly selected movement clips alongside idle, validate suffixes, and drive diagnostic playback from accepted movement while collision owns translation.
+
+## Modern event cursor — 2026-10-01
+
+[AnimationEventCursor](ANIMATION_EVENT_CURSOR_CONTRACT.md) consumes these owned message records with an explicit modern (previous, target] playback policy, loop boundary ordering, pause/reset and per-advance budgets. Its independent oracle and original walk/run checks pass. This does not replace the recovered integer [start, end) collector or establish original scheduler semantics. Effect/audio dispatch is a future integration boundary.

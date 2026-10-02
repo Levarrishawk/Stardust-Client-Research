@@ -2,11 +2,13 @@
 
 This is the canonical entry point for reviewing the `Stardust.exe` research before designing or implementing a replacement client.
 
-Latest development session: [development run through October1,20:00 Eastern](research/sessions/IMPLEMENTATION_SESSION_2026-10-01_UNTIL_2000.md).
+Latest development session: [Round14 outcomes and resume point](research/sessions/PARALLEL_DEVELOPMENT_ROUND_14_2026-10-02.md).
+Latest accepted parallel round: [Round14 assignments and acceptance](research/sessions/PARALLEL_DEVELOPMENT_ROUND_14_2026-10-02.md). All workers idle; another round requires Levarris's prompt.
+Earlier accepted parallel round: [Round 3 results and integration record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_3_2026-10-01.md); [Round 2 accepted results](research/sessions/PARALLEL_DEVELOPMENT_ROUND_2_2026-10-01.md).
 Current executable acceptance gates: [implementation record](docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
-Latest checkpoint: [status observation boundary](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_STATUS_BOUNDARY.md).
+Latest research checkpoint: [exact components-set kernel](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-02_R12_COMPONENTS_SET_POLICY.md).
 Latest follow-up: [direct status CRC receive rule](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-29_STATUS_CRC_RECEIVE.md).
-Latest implementation checkpoint: [animated original interior character](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_CHARACTER_ANIMATION.md).
+Latest implementation checkpoint: [mixed original human/terminal world](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R14_MIXED_WORLD_INTEGRATION.md).
 Latest collision research: [creature fallback dimensions](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-01_CREATURE_COLLISION_FALLBACK.md).
 
 ## Scope and current position
@@ -18,7 +20,7 @@ Latest collision research: [creature fallback dimensions](research/checkpoints/A
 - Objective: behavioral, wire-protocol, and original-asset compatibility in a native 64-bit replacement client
 - Current evidence-backed baseline: **89% comprehensive behavioral coverage / 94% implementation-and-engine-decision research readiness**. These are weighted observable-contract scores, not function percentages. Function/address coverage is separately **uncalibrated**. See the [current rescore](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_EVIDENCE_BASED_COVERAGE_RESCORE.md), [measurement reset](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md), and [model-transition audit](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_MODEL_TRANSITION_AUDIT.md).
 - Server packet-source matrix: **345 documented / 0 reachable gaps**
-- Stable provisional-name registry: **2,599 distinct addresses / 0 duplicate rows** (current canonical registry)
+- Stable provisional-name registry: **2,602 distinct addresses / 0 duplicate rows** (current canonical registry)
 
 The user has selected Godot 4.7.2 .NET x64 as the host after the bounded
 feasibility proof passed. Work is now development-led: implement the smallest
@@ -26,7 +28,7 @@ fixture-backed compatibility slice, and return to targeted executable/server
 analysis only when a concrete implementation uncertainty blocks or risks it.
 Function-level accounting remains separate from behavioral readiness.
 
-Parallel development: [adopted operating rules](docs/PARALLEL_DEVELOPMENT_RULES.md). Workers are in preparation-only mode until the user authorizes a round.
+Parallel development: [adopted operating rules](docs/PARALLEL_DEVELOPMENT_RULES.md). Rounds4 through14 are accepted; all workers idle. [Latest four-round assessment](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_9_12_ASSESSMENT_2026-10-02.md). [Five-round outcomes and next milestone](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_4_8_ASSESSMENT_2026-10-02.md). Authorization ends after Round14; another milestone requires Levarris's prompt. [Prior organizational assessment](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_2_3_ASSESSMENT_2026-10-01.md).
 
 ## Recommended review order
 
@@ -83,7 +85,7 @@ strict configuration loading and redacted diagnostics. An engine-neutral TRE
 The injected socket/clock/journal adapter is implemented. Live networking still
 requires status/liveness policy and a separately authorized controlled-server
 run. One original textured static mesh now renders in an explicit Godot preview.
-Next asset milestone: parent appearance and LOD selection; modern DDS next: BC7.
+Parent appearances and all-four skeletal details are implemented in bounded original previews. Stable-incarnation state, typed baseline/scalar and atomic mixed/components transactions, acknowledged two-actor presentation and generic creature/static world delivery are accepted. A mixed original human/terminal preview now passes guarded lifecycle/GPU/headless/cancel checks. Reusable acknowledged heterogeneous presentation is next; modern DDS completion extensions remain separately scoped.
 See the acceptance record and latest session for verified scope and limits.
 
 Latest material milestone: [original skeletal texture defaults](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_MATERIAL_DEFAULTS.md).

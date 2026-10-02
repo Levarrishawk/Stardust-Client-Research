@@ -6,6 +6,7 @@ internal static class DdsScenarios
 {
     internal static void Run()
     {
+        DdsOpaqueColorScenarios.Run();
         byte[] color = ColorBlock(0xF800, 0x001F, 0xE4E4E4E4);
         byte[] fixture = Fixture("DXT1", 4, 4, 1, color);
         DdsImage image = DdsDecoder.Decode(fixture);

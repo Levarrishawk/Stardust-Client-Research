@@ -1,0 +1,43 @@
+# R9-ASSETS-01: strict caller-authored JSON catalog profile
+
+Date: October 2, 2026. Bounded question: can a versioned caller-authored JSON profile construct the accepted immutable object template catalog with exact CRC/pins and symbolic recipes, reject malformed/ambiguous/budgeted configuration atomically, and compose with the existing creature/static readers without changing them?
+
+Stopping condition: public human/terminal metadata profile, deterministic encode/decode, meaningful native acceptance/rejection/ownership cases, independent Python JSON/path/CRC/canonical-byte agreement and successful reader composition. One milestone only; sequential future-round authorization does not start Round 10 before lead acceptance/dispatch.
+
+## Inputs, tools and baseline
+
+Accepted dirty-main Round 9 public baseline: 1,963 files, HEAD `65de8c88141071744dc75594be126b3bab3696a5`. ZIP SHA-256 `da266e684b8318aa605b0ef8730331915f7ba803bdccb2b693a2402ad9017dd8`; manifest SHA-256 `29bdfd7c8bac3898aa219d68d0b9189b518c7f7934a1b1c1e248fddf494a4b56`. Verified bundle hashes, file-set/path containment, sizes and file SHA values before synchronization and all destination SHA values afterward. Ignored/unlisted private material was preserved. Prior accepted files remain intentionally dirty relative to HEAD, so scope is measured against this exact baseline.
+
+Orientation included AGENTS, START_HERE, the latest named implementation session, accepted Round 8 report, current terminology/status/ledger/unknown-function heads, existing catalog/path and JSON animation-profile code, creature/static/SWTS contracts and prior checkpoints. No preexisting JSON catalog profile or curated global catalog was found. No executable/virtual-address evidence was used, so original executable execution/hash verification was unnecessary.
+
+Native tools: cached .NET 8 runtime/SDK and existing private package cache; empty NuGet sources and `NuGetAudit=false` for offline restore. Build uses `--no-restore`, `UseSharedCompilation=false`, `UseAppHost=false`; zero warnings/errors. Python executable: `C:/Users/ancie/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe`, UTF-8 enabled. Exact commands/input/output paths are in the [durable contract](../../docs/OBJECT_TEMPLATE_CATALOG_PROFILE_CONTRACT.md).
+
+Original reader-composition input: explicit `C:/Stardust-DEV`, `swgemu_live.cfg` SHA-256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`, existing human locomotion profile and accepted idle selection, existing explicit terminal SWTS frame0 selection. Read-only original asset access only. No network/DNS/socket, GPU, engine, original executable, downloads or publication.
+
+## Observation, interpretation and consequence
+
+**Confirmed observation:** The accepted ObjectTemplateCatalog already owns normalized record/string snapshots, validates exact normalized-path CRC, object/appearance pins and two recipe enums, rejects path/CRC duplicates and collisions and enforces entry/path ceilings. Existing resource readers accept that type. The new boundary returns it unchanged and edits no catalog or reader source.
+
+**Modern authored policy:** JSON version1 has exactly `version`/`entries`, and each entry exactly `templateCrc`/`objectPath`/`objectSha256`/`appearanceSha256`/`recipe`. Symbolic recipes are exact `creatureDetail0` and `staticAppearance`. Duplicate decoded names, unknown/missing properties, unsupported UTF-8/types/numeric syntax/version, dot segments and budgets reject before a catalog is returned. Raw dot rejection precedes normalization and includes backslashes and escaped dots. Existing normal aliases remain accepted. The full bounds and exception/ownership behavior are specified in the durable contract, without attributing this policy to the original client.
+
+**Confirmed implementation observation:** canonical compact UTF-8 sorts unsigned CRC ascending, fixes property order, uppercases pins and uses normalized paths with necessary JSON escaping. Input/output mutation and reversed insertion order leave catalog and later canonical output unchanged; dictionary mutation rejects and unknown lookup has no fallback. JSON documents and writer/stream temporaries are disposed, and failed construction publishes no partial catalog.
+
+**Confirmed metadata correlation:** The independently authored public profile contains only previously pinned human CRC `2937962913` and terminal CRC `2907007746`, source pins and symbolic recipes. Full paths/pins are recorded in the contract/public profile. Authored file SHA-256 `B945D2D4695FF37D54343F11A7DF3539A5AB36A2E5D13246969B04F92657492D`; canonical output 598 bytes, SHA-256 `714A624F8BCE5FE9834E202C675C16314F5C329E4B98D6E99669B60073A0AACB`; 96 normalized path characters. No asset bytes or original global-table extraction are included.
+
+**Confirmed reader composition:** The decoded profile feeds the accepted human reader once, retaining 37 sources /4,683,848 bytes, and the accepted terminal reader once with explicit SWTS frame0, retaining 27 sources /1,401,794 bytes and four complete meshes. Every external path is read once. These are composition checks after malformed-profile cases, not duplicated claims about closed original geometry/mip/animation audits.
+
+**Interpretation / confidence:** Confirmed bounded modern implementation and finite-fixture agreement. **Compatibility consequence:** a caller can configure the accepted recipes through a strict portable file rather than hard-coded default/global template assumptions. Original global table coverage, appearance alternatives, unimplemented object families and trust/pin distribution remain unknown/separate.
+
+## Validation and corrective review
+
+Native scenarios pass 12 decoder acceptances, 126 decoder rejections, 16 invalid decoder/encoder option checks and four encoder-budget failures. Cases include aliases/escaped property names, all entry-field null/missing/duplicate checks, unknown root/entry fields, unsupported primitive/container types, fraction/exponent/signed/string numbers, pin/path width/encoding, raw/escaped/backslash dot segments, trailing separators, malformed UTF-8/surrogates/truncation, exact/one-below byte/entry/path/depth budgets, duplicate/conflicting aliases and fixed CRC collision. Input/output copies, immutable dictionary, unknown lookup and deterministic order are checked. Fresh original reader composition succeeds afterward.
+
+The Python oracle independently parses JSON with duplicate decoded-property rejection and preserved lexical number tokens, independently normalizes ASCII archive paths and uses the existing polynomial-long-division CRC oracle. It agrees with all 138 decoder-case results and every accepted canonical byte sequence, checks known public metadata and fixed collision checksums and verifies canonical output hash/size plus both reader summaries. It does not call native code or reopen original assets; their already accepted audits are not duplicated.
+
+Review found two audit/encoding edge cases before finalization: the initial Python normalization removed trailing separators, unlike accepted LegacyAssetPath; preserving the separator and adding a native negative fixes that oracle mismatch risk. A printable ASCII synthetic path exercises JSON punctuation/escaping. The new encoder uses necessary JSON escaping without default HTML-safe transformations so its canonical bytes agree with independent standard JSON output for supported ASCII paths. Public canonical bytes/hash remain unchanged. These are modern-format decisions, not original-client findings.
+
+Workspace validation passes with zero broken links, zero private links, 2,602 provisional rows /zero duplicate addresses and 345 packet rows. New-file baseline-relative whitespace checks and `git diff --check` pass. Exact scope review verifies all 1,963 baseline files unchanged and exactly eight additions, unchanged HEAD and empty index; private evidence and runner bin/obj outputs are ignored. Existing catalog/readers, shared projects/runners, root status/ledger, registries and other accepted-round files are lead-owned and unchanged. Detailed native/canonical/oracle output and baseline-relative changed hashes remain private. Nothing is staged/committed/published, and no proprietary asset content is promoted.
+
+## Exact next action
+
+Lead reviews and integrates the six named new files plus own two-file runner, reconciles living status/ledger and retrieves the recorded scope/hash receipts. Remain idle until the next lead dispatch. An eventual consumer should explicitly opt into this profile; no automatic filesystem/global-catalog discovery is implied. No Round 10 work was started.

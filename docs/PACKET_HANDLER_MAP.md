@@ -524,3 +524,21 @@ The same chat-room senders above are also reached from `/chatRoom` text commands
 |---|---|---|---|---|
 | `DeleteCharacterMessage` `0xE87AD031` (C→login) | `SwgCuiDeleteAvatarConfirmation` OK `0x00E881F0` → typed `DeleteAvatarConfirmation` → `SwgCuiAvatarSelection` `0x00C63DB0` → sender `0x00C63990` → message constructor `0x013F0770` → login send `0x00462710` | U32 galaxy/server ID; U64 character ID | Server requires account, copies/verifies row in deleted archive then deletes it (or configured API path); user-confirmed action only | Confirmed executable path and current `LoginPacketHandler.cpp`; [checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-24_DELETE_CHARACTER_CONFIRMATION_PROTOCOL.md) |
 | `DeleteCharacterReplyMessage` `0x8268989B` (login→C) | `SwgCuiAvatarSelection` listener `0x00C62F40` → archive decoder `0x013F0610` → pending result branch | U32 failure code (`0` success) | Success feedback/list refresh or failure feedback; pending UI cleared | Confirmed executable dispatch and server reply constructor; exact UI strings partial |
+
+
+## Replication envelope offset clarification (2026-10-02)
+
+Baseline/delta application envelopes are23 bytes before the innerU16 count: count0/opcode2/ID6/tag14/view18/payloadSize19/count23. The server27-byte framed header includes4 SOE opcode/sequence bytes; setSize offset23 is application offset19. See [schema map](REPLICATION_SCHEMA_MAP.md). Existing documented packet rows and dispatch/field evidence are unchanged.
+
+
+## Bounded implementation update — October 2, 2026
+
+The replacement now decodes the complete eighteen-field [CREO:3 baseline](CREATURE_VIEW3_BASELINE_CONTRACT.md) and ordered [scalar deltas at indices11–16](CREATURE_VIEW3_SCALAR_DELTA_CONTRACT.md). It preserves raw byte strings/UTF16 units, collection entries/counters, scalar bits and declared-count tolerance; malformed tails and budgets reject before state publication. Raw component-entry preservation does not establish original duplicate-set semantics. [Scalar state](SCENE_CREATURE_SCALAR_STORE_CONTRACT.md) requires an explicit caller seed and exact registry revision. The offline world still records opaque envelope history rather than automatically applying these codecs. These are implementation gates for previously documented schemas; the345-row packet matrix and research denominators do not change.
+
+## Round9 implementation note
+
+CREO3 field17 has an owned [wounds vector codec](CREATURE_VIEW3_WOUNDS_DELTA_CONTRACT.md); [baseline/scalar state](SCENE_CREATURE_REPLICATION_STORE_CONTRACT.md) uses stable incarnation separately from resource revision. Original counter/index policy remains unresolved. Existing345 packet rows remain unchanged.
+
+## Round10 implementation and vector correction
+
+[Typed world](SCENE_WORLD_REPLICATION_CONTRACT.md) now consumes full CREO3 and scalar indices11–16. [Legacy vector kernel](CREATURE_WOUNDS_LEGACY_POLICY_CONTRACT.md) recovers clamped unsigned skip, assign cursor units and mutation-dependent counters; it adds no packet/name rows.345-row inventory unchanged.

@@ -1,0 +1,1 @@
+try { SceneCreatureResourceInitializerScenarios.Run(); if(args.Length==3)SceneCreatureResourceInitializerScenarios.Original(args[0],args[1],args[2]); else if(args.Length!=0)throw new ArgumentException("root configuration bank-profile required together"); } catch(Exception e) { Console.Error.WriteLine(e); Environment.ExitCode=1; }

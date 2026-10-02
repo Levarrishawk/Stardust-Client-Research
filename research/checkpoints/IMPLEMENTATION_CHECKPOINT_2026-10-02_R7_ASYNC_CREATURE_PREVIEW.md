@@ -1,0 +1,33 @@
+# R7-RENDER-01: async placed creature preview
+
+Date: October 2, 2026. Bounded question: can an actual decoded application create, finalized registry snapshot, owned initializer request, original background resource load, current-ticket transfer, Core placement, and one Godot reflection publish a retained visual without stale attempts resurrecting? Stop condition: native/independent placement and source checks, headless/GPU lifecycle and retention, real cancellation, capture inspection, options rejection, drain, and exact-scope audit pass.
+
+## Inputs and orientation
+
+Read START_HERE, accepted [Round 6 report](../sessions/PARALLEL_DEVELOPMENT_ROUND_6_2026-10-02.md), relevant initializer/placement/visual/resource durable contracts and sources, prior R6 checkpoints/tools, and current status/ledger/unknown terminology. No executable VA claims require executable hashing; no original executable was run.
+
+Accepted baseline: HEAD `65de8c88141071744dc75594be126b3bab3696a5`, 1,888 public files. ZIP SHA-256 `f0eae67f7905165b14e8b2702226a2b5c7962f1eb07d12f087fc50ddf01d98d7`; manifest SHA-256 `a272704c8001b9fb2ad9460e7add0a2378ff030e834c1e0bc38ec4543d139f97`. Verified safe paths and every hash before and after overlay synchronization; ignored/unlisted files preserved.
+
+Original input: configured `C:/Stardust-DEV` closure, pinned `swgemu_live.cfg`, accepted human CRC/catalog and locomotion profile. Tools: .NET 8.0.300, Godot 4.7.2 .NET, Python, PowerShell, compatibility OpenGL/NVIDIA RTX 4070 SUPER. Exact reproduction and configuration identity are in the [durable contract](../../docs/ASYNC_SCENE_CREATURE_PREVIEW_CONTRACT.md).
+
+## Findings versus interpretation
+
+Confirmed execution observations: real worker-owned overlay closes before main-thread initializer transfer; native/headless/GPU agree on 37 read-once source identities and 4,683,848 bytes. Borrowed-buffer mutation preserves owned geometry, textures, and sampled poses. The synthetic create is decoded from explicit bytes and survives clearing its input buffer; its negative-zero field and raw flag remain exact. Independent packet packing and cross-product rotation oracle verify actual adapter rows, reflected columns, and five engine points. Engine origin is `(-2,4,-7)` from source Cartesian `(-2,4,7)`, following wire X/Z/Y `(-2,7,4)`.
+
+Confirmed modern policy: explicit zero Reject and normalized nonunit quaternion, identity scene parent, exact ticket/registry/create guard before allocation, after preparation, after hidden attachment, and during updates. Same-handle restart retires the prior attempt while its registry handle remains current. Controlled task barriers prove two-job capacity rollback, canceled late success, stale late fault, five registry invalidations, and disposal awaiting cancellation-ignoring success/fault tasks. No old attempt republishes. Tests reuse the accepted original parsed closure for deterministic scheduling; those completions are synthetic, not fresh original reads or captured packets.
+
+Confirmed GPU/headless observations: 96 idle and 64 movement updates retain resource identities/topology through visibility, focus/pause, and placement. Original authored texture mips read back correctly; ten textures remain at captured idle45. The capture was inspected and shows the full character at the applied asymmetric rotation. Native production identity/transform checks pass 19 negatives without native Godot allocations. Seven invalid launcher combinations reject before engine launch. R6 default headless behavior remains passing when the optional guard is omitted. Builds have zero warnings/errors.
+
+Cancellation initially closed the overlay and published nothing but reported Faulted: `Task.Run` had not been associated with the reader cancellation token. Associating that token fixes task cancellation classification; the final first-lookup cancellation reports Canceled and zero publications. An initial close-handler compile error used Window instead of SceneTree for AutoAcceptQuit; the corrected API builds. Runs from stale assemblies after that failed build are excluded from final evidence. Known Godot certificate-store diagnostics remain; passing checks do not imply error-free startup logs.
+
+Interpretation: these are confirmed replacement implementation/fixture behaviors. Original normalization/zero repair, world/container placement, readiness and reconciliation remain Unknown. Pale authored MAIN appearance is expected within this accepted slice; complete customization and normal/specular rendering remain separate. No Vulkan or live-server claim.
+
+## Compatibility consequences and scope
+
+Consumers must preserve raw decoded bytes separately from derived placement and apply the engine reflection exactly once. They must guard initializer attempt freshness as well as registry revision freshness, and poll/tick invalidation before rendering. Cooperative cancellation consumes capacity until task completion/observation; explicit teardown awaits drain. Normal window close awaits; externally forced tree/process termination cannot guarantee awaited shutdown.
+
+Two existing files are authorized: SceneCreatureVisual adds only the optional attempt guard and guarded update behavior; Main.cs adds one exact byte-preserving async dispatch branch beside its accepted visual branch. New files: async preview/partial Main, own launcher, durable contract, this checkpoint, and four rendering diagnostic files. Shared Core initializer/readers/placement/registry, clocks, shaders, mesh adapter, runners, living docs and curated registries remain baseline-identical. Generated logs, original-derived capture and hash receipts remain ignored private artifacts. No staging/commit/push/publication, worker messaging, original executable execution, server/socket/DNS contact, capture/fuzzing or external mutation occurred; the image is a replacement GPU screenshot, not a network capture.
+
+Final gate: all baseline hashes checked against manifest; only those two authorized existing paths differ. Removing the single Main branch restores baseline Main bytes. New public files use UTF-8/LF. Workspace/link validator and focused/full diff whitespace checks pass; index remains empty. Private changed-path manifest and receipt preserve exact SHA-256 identities of scoped files and final logs/capture.
+
+Exact next action: lead review/acceptance of R7-RENDER-01 and shared scenario integration. Remain idle until acceptance/new assignment. A later bounded milestone may select real parent/container placement or integrate an accepted world coordinator; neither is part of this preview or a dependency on unfinished same-round work.

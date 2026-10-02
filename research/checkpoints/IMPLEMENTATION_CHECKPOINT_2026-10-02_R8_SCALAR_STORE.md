@@ -1,0 +1,33 @@
+# R8-RUNTIME-01: lifecycle-bound six-scalar store
+
+Date: 2026-10-02. Bounded question: can an explicitly seeded immutable six-scalar state accept an already validated CREO:3 delta only for its owned current registry revision, without stale resurrection or partial updates? Stop after native lifecycle/negative/ownership tests, an independent bit-level audit, shared native gates, and exact scope handoff. No Round 9 is authorized.
+
+## Input identity and orientation
+
+HEAD 65de8c88141071744dc75594be126b3bab3696a5; accepted Round 8 snapshot contains 1,924 public files. Manifest SHA-256 5C6D703A5F6A6CCDB90548B89070356A6BA6B26E8DBBE49376F3CF195131CBDB; ZIP C878C4E17F1F6D8B2DBCC1778EFBE77B1EC8EB310C5AD89E704BE8694D3D79C2. Verified both hashes, safe unique relative ZIP paths, no symlinks, every member size/hash before overlay, and all resulting file hashes afterward. Only this worker checkout was overlaid; ignored/unlisted files were preserved.
+
+Read START_HERE, accepted Round 7 report, living status/ledger/function terminology, accepted delta/registry contracts and checkpoint, relevant native code, independent scalar/envelope/lifecycle tools, and the curated CreatureObjectDeltaMessage3 packet row (documented server boundary). No new schema, function name, curated registry row, or coverage denominator. Original executable and original assets were not inputs. No VA-based claims were made, so executable SHA verification was unnecessary for this implementation task.
+
+Used installed dotnet 8 and Python with the existing offline NuGet package cache, sources-cleared own runner configuration, task-specific temporary APPDATA, NuGetAudit=false and UseSharedCompilation=false. No downloads, lock edits, original execution, server/socket/DNS contact, capture, fuzzing, GPU/engine work, external mutation, worker messaging, staging, commits, push or publication.
+
+## Observations and conclusions
+
+Observation: accepted CreatureView3ScalarDeltaCodec returns a sealed owned plan only after tag/view, envelope and complete indexed-value validation. The existing plan's pure Apply has object ID as metadata but no registry binding. Accepted SceneObjectRegistry handles include registry GUID, caller scene generation, object ID and revision; containment/first end-baselines also change revision. Interpretation: a separate bounded binding layer must validate the caller token on every plan application. Confidence: **Confirmed accepted implementation**, exercised by new native scenarios. Consequence: no new wire generation field and no modification to accepted codec/registry/world behavior.
+
+Observation: Seed copies a caller state for a current handle; Apply verifies current registry plus exact owned entry and matching plan object, calculates a complete immutable result, checks the next local revision, then commits once. Wrong-object, unseeded, invalid-height, capacity and counter failures preserve current state and local counter. Interpretation: independent state evolution can be atomic without engine dependencies or borrowed arrays. Confidence: **Confirmed native fixture behavior**. Consequence: malformed plans must be decoded before Apply; no earlier valid field can mutate state when a later unsupported field prevents plan construction.
+
+Observation: every public operation prunes noncurrent entries. Exact-handle changes require reseeding; old same-ID and prior-generation deliveries return null and cannot erase newly seeded current entries. IsCurrent additionally checks private store owner and latest local scalar revision. Interpretation: conservative revision binding closes stale resurrection but deliberately loses scalar continuity through containment/end-baselines. Confidence: **Confirmed native fixture behavior; modern policy**. Consequence: a future stable-incarnation binding is needed before retaining state across those transitions. The explicit seed is not a recovered baseline. PendingBaselines seeds are accepted deliberately; no original baseline-arrival or readiness rule is claimed.
+
+Observation: the fixture applies all six fields in noncanonical order with posture/height duplicates, raw high-bit integers, and final negative-zero height. The native result after create and after finalized reseed matches an independent ordered raw-bit calculation and exact re-encoded delta. Create X remains 123.5, independent of scalar height. Confidence: **Confirmed synthetic byte/state audit**. Consequence: no height clamp, posture animation, source scaling, container transform, or presentation assumption.
+
+## Validation
+
+The [contract](../../docs/SCENE_CREATURE_SCALAR_STORE_CONTRACT.md) gives API policies and exact reproduction commands. New native scenarios run through the isolated [Runtime runner](../../poc/round8-tests/Runtime/Program.cs), taking independently generated fixture JSON and an ignored export destination. Shared lead registration can call SceneCreatureScalarStoreScenarios.Run(peer, optionalExportPath).
+
+Passed focused restore/build (zero warnings/errors), positive and negative native tests, and independent Verify-Store.py audit. Tests cover actual create/contain/end/destroy bytes; explicit replacement/reset; wrong object/foreign registry/store; absent/duplicate seeds; unsupported and malformed decode-before-apply; input/snapshot ownership; same-ID recreation and old generations; capacity rollback/reuse; finite extreme height/no clamp; nonfinite seeds; checked seed/apply overflow; registry/store close; and dedicated foreign-thread rejection. Reentrancy guard has no callback surface and is verified by inspection rather than a fabricated callback test. Shared native smoke build/execution passed. No original asset or GPU proof was needed for a scalar state component.
+
+Passed final gates: workspace validator (zero broken links, zero private links), nine UTF-8/LF additions with no trailing whitespace, git diff --check, baseline-relative review with exactly nine assigned additions and no accepted public file changed, unchanged HEAD and empty index. Inspected final git status. The independent oracle also rejects a deliberately corrupted signed-zero export. The final scoped handoff records exact hashes of assigned additions; all accepted existing public files, shared runners, status/ledger and registries remain read-only. Source/private outputs are not embedded or linked from curated documents.
+
+## Resume
+
+Lead review/register the fixture-enabled scenarios and integrate these new files. No automatic world/baseline/engine adapter is included. Further work requires a separately authorized bounded question for stable object incarnation identity, authoritative seed origin, or engine presentation. Round 8 worker stops here; no Round 9 work.

@@ -10,18 +10,19 @@ public sealed record TexturedAppearanceGraph(AppearanceGeometryGraph Geometry,IR
 public static class TexturedAppearanceGraphReader
 {
     public static TexturedAppearanceGraph Load(Func<string,TreLookupResult> resolve,string path,string expectedSha256,
-        AppearanceGraphLimits? limits=null,long maximumDecodedBytes=134_217_728,CustomizableShaderInspectionMode customizationMode=CustomizableShaderInspectionMode.Reject)
+        AppearanceGraphLimits? limits=null,long maximumDecodedBytes=134_217_728,CustomizableShaderInspectionMode customizationMode=CustomizableShaderInspectionMode.Reject,SwitchTextureFrameSelection? switchTextureFrame=null)
     {
-        ArgumentNullException.ThrowIfNull(resolve);limits??=new();OwnedAssetSourceCache sources=new(resolve,limits);
+        ArgumentNullException.ThrowIfNull(resolve);switchTextureFrame?.Validate();limits??=new();OwnedAssetSourceCache sources=new(resolve,limits);
         AppearanceGeometryGraph geometry=AppearanceGeometryGraphReader.Load(sources.Read,path,expectedSha256,limits);
-        return Attach(sources.Read,geometry,sources.Sources,maximumDecodedBytes,customizationMode);
+        return Attach(sources.Read,geometry,sources.Sources,maximumDecodedBytes,customizationMode,switchTextureFrame);
     }
-    internal static TexturedAppearanceGraph Attach(Func<string,TreLookupResult> Read,AppearanceGeometryGraph geometry,IReadOnlyDictionary<string,AssetSourceIdentity> sources,long maximumDecodedBytes,CustomizableShaderInspectionMode customizationMode=CustomizableShaderInspectionMode.Reject)
+    internal static TexturedAppearanceGraph Attach(Func<string,TreLookupResult> Read,AppearanceGeometryGraph geometry,IReadOnlyDictionary<string,AssetSourceIdentity> sources,long maximumDecodedBytes,CustomizableShaderInspectionMode customizationMode=CustomizableShaderInspectionMode.Reject,SwitchTextureFrameSelection? switchTextureFrame=null)
     {
         if(!Enum.IsDefined(customizationMode))throw new ArgumentOutOfRangeException(nameof(customizationMode));
         if(maximumDecodedBytes<4)throw new ArgumentOutOfRangeException(nameof(maximumDecodedBytes));
         Dictionary<string,TexturedStaticMesh> meshes=new(StringComparer.Ordinal);List<string> diagnostics=new();
-        HashSet<string> visited=new(StringComparer.Ordinal);StaticMeshDecodeCache cache=new(maximumDecodedBytes,customizationMode);
+        switchTextureFrame?.Validate();
+        HashSet<string> visited=new(StringComparer.Ordinal);StaticMeshDecodeCache cache=new(maximumDecodedBytes,customizationMode,switchTextureFrame);
         void Visit(AppearanceGeometryTemplate template)
         {
             if(!visited.Add(template.Path))return;

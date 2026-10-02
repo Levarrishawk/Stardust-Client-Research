@@ -30,7 +30,7 @@ def main():
     assert a.native_output.stat().st_size <= 8*1048576
     sources, templates, content, counts, guards, rows, volume = {}, {}, {}, None, {}, [], None
     locomotion_bank=[];camera_queries=[];camera_doors=[];camera_triangles=[];camera_cell_rows=[];cell_light_rows=[];cell_lighting_rows=[];static_color_rows=[];room_programs=[];room_materials=[];room_cases=[];static_normal_programs=[];static_normal_materials=[];static_tangents=[];static_preview_tangents=[];static_normal_cases=[];legacy_light_slots=[];synthetic_light_slots=[];legacy_cell_lighting=[];tangent_functions=[];tangent_vertex_cases=[];skeletal_tangent_vertex=[];skeletal_tangent_materials=[];legacy_point_original=[];legacy_point_synthetic=[]
-    customization_values=None;blend_targets=[];blend_applications=[];texture_choice_rows=[];normal_materials={};normal_programs={};normal_samples=[];normal_images=[];material_fields={};specular_materials={};specular_samples=[];vertex_lit_materials={};vertex_lit_programs={};vertex_lit_samples=[]
+    customization_values=None;blend_targets=[];blend_applications=[];texture_choice_rows=[];normal_materials={};normal_programs={};normal_samples=[];normal_images=[];material_fields={};specular_materials={};specular_samples=[];vertex_lit_materials={};vertex_lit_programs={};vertex_lit_samples=[];mouth_vertex_sources=[]
     blueprints = {}; face_resources = None; preparations = []; compositions = []; bindings = []; face_programs = []; albedo = {}; albedo_programs = {}
     characters = {}; animation = None; materials = {}; textures = {}; palettes = {}; raw_content = {}
     for line in a.native_output.read_text(encoding='utf-8-sig').splitlines():
@@ -94,6 +94,8 @@ def main():
             skeletal_tangent_vertex.append(json.loads(line.split('=',1)[1]))
         elif line.startswith('skeletal_tangent_material='):
             skeletal_tangent_materials.append(json.loads(line.split('=',1)[1]))
+        elif line.startswith('mouth_vertex_sources='):
+            mouth_vertex_sources.append(json.loads(line.split('=',1)[1]))
         elif line.startswith('skeletal_vertex_lit_material='):
             r=json.loads(line.split('=',1)[1]);assert r['path'] not in vertex_lit_materials;vertex_lit_materials[r['path']]=r
         elif line.startswith('skeletal_vertex_lit_program='):
@@ -135,9 +137,9 @@ def main():
     complete_vertex_sources=next((r['vertexSources'] for r in tangent_functions+skeletal_tangent_vertex if r.get('vertexSources')),None)
     assert len(sources) == 9 and len(templates) == 5 and len(rows) == 2880 and volume
     if content:
-        assert len(content) == (2 if complete_vertex_sources else 0)+(1 if tangent_functions else 2 if skeletal_tangent_vertex else 0)+(2 if static_normal_programs else 0)+(6 if room_programs else 0)+(1 if camera_queries else 0)+(2 if locomotion_bank else 0)+(145 if vertex_lit_materials else 144 if normal_materials else 139 if blueprints else 100 if palettes and animation else 97 if materials and animation else 80 if animation else 77 if characters else 70) and set(counts) == set(content) and set(counts.values()) == {1}
+        assert len(content) == (1 if mouth_vertex_sources else 0)+(2 if complete_vertex_sources else 0)+(1 if tangent_functions else 2 if skeletal_tangent_vertex else 0)+(2 if static_normal_programs else 0)+(6 if room_programs else 0)+(1 if camera_queries else 0)+(2 if locomotion_bank else 0)+(145 if vertex_lit_materials else 144 if normal_materials else 139 if blueprints else 100 if palettes and animation else 97 if materials and animation else 80 if animation else 77 if characters else 70) and set(counts) == set(content) and set(counts.values()) == {1}
         assert all(content[path] == row for path, row in (sources | templates).items())
-        assert sum(row['Bytes'] for row in content.values()) == (5737 if complete_vertex_sources else 0)+(12318 if tangent_functions else 14409 if skeletal_tangent_vertex else 0)+(5100 if static_normal_programs else 0)+(6924 if room_programs else 0)+(212 if camera_queries else 0)+(13352 if locomotion_bank else 0)+(16598491 if vertex_lit_materials else 16596575 if normal_materials else 15541123 if blueprints else 14284581 if palettes and animation else 14282453 if materials and animation else 10340219 if animation else 9943381 if characters else 9622375)
+        assert sum(row['Bytes'] for row in content.values()) == (1346 if mouth_vertex_sources else 0)+(5737 if complete_vertex_sources else 0)+(12318 if tangent_functions else 14409 if skeletal_tangent_vertex else 0)+(5100 if static_normal_programs else 0)+(6924 if room_programs else 0)+(212 if camera_queries else 0)+(13352 if locomotion_bank else 0)+(16598491 if vertex_lit_materials else 16596575 if normal_materials else 15541123 if blueprints else 14284581 if palettes and animation else 14282453 if materials and animation else 10340219 if animation else 9943381 if characters else 9622375)
     floors, chain = {}, []
     with contextlib.ExitStack() as stack:
         indices = [(priority, Index(stack.enter_context(path.open('rb')))) for priority, path in archives(a.root, a.configuration)]
@@ -206,6 +208,10 @@ def main():
                 independent = inspect_character_geometry(read(path, content))
                 assert all(row[key] == independent[key] for key in ('source', 'degenerate', 'triangles', 'sha256'))
             assert sum(row['triangles'] for row in characters.values()) == 2810
+        if mouth_vertex_sources:
+            from verify_skeletal_vertex_lit_sources import EXPECTED,verify as verify_mouth
+            assert complete_vertex_sources and mouth_vertex_sources==[EXPECTED]
+            print("mouth_vertex_source_audit="+json.dumps(verify_mouth(raw_content,{p:r["Priority"] for p,r in content.items()},a.native_output)))
         if vertex_lit_materials:
             from verify_skeletal_specular import verify_vertex_lit,verify as verify_specular
             required,result=verify_vertex_lit(raw_content,vertex_lit_programs,vertex_lit_materials,vertex_lit_samples);assert required<=set(content);print(json.dumps(result,indent=2))

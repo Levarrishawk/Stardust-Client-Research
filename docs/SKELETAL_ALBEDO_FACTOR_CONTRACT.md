@@ -12,7 +12,7 @@ For body, face and mouth, the compiled PS1.1 program samples texture0, computes 
 
 `SkeletalAlbedoEvaluator.Evaluate` consumes normalized sampled source-encoding RGBA and returns sampled RGB×factorRGB for single-color, or sampled RGB×lerp(firstRGB,secondRGB,sampledAlpha) for the two-color case. Factor alpha is irrelevant to this RGB slice. Texture alpha is a hue mask, not transparency. Filtering precedes evaluation; tinting mip texels before sampling would give a different result. Finite0..1 sample bounds validate.
 
-Authored selections give skin MAIN on body/head, eye MAIN on mouth, HUEB white on body/mouth, and two white factors on face. The generated face already contains its layer palette colors; white outer factors preserve it. Palette flags remain raw metadata, including eye255. Missing palettes use the existing diagnostic cyan policy; malformed present palettes reject. Empty/duplicate selected factors or absent required static factors reject.
+Authored selections give skin MAIN on body/head, eye MAIN on mouth, HUEB FFD5D5D5 on body/mouth for the pinned authored-default scene closure, and two white factors on face. The generated face already contains its layer palette colors; white outer factors preserve it. Palette flags remain raw metadata, including eye255. Missing palettes use the existing diagnostic cyan policy; malformed present palettes reject. Empty/duplicate selected factors or absent required static factors reject.
 
 ## Godot inspection policy
 
@@ -27,3 +27,5 @@ Native `--skeletal-albedo-defaults` follows the complete pinned original object/
 Portable fixtures verify both program patterns with/without comments, malformed/truncated/altered programs, TFNS ownership/duplicates/extent, sample bounds and hand-calculated mask endpoints/midpoint/single-factor behavior. Original missing/masked program gates pass. GPU synthetic2×2 filtered samples prove post-sampling hue evaluation and display boundary in three cases, maximum observed normalized error0.001545 (tolerance2/255). Material parameters, raw texture and generated-face bytes,480 idle updates/two loops, controls and cancellation cleanup pass. Updated capture inspected: visible skin coloration and generated head detail. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_ALBEDO_FACTORS.md).
 
 Face-only profile and authored body/eye modes remain available. The new [shared customization snapshot](SKELETAL_CUSTOMIZATION_SELECTION_CONTRACT.md) drives both through the confirmed private/shared-owner identity; nonzero original standalone/interior audits pass.
+
+Current original authored-default identities and sampled equations are independently verified in the [scene albedo resource contract](SCENE_CREATURE_ALBEDO_RESOURCE_CONTRACT.md). Caller customization may choose other palette entries; generated-face white factors remain unchanged.

@@ -17,6 +17,9 @@ public partial class Main
     {
         string Read(string key){int i=Array.IndexOf(args,key);if(i<0||i+1>=args.Length||args.Count(v=>v==key)!=1)throw new ArgumentException("Missing/duplicate skeletal inspector option.");return args[i+1];}
         string root=Read("--asset-root"),configuration=Read("--asset-config"),member=Read("--asset-member"),pin=Read("--asset-sha256"),appearancePin=Read("--creature-appearance-sha256");
+        int meshDetail=0;
+        if(args.Contains("--creature-mesh-detail")&&(!int.TryParse(Read("--creature-mesh-detail"),System.Globalization.NumberStyles.None,System.Globalization.CultureInfo.InvariantCulture,out meshDetail)||meshDetail<0||meshDetail>3))throw new ArgumentException("Creature mesh detail must be an explicit integer 0..3.");
+        bool vertexLitOnly=args.Contains("--creature-vertex-lit-only");
         bool materialDefaults=args.Contains("--creature-material-defaults");
         bool paletteDefaults=args.Contains("--creature-palette-defaults");
         bool albedoFactors=args.Contains("--creature-albedo-factors");
@@ -32,6 +35,9 @@ public partial class Main
         if(generatedFace&&!materialDefaults)throw new ArgumentException("Generated face requires owned material defaults.");
         string? faceProfile=generatedFace?Read(customized?"--creature-customization-profile":"--creature-face-profile"):null;
         if(paletteDefaults&&!materialDefaults)throw new ArgumentException("Palette inspection requires owned material defaults.");
+        if(meshDetail>0&&(generatedFace||shapeProfile is not null))throw new ArgumentException("Lower mesh details do not support generated face/customization or shape profiles in this bounded preview.");
+        if(meshDetail>=2&&(normalDiffuse||specular||textureProfile is not null))throw new ArgumentException("Mesh details 2/3 have no compressed-normal/tangent family; select CreatureVertexLitOnly without normal/specular/texture-choice options.");
+        if(vertexLitOnly&&(meshDetail<2||specular||normalDiffuse||!albedoFactors||generatedFace||shapeProfile is not null||textureProfile is not null))throw new ArgumentException("Vertex-lit-only requires detail 2/3, owned material/palette/albedo and no normal/shape/face/texture-choice options.");
         bool originalAnimation=args.Contains("--creature-animation-frame");
         double selectedFrame=originalAnimation?double.Parse(Read("--creature-animation-frame"),System.Globalization.CultureInfo.InvariantCulture):0;
         if(!double.IsFinite(selectedFrame)||selectedFrame<0||selectedFrame>32767)throw new ArgumentException("Invalid selected animation frame.");
@@ -41,6 +47,7 @@ public partial class Main
         var layer=new CanvasLayer();AddChild(layer);var panel=new VBoxContainer{Position=new(24,24)};layer.AddChild(panel);panel.AddChild(new Label{Text="Loading character geometry…"});var button=new Button{Text="Cancel loading"};panel.AddChild(button);
         int mainThread=System.Environment.CurrentManagedThreadId,workerThread=mainThread,closed=0;
         var first=new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
+        var sourceReads=new System.Collections.Generic.Dictionary<string,int>(StringComparer.Ordinal);
         var load=new OwnedBackgroundAssetLoad<CreatureAppearanceDescriptorBundle>(token=>
         {
             workerThread=System.Environment.CurrentManagedThreadId;
@@ -49,11 +56,12 @@ public partial class Main
                 token.ThrowIfCancellationRequested();using var config=File.OpenText(configuration);using var overlay=ConfiguredTreOverlay.Open(root,config);
                 TreLookupResult Resolve(string path)
                 {
+                    sourceReads[path]=sourceReads.TryGetValue(path,out int readCount)?readCount+1:1;
                     token.ThrowIfCancellationRequested();
                     if(cancel&&!first.Task.IsCompleted){first.TrySetResult(true);token.WaitHandle.WaitOne(TimeSpan.FromSeconds(15));token.ThrowIfCancellationRequested();throw new InvalidOperationException("Character cancellation fixture timed out.");}
                     return overlay.Lookup(path);
                 }
-                var result=CreatureAppearanceDescriptorBundleReader.Load(Resolve,member,pin,appearancePin,limits:generatedFace?new(MaximumResources:128,MaximumSourceBytes:32*1024*1024):null,loadSkeletons:true,loadSkinSources:true,loadGeometry:true,loadLogicalTables:originalAnimation,animationSelection:selection,prepareSelectedAnimation:originalAnimation,loadMaterialDefaults:materialDefaults,loadPaletteDefaults:paletteDefaults,loadFaceBlueprints:generatedFace,loadFaceResources:generatedFace,loadFacePixelPrograms:generatedFace,loadAlbedoFactors:albedoFactors,loadBlendShapes:shapeProfile is not null,loadTextureChoices:normalDiffuse,loadCompressedNormals:normalDiffuse,loadVertexLitSpecular:specular);
+                var result=CreatureAppearanceDescriptorBundleReader.Load(Resolve,member,pin,appearancePin,meshDetail:meshDetail,limits:generatedFace?new(MaximumResources:128,MaximumSourceBytes:32*1024*1024):null,loadSkeletons:true,loadSkinSources:true,loadGeometry:true,loadLogicalTables:originalAnimation,animationSelection:selection,prepareSelectedAnimation:originalAnimation,loadMaterialDefaults:materialDefaults,loadPaletteDefaults:paletteDefaults,loadFaceBlueprints:generatedFace,loadFaceResources:generatedFace,loadFacePixelPrograms:generatedFace,loadAlbedoFactors:albedoFactors,loadBlendShapes:shapeProfile is not null,loadTextureChoices:normalDiffuse,loadCompressedNormals:normalDiffuse,loadVertexLitSpecular:specular||vertexLitOnly);
                 if(shapeProfile is not null){using var shapeStream=File.OpenRead(shapeProfile);result=SkeletalAppearanceShapes.Apply(result,SkeletalAppearanceShapes.LoadProfile(shapeStream),token);}
                 if(generatedFace)
                 {
@@ -87,10 +95,16 @@ public partial class Main
         finally{if(GodotObject.IsInstanceValid(button))button.Disabled=true;load.Dispose();if(ReferenceEquals(skeletalLoad,load))skeletalLoad=null;if(GodotObject.IsInstanceValid(layer))layer.QueueFree();}
         if(customized)GD.Print($"PASS: explicit shared character customization keys={bundle.CustomizationValues!.Count} asset_bytes_unchanged=true");
         if(paletteDefaults)GD.Print($"PASS: owned character authored palette factors={bundle.MaterialBundle!.PaletteDefaults!.Values.Sum(p=>p.AuthoredFactors.Count)} missing={bundle.MaterialBundle.PaletteDefaults.Values.Sum(p=>p.MissingPalettePaths.Count)} albedo_translated={albedoFactors}");
-        skeletalPreview=new(bundle,specularPreview:specular);AddChild(skeletalPreview.Root);skeletalPreview.VerifyBoundary(DisplayServer.GetName()!="headless");
+        if(sourceReads.Values.Any(n=>n!=1))throw new AssetPreviewException("Selected character sources were read more than once.");
+        skeletalPreview=new(bundle,specularPreview:specular,meshDetail:meshDetail,vertexLitOnly:vertexLitOnly);AddChild(skeletalPreview.Root);skeletalPreview.VerifyBoundary(DisplayServer.GetName()!="headless");
         GD.Print($"PASS: original character geometry texture_defaults={materialDefaults} sources={bundle.Sources.Count} source_bytes={bundle.Sources.Values.Sum(s=>(long)s.Bytes)} surfaces={skeletalPreview.Surfaces} vertices={skeletalPreview.Vertices} triangles={skeletalPreview.Triangles} bounds={skeletalPreview.Bounds} generated_face_texture={generatedFace} animation=false");
         if(generatedFace)foreach(var face in bundle.GeneratedFaces!.Outputs)
             GD.Print($"PASS: generated face MAIN renderer={face.Key} bindings={bundle.GeneratedFaces.Bindings.Count} policy={BlueprintComposedFace.Policy} rgba_sha256={Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(face.Value.Image.Mips[0].Rgba.Span))} gpu_readback={DisplayServer.GetName()!="headless"}");
+        if(meshDetail>0)
+        {
+            foreach(var source in bundle.Sources.Values)GD.Print("skeletal_detail_source="+System.Text.Json.JsonSerializer.Serialize(source));
+            foreach(var path in bundle.Geometries!.Keys)GD.Print($"PASS: selected mesh_detail={meshDetail} mesh={path} sha256={bundle.Sources[path].Sha256} skeleton_detail=0 vertex_lit_only={vertexLitOnly}");
+        }
         bool fixture=args.Contains("--asset-self-test")||args.Contains("--capture");bool posed=args.Contains("--creature-pose");
         if(fixture)
         {
@@ -136,9 +150,9 @@ public partial class Main
         AddChild(new DirectionalLight3D{RotationDegrees=new(-35,25,0),LightEnergy=.8f});
         var camera=new PreviewOrbitCamera{Current=true,Fov=50};AddChild(camera);camera.Configure(skeletalPreview.Bounds.GetCenter(),Math.Max(skeletalPreview.Bounds.Size.Length()*(originalAnimation?.72f:.6f),1));
         var info=new CanvasLayer();AddChild(info);var header=new ColorRect{Color=new(.02f,.04f,.08f,.92f),OffsetRight=1280,OffsetBottom=110};info.AddChild(header);
-        header.AddChild(new Label{Text="STARDUST | ORIGINAL CHARACTER GEOMETRY",Position=new(24,18)});
+        header.AddChild(new Label{Text=meshDetail==0?"STARDUST | ORIGINAL CHARACTER GEOMETRY":$"STARDUST | ORIGINAL CHARACTER | DETAIL {meshDetail} | {skeletalPreview.Surfaces} surfaces / {skeletalPreview.Vertices} vertices / {skeletalPreview.Triangles} triangles",Position=new(24,18)});
         var poseHint=new Label{Text=(originalAnimation?$"Original idle pose | frame {selectedFrame:0.##}":posed?"Neutral test arm pose":"Neutral bind pose")+" | drag to orbit | scroll to zoom | R to reset",Position=new(24,48)};header.AddChild(poseHint);
-        header.AddChild(new Label{Text=specular?"Normal and specular preview | diagnostic lighting":normalDiffuse?"Normal mapped diffuse | diagnostic lighting":customized?"Selected skin and eye colors | generated face preview":albedoFactors?(generatedFace?"Authored skin and eye colors | generated face preview":"Authored skin and eye colors | face generation pending"):generatedFace?"Authored MAIN textures | generated face from explicit preview profile":materialDefaults?"Authored MAIN textures | palette shading and generated face pending":originalAnimation?"Neutral materials | textures and customization pending":"Character textures, customization and animation are pending",Position=new(24,76)});
+        header.AddChild(new Label{Text=vertexLitOnly?"Vertex-lit material | diagnostic lighting":specular?"Normal and specular preview | diagnostic lighting":normalDiffuse?"Normal mapped diffuse | diagnostic lighting":customized?"Selected skin and eye colors | generated face preview":albedoFactors?(generatedFace?"Authored skin and eye colors | generated face preview":"Authored skin and eye colors | face generation pending"):generatedFace?"Authored MAIN textures | generated face from explicit preview profile":materialDefaults?"Authored MAIN textures | palette shading and generated face pending":originalAnimation?"Neutral materials | textures and customization pending":"Character textures, customization and animation are pending",Position=new(24,76)});
         if(!originalAnimation)
         {
             var poseToggle=new CheckBox{Text="Test arm pose",Position=new(760,48),ButtonPressed=posed};header.AddChild(poseToggle);poseToggle.Toggled+=enabled=>{skeletalPreview.SetDiagnosticPose(enabled);poseHint.Text=(enabled?"Neutral test arm pose":"Neutral bind pose")+" | drag to orbit | scroll to zoom | R to reset";};
@@ -193,6 +207,7 @@ public partial class Main
             if(albedoFactors)await SkeletalAlbedoPreview.VerifyGpuBoundary(this);
             if(normalDiffuse)await SkeletalNormalDiffusePreview.VerifyGpuBoundary(this);
             if(specular){await SkeletalSpecularPreview.VerifyGpuBoundary(this,vertexVaryings:true);await SkeletalSpecularPreview.VerifyGpuBoundary(this,true);await StaticDoorVaryingGpuScenarios.Verify(this,true);if(args.Contains("--point-color-gpu-probe"))await StaticDoorVaryingGpuScenarios.Verify(this,true,true);}
+            if(vertexLitOnly)await SkeletalMaterialPreview.VerifyVertexOnlyGpuBoundary(this);
             await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
             using var image=GetViewport().GetTexture().GetImage();if(args.Contains("--capture")&&image.SavePng(Read("--capture"))!=Error.Ok)throw new IOException("Character capture failed.");
             GD.Print("PASS: original character GPU upload and capture boundary");GetTree().Quit();

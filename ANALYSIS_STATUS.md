@@ -1,6 +1,6 @@
 # Client Analysis Status
 
-Updated: 2026-10-01 (development through original-profile sphere scene and human skeletal geometry; research scores unchanged)
+Updated: 2026-10-02 (parallel development through Round14; research scores unchanged)
 
 **Current measurement:** the evidence-backed rescore is **89% comprehensive behavioral coverage / 94% implementation-and-engine-decision research readiness**. These supersede the historical 90%/96% planning estimates. They are weighted observable-contract scores, not percentages of executable functions. Function/address accounting remains separately **uncalibrated** and must not displace behavioral research. See the [current rescore](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_EVIDENCE_BASED_COVERAGE_RESCORE.md), [research coverage rebaseline](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md), and [model-transition audit](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_MODEL_TRANSITION_AUDIT.md).
 
@@ -1387,3 +1387,64 @@ Connected approach screen: 524 exact short round trips / 528 constructed; 1,056 
 ## Combined point-color GPU boundary —2026-10-01
 
 [Probe](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_POINT_COLOR_GPU_PROBE.md): 48 corrected combined GPU cases pass at max0.003225 within2/255; initial failure was a synthetic matrix row/column setup error. Opt-in fixture distinguishes per-fragment point recomputation by0.474411. Original vertex compiler/device precision remains open; scores unchanged.
+
+## Accepted parallel implementation Round 1 — 2026-10-01
+
+Four Low-reasoning workers completed one milestone each; lead integrated and verified [explicit detail1 asset selection](docs/SKELETAL_LOD_SELECTION_CONTRACT.md), [mouth vertex-source ownership and modern CPU staging](docs/SKELETAL_VERTEX_LIT_SOURCE_CONTRACT.md), [bounded modern animation-event cursor](docs/ANIMATION_EVENT_CURSOR_CONTRACT.md), and [offline zone-scene codecs](docs/ZONE_SCENE_PROTOCOL_CODEC_CONTRACT.md). Full original interior closure is now 160 sources / 16,643,480 bytes, read once. Research scores remain 89% / 94%, canonical names 2,602 and packet inventory 345; no new executable labels or packet research claims. All workers are idle awaiting another authorized round. [Integration and limits](research/sessions/PARALLEL_DEVELOPMENT_ROUND_1_2026-10-01.md).
+
+## Accepted parallel implementation Round 2 — 2026-10-01
+
+[Round 2](research/sessions/PARALLEL_DEVELOPMENT_ROUND_2_2026-10-01.md) accepts original lower-detail deformation,216-case mouth GPU staging verification, engine-neutral elapsed-time event playback and offline deferred zone-scene readiness. Research89%/94%,2,602 names and345 packet rows remain unchanged. Full interior remains160 owned sources /16,643,480 bytes. Round 3 is explicitly authorized and follows this accepted baseline; no Round 4 authorization.
+
+## Accepted parallel implementation Round 3 — 2026-10-01
+
+Lead accepted [lower-detail single-color shading](docs/SKELETAL_LOWER_DETAIL_SHADING_CONTRACT.md), [explicit original detail1–3 GPU inspection](docs/SKELETAL_DETAIL_PREVIEW_CONTRACT.md), [bounded event diagnostics and walk/run preview](docs/ANIMATION_EVENT_DIAGNOSTIC_PREVIEW_CONTRACT.md), and [offline reliable transport-to-scene transcript](docs/OFFLINE_ZONE_SCENE_TRANSCRIPT_CONTRACT.md). Shared native suite, independent original pixel/source and Python peer-wire checks, combined Godot build, fresh GPU captures and headless/cancellation checks pass. Default0 interior retained. Original scheduler/compiled vertex precision, automatic LOD and actual replication/live contact remain open. Scores89%/94%,2,602 names and345 packet rows unchanged. [Round3 report](research/sessions/PARALLEL_DEVELOPMENT_ROUND_3_2026-10-01.md); [organization assessment](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_2_3_ASSESSMENT_2026-10-01.md). All workers idle; no fourth round dispatched.
+
+## Accepted parallel development Round4 —2026-10-02
+
+Accepted [modern skeletal selection](docs/SKELETAL_DETAIL_SELECTION_POLICY.md), [owned retained original details](docs/SKELETAL_RETAINED_DETAIL_PREVIEW.md), [accepted-distance events](docs/LOCOMOTION_EVENT_PREVIEW_CONTRACT.md) and [scene-object lifecycle codecs](docs/SCENE_OBJECT_LIFECYCLE_CODEC_CONTRACT.md). Lead own native/oracles, shared suite, clean Godot build and fresh retained GPU captures pass; worker default0/headless/cancel checks pass. Original thresholds/scheduler/compiled vertex precision and actual replication/live scenes remain open. Research/registries unchanged. Rounds5–8 remain authorized and will follow accepted snapshots.
+
+
+## Accepted parallel development Round5 —2026-10-02
+
+Accepted explicit create-CRC to original creature resources, all-four retained automatic detail preview, opt-in original-interior accepted-movement event diagnostics, and immutable-snapshot object lifecycle registry. Lead native/independent audits, combined suite, clean Godot build and fresh retained/interior GPU checks pass. Original resource proof37 sources/4,683,848 bytes; retained union58/6,111,276; full customized interior160/16,643,480. Catalog, selection and recovery rules are modern explicit policy; original scheduler/global catalog/field replication/async world/live work remains open. [Round report](research/sessions/PARALLEL_DEVELOPMENT_ROUND_5_2026-10-02.md) separates worker and lead gates. Research89%/94%,2,602 names and345 packet rows unchanged. Rounds6–8 remain authorized.
+
+
+## Accepted parallel development Round6 —2026-10-02
+
+Accepted robust raw-create placement, owned revision-guarded Godot creature visuals, bounded asynchronous resource initialization with current-attempt checks, and strict baseline/delta application envelopes. Lead native/independent/original-source audits, combined suite, clean build and fresh GPU/headless/cancel/cleanup pass. [Round record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_6_2026-10-02.md) separates modern policy, synthetic bytes and original assets. Application envelope23 bytes versus server-framed27 is now explicit in protocol documents. Full schema/world/live and original readiness/repair remain open. Research89%/94%,2,602 names/345 rows unchanged; Rounds7–8 remain authorized.
+
+
+## Accepted parallel development Round7 —2026-10-02
+
+Accepted original static-object resource preparation with explicit SWTS material gaps, placed asynchronous creature visual, offline SOE/world lifecycle coordination, and six ordered typed CREO3 scalar delta fields. Lead independent original-source/wire/placement audits, combined native suite, clean Godot build and fresh GPU/headless/cancellation/cleanup pass. [Round record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_7_2026-10-02.md) records ownership, strict failure policy, scope and corrections. Full baseline/state binding, static animated textures, terrain/live and original readiness remain open. Research89%/94%,2,602 names/345 rows unchanged; Round8 remains authorized.
+
+
+## Accepted parallel development Round8 —2026-10-02
+
+Accepted explicit original SWTS frame materials, world-owned offline Godot creature publication, exact-revision scalar state and complete eighteen-field CREO3 baselines. Lead native/independent/original-source audits, baseline-to-store integration, clean Godot build, fresh world GPU/headless/cancel and full customized160-source interior regression pass. [Round8 report](research/sessions/PARALLEL_DEVELOPMENT_ROUND_8_2026-10-02.md) records limits and reproduction. World fields remain opaque until a stable-incarnation/state-binding milestone; no full terrain/live or SWTS timing claim. Research89%/94%,2,602 names/345 rows unchanged. Workers idle; authorization ends after Round8.
+
+## Accepted parallel development Round9 —2026-10-02
+
+Accepted strict template catalog profiles, original terminal explicit-frame inspection, stable-incarnation baseline/scalar state, and wounds-vector codecs. Lead native/independent/combined freshness/Godot GPU/headless/cancel gates pass. Original vector counter/index behavior remains unresolved; world typed binding follows in authorized Round10. [Round9 record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_9_2026-10-02.md). Research89%/94%,2,602 names and345 rows unchanged.
+
+## Accepted parallel development Round10 —2026-10-02
+
+Optional original scene albedo39 sources, guarded state presentation, typed baseline/scalar world mode and recovered legacy vector kernel pass lead native/oracle/combined original-world/Godot GPU/headless/cancel gates. Static instructions correct prior counter/cursor generalization; no new names. [Round10](research/sessions/PARALLEL_DEVELOPMENT_ROUND_10_2026-10-02.md). Full mixed-world application/presentation follows. Scores89%/94%,2,602 names and345 packets unchanged; Rounds11–12 remain authorized.
+
+## Accepted parallel development Round11 —2026-10-02
+
+Accepted palette-only owned scene colors, world-owned original albedo presentation, bounded acknowledged world changes and ordered atomic mixed scalar/wounds plans. Lead shared/native/independent source/wire/state/pixel oracles, clean Godot build and fresh GPU/headless/cancellation/cleanup pass. Modern observer/Height/strict customization policies are explicit; wire customization/full lighting/other views/live remain open. Research89%/94%,2,602 names and345 packet rows unchanged. [Round11 record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_11_2026-10-02.md). Round12 remains authorized.
+
+## Accepted parallel development Round12 —2026-10-02
+
+Accepted opaque DDS colors, acknowledged observer/palette rendering, atomic mixed scalar/wounds world/store mode and standalone recovered components-set codec. Lead independent native/source/wire/state/pixel audits, shared suite, clean Godot build and fresh GPU/headless/cancel gates pass. Combined original39-source palette resources and mixed state reach current presentation without resource reload; late failure retires the whole generation. Components-world, other views/fields, original callback/Height semantics and full rendering/live remain open. Research89%/94%,2,602 names and345 packets unchanged. All workers idle; authorization ends after12. [Round12 record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_12_2026-10-02.md).
+
+
+## Accepted parallel development Round13 - 2026-10-02
+
+Accepted owned creature/static resource routing, ordered components/scalars/wounds plan, incarnation-bound components and atomic Mode3 world integration, and two-actor original-resource presentation. Lead native/independent source/wire/state/pixel, combined aggregate/revision/late-failure, shared/old Mode2 and fresh Godot build/GPU/headless/cancel/primary-Main gates pass. A changes13,435 pixels; B0 and retains exact resources across A recreation. [Round13 record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_13_2026-10-02.md) gives evidence, confidence, scope and reproduction. Research89%/94%,2,602 names and345 packet rows unchanged; function coverage uncalibrated. Static world routing, other fields/views, original callbacks/render semantics and live remain open. All workers idle; authorization ends after13.
+
+## Round14 implementation integration — October2,2026
+
+[Round14 record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_14_2026-10-02.md): pure no-I/O completion consistency, bounded generic creature/static async world delivery, independent heterogeneous SOE/lifecycle fixtures and guarded original static actors. Lead joins the pure gate, original39/27-source mixed world and front-facing human/terminal preview; typed creature state and bounded opaque TANO stay separate. Static-only recreation preserves human state/resources/GPU IDs; late family failure retires both and drains. Native/original/wire/state/pixel/GPU/headless/cancel/primary-Main gates pass. Reusable heterogeneous acknowledged presentation is next; static typed schemas/HDR completion extensions/parent transforms/full rendering/live remain open. Research89%/94%,2,602 names and345 packet rows unchanged. All workers idle; no Round15 authorization.

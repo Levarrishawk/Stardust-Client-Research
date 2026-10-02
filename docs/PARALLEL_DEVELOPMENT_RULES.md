@@ -48,3 +48,36 @@ Read AGENTS.md, START_HERE.md, the latest named session and this document. Confi
 ## Round report
 
 For every worker: assigned milestone, accomplishments, lead acceptance and validation, blockers/uncertainty. Include combined integration status, preserved existing changes and proposed next round. Worker completion is not acceptance until lead review and integration validation.
+
+## Sequential round authorization — October 1, 2026
+
+Levarris explicitly authorized Round 2 followed by Round 3 and then reassessment. Lead may dispatch Round 3 after accepting and integrating Round 2 without another prompt. This authorization covers those two rounds only; no Round 4 is authorized. All worker scopes, Low reasoning, isolated ownership and review gates continue to apply.
+
+## Reassessment after Rounds2/3
+
+[Accepted assessment](../research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_2_3_ASSESSMENT_2026-10-01.md) recommends retaining these specialists for independent work, using fewer active workers for serial/shared-file bottlenecks. Lead assigns the complete acceptance checklist before dispatch, balances milestone size, preserves one GPU owner, and counts only accepted integration. This recommendation grants no new round authorization. All workers stop after Round3.
+
+## Sequential authorization — October2,2026
+
+Levarris authorized Rounds4 through8 in sequence. Lead accepts/integrates each round before dispatching the next, without another prompt between these five rounds. All Low-reasoning, isolated ownership, evidence and safety boundaries remain in force. Stop after Round8; no Round9 authorization. A blocker requiring user intervention stops dependent work and is reported.
+
+## Sequential authorization: Rounds 9 through 12
+
+Levarris authorized Rounds 9 through 12 on October 2, 2026. Accept and integrate each before dispatching the next. Reuse the four specialist chats at Low reasoning. All existing boundaries apply. Stop after Round 12; no Round 13 authorization.
+
+## Rounds9 through12 accepted
+
+[Batch assessment](../research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_9_12_ASSESSMENT_2026-10-02.md) records sixteen accepted milestones, integration gates, timing and limits. All four workers are idle. No Round13 or further milestone is authorized; await Levarris's prompt. Retain isolated specialists for independent work and serialize shared-contract acceptance under the lead.
+
+## Round13 authorization - October2,2026
+
+Levarris authorized Round13 only. Reuse all four persistent specialists at Low reasoning with isolated scoped files and serialized lead acceptance. [Assignments and acceptance record](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_13_2026-10-02.md). Workers stop after their milestone; no Round14 authorization.
+
+
+## Round13 accepted
+
+[Round13 results](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_13_2026-10-02.md) accepts four scoped milestones and lead composite/original-resource/two-actor integration. All four workers are idle. Keep explicit independent ownership, one GPU owner and serialized shared-contract acceptance. Authorization ends after13; wait for Levarris before any Round14 dispatch.
+
+## Round14 authorization and integration — October2,2026
+
+Levarris authorized Round14 only. Four persistent Low-reasoning specialists completed independent scopes against a2,149-file hashed baseline; lead reviewed and integrated all four, joined the accepted pure validator/generic world/recipe adapters and ran fresh combined original/native/independent/Godot gates. [Round14 record](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_14_2026-10-02.md). Workers are idle. No Round15 dispatch, automation or continuing milestone is authorized. Keep independent ownership, one GPU owner and serialized shared-contract acceptance.

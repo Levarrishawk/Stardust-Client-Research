@@ -8,7 +8,7 @@ namespace Stardust.Core.Assets;
 public sealed record SkeletalVertexLitSpecularProgram(bool UsesAlphaHueMask,bool ScalesBloomRgb,string InstructionsSha256,IffNode Metadata);
 public sealed record SkeletalVertexLitSpecularMaterial(string PixelProgram,uint TextureTag,byte CoordinateSet,StaticShaderMaterial Material);
 public sealed record SkeletalVertexLitSpecularBundle(IReadOnlyDictionary<string,SkeletalVertexLitSpecularProgram> Programs,
-    IReadOnlyDictionary<string,SkeletalVertexLitSpecularMaterial> Materials);
+    IReadOnlyDictionary<string,SkeletalVertexLitSpecularMaterial> Materials,SkeletalVertexLitSourceIdentity? VertexSources=null);
 
 public static class SkeletalVertexLitSpecularProgramDecoder
 {
@@ -32,11 +32,14 @@ internal static class SkeletalVertexLitSpecularReader
     {
         if(source.AlbedoFactors is null)throw new InvalidDataException("Vertex-lit specular requires albedo factors.");
         var programs=new Dictionary<string,SkeletalVertexLitSpecularProgram>(StringComparer.Ordinal);var materials=new Dictionary<string,SkeletalVertexLitSpecularMaterial>(StringComparer.Ordinal);
+        SkeletalVertexLitSourceIdentity? vertexSources=null;
         foreach(var pair in source.Materials)
         {
             var shader=pair.Value;if(shader.References.Textures.Any(t=>t.Tag==0x434E524D))continue;
             var passes=source.Effects[shader.References.EffectPath].Implementations.Where(i=>i.Passes.Count==1).Select(i=>i.Passes[0]).Where(p=>p.PixelProgram?.EndsWith("_ps20_nodot3.psh",StringComparison.Ordinal)==true).ToArray();
             Need(passes.Length==1);var pass=passes[0];string path=pass.PixelProgram!;
+            vertexSources??=SkeletalVertexLitLightingSources.Load(source.Effects[shader.References.EffectPath],path,cache.Read);
+            Need(pass.VertexProgram==SkeletalVertexLitLightingSources.VertexPath&&!source.Effects[shader.References.EffectPath].ContainsPrecalculatedVertexLighting);
             if(!programs.TryGetValue(path,out var program)){var data=cache.Read(path);Need(data.Kind==TreLookupKind.Present&&data.Payload is not null);program=SkeletalVertexLitSpecularProgramDecoder.Decode(data.Payload!);programs.Add(path,program);}
             uint Field(int offset){Need(pass.Fields.TryGetValue(offset,out uint value));return value;}
             Need(Field(0x19)==1&&Field(0x1A)==1&&Field(0x20)==0&&Field(0x30)==0&&Field(0x3C)==15&&Field(0x7C)==0x4D41494E&&Field(0x40)==0x4D41494E&&Field(0x44)==(program.UsesAlphaHueMask?0x48554542u:0u));
@@ -45,9 +48,27 @@ internal static class SkeletalVertexLitSpecularReader
             Need(shader.Parameters.CoordinateSets.TryGetValue(0x4D41494E,out byte set)&&set==0&&program.UsesAlphaHueMask==source.AlbedoFactors.Materials[pair.Key].UsesAlphaHueMask);
             Need(shader.Parameters.Materials.TryGetValue(0x4D41494E,out var values));materials.Add(pair.Key,new(path,0x53504543,set,StaticShaderMaterialDecoder.Decode(values!)));
         }
-        return new(new ReadOnlyDictionary<string,SkeletalVertexLitSpecularProgram>(programs),new ReadOnlyDictionary<string,SkeletalVertexLitSpecularMaterial>(materials));
+        return new(new ReadOnlyDictionary<string,SkeletalVertexLitSpecularProgram>(programs),new ReadOnlyDictionary<string,SkeletalVertexLitSpecularMaterial>(materials),vertexSources);
     }
     private static void Need(bool value){if(!value)throw new InvalidDataException("Vertex-lit specular material boundary differs.");}
+}
+
+/// <summary>Source-shaped color staging with modern literal power and finite-zero policies, not original compiled LIT.</summary>
+public static class SkeletalVertexLitLightingEvaluator
+{
+    public static PreviewVertexLighting EvaluateModernLiteralPower(CellLightingPreview lighting,Vector3 position,Vector3 normal,Vector3 viewer,StaticShaderMaterial material)
+    {
+        ArgumentNullException.ThrowIfNull(lighting);ArgumentNullException.ThrowIfNull(material);
+        if(lighting.LegacySelection is null||!lighting.UsesSourcePointAttenuation)
+            throw new InvalidDataException("Recovered slot/channel selection required for mouth source staging.");
+        foreach(var color in new[]{material.AmbientRgba,material.DiffuseRgba,material.EmissiveRgba,material.SpecularRgba})
+            if(!float.IsFinite(color.X)||!float.IsFinite(color.Y)||!float.IsFinite(color.Z)||!float.IsFinite(color.W))throw new InvalidDataException("Nonfinite mouth material.");
+        // false in calculateDiffuseSpecularLighting includes the primary specular directional in both outputs.
+        var result=lighting.EvaluateVertex(position,normal,viewer,new(material.SpecularRgba.X,material.SpecularRgba.Y,material.SpecularRgba.Z),material.SpecularPower,includePrimary:true);
+        var diffuse=result.Diffuse+new Vector3(material.EmissiveRgba.X,material.EmissiveRgba.Y,material.EmissiveRgba.Z);
+        if(!float.IsFinite(diffuse.X)||!float.IsFinite(diffuse.Y)||!float.IsFinite(diffuse.Z))throw new InvalidDataException("Mouth diffuse overflow.");
+        return new(diffuse,result.Specular);
+    }
 }
 
 public static class SkeletalVertexLitSpecularEvaluator

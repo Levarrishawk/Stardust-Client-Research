@@ -38,8 +38,23 @@ Only a small minority of Stardust.exe's individual functions have stable provisi
 
 ## Deferred validation ledger
 
+Round6 envelope clarification (2026-10-02): baseline/delta application header length is23, minimum message25 including the inner U16 count. Server27 includes4 SOE opcode/sequence bytes. [Schema map](REPLICATION_SCHEMA_MAP.md) records offsets; the source-class matrix remains345 documented rows because this is an offset clarification, not another packet family or field-coverage increment.
+
 - Generate opcode/codecs automatically or semi-automatically from reviewed server packet classes where practical.
 - Add one gameplay vertical slice at a time and cross-check client behavior using controlled traces.
 - Preserve unknown trailing fields and source anomalies as fixtures rather than guessing.
 - Record server revision/config with every capture.
 - Keep malformed-input limits stricter than the legacy client while preserving valid wire values.
+
+
+## Bounded implementation update — October 2, 2026
+
+The replacement now decodes the complete eighteen-field [CREO:3 baseline](CREATURE_VIEW3_BASELINE_CONTRACT.md) and ordered [scalar deltas at indices11–16](CREATURE_VIEW3_SCALAR_DELTA_CONTRACT.md). It preserves raw byte strings/UTF16 units, collection entries/counters, scalar bits and declared-count tolerance; malformed tails and budgets reject before state publication. Raw component-entry preservation does not establish original duplicate-set semantics. [Scalar state](SCENE_CREATURE_SCALAR_STORE_CONTRACT.md) requires an explicit caller seed and exact registry revision. The offline world still records opaque envelope history rather than automatically applying these codecs. These are implementation gates for previously documented schemas; the345-row packet matrix and research denominators do not change.
+
+## Round9 implementation note
+
+The existing CREO3 schema now has bounded [wounds plans](CREATURE_VIEW3_WOUNDS_DELTA_CONTRACT.md) and [incarnation-bound baseline/scalar snapshots](SCENE_CREATURE_REPLICATION_STORE_CONTRACT.md). Native and independent byte/state checks pass; modern strict counter/index behavior does not establish original interoperability. No new reachable packet gaps or coverage denominators.
+
+## Round10 state boundary
+
+Full CREO3/scalar world binding and a [recovered bounded vector kernel](CREATURE_WOUNDS_LEGACY_POLICY_CONTRACT.md) pass native/independent/static gates. [Typed mode](SCENE_WORLD_REPLICATION_CONTRACT.md) keeps state/resource ownership separate. Wounds are not yet applied by world; no live/full-view coverage claim or denominator change.

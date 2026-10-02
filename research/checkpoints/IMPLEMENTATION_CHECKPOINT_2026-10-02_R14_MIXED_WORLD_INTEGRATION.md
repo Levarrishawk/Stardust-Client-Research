@@ -1,0 +1,27 @@
+# Round14 lead integration — October2,2026
+
+Question: can independently accepted completion validation, asynchronous two-recipe delivery and guarded engine adapters share one original human/terminal world, preserving creature state and unaffected resources through static recreation and rejecting a late family mismatch without a publication prefix? Stop after native/independent/original/GPU/headless/cancel/primary-entry and exact-scope gates.
+
+## Input and evidence
+
+Baseline2,149 public files; manifest43858afa91a89dbc33d33d3fd1e603e196ec25c56cfeefde8a1fd6ae5d5e9d6d, ZIP9328987f72c4c575aa1f3bbc66b33eb00e3d44058fa5efcdc7911370053931e4, HEAD65de8c88141071744dc75594be126b3bab3696a5. All worker scopes are reviewed mechanically against this byte baseline before integration; no user changes are discarded. Original configuration22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524. No new VA reliance, executable names or protocol registry rows. Original assets read-only; no original executable/live/socket/DNS/server/capture/fuzz/external mutation/staging/commit/publication.
+
+Observation: direct pure validation replaces the generic initializer's temporary validation slot/static metadata wrapper. Both fresh original routes and all deterministic runtime lifecycle/fault/backpressure/late-task tests still pass. Interpretation: source-free consistency and asynchronous ownership are separate reusable boundaries. Confidence: Confirmed native/oracle composition. Consequence: exact router options govern completion; conservative graph/HDR/unrequested-extension restrictions are explicit; old creature APIs remain unchanged.
+
+Observation: a second independently handpacked peer drives one generic world with complete typed CREO3 and opaque TANO3. Source receipts preserve47-byte create,39/27 closure counts and exact root pins. Only static destroy/recreate triggers a third load; human incarnation/Height/state/current resource remains. Native export and [independent oracle](../../poc/round14-tests/Integration/verify.py) agree. Confidence: Confirmed bounded synthetic protocol plus original-resource implementation behavior; no recovered static field schema or original lifecycle claim.
+
+Observation: fresh [mixed preview](../../docs/MIXED_WORLD_PREVIEW_CONTRACT.md) runs GPU/headless/real two-job cancellation, and primary Main headlessly. Both generic publications attach through exact-current predicates without another registry. A valid-layout wrong static CREO family fails the whole generation; both visuals retire, all archives/tasks drain. Standalone static source/mip/placement/lifecycle/launcher oracles pass on fresh lead runs. Confidence: Confirmed replacement execution and original source/pixel agreement; rendering remains explicit inspection policy.
+
+Observation: initial camera showed rear geometry. Lead changed only the fixed diagnostic camera to front view, rebuilt and reran all mixed modes. Front initial/updated/recreated captures were inspected; human Height changes14,333 pixels, terminal region0, updated/recreated regions identical. Confidence: Confirmed replacement pixels, not original effects/customization fidelity. Consequence: the screen is visible, but its explicit unshaded override and unknown timer remain labeled.
+
+## Reproduction and review
+
+Worker contracts/checkpoints provide native producer/oracle commands; lead [mixed contract](../../docs/MIXED_WORLD_PREVIEW_CONTRACT.md) defines exact six-input native runner, independent wire/state verifier, launcher modes/capture siblings and seven-input log/pixel oracle. Use existing offline caches. Shared native suite/new world and clean Godot build pass. Native renderer68, Godot22, source62mips, visual30,326pixels and prelaunch5 checks pass. Assets89 negatives/seven positives and composed142-mip/reader regressions; Networking12 records/1,006 malformed probes/10 late failures; Runtime66-source/142-mip model/original ownership and late faults pass.
+
+Lead added guarded SceneCreatureVisual.TryPublishCurrent, preserving existing APIs, and registered shared native/primary host entry points. The compiler/oracles caught no remaining integration mismatch. The initial lead runner used a nonexistent convenience profile-loader name during preparation; corrected to the accepted profile decoders before first compilation. A deprecation warning in the pixel verifier was removed by comparing RGBA byte groups. Baseline line-ending advisories and existing nonfatal certificate-store startup diagnostic remain distinct from acceptance failures.
+
+Detailed review/hash diffs, exports/logs/captures remain ignored/private. Final workspace metrics, exact scope and timing belong in the [round session](../sessions/PARALLEL_DEVELOPMENT_ROUND_14_2026-10-02.md). No research-score/function/protocol denominator is changed by implementation progress.
+
+## Resume
+
+Generalize the acknowledged heterogeneous presentation consumer over accepted generic publications and recipe-specific adapters; preserve bounded capacity, exact resource attempts, incarnation-based state and stale acknowledgment retry. Current mixed preview performs explicit serialized application for two IDs; old reusable consumer remains creature-only. Other static families/typed TANO views, HDR completion validation, parent transforms, original callbacks/full rendering/live remain separate bounded work. All workers stop after14 and require Levarris's prompt for15.

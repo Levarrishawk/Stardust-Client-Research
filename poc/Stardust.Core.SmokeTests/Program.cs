@@ -10,6 +10,26 @@ try
 {
 if (!Environment.Is64BitProcess) throw new Exception("Stardust client smoke tests require a 64-bit process.");
 Console.WriteLine("PASS: running engine-neutral core in a 64-bit process");
+Stardust.Core.SmokeTests.ZoneSceneProtocolScenarios.Run();
+AnimationEventCursorScenarios.Run();
+SkeletalVertexLitSourceScenarios.RunMath();
+AnimationEventPlaybackScenarios.Run();
+AnimationEventDiagnosticLogScenarios.Run();
+SkeletalDetailSelectionScenarios.Run();
+LocomotionEventPreviewScenarios.Run();
+LocomotionEventDiagnosticScenarios.Run();
+Stardust.Core.SmokeTests.SceneObjectLifecycleScenarios.Run();
+Stardust.Core.SmokeTests.SceneObjectRegistryScenarios.Run();
+Stardust.Core.SmokeTests.CreatureView3WoundsDeltaScenarios.Run();
+Stardust.Core.SmokeTests.CreatureView3MixedDeltaScenarios.Run();
+Stardust.Core.SmokeTests.CreatureView3ComponentsDeltaScenarios.Run();
+Stardust.Core.SmokeTests.CreatureWoundsLegacyPolicyScenarios.Run();
+Stardust.Core.SmokeTests.ReplicationEnvelopeScenarios.Run();
+SceneCreatePlacementScenarios.Run();
+SceneCreatureResourceInitializerScenarios.Run();
+Stardust.Core.SmokeTests.CreatureView3ScalarDeltaScenarios.Run();
+Stardust.Core.SmokeTests.ZoneSceneTransitionScenarios.Run();
+Stardust.Core.SmokeTests.OfflineZoneSceneScenarios.Run();
 
 // Fixed bytes from docs/SOE_TRANSPORT_TEST_VECTORS.md, independent of the encoder.
 byte[] requestVector = Convert.FromHexString("00010000000212345678000001F0");
@@ -621,6 +641,20 @@ await LoginHostScenarios.RunAsync(responseVector, tokenVector, clusterListVector
 await JournalScenarios.RunAsync();
 foreach (string entry in await OfflineHostedLoginScenario.RunAsync()) Console.WriteLine("HOST: " + entry);
 if (args.Length > 0 && args[0] is "--dds-tre" or "--dds-file") DdsScenarios.ProbeOptional(args);
+else if (args.Length == 3 && args[0]=="--round14-peer") Stardust.Core.SmokeTests.MixedObjectLifecyclePeerScenarios.Run(args[1],args[2]);
+else if (args.Length == 5 && args[0]=="--round14-validation") SceneObjectResourceValidationScenarios.Run(args.Skip(1).ToArray());
+else if (args.Length == 7 && args[0]=="--round14-world") SceneMixedWorldScenarios.Run(args.Skip(1).Take(4).ToArray(), System.Text.Json.JsonSerializer.Deserialize<Dictionary<string,string>>(File.ReadAllText(args[5]))!, args[6]);
+else if (args.Length == 3 && args[0]=="--round13-composite") Stardust.Core.SmokeTests.CreatureView3CompositeDeltaScenarios.Run(args[1],args[2]);
+else if (args.Length == 3 && args[0]=="--round13-components") SceneWorldComponentsReplicationScenarios.Run(System.Text.Json.JsonSerializer.Deserialize<Dictionary<string,string>>(File.ReadAllText(args[1]))!,args[2]);
+else if (args.Length == 5 && args[0]=="--round13-resource-router") SceneObjectResourceRouterScenarios.Run(args.Skip(1).ToArray());
+else if (args.Length == 3 && args[0]=="--round12-mixed") SceneWorldMixedReplicationScenarios.Run(System.Text.Json.JsonSerializer.Deserialize<Dictionary<string,string>>(File.ReadAllText(args[1]))!,args[2]);
+else if (args.Length == 2 && args[0]=="--round11-changes") SceneWorldChangeScenarios.Run(System.Text.Json.JsonSerializer.Deserialize<Dictionary<string,string>>(File.ReadAllText(args[1]))!);
+else if (args.Length == 2 && args[0]=="--round10-world") SceneWorldReplicationScenarios.Run(System.Text.Json.JsonSerializer.Deserialize<Dictionary<string,string>>(File.ReadAllText(args[1]))!);
+else if (args.Length == 2 && args[0]=="--round9-replication") SceneCreatureReplicationStoreScenarios.Run(System.Text.Json.JsonSerializer.Deserialize<Dictionary<string,string>>(File.ReadAllText(args[1]))!);
+else if (args.Length == 3 && args[0]=="--creature-replication") { Stardust.Core.SmokeTests.CreatureView3BaselineScenarios.Run(File.ReadAllBytes(args[1])); SceneCreatureScalarStoreScenarios.Run(System.Text.Json.JsonSerializer.Deserialize<Dictionary<string,string>>(File.ReadAllText(args[2]))!); }
+else if (args.Length > 0 && args[0]=="--scene-static-resources") SceneStaticResourceScenarios.Run(args.Skip(1).ToArray());
+else if (args.Length == 2 && args[0]=="--scene-world") SceneWorldCoordinatorScenarios.Run(System.Text.Json.JsonSerializer.Deserialize<Dictionary<string,string>>(File.ReadAllText(args[1]))!);
+else if (args.Length > 0 && args[0]=="--scene-creature-resources") SceneCreatureResourceScenarios.Run(args.Skip(1).ToArray());
 else if (args.Length > 0 && args[0] is "--detail-overlay" or "--detail-bundle") DetailAppearanceScenarios.ProbeOptional(args);
 else if (args.Length > 0 && args[0] is "--component-overlay" or "--geometry-graph" or "--textured-graph") ComponentAppearanceScenarios.ProbeOptional(args);
 else if (args.Length > 0 && args[0]=="--extent-list") AppearanceExtentScenarios.ProbeOptional(args);

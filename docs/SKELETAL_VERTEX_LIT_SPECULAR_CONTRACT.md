@@ -39,3 +39,9 @@ Eight GPU fixtures cover filtered hue/SPEC mask/bloom/fade/alpha and positive/ne
 One headless run failed before asset loading in the common six-send offline login transcript fixture. Inspection found that exact accounting used production elapsed time/ticks and could vary under scheduling delay. That synthetic fixture now supplies controlled time and cancellation-only ticks; independent manually advanced timeout/retry tests still execute in the full native suite. Subsequent built GPU/headless proofs pass. Production LoginDatagramHost clocks/timers are unchanged.
 
 [GPU/interior checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_VERTEX_LIT_SPECULAR_PREVIEW.md). Next implementation slice: original locomotion selections and movement-driven animated preview, while retaining source-backed asset chains and established live material/shape state.
+
+## Round 1 source ownership — 2026-10-01
+
+The selected mouth vertex binding and include graph now have an owned bounded identity check and independent source audit; see [vertex source contract](SKELETAL_VERTEX_LIT_SOURCE_CONTRACT.md). Four sources / three include edges / 19,401 bytes are confirmed. The full interior shares the existing three includes and adds only the 1,346-byte mouth VSH: current combined union is 160 sources / 16,643,480 bytes, read once. Historical counts above describe their dated configurations.
+
+The new engine-neutral CPU evaluator verifies source channel staging using an explicitly modern literal-power policy. Original compiled LIT/device precision and exponent handling remain unknown. Production GPU equations were unchanged; the integrated original scene and existing GPU fixtures pass. [Round report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_1_2026-10-01.md).

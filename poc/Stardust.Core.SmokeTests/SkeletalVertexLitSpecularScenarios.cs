@@ -25,6 +25,7 @@ internal static class SkeletalVertexLitSpecularScenarios
     {
         var source=bundle.MaterialBundle!;var description=source.VertexLitSpecular!;
         SkeletalTangentLightingScenarios.Probe(source,resolve);
+        if(description.VertexSources is not null) Console.WriteLine("mouth_vertex_sources="+JsonSerializer.Serialize(description.VertexSources.Sha256));
         foreach(var pair in description.Programs)
         {
             var program=pair.Value;var code=program.Metadata.Children[0].Children[1].Payload;

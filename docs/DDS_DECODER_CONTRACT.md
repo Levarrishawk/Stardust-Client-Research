@@ -1,6 +1,6 @@
 # Native DDS decoder contract
 
-Updated 2026-09-29. `Stardust.Core.Assets.DdsDecoder` is engine-neutral and returns
+Updated 2026-10-02. `Stardust.Core.Assets.DdsDecoder` is engine-neutral and returns
 owned, top-to-bottom RGBA8 mip pixels. This contract describes the implemented
 slice, separately from original-client format acceptance and full asset coverage.
 
@@ -11,9 +11,12 @@ slice, separately from original-client format acceptance and full asset coverage
 | Legacy FourCC | DXT1 / DXT3 / DXT5 | BC1 / BC2 / BC3 |
 | Legacy FourCC | ATI1 or BC4U / ATI2 or BC5U | BC4 / BC5 unsigned channels |
 | Legacy RGB | 32 bits, BGRA masks, alpha present | BGRA32, tightly packed rows |
+| Legacy RGB | 24 bits, BGR masks, no alpha | BGR24, tightly packed rows |
+| Legacy RGB | 32 bits, BGR masks, no alpha | BGRX32, tightly packed rows |
 | DX10 | DXGI 71/72, 74/75, 77/78 | BC1/2/3 UNORM or UNORM_SRGB |
 | DX10 | DXGI 80 / 83 | BC4 / BC5 UNORM |
 | DX10 | DXGI 28/29 / 87/91 | RGBA32 / BGRA32 UNORM or UNORM_SRGB |
+| DX10 | DXGI 88/93 | BGRX32 UNORM / UNORM_SRGB |
 | DX10 | DXGI 61 / 49 | R8 / RG8 UNORM |
 | DX10 | DXGI 98/99 | BC7 UNORM / UNORM_SRGB |
 
@@ -22,10 +25,10 @@ misc flags 0, array size 1. Cubes, arrays, volumes, typeless and signed formats
 are rejected explicitly by the RGBA8 interface. Typed BC6H uses the separate
 HDR output contract below rather than an RGBA8 conversion.
 BC7 now uses a pinned managed codec behind our validated block boundary. Legacy DXT2/DXT4,
-BGR24, packed 16-bit/luminance formats and padded linear rows remain open.
+packed 16-bit/luminance formats and padded linear rows remain open.
 
 `DdsImage` retains the supported DXGI ID, color space and alpha mode. Legacy
-color space is Unspecified; DX10 UNORM is Linear and UNORM_SRGB (including BC7 ID 99) is Srgb.
+color space is Unspecified; DX10 UNORM is Linear and UNORM_SRGB (including BGRX ID93 and BC7 ID99) is Srgb.
 Alpha modes 0–4 are preserved as Unknown, Straight, Premultiplied, Opaque,
 Custom; reserved bits/values fail. No gamma transform or alpha unpremultiplication
 is performed. Encoded channel values remain byte-exact.
@@ -85,3 +88,19 @@ Only validated sixteen-byte raw blocks enter the existing pinned dependency. Res
 ## 2026-10-01 face dependency closure
 
 The optional object-root face resource closure owns two shaders,32 DDS choices/251 declared mips and three palettes:50 sources/2,283,397 bytes including preceding geometry. Independent pixel/palette/source-union agreement passes. Seven original64×32 BC2 eyebrow files retain one16-byte terminal block via explicit `AllowLegacyTerminalBlockTail`; default DDS trailing-data rejection remains. The extra block is owned metadata, not an added mip. Preparation/rendering remains pending. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_FACE_RESOURCE_CLOSURE.md).
+
+## 2026-10-02 tightly packed opaque colors
+
+`DdsFormat.Bgr24=10` and `Bgrx32=11` are appended; existing values0–9 are unchanged. Legacy opaque formats require pixel flags exactly `0x40` (RGB), zero FourCC, bit count24 or32, masks R=`00FF0000`, G=`0000FF00`, B=`000000FF`, A=0. Legacy BGRA retains flags`0x41`/32bits/A=`FF000000` and now explicitly requires zero FourCC. DX10 BGRX accepts typed IDs88/93 with pixel flags exactly4 and zero legacy bits/masks. Typeless IDs89/92 reject. These are bounded modern decoder restrictions, not a recovered original rejection policy.
+
+BGR bytes become RGBA; alpha is always255. BGRX ignores every X byte. Legacy color space/alpha metadata remain Unspecified/Unknown. DX10 IDs88/93 retain Linear/Srgb and header alpha modes0–4 even though the encoded format has no alpha channel; metadata does not change opaque output. No gamma conversion or alpha processing occurs.
+
+All declared mips are tightly packed, with three or four input bytes per pixel and four output bytes. Opaque headers accept only required CAPS/HEIGHT/WIDTH/PIXELFORMAT flags plus optional PITCH, MIPMAPCOUNT or LINEARSIZE. PITCH and LINEARSIZE together reject. PITCH requires top-row `width × bytesPerPixel`; LINEARSIZE requires top-mip `width × height × bytesPerPixel`. Unflagged pitch/size values do not describe padding. Lower mip sizes derive from dimensions without row alignment. Unsupported flags, masks, counts, surfaces, truncation, trailing data and aggregate budgets reject before pixel allocation. The existing opt-in BC2 terminal-tail exception never admits opaque tails.
+
+Fresh effective source: `texture/nebula_dant_back.dds`, priority35, `mtg_patch_006_texture_02.tre`,16,511bytes, SHA256 `A2627501B233EE3A795BEB5B42446BF2F9B2A60854AD3781366720B5631FDC9D`. Header64×64/7mips, flags`000A1007`, RGB`0x40`/24bits/exact masks above, LINEARSIZE12,288bytes. Encoded mip bytes12,288/3,072/768/192/48/12/3 total16,383; with128-byte header this accounts for the full resource. Seven owned RGBA mips total21,844bytes. All seven independently match Pillow DDS/raw decoding and a separate byte oracle. This proves one original asset's decoder acceptance, not original executable behavior or every catalog/corpus format.
+
+The prior ignored DDS inventory's29,906 rows include113 BGR24 records (SHA256 `DCEDE8198E48FF68CCD65FDF2C618E50703A13F1F08BF97CA34A1D0E5665D471`). Round12 checked that existing CSV identity/count, then fetched only the specified effective sample; it did not repeat a full corpus census. Historical valid-resource/tombstone numbers in the dated research report remain separate.
+
+[DdsOpaqueColorScenarios](../poc/Stardust.Core.SmokeTests/DdsOpaqueColorScenarios.cs) is registered by the existing DDS smoke scenarios.36 independently authored fixtures cover72 mips: legacy BGR24/BGRX and typed88/93; absent pitch, exact pitch and exact top linear size; all five DX10 alpha metadata modes; distinct B/G/R/X bytes; non-power-of-two rows and terminal1×1 mips.781 negative checks comprise657 truncated prefixes and124 explicit malformed/size/budget/tail cases. Source mutation leaves output unchanged, mip lists reject mutation and the original archive scope disposes before owned output checks. Existing BC1–5/BGRA/RGBA/R/RG/BC7 and BC6H HDR regressions pass unchanged.
+
+[Independent verifier](../tools/python/verify_dds_opaque_colors.py) takes explicit original root, configuration and native receipt paths, with optional `--prior-inventory` to verify the existing CSV pin/counts. It verifies source priority/configuration/SHA, both pixel oracles, header/size gates and every negative receipt. Native ownership/disposal observations are checked as receipts, not independently executed by Python. No original images are published. [Round12 checkpoint and commands](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R12_DDS_OPAQUE_COLORS.md).

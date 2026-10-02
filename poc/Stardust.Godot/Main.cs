@@ -56,6 +56,17 @@ public partial class Main : Node
             DdsHdrVerification.Verify(args[option+1],DisplayServer.GetName()!="headless",args.Contains("--hdr-materials"));GetTree().Quit();return;
         }
         if(args.Contains("--dds-self-test")){await VerifyDdsFile(args);return;}
+        if(args.Contains("--animation-event-preview")){await BuildAnimationEventPreview(args);return;}
+        if(args.Contains("--mixed-world-preview")){await BuildMixedWorldPreview();return;}
+        if(args.Contains("--scene-static-visual-preview")){AddChild(new SceneStaticVisualPreview());return;}
+        if(args.Contains("--two-creature-world-preview")){await BuildTwoCreatureWorldPreview(args);return;}
+        if(args.Contains("--offline-replicated-world-preview")){await BuildReplicatedWorldPreview(args);return;}
+        if(args.Contains("--creature-state-preview")){await BuildCreatureStatePreview(args);return;}
+        if(args.Contains("--static-switch-texture-preview")){await BuildStaticSwitchTexturePreview(args);return;}
+        if(args.Contains("--offline-scene-world-preview")){await BuildOfflineSceneWorldPreview(args);return;}
+        if(args.Contains("--async-scene-creature-preview")){await BuildAsyncSceneCreaturePreview(args);return;}
+        if(args.Contains("--scene-creature-visual-preview")){await BuildSceneCreatureVisualPreview(args);return;}
+        if(args.Contains("--retained-detail-preview")){await BuildRetainedDetailPreview(args);return;}
         if(args.Contains("--asset-creature")){await BuildSkeletalPreview(args);return;}
         if(args.Contains("--interior-scene-spec")){await BuildInteriorScenePreview(args);return;}
         if(args.Contains("--door-style")){if(args.Contains("--door-portal"))await BuildInteriorDoorPreview(args);else await BuildDoorPreview(args);return;}

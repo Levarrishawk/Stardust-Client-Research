@@ -499,3 +499,68 @@ With the pinned full-character scene, `-SceneCellLighting` uses the recovered ce
 ### Point-color GPU diagnostic
 
 `-PointColorGpuProbe` adds an opt-in combined point-light/normal/tangent/hue/mask fixture to a noninteractive GPU preview with `-CreatureSpecular` or `-SceneCharacterSpecular`. It is rejected with headless or interactive mode. Ordinary previews omit this additional diagnostic; its48 corrected cases pass. [Evidence and next probe](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_POINT_COLOR_GPU_PROBE.md).
+
+## Parallel development Round 1
+
+Accepted additions: [zone scene message codecs](../docs/ZONE_SCENE_PROTOCOL_CODEC_CONTRACT.md), [animation-event cursor](../docs/ANIMATION_EVENT_CURSOR_CONTRACT.md), [mouth vertex-source ownership](../docs/SKELETAL_VERTEX_LIT_SOURCE_CONTRACT.md), and [original explicit detail1 verification](../docs/SKELETAL_LOD_SELECTION_CONTRACT.md).
+
+The shared smoke runner includes synthetic protocol/event/mouth math cases. Separate `round1-tests/Assets`, `Rendering`, `Runtime`, and `Networking` console projects provide bounded reproduction; each contract gives inputs and independent checks. Combined original source/GPU/cancellation checks are in the [round report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_1_2026-10-01.md). No new live networking or original-executable execution occurred.
+
+## Parallel development Round 2
+
+Accepted [lower-detail original deformation](../docs/SKELETAL_LOWER_DETAIL_CONTRACT.md), [mouth multi-light GPU verification](../docs/SKELETAL_MOUTH_LIGHTING_GPU_CONTRACT.md), [event playback bridge](../docs/ANIMATION_EVENT_PLAYBACK_CONTRACT.md) and [offline scene-readiness coordinator](../docs/ZONE_SCENE_TRANSITION_CONTRACT.md). Runtime/Networking synthetic cases run in the shared suite; isolated `round2-tests` consoles retain original and wire checks. [Round report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_2_2026-10-01.md) distinguishes worker checks and lead integration.
+
+## Parallel development Round 3
+
+Accepted [original smaller-mesh shading](../docs/SKELETAL_LOWER_DETAIL_SHADING_CONTRACT.md), [explicit detail1–3 preview](../docs/SKELETAL_DETAIL_PREVIEW_CONTRACT.md), [event diagnostic sink/preview](../docs/ANIMATION_EVENT_DIAGNOSTIC_PREVIEW_CONTRACT.md), and [offline transport-to-scene transcript](../docs/OFFLINE_ZONE_SCENE_TRANSCRIPT_CONTRACT.md). Shared synthetic native runner includes the sink and scene proof; isolated `round3-tests` consoles retain original/independent reproduction.
+
+Standalone asset launcher accepts `-CreatureMeshDetail 0..3`; details2/3 support `-CreatureVertexLitOnly` with material/palette/albedo flags and reject unsupported normal/face/shape combinations before loading. The separate `Invoke-StardustAnimationEventPreview.ps1` offers a deterministic default headless fixture, cancellation, interactive walk/run controls and fresh private GPU captures. Build the Godot project before launching. [Round report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_3_2026-10-01.md) records lead/worker gates and limits. These additions do not establish automatic LOD, original event scheduling or live scene construction.
+
+## Accepted parallel development Round4 —2026-10-02
+
+Accepted [modern skeletal selection](../docs/SKELETAL_DETAIL_SELECTION_POLICY.md), [owned retained original details](../docs/SKELETAL_RETAINED_DETAIL_PREVIEW.md), [accepted-distance events](../docs/LOCOMOTION_EVENT_PREVIEW_CONTRACT.md) and [scene-object lifecycle codecs](../docs/SCENE_OBJECT_LIFECYCLE_CODEC_CONTRACT.md). Lead own native/oracles, shared suite, clean Godot build and fresh retained GPU captures pass; worker default0/headless/cancel checks pass. Original thresholds/scheduler/compiled vertex precision and actual replication/live scenes remain open. Research/registries unchanged. Rounds5–8 remain authorized and will follow accepted snapshots.
+
+
+## Accepted parallel development Round5 —2026-10-02
+
+Accepted explicit create-CRC to original creature resources, all-four retained automatic detail preview, opt-in original-interior accepted-movement event diagnostics, and immutable-snapshot object lifecycle registry. Lead native/independent audits, combined suite, clean Godot build and fresh retained/interior GPU checks pass. Original resource proof37 sources/4,683,848 bytes; retained union58/6,111,276; full customized interior160/16,643,480. Catalog, selection and recovery rules are modern explicit policy; original scheduler/global catalog/field replication/async world/live work remains open. [Round report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_5_2026-10-02.md) separates worker and lead gates. Research89%/94%,2,602 names and345 packet rows unchanged. Rounds6–8 remain authorized.
+
+
+## Accepted parallel development Round6 —2026-10-02
+
+Accepted robust raw-create placement, owned revision-guarded Godot creature visuals, bounded asynchronous resource initialization with current-attempt checks, and strict baseline/delta application envelopes. Lead native/independent/original-source audits, combined suite, clean build and fresh GPU/headless/cancel/cleanup pass. [Round record](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_6_2026-10-02.md) separates modern policy, synthetic bytes and original assets. Application envelope23 bytes versus server-framed27 is now explicit in protocol documents. Full schema/world/live and original readiness/repair remain open. Research89%/94%,2,602 names/345 rows unchanged; Rounds7–8 remain authorized.
+
+
+## Accepted parallel development Round7 —2026-10-02
+
+Accepted original static-object resource preparation with explicit SWTS material gaps, placed asynchronous creature visual, offline SOE/world lifecycle coordination, and six ordered typed CREO3 scalar delta fields. Lead independent original-source/wire/placement audits, combined native suite, clean Godot build and fresh GPU/headless/cancellation/cleanup pass. [Round record](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_7_2026-10-02.md) records ownership, strict failure policy, scope and corrections. Full baseline/state binding, static animated textures, terrain/live and original readiness remain open. Research89%/94%,2,602 names/345 rows unchanged; Round8 remains authorized.
+
+
+## Accepted parallel development Round8 —2026-10-02
+
+Accepted explicit original SWTS frame materials, world-owned offline Godot creature publication, exact-revision scalar state and complete eighteen-field CREO3 baselines. Lead native/independent/original-source audits, baseline-to-store integration, clean Godot build, fresh world GPU/headless/cancel and full customized160-source interior regression pass. [Round8 report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_8_2026-10-02.md) records limits and reproduction. World fields remain opaque until a stable-incarnation/state-binding milestone; no full terrain/live or SWTS timing claim. Research89%/94%,2,602 names/345 rows unchanged. Workers idle; authorization ends after Round8.
+
+## Accepted parallel development Round9 —2026-10-02
+
+Use [catalog profiles](../docs/OBJECT_TEMPLATE_CATALOG_PROFILE_CONTRACT.md) for explicit pinned creature/static recipes and [terminal preview](../docs/STATIC_SWITCH_TEXTURE_PREVIEW_CONTRACT.md) for manual frame/detail inspection. [Stable-incarnation state](../docs/SCENE_CREATURE_REPLICATION_STORE_CONTRACT.md) preserves full baseline and scalar overlays across nonreplacement revisions; exact handles still guard resources. [Wounds plans](../docs/CREATURE_VIEW3_WOUNDS_DELTA_CONTRACT.md) remain a separately bounded modern application policy. [Lead gates/limits](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_9_2026-10-02.md).
+
+## Accepted parallel development Round10 —2026-10-02
+
+[Optional albedo](../docs/SCENE_CREATURE_ALBEDO_RESOURCE_CONTRACT.md) adds two original programs while default reader behavior stays unchanged. [State presentation](../docs/CREATURE_STATE_PRESENTATION_CONTRACT.md) reuses the actor's GPU resources for bounded Height/visibility updates. [Typed-world mode](../docs/SCENE_WORLD_REPLICATION_CONTRACT.md) consumes full baselines/scalars without history growth. [LegacyBounded wounds](../docs/CREATURE_WOUNDS_LEGACY_POLICY_CONTRACT.md) selects recovered count/counter/index rules, retaining strict defaults. [Lead acceptance](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_10_2026-10-02.md) gives exact scope and reproduction.
+
+## Round11 integration —2026-10-02
+
+Use [world-owned typed preview](../docs/OFFLINE_REPLICATED_WORLD_PREVIEW_CONTRACT.md), [acknowledged changes](../docs/SCENE_WORLD_CHANGE_DELIVERY_CONTRACT.md), [palette-only explicit colors](../docs/SCENE_CREATURE_PALETTE_CUSTOMIZATION_CONTRACT.md) and [mixed scalar/wounds plans](../docs/CREATURE_VIEW3_MIXED_DELTA_CONTRACT.md). The preview currently selects scalar-only mode; full mixed-world and observer/palette presentation follow in Round12.
+
+## Accepted parallel development Round12 —2026-10-02
+
+[Mixed world/store mode](../docs/SCENE_WORLD_REPLICATION_CONTRACT.md) commits ordered scalar/wounds plans and one current acknowledged change. The [inspector](../docs/OFFLINE_REPLICATED_WORLD_PREVIEW_CONTRACT.md) supports optional -PaletteProfile and -MixedReplication with original39-source assets, stable GPU colors/Height and current wounds diagnostics. [DDS opaque colors](../docs/DDS_DECODER_CONTRACT.md) add tightly packed BGR24/BGRX. [Components set codec](../docs/CREATURE_VIEW3_COMPONENTS_DELTA_CONTRACT.md) is standalone pending world integration. [Round12 acceptance](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_12_2026-10-02.md) and [batch assessment](../research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_9_12_ASSESSMENT_2026-10-02.md) contain gates, limits and next proposal. All workers idle; no13 authorized.
+
+
+## Accepted Round13
+
+[Round13 report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_13_2026-10-02.md) adds an explicit owned creature/static router, atomic components/scalars/wounds world state and a separately invoked [two-creature preview](../docs/TWO_CREATURE_WORLD_PREVIEW_CONTRACT.md). Current state preserves raw baseline components while exposing normalized membership. Both original human actors update independently; recreating one retains the other's exact GPU resources. Native/independent/old-mode/shared/Godot GPU/headless/cancel/primary-Main checks pass. World static publication and original component gameplay/Height/lighting semantics remain separate; all workers idle.
+
+## Round14 mixed original world — October2,2026
+
+[Generic world](../docs/SCENE_MIXED_WORLD_CONTRACT.md) and [pure completion gate](../docs/SCENE_OBJECT_RESOURCE_VALIDATION_CONTRACT.md) now deliver explicit creature/static router results without replacing legacy APIs. [Mixed preview](../docs/MIXED_WORLD_PREVIEW_CONTRACT.md) displays original human and mission terminal fronts, typed creature Height and opaque static envelopes, exact freshness, one static reload and global failure/drain. Shared --round14-peer/--round14-validation/--round14-world and primary --mixed-world-preview/--scene-static-visual-preview are registered. Native/original/source/mip/wire/state/pixel, Godot GPU/headless/cancel and primary-entry checks pass; all workers idle. Next: reusable acknowledged heterogeneous presentation, with typed static schemas and complete renderer/live behavior separately scoped.

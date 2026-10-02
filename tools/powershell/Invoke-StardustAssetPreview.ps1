@@ -15,6 +15,8 @@ param(
     [switch]$Interior,
     [switch]$PaletteInspector,
     [switch]$Creature,
+    [ValidatePattern('^[0-3]$')][string]$CreatureMeshDetail='0',
+    [switch]$CreatureVertexLitOnly,
     [ValidatePattern('^[0-9A-Fa-f]{64}$')][string]$CreatureAppearanceSha256,
     [switch]$CancelCreatureLoad,
     [switch]$CreaturePose,
@@ -42,6 +44,7 @@ param(
     [switch]$SceneTextures,
     [switch]$SceneTriangleGuard,
     [switch]$SceneCharacter,
+    [switch]$SceneCharacterEvents,
     [ValidatePattern('^[0-9A-Fa-f]{64}$')][string]$SceneCharacterAppearanceSha256,
     [switch]$SceneCharacterMaterialDefaults,
     [switch]$SceneCharacterPaletteDefaults,
@@ -86,6 +89,7 @@ param(
     [switch]$Interactive
 )
 $ErrorActionPreference='Stop'
+if ($SceneCharacterEvents -and (-not $SceneSpecification -or -not $SceneCharacter -or -not $SceneCharacterLocomotionProfile -or -not $SceneCharacterAnimationTable -or -not $SceneCharacterAnimationName -or -not $SceneCharacterAnimationSha256 -or -not $SceneGeometry -or -not $ActorTemplate -or -not $ActorTemplateSha256 -or -not $SceneSpecificationSha256 -or -not $SceneCharacterAppearanceSha256 -or -not $DoorTableSha256 -or $CancelSceneLoad -or $Creature -or $Interior -or $Detail -or $Component -or $PaletteInspector -or $DoorStyle)) { throw 'SceneCharacterEvents requires a pinned owned interior character idle/movement bank and excludes cancellation.' }
 $taskWorkspace=(Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $taskGodot=(Resolve-Path -LiteralPath $GodotPath).Path
 $taskRoot=(Resolve-Path -LiteralPath $ArchiveRoot).Path
@@ -95,6 +99,10 @@ if ($Headless -and $CapturePath) { throw 'Headless validation cannot capture GPU
 if (([int][bool]$Component+[int][bool]$Detail+[int][bool]$Interior+[int][bool]$PaletteInspector+[int][bool]$DoorStyle+[int][bool]$SceneSpecification+[int][bool]$Creature) -gt 1) { throw 'Choose one asset inspector.' }
 if ([bool]$Creature -ne [bool]$CreatureAppearanceSha256) { throw 'Creature and CreatureAppearanceSha256 are required together.' }
 if ($CancelCreatureLoad -and (-not $Creature -or -not $Headless)) { throw 'CancelCreatureLoad requires a headless creature inspector.' }
+if (($PSBoundParameters.ContainsKey('CreatureMeshDetail') -or $CreatureVertexLitOnly) -and -not $Creature) { throw 'CreatureMeshDetail/CreatureVertexLitOnly require the standalone Creature inspector.' }
+if ([int]$CreatureMeshDetail -gt 0 -and ($CreatureShapeProfile -or $CreatureFaceProfile -or $CreatureCustomizationProfile)) { throw 'Lower mesh details do not support shape/generated-face/customization profiles in this bounded preview.' }
+if ([int]$CreatureMeshDetail -ge 2 -and ($CreatureNormalDiffuse -or $CreatureSpecular -or $CreatureTextureProfile)) { throw 'Details 2/3 have no normal/tangent family; select CreatureVertexLitOnly without normal/specular/texture-choice options.' }
+if ($CreatureVertexLitOnly -and ([int]$CreatureMeshDetail -lt 2 -or -not $CreatureAlbedoFactors -or $CreatureNormalDiffuse -or $CreatureSpecular -or $CreatureShapeProfile -or $CreatureFaceProfile -or $CreatureCustomizationProfile -or $CreatureTextureProfile)) { throw 'CreatureVertexLitOnly requires detail 2/3 and material/palette/albedo without normal/shape/face/texture choices.' }
 if ($CreaturePose -and -not $Creature) { throw 'CreaturePose requires the standalone creature inspector.' }
 if ($CreatureAnimationTable -or $CreatureAnimationName -or $CreatureAnimationSha256 -or $CreatureAnimationFrame -ne -1) {
     if (-not $Creature -or -not $CreatureAnimationTable -or -not $CreatureAnimationName -or -not $CreatureAnimationSha256 -or $CreatureAnimationFrame -lt 0 -or [double]::IsNaN($CreatureAnimationFrame) -or [double]::IsInfinity($CreatureAnimationFrame) -or $CreatureAnimationFrame -gt 32767 -or $CreaturePose) { throw 'Selected animation requires Creature, table/name/clip pin and bounded frame, without diagnostic pose.' }
@@ -169,6 +177,8 @@ if($Detail){$taskArguments+='--asset-detail'}
 if($Component){$taskArguments+='--asset-component'}
 if($PaletteInspector){$taskArguments+='--palette-inspector'}
 if($Creature){$taskArguments+=@('--asset-creature','--creature-appearance-sha256',$CreatureAppearanceSha256)}
+if($PSBoundParameters.ContainsKey('CreatureMeshDetail')){$taskArguments+=@('--creature-mesh-detail',$CreatureMeshDetail)}
+if($CreatureVertexLitOnly){$taskArguments+='--creature-vertex-lit-only'}
 if($CancelCreatureLoad){$taskArguments+='--cancel-creature-load'}
 if($CreaturePose){$taskArguments+='--creature-pose'}
 if($CreatureAnimationTable){$taskArguments+=@('--creature-animation-table',$CreatureAnimationTable,'--creature-animation-name',$CreatureAnimationName,'--creature-animation-sha256',$CreatureAnimationSha256,'--creature-animation-frame',$CreatureAnimationFrame.ToString([System.Globalization.CultureInfo]::InvariantCulture))}
@@ -189,6 +199,7 @@ if($ActorTemplate){$taskArguments+=@('--actor-template',$ActorTemplate,'--actor-
 if($SceneGeometry){$taskArguments+='--scene-geometry'}
 if($SceneTextures){$taskArguments+='--scene-textures'}
 if($SceneTriangleGuard){$taskArguments+='--scene-triangle-guard'}
+if($SceneCharacterEvents){$taskArguments+='--scene-character-events'}
 if($SceneCharacter){$taskArguments+=@('--scene-character','--scene-character-appearance-sha256',$SceneCharacterAppearanceSha256)}
 if($SceneCharacterMaterialDefaults){$taskArguments+='--scene-character-material-defaults'}
 if($SceneCharacterPaletteDefaults){$taskArguments+='--scene-character-palette-defaults'}
