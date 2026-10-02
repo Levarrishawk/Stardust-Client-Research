@@ -26,6 +26,12 @@ internal static class SkeletalShaderDeformationScenarios
         Reject(()=>SkeletalShaderDeformation.Create(geometry with{Tangents=new[]{new Vector4(1,0,0,float.NaN),Vector4.One}},0,palette));
         var absent=SkeletalShaderDeformation.Create(geometry with{Shaders=new[]{shader with{NormalIndices=null,TangentIndices=null}}},0,palette);
         if(absent.Normals is not null||absent.Tangents is not null)throw new Exception("Absent direction maps must remain absent.");
+        var batch=SkeletalShaderDeformation.CreateAll(geometry with{Shaders=new[]{shader,shader with{NormalIndices=null,TangentIndices=null}}},palette);
+        Near(batch[0].Positions[0],new(-1.5f,3,1.25f));Near(batch[1].Positions[1],new(4,4,5));Near(batch[0].Normals![0],new(.25f,.75f,0));
+        if(batch[1].Normals is not null||batch[1].Tangents is not null)throw new Exception("Batch absent map mismatch.");
+        Reject(()=>SkeletalShaderDeformation.CreateAll(geometry with{Shaders=new[]{shader,shader with{NormalIndices=new uint[]{3,0}}}},palette));
+        Reject(()=>SkeletalShaderDeformation.CreateAll(geometry with{Shaders=Enumerable.Repeat(shader,2049).ToArray()},palette));
+        var singular=palette.ToArray();singular[0]=Matrix4x4.CreateScale(2);Reject(()=>SkeletalShaderDeformation.CreateAll(geometry,singular));
         Console.WriteLine("PASS: complete PIDX-owned shader deformation, distinct normal/tangent maps, translation-free raw weighted directions/fourth component and invalid map gates");
     }
     internal static void Probe(CreatureAppearanceDescriptorBundle bundle)
@@ -38,9 +44,10 @@ internal static class SkeletalShaderDeformationScenarios
             {
                 var worlds=binding.Joints.Select((j,i)=>mode=="bind"?j.WorldBind:j.WorldBind*(mode=="root-rigid"?Matrix4x4.CreateRotationY(.4f)*Matrix4x4.CreateTranslation(.3f,-.2f,.7f):Matrix4x4.CreateRotationZ((i%3)*.15f)*Matrix4x4.CreateTranslation(0,(i%5)*-.02f,0))).ToArray();
                 var palette=binding.CreatePalette(worlds,map);
+                var batch=SkeletalShaderDeformation.CreateAll(pair.Value,palette);
                 for(int shader=0;shader<pair.Value.Shaders.Count;shader++)
                 {
-                    var result=SkeletalShaderDeformation.Create(pair.Value,shader,palette);
+                    var result=batch[shader];
                     for(int vertex=0;vertex<result.Positions.Count;vertex++)
                     {
                         var p=result.Positions[vertex];var n=result.Normals![vertex];Vector4? t=result.Tangents?[vertex];

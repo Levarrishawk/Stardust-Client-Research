@@ -26,7 +26,7 @@ Defaults bound 256 attempted resources, 128 MiB of source bytes, recursion depth
 
 ## Godot boundary
 
-`GeometryAppearancePreview` shares immutable ArrayMesh resources and creates distinct transform nodes. It converts authored transforms using `S R S`, translation `S t`, where `S = diag(1,1,-1)` matches the mesh Z reflection. Geometry winding is reversed once at mesh upload. An independent asymmetric rotation/scale/translation fixture verifies the conversion and parent/local order.
+`GeometryAppearancePreview` shares immutable ArrayMesh resources and creates distinct transform nodes. It converts authored transforms using `S R S`, translation `S t`, where `S = diag(1,1,-1)` matches the mesh Z reflection. Geometry indices are preserved after Z reflection, which already converts tested source CCW to Godot CW; see [geometry facing](GODOT_GEOMETRY_FACING_CONTRACT.md). An independent asymmetric rotation/scale/translation fixture verifies the conversion and parent/local order.
 
 The neutral inspector bounds expansion to 4,096 instances and requires finite positive-determinant transforms. Singular/mirrored transforms remain supported structurally but are rejected by this adapter pending a dedicated culling contract. Surface positions, normals, UV0 and indices are read back and compared. LOD midpoint visibility tests run for every loaded detail node. The slider supplies one explicit offline distance to all selectors; it does not imply PIVT or per-child camera distance fidelity.
 

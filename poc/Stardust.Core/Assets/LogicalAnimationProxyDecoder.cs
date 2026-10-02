@@ -2,15 +2,38 @@ namespace Stardust.Core.Assets;
 
 public sealed record LogicalAnimationProxyDescription(string ClipPath,IReadOnlyList<float> TimeScales,IffNode? PriorityMetadata)
 {public double EffectiveTimeScale=>TimeScales.Aggregate(1.0,(product,value)=>product*value);}
-public sealed record LogicalAnimationClipSelection(string TablePath,string LogicalName,string ClipSha256);
+public sealed record LogicalAnimationClipSelection(string TablePath,string LogicalName,string ClipSha256,IReadOnlyList<int>? ExplicitChildRoute=null);
 public sealed record SelectedLogicalAnimationClip(LogicalAnimationClipSelection Selection,LogicalAnimationProxyDescription Proxy,IffNode Clip);
 
 /// <summary>Bounded proxy/time-scale selection, without priority execution or animation evaluation.</summary>
 public static class LogicalAnimationProxyDecoder
 {
-    public static LogicalAnimationProxyDescription Decode(IffNode template)
+    public static LogicalAnimationProxyDescription Decode(IffNode template,IReadOnlyList<int>? explicitChildRoute=null)
     {
-        ArgumentNullException.ThrowIfNull(template);var scales=new List<float>();int depth=0;
+        ArgumentNullException.ThrowIfNull(template);
+        if(explicitChildRoute is not null)
+        {
+            Require(explicitChildRoute.Count<=8,"Explicit animation route depth budget.");
+            foreach(int child in explicitChildRoute)
+            {
+                var parts=Version(template);IReadOnlyList<IffNode> candidates;
+                if(template.IsForm("SSAT"))
+                {
+                    Require(parts.Count>=2&&parts[0].Tag=="INFO"&&parts[1].IsForm("ANMS"),"Invalid explicitly selected SSAT.");
+                    SkeletalAppearanceDecoder.Strings(parts[0].Payload.Span,1);
+                    var animations=parts[1].Children;Require(animations.Count>=1&&animations[0].Tag=="INFO"&&animations[0].Payload.Length==2,"Invalid SSAT animation count.");
+                    int count=System.Buffers.Binary.BinaryPrimitives.ReadInt16LittleEndian(animations[0].Payload.Span);
+                    Require(count>0&&count==animations.Count-1,"SSAT animation count mismatch.");candidates=animations.Skip(1).ToArray();
+                }
+                else
+                {
+                    Require(template.IsForm("SPAT")&&parts.Count>=1&&parts[0].Tag=="INFO"&&parts[0].Payload.Length==1,"Explicit route requires SSAT/SPAT.");
+                    Require(parts[0].Payload.Span[0]>0&&parts[0].Payload.Span[0]==parts.Count-1,"SPAT animation count mismatch.");candidates=parts.Skip(1).ToArray();
+                }
+                Require(child>=0&&child<candidates.Count&&candidates[child].Tag=="FORM","Explicit animation child outside counted forms.");template=candidates[child];
+            }
+        }
+        var scales=new List<float>();int depth=0;
         while(template.IsForm("TSCL"))
         {
             Require(++depth<=8,"Animation proxy wrapper depth budget.");var parts=Version(template);

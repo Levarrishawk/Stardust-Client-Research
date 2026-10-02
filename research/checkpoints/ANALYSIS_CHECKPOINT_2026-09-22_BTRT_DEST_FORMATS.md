@@ -86,3 +86,7 @@ choice is normally RGB_888 backed by D3D9 `R8G8B8`.
 
 The source-code spelling for the invalid/sentinel value 16 is unavailable.
 This no longer blocks texture negotiation or modern-format translation.
+
+## 2026-10-01 selected-template correction
+
+The selected human face's raw DEST is width256,height256,count4,IDs `[4,3,5,6]`. The earlier `[4,4,3,5,6]` included the count. Direct baseline table015E7A58 maps the corrected IDs to internal `[4,1,3,0]`: RGB888,ARGB4444,XRGB8888,ARGB8888. The earlier final sentence also incorrectly treated file IDs as internal enums; superseded for this sample. Other seven historical templates were not rescanned. Scratch ARGB8 rendering precedes destination conversion. [Reproducible execution checkpoint](IMPLEMENTATION_CHECKPOINT_2026-10-01_FACE_EXECUTION_BOUNDARY.md).

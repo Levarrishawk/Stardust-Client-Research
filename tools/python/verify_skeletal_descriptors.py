@@ -131,9 +131,75 @@ def main():
     assert hashlib.sha256(a.configuration.read_bytes()).hexdigest().upper() == a.configuration_sha256.upper()
     assert a.native_output.stat().st_size <= 4*1048576
     sources, row, skeleton_rows, skin_rows, logical_rows, selected_clip = {}, None, {}, {}, {}, None
-    compressed = binding = None; quaternion_rows = []
+    locomotion_bank=[]
+    compressed = binding = None; quaternion_rows = []; sample_rows = []; sampler_row = None
+    blend_targets=[]; blend_applications=[];texture_choice_rows=[];normal_materials={};normal_programs={};normal_samples=[];normal_images=[];material_fields={};specular_materials={};specular_samples=[];vertex_lit_materials={};vertex_lit_programs={};vertex_lit_samples=[]
+    customization_values=None
+    animation_names = {}; animation_poses = {}; animation_vertices = {}; materials = {}; textures = {}; palettes = {}; blueprints = {}; face_resources = None; face_preparations = []; face_programs = []; face_compositions = []; generated_bindings = []; albedo_materials = {}; albedo_programs = {}
     for line in a.native_output.read_text(encoding='utf-8-sig').splitlines():
-        if line.startswith('packed_quaternion='):
+        if line.startswith('skeletal_locomotion_bank='):
+            locomotion_bank.append(json.loads(line.split('=',1)[1]))
+        elif line.startswith('skeletal_albedo='):
+            value=json.loads(line.split('=',1)[1]); assert value['path'] not in albedo_materials; albedo_materials[value['path']]=value
+        elif line.startswith('skeletal_vertex_lit_material='):
+            r=json.loads(line.split('=',1)[1]);assert r['path'] not in vertex_lit_materials;vertex_lit_materials[r['path']]=r
+        elif line.startswith('skeletal_vertex_lit_program='):
+            r=json.loads(line.split('=',1)[1]);assert r['path'] not in vertex_lit_programs;vertex_lit_programs[r['path']]=r
+        elif line.startswith('skeletal_vertex_lit_sample='):
+            vertex_lit_samples.append(json.loads(line.split('=',1)[1]))
+        elif line.startswith('skeletal_material_fields='):
+            r=json.loads(line.split('=',1)[1]);assert r['path'] not in material_fields;material_fields[r['path']]=r
+        elif line.startswith('skeletal_specular_material='):
+            r=json.loads(line.split('=',1)[1]);assert r['path'] not in specular_materials;specular_materials[r['path']]=r
+        elif line.startswith('skeletal_specular_sample='):
+            specular_samples.append(json.loads(line.split('=',1)[1]))
+        elif line.startswith('skeletal_compressed_normal='):
+            r=json.loads(line.split('=',1)[1]);assert r['path'] not in normal_materials;normal_materials[r['path']]=r
+        elif line.startswith('skeletal_normal_program='):
+            r=json.loads(line.split('=',1)[1]);assert r['path'] not in normal_programs;normal_programs[r['path']]=r
+        elif line.startswith('skeletal_normal_sample='):
+            normal_samples.append(json.loads(line.split('=',1)[1]))
+        elif line.startswith('skeletal_normal_image='):
+            normal_images.append(json.loads(line.split('=',1)[1]))
+        elif line.startswith('skeletal_texture_choice='):
+            texture_choice_rows.append(json.loads(line.split('=',1)[1]))
+        elif line.startswith('skeletal_blend_application='):
+            blend_applications.append(json.loads(line.split('=',1)[1]))
+        elif line.startswith('skeletal_blend_target='):
+            blend_targets.append(json.loads(line.split('=',1)[1]))
+        elif line.startswith('skeletal_customization_values='):
+            assert customization_values is None;rows=json.loads(line.split('=',1)[1]);customization_values={(r['VariableName'],r['Private']):r['Value'] for r in rows};assert len(customization_values)==len(rows)
+        elif line.startswith('skeletal_albedo_program='):
+            value=json.loads(line.split('=',1)[1]); assert value['path'] not in albedo_programs; albedo_programs[value['path']]=value
+        elif line.startswith('generated_face_binding='):
+            generated_bindings.append(json.loads(line.split('=',1)[1]))
+        elif line.startswith('face_composition='):
+            face_compositions.append(json.loads(line.split('=',1)[1]))
+        elif line.startswith('face_pixel_program='):
+            face_programs.append(json.loads(line.split('=',1)[1]))
+        elif line.startswith('face_preparation='):
+            face_preparations.append(json.loads(line.split('=',1)[1]))
+        elif line.startswith('face_resources='):
+            assert face_resources is None; face_resources=json.loads(line.split('=',1)[1])
+        elif line.startswith('face_blueprint='):
+            r = json.loads(line.split('=',1)[1]); assert r['path'] not in blueprints; blueprints[r['path']] = r
+        elif line.startswith('skeletal_palette_defaults='):
+            r = json.loads(line.split('=',1)[1]); assert r['path'] not in palettes; palettes[r['path']] = r
+        elif line.startswith('skeletal_material='):
+            r = json.loads(line.split('=',1)[1]); assert r['path'] not in materials; materials[r['path']] = r
+        elif line.startswith('skeletal_texture='):
+            r = json.loads(line.split('=',1)[1]); assert r['path'] not in textures; textures[r['path']] = r
+        elif line.startswith('skeleton_animation_names='):
+            r = json.loads(line.split('=',1)[1]); assert r['frame'] not in animation_names; animation_names[r['frame']] = r
+        elif line.startswith('skeleton_animation_pose='):
+            r = json.loads(line.split('=',1)[1]); key = r['frame'],r['joint']; assert key not in animation_poses; animation_poses[key] = r
+        elif line.startswith('skeleton_animation_vertex='):
+            r = json.loads(line.split('=',1)[1]); key = r['frame'],r['path'],r['shader'],r['vertex']; assert key not in animation_vertices; animation_vertices[key] = r
+        elif line.startswith('compressed_sample='):
+            sample_rows.append(json.loads(line.split('=', 1)[1]))
+        elif line.startswith('compressed_sampler='):
+            assert sampler_row is None; sampler_row = json.loads(line.split('=', 1)[1])
+        elif line.startswith('packed_quaternion='):
             quaternion_rows.append(json.loads(line.split('=', 1)[1]))
         elif line.startswith('compressed_animation_clip='):
             assert compressed is None; compressed = json.loads(line.split('=', 1)[1])
@@ -248,6 +314,86 @@ def main():
                                      metadata=metadata[0][0].decode('ascii') if metadata else None,
                                      kind=root[0].decode('ascii'), version=clip_version[0].decode('ascii'))
         expected.add(path)
+    if locomotion_bank:
+        from verify_compressed_locomotion import verify_bank_routes
+        expected |= verify_bank_routes(raw,locomotion_bank)
+    if blend_targets:
+        from verify_skeletal_blends import verify as verify_blends
+        print(json.dumps(verify_blends(raw,skin_rows,blend_targets),indent=2))
+    if blend_applications:
+        from verify_skeletal_blends import verify_application
+        print(json.dumps(verify_application({path:raw[path] for path in skin_rows},blend_applications),indent=2))
+    if materials:
+        shader_paths = set()
+        for mesh in skin_rows:
+            mesh_root, = nodes(raw[mesh]); mesh_version, = mesh_root[1]
+            shader_paths |= {parts[0][1][:-1].decode('ascii').lower().replace('\\','/') for tag,parts in mesh_version[1] if tag == b'PSDT'}
+        assert set(materials) == shader_paths
+        from verify_skeletal_materials import verify as verify_materials
+        print(json.dumps(verify_materials(raw,materials,textures,palettes if palettes else None,customization_values,bool(texture_choice_rows)),indent=2))
+        if texture_choice_rows:
+            from verify_skeletal_materials import verify_texture_choices
+            print(json.dumps(verify_texture_choices(raw,materials,texture_choice_rows),indent=2))
+        expected |= set(materials) | set(textures) | {m['effect'] for m in materials.values()}
+        if palettes: expected |= {f['PalettePath'] for p in palettes.values() for f in p['factors']}
+    if albedo_materials:
+        assert set(albedo_materials)==set(materials)
+        from verify_skeletal_albedo import verify as verify_albedo
+        required,result=verify_albedo(raw,albedo_materials,albedo_programs,palettes,customization_values)
+        expected |= required;print(json.dumps(result,indent=2))
+    if normal_materials:
+        from verify_skeletal_normals import verify as verify_normals
+        required,result=verify_normals(raw,normal_materials,normal_programs,normal_samples,normal_images)
+        expected|=required;print(json.dumps(result,indent=2))
+    if vertex_lit_materials:
+        from verify_skeletal_specular import verify_vertex_lit
+        required,result=verify_vertex_lit(raw,vertex_lit_programs,vertex_lit_materials,vertex_lit_samples);expected|=required;print(json.dumps(result,indent=2))
+    if material_fields:
+        from verify_skeletal_specular import verify as verify_specular
+        print(json.dumps(verify_specular(raw,material_fields,specular_materials,specular_samples),indent=2))
+    if blueprints:
+        references = set()
+        for mesh in skin_rows:
+            mesh_root, = nodes(raw[mesh]); mesh_version, = mesh_root[1]
+            for tag, parts in mesh_version[1]:
+                if tag != b'TRTS': continue
+                for chunk, record in parts[1:]:
+                    assert chunk == b'TRT '; end = record.index(0)
+                    references.add(record[:end].decode('ascii').lower().replace('\\','/'))
+        assert references == set(blueprints)
+        if face_resources:
+            from verify_face_resources import verify as verify_face_resources
+            required_shaders={path for blueprint in blueprints.values() for path in blueprint['ShaderPaths']}
+            required_textures={path for blueprint in blueprints.values() for path in blueprint['TexturePaths']}
+            required_palettes={op['PalettePath'] for blueprint in blueprints.values() for group in blueprint['PrepareLists'] for op in group if op['PalettePath']}
+            assert set(face_resources['shaders'])==required_shaders
+            assert {image['path'] for image in face_resources['textures']}==required_textures
+            assert {palette['path'] for palette in face_resources['palettes']}==required_palettes
+            if face_programs:
+                from verify_face_resources import verify_programs
+                expected |= verify_programs(raw,required_shaders,face_programs)
+                print(json.dumps(dict(original_face_pixel_programs=len(face_programs),instruction_agreement=True)))
+            expected |= required_shaders | required_textures | required_palettes
+            print(json.dumps(verify_face_resources(raw,face_resources),indent=2))
+        from verify_face_blueprint import verify as verify_blueprint
+        for path,native in blueprints.items(): print(json.dumps(verify_blueprint(raw[path],native),indent=2))
+        from verify_face_resources import verify_preparation
+        for prepared in face_preparations: print(json.dumps(verify_preparation(raw,blueprints[prepared['path']],prepared),indent=2))
+        from verify_face_composition import verify as verify_composition
+        for composed in face_compositions:
+            prepared,=[value for value in face_preparations if (value['path'],value['requested'])==(composed['path'],composed['requested'])]
+            print(json.dumps(verify_composition(raw,blueprints[composed['path']],prepared,composed),indent=2))
+        if generated_bindings:
+            from verify_face_composition import verify_bindings
+            print(json.dumps(verify_bindings(raw,skin_rows,face_compositions,generated_bindings),indent=2))
+        expected |= references
+    if customization_values is not None:
+        required={(f['VariableName'],bool(f['RawPrivateFlag'])) for m in materials.values() for f in m['customization']['PaletteFactors']}
+        required|={(op['VariableName'],op['Kind']=='SST1' or bool(op['RawFactoryFlag'])) for b in blueprints.values() for group in b['PrepareLists'] for op in group if op['VariableName']}
+        assert set(customization_values)==required
+        for prepared in face_preparations:
+            assert all(customization_values[v['VariableName'],v['FactoryFlag']]==v['Value'] for v in prepared['values'])
+        print(json.dumps(dict(shared_customization_keys=len(required),exact_namespace_value_agreement=True)))
     assert set(sources) == expected
     if compressed:
         assert selected_clip and compressed['path'] == selected_clip['path']
@@ -267,7 +413,7 @@ def main():
                 selectors = channel[2:5]
                 packed.extend((word, selectors) for _, word in struct.iter_unpack('<HI', channel[5:]))
             packed.extend((word, bytes((x,y,z))) for x,y,z,word in struct.iter_unpack('<BBBI', fields[b'SROT']))
-            assert len(packed) == len(quaternion_rows); maximum = 0; repaired = 0
+            assert len(packed) == len(quaternion_rows); maximum = 0; repaired = 0; decoded_quaternions = []
             for ordinal, ((word, selectors), native) in enumerate(zip(packed, quaternion_rows)):
                 values = []
                 for axis, (field, selector) in enumerate(zip(((word>>21)&2047,(word>>10)&2047,word&1023), selectors)):
@@ -279,12 +425,70 @@ def main():
                 assert native['ordinal'] == ordinal and native['Repaired'] == (radicand < 0)
                 repaired += radicand < 0
                 reference = values+[w]; magnitude = math.sqrt(sum(v*v for v in reference))
+                decoded_quaternions.append(([f32(v/magnitude) for v in reference], radicand < 0))
                 errors = [abs(native[key]-value) for key,value in zip(('X','Y','Z','W'),reference)]
                 errors += [abs(native['Radicand']-radicand)]
                 errors += [abs(value-expected/magnitude) for value,expected in zip(native['publication'],reference)]
                 maximum = max(maximum,*errors); assert max(errors) <= 3e-7
             print(json.dumps(dict(packed_quaternions=len(packed), repaired=repaired, maximum_error=maximum,
                                   executable_table_verified=True, interpolation=False, agreement=True), indent=2))
+            if sample_rows:
+                assert sampler_row == dict(FrameRate=decoded['FrameRate'], EndFrame=decoded['EndFrame'],
+                                           DurationSeconds=decoded['EndFrame']/decoded['FrameRate'],
+                                           RepairedPackedValues=repaired, HasUninterpretedSuffix=False, playback=False)
+                cursor = 0; rotations = []
+                for _, channel in fields[b'AROT']:
+                    times = [time for time, _ in struct.iter_unpack('<HI', channel[5:])]
+                    rotations.append((times, decoded_quaternions[cursor:cursor+len(times)])); cursor += len(times)
+                static_rotations = decoded_quaternions[cursor:]
+                translations = [list(struct.iter_unpack('<Hf', channel[2:])) for _, channel in fields[b'ATRN']]
+                static_translations = [v for (v,) in struct.iter_unpack('<f', fields[b'STRN'])]
+                transforms = []
+                for _, record in fields[b'XFRM']:
+                    stop = record.index(0); transforms.append((record[:stop].decode('ascii'), struct.unpack('<BHB3H', record[stop+1:])))
+                def interval(times, frame):
+                    if frame <= times[0]: return 0,0,0
+                    if frame >= times[-1]: return len(times)-1,len(times)-1,0
+                    low = max(i for i,t in enumerate(times) if t <= frame)
+                    if frame == times[low]: return low,low,0
+                    return low,low+1,f32((frame-times[low])/(times[low+1]-times[low]))
+                def slerp(a,b,t):
+                    dot = sum(x*y for x,y in zip(a,b))
+                    if dot < 0: b = [-v for v in b]; dot = -dot
+                    dot = min(1,dot)
+                    if dot > .999999: values = [(1-t)*x+t*y for x,y in zip(a,b)]
+                    else:
+                        angle = math.acos(dot); inverse = 1/math.sin(angle)
+                        values = [math.sin((1-t)*angle)*inverse*x+math.sin(t*angle)*inverse*y for x,y in zip(a,b)]
+                    norm = math.sqrt(sum(v*v for v in values)); return [v/norm for v in values]
+                maximum = 0; seen = []; validated_samples = {}
+                for native in sample_rows:
+                    frame = native['frame']; index = native['transform']; seen.append((frame,index))
+                    name, (animated,rotation,mask,x,y,z) = transforms[index]
+                    if animated:
+                        times, values = rotations[rotation]; low,high,t = interval(times,frame)
+                        q = values[low][0] if low == high else slerp(values[low][0],values[high][0],t)
+                        was_repaired = values[low][1] or values[high][1]
+                    else: q,was_repaired = static_rotations[rotation]
+                    position = []
+                    for axis, channel_index in enumerate((x,y,z)):
+                        if mask & (8<<axis):
+                            channel = translations[channel_index]; low,high,t = interval([time for time,_ in channel],frame)
+                            value = channel[low][1] if low == high else (1-t)*channel[low][1]+t*channel[high][1]
+                        else: value = static_translations[channel_index]
+                        position.append(value)
+                    assert native['Name'] == name and native['RotationRepaired'] == was_repaired
+                    validated_samples[frame,name] = (q,position)
+                    rotation_error = min(max(abs(a-b) for a,b in zip(native['rotation'],q)), max(abs(a+b) for a,b in zip(native['rotation'],q)))
+                    error = max(rotation_error,*[abs(a-b) for a,b in zip(native['translation'],position)])
+                    assert error <= 2e-6; maximum = max(maximum,error)
+                expected_frames = [0,.5,15.25,30,59.5,90,119.5,120,15.25,0]
+                assert seen == [(frame,index) for frame in expected_frames for index in range(len(transforms))]
+                print(json.dumps(dict(original_transform_samples=len(sample_rows), maximum_error=maximum,
+                                      reverse_sampling=True, playback=False, agreement=True), indent=2))
+                if animation_poses:
+                    from verify_skeleton_animation_pose import verify
+                    print(json.dumps(verify(raw,row['Appearance'],validated_samples,animation_names,animation_poses,animation_vertices),indent=2))
     print(json.dumps(dict(sources=len(sources), source_bytes=sum(r['Bytes'] for r in sources.values()),
                           template_depth=len(chain), generators=len(row['LodMeshes']),
                           mesh_levels=sum(len(m['SerializedPaths']) for m in row['LodMeshes'].values()),

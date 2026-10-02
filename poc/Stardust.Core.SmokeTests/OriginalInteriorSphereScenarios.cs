@@ -7,9 +7,9 @@ using System.Diagnostics;
 
 internal static class OriginalInteriorSphereScenarios
 {
-    internal static void ProbeOptional(string[] args,bool loadContent=false,bool guardTriangles=false,bool loadCharacter=false)
+    internal static void ProbeOptional(string[] args,bool loadContent=false,bool guardTriangles=false,bool loadCharacter=false,bool animateCharacter=false,bool characterMaterials=false,bool paletteDefaults=false,bool generatedAppearance=false,bool customized=false,bool shaped=false,bool normalDiffuse=false,bool vertexLitSpecular=false,bool locomotionBank=false,bool chaseCamera=false)
     {
-        if(args.Length!=8||args[2]!="--configuration"||args[4]!="--scene-spec"||args[6]!="--expected-sha256")throw new ArgumentException("Pinned original sphere scene specification required.");
+        if(args.Length!=(normalDiffuse?14:shaped?12:customized?10:8)||normalDiffuse&&args[12]!="--texture-profile"||shaped&&args[10]!="--shape-profile"||customized&&args[8]!="--customization-profile"||args[2]!="--configuration"||args[4]!="--scene-spec"||args[6]!="--expected-sha256")throw new ArgumentException("Pinned original sphere scene specification required.");
         if(new FileInfo(args[5]).Length>16384)throw new InvalidDataException("Sphere scene specification budget.");
         var bytes=File.ReadAllBytes(args[5]);if(Convert.ToHexString(SHA256.HashData(bytes))!=args[7].ToUpperInvariant())throw new InvalidDataException("Sphere scene specification identity.");
         using var configuration=File.OpenText(args[3]);using var overlay=ConfiguredTreOverlay.Open(args[1],configuration);
@@ -17,10 +17,17 @@ internal static class OriginalInteriorSphereScenarios
         const string actorPath="object/creature/player/shared_human_male.iff",actorPin="E0B61445E8A85CCF0AC5937F0F9CBCA8711718AFEE63384F30970D5AEE120243";
         var counts=new Dictionary<string,int>();
         TreLookupResult Resolve(string path){counts[path]=counts.GetValueOrDefault(path)+1;return overlay.Lookup(path);}
+        IReadOnlyDictionary<BlueprintCustomizationKey,int>? faceValues=null;
+        if(generatedAppearance){using var faceProfile=File.OpenRead("poc/preview-profiles/human-face-zero.json");faceValues=BlueprintFaceCustomizationProfile.Load(faceProfile);}
+        IReadOnlyDictionary<ShaderCustomizationKey,int>? customizationValues=null;
+        if(customized){using var profileInput=File.OpenRead(args[9]);customizationValues=SkeletalAppearanceCustomization.LoadProfile(profileInput);faceValues=null;}
+        IReadOnlyDictionary<string,int>? shapeValues=null;if(shaped){using var shapeInput=File.OpenRead(args[11]);shapeValues=SkeletalAppearanceShapes.LoadProfile(shapeInput);}
+        IReadOnlyDictionary<ShaderCustomizationKey,int>? textureValues=null;if(normalDiffuse){using var textureInput=File.OpenRead(args[13]);textureValues=SkeletalAppearanceCustomization.LoadProfile(textureInput);}
         var content=loadContent?InteriorSceneContentBundleReader.Load(Resolve,bytes,args[7],tablePin,
             "appearance/thm_must_mining_outpost.pob","79085C909D585A9530017150EB07DA49EDAABA1E010C48D845FFD19F97B4D818",true,true,
             actorTemplatePath:actorPath,actorTemplateSha256:actorPin,createTriangleGuard:guardTriangles,maximumCollisionTriangles:65536,
-            characterAppearanceSha256:loadCharacter?"951FCE8C2FFC0EB318C751026D24D8C9BF17263D706EB3C93D015867EC801A9C":null):null;
+            characterAppearanceSha256:loadCharacter?"951FCE8C2FFC0EB318C751026D24D8C9BF17263D706EB3C93D015867EC801A9C":null,
+            characterAnimationSelection:animateCharacter?LogicalAnimationProxyScenarios.IdleSelection:null,characterMaterialDefaults:characterMaterials,characterPaletteDefaults:paletteDefaults,characterAlbedoFactors:generatedAppearance,characterFaceValues:faceValues,characterCustomizationValues:customizationValues,characterShapeValues:shapeValues,characterNormalDiffuse:normalDiffuse,characterTextureValues:textureValues,characterVertexLitSpecular:vertexLitSpecular,characterAdditionalAnimations:locomotionBank?SkeletalAnimationBankScenarios.Profile():null,cameraProfileSha256:chaseCamera?"01A19A5B18E81C9366B86B5F313C31D8F0C1961F8230DB4535AA5C50E95C543D":null,loadCellLights:chaseCamera,loadRoomLighting:chaseCamera,loadStaticNormals:chaseCamera):null;
         var bundle=content?.Scene??InteriorDoorSceneBundleReader.Load(Resolve,bytes,args[7],tablePin);
         var profile=content?.ActorProfile??SharedCreatureTemplateProfileReader.Load(Resolve,actorPath,actorPin);
         if(counts.Values.Any(c=>c!=1))throw new InvalidDataException("Sphere scene source resolved more than once.");
@@ -32,12 +39,35 @@ internal static class OriginalInteriorSphereScenarios
             {
                 if(content.Character?.Geometries is null)throw new InvalidDataException("Requested character absent from content.");
                 foreach(var source in content.Character.Geometries)Console.WriteLine("interior_character_geometry="+JsonSerializer.Serialize(new{path=source.Key,source=source.Value.SourceTriangles,degenerate=source.Value.DegenerateTriangles,triangles=source.Value.Triangles,sha256=SkeletalGeometryScenarios.CanonicalHash(source.Value)}));
+                if(locomotionBank)SkeletalAnimationBankScenarios.Probe(content.Character,overlay.Lookup,actorPath,actorPin,"951FCE8C2FFC0EB318C751026D24D8C9BF17263D706EB3C93D015867EC801A9C");
+                if(characterMaterials)SkeletalDescriptorScenarios.DumpMaterials(content.Character.MaterialBundle!);
+                if(customized)Console.WriteLine("skeletal_customization_values="+JsonSerializer.Serialize(content.Character.CustomizationValues!.Select(p=>new{p.Key.VariableName,p.Key.Private,p.Value})));
+                if(generatedAppearance)SkeletalDescriptorScenarios.DumpGeneratedAppearance(content.Character);
+                if(shaped)SkeletalDescriptorScenarios.DumpBlendShapes(content.Character);
+                if(normalDiffuse)
+                {
+                    SkeletalCompressedNormalScenarios.Probe(content.Character,overlay.Lookup);
+                    if(vertexLitSpecular){SkeletalSpecularScenarios.Probe(content.Character);SkeletalVertexLitSpecularScenarios.Probe(content.Character,overlay.Lookup);}
+                    var mb=content.Character.MaterialBundle!;
+                    foreach(int requested in new[]{int.MinValue,0,1,2,3,int.MaxValue})
+                    {
+                        var selected=SkeletalTextureChoices.Apply(mb,textureValues!.Keys.ToDictionary(k=>k,_=>requested));
+                        foreach(var pair in selected.TextureSelection!.Selections)Console.WriteLine("skeletal_texture_choice="+JsonSerializer.Serialize(new{path=pair.Key,requested,selections=pair.Value,textures=selected.TextureSelection.References[pair.Key].Textures}));
+                    }
+                }
+                if(animateCharacter)
+                {
+                    var animation=content.Character.PreparedAnimation??throw new InvalidDataException("Prepared scene animation absent.");var selection=content.Character.SelectedAnimation!;
+                    Console.WriteLine("interior_character_animation="+JsonSerializer.Serialize(new{table=selection.Selection.TablePath,name=selection.Selection.LogicalName,path=selection.Proxy.ClipPath,animation.FrameRate,animation.EndFrame,unused=animation.UnusedAnimationTransforms,missing=animation.MissingSkeletonTransforms,animation.RepairedPackedValues}));
+                    HostAccountingScenarios.Reject<ArgumentException>(()=>InteriorSceneContentBundleReader.Load(_=>throw new Exception("Invalid animation selection reached lookup."),bytes,args[7],tablePin,bundle.LayoutPath,bundle.Sources[bundle.LayoutPath].Sha256,characterAnimationSelection:LogicalAnimationProxyScenarios.IdleSelection));
+                }
                 HostAccountingScenarios.Reject<InvalidDataException>(()=>InteriorSceneContentBundleReader.Load(overlay.Lookup,bytes,args[7],tablePin,bundle.LayoutPath,bundle.Sources[bundle.LayoutPath].Sha256,
                     actorTemplatePath:actorPath,actorTemplateSha256:actorPin,characterAppearanceSha256:new string('0',64)));
             }
             HostAccountingScenarios.Reject<InvalidDataException>(()=>InteriorSceneContentBundleReader.Load(overlay.Lookup,bytes,args[7],tablePin,
                 bundle.LayoutPath,bundle.Sources[bundle.LayoutPath].Sha256,actorTemplatePath:actorPath,actorTemplateSha256:new string('0',64)));
         }
+        if(chaseCamera){ChaseCameraScenarios.Probe(content!);PortalCameraCellScenarios.Probe(content!);PortalCellLightScenarios.Probe(content!);}
         var guard=content?.TriangleGuard;
         if(guardTriangles!=(guard is not null))throw new InvalidDataException("Requested guard was not delivered.");
         var triangles=guard?.Geometry.ToDictionary(p=>p.Key,p=>p.Value.Triangles);

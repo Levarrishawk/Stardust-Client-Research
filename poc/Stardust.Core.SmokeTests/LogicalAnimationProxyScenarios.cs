@@ -17,6 +17,12 @@ internal static class LogicalAnimationProxyScenarios
         Reject(()=>LogicalAnimationProxyDecoder.Decode(IffDocument.Parse(Proxy(version:"0001")).Root));Reject(()=>LogicalAnimationProxyDecoder.Decode(IffDocument.Parse(Proxy(path:"object/test.iff")).Root));
         byte[] deep=Proxy();for(int i=0;i<9;i++)deep=Scale(1,deep);Reject(()=>LogicalAnimationProxyDecoder.Decode(IffDocument.Parse(deep).Root));
         Reject(()=>LogicalAnimationProxyDecoder.Decode(IffDocument.Parse(MeshScenarios.Form("SSAT",MeshScenarios.Form("0000"))).Root));
+        byte[] spat=MeshScenarios.Form("SPAT",MeshScenarios.Form("0000",MeshScenarios.Chunk("INFO",new byte[]{2}),Proxy(),Proxy("appearance/animation/second.ans")));
+        byte[] ssat=MeshScenarios.Form("SSAT",MeshScenarios.Form("0000",MeshScenarios.Chunk("INFO",Encoding.ASCII.GetBytes("gender\0")),MeshScenarios.Form("ANMS",MeshScenarios.Chunk("INFO",new byte[]{1,0}),spat)));
+        var nested=IffDocument.Parse(ssat).Root;
+        if(LogicalAnimationProxyDecoder.Decode(nested,new[]{0,1}).ClipPath!="appearance/animation/second.ans")throw new Exception("Explicit counted SSAT/SPAT route mismatch.");
+        foreach(var bad in new[]{new[]{-1},new[]{1},new[]{0,2},new[]{0,0,0},Enumerable.Repeat(0,9).ToArray()})Reject(()=>LogicalAnimationProxyDecoder.Decode(nested,bad));
+        Console.WriteLine("PASS: explicit counted SSAT/SPAT child routes; selector state and speed blending are not inferred");
         Console.WriteLine("PASS: owned PXAT 0000/TSCL 0000 selected descriptors, retained priority metadata, scale composition and invalid path/version/float/depth/family gates");
     }
     private static byte[] Proxy(string path="appearance/animation/test.ans",string version="0000")=>MeshScenarios.Form("PXAT",MeshScenarios.Form(version,MeshScenarios.Chunk("INFO",Encoding.ASCII.GetBytes(path+"\0")),MeshScenarios.Chunk("PUNF",Encoding.ASCII.GetBytes("test\0test\0"))));

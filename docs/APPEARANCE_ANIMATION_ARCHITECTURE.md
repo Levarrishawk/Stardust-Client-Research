@@ -232,7 +232,7 @@ interface and one selected index across body/head/components. See
 
 1. ~~Test the explicit SWG-to-host-engine coordinate adapter with pose fixtures.~~
    Closed for Godot: reflect Z for positions/directions, convert SWG
-   `[w,x,y,z]` to Godot `[-x,-y,z,w]`, reverse imported triangle winding and
+   `[w,x,y,z]` to Godot `[-x,-y,z,w]`, preserve imported triangle indices after reflection and reverse
    tangent handedness, and keep wire x/z/y ordering at the codec boundary.
    Identity, axis rotations and a mixed pose pass matrix-conjugation fixtures.
    See `ANALYSIS_CHECKPOINT_2026-09-22_GODOT_COORDINATE_ADAPTER.md`.

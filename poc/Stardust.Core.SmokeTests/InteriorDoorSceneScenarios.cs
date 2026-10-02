@@ -89,6 +89,11 @@ internal static class InteriorDoorSceneScenarios
         foreach(string malformed in new[]{"{","{}","null","[]","{\"member\":\"x\",\"layout_sha256\":\"x\",\"doors\":[]}","{\"member\":\"x\",\"layout_sha256\":\"x\",\"doors\":true}"})RejectSpec(System.Text.Encoding.UTF8.GetBytes(malformed));
         Require(reads==0,"Specification identity/shape/resource rejection precedes every lookup");
         HostAccountingScenarios.Reject<ArgumentException>(()=>InteriorSceneContentBundleReader.Load(Never,new byte[]{1},new string('0',64),new string('0',64),"appearance/test.pob",new string('0',64),loadMaterials:true));
+        HostAccountingScenarios.Reject<ArgumentException>(()=>InteriorSceneContentBundleReader.Load(Never,new byte[]{1},new string('0',64),new string('0',64),"appearance/test.pob",new string('0',64),characterAlbedoFactors:true));
+        HostAccountingScenarios.Reject<ArgumentException>(()=>InteriorSceneContentBundleReader.Load(Never,new byte[]{1},new string('0',64),new string('0',64),"appearance/test.pob",new string('0',64),characterFaceValues:new Dictionary<BlueprintCustomizationKey,int>()));
+        HostAccountingScenarios.Reject<ArgumentException>(()=>InteriorSceneContentBundleReader.Load(Never,new byte[]{1},new string('0',64),new string('0',64),"appearance/test.pob",new string('0',64),characterCustomizationValues:new Dictionary<ShaderCustomizationKey,int>()));
+        HostAccountingScenarios.Reject<OperationCanceledException>(()=>InteriorSceneContentBundleReader.Load(Never,new byte[]{1},new string('0',64),new string('0',64),"appearance/test.pob",new string('0',64),cancellation:new CancellationToken(true)));
+        HostAccountingScenarios.Reject<ArgumentException>(()=>InteriorSceneContentBundleReader.Load(Never,new byte[]{1},new string('0',64),new string('0',64),"appearance/test.pob",new string('0',64),characterShapeValues:new Dictionary<string,int>()));
         HostAccountingScenarios.Reject<InvalidDataException>(()=>InteriorSceneContentBundleReader.Load(Never,new byte[]{1},new string('0',64),new string('0',64),"appearance/test.pob",new string('0',64)));
         Require(reads==0,"Content option/specification rejection precedes lookup");
         Console.WriteLine("PASS: bounded three-cell/two-leaf scene, 80 repeated transfers, directional denial/retreat, permission failure/reentrancy, stale retention and reset/dispose");

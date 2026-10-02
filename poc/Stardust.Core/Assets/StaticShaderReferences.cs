@@ -6,7 +6,7 @@ namespace Stardust.Core.Assets;
 public sealed record ShaderTextureReference(uint Tag, byte SourceFlag, string Version,
     string? AssetPath, ReadOnlyMemory<byte> BindingMetadata);
 public sealed record StaticShaderReferenceDescription(string Version, string EffectPath,
-    IReadOnlyList<ShaderTextureReference> Textures, IffNode Metadata);
+    IReadOnlyList<ShaderTextureReference> Textures, IffNode Metadata, IffNode? InlineEffect = null);
 
 /// <summary>External SSHT effect/texture references only. Material, coordinate and sampler bytes remain owned metadata.</summary>
 public static class StaticShaderReferences
@@ -17,15 +17,23 @@ public static class StaticShaderReferences
         return DecodeOwned(root);
     }
 
-    internal static StaticShaderReferenceDescription DecodeOwned(IffNode root)
+    /// <summary>Allows an owned inline EFCT. An inline effect has an empty EffectPath and non-null InlineEffect.</summary>
+    public static StaticShaderReferenceDescription DecodeIncludingInlineEffect(ReadOnlySpan<byte> source)
+        => DecodeOwned(IffDocument.Parse(source).Root, allowInlineEffect: true);
+
+    internal static StaticShaderReferenceDescription DecodeOwned(IffNode root, bool allowInlineEffect = false)
     {
         Require(root.IsForm("SSHT") && root.Children.Count == 1, "Unsupported static shader envelope.");
         IffNode version = root.Children[0];
         Require(version.Tag == "FORM" && version.FormType is "0000" or "0001", "Unsupported static shader version.");
         IffNode[] effects = version.Children.Where(node => node.Tag == "NAME").ToArray();
-        Require(effects.Length == 1, "Only one external effect reference is supported.");
-        string effect = ReadName(effects[0].Payload.Span);
-        if (!effect.Contains('/')) effect = "effect/" + effect;
+        IffNode[] inlineEffects = version.Children.Where(node => node.IsForm("EFCT")).ToArray();
+        Require(effects.Length + inlineEffects.Length == 1 && (inlineEffects.Length == 0 || allowInlineEffect),
+            "Exactly one supported effect reference is required.");
+        string effect = effects.Length == 1 ? ReadName(effects[0].Payload.Span) : string.Empty;
+        if (effect.Length != 0 && !effect.Contains('/')) effect = "effect/" + effect;
+        IffNode? inlineEffect = inlineEffects.SingleOrDefault();
+        if (inlineEffect is not null) StaticEffectDecoder.DecodeOwned(inlineEffect);
         IffNode[] maps = version.Children.Where(node => node.IsForm("TXMS")).ToArray();
         Require(maps.Length <= 1, "Duplicate texture map form.");
         List<ShaderTextureReference> textures = new();
@@ -57,7 +65,7 @@ public static class StaticShaderReferences
                     children[0].Payload));
             }
         }
-        return new(version.FormType!, effect, textures.AsReadOnly(), root);
+        return new(version.FormType!, effect, textures.AsReadOnly(), root, inlineEffect);
     }
 
     private static string ReadName(ReadOnlySpan<byte> bytes)

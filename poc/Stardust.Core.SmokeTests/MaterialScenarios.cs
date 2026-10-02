@@ -17,7 +17,7 @@ internal static class MaterialScenarios
             effect.Implementations[0].Capabilities.Single() != 0x300 || effect.Implementations[0].Options.Single() != 0x444F5433 ||
             effect.Implementations[0].Passes[0].PixelProgram != "pixel_program/synthetic.psh" ||
             effect.Implementations[0].Passes[0].VertexProgram != "vertex_program/synthetic.vsh" ||
-            effect.Implementations[0].Passes[0].PixelTextures.Single() != new PixelTextureBinding(0, 0x4D41494E) ||
+            (effect.Implementations[0].Passes[0].PixelTextures.Single().Stage != 0 || effect.Implementations[0].Passes[0].PixelTextures.Single().TextureTag != 0x4D41494E) ||
             effect.Implementations[1].Passes[0].FixedStages.Single().CoordinateTag != 0x4D41494E ||
             effect.Implementations[1].Passes[0].FixedVertexLighting.Length != 7 ||
             effect.Implementations[0].Passes[0].Fields[0x19] != 1 || effect.Implementations[0].Passes[0].Fields[0x7C] != 0x4D41494E)
@@ -42,6 +42,20 @@ internal static class MaterialScenarios
             var raw=StaticEffectDecoder.Decode(Effect(passVersion:version,implementationVersion:"0004",asymmetric:true)).Implementations[0].Passes[0].Fields;
             if(raw[0x4C]!=30 || raw[0x50]!=0x23222120 || raw[0x60]!=39 || raw[0x74]!=0x2F2E2D2C || raw[0x78]!=0x33323130 || (version=="0009" && (raw[0x4D]!=31 || raw[0x64]!=40 || raw[0x70]!=43)))throw new Exception("Asymmetric older/current pass field offsets differ.");
         }
+        byte[] legacyBytes=Effect(passVersion:"0007",implementationVersion:"0003",asymmetric:true);
+        var legacy=StaticEffectDecoder.Decode(legacyBytes).Implementations[0];
+        if(legacy.Capabilities.Count!=0 || legacy.Options.Single()!=0x444F5433 || legacy.Flag5 is not null || legacy.Passes[0].Fields.ContainsKey(0x48) || legacy.Passes[0].Fields[0x40]!=0x15141312 || legacy.Passes[0].Fields[0x50]!=0x23222120)throw new Exception("Legacy pass/implementation layout mismatch.");
+        for(int length=0;length<legacyBytes.Length;length++)Reject(()=>StaticEffectDecoder.Decode(legacyBytes.AsSpan(0,length)));
+        var oldTexture=StaticEffectDecoder.Decode(Effect(passVersion:"0007",implementationVersion:"0003",legacyTexture:true)).Implementations[0].Passes[0].PixelTextures.Single();
+        if(oldTexture.Version!="0000" || oldTexture.Metadata.Length!=16 || oldTexture.Stage!=0 || oldTexture.TextureTag!=0x4D41494E)throw new Exception("Legacy texture map metadata lost.");
+        Reject(()=>StaticEffectDecoder.Decode(Effect(passVersion:"0007",implementationVersion:"0003",legacyTexture:true,legacyTextureLength:15)));
+        Reject(()=>StaticEffectDecoder.Decode(Effect(passVersion:"0007",implementationVersion:"0003",legacyTexture:true,bindingCount:2,duplicateStage:true)));
+        byte[] inlineShader=Form("SSHT",Form("0000",legacyBytes));
+        Reject(()=>StaticShaderReferences.Decode(inlineShader));
+        var inline=StaticShaderReferences.DecodeIncludingInlineEffect(inlineShader);
+        Array.Clear(inlineShader);
+        if(inline.EffectPath.Length!=0 || inline.InlineEffect is null || inline.InlineEffect.FormType!="EFCT")throw new Exception("Inline effect ownership/discriminator mismatch.");
+        Reject(()=>StaticShaderReferences.DecodeIncludingInlineEffect(Form("SSHT",Form("0000",legacyBytes,Chunk("NAME",Name("synthetic.eft"))))));
         byte[] olderBytes=Effect(passVersion:"0008",implementationVersion:"0004");
         foreach(string implementationVersion in new[]{"0006","0007"})
         {
@@ -72,24 +86,38 @@ internal static class MaterialScenarios
         Reject(() => TexturedStaticMeshReader.Load(path => path=="texture/synthetic.dds" ? new(TreLookupKind.Masked) : Resolve(path),"appearance/synthetic.msh",meshHash));
         Console.WriteLine("PASS: ordered effect candidates, PASS fields/program/fixed bindings, material scalars, coordinates and owned asset graph negatives");
     }
-    internal static byte[] Effect(string passVersion="0009", byte effectCount=2, byte stageIndex=0, byte bindingCount=1, bool duplicateStage=false, string implementationVersion="0005", bool asymmetric=false)
+    internal static void ProbeInline(string[] args)
+    {
+        if(args.Length!=3)throw new ArgumentException("Expected --inline-effect <shader-path> <sha256>.");
+        byte[] bytes=File.ReadAllBytes(args[1]);
+        if(bytes.Length>1024*1024 || Convert.ToHexString(SHA256.HashData(bytes))!=args[2].ToUpperInvariant())throw new InvalidDataException("Inline shader input identity/budget mismatch.");
+        var shader=StaticShaderReferences.DecodeIncludingInlineEffect(bytes);
+        var effect=StaticEffectDecoder.DecodeInlineEffect(shader);
+        if(effect.Implementations.Count!=2 || effect.Implementations.Any(i=>i.Version!="0003" || i.Passes.Count!=1 || i.Passes[0].Version!="0007"))throw new Exception("Original face effect candidates differ.");
+        for(int n=0;n<bytes.Length;n++)Reject(()=>StaticShaderReferences.DecodeIncludingInlineEffect(bytes.AsSpan(0,n)));
+        Console.WriteLine("INLINE_EFFECT_JSON:"+System.Text.Json.JsonSerializer.Serialize(new{shader.Version,shader.EffectPath,Textures=shader.Textures.Select(t=>new{t.Tag,t.SourceFlag,t.AssetPath,Metadata=Convert.ToHexString(t.BindingMetadata.Span)}),Implementations=effect.Implementations.Select(i=>new{i.Version,i.Capabilities,i.Options,i.PhaseTag,i.Flag5,i.Flag6,Passes=i.Passes.Select(p=>new{p.Version,p.Fields,p.VertexProgram,p.PixelProgram,PixelTextures=p.PixelTextures.Select(t=>new{t.Stage,t.TextureTag,t.Version,Metadata=Convert.ToHexString(t.Metadata.Span)}),FixedStages=p.FixedStages.Select(t=>new{t.TextureTag,t.CoordinateTag,Metadata=Convert.ToHexString(t.Metadata.Span)})})})}));
+        Array.Clear(bytes);
+        if(shader.Textures.Single().BindingMetadata.Span[0]!=0x4e)throw new Exception("Original inline shader borrowed caller memory.");
+        Console.WriteLine("PASS: pinned original inline face shader, both candidates, every truncated prefix and source ownership");
+    }
+    internal static byte[] Effect(string passVersion="0009", byte effectCount=2, byte stageIndex=0, byte bindingCount=1, bool duplicateStage=false, string implementationVersion="0005", bool asymmetric=false, bool legacyTexture=false, int legacyTextureLength=16)
     {
         byte[] tag=Word(0x4D41494E), implData=new byte[7]; implData[0]=1; tag.CopyTo(implData,1); implData[5]=implData[6]=1;
-        if(implementationVersion=="0004")implData=implData[..5];
+        if(implementationVersion is "0003" or "0004")implData=implData[..5];
         byte[] Pass(bool fixedPath)
         {
             byte[] data=asymmetric?Enumerable.Range(0,56).Select(i=>(byte)i).ToArray():new byte[56]; data[0]=fixedPath?(byte)1:(byte)0; data[4]=data[5]=1; tag.CopyTo(data,52);
-            if(passVersion=="0008")data=data.Where((_,i)=>i!=31 && i is not (40 or 41 or 42 or 43)).ToArray();
+            if(passVersion is "0007" or "0008")data=data.Where((_,i)=>i!=31 && i is not (40 or 41 or 42 or 43) && (passVersion!="0007" || i is not (26 or 27 or 28 or 29))).ToArray();
             byte[] vertex=fixedPath ? Form("PFFP",Chunk("0001",new byte[]{1,0,0,0,0,0,0})) :
                 Form("PVSH",Chunk("0000",Name("vertex_program/synthetic.vsh")));
             byte[] stage=new byte[33]; tag.CopyTo(stage,18); tag.CopyTo(stage,22);
             byte[] pixel=fixedPath ? Form("STAG",Chunk("0000",stage)) :
-                Form("PPSH",Form("0001",new[]{Chunk("DATA",new byte[]{bindingCount}.Concat(Name("pixel_program/synthetic.psh")).ToArray())}.Concat(Enumerable.Range(0,bindingCount).Select(i=>Form("PTXM",Chunk("0002",new byte[]{duplicateStage?stageIndex:(byte)(stageIndex+i)}.Concat(tag).ToArray())))).ToArray()));
+                Form("PPSH",Form("0001",new[]{Chunk("DATA",new byte[]{bindingCount}.Concat(Name("pixel_program/synthetic.psh")).ToArray())}.Concat(Enumerable.Range(0,bindingCount).Select(i=>Form("PTXM",Chunk(legacyTexture?"0000":"0002",new byte[]{duplicateStage?stageIndex:(byte)(stageIndex+i)}.Concat(tag).Concat(legacyTexture?new byte[11]:Array.Empty<byte>()).Take(legacyTexture?legacyTextureLength:5).ToArray())))).ToArray()));
             return Form("PASS",Form(passVersion,Chunk("DATA",data),vertex,pixel));
         }
         return Form("EFCT",Form("0001",Chunk("DATA",new byte[]{effectCount,0}),
-            Form("IMPL",Form(implementationVersion,Chunk("SCAP",Word(0x300)),Chunk("OPTN",Word(0x444F5433)),Chunk("DATA",implData),Pass(false))),
-            Form("IMPL",Form(implementationVersion,Chunk("SCAP",Word(0x100)),Chunk("DATA",implData),Pass(true)))));
+            Form("IMPL",Form(implementationVersion,implementationVersion=="0003" ? new[]{Chunk("DATA",implData),Chunk("OPTN",Word(0x444F5433)),Pass(false)} : new[]{Chunk("SCAP",Word(0x300)),Chunk("OPTN",Word(0x444F5433)),Chunk("DATA",implData),Pass(false)})),
+            Form("IMPL",Form(implementationVersion,implementationVersion=="0003" ? new[]{Chunk("DATA",implData),Pass(true)} : new[]{Chunk("SCAP",Word(0x100)),Chunk("DATA",implData),Pass(true)}))));
     }
     internal static byte[] Shader(bool nan=false, byte coordinate=0, bool duplicate=false)
     {

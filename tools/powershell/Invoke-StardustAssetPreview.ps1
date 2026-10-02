@@ -8,6 +8,8 @@ param(
     [Parameter(Mandatory=$true)][ValidatePattern('^[0-9A-Fa-f]{64}$')][string]$ExpectedSha256,
     [string]$CapturePath,
     [switch]$Headless,
+    # Additional bounded combined point-color/tangent GPU acceptance probe.
+    [switch]$PointColorGpuProbe,
     [switch]$Detail,
     [switch]$Component,
     [switch]$Interior,
@@ -16,6 +18,20 @@ param(
     [ValidatePattern('^[0-9A-Fa-f]{64}$')][string]$CreatureAppearanceSha256,
     [switch]$CancelCreatureLoad,
     [switch]$CreaturePose,
+    [string]$CreatureAnimationTable,
+    [string]$CreatureAnimationName,
+    [ValidatePattern('^[0-9A-Fa-f]{64}$')][string]$CreatureAnimationSha256,
+    [double]$CreatureAnimationFrame=-1,
+    [switch]$CreatureAnimationPlay,
+    [switch]$CreatureMaterialDefaults,
+    [switch]$CreaturePaletteDefaults,
+    [switch]$CreatureAlbedoFactors,
+    [string]$CreatureFaceProfile,
+    [string]$CreatureCustomizationProfile,
+    [string]$CreatureShapeProfile,
+    [switch]$CreatureNormalDiffuse,
+    [switch]$CreatureSpecular,
+    [string]$CreatureTextureProfile,
     [string]$DoorStyle,
     [string]$SceneSpecification,
     [ValidatePattern('^[0-9A-Fa-f]{64}$')][string]$SceneSpecificationSha256,
@@ -27,6 +43,25 @@ param(
     [switch]$SceneTriangleGuard,
     [switch]$SceneCharacter,
     [ValidatePattern('^[0-9A-Fa-f]{64}$')][string]$SceneCharacterAppearanceSha256,
+    [switch]$SceneCharacterMaterialDefaults,
+    [switch]$SceneCharacterPaletteDefaults,
+    [switch]$SceneCharacterAlbedoFactors,
+    [string]$SceneCharacterFaceProfile,
+    [string]$SceneCharacterCustomizationProfile,
+    [string]$SceneCharacterShapeProfile,
+    [switch]$SceneCharacterNormalDiffuse,
+    [switch]$SceneCharacterSpecular,
+    [switch]$SceneCellLighting,
+    [switch]$SceneRoomLighting,
+    [switch]$SceneDoorLighting,
+    # Compatibility alias: SceneCellLighting now selects recovered slots by default.
+    [switch]$SceneLegacyLightSelection,
+    [string]$SceneCharacterTextureProfile,
+    [string]$SceneCharacterLocomotionProfile,
+    [ValidatePattern('^[0-9A-Fa-f]{64}$')][string]$SceneCameraProfileSha256,
+    [string]$SceneCharacterAnimationTable,
+    [string]$SceneCharacterAnimationName,
+    [ValidatePattern('^[0-9A-Fa-f]{64}$')][string]$SceneCharacterAnimationSha256,
     [switch]$PortalVisibility,
     [switch]$CancelSceneLoad,
     [ValidatePattern('^[0-9A-Fa-f]{64}$')][string]$DoorTableSha256,
@@ -61,6 +96,19 @@ if (([int][bool]$Component+[int][bool]$Detail+[int][bool]$Interior+[int][bool]$P
 if ([bool]$Creature -ne [bool]$CreatureAppearanceSha256) { throw 'Creature and CreatureAppearanceSha256 are required together.' }
 if ($CancelCreatureLoad -and (-not $Creature -or -not $Headless)) { throw 'CancelCreatureLoad requires a headless creature inspector.' }
 if ($CreaturePose -and -not $Creature) { throw 'CreaturePose requires the standalone creature inspector.' }
+if ($CreatureAnimationTable -or $CreatureAnimationName -or $CreatureAnimationSha256 -or $CreatureAnimationFrame -ne -1) {
+    if (-not $Creature -or -not $CreatureAnimationTable -or -not $CreatureAnimationName -or -not $CreatureAnimationSha256 -or $CreatureAnimationFrame -lt 0 -or [double]::IsNaN($CreatureAnimationFrame) -or [double]::IsInfinity($CreatureAnimationFrame) -or $CreatureAnimationFrame -gt 32767 -or $CreaturePose) { throw 'Selected animation requires Creature, table/name/clip pin and bounded frame, without diagnostic pose.' }
+}
+if ($CreaturePaletteDefaults -and -not $CreatureMaterialDefaults) { throw 'CreaturePaletteDefaults requires CreatureMaterialDefaults.' }
+if ($CreatureMaterialDefaults -and -not $Creature) { throw 'CreatureMaterialDefaults requires Creature.' }
+if ($CreatureCustomizationProfile -and (-not $CreatureAlbedoFactors -or $CreatureFaceProfile)) { throw 'CreatureCustomizationProfile requires albedo factors and one profile.' }
+if ($CreatureShapeProfile -and -not $Creature) { throw 'CreatureShapeProfile requires Creature.' }
+if ($CreatureSpecular -and -not $CreatureNormalDiffuse) { throw 'CreatureSpecular requires CreatureNormalDiffuse.' }
+if ($CreatureTextureProfile -and -not $CreatureNormalDiffuse) { throw 'CreatureTextureProfile requires CreatureNormalDiffuse.' }
+if ($CreatureNormalDiffuse -and -not $CreatureAlbedoFactors) { throw 'CreatureNormalDiffuse requires CreatureAlbedoFactors.' }
+if ($CreatureFaceProfile -and -not $CreatureMaterialDefaults) { throw 'CreatureFaceProfile requires CreatureMaterialDefaults.' }
+if ($CreatureAlbedoFactors -and -not $CreaturePaletteDefaults) { throw 'CreatureAlbedoFactors requires CreaturePaletteDefaults.' }
+if ($CreatureAnimationPlay -and -not $CreatureAnimationTable) { throw 'CreatureAnimationPlay requires explicit selected animation.' }
 if ([bool]($DoorStyle -or $SceneSpecification) -ne [bool]$DoorTableSha256) { throw 'Door style or scene specification requires DoorTableSha256.' }
 if ([bool]$SceneSpecification -ne [bool]$SceneSpecificationSha256) { throw 'SceneSpecification and SceneSpecificationSha256 are required together.' }
 if ($HoldClosingDoors -and -not $SceneSpecification) { throw 'HoldClosingDoors requires an explicit scene specification.' }
@@ -71,6 +119,24 @@ if ($SceneTextures -and -not $SceneGeometry) { throw 'SceneTextures requires Sce
 if ($SceneTriangleGuard -and (-not $ActorTemplate -or -not $SceneTextures)) { throw 'SceneTriangleGuard requires a pinned ActorTemplate and SceneTextures.' }
 if ([bool]$SceneCharacter -ne [bool]$SceneCharacterAppearanceSha256) { throw 'SceneCharacter and SceneCharacterAppearanceSha256 are required together.' }
 if ($SceneCharacter -and (-not $ActorTemplate -or -not $SceneGeometry)) { throw 'SceneCharacter requires a pinned ActorTemplate and SceneGeometry.' }
+if ($SceneCharacterPaletteDefaults -and -not $SceneCharacterMaterialDefaults) { throw 'SceneCharacterPaletteDefaults requires SceneCharacterMaterialDefaults.' }
+if ($SceneCharacterAlbedoFactors -and -not $SceneCharacterPaletteDefaults) { throw 'SceneCharacterAlbedoFactors requires SceneCharacterPaletteDefaults.' }
+if ($SceneCharacterCustomizationProfile -and (-not $SceneCharacterAlbedoFactors -or $SceneCharacterFaceProfile)) { throw 'SceneCharacterCustomizationProfile requires albedo factors and one profile.' }
+if ($SceneLegacyLightSelection -and -not $SceneCellLighting) { throw 'SceneLegacyLightSelection requires SceneCellLighting.' }
+if ($SceneDoorLighting -and (-not $SceneCellLighting -or -not $SceneTextures)) { throw 'SceneDoorLighting requires SceneCellLighting and SceneTextures.' }
+if ($SceneRoomLighting -and -not $SceneCellLighting) { throw 'SceneRoomLighting requires SceneCellLighting.' }
+if ($SceneCellLighting -and -not $SceneCharacterSpecular) { throw 'SceneCellLighting requires SceneCharacterSpecular.' }
+if ($SceneCharacterSpecular -and -not $SceneCharacterNormalDiffuse) { throw 'SceneCharacterSpecular requires SceneCharacterNormalDiffuse.' }
+if ($SceneCharacterNormalDiffuse -and -not $SceneCharacterAlbedoFactors) { throw 'SceneCharacterNormalDiffuse requires SceneCharacterAlbedoFactors.' }
+if ($SceneCharacterTextureProfile -and -not $SceneCharacterNormalDiffuse) { throw 'SceneCharacterTextureProfile requires SceneCharacterNormalDiffuse.' }
+if ($SceneCameraProfileSha256 -and (-not $SceneCharacter -or -not $SceneTriangleGuard)) { throw 'SceneCameraProfileSha256 requires owned character and room triangle guard.' }
+if ($SceneCharacterLocomotionProfile -and (-not $SceneCharacter -or -not $SceneCharacterAnimationTable)) { throw 'SceneCharacterLocomotionProfile requires owned character and pinned idle selection.' }
+if ($SceneCharacterShapeProfile -and -not $SceneCharacter) { throw 'SceneCharacterShapeProfile requires SceneCharacter.' }
+if ($SceneCharacterFaceProfile -and -not $SceneCharacterMaterialDefaults) { throw 'SceneCharacterFaceProfile requires SceneCharacterMaterialDefaults.' }
+if ($SceneCharacterMaterialDefaults -and -not $SceneCharacter) { throw 'SceneCharacterMaterialDefaults requires SceneCharacter.' }
+if ($SceneCharacterAnimationTable -or $SceneCharacterAnimationName -or $SceneCharacterAnimationSha256) {
+    if (-not $SceneCharacter -or -not $SceneCharacterAnimationTable -or -not $SceneCharacterAnimationName -or -not $SceneCharacterAnimationSha256) { throw 'Scene character animation requires SceneCharacter and table/name/clip pin.' }
+}
 if ($PortalVisibility -and -not $SceneGeometry) { throw 'PortalVisibility requires SceneGeometry.' }
 if ($CancelSceneLoad -and (-not $SceneSpecification -or -not $Headless)) { throw 'CancelSceneLoad requires a headless pinned scene specification.' }
 if ($SceneSpecification -and ($DoorCell -ne -1 -or $DoorPortal -ne -1 -or $DoorLeafSha256 -or $DoorWalk -or $PreciseDoorWalk -or $StepDoorWalk -or $LocalStepDoorWalk -or $ConnectedDoorApproach)) { throw 'Scene specification selects its pinned door instances and precise local-step movement.' }
@@ -94,15 +160,28 @@ if ($Component -and $MainTextureOnly -and -not $ComponentTextures) { throw 'Comp
 if ($CameraLod -and -not ($Component -or $Detail -or $Interior)) { throw 'CameraLod requires a detail or component inspector.' }
 if ($InspectHardpoints -and -not ($Component -or $Interior)) { throw 'InspectHardpoints requires Component or Interior inspection.' }
 $taskAppData=Join-Path $taskWorkspace 'local-private\godot-appdata'
+if($PointColorGpuProbe -and ($Headless -or $Interactive -or (-not $CreatureSpecular -and -not $SceneCharacterSpecular))){throw 'PointColorGpuProbe requires a noninteractive GPU specular fixture.'}
 $taskArguments=@('--path',(Join-Path $taskWorkspace 'poc\Stardust.Godot'))
 if($Headless){$taskArguments+= '--headless'}
 $taskArguments+=@('--','--asset-root',$taskRoot,'--asset-config',$taskConfiguration,'--asset-member',$Member,'--asset-sha256',$ExpectedSha256)
+if($PointColorGpuProbe){$taskArguments+='--point-color-gpu-probe'}
 if($Detail){$taskArguments+='--asset-detail'}
 if($Component){$taskArguments+='--asset-component'}
 if($PaletteInspector){$taskArguments+='--palette-inspector'}
 if($Creature){$taskArguments+=@('--asset-creature','--creature-appearance-sha256',$CreatureAppearanceSha256)}
 if($CancelCreatureLoad){$taskArguments+='--cancel-creature-load'}
 if($CreaturePose){$taskArguments+='--creature-pose'}
+if($CreatureAnimationTable){$taskArguments+=@('--creature-animation-table',$CreatureAnimationTable,'--creature-animation-name',$CreatureAnimationName,'--creature-animation-sha256',$CreatureAnimationSha256,'--creature-animation-frame',$CreatureAnimationFrame.ToString([System.Globalization.CultureInfo]::InvariantCulture))}
+if($CreatureAnimationPlay){$taskArguments+='--creature-animation-play'}
+if($CreatureMaterialDefaults){$taskArguments+='--creature-material-defaults'}
+if($CreaturePaletteDefaults){$taskArguments+='--creature-palette-defaults'}
+if($CreatureAlbedoFactors){$taskArguments+='--creature-albedo-factors'}
+if($CreatureCustomizationProfile){$taskCustomizationProfile=(Resolve-Path -LiteralPath $CreatureCustomizationProfile).Path;$taskArguments+=@('--creature-customization-profile',$taskCustomizationProfile)}
+if($CreatureShapeProfile){$taskShapeProfile=(Resolve-Path -LiteralPath $CreatureShapeProfile).Path;$taskArguments+=@('--creature-shape-profile',$taskShapeProfile)}
+if($CreatureNormalDiffuse){$taskArguments+='--creature-normal-diffuse'}
+if($CreatureSpecular){$taskArguments+='--creature-specular'}
+if($CreatureTextureProfile){$taskTextureProfile=(Resolve-Path -LiteralPath $CreatureTextureProfile).Path;$taskArguments+=@('--creature-texture-profile',$taskTextureProfile)}
+if($CreatureFaceProfile){$taskProfile=(Resolve-Path -LiteralPath $CreatureFaceProfile).Path;$taskArguments+=@('--creature-face-profile',$taskProfile)}
 if($DoorStyle){$taskArguments+=@('--door-style',$DoorStyle,'--door-table-sha256',$DoorTableSha256)}
 if($SceneSpecification){$taskSceneSpecification=(Resolve-Path -LiteralPath $SceneSpecification).Path;$taskArguments+=@('--interior-scene-spec',$taskSceneSpecification,'--interior-scene-sha256',$SceneSpecificationSha256,'--door-table-sha256',$DoorTableSha256)}
 if($HoldClosingDoors){$taskArguments+='--hold-closing-doors'}
@@ -111,6 +190,22 @@ if($SceneGeometry){$taskArguments+='--scene-geometry'}
 if($SceneTextures){$taskArguments+='--scene-textures'}
 if($SceneTriangleGuard){$taskArguments+='--scene-triangle-guard'}
 if($SceneCharacter){$taskArguments+=@('--scene-character','--scene-character-appearance-sha256',$SceneCharacterAppearanceSha256)}
+if($SceneCharacterMaterialDefaults){$taskArguments+='--scene-character-material-defaults'}
+if($SceneCharacterPaletteDefaults){$taskArguments+='--scene-character-palette-defaults'}
+if($SceneCharacterAlbedoFactors){$taskArguments+='--scene-character-albedo-factors'}
+if($SceneCharacterCustomizationProfile){$taskSceneCustomizationProfile=(Resolve-Path -LiteralPath $SceneCharacterCustomizationProfile).Path;$taskArguments+=@('--scene-character-customization-profile',$taskSceneCustomizationProfile)}
+if($SceneCharacterShapeProfile){$taskSceneShapeProfile=(Resolve-Path -LiteralPath $SceneCharacterShapeProfile).Path;$taskArguments+=@('--scene-character-shape-profile',$taskSceneShapeProfile)}
+if($SceneCharacterNormalDiffuse){$taskArguments+='--scene-character-normal-diffuse'}
+if($SceneCharacterSpecular){$taskArguments+='--scene-character-specular'}
+if($SceneCellLighting){$taskArguments+='--scene-cell-lighting'}
+if($SceneLegacyLightSelection){$taskArguments+='--scene-legacy-light-selection'}
+if($SceneDoorLighting){$taskArguments+='--scene-door-lighting'}
+if($SceneRoomLighting){$taskArguments+='--scene-room-lighting'}
+if($SceneCameraProfileSha256){$taskArguments+=@('--scene-camera-profile-sha256',$SceneCameraProfileSha256)}
+if($SceneCharacterLocomotionProfile){$taskSceneLocomotionProfile=(Resolve-Path -LiteralPath $SceneCharacterLocomotionProfile).Path;$taskArguments+=@('--scene-character-locomotion-profile',$taskSceneLocomotionProfile)}
+if($SceneCharacterTextureProfile){$taskSceneTextureProfile=(Resolve-Path -LiteralPath $SceneCharacterTextureProfile).Path;$taskArguments+=@('--scene-character-texture-profile',$taskSceneTextureProfile)}
+if($SceneCharacterFaceProfile){$taskSceneProfile=(Resolve-Path -LiteralPath $SceneCharacterFaceProfile).Path;$taskArguments+=@('--scene-character-face-profile',$taskSceneProfile)}
+if($SceneCharacterAnimationTable){$taskArguments+=@('--scene-character-animation-table',$SceneCharacterAnimationTable,'--scene-character-animation-name',$SceneCharacterAnimationName,'--scene-character-animation-sha256',$SceneCharacterAnimationSha256)}
 if($PortalVisibility){$taskArguments+='--portal-visibility'}
 if($CancelSceneLoad){$taskArguments+='--cancel-scene-load'}
 if($DoorPortal -ge 0){$taskArguments+=@('--door-cell',[string]$DoorCell,'--door-portal',[string]$DoorPortal,'--door-leaf-sha256',$DoorLeafSha256)}

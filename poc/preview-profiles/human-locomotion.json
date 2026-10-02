@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "animations": [
+    {
+      "key": "walk",
+      "table": "appearance/lat/all_m.lat",
+      "name": "loop_standing",
+      "sha256": "FF86567A4CDBFC1EB574C5C8FC399144A37DAD218AA49DE0070AC9F1F19F65A6",
+      "route": [0, 1]
+    },
+    {
+      "key": "run",
+      "table": "appearance/lat/all_m.lat",
+      "name": "loop_standing",
+      "sha256": "72D5842D2959D8438884B44F4220F3E323D221A745D849CB8726E905A8AAF2F4",
+      "route": [0, 2]
+    }
+  ]
+}

@@ -61,8 +61,8 @@ Godot must be evaluated as an architectural option, not assumed to be either a d
 The transform boundary is no longer an engine-evaluation unknown. Stardust uses
 Y-up/+Z-forward transforms and `[w,x,y,z]` quaternions; Godot uses Y-up/-Z-
 forward. A single Z reflection maps positions/directions, while quaternion
-construction uses `[-x,-y,z,w]`; imported winding and tangent handedness flip
-once. Principal-axis and mixed-pose matrix fixtures pass. Keep original assets
+construction uses `[-x,-y,z,w]`; authored triangle indices are preserved after reflection and tangent
+handedness flips once. See [geometry facing](GODOT_GEOMETRY_FACING_CONTRACT.md). Principal-axis and mixed-pose matrix fixtures pass. Keep original assets
 in engine-neutral SWG space and apply this conversion only at the Godot adapter.
 
 Likewise, Godot's animation facilities must sit behind a compatibility graph,

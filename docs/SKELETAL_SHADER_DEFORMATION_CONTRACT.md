@@ -11,3 +11,10 @@ Influence association and raw direction output originate in the [original consum
 Native `--skeletal-shader-deformation` uses existing pinned object/SAT/configuration arguments. Independent `verify_skeletal_joint_binding.py` automatically checks shader rows in that output. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_SHADER_DEFORMATION.md). Next: main-thread upload of explicit diagnostic poses and inspected reset/deformation capture. Animation playback/material customization/generated face/active occlusion remain separate.
 
 The subsequent [weighted diagnostic preview](NEUTRAL_CHARACTER_PREVIEW_CONTRACT.md) completes main-thread pose upload and inspected reset/deformation capture. Original animated pose evaluation remains separate.
+
+## Shared position batch
+
+`CreateAll` validates all shader maps and aggregate budgets before returning any batch, evaluates global positions once per mesh, then maps separate owned shader outputs. Normals and tangent XYZ still use the weights associated with each shader's PIDX and its own direction maps. Single-shader `Create` remains supported. The host uses one batch per mesh per pose. Original body/head position evaluations fall from3,478 to1,454 per pose; this is work accounting, not an FPS estimate. Independent original geometry/animated-pose audits and480-update GPU playback pass; see the [batch checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_DEFORMATION_BATCH.md).
+
+
+The host also resolves each mesh's transform-name joint mapping once before GPU construction and retains it with the owned geometry. Pose updates reuse this mapping; resource-instance identity checks verify materials persist across rebuilt surfaces. Original standalone/interior GPU animation and full readbacks pass. [Retained binding checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_RETAINED_SKELETAL_BINDINGS.md).

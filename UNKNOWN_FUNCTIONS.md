@@ -3030,3 +3030,56 @@ Existing canonical skeletal_mesh_generator_load_v0004_VA_00800EF0 now has bounde
 ## 2026-10-01 logical animation tables
 
 [Logical animation tables](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_LOGICAL_ANIMATION_TABLES.md) independently matches14 original sources/710,463 bytes and1,046 serialized entries. Four duplicated body names retained; authored/synthetic default and opaque typed subtrees validated. Selected clip/proxy execution remains next; metrics unchanged.
+
+
+## 2026-10-01 animated local composition observation
+
+[Pose contract](docs/SKELETON_ANIMATION_POSE_CONTRACT.md) ties0082B8D0/E0/F0/900 to RPRE/RPST/BPTR/BPRO and confirms007E6917..007E6995 order RPST*(sample*BPRO*RPRE), with BPTR plus sample translation.00822FC0 iterates requested skeleton names, so extra clip names need not acquire body joints. No canonical names added; original inverse-palette cache/segment ownership remains separate.
+
+
+2026-10-01 inline face effect observations:0075D490 IMPL0003 DATA-before-OPTN;00763D10 PTXM dispatcher/00763D90 v0000 consumes16 bytes;62A0B340 PASS+20 cached blend,+28/+2C blend-table indices;62A04EC0/62A04EE0 cache blend/write bytes,62A05620 draw branch applies states27/168. Existing semantic names preserved; no new provisional labels or coverage count. See [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INLINE_FACE_EFFECTS.md). Effective blueprint target-alpha global mode remains unknown.
+
+
+2026-10-01 preparation observations:0086D490 SST1 loader passes Boolean1 to0086E370, which forwards name/Boolean to00870510 and factory construction0086C680.0086DF70 negative/high palette index selects last entry;0086D5E0 texture index clamps to endpoints. Existing names preserved; semantic meaning of Boolean remains unknown. [Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_EXPLICIT_FACE_PREPARATION.md).
+
+
+## 2026-10-01 Face camera and target observations
+
+[Face execution boundary](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_FACE_EXECUTION_BOUNDARY.md) traces PCAM0086C380/00768620/00767700, sampler inheritance62A0E570, managed destination00869CD0/ARGB8 scratch62A0AF40 and original shared pixel-program output. Corrected selected DEST remap;51-source/2,283,555-byte original dependency/instruction audit and negative/ownership gates pass. Godot build passes. Global opacity and exact raster parity remain open; coverage metrics/canonical names unchanged.
+
+
+2026-10-01 namespace relationship:00872C90 registration and00873190 value update map true to01924C80 `/private/`, false01924C70 `/shared_owner/`;00872A00/00872B10 initialize the strings from0188F570/0186B880. This matches CSHD007859B0 and closes the BTRT domain relationship without repurposing existing factory names. [Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SHARED_CUSTOMIZATION.md).
+
+
+## 2026-10-01 skeletal blend execution observations
+
+Baseline identity unchanged.007FAA00 constructs shared-owner BLT names;008031A0 applies positions before weighted transfer and normalizes all normals when any target activates.008036C0 applies/normalizes tangent XYZ;007F9F20 preserves W.00AB5C40 leaves directions below the documented tiny-length threshold unchanged. [Canonical blend contract](docs/SKELETAL_BLEND_SHAPE_CONTRACT.md) records exact sites/constants, confidence and prototype limits. No semantic name repurposed or canonical registry change; factory range/defaults and HPTS semantics remain unresolved.
+
+## Material component reconciliation —2026-10-01
+
+Direct007843B0/00A95860 and backend62A0E9D0/62A0EF30 now establish ambient/diffuse/emissive/specular ARGB serialized order, power and RGBA shader constant mapping. [Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_SPECULAR_EQUATIONS.md). No provisional semantic names added or repurposed; complete light selection remains open.
+
+## Camera zoom scale observation —2026-10-01
+
+0x00503400 reads F32 global0x01911180; configuration instructions0x0050407E..0x00504092 load ClientGame/freeChaseCameraMaximumZoom with default1. Free-chase constructor multiplies authored ZOOM values by this getter. [Camera profile contract](docs/FREE_CHASE_CAMERA_PROFILE_CONTRACT.md). No canonical names added or repurposed; live override state remains unclaimed.
+
+## Original CELL lights —2026-10-01
+
+| Address | Canonical name | Observation/confidence |
+|---|---|---|
+| `0x00B451E0` | `portal_cell_template_load_v0005_VA_00B451E0` | Confirmed version dispatcher target and signed-count/93-byte LGHT parser; two ARGB colors, transform, ordered attenuation and pi local yaw. |
+| `0x006E5AA0` | `portal_cell_light_record_create_VA_006E5AA0` | Confirmed record factory maps0/1/2 to runtime ambient0/directional1/point3; preserves point attenuation and directional/point poses/colors. |
+
+Consumer0x006E5D60 obtains the record vector through0x00B45A40 (template+0x14), creates primary lights and adds a separate participation-light when second RGB is nonzero. Selected three-room source19 records create24 such objects. [Contract](docs/PORTAL_CELL_LIGHT_CONTRACT.md). Two canonical names added; no function-coverage percentage follows.
+
+## Original bounded light selection —2026-10-01
+
+[Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_LEGACY_LIGHT_SELECTION.md):25 hash-gated instruction anchors close baked/unbaked masks,1+2 directional/1+4 point slots, absolute-RGB ranking and channel roles. Twelve original/64 synthetic independent selection cases pass. Live visibility/order remains Unknown; baked room over-lighting correction next. Metrics unchanged.
+
+## Point constant packing closure —2026-10-01
+
+Existing backend0x62A0A3C0 is now tied to [original source attenuation](docs/LEGACY_POINT_ATTENUATION_CONTRACT.md):20 hash-gated anchors confirm coefficient offsets+0x100/104/108, fourth-zero writes0x62A0A78D/845, empty-point constant1 and28-vector c16 upload. No new names or address meanings are inferred from external LIT documentation; compiled high-power behavior remains Unknown.
+
+## Light-scaling configuration snapshot —2026-10-01
+
+`0x00779E50` is canonically `client_graphics_light_scaling_enabled_VA_00779E50`: getter for global0x01923544, written from [ClientGraphics] enableLightScaling(default true) by existing0x00779A50. Both StaticShader constructors capture engine shader+0x12; copies preserve it and0x62A046B0 selects scaled/raw RGB/scores. Prior generic graphics-data wording is superseded by this engine-object owner evidence. [Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_LIGHT_SCALING_SELECTOR.md). Current canonical count2602; no function-coverage claim.

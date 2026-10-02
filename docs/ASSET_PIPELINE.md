@@ -495,7 +495,7 @@ and [acceptance record](CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
 
 ## Owned textured mesh increment (2026-09-29)
 
-The [DDS contract](DDS_DECODER_CONTRACT.md) and [material graph checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_MATERIAL_GRAPH.md) now implement the previously open pixel/dependency slice. EFCT/0001, IMPL/0005, PASS/0009, MATS/0000 and TCSS/0000 are bounded owned descriptions. STAG/0000 has 18 U8 fields, tags at offsets 18/22, then seven U8 fields. All 80 original texture mips match independent reference bytes. Original material scalar interpretation and full format breadth remain open. Godot's explicit unlit adapter is described in the [GPU preview checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_ORIGINAL_GODOT_PREVIEW.md).
+The [DDS contract](DDS_DECODER_CONTRACT.md) and [material graph checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_MATERIAL_GRAPH.md) now implement the previously open pixel/dependency slice. EFCT/0001, IMPL/0005, PASS/0009, MATS/0000 and TCSS/0000 are bounded owned descriptions. STAG/0000 has 18 U8 fields, tags at offsets 18/22, then seven U8 fields. All 80 original texture mips match independent reference bytes. The [selected material/specular contract](SKELETAL_SPECULAR_CONTRACT.md) now assigns MATL component order through direct loader/backend constant mapping; full format breadth remains open. Godot's explicit unlit adapter is described in the [GPU preview checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_ORIGINAL_GODOT_PREVIEW.md).
 
 ## Native DTLA and four-coordinate vertices (2026-09-29)
 
@@ -591,3 +591,14 @@ The [bounded template contract](OBJECT_TEMPLATE_COLLISION_PROFILE_CONTRACT.md) s
 ## Object-root skeletal descriptor slice
 
 The [SAT/MLOD contract](SKELETAL_APPEARANCE_DESCRIPTOR_CONTRACT.md) now has owned engine-neutral readers and a pinned inherited object-root loader. The unchanged human eight-source chain agrees independently; skeleton/LAT/MGN references are preserved but not instantiated.
+
+
+### Bounded BTRT implementation audit (October1)
+
+The [owned face description](BLUEPRINT_FACE_DESCRIPTION_CONTRACT.md) now decodes the selected original human live BTRT0001 envelope/commands through object-root TRTS ownership. Independent audit corrects the older male-fixture summary:32 texture names and four DEST format IDs `[4,3,5,6]`; the third destination word is the count. Five shader/vertex/render slots and nine prepare lists match. This descriptor is not a generated face executor; copy/blend shader translation is next.
+
+
+Owned [skeletal blend descriptions](SKELETAL_BLEND_SHAPE_CONTRACT.md) preserve original sparse records and shared-owner names; application remains a separate boundary.
+
+
+The [skeletal texture-choice closure](SKELETAL_TEXTURE_CHOICE_CONTRACT.md) loads original age-map alternatives explicitly and applies selections over owned data.

@@ -32,14 +32,14 @@ public partial class Main : Node
     {
         if(what==NotificationWMWindowFocusIn || what==NotificationWMWindowFocusOut)
         {
-            try{actorFocus?.Invoke(what==NotificationWMWindowFocusIn);}
+            try{actorFocus?.Invoke(what==NotificationWMWindowFocusIn);skeletalAnimationFocus?.Invoke(what==NotificationWMWindowFocusIn);}
             catch(System.Exception failure){actorUpdate=null;actorFocus=null;GD.PushError("Actor focus boundary failed: "+failure.GetType().Name);GetTree().Quit(1);}
         }
     }
     public override void _Process(double delta)
     {
-        try{actorUpdate?.Invoke(delta);cameraLodUpdate?.Invoke();}
-        catch(System.Exception failure){actorUpdate=null;cameraLodUpdate=null;GD.PushError("Frame update checkpoint failed: "+failure.GetType().Name);GetTree().Quit(1);}
+        try{actorUpdate?.Invoke(delta);cameraLodUpdate?.Invoke();skeletalAnimationUpdate?.Invoke(delta);customizationPoll?.Invoke();}
+        catch(System.Exception failure){actorUpdate=null;cameraLodUpdate=null;skeletalAnimationUpdate=null;GD.PushError("Frame update checkpoint failed: "+failure.GetType().Name);GetTree().Quit(1);}
     }
     public override async void _Ready()
     {
@@ -74,7 +74,7 @@ public partial class Main : Node
             GetTree().Quit(1);
         }
     }
-    public override void _ExitTree(){actorUpdate=null;actorFocus=null;actorKeyInput=null;actorTimeline=null;actorHost=null;actorSimulation?.Dispose();actorSimulation=null;DisposeSkeletalPreview();DisposeInteriorScene();DisposeInteriorDoorResources();doorRuntime?.Dispose();doorRuntime=null;pathPreview?.Dispose();pathPreview=null;floorPick=null;floorPreview?.Dispose();floorPreview=null;cameraLodUpdate=null;assetPreview?.Dispose();assetPreview=null;detailPreview?.Dispose();detailPreview=null;geometryPreview?.Dispose();geometryPreview=null;}
+    public override void _ExitTree(){DisposeCustomization();actorUpdate=null;actorFocus=null;actorKeyInput=null;actorTimeline=null;actorHost=null;actorSimulation?.Dispose();actorSimulation=null;DisposeSkeletalPreview();DisposeInteriorScene();DisposeInteriorDoorResources();doorRuntime?.Dispose();doorRuntime=null;pathPreview?.Dispose();pathPreview=null;floorPick=null;floorPreview?.Dispose();floorPreview=null;cameraLodUpdate=null;assetPreview?.Dispose();assetPreview=null;detailPreview?.Dispose();detailPreview=null;geometryPreview?.Dispose();geometryPreview=null;}
     private async System.Threading.Tasks.Task BuildPalettePreview(string[] args)
     {
         string Read(string key)

@@ -78,3 +78,8 @@ by the eight live face templates before broadening to dormant BTRT/0002.
 - Effective resource count/version/signature: **Confirmed by configured assets**.
 - Friendly meaning of every DEST attribute: **Unknown; exact IDs/remap retained**.
 - Live command opcodes: **Closed in the subsequent command checkpoint**.
+
+
+## October1 implementation audit correction
+
+The [pinned original face description audit](IMPLEMENTATION_CHECKPOINT_2026-10-01_BLUEPRINT_FACE_DESCRIPTION.md) establishes that the selected male human fixture has32 TXTS names, not five. Its DEST third U32 is count4; the format vector is `[4,3,5,6]`, excluding that count. Do not implement the historical five-ID vector from this summary. Other historical corpus aggregates were not rescanned by this correction.

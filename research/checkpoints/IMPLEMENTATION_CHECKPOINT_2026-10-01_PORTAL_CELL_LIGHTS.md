@@ -1,0 +1,13 @@
+# Implementation checkpoint: original cell-light records —2026-10-01
+
+Question: what fields/types and transform correction do original CELL/LGHT records use? Stop at an owned typed description and original source/consumer evidence, before renderer integration.
+
+Baseline executable and configured raster DLL hashes were reverified; exact identities, addresses, source layout and input pins are in [the durable contract](../../docs/PORTAL_CELL_LIGHT_CONTRACT.md). Tools: existing canonical/function inventory, read-only Ghidra targeted decompilation, direct Capstone disassembly, effective-overlay reader, .NET owned decoder/fixtures and independent Python F32/matrix audit. Raw proprietary-derived details remain ignored; no original execution or network contact.
+
+Observation: v4/v5 loaders consume signed count and93-byte unpadded records; signed type, two ARGB colors, twelve transform floats and three ordered attenuation coefficients. Local-Y pi correction precedes96-byte runtime vector insertion. Factory maps0/1/2 to runtime ambient0/directional1/point3. Caller gets the exact template vector, creates primary lights and duplicates five selected nonzero secondary-RGB records with separate participation flags. Existing backend negates runtime K for directional constants and preserves point coefficient vector. Confidence confirmed for raw instructions/field flow; historical member spellings unavailable. Consequence: preserve HDR/alpha/coefficient signs, both authored/runtime transforms and separate channel semantics; do not collapse this into one clamped color/pose.
+
+Observation: existing cells5/6/7 contain19 records (9 directional/10 point), five with nonzero secondary RGB. Exact F32 source fields independently agree, max yaw/direction error1.91276e-8 at2e-6 tolerance. First overly exact runtime comparison read shortest JSON F32 decimals as double instead of restoring F32; correction resolves it. Source closure remains148/16,612,055 bytes with no added lookup. All original actor/camera/floor/material audits remain passing.
+
+Synthetic owned/HDR/all-types/transform/coefficients and absence/truncation/type/float/width/count/budget checks, full native suite and Godot build pass. Two canonical names are added for the v5 loader and typed light factory; inventory audit validates their entries. No behavioral research-score or protocol-count change follows, and function coverage remains uncalibrated. No staging/publication. Renderer light selection/global ambient/shadows/full environment remain open.
+
+Next: opt-in original-cell light evaluation at the retained character boundary, with explicit selection/ambient/pathological-attenuation policy and independent numeric/GPU fixtures.

@@ -122,7 +122,7 @@ public sealed class PortalBarrierCollider
     }
     private static float Component(Vector3 v, int axis) => axis == 0 ? v.X : axis == 1 ? v.Y : v.Z;
     private static bool Finite(Vector3 v) => float.IsFinite(v.X) && float.IsFinite(v.Y) && float.IsFinite(v.Z);
-    private static void ValidatePose(AppearanceTransform p)
+    internal static void ValidatePose(AppearanceTransform p)
     {
         if (!Finite(p.RowX) || !Finite(p.RowY) || !Finite(p.RowZ) || !Finite(p.Translation) ||
             Math.Abs(p.RowX.LengthSquared() - 1) > 1e-4 || Math.Abs(p.RowY.LengthSquared() - 1) > 1e-4 || Math.Abs(p.RowZ.LengthSquared() - 1) > 1e-4 ||

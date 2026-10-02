@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "values": [
+    {
+      "variableName": "index_age",
+      "factoryFlag": true,
+      "value": 3
+    }
+  ]
+}

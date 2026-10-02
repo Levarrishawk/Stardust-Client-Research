@@ -2,11 +2,11 @@
 
 This is the canonical entry point for reviewing the `Stardust.exe` research before designing or implementing a replacement client.
 
-Latest development session: [development run through October 1, 05:00 Eastern](research/sessions/IMPLEMENTATION_SESSION_2026-09-30_TO_2026-10-01_0500.md).
+Latest development session: [development run through October1,20:00 Eastern](research/sessions/IMPLEMENTATION_SESSION_2026-10-01_UNTIL_2000.md).
 Current executable acceptance gates: [implementation record](docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
 Latest checkpoint: [status observation boundary](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_STATUS_BOUNDARY.md).
 Latest follow-up: [direct status CRC receive rule](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-29_STATUS_CRC_RECEIVE.md).
-Latest implementation checkpoint: [packed quaternion decoding](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_PACKED_QUATERNION_DECODE.md).
+Latest implementation checkpoint: [animated original interior character](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_CHARACTER_ANIMATION.md).
 Latest collision research: [creature fallback dimensions](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-01_CREATURE_COLLISION_FALLBACK.md).
 
 ## Scope and current position
@@ -25,6 +25,8 @@ feasibility proof passed. Work is now development-led: implement the smallest
 fixture-backed compatibility slice, and return to targeted executable/server
 analysis only when a concrete implementation uncertainty blocks or risks it.
 Function-level accounting remains separate from behavioral readiness.
+
+Parallel development: [adopted operating rules](docs/PARALLEL_DEVELOPMENT_RULES.md). Workers are in preparation-only mode until the user authorizes a round.
 
 ## Recommended review order
 
@@ -83,3 +85,9 @@ requires status/liveness policy and a separately authorized controlled-server
 run. One original textured static mesh now renders in an explicit Godot preview.
 Next asset milestone: parent appearance and LOD selection; modern DDS next: BC7.
 See the acceptance record and latest session for verified scope and limits.
+
+Latest material milestone: [original skeletal texture defaults](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_MATERIAL_DEFAULTS.md).
+
+Latest scene milestone: [textured animated interior character](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_CHARACTER_MATERIALS.md).
+
+Latest bounded implementation: [original blueprint face description](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_BLUEPRINT_FACE_DESCRIPTION.md); [completed run report](research/sessions/IMPLEMENTATION_SESSION_2026-10-01_UNTIL_0700.md) gives the next shader/face execution probe.

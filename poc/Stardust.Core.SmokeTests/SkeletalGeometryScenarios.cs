@@ -16,7 +16,7 @@ internal static class SkeletalGeometryScenarios
         Reject(()=>SkeletalMeshGeometryDecoder.Decode(Fixture(),maximumTriangles:1));
         Console.WriteLine("PASS: owned shader vertex/normal/UV maps, ITL/OITL source IDs/degenerate filtering/TRTS retention and malformed index/float/resource/truncation gates");
     }
-    private static byte[] Fixture(bool occluded=true,uint index=2,float uv=1,uint renderer=0)
+    internal static byte[] Fixture(bool occluded=true,uint index=2,float uv=1,uint renderer=0)
     {
         byte[] F(params float[] f)=>f.SelectMany(BitConverter.GetBytes).ToArray();byte[] U(params uint[] u)=>u.SelectMany(BitConverter.GetBytes).ToArray();
         byte[] Text(string s)=>Encoding.ASCII.GetBytes(s+"\0");

@@ -58,3 +58,7 @@ failure. All fixtures passed on 2026-09-22.
   instead of applying this adapter: **architecture choice**, not a compatibility
   unknown.
 
+
+## October1 implementation correction
+
+The extra imported-index reversal above is superseded by the [original-source facing audit](../../docs/GODOT_GEOMETRY_FACING_CONTRACT.md). Z reflection already converts tested source CCW faces to Godot CW; preserve authored indices. The quaternion/matrix equations and historical rotation test results remain valid. The earlier synthetic rendering fixtures used an opposite source winding and did not establish outward original faces.

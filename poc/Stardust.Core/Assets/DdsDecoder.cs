@@ -7,13 +7,14 @@ public enum DdsColorSpace { Unspecified, Linear, Srgb }
 public enum DdsAlphaMode { Unknown, Straight, Premultiplied, Opaque, Custom }
 public sealed record DdsMip(int Width, int Height, ReadOnlyMemory<byte> Rgba);
 public sealed record DdsImage(DdsFormat Format, IReadOnlyList<DdsMip> Mips,
-    DdsColorSpace ColorSpace = DdsColorSpace.Unspecified, DdsAlphaMode AlphaMode = DdsAlphaMode.Unknown, uint? DxgiFormat = null)
+    DdsColorSpace ColorSpace = DdsColorSpace.Unspecified, DdsAlphaMode AlphaMode = DdsAlphaMode.Unknown, uint? DxgiFormat = null,
+    ReadOnlyMemory<byte> RetainedTerminalBlock = default)
 {
     public int Width => Mips[0].Width;
     public int Height => Mips[0].Height;
 }
 public sealed record DdsReadLimits(int MaximumDimension = 8192, int MaximumInputBytes = 67_108_864,
-    int MaximumDecodedBytes = 134_217_728);
+    int MaximumDecodedBytes = 134_217_728, bool AllowLegacyTerminalBlockTail = false);
 
 /// <summary>Owned RGBA8 mips, top-to-bottom rows. Bounded 2D legacy/DX10 DDS; no gamma, alpha or normal reconstruction.</summary>
 public static class DdsDecoder
@@ -101,7 +102,11 @@ public static class DdsDecoder
             Require(decodedBytes <= limits.MaximumDecodedBytes && bytes <= source.Length - cursor, "DDS mip truncated or decode budget exceeded.");
             ranges.Add((w, h, cursor, (int)bytes)); cursor += (int)bytes;
         }
-        Require(cursor == source.Length, "DDS has unsupported trailing bytes.");
+        bool terminalTail = cursor != source.Length && limits.AllowLegacyTerminalBlockTail && payloadStart == 128 &&
+            format == DdsFormat.Bc2 && mipCount == maximumMips - 1 && (flags & 0x20000) != 0 &&
+            ((width >> ((int)mipCount - 1) == 2 && height >> ((int)mipCount - 1) == 1) ||
+             (height >> ((int)mipCount - 1) == 2 && width >> ((int)mipCount - 1) == 1)) && source.Length - cursor == 16;
+        Require(cursor == source.Length || terminalTail, "DDS has unsupported trailing bytes.");
         List<DdsMip> mips = new();
         foreach (var range in ranges)
         {
@@ -120,7 +125,8 @@ public static class DdsDecoder
             else DecodeBlocks(data, range.Width, range.Height, format, rgba);
             mips.Add(new(range.Width, range.Height, rgba));
         }
-        return new(format, mips.AsReadOnly(), colorSpace, alphaMode, dxgiFormat);
+        return new(format, mips.AsReadOnly(), colorSpace, alphaMode, dxgiFormat,
+            terminalTail ? source[cursor..].ToArray() : ReadOnlyMemory<byte>.Empty);
     }
 
     private static void DecodeBlocks(ReadOnlySpan<byte> source, int width, int height, DdsFormat format, Span<byte> output)

@@ -1,0 +1,13 @@
+# Camera-distance recovery contract
+
+`ChaseCameraDistanceClock` is an explicit modern presentation policy with a0.2-second recovery time constant. Its input is the current obstruction query's safe distance, not a collision-authoritative actor displacement. Initialize/reset at the supplied safe distance. Every update immediately clamps the previous distance down to current safe clearance, including while paused and at zero elapsed time. Active release approaches safe distance exponentially: safe-(safe-current)*exp(-seconds/0.2). Paused release holds; overlap safe distance0 holds at target. Validate finite clearance0..100 and elapsed0..0.25 before publishing state. Constructor time constant must be finite, positive and<=10 seconds.
+
+The displayed position is the current target minus current normalized look direction times filtered distance. This distance cannot exceed the current collision-resolved boom. Moving targets/directions are recomputed from current state; this policy does not sweep the camera's previous world position through time, smooth orientation/target height or reproduce original damping. Original camera smoothing remains a separate compatibility question.
+
+Godot resets recovery on owner/actor reset and first/third/overview mode changes. Normal frame updates advance only while focused and not paused; explicit bounded manual steps supply their own elapsed time. UI-only refreshes can retract for safety but do not expand without elapsed time. Portal visibility and [camera-cell tracking](CAMERA_CELL_TRACKING_CONTRACT.md) use the final displayed eye. Physics, actor/door state, character pose/topology/materials and source/texture cache remain independent.
+
+Native hand-calculated half recovery, constant-clearance partition invariance, paused/zero/reset/overlap and atomic negative checks pass. `--camera-distance-clock` emits256 authored synthetic transitions; `verify_camera_distance_clock.py` restores F32 clearance inputs and uses an independent expm1 form. Maximum error8.88178e-16 at1e-12 tolerance. These are replacement-policy fixtures, not recovered original camera traces.
+
+Original interior fixture runs20 monotonic release steps, changes look toward the original closed door for immediate paused collision retraction, returns to clear view with paused hold then active release, and preserves actor/resources. Existing64 restarted static camera views, two differing actor/camera owner-pose cases and original route/control/material checks pass; full native/build/headless/GPU and visual capture pass. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_CAMERA_DISTANCE_RECOVERY.md).
+
+Next: decode original cell-light records to replace diagnostic-only lighting inputs in a separately bounded adapter.

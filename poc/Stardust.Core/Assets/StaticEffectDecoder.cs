@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Stardust.Core.Assets;
 
-public sealed record PixelTextureBinding(byte Stage, uint TextureTag);
+public sealed record PixelTextureBinding(byte Stage, uint TextureTag, string Version = "0002", ReadOnlyMemory<byte> Metadata = default);
 public sealed record FixedTextureStage(uint TextureTag, uint CoordinateTag, ReadOnlyMemory<byte> Metadata);
 public sealed record StaticEffectPass(byte FixedStageCount, IReadOnlyDictionary<int, uint> Fields,
     string? VertexProgram, string? PixelProgram, IReadOnlyList<PixelTextureBinding> PixelTextures,
@@ -17,12 +17,19 @@ public sealed record StaticEffectDescription(bool ContainsPrecalculatedVertexLig
     public bool HasRenderPasses=>Implementations.Any(implementation=>implementation.Passes.Count!=0);
 }
 
-/// <summary>Bounded EFCT 0001 / inline IMPL 0004-0007 / PASS 0008-0009 graph. Preserves raw enums; does not choose capabilities.</summary>
+/// <summary>Bounded EFCT 0001 / inline IMPL 0003-0007 / PASS 0007-0009 graph. Preserves raw enums; does not choose capabilities.</summary>
 public static class StaticEffectDecoder
 {
+    public static StaticEffectDescription DecodeInlineEffect(StaticShaderReferenceDescription shader)
+        => DecodeOwned(shader.InlineEffect ?? throw new InvalidDataException("Shader has no inline effect."));
+
     public static StaticEffectDescription Decode(ReadOnlySpan<byte> source)
     {
-        IffNode root = IffDocument.Parse(source).Root;
+        return DecodeOwned(IffDocument.Parse(source).Root);
+    }
+
+    internal static StaticEffectDescription DecodeOwned(IffNode root)
+    {
         Require(root.IsForm("EFCT") && root.Children.Count == 1 && root.Children[0].IsForm("0001"), "Unsupported effect envelope/version.");
         IReadOnlyList<IffNode> children = root.Children[0].Children;
         Require(children.Count >= 1 && children[0].Tag == "DATA" && children[0].Payload.Length == 2, "Invalid effect DATA.");
@@ -31,17 +38,23 @@ public static class StaticEffectDecoder
         List<StaticEffectImplementation> implementations = new();
         foreach (IffNode impl in children.Skip(1))
         {
-            Require(impl.IsForm("IMPL") && impl.Children.Count == 1 && impl.Children[0].FormType is "0004" or "0005" or "0006" or "0007", "Unsupported implementation version or external reference.");
+            Require(impl.IsForm("IMPL") && impl.Children.Count == 1 && impl.Children[0].FormType is "0003" or "0004" or "0005" or "0006" or "0007", "Unsupported implementation version or external reference.");
             string implementationVersion = impl.Children[0].FormType!;
-            bool hasFlags = implementationVersion != "0004";
+            bool legacy = implementationVersion == "0003";
+            bool hasFlags = implementationVersion is not ("0003" or "0004");
             IReadOnlyList<IffNode> parts = impl.Children[0].Children;
             int cursor = 0;
-            Require(parts.Count >= 2 && parts[cursor].Tag == "SCAP", "Missing implementation capabilities.");
-            IReadOnlyList<uint> caps = ReadWords(parts[cursor++].Payload.Span);
+            IReadOnlyList<uint> caps = Array.Empty<uint>();
+            if (!legacy)
+            {
+                Require(parts.Count >= 2 && parts[cursor].Tag == "SCAP", "Missing implementation capabilities.");
+                caps = ReadWords(parts[cursor++].Payload.Span);
+            }
             IReadOnlyList<uint> options = Array.Empty<uint>();
-            if (cursor < parts.Count && parts[cursor].Tag == "OPTN") options = ReadWords(parts[cursor++].Payload.Span);
+            if (!legacy && cursor < parts.Count && parts[cursor].Tag == "OPTN") options = ReadWords(parts[cursor++].Payload.Span);
             Require(cursor < parts.Count && parts[cursor].Tag == "DATA" && parts[cursor].Payload.Length == (hasFlags ? 7 : 5), "Invalid implementation DATA.");
             ReadOnlySpan<byte> info = parts[cursor++].Payload.Span;
+            if (legacy && cursor < parts.Count && parts[cursor].Tag == "OPTN") options = ReadWords(parts[cursor++].Payload.Span);
             Require(info[0] <= 32 && info[0] == parts.Count - cursor && (!hasFlags || (info[5] <= 1 && info[6] <= 1)), "Invalid implementation pass count/flags.");
             List<StaticEffectPass> passes = new();
             foreach (IffNode pass in parts.Skip(cursor)) passes.Add(ReadPass(pass));
@@ -52,10 +65,10 @@ public static class StaticEffectDecoder
 
     private static StaticEffectPass ReadPass(IffNode pass)
     {
-        Require(pass.IsForm("PASS") && pass.Children.Count == 1 && (pass.Children[0].IsForm("0008") || pass.Children[0].IsForm("0009")), "Unsupported pass version.");
+        Require(pass.IsForm("PASS") && pass.Children.Count == 1 && pass.Children[0].FormType is "0007" or "0008" or "0009", "Unsupported pass version.");
         string version = pass.Children[0].FormType!;
         IReadOnlyList<IffNode> children = pass.Children[0].Children;
-        Require(children.Count >= 2 && children[0].Tag == "DATA" && children[0].Payload.Length == (version == "0009" ? 56 : 51), "Invalid pass DATA.");
+        Require(children.Count >= 2 && children[0].Tag == "DATA" && children[0].Payload.Length == (version == "0009" ? 56 : version == "0008" ? 51 : 47), "Invalid pass DATA.");
         ReadOnlySpan<byte> data = children[0].Payload.Span;
         Dictionary<int, uint> fields = new(); int cursor = 1;
         foreach ((int offset, int width) in new (int, int)[] {
@@ -64,7 +77,8 @@ public static class StaticEffectDecoder
             (0x54,1),(0x58,1),(0x5C,1),(0x60,1),(0x64,1),(0x68,1),(0x6C,1),(0x70,1),(0x74,4),(0x78,4),(0x7C,4) })
         {
             // 0008 omits offset 4D and the four fields 64/68/6C/70; absence stays explicit.
-            if (version == "0008" && offset is 0x4D or 0x64 or 0x68 or 0x6C or 0x70) continue;
+            if (version != "0009" && offset is 0x4D or 0x64 or 0x68 or 0x6C or 0x70) continue;
+            if (version == "0007" && offset == 0x48) continue;
             fields.Add(offset, width == 1 ? data[cursor] : U32(data[cursor..])); cursor += width;
         }
         Require(cursor == data.Length, "Pass schema extent mismatch.");
@@ -95,11 +109,12 @@ public static class StaticEffectDecoder
             HashSet<byte> slots = new();
             foreach(IffNode textures in pixelParts.Skip(1))
             {
-                Require(textures.IsForm("PTXM") && textures.Children.Count == 1 && textures.Children[0].Tag == "0002" &&
-                    textures.Children[0].Payload.Length == 5, "Unsupported pixel texture-map version/extent.");
+                Require(textures.IsForm("PTXM") && textures.Children.Count == 1 &&
+                    ((textures.Children[0].Tag == "0002" && textures.Children[0].Payload.Length == 5) ||
+                     (textures.Children[0].Tag == "0000" && textures.Children[0].Payload.Length == 16)), "Unsupported pixel texture-map version/extent.");
                 ReadOnlySpan<byte> map = textures.Children[0].Payload.Span;
                 Require(map[0] < 8 && slots.Add(map[0]), "Invalid or duplicate pixel texture stage.");
-                bindings.Add(new(map[0], U32(map[1..])));
+                bindings.Add(new(map[0], U32(map[1..]), textures.Children[0].Tag, textures.Children[0].Payload));
             }
         }
         else

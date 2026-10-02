@@ -1,0 +1,11 @@
+# Implementation checkpoint: camera-distance recovery —2026-10-01
+
+Question: can obstruction release recover smoothly while every new collision retracts immediately? Stop at explicit temporal distance policy, independent fixtures and retained original interior adapter.
+
+Inputs: existing148-source original scene/profile/character closure, same source/configuration baseline as preceding camera checkpoints. Tools: .NET fixture emitter, Python independent closed form and Godot4.7.2 .NET replacement. No new asset lookups. [Contract](../../docs/CAMERA_DISTANCE_RECOVERY_CONTRACT.md) gives exact timing/ownership/safety and unsupported original behavior.
+
+Observation: hand-calculated half recovery and constant-clearance partition fixtures pass;256 authored trace cases agree with independent expm1 formula, max8.88178e-16 at1e-12 tolerance. First audit omitted restoration of serialized F32 input decimals and failed its overly exact comparison; restoring F32 values resolves the mismatch. Confidence confirmed for replacement arithmetic. Consequence: validate before publication, retract even when paused/zero-time, expand only on active elapsed time and never exceed current clearance.
+
+Observation:20 original clear-room recovery steps remain monotonic/bounded; original closed door obstructs a changed look direction and retracts immediately while paused. Paused release holds; active release expands. Actor references/root/geometry/resources stay unchanged. Existing64 static camera views restart their distance clock explicitly; dedicated temporal cases establish recovery. Camera-room queries receive the displayed eye; differing actor/camera cells in both owner poses, original2,880-tick route and animation/blend/color/shape/detail/material proofs still pass. Full native/build/headless/GPU and corrected capture pass.
+
+This is modern distance damping, not original spring/target smoothing or a continuous temporal world-position sweep. Private evidence remains ignored, no original execution/network/staging/publication. Research scores/names/packet counts unchanged. Next bounded question: what fields and runtime light types do original CELL/LGHT records represent, starting with the existing three-room scene and the original cell-template loader?

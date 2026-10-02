@@ -11,6 +11,12 @@ internal sealed class PreviewTextureCache : IDisposable
     private readonly Dictionary<DdsHdrImage,ImageTexture> hdrTextures=new(ReferenceEqualityComparer.Instance);
     private long uploadedBytes;
     internal int Count=>textures.Count+hdrTextures.Count;
+    internal long UploadedBytes=>uploadedBytes;
+    internal void Release(DdsImage source)
+    {
+        if(!textures.Remove(source,out var texture))return;
+        texture.Dispose();uploadedBytes-=source.Mips.Sum(mip=>(long)mip.Rgba.Length);
+    }
     internal ImageTexture Get(DdsImage source)
     {
         if(textures.TryGetValue(source,out ImageTexture? existing))return existing;

@@ -37,6 +37,14 @@ internal static class DdsScenarios
             ColorBlock(0xF800, 0, 0).Concat(ColorBlock(0x001F, 0, 0)).ToArray()));
         if (clipped.Mips[0].Rgba.Length != 60) throw new Exception("Partial BC block clipping size mismatch.");
         CheckPixel(clipped, 11, new byte[] { 255, 0, 0, 255 }); CheckPixel(clipped, 12, new byte[] { 0, 0, 255, 255 });
+        byte[] legacyTail=Fixture("DXT3",4,2,2,bc2.Concat(bc2).Concat(bc2).ToArray());Put(legacyTail,8,0x21007);
+        Reject(()=>DdsDecoder.Decode(legacyTail));
+        var retained=DdsDecoder.Decode(legacyTail,new(AllowLegacyTerminalBlockTail:true));
+        if(retained.Mips.Count!=2 || retained.RetainedTerminalBlock.Length!=16 || !retained.RetainedTerminalBlock.Span.SequenceEqual(bc2))throw new Exception("Declared mip/owned terminal block policy differs.");
+        Array.Clear(legacyTail);if(retained.RetainedTerminalBlock.Span[7]!=bc2[7])throw new Exception("Terminal block borrowed caller storage.");
+        foreach(int tail in new[]{1,15,17,32})Reject(()=>DdsDecoder.Decode(Fixture("DXT3",4,2,2,new byte[32+tail]),new(AllowLegacyTerminalBlockTail:true)));
+        Reject(()=>DdsDecoder.Decode(Fixture("DXT3",4,2,2,new byte[48]),new(AllowLegacyTerminalBlockTail:true)));
+        Reject(()=>DdsDecoder.Decode(Fixture("DXT5",4,2,2,new byte[48]),new(AllowLegacyTerminalBlockTail:true)));
         byte[] mips = Fixture("DXT1", 4, 4, 3, color.Concat(color).Concat(color).ToArray());
         DdsImage chain = DdsDecoder.Decode(mips);
         if (!chain.Mips.Select(mip => mip.Width).SequenceEqual(new[] { 4, 2, 1 }) || chain.Mips[2].Rgba.Length != 4)

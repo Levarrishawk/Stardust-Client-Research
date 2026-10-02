@@ -2,7 +2,7 @@
 
 ## Supported structure
 
-`PortalLayoutDecoder` accepts deployed PRTO/0001, /0003 and /0004. Required ordered children are DATA, PRTS, CELS, optional PGRF for v3/v4, then CRC. DATA is two LE U32 counts (geometry, cells); CRC is retained LE U32. PGRF, cell bounding extents and LGHT remain separately owned opaque IFF metadata. Stored CRC interpretation/verification is not inferred.
+`PortalLayoutDecoder` accepts deployed PRTO/0001, /0003 and /0004. Required ordered children are DATA, PRTS, CELS, optional PGRF for v3/v4, then CRC. DATA is two LE U32 counts (geometry, cells); CRC is retained LE U32. PGRF, cell bounding extents and LGHT remain separately owned IFF metadata at this layout boundary. The optional [cell-light decoder](PORTAL_CELL_LIGHT_CONTRACT.md) now interprets LGHT without changing layout acceptance. Stored CRC interpretation/verification is not inferred.
 
 Versions 1/3 PRTS contains PRTL chunks: LE U32 vertex count, then count three-F32 positions. The portable inspection representation derives `(0,i-1,i)` fan triangles, an explicit adapter choice rather than a promise of original triangulation/collision behavior. Version 4 contains IDTL/0000, with raw VERT (three F32 per position) and raw INDX (LE U32 triples). Finite positions and index ranges are checked. Original values/winding are retained; engine coordinate conversion is separate.
 

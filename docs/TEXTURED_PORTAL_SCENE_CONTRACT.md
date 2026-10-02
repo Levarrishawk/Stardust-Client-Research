@@ -23,3 +23,7 @@ Run `verify_portal_scene.py ROOT CONFIG MEMBER SHA CORE_DLL --textures` for inde
 Next: trace CSHD0001 inline static-shader ownership and customization records before allowing an explicitly labeled default customization inspection. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_TEXTURED_PORTAL_SCENE.md).
 
 The later [authored texture policy](AUTHORED_CUSTOMIZATION_TEXTURE_CONTRACT.md) optionally closes the four CSHD exterior bundle omissions; strict default rejection remains intact.
+
+The opt-in [original room-material adapter](STATIC_ROOM_LIGHTING_CONTRACT.md) now translates three selected baked/specular/emissive variants in the bounded scene. Existing texture-only inspection remains available; original capability selection and door normal mapping remain separate.
+
+Selected static doors now have an opt-in [retained normal/specular adapter](STATIC_NORMAL_MATERIAL_CONTRACT.md), sharing original LOD templates and geometry textures.

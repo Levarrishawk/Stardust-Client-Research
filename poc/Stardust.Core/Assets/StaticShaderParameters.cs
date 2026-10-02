@@ -6,7 +6,7 @@ namespace Stardust.Core.Assets;
 public sealed record StaticShaderParameters(IReadOnlyDictionary<uint, IReadOnlyList<float>> Materials,
     IReadOnlyDictionary<uint, byte> CoordinateSets);
 
-/// <summary>MATS and TCSS scalar slice. Material component semantics remain unassigned; preserves all 17 floats.</summary>
+/// <summary>MATS and TCSS scalar slice. Preserves all 17 floats; StaticShaderMaterialDecoder assigns the recovered component order.</summary>
 public static class StaticShaderParameterDecoder
 {
     public static StaticShaderParameters Decode(StaticShaderReferenceDescription shader)

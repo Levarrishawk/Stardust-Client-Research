@@ -1,0 +1,11 @@
+# Implementation checkpoint: camera-cell tracking —2026-10-01
+
+Question: can third-person portal visibility follow camera ownership independently of actor ownership? Stop at owned aperture traversal/fallback and original doorway integration.
+
+Inputs: same pinned original scene/profile/character chain and configuration as the preceding chase-camera checkpoint,148 sources/16,612,055 bytes; no added source lookups. Tools: .NET core/native fixture emitters, effective PRTO Python parser, independent segment-ray/closest-point calculations and replacement Godot4.7.2 .NET only. [Durable contract](../../docs/CAMERA_CELL_TRACKING_CONTRACT.md) specifies source assumptions, limits, tolerances and fallback.
+
+Observation:28 original doorway queries produce26 located/13 changed/two ambiguous results. Independent source geometry, statuses/cells/crossing order agree; maximum crossing-parameter error3.85904e-6 at2e-5 tolerance. Confidence confirmed for tested cases. Implementation consequence: do not substitute the actor cell after a camera portal crossing; ambiguous/unloaded/unpaired/budget outcomes show all selected rooms. Anchor and collision-resolved boom remain caller preconditions, not a universal containment proof.
+
+Observation:64 rendered owner/yaw/pitch/zoom views validate camera-cell source inclusion and room-node visibility. Two owner poses explicitly place the actor in the hall and camera in entrance room; portal-visibility toggles preserve actor references/state. Original2,880-tick/24-transfer/182-contact route and retained animation/blend/color/shape/detail/material checks pass. Synthetic traversal/reverse/aperture/zero/boundary/unloaded/unpaired/budget/ownership/negative checks, full native/build/GPU/headless and corrected visual captures pass. Independent360 obstruction checks remain passing. No legacy DPVS, original room-volume classifier or performance claim follows.
+
+Private original details/captures remain ignored, no original execution/network/staging/publication. Research metrics, semantic names and packet counts unchanged. Next: explicit distance recovery smoothing that retracts immediately before collision and feeds camera-cell tracking the final displayed eye.

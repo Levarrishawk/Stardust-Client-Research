@@ -426,3 +426,76 @@ Standalone `-Creature -CreatureAppearanceSha256 SAT_PIN` now draws the original 
 ## 2026-10-01 packed quaternion numerical decoding
 
 [Packed quaternion decoder](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_PACKED_QUATERNION_DECODE.md) independently agrees with executable-table decoding of all 2,225 selected original rotations (maximum error9.14e-8, zero selected repairs). All deployed-selector native gates and explicit overshoot diagnostic/repair pass. Interpolation, unmatched transform handling and playback remain next; metrics unchanged.
+
+
+## 2026-10-01 compressed animation sampling
+
+[Owned key sampler](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_COMPRESSED_ANIMATION_SAMPLING.md) independently verifies380 original transform samples, including fractional endpoints/interiors and reverse access, maximum error1.16e-7. Native ownership/seconds/negative gates pass. No pose application/playback or metric change.
+
+
+## 2026-10-01 sampled skeleton animation poses
+
+[Instruction-backed local poses](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETON_ANIMATION_POSE.md) independently verifies265 attached joint poses and8,950 original shader vertices, maximum error1.34e-6. Unused `rifle` and missing `hold_l` are explicit; bind fallback is opt-in. GPU pose upload/timed playback remain next; metrics unchanged.
+
+
+## 2026-10-01 rendered original animation pose
+
+[Selected original idle frame](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_ORIGINAL_ANIMATION_POSE_PREVIEW.md) passes background ownership, prepared/native independent audit, headless/cancellation, full GPU pose readback and inspected frame30 capture.15 original sources remain unchanged. Frozen sampled pose works; timed playback and materials/customization remain next. Metrics unchanged.
+
+
+## 2026-10-01 bounded original idle playback
+
+[Original idle preview playback](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_ORIGINAL_ANIMATION_PLAYBACK.md) passes480 pose uploads/two loops, headless/GPU readbacks, pause/focus/seek and actual play/scrub control signals. Updated capture inspected;15-source closure unchanged. Full animation graphs/root motion/materials remain separate; metrics unchanged.
+
+
+## 2026-10-01 animated original interior character
+
+[Interior idle animation](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_CHARACTER_ANIMATION.md) passes80-source/10,340,219-byte independent audit, unchanged original route/geometry and two-owner animated host/GPU/cancellation gates. Inspected capture shows original idle pose inside original interior; actor feet/door state remain authoritative. Character materials/full animation graphs remain pending; metrics unchanged.
+
+
+Original skeletal previews accept `-CreatureMaterialDefaults` with `-Creature` for authored CSHD MAIN texture-only inspection, including selected idle playback. See the [material contract](../docs/SKELETAL_MATERIAL_DEFAULTS_CONTRACT.md). Palette shading and generated face remain pending.
+
+The original interior preview also accepts `-SceneCharacterMaterialDefaults` with `-SceneCharacter`, independently of selected idle animation. [Verified scene milestone](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_CHARACTER_MATERIALS.md).
+
+Explicit `-CreaturePaletteDefaults`/`-SceneCharacterPaletteDefaults` retain authored palette selections with their respective material-default flags. This is color-data inspection; preview shading remains texture-only.
+
+The native `--skeletal-face-blueprints` probe follows original head TRTS into an owned BTRT live description. [Contract](../docs/BLUEPRINT_FACE_DESCRIPTION_CONTRACT.md); generated-face rendering is pending.
+
+### Explicit generated human face preview
+
+Use `-CreatureFaceProfile poc/preview-profiles/human-face-zero.json` with the existing pinned standalone creature launcher and `-CreatureMaterialDefaults`. This strict JSON profile supplies six exact name/Boolean values; it is an authored inspection profile, not recovered character-creation defaults. CPU preparation/composition remains engine-neutral and worker-owned. Generated MAIN binds through the original head MGN TRTS entry; GPU bytes and actual material texture identity are checked. Existing original idle/pose controls remain available. Combined palette/idle/face proof owns72 original sources; no original assets are shipped. See [composition contract](../docs/BLUEPRINT_FACE_COMPOSITION_CONTRACT.md). Body/eye palette shading, normal/specular effects and legacy driver bit parity remain pending.
+
+`-CreatureAlbedoFactors` additionally requires `-CreaturePaletteDefaults` and applies validated authored skin/eye MAIN/HUEB factors after sampling. The generated-face/idle combination owns74 original sources. Full lighting is still unlit inspection. [Albedo factor contract](../docs/SKELETAL_ALBEDO_FACTOR_CONTRACT.md) records exact scope and display policy.
+
+
+### Interior generated face and albedo
+
+The pinned animated interior proof accepts `-SceneCharacterFaceProfile` with material defaults and `-SceneCharacterAlbedoFactors` with palette defaults. CPU composition stays in the shared owned worker/cache; generated textures/materials retain identity through animation and room transfer. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_GENERATED_CHARACTER.md).
+
+
+### Shared character color/style selection
+
+Use `-CreatureCustomizationProfile` or `-SceneCharacterCustomizationProfile` with albedo/palette/material options to select one exact shared color/style snapshot. [Contract and reproduction](../docs/SKELETAL_CUSTOMIZATION_SELECTION_CONTRACT.md). Profiles are authored preview selections; texture-choice/shape updates and interactive revisions remain separate.
+
+
+### Live color/style edits
+
+Shared-profile previews expose color/style inputs and reset. CPU revisions coalesce and cancel outdated work; GPU publication retains current meshes/materials/animation and releases previous generated face textures. [Contract and evidence](../docs/LIVE_SKELETAL_CUSTOMIZATION_CONTRACT.md).
+
+
+Optional `-CreatureShapeProfile poc/preview-profiles/human-shapes-zero.json` adds explicit shared-owner shape controls to the pinned standalone preview. The authored zero selection is not an original default claim. See [live shape boundary](../docs/LIVE_SKELETAL_SHAPE_CONTRACT.md).
+
+
+`-SceneCharacterShapeProfile poc/preview-profiles/human-shapes-varied.json` applies an explicit authored shape selection to the pinned interior character and exposes live shape controls. Authoritative actor collision/feet remain unchanged. [Interior shape boundary](../docs/LIVE_SKELETAL_SHAPE_CONTRACT.md#interior-integration).
+
+### Original-profile third-person interior camera
+
+The pinned full-character scene accepts `-SceneCameraProfileSha256` with `-SceneTriangleGuard`. The profile joins the original owned source closure; authored zoom controls and an explicit sphere boom retract before room/door geometry. Camera-cell tracking drives portal visibility independently of actor ownership, with all-rooms fallback when unresolved. [Camera contract](../docs/INTERIOR_CHASE_CAMERA_CONTRACT.md) and [cell tracking](../docs/CAMERA_CELL_TRACKING_CONTRACT.md). Source triangle indices now remain unchanged after Z reflection; [facing correction](../docs/GODOT_GEOMETRY_FACING_CONTRACT.md).
+
+### Selected original cell/material lighting
+
+With the pinned full-character scene, `-SceneCellLighting` uses the recovered cell slot partition, original light-scaling default and positive point attenuation. `-SceneRoomLighting` applies baked-room material families; `-SceneDoorLighting` applies the selected normal/specular door family and shared vertex stage. The older `-SceneLegacyLightSelection` switch remains a compatible alias. These are offline bounded previews with explicit ambient, singular-light and basis policies. See [light selection](../docs/LEGACY_LIGHT_SELECTION_CONTRACT.md), [point attenuation](../docs/LEGACY_POINT_ATTENUATION_CONTRACT.md) and [shared vertex stage](../docs/TANGENT_LIGHTING_VARYING_CONTRACT.md).
+
+### Point-color GPU diagnostic
+
+`-PointColorGpuProbe` adds an opt-in combined point-light/normal/tangent/hue/mask fixture to a noninteractive GPU preview with `-CreatureSpecular` or `-SceneCharacterSpecular`. It is rejected with headless or interactive mode. Ordinary previews omit this additional diagnostic; its48 corrected cases pass. [Evidence and next probe](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_POINT_COLOR_GPU_PROBE.md).

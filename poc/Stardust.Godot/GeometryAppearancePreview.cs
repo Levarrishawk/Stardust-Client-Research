@@ -13,6 +13,7 @@ public sealed class GeometryAppearancePreview : IDisposable
     private readonly PreviewTextureCache gpuTextures=new();
     private readonly IReadOnlyDictionary<string,TexturedStaticMesh>? materialBundles;
     private readonly bool allowMainTextureOnly;
+    private readonly StaticNormalBundle? normalMaterials;
     private readonly List<string> materialDiagnostics=new();
     private readonly List<(Node3D Owner,Node3D[] Nodes,DetailAppearanceSelector Selector,bool[] Available,byte? Pivot,AppearanceExtent? Extent)> details=new();
     private int instances;
@@ -29,6 +30,7 @@ public sealed class GeometryAppearancePreview : IDisposable
     public int TexturedMeshTemplates=>texturedAdapters.Count(adapter=>adapter.TexturedSurfaces>0);
     public int NeutralMeshTemplates=>meshes.Count-TexturedMeshTemplates;
     public int TexturedSurfaces=>texturedAdapters.Sum(adapter=>adapter.TexturedSurfaces);
+    internal ImageTexture GetOwnedTexture(DdsImage image)=>gpuTextures.Get(image);
     public int UniqueGpuTextures=>gpuTextures.Count;
     public int NeutralSurfaces=>neutralGeometrySurfaces+texturedAdapters.Sum(adapter=>adapter.NeutralSurfaces);
     public int OmittedSurfaces=>texturedAdapters.Sum(adapter=>adapter.OmittedSurfaces);
@@ -36,9 +38,9 @@ public sealed class GeometryAppearancePreview : IDisposable
     public int HardpointMarkers=>hardpointMarkers.Count;
     public int VisibleHardpointLabels=>hardpointLabels.Count(label=>label.Visible);
     public IReadOnlyList<string> HardpointDescriptions=>hardpointMarkers.Select(value=>$"{value.Placement.InstanceOrdinal}/{value.Placement.Hardpoint.AuthoredIndex}: {value.Placement.Hardpoint.Name}").ToArray();
-    public GeometryAppearancePreview(AppearanceGeometryGraph source,IReadOnlyDictionary<string,TexturedStaticMesh>? materialBundles=null,bool allowMainTextureOnly=false,bool inspectHardpoints=false)
+    public GeometryAppearancePreview(AppearanceGeometryGraph source,IReadOnlyDictionary<string,TexturedStaticMesh>? materialBundles=null,bool allowMainTextureOnly=false,bool inspectHardpoints=false,StaticNormalBundle? normalMaterials=null)
     {
-        this.materialBundles=materialBundles;this.allowMainTextureOnly=allowMainTextureOnly;this.inspectHardpoints=inspectHardpoints;
+        this.normalMaterials=normalMaterials;this.materialBundles=materialBundles;this.allowMainTextureOnly=allowMainTextureOnly;this.inspectHardpoints=inspectHardpoints;
         if(inspectHardpoints)foreach(var placement in AppearanceHardpointSceneQuery.Collect(source).Placements)hardpointPlacements.Add((placement.InstanceOrdinal,placement.Hardpoint.AuthoredIndex),placement);
         VerifyTransformBoundary();
         Root=new();
@@ -73,7 +75,7 @@ public sealed class GeometryAppearancePreview : IDisposable
                 {
                     try
                     {
-                        StaticMeshPreview adapter=new(bundle,allowMainTextureOnly,true,gpuTextures);texturedAdapters.Add(adapter);
+                        StaticMeshPreview adapter=new(bundle,allowMainTextureOnly,true,gpuTextures,normalMaterials?.Materials);texturedAdapters.Add(adapter);
                         adapter.VerifyUploadedAsset(bundle);mesh=adapter.Mesh;
                         uploadedVerified=true;
                         materialDiagnostics.AddRange(adapter.MaterialDiagnostics.Select(diagnostic=>template.Path+": "+diagnostic));
@@ -96,7 +98,7 @@ public sealed class GeometryAppearancePreview : IDisposable
                 meshes.Add(template.Path,mesh);
                 if(!uploadedVerified)StaticMeshPreview.VerifyUploadedGeometry(mesh,description);
             }
-            node.AddChild(new MeshInstance3D{Mesh=mesh});MeshInstances++;
+            var instance=new MeshInstance3D{Mesh=mesh};instance.SetMeta("original_mesh_path",template.Path);node.AddChild(instance);MeshInstances++;
         }
         Dictionary<int,Node3D> authored=new();
         foreach(AppearanceGeometryChild child in template.Children)

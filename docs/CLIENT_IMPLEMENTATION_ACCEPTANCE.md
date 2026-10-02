@@ -8,6 +8,12 @@ No overall client completion percentage is assigned.
 
 | Boundary | Implemented behavior | Evidence / practical limit |
 |---|---|---|
+| Mouth GPU/interior preview | Separate vertex-lit shader with explicit diagnostic vertex lighting | [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_VERTEX_LIT_SPECULAR_PREVIEW.md);80/145-source unions,eight mouth/twelve normal GPU cases,retained controls/idle/route and headless/cancellation pass; exact runtime LIT unknown |
+| Vertex-lit mouth pixel boundary | Owned nodot3 PS20 and supplied vertex-light evaluator | [Contract](SKELETAL_VERTEX_LIT_SPECULAR_CONTRACT.md);80-source/64-case independent compiled audit and native/failure gates pass; runtime vertex lighting/GPU pending |
+| Specular GPU/interior preview | Recovered normal-material specular with explicit diagnostic lighting | [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_SPECULAR_PREVIEW.md);12 filtered fixtures max0.002764, original standalone/interior retained resources/idle/color/shape/age/route/headless pass; mouth/full lighting pending |
+| Selected material/specular equations | Immutable MATL colors/constants and supplied-light PS20 evaluator | [Contract](SKELETAL_SPECULAR_CONTRACT.md); four records/192 cases independently agree with original compiled instructions; GPU/full light selection pending |
+| Interior normal/detail integration | Shared144-source closure, same live controls and shading | [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_NORMAL_DIFFUSE.md); independent source/normal/shape/floor/native route/GPU actor/door/idle/headless/cancellation gates pass |
+| Normal diffuse/live age preview | Reflected tangent upload, diagnostic diffuse and four owned age choices | [Contract](SKELETAL_NORMAL_DIFFUSE_PREVIEW_CONTRACT.md);79-source independent union/GPU handedness/color interaction/idle/shape/reset/failure/headless/cancellation pass; original full lighting unimplemented |
 | x64 engine-neutral core | .NET 8 library; no Godot references | Core smoke suite checks a 64-bit process |
 | Session negotiation | Exact raw request/response; echoed ID, selectors, CRC width, wire size | Fixed fixtures; negotiated size bounded by request and 65,507-byte local ceiling |
 | Established framing | Seeded CRC, selector-4, uncompressed send, bounded zlib receive | Independent Python vectors; compressed test streams use current .NET zlib |
@@ -526,3 +532,251 @@ The [profile preview](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-
 ## 2026-10-01 packed quaternion numerical decoding
 
 [Packed quaternion decoder](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_PACKED_QUATERNION_DECODE.md) independently agrees with executable-table decoding of all 2,225 selected original rotations (maximum error9.14e-8, zero selected repairs). All deployed-selector native gates and explicit overshoot diagnostic/repair pass. Interpolation, unmatched transform handling and playback remain next; metrics unchanged.
+
+
+## 2026-10-01 compressed animation sampling
+
+[Owned key sampler](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_COMPRESSED_ANIMATION_SAMPLING.md) independently verifies380 original transform samples, including fractional endpoints/interiors and reverse access, maximum error1.16e-7. Native ownership/seconds/negative gates pass. No pose application/playback or metric change.
+
+
+## 2026-10-01 sampled skeleton animation poses
+
+[Instruction-backed local poses](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETON_ANIMATION_POSE.md) independently verifies265 attached joint poses and8,950 original shader vertices, maximum error1.34e-6. Unused `rifle` and missing `hold_l` are explicit; bind fallback is opt-in. GPU pose upload/timed playback remain next; metrics unchanged.
+
+
+## 2026-10-01 rendered original animation pose
+
+[Selected original idle frame](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_ORIGINAL_ANIMATION_POSE_PREVIEW.md) passes background ownership, prepared/native independent audit, headless/cancellation, full GPU pose readback and inspected frame30 capture.15 original sources remain unchanged. Frozen sampled pose works; timed playback and materials/customization remain next. Metrics unchanged.
+
+
+## 2026-10-01 bounded original idle playback
+
+[Original idle preview playback](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_ORIGINAL_ANIMATION_PLAYBACK.md) passes480 pose uploads/two loops, headless/GPU readbacks, pause/focus/seek and actual play/scrub control signals. Updated capture inspected;15-source closure unchanged. Full animation graphs/root motion/materials remain separate; metrics unchanged.
+
+
+## 2026-10-01 animated original interior character
+
+[Interior idle animation](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_CHARACTER_ANIMATION.md) passes80-source/10,340,219-byte independent audit, unchanged original route/geometry and two-owner animated host/GPU/cancellation gates. Inspected capture shows original idle pose inside original interior; actor feet/door state remain authoritative. Character materials/full animation graphs remain pending; metrics unchanged.
+
+
+## 2026-10-01 shared skeletal deformation batch
+
+[Shared position batching](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_DEFORMATION_BATCH.md) passes native, independent original geometry/animation and480-update GPU gates. Positions evaluate once per mesh; original shader direction semantics remain unchanged. Research metrics unchanged.
+
+
+## 2026-10-01 original skeletal material defaults
+
+[Original character texture defaults](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_MATERIAL_DEFAULTS.md) pass32-source/4,668,368-byte independent audit, four CSHD materials/ten textures/80 mip agreement, native rejection gates, headless/cancel/GPU animation and inspected capture. Explicit MAIN texture-only rendering leaves palette shading/generated face open. Metrics unchanged.
+
+
+## 2026-10-01 textured animated interior character
+
+[Interior character materials](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_CHARACTER_MATERIALS.md) pass97-source/14,282,453-byte union audit, original material/80-mip and unchanged2,880-tick route checks, headless/cancel/GPU gates and inspected scene capture. Explicit texture-only character mode preserves feet/door authority; palette/generated-face remain open. Metrics unchanged.
+
+
+## 2026-10-01 fractional animation clock boundaries
+
+[Preview clock precision](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_ANIMATION_CLOCK_PRECISION.md) fixes a reproduced fractional loop/one-shot undercount with compensated accumulation and explicit near-boundary numerical equality.18 duration/scale combinations, native suite and original textured GPU/interior host regressions pass. Research metrics unchanged.
+
+
+## 2026-10-01 retained skeletal mesh bindings
+
+[Retained mesh joint mappings](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_RETAINED_SKELETAL_BINDINGS.md) remove per-pose name resolution. Standalone/interior original textured GPU gates and new material-instance identity checks pass. Core math/source closures/metrics unchanged.
+
+
+## 2026-10-01 owned character palette defaults
+
+[Authored palette ownership](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_CHARACTER_PALETTE_DEFAULTS.md) passes three-original-palette/five-factor independent audit,35-source standalone/100-source interior unions, fallback/malformed/option gates, GPU and cancellation. Palette shading remains explicit pending work. Metrics unchanged.
+
+
+## 2026-10-01 owned original blueprint face description
+
+[Original face command description](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_BLUEPRINT_FACE_DESCRIPTION.md) passes13-source/332,507-byte original audit, all destination/table/camera/render/prepare operands and vertex hashes, original/synthetic negative gates and native build. Corrects older fixture counts to32 textures/four destination IDs. Generated-face execution remains next; metrics unchanged.
+
+
+## 2026-10-01 inline original face effects
+
+[Inline face shader compatibility](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INLINE_FACE_EFFECTS.md) adds explicit owned inline effects and validated IMPL0003/PASS0007/PTXM0000. Both pinned original shader candidates and independent25-field/raw-metadata audits pass; malformed/truncated/ownership gates and Godot build pass. Cached blend/write state correlation is recorded; target-alpha mode and combiner remain next. Metrics unchanged.
+
+
+## 2026-10-01 original face resource closure
+
+[Owned face dependency closure](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_FACE_RESOURCE_CLOSURE.md) validates50-source/2,283,397-byte original chain, two shaders,32 textures/251 declared mips and three palettes. Seven bounded legacy DDS terminal blocks are retained via explicit opt-in; declared mip output unchanged. Independent pixel/palette/union, missing/masked, budget and ownership gates pass; Godot build passes. Generated face remains pending; metrics unchanged.
+
+
+## 2026-10-01 explicit original face preparation
+
+[Original face preparation](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_EXPLICIT_FACE_PREPARATION.md) confirms SST1 factory flagtrue and distinct texture endpoint clamp/STFP invalid-to-last palette rules. Six explicit keys prepare five separate slots/nine operations. Independent0/INT_MIN/INT_MAX original audits, omitted-key and portable ownership/failure gates pass; Godot build passes. Original programmable RGB×factor/copied-alpha behavior recorded. Rendering remains pending; metrics unchanged.
+
+
+2026-10-01: optional owned face pixel-program semantics pass original51-source closure and independent instruction/source-union audit; synthetic truncation/altered-token/ownership and original missing/masked gates pass. Camera/sampler/scratch boundary is traced; CPU raster and GPU MAIN override remain next. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_FACE_EXECUTION_BOUNDARY.md).
+
+
+2026-10-01: [CPU face composition](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_CPU_FACE_COMPOSITION.md) passes original15-layer/final-image independent agreement and deterministic hand-calculated/failure/ownership/cancellation fixtures under explicit modern policy. GPU TRTS MAIN binding remains next.
+
+
+2026-10-01: [Generated face preview](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_GENERATED_FACE_PREVIEW.md) passes original72-source union/one raw TRTS binding, strict profile/per-mesh ownership/failure fixtures, exact GPU RGBA/parameter identity, retained animation materials and cancellation cleanup. Original face displayed; body/eye palette shading remains next.
+
+
+2026-10-01: [Skeletal albedo factors](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_ALBEDO_FACTORS.md) passes original74-source/four-material/two-program instruction/factor/color audit and GPU post-sampling/display/parameter/animation/cancellation checks. Explicit unlit RGB slice; full lighting and joint face/body customization remain separate.
+
+
+## Interior generated character —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_GENERATED_CHARACTER.md):139 sources/15,541,123 bytes independently pinned and read once; generated face pixels/TRTS binding, four albedo descriptions/two programs, character/guard geometry and2,880 floor tick records agree. Offline Godot guarded-door/control/animation and GPU filtered color checks pass. One authored face profile is explicit; body/eye palette defaults remain separate.
+
+
+## Shared color/style snapshot —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SHARED_CUSTOMIZATION.md): exact eight-key union and zero/varied/INT_MAX original palette/face/source agreement; retained74/139-source standalone/interior geometry/route/animation and GPU/cancellation gates. Asset pixels remain original; authored snapshot is explicitly selected. Interactive revisions remain open.
+
+
+## Live character color/style revisions —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_LIVE_CUSTOMIZATION.md): one-composer/latest-pending ownership and stale/failure/disposal fixtures pass; standalone/interior rapid edits, eight repeated updates and reset preserve current pose/actor state and mesh/material identities.11-texture/14,592,672-byte owned cache remains bounded. Invalid GPU revisions preserve readback.
+
+
+## Original skeletal blend descriptions —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_BLEND_DESCRIPTIONS.md):30 targets/27 variables and all ordered sparse-record hashes independently agree over unchanged twelve-source closure. Native negative/ownership gates and Godot build pass. Shape application/HPTS remain open; research metrics unchanged.
+
+
+## Explicit skeletal shape application —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_BLEND_APPLICATION.md):22,070 original vectors across five selections independently agree (max2.13518e-7); threshold/global normalization/handedness and pre-skin noncommuting fixtures pass. Explicit0..255/float32 policy; original factory defaults and HPTS execution remain open. GPU integration next; metrics unchanged.
+
+
+## Live original skeletal shapes —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_LIVE_SKELETAL_SHAPES.md):27 controls, all-max/nonaccumulation/exact reset and GPU failure preservation pass over unchanged74-source character union. Core ownership, GPU/headless/cancellation/build pass. Interior shape integration next; research metrics unchanged.
+
+
+## Original interior skeletal shapes —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_SKELETAL_SHAPES.md):139-source union unchanged;26,484 vectors/six selections and existing route/floor/material audits agree. Original idle/live shape/failed edit/reset GPU and headless/cancellation pass. Actor state/root placement preserved. Age/normal-map boundary next; metrics unchanged.
+
+
+## Owned skeletal texture choices —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_TEXTURE_CHOICES.md):four original wrinkle choices,35-source closure and six explicit selection/metadata/mip audits agree. Ownership/clamping/namespace/nonaccumulation/failure/native/build gates pass. Normal-map rendering/age controls next; metrics unchanged.
+
+
+## Original compressed normals —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_COMPRESSED_NORMALS.md):compiled alpha/green and absolute-radicand behavior confirmed;852 original vectors/six maps agree, including78 outside-disk texels.42-source closure, failure/native/build gates pass. Tangent GPU/normal diffuse preview next; metrics unchanged.
+
+## Original locomotion suffix ownership —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_COMPRESSED_LOCOMOTION.md): original walk/run keys/messages and222 independent position samples pass; full native/build gates pass. Graph selection, actor playback and event scheduling are not claimed.
+
+## Original animation bank —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_ANIMATION_BANK.md): original IFF/SAT/LATT/explicit SSAT/SPAT/PXAT/CKAT17-source closure and222 prepared poses pass; full native/build and failure gates pass. GPU clip switching is next.
+
+## Movement-linked interior —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_MOVEMENT_SKELETAL_PREVIEW.md):147-source original closure,480 retained movement clip updates, original route/live controls/GPU/headless/cancellation pass. Collision owns feet; modern gait/phase policy is explicit. Pose blending remains next.
+
+## Skeletal pose transitions —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_POSE_TRANSITIONS.md):795 independent blend matrices,100 retained GPU updates, interrupted continuity and original route/controls/headless pass. Transition arithmetic/timing is explicit replacement policy.
+
+## Original camera profile —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_FREE_CHASE_CAMERA_PROFILE.md):212 original bytes/15 zoom settings/135 height results independently agree; full native/build and malformed/ownership gates pass. Camera-controller integration is next.
+
+## Original interior chase camera and facing correction —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_CHASE_CAMERA.md):148-source closure/360 independently checked camera queries and64 GPU views pass, preserving original route/resources. Original source/normal audit exposed an extra winding reversal; corrected static/skeletal uploads preserve indices and front/back GPU culling passes. Headless/cancellation/visual checks pass. Third-person camera-room ownership remains next; research metrics/names/packet counts unchanged.
+
+## Camera-cell tracking —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_CAMERA_CELL_TRACKING.md):28 original doorway samples independently agree;26 located/13 changed/two ambiguous. Camera/actor cells differ correctly in two owner poses;64 rendered views/visibility toggle/original route/resource/native/build/headless/GPU gates pass. Unknown ownership keeps all rooms visible. Explicit recovery smoothing next; research metrics unchanged.
+
+## Camera-distance recovery —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_CAMERA_DISTANCE_RECOVERY.md):256 independently checked timing cases/20 original release steps and paused door retraction pass. Displayed distance remains within current clearance; camera-cell/actor/resource/live-control/native/build/GPU/headless proofs pass. Explicit modern0.2-second policy; original cell-light records next. Metrics unchanged.
+
+## Original cell-light records —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_PORTAL_CELL_LIGHTS.md):19 original records independently agree, including nine directional/ten point lights, HDR colors, local-pi transform correction and five secondary specular instances. Loader/factory/owner/backend evidence establishes the creation contract; strict owned parser/negative/native/build checks pass. Two canonical names bring the registry to2,601; research percentages and345 packets unchanged. Opt-in retained character lighting is next; original light selection remains open.
+
+## Explicit cell-lighting math —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_CELL_LIGHTING_MATH.md):288 original-data cases independently agree at max3.15e-7; hand-calculated point/specular, ownership and malformed gates pass. Explicit modern selection/ambient/near-light policy; retained GPU integration next. Metrics unchanged.
+
+## Retained original-cell character lighting —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_CELL_LIGHTING_PREVIEW.md):19 owned records/288 independent math cases,32 GPU/all-slot cases and12 active normal-material cases pass; original three-owner route publishes50 retained updates. Camera-cell independence/headless/cancellation pass. Original light selection remains open; room material/packed-color boundary next. Metrics unchanged.
+
+## Original static COLOR0 —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_STATIC_VERTEX_COLORS.md):backend D3DCOLOR/COLOR0 mapping,72,495 normalized colors and five independent hashes agree. Exact GPU readback/three rendered cases pass. Original vertex sources distinguish pure baked from baked-plus-dynamic room families. Family pixel boundary next; metrics unchanged.
+
+## Original room pixel/material closure —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_STATIC_ROOM_LIGHTING.md):154-source closure/18 material bindings/three programs and192 independently executed cases agree at max7.28e-8. Unselected factor state is explicit; source modules distinguish baked/dynamic/emissive terms. Retained GPU rooms next; metrics unchanged.
+
+## Legacy pixel COLOR range —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_LEGACY_PIXEL_COLORS.md):explicit vertex-color saturation fixes the PS1.x/PS2.0 boundary; eight normal/four mouth HDR/negative GPU cases and prior original route/resource gates pass. Pixel specular remains HDR. Room GPU integration next; metrics unchanged.
+
+## Retained original room materials —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_STATIC_ROOM_LIGHTING_PREVIEW.md):42 retained room overrides share existing28 textures;48 GPU equations agree at max0.002881. Original route/12 owner publications/camera independence/headless pass. Baked and dynamic inputs remain distinct; static door normal/tangent boundary next. Metrics unchanged.
+
+## Original static door normal/material closure —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_STATIC_DOOR_NORMALS.md):156-source closure/110 tangent records and64 independent compiled PS20 cases agree. Four original zero tangents are preserved; hardware behavior remains Unknown. Owned parser/negative/original route gates pass. Retained door GPU adapter next; metrics unchanged.
+
+## Retained original door normals/specular —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_STATIC_DOOR_NORMAL_PREVIEW.md):four surfaces/two retained materials share existing meshes/28 textures;110 converted tangents independently agree and12 GPU equations pass. Source zeros use explicit modern fallback. Original route/camera/owner/headless/cancellation gates pass. Original backend light-slot selection next; metrics unchanged.
+
+## Original bounded light selection —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_LEGACY_LIGHT_SELECTION.md):25 hash-gated instruction anchors close baked/unbaked masks,1+2 directional/1+4 point slots, absolute-RGB ranking and channel roles. Twelve original/64 synthetic independent selection cases pass. Live visibility/order remains Unknown; baked room over-lighting correction next. Metrics unchanged.
+
+## Recovered cell slots and baked lighting correction —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_LEGACY_CELL_LIGHTING_PREVIEW.md):576 original grouped-light cases independently agree;32 all-slot GPU cases pass. Baked room primary diffuse over-lighting is fixed; opt-in recovered selection for character/doors preserves source/route/owner/resources/headless/cancel gates. Original live visibility/LIT/precision remain open; metrics unchanged.
+
+## Original tangent-light varyings —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_TANGENT_LIGHTING_VARYINGS.md):157-source union and660 independent original vertex/view/light cases close raw basis and vertex/pixel normalization staging. Explicit zero/interpolation policies are bounded; GPU door varying integration next. Compiled vertex precision remains Unknown; metrics unchanged.
+
+## Door tangent varying GPU stage —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_DOOR_TANGENT_VARYING_PREVIEW.md):48 perspective/owner/handedness GPU cases pass at max0.003136 and distinguish old fragment recomputation. Original157-source route/resources/headless/cancel remain valid. Character vertex-family evidence next; metrics unchanged.
+
+## Original character tangent vertex closure —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_TANGENT_VERTEX.md):independent original body/head/face bindings share the closed door VSH/functions. Owned dependencies and malformed/source gates pass; full157-source union remains shared/read-once. Character GPU integration next; compiled vertex precision remains Unknown. Metrics unchanged.
+
+## Shared character tangent varying GPU stage —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_TANGENT_VARYING_PREVIEW.md):48 combined hue/mask/perspective/tangent GPU cases pass at max0.002878; retained original route, headless/cancel and material identities pass. Shader-cache mask alias corrected. Source vertex lighting/constant packing next; metrics unchanged.
+
+## Original positive point attenuation —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_LEGACY_POINT_ATTENUATION.md):20 baseline/source/packing anchors and60 original/48 synthetic independent reciprocal cases pass; coefficient order/fourth-zero/source cap absence closed. Singular/device/LIT behavior remains Unknown. Metrics unchanged.
+
+## Recovered point attenuation preview —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_LEGACY_POINT_ATTENUATION_PREVIEW.md):64 recovered GPU cases pass at max0.003189 and distinguish old cap by RGB-vector0.148170. Original157-source route/resources/live controls/headless/cancel pass. Metrics unchanged.
+
+## Original light-scaling selector —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_LIGHT_SCALING_SELECTOR.md):23 configuration/constructor/copy/raster anchors close enableLightScaling default true and engine shader snapshot ownership. Owned both-mode/original source/math/route/headless gates pass. One canonical getter brings current count to2602;345 packets/research scores unchanged.
+
+## Complete selected tangent vertex-source ownership —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_TANGENT_VERTEX_SOURCE_CLOSURE.md):Independent source graph confirms4 exact sources/3 include edges/20,146 source bytes; full union159 sources/16,642,134 bytes, each read once. All four missing/masked/truncated/changed/oversized gates, original route and GPU/headless pass. Metrics unchanged.
+
+## Recovered scene-lighting default —2026-10-01
+
+[Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_RECOVERED_LIGHTING_DEFAULT.md):SceneCellLighting now uses the recovered slot/scaling/positive attenuation path by default. The former SceneLegacyLightSelection flag is retained as a compatible alias. Full scene without that flag passes source/route/48 character/48 door/64 selected-light GPU and retained-resource gates. Metrics unchanged.
+
+## Combined point-light vertex color acceptance —2026-10-01
+
+Accepted bounded owned fixture:48 corrected combined point-color/tangent/hue/mask cases pass at max0.003225 within2/255. Original compiled vertex/hardware precision remains open. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_POINT_COLOR_GPU_PROBE.md).

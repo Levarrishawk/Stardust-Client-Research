@@ -20,7 +20,7 @@ public static class OfflineHostedLoginScenario
         using BoundedLoginJournal journal = new(journalBytes, leaveOpen: true);
         FixturePort port = new();
         await using LoginDatagramHost host = new(new LoginClientOptions("peer.invalid", 1, "20260817-SD:01"),
-            Peer, port, diagnostics: journal.Write);
+            Peer, port, clock: new FixtureClock(), ticks: new FixtureTicks(), diagnostics: journal.Write);
         using LoginConnectionResult result = await host.RunAsync(0x12345678, "u", "p", cancellationToken).ConfigureAwait(false);
         if (host.Outcome != LoginHostOutcome.Completed || host.State != LoginClientState.Closed ||
             result.Clusters.Count != 1 || result.ClusterStatuses.Count != 1 || result.Characters.Count != 1 ||
@@ -40,6 +40,19 @@ public static class OfflineHostedLoginScenario
             $"I/O accounting: sends={result.Counters.SendAttempts} peer_receives={result.Counters.PeerDatagramsReceived} foreign_drops={result.Counters.ForeignDatagramsDropped}",
             $"Allowlisted journal: events={journal.WrittenEvents} failures={journal.IoFailures}"
         };
+    }
+
+    // This fixture asserts an exact six-send transcript, not elapsed-time behavior.
+    // Rendering/JIT/scheduler delays must not inject production retransmission ticks.
+    // Deadline and retransmission scenarios separately drive an explicit manual clock.
+    private sealed class FixtureClock : IMonotonicClock
+    {
+        public long ReadMilliseconds() => 0;
+    }
+
+    private sealed class FixtureTicks : IHostTickSource
+    {
+        public ValueTask WaitAsync(CancellationToken token) => new(Task.Delay(Timeout.Infinite, token));
     }
 
     private sealed class FixturePort : IDatagramPort

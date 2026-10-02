@@ -10,7 +10,7 @@ The synthetic composite root is adapter input and has no serialized family inter
 
 ## Vertex extension and host boundary
 
-Selected VTXA0003 declaration `0x110D` stores position/normal, an owned packed U32 at byte 24, and UV at byte 28 (36-byte stride). Bit-3 consumption is confirmed in original loader 00784D90; exact color channel/material interpretation is not claimed. Verification hashes include its raw word and preserve all prior declaration hashes. The neutral host does not translate that word into original lighting.
+Selected VTXA0003 declaration `0x110D` stores position/normal, an owned packed U32 at byte 24, and UV at byte 28 (36-byte stride). Bit-3 consumption is confirmed in original loader 00784D90. The [COLOR0 contract](STATIC_VERTEX_COLOR_CONTRACT.md) now closes normalized RGBA channel conversion at the original backend and preserves family-specific material uncertainty. Verification hashes include its raw word and preserve all prior declaration hashes. The host uploads normalized COLOR0; MAIN-only inspection does not consume it as lighting.
 
 Godot `--asset-interior` supplies a named-cell selector and independent cell node visibility, with shared meshes, per-cell reframing and optional camera/PIVT LOD. Manual selection does not implement DPVS or playable interior traversal. Headless and GPU checks exercise every loaded cell. [Original eight-cell evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_CELL_SCENE.md).
 

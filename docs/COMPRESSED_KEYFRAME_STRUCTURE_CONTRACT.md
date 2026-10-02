@@ -44,3 +44,5 @@ python tools/python/verify_skeletal_descriptors.py C:/Stardust-DEV C:/Stardust-D
 ```
 
 The directory is created by the preceding extraction/descriptor work; create it before running these commands in a fresh workspace. Configure the documented local toolchain first if project dependencies have not been restored. The native output includes all source identities, the complete structure hash, unmatched-name diagnostic and numerical rows; the verifier reads both original archive bytes and the baseline executable tables without executing the original client.
+
+Validated MSGS/translation-only LOCT ownership and sampling now have a separate [locomotion contract](COMPRESSED_LOCOMOTION_CONTRACT.md); raw structure retention remains distinct from root rotation and callback execution.

@@ -13,10 +13,32 @@ public static class SkeletalShaderDeformation
     {
         ArgumentNullException.ThrowIfNull(geometry);ArgumentNullException.ThrowIfNull(palette);
         if(shaderIndex<0||shaderIndex>=geometry.Shaders.Count)throw new ArgumentOutOfRangeException(nameof(shaderIndex));
-        var skin=geometry.Skin;var shader=geometry.Shaders[shaderIndex];int count=shader.PositionIndices.Count;
+        ValidateShape(geometry.Shaders[shaderIndex]);
+        return MapShader(geometry,geometry.Shaders[shaderIndex],palette,SkeletalJointBinding.DeformPositions(geometry.Skin,palette));
+    }
+
+    /// <summary>Validate the complete batch, then deform global positions exactly once for this mesh.</summary>
+    public static IReadOnlyList<SkeletalDeformedShader> CreateAll(SkeletalMeshGeometryDescription geometry,IReadOnlyList<Matrix4x4> palette)
+    {
+        ArgumentNullException.ThrowIfNull(geometry);ArgumentNullException.ThrowIfNull(palette);
+        if(geometry.Shaders.Count>2048)throw new InvalidDataException("Deformation shader batch budget.");
+        long total=0;
+        foreach(var shader in geometry.Shaders){ValidateShape(shader);total+=shader.PositionIndices.Count;if(total>1048576)throw new InvalidDataException("Deformation vertex batch budget.");}
+        var global=SkeletalJointBinding.DeformPositions(geometry.Skin,palette);var result=new SkeletalDeformedShader[geometry.Shaders.Count];
+        for(int i=0;i<result.Length;i++)result[i]=MapShader(geometry,geometry.Shaders[i],palette,global);
+        return Array.AsReadOnly(result);
+    }
+
+    private static void ValidateShape(SkeletalShaderGeometry shader)
+    {
+        int count=shader.PositionIndices.Count;
         if(count>262144||shader.NormalIndices is not null&&shader.NormalIndices.Count!=count||shader.TangentIndices is not null&&shader.TangentIndices.Count!=count)
             throw new InvalidDataException("Deformed shader map count/budget mismatch.");
-        var global=SkeletalJointBinding.DeformPositions(skin,palette);var positions=new Vector3[count];
+    }
+    private static SkeletalDeformedShader MapShader(SkeletalMeshGeometryDescription geometry,SkeletalShaderGeometry shader,
+        IReadOnlyList<Matrix4x4> palette,IReadOnlyList<Vector3> global)
+    {
+        var skin=geometry.Skin;int count=shader.PositionIndices.Count;var positions=new Vector3[count];
         Vector3[]? normals=shader.NormalIndices is null?null:new Vector3[count];Vector4[]? tangents=shader.TangentIndices is null?null:new Vector4[count];
         for(int vertex=0;vertex<count;vertex++)
         {

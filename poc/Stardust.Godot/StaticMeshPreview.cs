@@ -6,7 +6,7 @@ using Stardust.Core.Assets;
 
 public sealed class AssetPreviewException(string message) : InvalidOperationException(message);
 
-/// <summary>Godot boundary only: Z reflection and winding reversal once; explicit opaque/unlit texture preview.</summary>
+/// <summary>Godot boundary only: Z reflection with authored indices preserved; explicit opaque/unlit texture preview.</summary>
 public sealed class StaticMeshPreview : IDisposable
 {
     private readonly List<Resource> resources = new();
@@ -20,7 +20,7 @@ public sealed class StaticMeshPreview : IDisposable
     public ArrayMesh Mesh { get; }
     public StaticMeshPreview(TexturedStaticMesh asset,bool allowMainTextureOnly=false,bool allowNeutralMaterialFallback=false)
         :this(asset,allowMainTextureOnly,allowNeutralMaterialFallback,null){}
-    internal StaticMeshPreview(TexturedStaticMesh asset,bool allowMainTextureOnly,bool allowNeutralMaterialFallback,PreviewTextureCache? sharedTextures)
+    internal StaticMeshPreview(TexturedStaticMesh asset,bool allowMainTextureOnly,bool allowNeutralMaterialFallback,PreviewTextureCache? sharedTextures,IReadOnlyDictionary<string,StaticNormalMaterial>? normalMaterials=null)
     {
         Mesh = Own(new ArrayMesh());
         try
@@ -106,7 +106,7 @@ public sealed class StaticMeshPreview : IDisposable
             {
                 MeshPrimitive primitive=asset.Mesh.Primitives[primitiveIndex];
                 if(noDrawPaths.Contains(primitive.ShaderPath)){OmittedSurfaces++;continue;}
-                using Godot.Collections.Array arrays=CreateArrays(primitive);
+                using Godot.Collections.Array arrays=CreateArrays(primitive,normalMaterials is not null&&normalMaterials.TryGetValue(primitive.ShaderPath,out var normalMaterial)?normalMaterial.TangentCoordinateSet:null);
                 Mesh.AddSurfaceFromArrays(Godot.Mesh.PrimitiveType.Triangles,arrays);
                 Mesh.SurfaceSetMaterial(Mesh.GetSurfaceCount()-1,materials[primitive.ShaderPath]);
                 uploadedPrimitiveIndices.Add(primitiveIndex);
@@ -116,15 +116,23 @@ public sealed class StaticMeshPreview : IDisposable
         catch{Dispose();throw;}
     }
 
-    internal static Godot.Collections.Array CreateArrays(MeshPrimitive primitive)
+    internal static Godot.Collections.Array CreateArrays(MeshPrimitive primitive,byte? tangentSet=null)
     {
         Vector3[] positions=primitive.Vertices.Select(vertex=>new Vector3(vertex.Position.X,vertex.Position.Y,-vertex.Position.Z)).ToArray();
         Vector3[] normals=primitive.Vertices.Select(vertex=>new Vector3(vertex.Normal.X,vertex.Normal.Y,-vertex.Normal.Z)).ToArray();
         Vector2[] uvs=primitive.Vertices.Select(vertex=>new Vector2(vertex.TextureCoordinate.X,vertex.TextureCoordinate.Y)).ToArray();
         int[] indices=primitive.Indices.Select(index=>(int)index).ToArray();
-        for(int i=0;i<indices.Length;i+=3)(indices[i+1],indices[i+2])=(indices[i+2],indices[i+1]);
+        if(primitive.Vertices.Any(v=>v.PackedColor0.HasValue)&&primitive.Vertices.Any(v=>!v.PackedColor0.HasValue))throw new AssetPreviewException("Mixed optional vertex-color declaration.");
+        // Source CCW becomes Godot CW under the Z reflection; preserve authored indices.
         Godot.Collections.Array arrays=new();arrays.Resize((int)Godot.Mesh.ArrayType.Max);
         arrays[(int)Godot.Mesh.ArrayType.Vertex]=positions;arrays[(int)Godot.Mesh.ArrayType.Normal]=normals;
+        if(primitive.Vertices.Count>0&&primitive.Vertices[0].PackedColor0.HasValue)
+            arrays[(int)Godot.Mesh.ArrayType.Color]=primitive.Vertices.Select(v=>{var color=PackedVertexColor.ToRgba(v.PackedColor0!.Value);return new Color(color.X,color.Y,color.Z,color.W);}).ToArray();
+        if(tangentSet is byte set)
+        {
+            var tangents=new float[positions.Length*4];for(int i=0;i<positions.Length;i++){var raw=StaticNormalMaterialReader.PreviewTangent(primitive.Vertices[i],set,out _);tangents[i*4]=raw.X;tangents[i*4+1]=raw.Y;tangents[i*4+2]=-raw.Z;tangents[i*4+3]=-raw.W;normals[i]=normals[i].Normalized();}
+            arrays[(int)Godot.Mesh.ArrayType.Normal]=normals;arrays[(int)Godot.Mesh.ArrayType.Tangent]=tangents;
+        }
         arrays[(int)Godot.Mesh.ArrayType.TexUV]=uvs;arrays[(int)Godot.Mesh.ArrayType.Index]=indices;return arrays;
     }
 
@@ -133,16 +141,19 @@ public sealed class StaticMeshPreview : IDisposable
         System.Numerics.Vector3 a=new(1,2,3),b=new(4,2,5),c=new(1,6,7);
         System.Numerics.Vector3 normal=System.Numerics.Vector3.Normalize(System.Numerics.Vector3.Cross(b-a,c-a));
         MeshVertex[] vertices={new(a,normal,new(0.1f,0.2f)),new(b,normal,new(0.3f,0.4f)),new(c,normal,new(0.5f,0.6f))};
+        vertices[0]=vertices[0] with{PackedColor0=0x7F1234AB};vertices[1]=vertices[1] with{PackedColor0=0};vertices[2]=vertices[2] with{PackedColor0=uint.MaxValue};
         MeshPrimitive primitive=new("synthetic","0001",vertices,new ushort[]{0,1,2});
         using Godot.Collections.Array arrays=CreateArrays(primitive);
         Vector3[] p=arrays[(int)Godot.Mesh.ArrayType.Vertex].AsVector3Array();
         Vector3[] n=arrays[(int)Godot.Mesh.ArrayType.Normal].AsVector3Array();
         Vector2[] uv=arrays[(int)Godot.Mesh.ArrayType.TexUV].AsVector2Array();
         int[] index=arrays[(int)Godot.Mesh.ArrayType.Index].AsInt32Array();
-        if(p[0]!=new Vector3(1,2,-3) || !index.SequenceEqual(new[]{0,2,1}) || uv[2]!=new Vector2(0.5f,0.6f) ||
-            n[0]!=new Vector3(normal.X,normal.Y,-normal.Z) || (p[2]-p[0]).Cross(p[1]-p[0]).Normalized().Dot(n[0])<0.999f ||
+        if(!arrays[(int)Godot.Mesh.ArrayType.Color].AsColorArray().SequenceEqual(new[]{new Color(18/255f,52/255f,171/255f,127/255f),new Color(0,0,0,0),new Color(1,1,1,1)}))throw new AssetPreviewException("Asymmetric packed vertex color upload mapping failed.");
+        if(p[0]!=new Vector3(1,2,-3) || !index.SequenceEqual(new[]{0,1,2}) || uv[2]!=new Vector2(0.5f,0.6f) ||
+            n[0]!=new Vector3(normal.X,normal.Y,-normal.Z) || (p[1]-p[0]).Cross(p[2]-p[0]).Normalized().Dot(n[0])>-.999f ||
             primitive.Vertices[0].Position!=a || primitive.Indices[1]!=1)
             throw new InvalidOperationException("Asymmetric coordinate/winding/UV fixture failed.");
+        try{using var invalid=CreateArrays(primitive with{Vertices=new[]{vertices[0],vertices[1] with{PackedColor0=null},vertices[2]}});throw new AssetPreviewException("Mixed color declaration accepted.");}catch(AssetPreviewException exception)when(exception.Message=="Mixed optional vertex-color declaration."){}
     }
 
     public void VerifyUploadedAsset(TexturedStaticMesh source)
@@ -184,6 +195,16 @@ public sealed class StaticMeshPreview : IDisposable
             Vector2[] uv=arrays[(int)Godot.Mesh.ArrayType.TexUV].AsVector2Array();
             int[] indices=arrays[(int)Godot.Mesh.ArrayType.Index].AsInt32Array();
             MeshPrimitive original=source.Primitives[primitiveIndices?[surface]??surface];
+            if(original.Vertices.Count>0&&original.Vertices[0].PackedColor0.HasValue)
+            {
+                var colors=arrays[(int)Godot.Mesh.ArrayType.Color].AsColorArray();
+                if(colors.Length!=original.Vertices.Count)throw new AssetPreviewException("Uploaded color count differs.");
+                for(int i=0;i<colors.Length;i++)
+                {
+                    var expected=PackedVertexColor.ToRgba(original.Vertices[i].PackedColor0!.Value);var actual=colors[i];
+                    if(Math.Abs(actual.R-expected.X)>2e-6f||Math.Abs(actual.G-expected.Y)>2e-6f||Math.Abs(actual.B-expected.Z)>2e-6f||Math.Abs(actual.A-expected.W)>2e-6f)throw new AssetPreviewException("Original packed vertex-color readback differs.");
+                }
+            }
             if(vertices.Length!=original.Vertices.Count || normals.Length!=vertices.Length || uv.Length!=vertices.Length || indices.Length!=original.Indices.Count)throw new InvalidOperationException("Godot uploaded cardinality mismatch.");
             for(int i=0;i<vertices.Length;i++)
             {
@@ -192,7 +213,7 @@ public sealed class StaticMeshPreview : IDisposable
                     uv[i].DistanceTo(new(t.X,t.Y))>0.002f)throw new InvalidOperationException("Godot position/normal/UV readback mismatch.");
             }
             for(int i=0;i<indices.Length;i+=3)
-                if(indices[i]!=original.Indices[i] || indices[i+1]!=original.Indices[i+2] || indices[i+2]!=original.Indices[i+1])
+                if(indices[i]!=original.Indices[i] || indices[i+1]!=original.Indices[i+1] || indices[i+2]!=original.Indices[i+2])
                     throw new InvalidOperationException("Godot index readback mismatch.");
         }
     }
@@ -204,7 +225,7 @@ public sealed class StaticMeshPreview : IDisposable
         System.Numerics.Vector3 normal=new(0,0,1);
         MeshVertex[] vertices={new(new(-1,-1,0),normal,new(0,1)),new(new(-1,1,0),normal,new(0,0)),
             new(new(1,1,0),normal,new(1,0)),new(new(1,-1,0),normal,new(1,1))};
-        using Godot.Collections.Array arrays=CreateArrays(new("synthetic","0001",vertices,new ushort[]{0,1,2,0,2,3}));
+        using Godot.Collections.Array arrays=CreateArrays(new("synthetic","0001",vertices,new ushort[]{0,2,1,0,3,2}));
         mesh.AddSurfaceFromArrays(Godot.Mesh.PrimitiveType.Triangles,arrays);mesh.SurfaceSetMaterial(0,material);
         SubViewport viewport=new(){Size=new Vector2I(64,64),OwnWorld3D=true,RenderTargetUpdateMode=SubViewport.UpdateMode.Always};
         owner.AddChild(viewport);
@@ -223,6 +244,17 @@ public sealed class StaticMeshPreview : IDisposable
                 if(Math.Abs(actual.R-sample.Expected.R)>0.02f || Math.Abs(actual.G-sample.Expected.G)>0.02f || Math.Abs(actual.B-sample.Expected.B)>0.02f)
                     throw new InvalidOperationException($"GPU winding/UV fixture differs at {sample.X},{sample.Y}: {actual}.");
             }
+            camera.Position=new(0,0,3);camera.LookAt(Vector3.Zero);
+            await owner.ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
+            await owner.ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
+            using var back=viewport.GetTexture().GetImage();
+            foreach(var sample in samples)
+            {
+                Color actual=back.GetPixel(sample.X,sample.Y);
+                if(Math.Abs(actual.R-sample.Expected.R)<.02f&&Math.Abs(actual.G-sample.Expected.G)<.02f&&Math.Abs(actual.B-sample.Expected.B)<.02f)
+                    throw new InvalidOperationException("GPU front-only source triangle appeared from its back side.");
+            }
+            GD.Print("PASS: source CCW -> reflected Godot CW, preserved indices, four front UV samples and four culled back samples.");
         }
         finally{viewport.Free();}
     }

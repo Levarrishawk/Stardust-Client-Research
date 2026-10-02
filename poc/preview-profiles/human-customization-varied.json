@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "values": [
+    {
+      "variableName": "index_color_skin",
+      "factoryFlag": false,
+      "value": 75
+    },
+    {
+      "variableName": "index_style_eyebrow",
+      "factoryFlag": true,
+      "value": 1
+    },
+    {
+      "variableName": "index_color_facial_hair",
+      "factoryFlag": true,
+      "value": 12
+    },
+    {
+      "variableName": "index_style_beard",
+      "factoryFlag": true,
+      "value": 2
+    },
+    {
+      "variableName": "index_style_freckles",
+      "factoryFlag": true,
+      "value": 1
+    },
+    {
+      "variableName": "index_color_skin",
+      "factoryFlag": true,
+      "value": 75
+    },
+    {
+      "variableName": "index_color_2",
+      "factoryFlag": true,
+      "value": 5
+    },
+    {
+      "variableName": "index_color_3",
+      "factoryFlag": true,
+      "value": 0
+    }
+  ]
+}
