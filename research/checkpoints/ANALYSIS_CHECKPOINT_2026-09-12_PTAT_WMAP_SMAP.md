@@ -87,3 +87,7 @@ No direct caller was found for the WMAP rectangle wrapper or either SMAP wrapper
 - WMAP active client use: **Confirmed by direct call paths**.
 - Exact historical label of each WMAP consumer: **Strongly inferred from mechanics; provisional names used**.
 - Active SMAP purpose in Stardust.exe: **Unknown; no runtime caller established**.
+
+## Framing clarification recorded in Round31, 2026-10-03
+
+The historical FORM MAPS diagram used the map object's conceptual name. Direct effective Tatooine bytes show a FORM0001 child under PTAT/0014 with DATA/WMAP/SMAP and no literal MAPS wrapper. [Input identity and owned decoder](../../docs/TERRAIN_MAP_MASKS_CONTRACT.md) preserve exact metadata and masks. Do not require an extra wrapper from the earlier diagram. This correction is bounded to the observed sample/framing; other versions and world-coordinate behavior are not reclassified by this decoder.

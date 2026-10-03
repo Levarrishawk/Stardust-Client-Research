@@ -12,12 +12,14 @@ public static class SceneCreatureResourceReader
     public static SceneCreatureResources Load(SceneCreateObjectByCrcMessage create, ObjectTemplateCatalog catalog,
         LogicalAnimationClipSelection idle, IReadOnlyDictionary<string, LogicalAnimationClipSelection> movementSelections,
         Func<string, TreLookupResult> resolve, CancellationToken token = default,
-        int maximumResources = 64, long maximumSourceBytes = 16 * 1024 * 1024, bool loadAlbedoFactors = false)
+        int maximumResources = 64, long maximumSourceBytes = 16 * 1024 * 1024, bool loadAlbedoFactors = false, SceneCreatureFaceInspectionPolicy? faceInspection = null)
     {
         ArgumentNullException.ThrowIfNull(create); ArgumentNullException.ThrowIfNull(catalog);
         ArgumentNullException.ThrowIfNull(resolve); ArgumentNullException.ThrowIfNull(movementSelections);
         if (maximumResources is < 1 or > 4096 || maximumSourceBytes is < 1 or > 134217728)
             throw new ArgumentOutOfRangeException(nameof(maximumResources));
+        if (faceInspection is not null && !loadAlbedoFactors)
+            throw new ArgumentException("Face inspection requires the complete albedo route.", nameof(faceInspection));
         // Validate scalars without normalizing, remapping or repairing quaternion/position values.
         if (new[] { create.QuaternionX, create.QuaternionY, create.QuaternionZ, create.QuaternionW,
                     create.PositionX, create.PositionZ, create.PositionY }.Any(f => !float.IsFinite(f)))
@@ -42,11 +44,46 @@ public static class SceneCreatureResourceReader
             limits: new(MaximumResources: maximumResources, MaximumSourceBytes: maximumSourceBytes),
             loadSkeletons: true, loadSkinSources: true, meshDetail: 0, loadGeometry: true,
             loadLogicalTables: true, animationSelection: ownedIdle, prepareSelectedAnimation: true,
-            loadMaterialDefaults: true, loadPaletteDefaults: true, loadAlbedoFactors: loadAlbedoFactors, additionalAnimationSelections: bank);
+            loadMaterialDefaults: true, loadPaletteDefaults: true, loadAlbedoFactors: loadAlbedoFactors, additionalAnimationSelections: bank,
+            loadFaceBlueprints: faceInspection is not null, loadFaceResources: faceInspection is not null, loadFacePixelPrograms: faceInspection is not null);
         token.ThrowIfCancellationRequested();
-        long decodedBytes = creature.MaterialBundle!.Textures.Values.Sum(t => t.Mips.Sum(m => (long)m.Rgba.Length));
-        if (decodedBytes > 32 * 1024 * 1024) throw new AppearanceGraphBudgetException("Scene creature decoded image budget.");
+        long decodedBytes = UniqueDecodedBytes(creature, token);
+        long decodedLimit = faceInspection?.MaximumDecodedBytes ?? 32 * 1024 * 1024;
+        if (faceInspection is not null)
+        {
+            // Reject the known final dimensions before composition; still verify actual output lengths afterward.
+            long expected = decodedBytes;
+            foreach (var blueprint in creature.FaceBlueprints!.Values)
+                expected = checked(expected + checked((long)blueprint.Width * blueprint.Height * 4));
+            if (expected > decodedLimit) throw new AppearanceGraphBudgetException("Scene creature face decoded image budget.");
+            token.ThrowIfCancellationRequested();
+            var generated = BlueprintGeneratedFaceBuilder.Create(creature.Geometries!, creature.FaceBlueprints,
+                creature.FaceResources!, faceInspection.Values, token);
+            foreach (var output in generated.Outputs.Values)
+                foreach (var mip in output.Image.Mips) decodedBytes = checked(decodedBytes + mip.Rgba.Length);
+            creature = creature with { GeneratedFaces = generated };
+        }
+        if (decodedBytes > decodedLimit) throw new AppearanceGraphBudgetException("Scene creature decoded image budget.");
+        token.ThrowIfCancellationRequested();
         return new(create with { }, recipe, creature, reads, creature.Sources.Values.Sum(s => (long)s.Bytes));
+    }
+
+    // Logical texture identity is the original path, even when the two existing readers own separate decodes.
+    private static long UniqueDecodedBytes(CreatureAppearanceDescriptorBundle creature, CancellationToken token)
+    {
+        var paths = new HashSet<string>(StringComparer.Ordinal); long bytes = 0;
+        void Add(IReadOnlyDictionary<string, DdsImage> images)
+        {
+            foreach (var pair in images)
+            {
+                token.ThrowIfCancellationRequested();
+                if (!paths.Add(pair.Key)) continue;
+                foreach (var mip in pair.Value.Mips) bytes = checked(bytes + mip.Rgba.Length);
+            }
+        }
+        Add(creature.MaterialBundle!.Textures);
+        if (creature.FaceResources is not null) Add(creature.FaceResources.Textures);
+        return bytes;
     }
 
     private static LogicalAnimationClipSelection CopySelection(LogicalAnimationClipSelection selection)

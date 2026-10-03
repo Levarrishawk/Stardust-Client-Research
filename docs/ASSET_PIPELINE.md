@@ -602,3 +602,35 @@ Owned [skeletal blend descriptions](SKELETAL_BLEND_SHAPE_CONTRACT.md) preserve o
 
 
 The [skeletal texture-choice closure](SKELETAL_TEXTURE_CHOICE_CONTRACT.md) loads original age-map alternatives explicitly and applies selections over owned data.
+
+## Native STF implementation increment — Round24
+
+[Owned STF variant1 reader](LOCALIZED_STRING_TABLE_CONTRACT.md) retains raw header/CRC fields, UTF16 units, binary keys and two-pass relation/order. Independent positive/malformed/budget/ownership and97 original-record checks pass on obj_n and terminal_name. Variant0 and runtime locale/fallback/cache remain outside this bounded reader; original strings stay private.
+
+## Round25 bounded object-name resolution
+
+[Stateless object-name resolver](LOCALIZED_OBJECT_NAME_CONTRACT.md) borrows immutable STF1 tables, keeps exact binary keys/raw model, bounds display and distinguishes table absence from missing key. Two original lookups and the lead current named-delta/caption join pass. Locale discovery/cache lifetime and variant0 remain deferred.
+
+## Round26 explicit table preload
+
+[Localized table set](LOCALIZED_STRING_TABLE_SET_CONTRACT.md) validates the complete bounded request list before I/O, owns parsed tables, distinguishes absence and enforces aggregate budgets. Two pinned original tables and97 records pass. Locale discovery/cache/variant0 remain open.
+
+## Round27 authored localized references
+
+[Owned SHOT name profile](SHARED_TEMPLATE_LOCALIZED_NAME_CONTRACT.md) preserves exact raw pairs/provenance with bounded modern nearest-explicit traversal. Two pinned roots reference existing STF keys; this metadata remains separate from live names and original getter semantics. [SWTS runtime evidence](SWITCH_TEXTURE_RUNTIME_CONTRACT.md) closes local selector behavior; host time/scheduling remains open.
+
+## Round28 complete switch-frame inputs
+
+[Owned all-frame bundle](SWITCH_TEXTURE_FRAME_BUNDLE_CONTRACT.md) loads the original SWTS/base/eightDDS union under exact source/decoded/mip bounds with immutable retained pixels. This is frame input preparation; actual static-resource/GPU join follows separately. [Clock evidence](SWITCH_TEXTURE_CLOCK_CONTRACT.md) supplies seconds only for the examined scheduler route.
+
+## Round29 accepted behavior
+
+Original mission terminal all-frame loading and mixed-world playback pass headless/GPU:34 unique sources,15 retained images/126mips/2490372decoded bytes,3969782pending weight;8 cached GPU frame uploads,13 independently checked states and deterministic retirement. Initializer policy-copy omission was caught in the main-host gate and fixed before acceptance. Typed TANO3 captions/visibility and prior CREO3 regressions pass. Standalone object clock passes390checks/36cases/157independentoperations; direct TANO6 state audit109anchors/twoRTTI/16models. Modern numeric/time policy and absent live interoperability remain explicit. [Combined acceptance](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R29_SWITCH_FRAME_INTEGRATION.md).
+
+## Round30 clock and defender increment
+
+Owned TANO6 state passes21 sequences/23 transitions,700 negatives,315 budget and114 ownership checks with an independent wire/state/event/work oracle. Clock-to-cursor147 checks/14 cases/79 reference operations and resource-option20 projections/seven completions pass. Actual main headless/GPU fourteen-state clock delivery and prior supplied-time mode retain original terminal geometry/captions and drain caches/clock without update I/O. First-visible-frame uncertainty and absent live interoperability remain explicit. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R30_CLOCK_AND_DEFENDER_STAGES.md).
+
+## Round31 outdoor and view6 prerequisites
+
+Owned direct-version terrain masks and all nine exact terrain patch patterns pass independent original-byte/table and native oracles. Current-incarnation TANO6 publication and historical-event ownership pass143 checks/23 transitions/38 events. CREO6 prefix/extension structure passes109 anchors/18 registrations/16RTTI; complete codec/world routing remain next. Actual headless/GPU consumed-time failure retires the clock and cached presentation without retry. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R31_TERRAIN_AND_REPLICATION_STAGES.md).

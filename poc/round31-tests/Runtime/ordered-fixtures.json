@@ -1,0 +1,1425 @@
+{
+  "Version": 1,
+  "Synthetic": true,
+  "Cases": [
+    {
+      "Name": "contiguous_add",
+      "Baseline": "05000C5FA76889776655443322F14F4E41540616000000FFFF7600000001000000010000000700000000000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 1,
+        "Ids": [
+          7
+        ],
+        "Revision": 1,
+        "DecodedBytes": 16
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E41540617000000FFFF010001000000020000000101000900000000000000",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 2,
+            "Ids": [
+              7,
+              9
+            ],
+            "Revision": 2,
+            "DecodedBytes": 24
+          },
+          "Events": [
+            {
+              "Kind": "Added",
+              "Index": 1,
+              "OldId": null,
+              "NewId": 9
+            },
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            }
+          ],
+          "Work": 9,
+          "Cost": {
+            "Bytes": 21,
+            "Fields": 1,
+            "Operations": 1,
+            "Assignments": 0,
+            "Ids": 1,
+            "PeakElements": 2,
+            "PeakStateBytes": 24,
+            "PeakOutputBytes": 72,
+            "Events": 2,
+            "Work": 9
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 1,
+        "Ids": [
+          7
+        ],
+        "Revision": 3,
+        "DecodedBytes": 16
+      }
+    },
+    {
+      "Name": "duplicate_skip",
+      "Baseline": "05000C5FA76889776655443322F14F4E41540616000000FFFF7600000001000000020000000700000000000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 2,
+        "Ids": [
+          7
+        ],
+        "Revision": 1,
+        "DecodedBytes": 16
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E41540617000000FFFF010001000000020000000101000900000000000000",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 2,
+            "Ids": [
+              7
+            ],
+            "Revision": 2,
+            "DecodedBytes": 16
+          },
+          "Events": [],
+          "Work": 5,
+          "Cost": {
+            "Bytes": 21,
+            "Fields": 1,
+            "Operations": 1,
+            "Assignments": 0,
+            "Ids": 1,
+            "PeakElements": 1,
+            "PeakStateBytes": 16,
+            "PeakOutputBytes": 16,
+            "Events": 0,
+            "Work": 5
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 2,
+        "Ids": [
+          7
+        ],
+        "Revision": 3,
+        "DecodedBytes": 16
+      }
+    },
+    {
+      "Name": "future_gap",
+      "Baseline": "05000C5FA76889776655443322F14F4E41540616000000FFFF7600000001000000010000000700000000000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 1,
+        "Ids": [
+          7
+        ],
+        "Revision": 1,
+        "DecodedBytes": 16
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E415406170000000000010001000000030000000101000900000000000000",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 1,
+            "Ids": [
+              7
+            ],
+            "Revision": 2,
+            "DecodedBytes": 16
+          },
+          "Events": [],
+          "Work": 5,
+          "Cost": {
+            "Bytes": 21,
+            "Fields": 1,
+            "Operations": 1,
+            "Assignments": 0,
+            "Ids": 1,
+            "PeakElements": 1,
+            "PeakStateBytes": 16,
+            "PeakOutputBytes": 16,
+            "Events": 0,
+            "Work": 5
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 1,
+        "Ids": [
+          7
+        ],
+        "Revision": 3,
+        "DecodedBytes": 16
+      }
+    },
+    {
+      "Name": "wrap",
+      "Baseline": "05000C5FA76889776655443322F14F4E4154060E000000FFFF7600000000000000FFFFFFFF",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 4294967295,
+        "Ids": [],
+        "Revision": 1,
+        "DecodedBytes": 8
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E41540617000000FFFF010001000000000000000100000900000000000000",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 0,
+            "Ids": [
+              9
+            ],
+            "Revision": 2,
+            "DecodedBytes": 16
+          },
+          "Events": [
+            {
+              "Kind": "Added",
+              "Index": 0,
+              "OldId": null,
+              "NewId": 9
+            },
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            }
+          ],
+          "Work": 7,
+          "Cost": {
+            "Bytes": 21,
+            "Fields": 1,
+            "Operations": 1,
+            "Assignments": 0,
+            "Ids": 1,
+            "PeakElements": 1,
+            "PeakStateBytes": 16,
+            "PeakOutputBytes": 64,
+            "Events": 2,
+            "Work": 7
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 4294967295,
+        "Ids": [],
+        "Revision": 3,
+        "DecodedBytes": 8
+      }
+    },
+    {
+      "Name": "equal_then_add",
+      "Baseline": "05000C5FA76889776655443322F14F4E41540616000000FFFF76000000010000000A0000000700000000000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 10,
+        "Ids": [
+          7
+        ],
+        "Revision": 1,
+        "DecodedBytes": 16
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E41540622000000FFFF0100020000000C00000002000007000000000000000101000900000000000000",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 11,
+            "Ids": [
+              7,
+              9
+            ],
+            "Revision": 2,
+            "DecodedBytes": 24
+          },
+          "Events": [
+            {
+              "Kind": "Added",
+              "Index": 1,
+              "OldId": null,
+              "NewId": 9
+            },
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            }
+          ],
+          "Work": 11,
+          "Cost": {
+            "Bytes": 32,
+            "Fields": 1,
+            "Operations": 2,
+            "Assignments": 0,
+            "Ids": 2,
+            "PeakElements": 2,
+            "PeakStateBytes": 24,
+            "PeakOutputBytes": 72,
+            "Events": 2,
+            "Work": 11
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 10,
+        "Ids": [
+          7
+        ],
+        "Revision": 3,
+        "DecodedBytes": 16
+      }
+    },
+    {
+      "Name": "invalid_remove",
+      "Baseline": "05000C5FA76889776655443322F14F4E41540616000000FFFF76000000010000000A0000000700000000000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 10,
+        "Ids": [
+          7
+        ],
+        "Revision": 1,
+        "DecodedBytes": 16
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E4154060F00000000000100010000000B00000000FFFF",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 10,
+            "Ids": [
+              7
+            ],
+            "Revision": 2,
+            "DecodedBytes": 16
+          },
+          "Events": [],
+          "Work": 4,
+          "Cost": {
+            "Bytes": 13,
+            "Fields": 1,
+            "Operations": 1,
+            "Assignments": 0,
+            "Ids": 0,
+            "PeakElements": 1,
+            "PeakStateBytes": 16,
+            "PeakOutputBytes": 16,
+            "Events": 0,
+            "Work": 4
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 10,
+        "Ids": [
+          7
+        ],
+        "Revision": 3,
+        "DecodedBytes": 16
+      }
+    },
+    {
+      "Name": "add_growth",
+      "Baseline": "05000C5FA76889776655443322F14F4E41540616000000FFFF7600000001000000000000000700000000000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 0,
+        "Ids": [
+          7
+        ],
+        "Revision": 1,
+        "DecodedBytes": 16
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E415406170000000000010001000000010000000103000900000000000000",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 1,
+            "Ids": [
+              7,
+              0,
+              0,
+              9
+            ],
+            "Revision": 2,
+            "DecodedBytes": 40
+          },
+          "Events": [
+            {
+              "Kind": "Added",
+              "Index": 3,
+              "OldId": null,
+              "NewId": 9
+            },
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            }
+          ],
+          "Work": 13,
+          "Cost": {
+            "Bytes": 21,
+            "Fields": 1,
+            "Operations": 1,
+            "Assignments": 0,
+            "Ids": 1,
+            "PeakElements": 4,
+            "PeakStateBytes": 40,
+            "PeakOutputBytes": 88,
+            "Events": 2,
+            "Work": 13
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 0,
+        "Ids": [
+          7
+        ],
+        "Revision": 3,
+        "DecodedBytes": 16
+      }
+    },
+    {
+      "Name": "set_growth_zero",
+      "Baseline": "05000C5FA76889776655443322F14F4E41540616000000FFFF7600000001000000000000000700000000000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 0,
+        "Ids": [
+          7
+        ],
+        "Revision": 1,
+        "DecodedBytes": 16
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E415406170000000000010001000000010000000203000000000000000000",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 1,
+            "Ids": [
+              7,
+              0,
+              0,
+              0
+            ],
+            "Revision": 2,
+            "DecodedBytes": 40
+          },
+          "Events": [
+            {
+              "Kind": "Set",
+              "Index": 3,
+              "OldId": 0,
+              "NewId": 0
+            },
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            }
+          ],
+          "Work": 14,
+          "Cost": {
+            "Bytes": 21,
+            "Fields": 1,
+            "Operations": 1,
+            "Assignments": 0,
+            "Ids": 1,
+            "PeakElements": 4,
+            "PeakStateBytes": 40,
+            "PeakOutputBytes": 88,
+            "Events": 2,
+            "Work": 14
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 0,
+        "Ids": [
+          7
+        ],
+        "Revision": 3,
+        "DecodedBytes": 16
+      }
+    },
+    {
+      "Name": "clear_empty",
+      "Baseline": "05000C5FA76889776655443322F14F4E4154060E000000FFFF760000000000000005000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 5,
+        "Ids": [],
+        "Revision": 1,
+        "DecodedBytes": 8
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E4154060D000000FFFF0100010000000600000004",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 5,
+            "Ids": [],
+            "Revision": 2,
+            "DecodedBytes": 8
+          },
+          "Events": [],
+          "Work": 2,
+          "Cost": {
+            "Bytes": 11,
+            "Fields": 1,
+            "Operations": 1,
+            "Assignments": 0,
+            "Ids": 0,
+            "PeakElements": 0,
+            "PeakStateBytes": 8,
+            "PeakOutputBytes": 8,
+            "Events": 0,
+            "Work": 2
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 5,
+        "Ids": [],
+        "Revision": 3,
+        "DecodedBytes": 8
+      }
+    },
+    {
+      "Name": "clear_nonempty",
+      "Baseline": "05000C5FA76889776655443322F14F4E4154061E000000FFFF76000000020000000500000007000000000000000900000000000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 5,
+        "Ids": [
+          7,
+          9
+        ],
+        "Revision": 1,
+        "DecodedBytes": 24
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E4154060D000000FFFF0100010000000600000004",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 6,
+            "Ids": [],
+            "Revision": 2,
+            "DecodedBytes": 8
+          },
+          "Events": [
+            {
+              "Kind": "Removed",
+              "Index": 0,
+              "OldId": 7,
+              "NewId": null
+            },
+            {
+              "Kind": "Removed",
+              "Index": 1,
+              "OldId": 9,
+              "NewId": null
+            },
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            }
+          ],
+          "Work": 9,
+          "Cost": {
+            "Bytes": 11,
+            "Fields": 1,
+            "Operations": 1,
+            "Assignments": 0,
+            "Ids": 0,
+            "PeakElements": 2,
+            "PeakStateBytes": 24,
+            "PeakOutputBytes": 96,
+            "Events": 3,
+            "Work": 9
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 5,
+        "Ids": [
+          7,
+          9
+        ],
+        "Revision": 3,
+        "DecodedBytes": 24
+      }
+    },
+    {
+      "Name": "assign_empty",
+      "Baseline": "05000C5FA76889776655443322F14F4E4154060E000000FFFF760000000000000005000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 5,
+        "Ids": [],
+        "Revision": 1,
+        "DecodedBytes": 8
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E4154060F000000FFFF01000100000006000000030000",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 6,
+            "Ids": [],
+            "Revision": 2,
+            "DecodedBytes": 8
+          },
+          "Events": [
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            }
+          ],
+          "Work": 3,
+          "Cost": {
+            "Bytes": 13,
+            "Fields": 1,
+            "Operations": 1,
+            "Assignments": 0,
+            "Ids": 0,
+            "PeakElements": 0,
+            "PeakStateBytes": 8,
+            "PeakOutputBytes": 32,
+            "Events": 1,
+            "Work": 3
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 5,
+        "Ids": [],
+        "Revision": 3,
+        "DecodedBytes": 8
+      }
+    },
+    {
+      "Name": "assign_equal",
+      "Baseline": "05000C5FA76889776655443322F14F4E4154061E000000FFFF76000000020000000500000007000000000000000900000000000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 5,
+        "Ids": [
+          7,
+          9
+        ],
+        "Revision": 1,
+        "DecodedBytes": 24
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E4154061F000000FFFF0100030000000800000003020007000000000000000900000000000000",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 8,
+            "Ids": [
+              7,
+              9
+            ],
+            "Revision": 2,
+            "DecodedBytes": 24
+          },
+          "Events": [
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            }
+          ],
+          "Work": 13,
+          "Cost": {
+            "Bytes": 29,
+            "Fields": 1,
+            "Operations": 1,
+            "Assignments": 2,
+            "Ids": 2,
+            "PeakElements": 2,
+            "PeakStateBytes": 24,
+            "PeakOutputBytes": 48,
+            "Events": 1,
+            "Work": 13
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 5,
+        "Ids": [
+          7,
+          9
+        ],
+        "Revision": 3,
+        "DecodedBytes": 24
+      }
+    },
+    {
+      "Name": "assign_overshoot",
+      "Baseline": "05000C5FA76889776655443322F14F4E41540616000000FFFF7600000001000000050000000700000000000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 5,
+        "Ids": [
+          7
+        ],
+        "Revision": 1,
+        "DecodedBytes": 16
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E4154061F000000FFFF0100010000000600000003020009000000000000000900000000000000",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 8,
+            "Ids": [
+              9,
+              9
+            ],
+            "Revision": 2,
+            "DecodedBytes": 24
+          },
+          "Events": [
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            }
+          ],
+          "Work": 11,
+          "Cost": {
+            "Bytes": 29,
+            "Fields": 1,
+            "Operations": 1,
+            "Assignments": 2,
+            "Ids": 2,
+            "PeakElements": 2,
+            "PeakStateBytes": 24,
+            "PeakOutputBytes": 48,
+            "Events": 1,
+            "Work": 11
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 5,
+        "Ids": [
+          7
+        ],
+        "Revision": 3,
+        "DecodedBytes": 16
+      }
+    },
+    {
+      "Name": "skip_cross_assignment",
+      "Baseline": "05000C5FA76889776655443322F14F4E41540616000000FFFF7600000001000000060000000700000000000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 6,
+        "Ids": [
+          7
+        ],
+        "Revision": 1,
+        "DecodedBytes": 16
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E415406200000000000010004000000090000000302000900000000000000090000000000000004",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 7,
+            "Ids": [],
+            "Revision": 2,
+            "DecodedBytes": 8
+          },
+          "Events": [
+            {
+              "Kind": "Removed",
+              "Index": 0,
+              "OldId": 7,
+              "NewId": null
+            },
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            }
+          ],
+          "Work": 9,
+          "Cost": {
+            "Bytes": 30,
+            "Fields": 1,
+            "Operations": 2,
+            "Assignments": 2,
+            "Ids": 2,
+            "PeakElements": 1,
+            "PeakStateBytes": 16,
+            "PeakOutputBytes": 64,
+            "Events": 2,
+            "Work": 9
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 6,
+        "Ids": [
+          7
+        ],
+        "Revision": 3,
+        "DecodedBytes": 16
+      }
+    },
+    {
+      "Name": "overlap",
+      "Baseline": "05000C5FA76889776655443322F14F4E41540616000000FFFF7600000001000000020000000700000000000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 2,
+        "Ids": [
+          7
+        ],
+        "Revision": 1,
+        "DecodedBytes": 16
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E4154062200000000000100020000000300000001010008000000000000000101000900000000000000",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 3,
+            "Ids": [
+              7,
+              9
+            ],
+            "Revision": 2,
+            "DecodedBytes": 24
+          },
+          "Events": [
+            {
+              "Kind": "Added",
+              "Index": 1,
+              "OldId": null,
+              "NewId": 9
+            },
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            }
+          ],
+          "Work": 11,
+          "Cost": {
+            "Bytes": 32,
+            "Fields": 1,
+            "Operations": 2,
+            "Assignments": 0,
+            "Ids": 2,
+            "PeakElements": 2,
+            "PeakStateBytes": 24,
+            "PeakOutputBytes": 72,
+            "Events": 2,
+            "Work": 11
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 2,
+        "Ids": [
+          7
+        ],
+        "Revision": 3,
+        "DecodedBytes": 16
+      }
+    },
+    {
+      "Name": "zero_extent",
+      "Baseline": "05000C5FA76889776655443322F14F4E41540616000000FFFF7600000001000000070000000700000000000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 7,
+        "Ids": [
+          7
+        ],
+        "Revision": 1,
+        "DecodedBytes": 16
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E4154060C0000000000010000000000E7030000",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 7,
+            "Ids": [
+              7
+            ],
+            "Revision": 2,
+            "DecodedBytes": 16
+          },
+          "Events": [],
+          "Work": 3,
+          "Cost": {
+            "Bytes": 10,
+            "Fields": 1,
+            "Operations": 0,
+            "Assignments": 0,
+            "Ids": 0,
+            "PeakElements": 1,
+            "PeakStateBytes": 16,
+            "PeakOutputBytes": 16,
+            "Events": 0,
+            "Work": 3
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 7,
+        "Ids": [
+          7
+        ],
+        "Revision": 3,
+        "DecodedBytes": 16
+      }
+    },
+    {
+      "Name": "fullbits_duplicates",
+      "Baseline": "05000C5FA76889776655443322F14F4E4154062E000000FFFF7600000004000000FDFFFFFF00000000000000000000000001000000FFFFFFFFFFFFFFFF0000000000000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 4294967293,
+        "Ids": [
+          0,
+          4294967296,
+          18446744073709551615,
+          0
+        ],
+        "Revision": 1,
+        "DecodedBytes": 40
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E415406310000000000000000000080010003000000FFFFFFFF020100FFFFFFFFFFFFFFFF000200010000FFFFFFFFFFFFFFFF0000FFFFFF7F",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 2147483647,
+            "Counter": 4294967295,
+            "Ids": [
+              18446744073709551615,
+              0,
+              4294967296,
+              0
+            ],
+            "Revision": 2,
+            "DecodedBytes": 40
+          },
+          "Events": [
+            {
+              "Kind": "Removed",
+              "Index": 2,
+              "OldId": 18446744073709551615,
+              "NewId": null
+            },
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            },
+            {
+              "Kind": "Added",
+              "Index": 0,
+              "OldId": null,
+              "NewId": 18446744073709551615
+            },
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            }
+          ],
+          "Work": 26,
+          "Cost": {
+            "Bytes": 47,
+            "Fields": 3,
+            "Operations": 3,
+            "Assignments": 0,
+            "Ids": 2,
+            "PeakElements": 4,
+            "PeakStateBytes": 40,
+            "PeakOutputBytes": 136,
+            "Events": 4,
+            "Work": 26
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 4294967293,
+        "Ids": [
+          0,
+          4294967296,
+          18446744073709551615,
+          0
+        ],
+        "Revision": 3,
+        "DecodedBytes": 40
+      }
+    },
+    {
+      "Name": "assign_wrap",
+      "Baseline": "05000C5FA76889776655443322F14F4E41540616000000FFFF7600000001000000FEFFFFFF0700000000000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 4294967294,
+        "Ids": [
+          7
+        ],
+        "Revision": 1,
+        "DecodedBytes": 16
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E4154061F000000000001000300000001000000030200FFFFFFFFFFFFFFFF0000000000000000",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 1,
+            "Ids": [
+              18446744073709551615,
+              0
+            ],
+            "Revision": 2,
+            "DecodedBytes": 24
+          },
+          "Events": [
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            }
+          ],
+          "Work": 11,
+          "Cost": {
+            "Bytes": 29,
+            "Fields": 1,
+            "Operations": 1,
+            "Assignments": 2,
+            "Ids": 2,
+            "PeakElements": 2,
+            "PeakStateBytes": 24,
+            "PeakOutputBytes": 48,
+            "Events": 1,
+            "Work": 11
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 4294967294,
+        "Ids": [
+          7
+        ],
+        "Revision": 3,
+        "DecodedBytes": 16
+      }
+    },
+    {
+      "Name": "continuous_counter_drift",
+      "Baseline": "05000C5FA76889776655443322F14F4E41540626000000FFFF76000000030000000100000089776655443322F189776655443322F10000000000000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 1,
+        "Ids": [
+          17375506680932366217,
+          17375506680932366217,
+          0
+        ],
+        "Revision": 1,
+        "DecodedBytes": 32
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E4154062200000000000100020000000300000002000089776655443322F1010300FFFFFFFFFFFFFFFF",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 2,
+            "Ids": [
+              17375506680932366217,
+              17375506680932366217,
+              0,
+              18446744073709551615
+            ],
+            "Revision": 2,
+            "DecodedBytes": 40
+          },
+          "Events": [
+            {
+              "Kind": "Added",
+              "Index": 3,
+              "OldId": null,
+              "NewId": 18446744073709551615
+            },
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            }
+          ],
+          "Work": 15,
+          "Cost": {
+            "Bytes": 32,
+            "Fields": 1,
+            "Operations": 2,
+            "Assignments": 0,
+            "Ids": 2,
+            "PeakElements": 4,
+            "PeakStateBytes": 40,
+            "PeakOutputBytes": 88,
+            "Events": 2,
+            "Work": 15
+          }
+        },
+        {
+          "Hex": "05005321861289776655443322F14F4E4154060D000000FFFF0100010000000400000004",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 2,
+            "Ids": [
+              17375506680932366217,
+              17375506680932366217,
+              0,
+              18446744073709551615
+            ],
+            "Revision": 3,
+            "DecodedBytes": 40
+          },
+          "Events": [],
+          "Work": 10,
+          "Cost": {
+            "Bytes": 11,
+            "Fields": 1,
+            "Operations": 1,
+            "Assignments": 0,
+            "Ids": 0,
+            "PeakElements": 4,
+            "PeakStateBytes": 40,
+            "PeakOutputBytes": 40,
+            "Events": 0,
+            "Work": 10
+          }
+        },
+        {
+          "Hex": "05005321861289776655443322F14F4E4154062A000000FFFF01000100000002000000030200010000000000000002000000000000000100010000000700000004",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 2,
+            "Ids": [
+              17375506680932366217,
+              17375506680932366217,
+              0,
+              18446744073709551615
+            ],
+            "Revision": 4,
+            "DecodedBytes": 40
+          },
+          "Events": [],
+          "Work": 14,
+          "Cost": {
+            "Bytes": 40,
+            "Fields": 2,
+            "Operations": 2,
+            "Assignments": 2,
+            "Ids": 2,
+            "PeakElements": 4,
+            "PeakStateBytes": 40,
+            "PeakOutputBytes": 40,
+            "Events": 0,
+            "Work": 14
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 1,
+        "Ids": [
+          17375506680932366217,
+          17375506680932366217,
+          0
+        ],
+        "Revision": 5,
+        "DecodedBytes": 32
+      }
+    },
+    {
+      "Name": "grow_then_clear",
+      "Baseline": "05000C5FA76889776655443322F14F4E4154060E000000FFFF760000000000000000000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 0,
+        "Ids": [],
+        "Revision": 1,
+        "DecodedBytes": 8
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E41540622000000FFFF0100010000000100000001030007000000000000000100010000000200000004",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 2,
+            "Ids": [],
+            "Revision": 2,
+            "DecodedBytes": 8
+          },
+          "Events": [
+            {
+              "Kind": "Added",
+              "Index": 3,
+              "OldId": null,
+              "NewId": 7
+            },
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            },
+            {
+              "Kind": "Removed",
+              "Index": 0,
+              "OldId": 0,
+              "NewId": null
+            },
+            {
+              "Kind": "Removed",
+              "Index": 1,
+              "OldId": 0,
+              "NewId": null
+            },
+            {
+              "Kind": "Removed",
+              "Index": 2,
+              "OldId": 0,
+              "NewId": null
+            },
+            {
+              "Kind": "Removed",
+              "Index": 3,
+              "OldId": 7,
+              "NewId": null
+            },
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            }
+          ],
+          "Work": 20,
+          "Cost": {
+            "Bytes": 32,
+            "Fields": 2,
+            "Operations": 2,
+            "Assignments": 0,
+            "Ids": 1,
+            "PeakElements": 4,
+            "PeakStateBytes": 40,
+            "PeakOutputBytes": 208,
+            "Events": 7,
+            "Work": 20
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 0,
+        "Ids": [],
+        "Revision": 3,
+        "DecodedBytes": 8
+      }
+    },
+    {
+      "Name": "repeated_vector_fields",
+      "Baseline": "05000C5FA76889776655443322F14F4E4154060E000000FFFF760000000000000000000000",
+      "Initial": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 0,
+        "Ids": [],
+        "Revision": 1,
+        "DecodedBytes": 8
+      },
+      "Steps": [
+        {
+          "Hex": "05005321861289776655443322F14F4E4154062C000000FFFF010001000000010000000100000100000000000000010001000000020000000200000200000000000000",
+          "Expected": {
+            "ObjectId": 17375506680932366217,
+            "Passive": 118,
+            "Counter": 2,
+            "Ids": [
+              2
+            ],
+            "Revision": 2,
+            "DecodedBytes": 16
+          },
+          "Events": [
+            {
+              "Kind": "Added",
+              "Index": 0,
+              "OldId": null,
+              "NewId": 1
+            },
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            },
+            {
+              "Kind": "Set",
+              "Index": 0,
+              "OldId": 1,
+              "NewId": 2
+            },
+            {
+              "Kind": "Changed",
+              "Index": null,
+              "OldId": null,
+              "NewId": null
+            }
+          ],
+          "Work": 13,
+          "Cost": {
+            "Bytes": 42,
+            "Fields": 2,
+            "Operations": 2,
+            "Assignments": 0,
+            "Ids": 2,
+            "PeakElements": 1,
+            "PeakStateBytes": 16,
+            "PeakOutputBytes": 112,
+            "Events": 4,
+            "Work": 13
+          }
+        }
+      ],
+      "Reseed": {
+        "ObjectId": 17375506680932366217,
+        "Passive": 118,
+        "Counter": 0,
+        "Ids": [],
+        "Revision": 3,
+        "DecodedBytes": 8
+      }
+    }
+  ]
+}

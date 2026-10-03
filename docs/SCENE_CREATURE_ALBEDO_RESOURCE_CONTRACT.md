@@ -76,3 +76,16 @@ Only the reader's two-line option forwarding and own new scenario/verifier/runne
 ## Round11 integration —2026-10-02
 
 Round11 [palette-only customization](SCENE_CREATURE_PALETTE_CUSTOMIZATION_CONTRACT.md) returns owned selected factors without faces or source reloads. The [world-owned preview](OFFLINE_REPLICATED_WORLD_PREVIEW_CONTRACT.md) uses the accepted original39-source albedo closure.
+
+## Round19 explicit face completion
+
+[Opt-in resource route](SCENE_CREATURE_FACE_RESOURCE_CONTRACT.md) addresses the
+default route's missing generated face with supplied inspection values.
+[Requested completion and logical accounting](SCENE_CREATURE_FACE_COMPLETION_CONTRACT.md)
+require exact values/binding/dependencies and account unique source-path inputs
+plus generated image bytes. Equivalent separately decoded face cross-map inputs
+must match metadata/all pixels; contradictory aliases reject. GeneratedFaces and
+GeneratedFaceBytes receipt fields are zero for default/static resources.
+[GPU inspection](SCENE_CREATURE_FACE_INSPECTION_CONTRACT.md) verifies actual head
+MAIN binding and scoped pixel change. Original player customization/display parity
+remain unknown; this does not infer full replicated appearance behavior.

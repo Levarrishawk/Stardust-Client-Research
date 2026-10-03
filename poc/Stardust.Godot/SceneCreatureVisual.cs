@@ -11,6 +11,7 @@ using Stardust.Core.Session;
 public sealed class SceneCreatureVisual : IDisposable
 {
     private SceneCreatureResources? resources;
+    private CreatureAppearanceDescriptorBundle? baseAppearance;
     private SkeletalMeshPreview? mesh;
     private AnimationPreviewClock? idle;
     private bool disposed, moving;
@@ -85,7 +86,7 @@ public sealed class SceneCreatureVisual : IDisposable
     }
     private SceneCreatureVisual(SceneCreatureResources source, Transform3D transform, Func<bool> check)
     {
-        resources = source; identityCheck = check;
+        resources = source; baseAppearance = source.Creature; identityCheck = check;
         Root = new Node3D { Name = "OwnedSceneCreature", Visible = false, Transform = transform }; Allocations++;
         try
         {
@@ -122,6 +123,20 @@ public sealed class SceneCreatureVisual : IDisposable
         mesh!.SetMovementFrame(key, frame, seconds); moving = true; return true;
     }
     public bool Verify(bool gpu) { if (!Current()) return false; mesh!.VerifyBoundary(gpu); return true; }
+    /// <summary>Commit an owned color/style revision without changing immutable source assets, pose or placement.</summary>
+    public bool ApplyCustomization(CreatureAppearanceDescriptorBundle revision)
+    {
+        if (!Current()) return false;
+        ArgumentNullException.ThrowIfNull(revision);
+        var basis = baseAppearance!;
+        if (revision with { MaterialBundle = basis.MaterialBundle, GeneratedFaces = basis.GeneratedFaces,
+            CustomizationValues = basis.CustomizationValues } != basis)
+            throw new InvalidDataException("Customization changed immutable appearance resources.");
+        if (!Current()) return false;
+        mesh!.ApplyCustomization(revision); // Existing material boundary uploads first and rolls back failures.
+        resources = resources! with { Creature = revision }; // Owned CPU revision follows GPU success only.
+        return true;
+    }
     public string? Fingerprint(bool pose = false, bool gpu = false)
     {
         if (!Current()) return null;
@@ -144,8 +159,12 @@ public sealed class SceneCreatureVisual : IDisposable
     public void Dispose()
     {
         MainThread(); if (disposed) return; disposed = true; IsPublished = false;
-        mesh?.Dispose(); mesh = null; idle = null; resources = null; identityCheck = null;
-        ulong id = Root.GetInstanceId(); Root.Free(); Disposals++;
-        if (GodotObject.InstanceFromId(id) is not null) throw new InvalidOperationException("Creature root survived disposal.");
+        try { mesh?.Dispose(); }
+        finally
+        {
+            mesh = null; idle = null; resources = null; baseAppearance = null; identityCheck = null;
+            ulong id = Root.GetInstanceId(); Root.Free(); Disposals++;
+            if (GodotObject.InstanceFromId(id) is not null) throw new InvalidOperationException("Creature root survived disposal.");
+        }
     }
 }

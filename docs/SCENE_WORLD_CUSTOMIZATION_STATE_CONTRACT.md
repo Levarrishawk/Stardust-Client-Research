@@ -1,0 +1,45 @@
+# World raw customization state and ingress
+
+Round21 Runtime, October2,2026 Eastern. [Store](../poc/Stardust.Core/Session/SceneWorldCustomizationStateStore.cs) implements the frozen [single-consumer raw journal](../poc/Stardust.Core/Session/ISceneWorldRawCustomizationSource.cs). [Router](../poc/Stardust.Core/Session/SceneWorldCustomizationApplicationRouter.cs) optionally routes field4-only CREO3 deltas through an injected decoder. Both borrow the accepted world; neither closes it. No same-round networking, projection or rendering implementation is required.
+
+```csharp
+new SceneWorldCustomizationStateStore(world,
+    maximumObjects:64, maximumPendingUpdates:64,
+    maximumStringBytes:1536, maximumRetainedBytes:1048576, revisionSeed:0);
+SceneWorldRawCustomizationBatch? Find(SceneWorldObjectSnapshot snapshot);
+bool Apply(SceneWorldObjectSnapshot snapshot, CreatureView3CustomizationDeltaPlan plan);
+bool Acknowledge(SceneWorldRawCustomizationBatch batch);
+int Prune(); void Clear(); void Dispose();
+// Owner-thread inspection: Count, PendingUpdateCount, RetainedBytes, Revision, IsClosed.
+new SceneWorldCustomizationApplicationRouter(world, store, decoder,
+    downstream:null, maximumPayloadBytes:65536);
+bool Accept(long generation, ReadOnlyMemory<byte> message);
+```
+
+All operations/getters use the construction thread and reject reentry before mutation. Constructor verifies borrowed coordinator affinity. Store limits:1..4,096 objects,1..4,096 globally pending updates,0..1MiB per raw string,0..128MiB logical retention. Revision seed is an explicit overflow-test/resume input; raw revisions use checked UInt64 increments and never rewind on acknowledgment, Clear, prune, reset or disposal. Journal records and batch lists are immutable copies of references to immutable ReplicationByteString values. Caller buffers/copies cannot mutate retained bytes. Extended-length metadata, embedded NUL/high bytes, duplicates and empty values remain intact.
+
+## Seed, ordering and acknowledgment
+
+Find/Apply require an active finalized object with a current world-owned complete typed CREO3 replication snapshot, exact latest registry object reference, incarnation, placement and envelope history. Stale/foreign/static/incomplete/malformed snapshots return null/false; wrong plan target throws InvalidDataException. Incoming raw plans do not modify the world baseline or scalar overlay. Find lazily seeds baseline.Customization as one ordered update, including an empty seed. Apply to an unseeded object preflights that seed and the whole plan together. A different baseline object in the same incarnation appends another ordered seed update and resets current raw bytes; scalar changes preserving that baseline reference do not reseed or overwrite later field4 bytes.
+
+Every raw write receives a distinct global revision, including duplicate references and empty writes. Current is the last raw field, while Updates preserves the complete unacknowledged sequence. Last-only storage could lose an earlier valid write before a later out-of-range attempt; the journal lets an independently accepted projector process both in order and retain the prior local value. This store does not parse packed records, assign CIDM names/types/ranges, clamp values, reset local variables on empty fields or reproduce linked-variable/mount graphs. [Packed codec/setter evidence](PACKED_CUSTOMIZATION_CONTRACT.md) remains a separate boundary. A native toy range subscriber demonstrates the ordering requirement without claiming recovered player semantics.
+
+Find issues one cached batch per entry. Acknowledge requires that exact reference, current incarnation/baseline, exact ThroughRevision/Current reference and entire current pending sequence. A forged/equal copy, superseded Find, later accepted write, reseed, destroyed/recreated object or cleared store invalidates the old receipt. A rejected acknowledgment changes nothing. A valid acknowledgment removes only the matched ordered prefix and releases the issued receipt; later writes never disappear through an older batch. If updates arrived after a Find, obtain a fresh batch containing both the old prefix and new tail before acknowledging. Body scalar changes alone do not invalidate otherwise-current raw state. Clear intentionally discards all raw entries/receipts while retaining the global revision; the next valid Find creates a new seed revision.
+
+## Transactions and logical bounds
+
+Apply constructs its entire candidate journal/current/revision privately, checks target/string/count/actor/byte limits and checked arithmetic, then replaces one entry. Any failure leaves that plan's old current/journal/issued batch/revision unchanged; unseeded failure leaves no seed prefix. Find/reseed uses the same preflight. Ordinary stale-entry housekeeping can independently remove already-invalid incarnations before a rejected operation. Capacity errors do not clear otherwise-current data or close the borrowed world; hosts choose their failure/cleanup policy.
+
+RetainedBytes sums unique immutable string references across the latest baseline seed, current field, all pending updates and the currently issued batch. Current/pending/seed sharing and the same reference shared across actors count once; equal bytes in separately owned strings count separately. Every pending record still counts toward journal capacity. New writes invalidate/release the old issued receipt. CLR/container overhead, borrowed baseline DTO fields, caller-retained batch references, GPU and total heap are excluded. Counters are computed from owned state; no raw copy/decoder/source I/O is needed for the charge. Prune retires lost incarnations, generations and inactive/closed worlds; Clear/Dispose release all owned raw references. Dispose releases its world borrow and leaves world lifecycle untouched.
+
+## Optional application router
+
+Stale generation returns false before copying, parsing or invoking callbacks. Current messages are copied into bounded router-owned bytes and cleared in finally. Candidate CREO3 delta envelopes use the accepted exact outer decoder; only a first U16 field index4 invokes the injected field4 decoder. Plan target and raw DeclaredCount must match the envelope; declared count is not invented as the update-list denominator. Other fields/views/families/application messages go to downstream, defaulting to world.Accept. Downstream receives a callback-duration borrowed ReadOnlyMemory; retaining it is invalid because router-owned bytes are cleared. Caller bytes remain unchanged. The decoder receives an independently owned envelope and may retain it.
+
+The injected decoder must be bounded/pure and consume a complete field4-only payload transactionally. Mixed field4-plus-other-field interpretation is unclaimed. The router does not duplicate that unfinished inner parser. It checks source mutation/closure, generation, target freshness and observable world replication/change-journal mutation across decoder callbacks, including caught router reentry. Downstream may perform ordinary world ingress, including destruction; source mutation, generation reset or caught router reentry fails. No coordinator API exposes a universal mutation token: unrelated resource-only queue changes that leave these observed state boundaries unchanged are not attested by the guard. Callbacks must respect the purity contract rather than rely on detection as a sandbox.
+
+Current parse/callback/budget failures close only the router and release callbacks/borrows, then propagate. Already performed external callback changes cannot be rolled back; the raw plan is not committed afterward. Foreign-thread entry rejects before this failure-close path. Store active operations remain usable unless explicitly disposed. World/source mutation guards and byte copying are modern safety policy, not recovered original prefix-mutation recovery.
+
+[Native fixtures](../poc/Stardust.Core.SmokeTests/SceneWorldCustomizationStateScenarios.cs) pass136 checks/28 cases with real coordinator-issued snapshots, independently authored baseline/outer messages and deterministic injected plans. No reflection, asset preparation, original execution or GPU occurs. They cover seed/delta/reseed/scalar separation, ordered duplicates/empty bytes, strict current acknowledgment, destroy/recreate/reset, whole-plan count/string/byte/revision failures, global multi-object/reference budgets, thread/reentry and router purity/ownership/downstream cases. [Independent trace/audit](../poc/round21-tests/Runtime/verify.py) checks synthetic raw order/revisions/byte charges and the native receipts, then reuses the accepted drain regression audit. Prior consumer160, pump171 and drain1,165/37 checks pass. [Checkpoint/reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R21_CUSTOMIZATION_STATE.md).
+
+Lead integration: inject the accepted networking decoder, put this router above motion/application ingress, bind one projector to this source, and acknowledge only after the entire current batch is applied. Rendering and declared-range projection remain separately reviewed work.

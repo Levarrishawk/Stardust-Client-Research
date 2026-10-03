@@ -16,11 +16,12 @@ public sealed class SceneCreatureResourceOptions : SceneObjectResourceOptions
     public LogicalAnimationClipSelection Idle { get; }
     public IReadOnlyDictionary<string, LogicalAnimationClipSelection> Movement { get; }
     public bool LoadAlbedoFactors { get; }
+    public SceneCreatureFaceInspectionPolicy? FaceInspection { get; }
     public int MaximumResources { get; }
     public long MaximumSourceBytes { get; }
     public SceneCreatureResourceOptions(LogicalAnimationClipSelection idle,
         IReadOnlyDictionary<string, LogicalAnimationClipSelection> movement, bool loadAlbedoFactors,
-        int maximumResources = 64, long maximumSourceBytes = 16777216)
+        int maximumResources = 64, long maximumSourceBytes = 16777216, SceneCreatureFaceInspectionPolicy? faceInspection = null)
     {
         ArgumentNullException.ThrowIfNull(movement);
         if (maximumResources is < 1 or > 4096 || maximumSourceBytes is < 1 or > 134217728)
@@ -30,7 +31,8 @@ public sealed class SceneCreatureResourceOptions : SceneObjectResourceOptions
         Idle = Copy(idle);
         Movement = new ReadOnlyDictionary<string, LogicalAnimationClipSelection>(new Dictionary<string, LogicalAnimationClipSelection>(StringComparer.Ordinal)
             { ["walk"] = Copy(movement["walk"]), ["run"] = Copy(movement["run"]) });
-        LoadAlbedoFactors = loadAlbedoFactors; MaximumResources = maximumResources; MaximumSourceBytes = maximumSourceBytes;
+        if(faceInspection is not null && !loadAlbedoFactors)throw new ArgumentException("Face inspection requires the complete albedo route.");
+        FaceInspection = faceInspection; LoadAlbedoFactors = loadAlbedoFactors; MaximumResources = maximumResources; MaximumSourceBytes = maximumSourceBytes;
     }
     private static LogicalAnimationClipSelection Copy(LogicalAnimationClipSelection selection)
     {
@@ -53,16 +55,17 @@ public sealed class SceneStaticResourceOptions : SceneObjectResourceOptions
     public SwitchTextureFrameSelection? SwitchTextureFrame { get; }
     public AppearanceGraphLimits Limits { get; }
     public long MaximumDecodedBytes { get; }
+    public SceneStaticSwitchFramePolicy? SwitchFrames { get; }
     public SceneStaticResourceOptions(SceneStaticMaterialPolicy materialPolicy, SwitchTextureFrameSelection? switchTextureFrame,
-        AppearanceGraphLimits? limits = null, long maximumDecodedBytes = 134217728)
+        AppearanceGraphLimits? limits = null, long maximumDecodedBytes = 134217728, SceneStaticSwitchFramePolicy? switchFrames = null)
     {
         if (!Enum.IsDefined(materialPolicy)) throw new ArgumentOutOfRangeException(nameof(materialPolicy));
-        switchTextureFrame?.Validate(); limits ??= new(MaximumResources: 64, MaximumSourceBytes: 16777216);
+        switchTextureFrame?.Validate(); switchFrames?.Validate(materialPolicy,switchTextureFrame); limits ??= new(MaximumResources: 64, MaximumSourceBytes: 16777216);
         if (limits.MaximumResources is < 1 or > 4096 || limits.MaximumSourceBytes is < 1 or > 134217728 ||
             limits.MaximumDepth is < 1 or > 32 || limits.MaximumEdges is < 1 or > 4096 || maximumDecodedBytes is < 4 or > 134217728)
             throw new ArgumentOutOfRangeException(nameof(limits));
         MaterialPolicy = materialPolicy; SwitchTextureFrame = switchTextureFrame is null ? null : switchTextureFrame with { };
-        Limits = limits with { }; MaximumDecodedBytes = maximumDecodedBytes;
+        Limits = limits with { }; MaximumDecodedBytes = maximumDecodedBytes; SwitchFrames=switchFrames is null?null:switchFrames with {Limits=switchFrames.Limits is null?null:switchFrames.Limits with {DdsLimits=switchFrames.Limits.DdsLimits is null?null:switchFrames.Limits.DdsLimits with {}}};
     }
 }
 
@@ -102,9 +105,9 @@ public static class SceneObjectResourceRouter
         SceneObjectResources result = options switch
         {
             SceneCreatureResourceOptions c => new(SceneCreatureResourceReader.Load(create, catalog, c.Idle, c.Movement, resolve, token,
-                c.MaximumResources, c.MaximumSourceBytes, c.LoadAlbedoFactors)),
+                c.MaximumResources, c.MaximumSourceBytes, c.LoadAlbedoFactors, c.FaceInspection)),
             SceneStaticResourceOptions s => new(SceneStaticResourceReader.Load(create, catalog, resolve, s.MaterialPolicy, token,
-                s.Limits, s.MaximumDecodedBytes, s.SwitchTextureFrame)),
+                s.Limits, s.MaximumDecodedBytes, s.SwitchTextureFrame, s.SwitchFrames)),
             _ => throw new InvalidDataException("Unsupported resource options.")
         };
         token.ThrowIfCancellationRequested(); return result;

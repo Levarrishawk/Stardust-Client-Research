@@ -74,3 +74,7 @@ python tools/python/verify_scene_static_resources.py C:/Stardust-DEV C:/Stardust
 ## Open boundary and next probe
 
 No input executable or virtual addresses were used. Prior RTTI correlation in the [EFCT checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-12_EFCT_PRECALCULATED_LIGHTING.md) does not establish a SWTS factory grammar or switcher semantics. Only original asset structure and the bounded modern selection are established here. The precise future probe is static executable analysis, after verifying its documented SHA-256, of SWTS/0000 registration and DTST/0000 construction/read/update ownership to determine the two raw words' meanings and initial frame rule. That separate investigation is outside this milestone.
+
+## Round27 static runtime closure
+
+[Pinned SWTS/DTST runtime](SWITCH_TEXTURE_RUNTIME_CONTRACT.md) establishes authored signed count, float interval, initial zero index/accumulator, repeated catch-up/wrap and per-wrapper selector ownership over template-owned variants. Terminal count8/float bits3DCCCCCD matches its eight ordered textures. Outer clock units and first update/draw/pause/culling remain Unknown. Explicit frame0 preview remains current policy; no10Hz or automatic host animation claim.

@@ -1,0 +1,987 @@
+[
+  {
+    "Name": "zero-neighbor-0",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "submillisecond-neighbor--1",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 953267990
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "submillisecond-neighbor-0",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 953267991
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "submillisecond-neighbor-1",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 953267992
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "millisecond-neighbor--1",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 981668462
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "millisecond-neighbor-0",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 981668463
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "millisecond-neighbor-1",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 981668464
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "two-milliseconds-neighbor--1",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 990057070
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "two-milliseconds-neighbor-0",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 990057071
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "two-milliseconds-neighbor-1",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 990057072
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "tenth-neighbor--1",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 1036831948
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "tenth-neighbor-0",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 1036831949
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "tenth-neighbor-1",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 1036831950
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "negative-zero",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 0
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 2147483648
+      },
+      {
+        "Kind": "service",
+        "Id": 0
+      }
+    ]
+  },
+  {
+    "Name": "divergent-objects",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "register",
+        "Id": 2
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 981668463
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 981668463
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 1000593162
+      },
+      {
+        "Kind": "service",
+        "Id": 2
+      },
+      {
+        "Kind": "service",
+        "Id": 2
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "registration-at-now",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "advance",
+        "SecondsBits": 1036831949
+      },
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 1017370378
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "partition-two",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 985963430
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 985963430
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "partition-single",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 994352038
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "capacity-duplicate-remove-reset",
+    "Capacity": 2,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 0
+      },
+      {
+        "Kind": "register",
+        "Id": 0
+      },
+      {
+        "Kind": "register",
+        "Id": 18446744073709551615
+      },
+      {
+        "Kind": "register",
+        "Id": 2
+      },
+      {
+        "Kind": "remove",
+        "Id": 0
+      },
+      {
+        "Kind": "remove",
+        "Id": 0
+      },
+      {
+        "Kind": "register",
+        "Id": 2
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 1008981770
+      },
+      {
+        "Kind": "reset",
+        "Id": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 2
+      },
+      {
+        "Kind": "register",
+        "Id": 2
+      },
+      {
+        "Kind": "service",
+        "Id": 2
+      }
+    ]
+  },
+  {
+    "Name": "invalid-inputs",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 2143289345
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 4290772993
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 2139095040
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 4286578688
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 2147483649
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 3212836864
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 2139095039
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "cap-exact",
+    "Capacity": 4,
+    "MaximumTicks": 2,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 981668463
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 990057071
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "cap-one-less",
+    "Capacity": 4,
+    "MaximumTicks": 1,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 990057071
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "u64-cast-neighbor--1",
+    "Capacity": 4,
+    "MaximumTicks": 18446744073709551615,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 1518539374
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "u64-cast-neighbor-0",
+    "Capacity": 4,
+    "MaximumTicks": 18446744073709551615,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 1518539375
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "u64-cast-neighbor-1",
+    "Capacity": 4,
+    "MaximumTicks": 18446744073709551615,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 1518539376
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "tick-overflow",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 18446744073709551614,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      },
+      {
+        "Kind": "reset",
+        "Id": 0
+      }
+    ]
+  },
+  {
+    "Name": "revision-overflow",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 18446744073709551614,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      },
+      {
+        "Kind": "remove",
+        "Id": 1
+      },
+      {
+        "Kind": "reset",
+        "Id": 0
+      }
+    ]
+  },
+  {
+    "Name": "token-overflow",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 18446744073709551614,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "remove",
+        "Id": 1
+      },
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "reset",
+        "Id": 0
+      }
+    ]
+  },
+  {
+    "Name": "max-token-initial",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 18446744073709551615,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "missing-noops",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "service",
+        "Id": 99
+      },
+      {
+        "Kind": "remove",
+        "Id": 99
+      },
+      {
+        "Kind": "reset",
+        "Id": 0
+      },
+      {
+        "Kind": "register",
+        "Id": 99
+      },
+      {
+        "Kind": "service",
+        "Id": 99
+      }
+    ]
+  },
+  {
+    "Name": "closed-writes",
+    "Capacity": 4,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 1008981770
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "close",
+        "Id": 0
+      },
+      {
+        "Kind": "close",
+        "Id": 0
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      },
+      {
+        "Kind": "register",
+        "Id": 2
+      },
+      {
+        "Kind": "remove",
+        "Id": 1
+      },
+      {
+        "Kind": "reset",
+        "Id": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "bad-capacity0",
+    "Capacity": 0,
+    "MaximumTicks": 1,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": []
+  },
+  {
+    "Name": "bad-capacity-high",
+    "Capacity": 4097,
+    "MaximumTicks": 1,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": []
+  },
+  {
+    "Name": "bad-max-ticks",
+    "Capacity": 1,
+    "MaximumTicks": 0,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": []
+  },
+  {
+    "Name": "service-revision-overflow",
+    "Capacity": 2,
+    "MaximumTicks": 1000000,
+    "TickSeed": 0,
+    "RevisionSeed": 18446744073709551613,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "rounded-config-cap",
+    "Capacity": 2,
+    "MaximumTicks": 18446742802399231999,
+    "TickSeed": 0,
+    "RevisionSeed": 0,
+    "TokenSeed": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 1518539374
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  }
+]

@@ -1,0 +1,37 @@
+# Round20 customization and presentation drain integration — 2026-10-03 UTC
+
+## Question and inputs
+
+Can owned packed bytes and CIDM identities be decoded reproducibly, while supplied appearance revisions update the current creature without losing motion or asynchronous cleanup? Stop after four scoped milestones and combined native/headless/GPU/failure/close gates. Raw field4 replication and wire-to-appearance application are the next boundary, not claimed here.
+
+Baseline2374 public files: manifest SHA25652d1c308ffd18481ff6a30ccc334a59c98f9dd700b201838e1bb83dcc3fee167; ZIP5f379b875a8c3af1c19b8fe1607851c4a252c395c893b322a795bb82d47048e5. Two lead-frozen interfaces precede this snapshot. Four existing specialists remain Low; isolated snapshot-byte scopes preserve HEAD/index and unlisted/private bytes. Main HEAD1fc55dd89cd23ce3af49e3fe471210bdebe9735c. No staging/publication/original execution/live contact.
+
+Readonly root C:/Stardust-DEV; configuration SHA25622158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524. Executable SHA256E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150 was independently checked before lead/Networking VA reads. Cached .NET8/Godot4.7.2 Mono and bundled Python only. Existing catalog, idle pin, locomotion bank and explicit face/fullzero/varied profiles are unchanged. Generated detailed inventories, byte exports, bounded disassembly and screenshots stay private.
+
+## Findings, confidence and consequences
+
+**Confirmed dictionary:** CIDM0001 DATA count-free U16LE/NUL ASCII records; all121 original rows independently agree. Exact priority53 resource3697 bytes SHA256FD3A7C9FFB9E2AF4234C214F803E20CE9A2F06091F15F4E91578C6B4FBF6BCF2. Preserve exact names;120 project by explicit namespaces, ID118 lacks leading slash and stays unprojected.89 rejection cases pass. Modern exact-envelope/name/atomic admission is labeled separately in [the dictionary contract](../../docs/CUSTOMIZATION_ID_DICTIONARY_CONTRACT.md).
+
+**Confirmed static conversion for two concrete classes:** shared packed reader00B49FD0 uses U8 for width1 and LE S16 sign extension for width2, calling virtual+20. Basic00B4ADF0 accepts min-inclusive/max-exclusive; palette00B4B8E0 accepts nonnegative index below entry count. Invalid local attempts retain the old integer, while linked forwarding still receives the attempt. This differs from palette lookup clamping. Lead regenerated bounded instructions independently; [raw codec contract](../../docs/PACKED_CUSTOMIZATION_CONTRACT.md) records RTTI, vtables, getters and notification limits. Raw owned codec preserves duplicates/order/width/exact decoded spelling;773 fixtures,11995 negatives,6699 ownership checks independently agree. Strict final EOS/full-tail/atomic rejection is modern policy; other variable classes and live mount context remain open.
+
+**Confirmed modern ownership:** [consumer/pump drain contract](../../docs/SCENE_WORLD_PRESENTATION_DRAIN_CONTRACT.md) captures every optional task after disposal, including rollback/error paths. Admission reserves pending+owned+candidate cleanup slots. One completion task per overlapping drain group prevents growing joins behind a long worker; one sticky diagnostic bounds retained fault history. Combined close attempts consumer/world and waits all known tasks.37 controlled cases/1165 checks, prior160 consumer/171 pump checks pass in main. A throwing/null task getter cannot prove hidden work ended and remains explicit failed cleanup.
+
+**Confirmed supplied presentation:** [customization wrapper](../../docs/SCENE_WORLD_CREATURE_CUSTOMIZATION_VISUAL_CONTRACT.md) uses existing CPU queue and atomic GPU update. One retiring worker/one latest pending snapshot, fresh incarnation/revision checks, immutable same-revision values, failure retention and post-disposal task observation pass. Lead review corrected overlapping noncooperative composers, same-revision changes after apply, growing task joins and retained base-resource references. Immutable validated resource publication stays unchanged; a private fullcolor/style presentation revision is separate from face-only completion validation.
+
+## Joined evidence and reproduction
+
+Shared native default suite and all three new registered gates pass; both builds have zero warnings/errors. Lead original continuous host loads human76 sources/5940390 bytes and terminal27, reloads only terminal for three closed archive jobs. Nine original movement/correction/focus/pause/reset phases pass before appearance edits. Full supplied zero1, rapid2/3/4(varied), missing-key5 retaining4, zero6 and missing-source retention6 produce five receipts. Native pose, Height1.4, selected clock, publication and archive count stay fixed; actual GPU readback passes.
+
+Committed zero face SHA256A41EE8925C695A8BC2DA0CAC1FA17864D471270507DF3900472F0655A5A42808; varied60C109DF85346F25B814E303B6D022D7D2D94459234790B6337ABB1877E7B8F5. Main standalone independent original-byte preparation/composition agrees for both profiles/five layers. GPU pair changes48398 pixels, silhouette/background equal; fresh combined and standalone images inspected. These are modern supplied-profile results, not original player values or legacy driver parity.
+
+[Continuous launcher](../../poc/round16-tests/Integration/Launch.ps1) adds CustomizationRevisions with LocalInput, FaceProfile and MotionPeer; use existing Round16 Integration and Round17 Integration producers. [Joined receipt checker](../../poc/round20-tests/Integration/verify_revisions.py) takes its printed log. CustomizationClosePending holds one owned CPU job until token cancellation: prior display6 remains, close cancels/awaits it, entered1/closed1 and successful task completion are checked. Separate default, canceled-face-load and lost-incarnation launches pass. [Standalone launcher/oracle](../../poc/round20-tests/Rendering/Launch.ps1) uses the documented Round18 Rendering producer, not the continuous fixture family. Initial wrong-family invocation correctly rejected selected-character identity; rerun with that producer passes.
+
+Headless logs retain one known certificate-store startup diagnostic. GPU joined log also has nine shader-initialization diagnostics at shader_gles3.cpp:802, exactly present in accepted Round19. The checker records only those exact pre-frame message/location pairs and rejects other errors. Actual readback/pixels pass; the startup diagnostics remain an engine-environment limitation, not a zero-runtime-error claim. Initial blanket error scan was corrected to this precise baseline accounting.
+
+## Remaining boundary and next action
+
+Round21 should add current-incarnation raw field4 state/delta application and an explicit CIDM/declared-range projection, preserving empty bypass, ordered duplicate setter semantics and reject-with-old-value ranges. Full seed/default values need stated context; never pass unchecked raw integers into compositor fallback and call that legacy setter behavior. Interior movement remains subsequent. Research89%, readiness94%, function coverage uncalibrated and345 documented packet-source rows stay separate unchanged measures.
+
+## Repository acceptance
+
+Accepted 2026-10-03 01:30:46 UTC.50 scoped paths/30 additions/20 modifications; zero unrelated changes, preserved HEAD/empty index.1195 Markdown files/zero broken or private links;2602 names/zero duplicates,345 packet rows and no public file at least25MiB. Tracked and all new-file whitespace checks pass after one EOF-only launcher cleanup. All four workers stopped.

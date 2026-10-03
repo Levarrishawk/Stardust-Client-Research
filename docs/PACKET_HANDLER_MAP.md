@@ -542,3 +542,74 @@ CREO3 field17 has an owned [wounds vector codec](CREATURE_VIEW3_WOUNDS_DELTA_CON
 ## Round10 implementation and vector correction
 
 [Typed world](SCENE_WORLD_REPLICATION_CONTRACT.md) now consumes full CREO3 and scalar indices11–16. [Legacy vector kernel](CREATURE_WOUNDS_LEGACY_POLICY_CONTRACT.md) recovers clamped unsigned skip, assign cursor units and mutation-dependent counters; it adds no packet/name rows.345-row inventory unchanged.
+
+## Bounded replacement compact transform codecs - October2,2026
+
+The existing UpdateTransform/WithParent rows now have an executable
+[replacement codec](COMPACT_SCENE_TRANSFORM_CONTRACT.md): exact count8,
+26/34-byte branches and raw signed fields. Independent fixtures pass. This adds
+implementation without changing the345-packet source inventory or the existing
+original dispatch/interpolation confidence. World ingress/parent resolution,
+yaw and physical-speed interpretation remain separately bounded.
+
+## Round18 local input and offline motion ingress
+
+[Round18](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_18_2026-10-02.md)
+joins [local driver](SCENE_WORLD_LOCAL_MOTION_CONTRACT.md),
+[input and locomotion](SCENE_WORLD_LOCAL_INPUT_CONTRACT.md) and
+[motion ingress](SCENE_WORLD_MOTION_INGRESS_CONTRACT.md) through the continuous
+bounded pump. Original headless/GPU/cancel and independent nine-stage time/pose/
+clip/resource proofs pass. Modern correction/pause/free planar movement is
+explicit; original yaw, interpolation, prediction and parent-world conversion
+remain unclaimed. [Head-material diagnosis](SCENE_HUMAN_HEAD_MATERIAL_GAP.md)
+requires an explicit generated-face route next. Research/function/protocol
+denominators are unchanged. Workers remain Low; successive rounds are authorized
+under the overnight instruction.
+
+## Round19 explicit generated face route
+
+[Round19](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_19_2026-10-02.md)
+joins [owned face resources](SCENE_CREATURE_FACE_RESOURCE_CONTRACT.md),
+[completion/accounting](SCENE_CREATURE_FACE_COMPLETION_CONTRACT.md) and
+[actual GPU MAIN inspection](SCENE_CREATURE_FACE_INSPECTION_CONTRACT.md).
+Opt-in supplied values survive async option copying;76-source original closure,
+five-layer output, scoped face pixels, movement retention and malformed/canceled/
+lost-incarnation cleanup pass. Default route and metrics retain their meanings.
+[Wire/packed ingress](CREATURE_APPEARANCE_CUSTOMIZATION_INGRESS.md) identifies the
+next typed setter/field4 revision boundary; actual player values remain unknown.
+
+## Round20 customization boundary
+
+[Packed version1 contract](PACKED_CUSTOMIZATION_CONTRACT.md) and [CIDM dictionary](CUSTOMIZATION_ID_DICTIONARY_CONTRACT.md) now have owned codecs/original byte fixtures. Confirmed U8/S16 and range rejection apply to the two concrete classes traced there. Supplied presentation is implemented separately; current-incarnation rawfield4 delta/state and live variable mounting remain next. Existing345 packet-source rows do not imply345 executable handlers and are unchanged.
+
+## Round21 integrated boundary
+
+Round21 adds a bounded offline CREO:3 field4-only application decoder/router and retained appearance pipeline. This is a codec/state implementation increment, not another recovered handler or expansion of the345-row source inventory. Mixed-field routing remains next. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R21_WIRE_CUSTOMIZATION_INTEGRATION.md).
+
+## Round22 integrated boundary
+
+Round22 adds bounded mixed4/11..16 codec/router/state application. No new handler/function/source-matrix row is counted. Strict packed failure remains downstream of committed opaque raw/scalar state. [Evidence/reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R22_CUSTOMIZATION_SCALAR_INTEGRATION.md).
+
+## Round23 integrated boundary
+
+The supported CREO:3 union4/5/11–17 now stages raw customization, scalars, components, wounds and pending world state together. Original selected ACST/CIDM context supplies exact ranges and authored defaults through five already owned palettes. Main independent native, headless/GPU, motion and held-container gates pass. Broader fields/views, live mounts/player seeds and graphical attachment/wound behavior remain open. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R23_FULL_CREATURE_INTEGRATION.md).
+
+## Round24 integrated boundary
+
+Supported CREO3 fixed common fields0/3/6–10 join the existing union. Current common state survives older ingress; visibility uses that overlay while hidden appearance work commits. Actual delta headless/GPU/motion and separate held-baseline visibility proofs pass. Names1/2, TANO, gameplay meanings and live interoperability remain open. STF variant1 exact owned lookup passes two original tables; locale/cache/fallback is deferred. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R24_EXTENDED_CREATURE_INTEGRATION.md).
+
+## Round25 named creature increment
+
+The supported ordered CREO3 union now covers indices0–17, including raw StringId/custom names. Current name overlays and variable charge survive older ingress. Bounded original STF1 resolution drives an optional caption; actual delta headless/GPU and separate held-baseline name proofs pass. Explicit modern name precedence/directory/display policies do not establish original UI/locale behavior. Other families/views and live interoperability remain open. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R25_NAMED_CREATURE_INTEGRATION.md).
+
+## Round26 tangible stages
+
+Complete owned TANO3 baseline and ordered0–10 delta codecs, standalone current tangible store and bounded original STF preload pass independent native oracles. Static supplied-projection caption/visibility passes original terminal GPU and lifecycle checks. Lead codec-store-preload join passes; atomic typed SceneWorld publication is next. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R26_TANGIBLE_STAGE_INTEGRATION.md).
+
+## Round27 typed tangible publication
+
+Optional complete TANO3 world state commits with its journal after private preparation. Static typed token gates actual original terminal caption/raw visibility beside supported CREO ingress; five headless/GPU states, retained resources and teardown pass independent oracles. Default opaque behavior remains. Authored template names and local SWTS selector semantics are separately documented; outer clock and live interoperability remain open. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R27_TANGIBLE_WORLD_INTEGRATION.md).
+
+## Round28 exact TANO6 codec boundary
+
+[Owned TANO6 codec](TANGIBLE_VIEW6_CODEC_CONTRACT.md) closes two-field passiveU32/orderedU64-ID consumption and specialized assignment overshoot with pinned static evidence and deterministic exact/malformed/cap fixtures. Raw counters are preserved, no defender-state/world application yet. Existing packet-source inventory is unchanged; no gap-matrix row changes are warranted by this implementation stage.

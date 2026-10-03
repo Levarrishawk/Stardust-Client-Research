@@ -1,0 +1,28 @@
+# Round31: outdoor inputs, terrain topology and owned view6 publication
+
+October 3, 2026 UTC. Final bounded overnight round. Questions: can original map bytes and terrain index tables become owned bounded inputs; can TANO6 candidate state be published against current object incarnation; and what CREO6 inheritance boundary can reuse that grammar?
+
+## Input identity and scope
+
+Four persistent Low workers received 2,754-file snapshot manifest093a193c288ed5889c62317c57028a26f0afffa9c710b104a9c5f9bd2163b0fb and ZIPd80bb36fd1d71a63ff31d2eaf28a5d9dc7c90de197b5e0abd7bd2bf29f86dc70. Full member/hash/path/ancestor-link preflight preceded overlay. Exact working-byte scopes reviewed and integrated; cached Python/.NET8/static packages/Godot only. Original executable hash E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150 checked before VA reliance. No original execution, live contact, downloaded toolchain or publication.
+
+## Accepted specialist behavior
+
+- [Owned map masks](../../docs/TERRAIN_MAP_MASKS_CONTRACT.md): main143 synthetic fixtures/138 rejections,18 point queries,14 rectangles,five query rejections and four ownership checks pass. Independent raw-IFF/schema/hash/bit oracle agrees with one effective terrain/tatooine.trn sample: priority42,1,188,446 bytes,SHA6039D0C15F9CCB518D72AE01A1ABDF41FCFF2153B5CBF7EB3BA6E6C634A3A427. Its direct FORM0001 begins139818 and contains two524288-byte masks. Historical literal FORM MAPS diagram is corrected; MAPS is the object name, not an observed wrapper. Strict finite/budget eligibility and grid-only inspection are explicit modern policies. No world-coordinate conversion or active SMAP behavior is invented.
+- [Terrain patch topology](../../docs/TERRAIN_PATCH_TOPOLOGY_CONTRACT.md): main matches nine original 48-byte slots,180 active ushort indices and12 batching instruction sites. Native362 checks,45 rebases,66 rejection cases and60 synthetic triangles pass an independent ring-edge/table oracle. Owned copies and checked32-bit rebasing; explicit pattern index only. Original seam-mask selection and generated vertex coordinates remain separate.
+- [TANO6 publication store](../../docs/SCENE_TANGIBLE_VIEW6_STORE_CONTRACT.md): main143 checks/21 sequences/nine case groups and independent23 transitions/38 ordered events pass. Current registry handle/incarnation plus exact expected snapshot gates publication. State/journal candidates are staged before callback-free assignment; failed updates preserve valid earlier state/events. Journal descriptions remain historical; acknowledgment does not authorize target delivery. Moved handles carry same-incarnation state through exact stored receipt. Stale entries stay charged until documented retirement reads. Kernel work and separately bounded map/journal copying are explicitly distinguished. Borrowed registry is never closed. World routing remains next.
+- [CREO6 prefix](../../docs/CREATURE_VIEW6_PREFIX_CONTRACT.md): main109 instruction anchors,18 registrations and16 RTTI vtables establish identical inherited TANO6 fields0–1 and creature extension2–17. Declared count is metadata; repeated delta discriminators continue to stream end. Raw/FFFF+U32 strings, pair ofU64s, S32 vectors and wearable structure are separated from gameplay interpretation. This consolidates existing evidence, not a new coverage denominator or implemented complete CREO6 codec.
+
+## Actual consumed-time failure join
+
+Lead added explicit terminal-clock-fault fixture mode above accepted30 delivery. Both actual main headless and hidden GPU runs pass ten preceding states/all8 original mip identities, then a500-second input consumes500000 clock ticks within its clock budget but exceeds cursor catch-up budget. The playback faults/closes, owns zero registrations, outer presentation and eight-texture cache retire, visual receipt is unchanged and no delivery retry occurs. Host closes all three archive jobs and preserves earlier typed TANO3/CREO3 oracle results. Exact existing pre-frame certificate/GPU initialization allowances remain; no post-frame errors are tolerated. [Independent failure verifier](../../poc/round31-tests/Integration/verify_clock_fault.py) checks tick consumption, fault/retirement and cache/clock drain.
+
+This is modern bounded fault retirement, not original timing/overflow/renderer parity. Normal supplied-time and clock-backed paths were separately verified in30; final shared default Core suite, zero-warning/error Godot build and normal14-state clock headless regression pass after all source integration.
+
+## Confidence and next action
+
+Confirmed: original sample bytes/index tables/static registrations and bounded replacement fixture outcomes. Unknown: complete procedural terrain generation/height/seam selection/rendering, complete CREO6 state policies, target-resolution/UI dispatch and live interoperability. Research89% and implementation/engine-decision research readiness94% remain unchanged;2626 canonical names/345 packet-source rows are separate measures. Source/scope/link validation and exact cutoff are recorded in the overnight report.
+
+Next round should freeze the TANO6 world recipient/journal contract, implement complete CREO6 baseline and supported scalar/string/pair delta grammar, decode one pinned PTAT metadata/TGEN height slice, and bind generated nine-vertex terrain patches only after coordinate/seam fixtures. Keep these independent; no unfinished worker API dependency or live readiness claim.
+
+Final acceptance 2026-10-03 10:49:04 UTC:1306Markdown/zero broken/private links;46 scoped paths, including the final overnight handoff/zero unrelated changes;2626names/zero duplicates;345packet-source rows; original HEAD and empty index preserved.

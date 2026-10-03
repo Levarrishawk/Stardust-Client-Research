@@ -1,0 +1,559 @@
+[
+  {
+    "Name": "divergent",
+    "Capacity": 4,
+    "MaxTicks": 1000000,
+    "Tick": 0,
+    "ClockRevision": 0,
+    "Token": 0,
+    "Revision": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "register",
+        "Id": 2,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 981668463
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 981668463
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 1036831949
+      },
+      {
+        "Kind": "service",
+        "Id": 2
+      },
+      {
+        "Kind": "service",
+        "Id": 2
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "wrap-residual",
+    "Capacity": 4,
+    "MaxTicks": 1000000,
+    "Tick": 0,
+    "ClockRevision": 0,
+    "Token": 0,
+    "Revision": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 1061997773
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 1041865114
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "zero-minimum",
+    "Capacity": 4,
+    "MaxTicks": 1000000,
+    "Tick": 0,
+    "ClockRevision": 0,
+    "Token": 0,
+    "Revision": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1,
+        "Count": 8,
+        "IntervalBits": 981668463,
+        "Work": 4096,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "register-now-remove-reset",
+    "Capacity": 4,
+    "MaxTicks": 1000000,
+    "Tick": 0,
+    "ClockRevision": 0,
+    "Token": 0,
+    "Revision": 0,
+    "Operations": [
+      {
+        "Kind": "advance",
+        "SecondsBits": 1036831949
+      },
+      {
+        "Kind": "register",
+        "Id": 1,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "remove",
+        "Id": 1
+      },
+      {
+        "Kind": "register",
+        "Id": 1,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 1008981770
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "reset",
+        "Id": 1
+      },
+      {
+        "Kind": "register",
+        "Id": 1,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "catchup-terminal",
+    "Capacity": 4,
+    "MaxTicks": 1000000,
+    "Tick": 0,
+    "ClockRevision": 0,
+    "Token": 0,
+    "Revision": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 1,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "register",
+        "Id": 2,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 1061997773
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 2
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      }
+    ]
+  },
+  {
+    "Name": "cursor-overflow-terminal",
+    "Capacity": 4,
+    "MaxTicks": 1000000,
+    "Tick": 0,
+    "ClockRevision": 0,
+    "Token": 0,
+    "Revision": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 18446744073709551615
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "adapter-overflow-retained",
+    "Capacity": 4,
+    "MaxTicks": 1000000,
+    "Tick": 0,
+    "ClockRevision": 0,
+    "Token": 0,
+    "Revision": 18446744073709551613,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "reset",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "clock-service-overflow-retained",
+    "Capacity": 4,
+    "MaxTicks": 1000000,
+    "Tick": 0,
+    "ClockRevision": 18446744073709551613,
+    "Token": 0,
+    "Revision": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "clock-tick-overflow",
+    "Capacity": 4,
+    "MaxTicks": 1000000,
+    "Tick": 18446744073709551614,
+    "ClockRevision": 0,
+    "Token": 0,
+    "Revision": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      }
+    ]
+  },
+  {
+    "Name": "capacity-invalid",
+    "Capacity": 1,
+    "MaxTicks": 1000000,
+    "Tick": 0,
+    "ClockRevision": 0,
+    "Token": 0,
+    "Revision": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "register",
+        "Id": 1,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "register",
+        "Id": 2,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "register",
+        "Id": 3,
+        "Count": 0,
+        "IntervalBits": 1036831949,
+        "Work": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "token-overflow",
+    "Capacity": 4,
+    "MaxTicks": 1000000,
+    "Tick": 0,
+    "ClockRevision": 0,
+    "Token": 18446744073709551614,
+    "Revision": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "remove",
+        "Id": 1
+      },
+      {
+        "Kind": "register",
+        "Id": 1,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 0
+      }
+    ]
+  },
+  {
+    "Name": "invalid-input-cap",
+    "Capacity": 4,
+    "MaxTicks": 1,
+    "Tick": 0,
+    "ClockRevision": 0,
+    "Token": 0,
+    "Revision": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 2143289345
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 3212836864
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 990057071
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "closed",
+    "Capacity": 4,
+    "MaxTicks": 1000000,
+    "Tick": 0,
+    "ClockRevision": 0,
+    "Token": 0,
+    "Revision": 0,
+    "Operations": [
+      {
+        "Kind": "register",
+        "Id": 1,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "close",
+        "Id": 1
+      },
+      {
+        "Kind": "close",
+        "Id": 1
+      },
+      {
+        "Kind": "advance",
+        "SecondsBits": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "reset",
+        "Id": 1
+      }
+    ]
+  },
+  {
+    "Name": "missing-noop",
+    "Capacity": 4,
+    "MaxTicks": 1000000,
+    "Tick": 0,
+    "ClockRevision": 0,
+    "Token": 0,
+    "Revision": 0,
+    "Operations": [
+      {
+        "Kind": "service",
+        "Id": 1
+      },
+      {
+        "Kind": "remove",
+        "Id": 1
+      },
+      {
+        "Kind": "reset",
+        "Id": 1
+      },
+      {
+        "Kind": "register",
+        "Id": 1,
+        "Count": 8,
+        "IntervalBits": 1036831949,
+        "Work": 4096,
+        "CursorSeed": 0
+      },
+      {
+        "Kind": "service",
+        "Id": 1
+      }
+    ]
+  }
+]

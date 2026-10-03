@@ -81,3 +81,77 @@ Levarris authorized Round13 only. Reuse all four persistent specialists at Low r
 ## Round14 authorization and integration — October2,2026
 
 Levarris authorized Round14 only. Four persistent Low-reasoning specialists completed independent scopes against a2,149-file hashed baseline; lead reviewed and integrated all four, joined the accepted pure validator/generic world/recipe adapters and ran fresh combined original/native/independent/Godot gates. [Round14 record](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_14_2026-10-02.md). Workers are idle. No Round15 dispatch, automation or continuing milestone is authorized. Keep independent ownership, one GPU owner and serialized shared-contract acceptance.
+
+## Round15 authorization and worker effort policy - October2,2026
+
+Levarris authorized Round15 only. Four isolated specialists remain Low permanently;
+lead normally uses Medium and may recommend High for a specific difficult round
+with the reason and usage tradeoff. A lead effort change never raises worker effort.
+[Round15 results](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_15_2026-10-02.md)
+record bounded independent milestones, serialized review/integration and combined
+acceptance. All workers are idle; no Round16 or recurring dispatch is authorized.
+
+## Overnight authorization - October2 to3,2026
+
+Levarris authorized successive rounds until October3 07:00 Eastern. This supersedes prior single-round stops. Lead accepts each round before the next dispatch; workers remain Low and stop after each assignment. No new full round after06:00 Eastern. Stop early for required direct intervention. See [overnight resume](../research/sessions/OVERNIGHT_DEVELOPMENT_2026-10-02_TO_03.md).
+
+## Round16 integration
+
+[Round16](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_16_2026-10-02.md)
+joins all four independent scopes under the overnight authorization. Workers
+remain Low and await the lead's next bounded assignment. Accept each round before
+dispatching the next; finish and pause the heartbeat by07:00 Eastern.
+
+## Round17 integration
+
+[Round17](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_17_2026-10-02.md)
+joins the four independently scoped Low specialists. All workers stop after
+handoff; lead accepts/reconciles before the next overnight assignment.
+
+## Round18 local input and offline motion ingress
+
+[Round18](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_18_2026-10-02.md)
+joins [local driver](SCENE_WORLD_LOCAL_MOTION_CONTRACT.md),
+[input and locomotion](SCENE_WORLD_LOCAL_INPUT_CONTRACT.md) and
+[motion ingress](SCENE_WORLD_MOTION_INGRESS_CONTRACT.md) through the continuous
+bounded pump. Original headless/GPU/cancel and independent nine-stage time/pose/
+clip/resource proofs pass. Modern correction/pause/free planar movement is
+explicit; original yaw, interpolation, prediction and parent-world conversion
+remain unclaimed. [Head-material diagnosis](SCENE_HUMAN_HEAD_MATERIAL_GAP.md)
+requires an explicit generated-face route next. Research/function/protocol
+denominators are unchanged. Workers remain Low; successive rounds are authorized
+under the overnight instruction.
+
+## Round19 explicit generated face route
+
+[Round19](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_19_2026-10-02.md)
+joins [owned face resources](SCENE_CREATURE_FACE_RESOURCE_CONTRACT.md),
+[completion/accounting](SCENE_CREATURE_FACE_COMPLETION_CONTRACT.md) and
+[actual GPU MAIN inspection](SCENE_CREATURE_FACE_INSPECTION_CONTRACT.md).
+Opt-in supplied values survive async option copying;76-source original closure,
+five-layer output, scoped face pixels, movement retention and malformed/canceled/
+lost-incarnation cleanup pass. Default route and metrics retain their meanings.
+[Wire/packed ingress](CREATURE_APPEARANCE_CUSTOMIZATION_INGRESS.md) identifies the
+next typed setter/field4 revision boundary; actual player values remain unknown.
+
+## Round20 integration
+
+[Accepted integration evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R20_CUSTOMIZATION_INTEGRATION.md) records owned CIDM/raw packed decoding, supplied current-creature appearance revisions and bounded presentation/world drain. Original-resource, native/headless/GPU, latest/failure/retirement and real pending-close gates pass. This is explicit supplied inspection state; rawfield4 state translation is next. Four Low workers stopped; overnight authorization permits the next round after acceptance. Known certificate/shader initialization diagnostics persist and are counted, while actual upload/readback/pixels pass.
+
+## Round21 integrated boundary
+
+Round21 keeps four Low specialists isolated by frozen DTOs and owned scopes. Lead review caught stale acknowledgment and replication-wrapper/metadata freshness gaps, then reran independent byte, native and actual GPU/failure joins. Accept before next dispatch under existing overnight authorization. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R21_WIRE_CUSTOMIZATION_INTEGRATION.md).
+
+## Round22 integrated boundary
+
+Round22 four Low milestones complete. Lead independently reruns original ACST queries, byte/state oracles, actual mixed/GPU and held-race proof plus relevant prior regressions. Work remains staged only in working files; accept before next dispatch. [Evidence/reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R22_CUSTOMIZATION_SCALAR_INTEGRATION.md).
+
+Round23 accepted under overnight authorization: original selected context, supported full creature union/state and container race. Lead review authorized narrow shared-kernel observer/factory changes; every worker remains Low. Successive rounds continue until the documented deadline.
+
+Round24 accepted under overnight authorization: supported common fixed fields/current visibility and exact STF1 lookup. Lead actual delta join and separate baseline visibility proof are distinguished. Workers remain Low; successive rounds continue to the documented deadline.
+
+Round25 accepted under overnight authorization: current owned names and variable charge, supported full CREO3 union, stateless original STF resolution and optional caption. Actual named-delta join and standalone baseline proof remain distinct. Four Low workers idle; successive rounds remain authorized until the deadline.
+
+Round26 four Low milestones and combined native integration pass; successive overnight rounds remain authorized. Atomic typed tangible world publication is the next milestone.
+
+Round27 accepted: four Low milestones and actual mixed typed TANO/CREO original-resource headless/GPU host pass. Canonical role correction and2618 distinct names are separately recorded; no coverage percentage change. Successive overnight rounds remain authorized.

@@ -1,0 +1,34 @@
+# Round 20 customization visual — 2026-10-03
+
+Question: can a current creature consume immutable supplied full color/style revisions while preserving accepted locomotion/Height/resources, rejecting stale completion, and draining noncooperative workers with bounded ownership? Stop after the wrapper, safe visual commit API, standalone original-asset proof, and handoff. The [durable contract](../../docs/SCENE_WORLD_CREATURE_CUSTOMIZATION_VISUAL_CONTRACT.md) defines APIs, lifecycle, reproduction, confidence limits, and exact next boundary.
+
+## Identity and method
+
+Snapshot manifest SHA-256 `52d1c308ffd18481ff6a30ccc334a59c98f9dd700b201838e1bb83dcc3fee167`; ZIP `5f379b875a8c3af1c19b8fe1607851c4a252c395c893b322a795bb82d47048e5`. All 2,374 members were preflighted for exact entry set, size/hash, containment and symlinks before writes and verified afterward. Snapshot HEAD is `1fc55dd89cd23ce3af49e3fe471210bdebe9735c`; worker HEAD remains `65de8c88141071744dc75594be126b3bab3696a5`. Snapshot bytes define the baseline.
+
+Read START/latest accepted Round19, living ledgers, relevant customization contracts/checkpoints and existing APIs/producers. This implementation uses no executable VAs or original execution. Read-only original assets are rooted at `C:/Stardust-DEV`; `swgemu_live.cfg` SHA-256 is `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`. Baseline catalog, idle pin, locomotion bank, face-only load profile and full eight-key zero/varied profiles are unchanged. Cached tools only: .NET 8, Godot 4.7.2 Mono, bundled Python/NumPy/Pillow. Dedicated private APPDATA, no configured package sources for native offline restore, and cached package directory resolve BCnEncoder.Net without downloads.
+
+## Confirmed observations
+
+- Accepted owned resource closure: 76 sources / 5,940,390 bytes, one archive closed before presentation. Explicit 128 / 32 MiB encoded plus separate 64 MiB decoded load policy.
+- Constructor rejects foreign world and worker-thread access before ownership transfer. Missing initial values leave base display untouched.
+- Rapid controlled requests 2/3/4 invoke only 2 and 4 after initial 1; noncooperative 2 cannot publish. Pose/Height/clock and retained uploaded topology/material/shader/original-texture identities stay equal at commit.
+- Missing/new transitions for revisions 8 through 16 while canceled noncooperative 7 remains active start no new composer. Peak active composer count is exactly one throughout. Storage is one retiring task and one replaceable supplied pending snapshot, not a retirement history.
+- Same-revision different values are rejected after successful 1 and failed 18. Missing/older/foreign source retains accepted 6; invalidated revisions do not restart. Incomplete union 5, composer failure 18, changed immutable source closure 19, and malformed generated RGBA 20 retain accepted appearance without per-frame retry.
+- Final source query changes 21 to 22 after CPU completion: ready 21 is discarded, newer 22 subsequently commits. Current incarnation is checked again before commit.
+- Walk/run, focus freeze, Height 1.4, selected-clock reset, explicit zero appearance reset, and return to idle pass. GPU boundary readback checks retained materials, selected uniform factors, actual generated MAIN texture binding and bytes.
+- Independent Python original-byte preparation agrees for five shader slots/nine operations; original-byte DDS/program composition agrees for all five layer hashes for both profiles. Accepted zero hash `A41EE8925C695A8BC2DA0CAC1FA17864D471270507DF3900472F0655A5A42808`; varied hash `60C109DF85346F25B814E303B6D022D7D2D94459234790B6337ABB1877E7B8F5`.
+- Fixed-frame GPU images change 48,398 pixels, including 3,090 sampled face / 44,861 sampled body pixels. Silhouette and background remain exactly equal. Interpretation: the supplied palette/style change affects the displayed appearance while geometry/pose remain fixed under this preview policy.
+- Incarnation reset retires the owned visual and cancels controlled worker 23. Drain remains incomplete and observable after explicit repeated disposal until the noncooperative worker is released. Final one root allocation/disposal and one archive close balance; three controlled workers observe cancellation.
+
+## Changes and validation
+
+Only existing `SceneCreatureVisual.cs` is modified: immutable-base guard plus main-thread transaction, post-success owned CPU revision assignment, and finally-protected release of its base/resource references on disposal. New wrapper/preview, own Rendering launcher/oracle, durable contract and this checkpoint form the worker milestone. No shared Core, project, navigation, status, ledger, or registry changes.
+
+Zero-warning/error Godot build passes. Own headless and GPU proofs pass. Independent preparation/composition/pixel oracle passes. Baseline Round19 face-inspection headless regression passes. Entire engine-neutral smoke suite passes after offline restore against the existing private package cache; the initial default-cache restore failed to find BCnEncoder.Net and was corrected without downloading. The existing Godot root certificate-store diagnostic remains nonfatal. Final workspace link/hygiene and baseline-relative scope checks are reported with handoff.
+
+Final gate: 1,187 Markdown files, zero broken links/private links, 2,602 names/zero duplicates, 345 packet rows, and no public file at least 25 MiB. All 2,373 unmodified snapshot members retain exact baseline bytes; only the allowed visual file differs. Six additions are the allowed wrapper/preview, contract/checkpoint and own launcher/oracle. Index is empty, original worker HEAD is unchanged, `git diff --check` and own additions' whitespace checks pass. The final headless proof also passes after cleanup-only changes; prior GPU evidence remains applicable to the unchanged commit/render path.
+
+Confidence is **Confirmed** for these observed supplied-profile, latest-only, ownership and GPU-boundary cases. Arbitrary source adapters must honor immutable revision semantics; the adapter rejects observed contradictions but cannot infer unstated producer intent. No claim of legacy driver parity, recovered default/player values, wire/CIDM conversion or research coverage increase is made. Original data, detailed exports/captures and generated tool output stay ignored/private; HEAD/index are preserved.
+
+Next action: lead joins the adapter to the continuous input/world preview using frozen supplied-source snapshots, keeps initial movement phases source-missing, and exercises full zero/varied commit/failure/reset phases. Raw field-4 decoding and typed conversion remain separate worker evidence and must not be inferred from these supplied profiles. Forced termination and noncooperative jobs that never return remain outside demonstrated cleanup guarantees.

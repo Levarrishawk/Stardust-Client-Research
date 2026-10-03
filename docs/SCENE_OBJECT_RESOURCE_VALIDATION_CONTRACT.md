@@ -45,3 +45,18 @@ Fresh read-only installed input uses the existing two-entry pinned catalog, conf
 [Compact oracle](../poc/round14-tests/Assets/verify_validation.py) composes accepted router/source/pin/inheritance/geometry/pixel auditors and checks both validated metadata sets and142 actual mip hashes. Router/albedo/SWTS regressions pass65/16/168 negatives. Python checks native fault/ownership/no-I/O/thread receipts without claiming to execute those C# behaviors independently. No corpus rescan, original executable/GPU/live-network execution occurs. [Checkpoint and exact commands](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R14_RESOURCE_VALIDATION.md).
 
 Lead integration should register the explicit original validation scenario and call this gate at a separately accepted delivery/publication boundary. The current milestone changes no initializer/world delivery API and relies on no unfinished same-round implementation.
+
+## Round19 explicit face completion
+
+[Opt-in resource route](SCENE_CREATURE_FACE_RESOURCE_CONTRACT.md) addresses the
+default route's missing generated face with supplied inspection values.
+[Requested completion and logical accounting](SCENE_CREATURE_FACE_COMPLETION_CONTRACT.md)
+require exact values/binding/dependencies and account unique source-path inputs
+plus generated image bytes. Equivalent separately decoded face cross-map inputs
+must match metadata/all pixels; contradictory aliases reject. GeneratedFaces and
+GeneratedFaceBytes receipt fields are zero for default/static resources.
+[GPU inspection](SCENE_CREATURE_FACE_INSPECTION_CONTRACT.md) verifies actual head
+MAIN binding and scoped pixel change. Original player customization/display parity
+remain unknown; this does not infer full replicated appearance behavior.
+
+Round29 explicit static SwitchFrames opt-in validates immutable source/binding/selected-frame proof without copying bundle pixels. [Contract](SCENE_STATIC_SWITCH_FRAME_RESOURCES_CONTRACT.md). Resource initializer now preserves this optional policy through its owned option copy.

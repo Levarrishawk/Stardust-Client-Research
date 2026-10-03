@@ -56,7 +56,8 @@ public sealed class CreatureView3ComponentsDeltaPlan
     public ushort DeclaredCount { get; }
     public IReadOnlyList<CreatureComponentsUpdate> Updates { get; }
     public int MaximumElements { get; }
-    public CreatureView3ComponentsState Apply(CreatureView3ComponentsState initial)
+    public CreatureView3ComponentsState Apply(CreatureView3ComponentsState initial) => Apply(initial,null);
+    internal CreatureView3ComponentsState Apply(CreatureView3ComponentsState initial,Action<int>? observeElementCount)
     {
         ArgumentNullException.ThrowIfNull(initial);
         if (initial.ObjectId != ObjectId || initial.Keys.Count > MaximumElements) throw new InvalidDataException("Component state identity/limit mismatch.");
@@ -77,6 +78,7 @@ public sealed class CreatureView3ComponentsDeltaPlan
                     default: throw new InvalidDataException("Unknown component command.");
                 }
                 if (changed) counter = unchecked(counter + 1);
+                observeElementCount?.Invoke(keys.Count);
             }
             counter = Math.Max(counter, update.Counter);
         }

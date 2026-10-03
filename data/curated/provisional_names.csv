@@ -739,8 +739,8 @@
 "0x007847D0","vertex_array_load_v0001_VA_007847D0",
 "0x00784AA0","vertex_array_load_v0002_VA_00784AA0",
 "0x00784D90","vertex_array_load_v0003_VA_00784D90",
-"0x00785C30","SwitchShader_forwardSelectedOperationA_VA_00785C30","Confirmed selector-indexed child forwarding"
-"0x00785C50","SwitchShader_forwardSelectedOperationB_VA_00785C50","Confirmed selector-indexed child forwarding"
+"0x00785C30","shader_swts_forward_selected_operation_a_VA_00785C30","Confirmed: RTTI-backed SwitchTextureShader selected variant forwarding; former SwitchShader attribution corrected R27 2026-10-03"
+"0x00785C50","shader_swts_forward_selected_operation_b_VA_00785C50","Confirmed: RTTI-backed SwitchTextureShader selected variant forwarding; former SwitchShader attribution corrected R27 2026-10-03"
 "0x00785C90","SwitchShader_ctor_VA_00785C90","Confirmed selector and per-child runtime shader construction"
 "0x00788970","game_camera_render_screen_effects_VA_00788970",
 "0x0078D940","shadow_volume_set_global_color_VA_0078D940",
@@ -2601,3 +2601,27 @@
 "0x00B451E0","portal_cell_template_load_v0005_VA_00B451E0","Confirmed CELL/0005 parser; signed LGHT count and 93-byte light records plus pi local yaw; 2026-10-01 cell-light checkpoint"
 "0x006E5AA0","portal_cell_light_record_create_VA_006E5AA0","Confirmed original CELL light descriptor factory; serialized types 0/1/2 map runtime 0/1/3 and retain colors pose attenuation; 2026-10-01 cell-light checkpoint"
 "0x00779E50","client_graphics_light_scaling_enabled_VA_00779E50","Confirmed getter for ClientGraphics.enableLightScaling default true; StaticShader snapshots and raster raw/scaled callbacks; 2026-10-01 scaling selector checkpoint"
+"0x0077EBC0","shader_swts_register_VA_0077EBC0","Confirmed: SWTS tag/factory/registry call; pinned static R27 2026-10-03"
+"0x0077ECD0","shader_swts_template_factory_VA_0077ECD0","Confirmed: 36-byte allocation, constructor call; pinned static R27 2026-10-03"
+"0x0077ED30","shader_swts_template_construct_VA_0077ED30","Confirmed: RTTI-backed vtable and load; pinned static R27 2026-10-03"
+"0x0077EEC0","shader_swts_version_dispatch_VA_0077EEC0","Confirmed: Outer0000 branch; pinned static R27 2026-10-03"
+"0x0077EF30","shader_swts_load_v0000_VA_0077EF30","Confirmed: Base/selector/ordered variants; pinned static R27 2026-10-03"
+"0x0077EDE0","shader_swts_template_destroy_VA_0077EDE0","Confirmed: Selector/variant/base release; pinned static R27 2026-10-03"
+"0x00B5A0C0","shader_switcher_template_dispatch_VA_00B5A0C0","Confirmed: DTST and other discriminators; pinned static R27 2026-10-03"
+"0x00B5A3F0","shader_dtst_template_read_VA_00B5A3F0","Confirmed: DTST0000 two raw reads; pinned static R27 2026-10-03"
+"0x00B5A4F0","shader_dtst_runtime_create_VA_00B5A4F0","Confirmed: Interval/count argument transfer; pinned static R27 2026-10-03"
+"0x00B5ACA0","shader_dtst_runtime_construct_VA_00B5ACA0","Confirmed: RTTI, count/interval, zero state; pinned static R27 2026-10-03"
+"0x00B5AD20","shader_dtst_runtime_update_VA_00B5AD20","Confirmed: Float accumulator/catch-up/wrap; pinned static R27 2026-10-03"
+"0x00B5AD80","shader_dtst_current_index_VA_00B5AD80","Confirmed: +16 accessor; pinned static R27 2026-10-03"
+"0x00B5AD90","shader_dtst_frame_count_VA_00B5AD90","Confirmed: +12 accessor; pinned static R27 2026-10-03"
+"0x00785B00","shader_swts_runtime_construct_VA_00785B00","Confirmed: Owned selector/borrowed vector; pinned static R27 2026-10-03"
+"0x00785B90","shader_swts_runtime_destroy_VA_00785B90","Confirmed: Selector deletion/base release; pinned static R27 2026-10-03"
+"0x00785C10","shader_swts_runtime_update_VA_00785C10","Confirmed: Selector update virtual call; pinned static R27 2026-10-03"
+"0x00641690","autodelta_cached_network_id_vector_snapshot_serialize_VA_00641690","Confirmed: RTTI vector slot1 and exact U32 headers/U64 serializer; pinned R28 2026-10-03"
+"0x00641700","autodelta_cached_network_id_vector_delta_serialize_VA_00641700","Confirmed: RTTI vector slot5 and exact specialized command serializer; pinned R28 2026-10-03"
+"0x0043CEB0","cached_network_id_archive_read_VA_0043CEB0","Confirmed: specialized assignment helper reads and advances eight bytes then constructs cached identity; pinned R28 2026-10-03"
+"0x00B2FCC0","cached_network_id_default_construct_VA_00B2FCC0","Confirmed: specialized CachedNetworkId vector instructions and RTTI; R29 state policy 2026-10-03"
+"0x00B2FFF0","cached_network_id_equal_bits_VA_00B2FFF0","Confirmed: specialized CachedNetworkId vector instructions and RTTI; R29 state policy 2026-10-03"
+"0x00643CD0","autodelta_cached_network_id_vector_resize_VA_00643CD0","Confirmed: specialized CachedNetworkId vector instructions and RTTI; R29 state policy 2026-10-03"
+"0x00641D20","autodelta_cached_network_id_vector_assign_VA_00641D20","Confirmed: specialized CachedNetworkId vector instructions and RTTI; R29 state policy 2026-10-03"
+"0x00641850","autodelta_cached_network_id_vector_clear_VA_00641850","Confirmed: specialized CachedNetworkId vector instructions and RTTI; R29 state policy 2026-10-03"

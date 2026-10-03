@@ -52,3 +52,86 @@ Lead registration: parse peer dictionary and call `SceneMixedWorldScenarios.Run(
 ## Lead acceptance and joined completion gate
 
 Lead replaced the temporary generic validation wrapper with the independently accepted [pure gate](SCENE_OBJECT_RESOURCE_VALIDATION_CONTRACT.md). Fresh deterministic tasks, original66-source/142-mip oracle, shared native suite and a separately handpacked original human/terminal integration still pass. Conservative gate limits, static HDR exclusion and unrequested transformed-result exclusions are explicit; legacy delivery/readers are unchanged. [Mixed Godot proof](MIXED_WORLD_PREVIEW_CONTRACT.md) checks exact publications, stale acknowledgment, static-only recreation, unaffected human state/GPU resources, recipe-family failure and drain. It applies two actors explicitly; reusable heterogeneous presentation is next.
+
+## Round15 presentation consumer join
+
+Generic publications/current snapshots now feed a reusable
+[engine-neutral consumer](SCENE_WORLD_OBJECT_PRESENTATION_CONTRACT.md), with
+[recipe adapters](SCENE_WORLD_OBJECT_VISUAL_CONTRACT.md) owning Godot roots.
+Resource freshness, creation incarnation, typed state and opaque history identity
+are checked independently. Acknowledgment requires the exact current successfully
+applied batch. Stale attempts cannot replace current actors; missing actors may
+attach using latest state after earlier batch acknowledgment. World policies and
+legacy APIs are unchanged. Combined original/native/GPU/headless/cancel acceptance
+is recorded in [Round15](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_15_2026-10-02.md).
+
+## Continuous scene host accepted - October2,2026
+
+[Round16](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_16_2026-10-02.md)
+joins the bounded [pump](SCENE_WORLD_PRESENTATION_PUMP_CONTRACT.md),
+[Godot host](SCENE_WORLD_PRESENTATION_HOST_CONTRACT.md) and logical
+[resource accounting](SCENE_OBJECT_RESOURCE_ACCOUNTING_CONTRACT.md).
+Independent peer and original headless/GPU/cancellation checks pass; the human
+retains its resource identity during state updates and terminal-only recreation.
+These are synthetic offline messages with explicit original asset recipes and
+modern queue/timing policy. Movement/interior integration and live contact remain
+separate. Research scores and protocol/name denominators are unchanged.
+
+## Native motion join - October2,2026
+
+[Round17](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_17_2026-10-02.md)
+joins [compact codecs](COMPACT_SCENE_TRANSFORM_CONTRACT.md),
+[native poses](SCENE_WORLD_OBJECT_MOTION_CONTRACT.md),
+[body envelopes](SCENE_CREATURE_BODY_ENVELOPE_CONTRACT.md) and
+[Godot motion](SCENE_WORLD_OBJECT_MOTION_VISUAL_CONTRACT.md).
+Continuous original headless/GPU/cancel and independent/native/shared gates pass.
+Height applies once; immutable create/resource identity survives wrap/stale and
+clear/local resume. Diagnostic zero yaw/immediate pose is modern policy, not
+recovered interpolation. Parent resolution, physical speed interpretation, unified
+world ingress, locomotion and interior traversal remain open.
+
+## Round18 local input and offline motion ingress
+
+[Round18](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_18_2026-10-02.md)
+joins [local driver](SCENE_WORLD_LOCAL_MOTION_CONTRACT.md),
+[input and locomotion](SCENE_WORLD_LOCAL_INPUT_CONTRACT.md) and
+[motion ingress](SCENE_WORLD_MOTION_INGRESS_CONTRACT.md) through the continuous
+bounded pump. Original headless/GPU/cancel and independent nine-stage time/pose/
+clip/resource proofs pass. Modern correction/pause/free planar movement is
+explicit; original yaw, interpolation, prediction and parent-world conversion
+remain unclaimed. [Head-material diagnosis](SCENE_HUMAN_HEAD_MATERIAL_GAP.md)
+requires an explicit generated-face route next. Research/function/protocol
+denominators are unchanged. Workers remain Low; successive rounds are authorized
+under the overnight instruction.
+
+## Round19 explicit generated face route
+
+[Round19](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_19_2026-10-02.md)
+joins [owned face resources](SCENE_CREATURE_FACE_RESOURCE_CONTRACT.md),
+[completion/accounting](SCENE_CREATURE_FACE_COMPLETION_CONTRACT.md) and
+[actual GPU MAIN inspection](SCENE_CREATURE_FACE_INSPECTION_CONTRACT.md).
+Opt-in supplied values survive async option copying;76-source original closure,
+five-layer output, scoped face pixels, movement retention and malformed/canceled/
+lost-incarnation cleanup pass. Default route and metrics retain their meanings.
+[Wire/packed ingress](CREATURE_APPEARANCE_CUSTOMIZATION_INGRESS.md) identifies the
+next typed setter/field4 revision boundary; actual player values remain unknown.
+
+## Round21 integrated boundary
+
+Round21 optional wire customization uses one raw journal consumer over the borrowed world. Exact-current batch acknowledgment precedes source cache commit; source failures retain prior values and the joined host fails closed. Original resources and world pose/Height are retained. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R21_WIRE_CUSTOMIZATION_INTEGRATION.md).
+
+## Round22 integrated boundary
+
+Round22 raw/scalar/world-journal state changes commit from prepared candidates. Raw-only leaves replication unchanged and scalar-only leaves raw issued receipts unchanged. Original appearance resources survive mixed Height updates. [Evidence/reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R22_CUSTOMIZATION_SCALAR_INTEGRATION.md).
+
+## Round23 integrated boundary
+
+The supported CREO:3 union4/5/11–17 now stages raw customization, scalars, components, wounds and pending world state together. Original selected ACST/CIDM context supplies exact ranges and authored defaults through five already owned palettes. Main independent native, headless/GPU, motion and held-container gates pass. Broader fields/views, live mounts/player seeds and graphical attachment/wound behavior remain open. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R23_FULL_CREATURE_INTEGRATION.md).
+
+## Round24 integrated boundary
+
+Supported CREO3 fixed common fields0/3/6–10 join the existing union. Current common state survives older ingress; visibility uses that overlay while hidden appearance work commits. Actual delta headless/GPU/motion and separate held-baseline visibility proofs pass. Names1/2, TANO, gameplay meanings and live interoperability remain open. STF variant1 exact owned lookup passes two original tables; locale/cache/fallback is deferred. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R24_EXTENDED_CREATURE_INTEGRATION.md).
+
+## Round27 typed tangible publication
+
+Optional complete TANO3 world state commits with its journal after private preparation. Static typed token gates actual original terminal caption/raw visibility beside supported CREO ingress; five headless/GPU states, retained resources and teardown pass independent oracles. Default opaque behavior remains. Authored template names and local SWTS selector semantics are separately documented; outer clock and live interoperability remain open. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R27_TANGIBLE_WORLD_INTEGRATION.md).

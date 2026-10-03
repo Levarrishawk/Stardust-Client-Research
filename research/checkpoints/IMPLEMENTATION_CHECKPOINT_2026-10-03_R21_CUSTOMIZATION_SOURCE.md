@@ -1,0 +1,33 @@
+# Round21 customization source — October 2, 2026 Eastern
+
+The round is dated October3 in the lead's UTC record. Question: can an engine-neutral presentation source consume all ordered raw customization journal updates, preserve explicitly seeded full values, and commit only after exact acknowledgment/freshness while remaining bounded and safely borrowed? Stop after adapter, independent native fixtures, regressions and handoff. Durable policy and reproduction are in the [source contract](../../docs/SCENE_WORLD_CUSTOMIZATION_SOURCE_CONTRACT.md).
+
+## Input identity and method
+
+Verified public snapshot: 2,406 exact entries; manifest SHA-256 `b154746d47a2facecbbb7a9f527d29d0c076fd45685a5a06e36d0c78934cd17d`; ZIP SHA-256 `6cf73b0a1ad5e32465ade4f9699bee405a29e6f1f315bf01a01f654eac8e6076`. Exact entry set, per-entry sizes/hashes, containment and ancestor/target symlinks were checked before writes, then output hashes verified. Snapshot HEAD `1fc55dd89cd23ce3af49e3fe471210bdebe9735c`; isolated worker HEAD remains `65de8c88141071744dc75594be126b3bab3696a5`. Unlisted/private paths are preserved.
+
+Read START/latest accepted Round20, living status/ledger/unknown entries, packed/customization contracts and prior checkpoints/tools. No executable VAs, original executable execution, original assets, external contact or GPU runs are needed. Frozen raw/source DTOs and accepted packed codec are read-only. Actual CIDM/range projection and actual raw-store implementation are not dependencies; tests inject a fake journal/projector around a real accepted typed world. Tools are cached .NET 8 and bundled Python, no-sources NuGet restore against the existing private cache, and task-private APPDATA.
+
+## Observations, interpretation and consequences
+
+- **Confirmed:** initial outer-empty and version1/count0 update sets acknowledge raw progress without invoking seed/projector or publishing defaults. Later empty sets retain the identical committed supplied snapshot. Cold already-acked last-only bytes do not invent values.
+- **Confirmed:** explicit full seed and every projector output are owned read-only copies. The exact seed key union and private flags are preserved; missing/extra/null output and empty/oversized/bad-name seeds reject without acknowledgment or cache publication.
+- **Confirmed:** duplicate ordered writes ending with an invalid synthetic range attempt retain the earlier valid value. Two distinct journal packets, first valid then invalid-range, similarly preserve the earlier value. Interpretation: all journal updates must remain ordered; last-only collapse is incompatible with this local old-value policy.
+- **Confirmed:** same-value substantive records publish a new source revision; empty records alone do not. Source revisions use successful nonempty batch `ThroughRevision`, independently of raw progress on skipped empties.
+- **Confirmed:** rewind/same-revision mutation, journal boundary/current contradictions, and extended-length metadata changes reject. Current bytes and `UsesExtendedLength` participate in immutable identity, including post-ack verification.
+- **Confirmed:** exact ack failure and pre-ack source replacement retain the previous cache/snapshot. Replication/generation changes during seed/projector/ack reject stale publication and prune old incarnations. Detected post-ack metadata mutation prevents cache publication and surfaces failure; the adapter cannot roll back external raw acknowledgment and requires a trusted exact single consumer.
+- **Confirmed:** fresh outer replication wrappers over the same immutable underlying state are accepted. The first guard used outer wrapper reference equality, which native fixtures and lead review exposed; it was corrected to world ownership/current-state checks and underlying state identity without relaxing stale-state checks.
+- **Confirmed:** malformed packed data anywhere in a transaction atomically rolls back earlier staged writes, leaves raw updates unacknowledged and reports `LastFailure`. This is modern strict replacement policy, not a claim about the original sequential setter's partial recovery.
+- **Confirmed:** caught callback reentry still prevents acknowledgment; cross-thread operations and reentrant disposal reject. Capacity prunes destroyed incarnations before new admission. New generation/recreation resets per-incarnation revision tracking. Disposal clears cache/callback borrows and does not dispose world/raw source.
+
+Compatibility consequence: retain ordered journals, distinguish raw acknowledgment from supplied appearance revision, require an explicit full seed/context, and make host malformed/failure policy explicit. Do not deduplicate records, infer hidden defaults, alias namespace flags, or treat an out-of-range attempt as an unconditional stored value. Linked-variable/mount behavior and actual mapping remain outside this adapter.
+
+## Validation and handoff
+
+Own launcher/native gate passes 97 assertions, six ordinary seed acquisitions and 28 fake projections. Explicit world-close cleanup prunes the populated cache without disposing the raw borrow. Baseline Round20 shared selection and one-composer/latest-pending ownership tests pass. Entire default engine-neutral smoke suite passes. The standalone Program catches/report failures so early native assertion failures do not leave an unhandled Windows process holding test binaries; the initial failed process was ended through its owned tool session. No unrelated process was changed.
+
+Repository gate: 1,197 Markdown files, zero broken/private links, 2,602 names/zero duplicates, 345 packet rows, no public file at least 25 MiB. All 2,406 baseline members retain exact bytes; eight allowed additions comprise the adapter/scenario, docs/checkpoint and four own runner files. Whitespace checks pass, index remains empty and worker HEAD is preserved. No shared or unrelated file modifications/deletions.
+
+Only the new source adapter, new public smoke scenario, own Rendering runner files, durable contract and this checkpoint are part of the worker scope. No shared Program/project/Godot/navigation/status/ledger/registry edits. Confidence is **Confirmed** for these injected journal/projector transaction cases; actual codec-to-CIDM/range/store-to-GPU integration is not claimed. Research/readiness/function/protocol denominators are unchanged.
+
+Next action: lead joins the real raw journal and explicit declared-range projection to this adapter and accepted retained visual. Check `LastFailure` after each `Find` to apply the chosen fail-closed malformed ingress policy. Keep original player values and linked-variable/mount graph unresolved rather than inferring them from supplied seeds.

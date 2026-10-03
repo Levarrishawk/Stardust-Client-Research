@@ -6,6 +6,8 @@ public sealed class ReplicationByteString
 {
     private readonly byte[] bytes;
     internal ReplicationByteString(byte[] bytes, bool extended) { this.bytes = bytes; UsesExtendedLength = extended; }
+    public static ReplicationByteString Create(ReadOnlySpan<byte> bytes, bool usesExtendedLength = false)
+        => new(bytes.ToArray(), usesExtendedLength || bytes.Length >= ushort.MaxValue);
     public bool UsesExtendedLength { get; }
     public int Length => bytes.Length;
     public byte[] CopyBytes() => (byte[])bytes.Clone();

@@ -3091,3 +3091,35 @@ Existing canonical autodelta_vector_int_delta_decode_VA_0043B1A0 is unchanged. D
 ## 2026-10-02 — integer-set kernel and normalization
 
 Existing canonical autodelta_set_int_snapshot_parse_VA_00642F00 and autodelta_set_int_delta_parse_VA_00643050 retain their names. Pinned direct instructions establish raw-counter copy, signed unique tree/in-order serialization, conditional unsigned sum gate, membership-dependent increments and final unsigned maximum. [Exact components contract](docs/CREATURE_VIEW3_COMPONENTS_DELTA_CONTRACT.md) separates raw snapshot preservation and modern atomic bounds from original callbacks/unsafe recovery. No new names, packet boundaries or denominator changes.
+
+## Round19 appearance field4 callback observations — 2026-10-02
+
+Pinned executable SHA256 was rechecked as the documented E782BF1C...6150.
+[Ingress evidence](docs/CREATURE_APPEARANCE_CUSTOMIZATION_INGRESS.md) connects
+existing canonical00641030/00641180 decoders to nonempty callback0063F880,
+unescape/version dispatch00B33020/00B33E30 and record reader00B33F70.
+Records resolve ID&7F through00B54D50, named variable00B32890 and setter
+vtable+10; setter conversion/clamping/getter semantics remain Unknown. These
+are Confirmed static address/call observations, not newly assigned canonical
+names. Full input hash, instruction ranges and confidence are in the checkpoint.
+Empty callback bypass, ordered mutation and absent success-tail check are retained
+as original observations. Atomic strict inner rejection would be replacement
+policy. Next exact probe: concrete ranged/palette setter targets and widths.
+
+## Round20 concrete customization observations — 2026-10-03
+
+Pinned executable instructions/RTTI identify BasicRangedIntCustomizationVariable vtable015EC8C4 and PaletteColorCustomizationVariable015EC920 sharing packed reader00B49FD0 (+10). It converts U8/LE S16 and calls integer setter+20. Basic00B4ADF0 and palette00B4B8E0 retain out-of-range local integers; getters00B4ADE0/00B4B8D0 return stored fields. Both still forward attempted values through00B4A270;00B4A300 invokes owner notification. Palette color lookup00B4B920 separately clamps lookup. [Confirmed observations and remaining context](docs/PACKED_CUSTOMIZATION_CONTRACT.md); no new canonical semantic names or registry count change.
+
+## Round27 SWTS/DTST reconciliation — 2026-10-03
+
+Pinned original static instruction/RTTI/asset audit establishes SWTS loader/runtime and DTST local selector roles.18 canonical addresses are reconciled,16 newly registered:2618 distinct names/zero duplicates. 00785C30/50 formerly carried SwitchShader_forwardSelectedOperationA/B names; the indexed forwarding structure remains correct, but RTTI places these functions in SwitchTextureShader. Canonical names now shader_swts_forward_selected_operation_a/b_VA_00785C30/50. SWSH corresponding forwarders are007860A0/C0; they remain address observations, not extra registered aliases. Historical interpretation and exact evidence are preserved in the [R27 checkpoint](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-03_R27_SWITCH_TEXTURE_RUNTIME.md) and [runtime contract](docs/SWITCH_TEXTURE_RUNTIME_CONTRACT.md). Outer clock units, pause/culling/thread and first visible frame remain Unknown. No function-coverage denominator is inferred.
+
+## Round28 specialized vector and clock reconciliation — 2026-10-03
+
+Three new canonical roles: CachedNetworkId vector snapshot serializer00641690, delta serializer00641700 and eight-byte archive helper0043CEB0. Existing006421A0/006423E0 parser names remain. [Pinned specialization evidence](docs/TANGIBLE_VIEW6_CODEC_CONTRACT.md) establishes consume grammar and assignment overshoot; counter/state application remains the next probe. Registry2621 distinct addresses/zero duplicates, no function-coverage denominator change.
+
+[Clock chain](docs/SWITCH_TEXTURE_CLOCK_CONTRACT.md) establishes ordinary GroundScene scheduler-accumulated seconds and update-before-render ordering. Reachable installer/frame-pump configures PC00/RC00; actual callback control word, first visible frame, alternate owners and full pause/culling behavior remain unobserved.
+
+## Round29 specialized identity state reconciliation
+
+Five roles adopted after the pinned 109-anchor/two-RTTI audit: default construction00B2FCC0, raw-bit equality00B2FFF0, resize00643CD0, assignment00641D20 and clear00641850. [State policy](docs/TANGIBLE_VIEW6_STATE_POLICY.md) distinguishes counter mutation, default-zero growth, observer ownership and callbacks from modern atomic publication. Registry2626 distinct addresses, zero duplicates; function coverage remains uncalibrated.

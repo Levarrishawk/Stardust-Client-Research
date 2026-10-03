@@ -35,3 +35,105 @@ Build the Godot host using its existing SDK cache. [Invoke-StardustMixedWorldPre
 Run [verify_preview.py](../poc/round14-tests/Integration/verify_preview.py) with GPU log, headless log, cancellation log, first/updated/recreated PNGs. This independently checks state/incarnation/pose/currentness receipts and actor pixels, excluding labels. Primary Main flags are --mixed-world-preview and --scene-static-visual-preview; both were freshly executed headlessly.
 
 Shared native flags: --round14-peer PEER EXPORT; --round14-validation ROOT CFG CATALOG BANK; --round14-world ROOT CFG CATALOG BANK PEER EXPORT. Generated peers/logs/captures/source-derived detail stay ignored and are never linked into curated documents. [Integration checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R14_MIXED_WORLD_INTEGRATION.md) records findings/confidence and the resume point.
+
+## Round15 optional reusable consumer mode
+
+Pass --object-consumer to the existing preview, or ObjectConsumer to the existing
+PowerShell launcher. Default mode retains explicit legacy two-actor application.
+Both modes now derive fixture object IDs from the47-byte create messages. In
+consumer mode, one factory.Create delegate supplies the bounded core consumer;
+publication transfer, state application, retirement/recreation and acknowledgment
+use that interface. The original read-only archive jobs and camera remain shared.
+
+[Round15 producer](../poc/round15-tests/Integration/Generate-Peer.py) authors a peer
+with different64-bit IDs. The [native join](../poc/round15-tests/Integration/Integration.csproj)
+takes root/config/catalog/bank/peer/export; [native oracle](../poc/round15-tests/Integration/verify.py)
+takes peer/export. The [six-input image/log oracle](../poc/round15-tests/Integration/verify_preview.py)
+adds generic-consumer markers to the accepted image/state checks. Fresh GPU,
+headless and real archive cancellation pass;14,333 human pixels change while the
+terminal region stays identical and recreation preserves the human. Legacy
+headless and recipe-adapter negative/rollback checks also pass.
+
+This remains a bounded original-asset diagnostic, with explicit terminal frame0
+and scalar creature policy. Resource jobs/world phases are driven explicitly;
+a continuous scene update loop is still next. The historical Round14 report's
+phrase seven-input was editorial: its oracle, like this one, takes six arguments.
+
+## Continuous scene host accepted - October2,2026
+
+[Round16](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_16_2026-10-02.md)
+joins the bounded [pump](SCENE_WORLD_PRESENTATION_PUMP_CONTRACT.md),
+[Godot host](SCENE_WORLD_PRESENTATION_HOST_CONTRACT.md) and logical
+[resource accounting](SCENE_OBJECT_RESOURCE_ACCOUNTING_CONTRACT.md).
+Independent peer and original headless/GPU/cancellation checks pass; the human
+retains its resource identity during state updates and terminal-only recreation.
+These are synthetic offline messages with explicit original asset recipes and
+modern queue/timing policy. Movement/interior integration and live contact remain
+separate. Research scores and protocol/name denominators are unchanged.
+
+## Native motion join - October2,2026
+
+[Round17](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_17_2026-10-02.md)
+joins [compact codecs](COMPACT_SCENE_TRANSFORM_CONTRACT.md),
+[native poses](SCENE_WORLD_OBJECT_MOTION_CONTRACT.md),
+[body envelopes](SCENE_CREATURE_BODY_ENVELOPE_CONTRACT.md) and
+[Godot motion](SCENE_WORLD_OBJECT_MOTION_VISUAL_CONTRACT.md).
+Continuous original headless/GPU/cancel and independent/native/shared gates pass.
+Height applies once; immutable create/resource identity survives wrap/stale and
+clear/local resume. Diagnostic zero yaw/immediate pose is modern policy, not
+recovered interpolation. Parent resolution, physical speed interpretation, unified
+world ingress, locomotion and interior traversal remain open.
+
+## Round18 local input and offline motion ingress
+
+[Round18](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_18_2026-10-02.md)
+joins [local driver](SCENE_WORLD_LOCAL_MOTION_CONTRACT.md),
+[input and locomotion](SCENE_WORLD_LOCAL_INPUT_CONTRACT.md) and
+[motion ingress](SCENE_WORLD_MOTION_INGRESS_CONTRACT.md) through the continuous
+bounded pump. Original headless/GPU/cancel and independent nine-stage time/pose/
+clip/resource proofs pass. Modern correction/pause/free planar movement is
+explicit; original yaw, interpolation, prediction and parent-world conversion
+remain unclaimed. [Head-material diagnosis](SCENE_HUMAN_HEAD_MATERIAL_GAP.md)
+requires an explicit generated-face route next. Research/function/protocol
+denominators are unchanged. Workers remain Low; successive rounds are authorized
+under the overnight instruction.
+
+## Round19 explicit generated face route
+
+[Round19](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_19_2026-10-02.md)
+joins [owned face resources](SCENE_CREATURE_FACE_RESOURCE_CONTRACT.md),
+[completion/accounting](SCENE_CREATURE_FACE_COMPLETION_CONTRACT.md) and
+[actual GPU MAIN inspection](SCENE_CREATURE_FACE_INSPECTION_CONTRACT.md).
+Opt-in supplied values survive async option copying;76-source original closure,
+five-layer output, scoped face pixels, movement retention and malformed/canceled/
+lost-incarnation cleanup pass. Default route and metrics retain their meanings.
+[Wire/packed ingress](CREATURE_APPEARANCE_CUSTOMIZATION_INGRESS.md) identifies the
+next typed setter/field4 revision boundary; actual player values remain unknown.
+
+## Round20 integration
+
+[Accepted integration evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R20_CUSTOMIZATION_INTEGRATION.md) records owned CIDM/raw packed decoding, supplied current-creature appearance revisions and bounded presentation/world drain. Original-resource, native/headless/GPU, latest/failure/retirement and real pending-close gates pass. This is explicit supplied inspection state; rawfield4 state translation is next. Four Low workers stopped; overnight authorization permits the next round after acceptance. Known certificate/shader initialization diagnostics persist and are counted, while actual upload/readback/pixels pass.
+
+## Round23 integrated boundary
+
+The supported CREO:3 union4/5/11–17 now stages raw customization, scalars, components, wounds and pending world state together. Original selected ACST/CIDM context supplies exact ranges and authored defaults through five already owned palettes. Main independent native, headless/GPU, motion and held-container gates pass. Broader fields/views, live mounts/player seeds and graphical attachment/wound behavior remain open. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R23_FULL_CREATURE_INTEGRATION.md).
+
+## Round24 integrated boundary
+
+Supported CREO3 fixed common fields0/3/6–10 join the existing union. Current common state survives older ingress; visibility uses that overlay while hidden appearance work commits. Actual delta headless/GPU/motion and separate held-baseline visibility proofs pass. Names1/2, TANO, gameplay meanings and live interoperability remain open. STF variant1 exact owned lookup passes two original tables; locale/cache/fallback is deferred. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R24_EXTENDED_CREATURE_INTEGRATION.md).
+
+## Round27 typed tangible publication
+
+Optional complete TANO3 world state commits with its journal after private preparation. Static typed token gates actual original terminal caption/raw visibility beside supported CREO ingress; five headless/GPU states, retained resources and teardown pass independent oracles. Default opaque behavior remains. Authored template names and local SWTS selector semantics are separately documented; outer clock and live interoperability remain open. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R27_TANGIBLE_WORLD_INTEGRATION.md).
+
+## Round29 accepted behavior
+
+Original mission terminal all-frame loading and mixed-world playback pass headless/GPU:34 unique sources,15 retained images/126mips/2490372decoded bytes,3969782pending weight;8 cached GPU frame uploads,13 independently checked states and deterministic retirement. Initializer policy-copy omission was caught in the main-host gate and fixed before acceptance. Typed TANO3 captions/visibility and prior CREO3 regressions pass. Standalone object clock passes390checks/36cases/157independentoperations; direct TANO6 state audit109anchors/twoRTTI/16models. Modern numeric/time policy and absent live interoperability remain explicit. [Combined acceptance](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R29_SWITCH_FRAME_INTEGRATION.md).
+
+## Round30 clock and defender increment
+
+Owned TANO6 state passes21 sequences/23 transitions,700 negatives,315 budget and114 ownership checks with an independent wire/state/event/work oracle. Clock-to-cursor147 checks/14 cases/79 reference operations and resource-option20 projections/seven completions pass. Actual main headless/GPU fourteen-state clock delivery and prior supplied-time mode retain original terminal geometry/captions and drain caches/clock without update I/O. First-visible-frame uncertainty and absent live interoperability remain explicit. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R30_CLOCK_AND_DEFENDER_STAGES.md).
+
+## Round31 outdoor and view6 prerequisites
+
+Owned direct-version terrain masks and all nine exact terrain patch patterns pass independent original-byte/table and native oracles. Current-incarnation TANO6 publication and historical-event ownership pass143 checks/23 transitions/38 events. CREO6 prefix/extension structure passes109 anchors/18 registrations/16RTTI; complete codec/world routing remain next. Actual headless/GPU consumed-time failure retires the clock and cached presentation without retry. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R31_TERRAIN_AND_REPLICATION_STAGES.md).

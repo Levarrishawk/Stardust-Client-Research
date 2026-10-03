@@ -1,6 +1,6 @@
 # Client Analysis Status
 
-Updated: 2026-10-02 (parallel development through Round14; research scores unchanged)
+Updated: 2026-10-03 (parallel development through Round31; research scores unchanged)
 
 **Current measurement:** the evidence-backed rescore is **89% comprehensive behavioral coverage / 94% implementation-and-engine-decision research readiness**. These supersede the historical 90%/96% planning estimates. They are weighted observable-contract scores, not percentages of executable functions. Function/address accounting remains separately **uncalibrated** and must not displace behavioral research. See the [current rescore](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_EVIDENCE_BASED_COVERAGE_RESCORE.md), [research coverage rebaseline](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md), and [model-transition audit](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_MODEL_TRANSITION_AUDIT.md).
 
@@ -1448,3 +1448,111 @@ Accepted owned creature/static resource routing, ordered components/scalars/woun
 ## Round14 implementation integration — October2,2026
 
 [Round14 record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_14_2026-10-02.md): pure no-I/O completion consistency, bounded generic creature/static async world delivery, independent heterogeneous SOE/lifecycle fixtures and guarded original static actors. Lead joins the pure gate, original39/27-source mixed world and front-facing human/terminal preview; typed creature state and bounded opaque TANO stay separate. Static-only recreation preserves human state/resources/GPU IDs; late family failure retires both and drains. Native/original/wire/state/pixel/GPU/headless/cancel/primary-Main gates pass. Reusable heterogeneous acknowledged presentation is next; static typed schemas/HDR completion extensions/parent transforms/full rendering/live remain open. Research89%/94%,2,602 names and345 packet rows unchanged. All workers idle; no Round15 authorization.
+
+## Round15 implementation integration - October2,2026
+
+Reusable bounded engine-neutral creature/static presentation now owns exact
+publication/incarnation adapters and acknowledges only the exact current applied
+batch. Godot recipe adapters preserve resources across state updates and retire
+stale attempts. Fresh lead native160, independent networking40, original-resource
+join, zero-warning Godot build, GPU/headless/cancel and legacy preview gates pass.
+Application is serialized/retryable rather than visual rollback; scalar creature
+mode and opaque TANO/frame0 inspection remain explicit. Continuous scene pumping,
+movement/parent transforms/terrain and live interoperability remain open.
+[Round15 report](research/sessions/PARALLEL_DEVELOPMENT_ROUND_15_2026-10-02.md).
+Workers stay Low and idle; another round requires Levarris's prompt. Research,
+function and packet measurements are unchanged.
+## Round16 continuous scene hosting - October2,2026
+
+The bounded engine-neutral scene pump, reusable Godot process host, pure logical
+resource accounting and independent eight-frame scheduling peer are integrated.
+Native171/host102/15-accounting-negative/independent/shared/Godot build and
+original headless/GPU/real-cancellation checks pass. The human persists through
+Height updates and terminal-only recreation; close clears retained work and
+drains jobs. Logical budgets exclude geometry/animation/CLR/GPU overhead.
+[Round16](research/sessions/PARALLEL_DEVELOPMENT_ROUND_16_2026-10-02.md)
+records accepted scope and limits. Research89%/readiness94%,2,602 names and345
+packet rows remain unchanged. Continuous movement/interior hosting is next under
+the overnight authorization; no live-server contact or publication is authorized.
+
+## Round17 native motion - October2,2026
+
+Exact compact transform codecs, bounded incarnation-aware native pose storage,
+original local body envelopes and Godot pose adapters are integrated.
+280 native motion checks,522 independent codec fixtures, eight body samples/
+36 negatives and original/native/GPU/headless/cancel/independent/shared gates pass.
+Continuous motion preserves raw create and resource identity; Height composes once,
+counter wrap/stale and clear/local resume are verified modern policy.
+[Round17](research/sessions/PARALLEL_DEVELOPMENT_ROUND_17_2026-10-02.md)
+records limits. Yaw/speed units, original interpolation/active physics, unified
+movement ingress, locomotion and interior binding remain separate. Research89%/
+readiness94%,2,602 names and345 packet rows unchanged.
+
+## Round18 input and ingress — October2,2026
+
+[Round18](research/sessions/PARALLEL_DEVELOPMENT_ROUND_18_2026-10-02.md)
+joins fixed-step local input, walk/run presentation and queued compact world
+motion. Native90 driver/shared161 ingress checks, independent receipts, original
+GPU/headless/cancellation and clean drain pass. Head pale-face cause is traced to
+omitted generated-face preparation; integration remains next. Modern planar
+movement/correction policy does not recover original prediction or yaw. Research
+89%/readiness94%,345 packet-source rows and2,602 names are unchanged.
+
+## Round19 face resources and appearance ingress — October2,2026
+
+[Round19](research/sessions/PARALLEL_DEVELOPMENT_ROUND_19_2026-10-02.md)
+closes explicit generated-face integration through async resource option copying,
+requested completion validation/logical accounting and actual GPU MAIN binding.
+Original76-source/5,940,390-byte closure, independent five-layer output,1,967 face
+pixels, retained controls/Height/motion and failure/cancellation drain pass.
+Confirmed field4 callback/packed/CIDM chain identifies typed setter/delta state
+work next. Player values remain unknown;89%/94%,345 packet-source rows and2,602
+canonical names remain unchanged.
+
+## Round20 — 2026-10-03 UTC
+
+Owned CIDM and ordered raw packed customization now have independent original/byte fixtures. Two concrete legacy setters use U8/S16 and retain invalid local values; live variable context remains separate. Supplied full appearance revisions preserve original resources, pose/Height/clocks, latest-only composition and atomic GPU commit. Real pending CPU close and bounded retired-adapter/world drain pass. Shared and independent native/headless/GPU/failure regressions pass; known engine startup diagnostics are recorded precisely. [Session and reproduction](research/sessions/PARALLEL_DEVELOPMENT_ROUND_20_2026-10-03.md). Next: rawfield4 state and declared-range projection. Independent coverage denominators and canonical counts unchanged; no publication.
+
+## Round21 — ordered wire appearance
+
+Owned field4 strings now reach ordered current-incarnation raw state, declared-range projection and retained GPU appearance. Independent original/byte/native/headless/GPU and actual malformed/unknown-ID cleanup gates pass. Explicit supplied bounds/seed remain separate from ACST/live defaults. Mixed-field routing is next. [Session](research/sessions/PARALLEL_DEVELOPMENT_ROUND_21_2026-10-03.md). Research89%/readiness94%,2602 names and345 packet rows unchanged.
+
+## Round22 — staged customization/scalar state
+
+Ordered4/11..16 wire packets now commit raw, replication and world journal candidates after complete preflight. Original ACST directory and targeted queries are implemented; palette cardinalities/live mounts remain next. Actual mixed Height/GPU and held composition/body races pass with relevant prior shutdown regressions. [Session](research/sessions/PARALLEL_DEVELOPMENT_ROUND_22_2026-10-03.md). Coverage denominators/counts unchanged.
+
+## Round23 implementation acceptance — October3,2026
+
+Supported customization/scalar/components/wounds state and exact selected asset context pass the combined native/headless/GPU gates. Round23 accepted; scope validation passes. Live values/mounts/common fields/other views remain open. Research measures unchanged. [Evidence](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R23_FULL_CREATURE_INTEGRATION.md).
+
+## 2026-10-03 — Round24 common state, visibility and STF
+
+Four Low milestones and lead extended-wire join pass native/independent/original-byte/headless/GPU/motion/held-retirement gates. Seven common fields carry through older ingress, visibility0/255 remains raw, and STF1 lookup preserves original units/keys. Names1/2 and localization cache/fallback remain next. Round24 accepted; scope passes, research/registry/protocol-source metrics unchanged. [Evidence](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R24_EXTENDED_CREATURE_INTEGRATION.md).
+
+## 2026-10-03 — Round25 current names and bounded localization
+
+Four Low milestones and actual named-wire/STF/caption join pass independent/native/headless/GPU/held-cleanup gates. CREO3indices0–17 supported; historic baseline/current name charge preserved; modern presentation policy explicit. TANO/other views/live/locale cache remain open. Round25 accepted; research and registry denominators unchanged. [Evidence](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R25_NAMED_CREATURE_INTEGRATION.md).
+
+## 2026-10-03 — Round26 tangible stages
+
+Four Low milestones and lead exact codec-store-preload integration pass. Complete TANO3 bytes are supported outside SceneWorld; static caption proof uses explicit supplied projection. Atomic typed world join is next. Research and registry measures unchanged. [Evidence](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R26_TANGIBLE_STAGE_INTEGRATION.md).
+
+## 2026-10-03 — Round27 atomic tangible world
+
+Four Low milestones and actual mixed original-resource headless/GPU host pass. Current typed TANO state/journal atomicity and caption/visibility are joined. Authored template name pairs and static DTST local runtime are separately confirmed; outer scheduling and live behavior open. Registry2618 distinct/zero duplicates after16 additions/two corrected attributions; research89%/readiness94% and345 packet rows unchanged. [Evidence](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R27_TANGIBLE_WORLD_INTEGRATION.md).
+
+## 2026-10-03 — Round28 switch and view6 stages
+
+Bounded owned frame inputs/playback, exact TANO6 codec and ordinary GroundScene clock evidence. Main cursor870/36+180independentoperations, codec17exact/394negative/148caps+40staticanchors, clock26ranges/sevenRTTI pass. New three roles yield2621distinct addresses. Original callback precision/first visibility/defender state remain open; main automatic animation deferred to explicit integration. Research89%/readiness94% and345 packet rows unchanged. [Evidence](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R28_SWITCH_AND_VIEW6_STAGES.md).
+
+## Round29 accepted behavior
+
+Original mission terminal all-frame loading and mixed-world playback pass headless/GPU:34 unique sources,15 retained images/126mips/2490372decoded bytes,3969782pending weight;8 cached GPU frame uploads,13 independently checked states and deterministic retirement. Initializer policy-copy omission was caught in the main-host gate and fixed before acceptance. Typed TANO3 captions/visibility and prior CREO3 regressions pass. Standalone object clock passes390checks/36cases/157independentoperations; direct TANO6 state audit109anchors/twoRTTI/16models. Modern numeric/time policy and absent live interoperability remain explicit. [Combined acceptance](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R29_SWITCH_FRAME_INTEGRATION.md).
+
+## Round30 clock and defender increment
+
+Owned TANO6 state passes21 sequences/23 transitions,700 negatives,315 budget and114 ownership checks with an independent wire/state/event/work oracle. Clock-to-cursor147 checks/14 cases/79 reference operations and resource-option20 projections/seven completions pass. Actual main headless/GPU fourteen-state clock delivery and prior supplied-time mode retain original terminal geometry/captions and drain caches/clock without update I/O. First-visible-frame uncertainty and absent live interoperability remain explicit. [Combined evidence](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R30_CLOCK_AND_DEFENDER_STAGES.md).
+
+## Round31 outdoor and view6 prerequisites
+
+Owned direct-version terrain masks and all nine exact terrain patch patterns pass independent original-byte/table and native oracles. Current-incarnation TANO6 publication and historical-event ownership pass143 checks/23 transitions/38 events. CREO6 prefix/extension structure passes109 anchors/18 registrations/16RTTI; complete codec/world routing remain next. Actual headless/GPU consumed-time failure retires the clock and cached presentation without retry. [Combined evidence](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R31_TERRAIN_AND_REPLICATION_STAGES.md).

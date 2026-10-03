@@ -6,6 +6,7 @@ param(
     [Parameter(Mandatory=$true)][string]$Configuration,
     [switch]$Headless,
     [switch]$CancelLoad,
+    [switch]$ObjectConsumer,
 
     [Parameter(Mandatory=$true)][string]$FixturePath,
     [Parameter(Mandatory=$true)][string]$CatalogProfile,
@@ -43,6 +44,7 @@ script = ExtResource("1")
 $taskArguments=@('--path',(Join-Path $taskWorkspace 'poc\Stardust.Godot'),'--log-file',$taskLog,$taskScene)
 if(-not $CapturePath){$taskArguments+='--headless'}
 $taskArguments+=@('--','--mixed-world-preview','--asset-root',$taskArchiveRoot,'--asset-config',$taskConfiguration,'--mixed-peer',$taskFixture,'--catalog-profile',$taskCatalog)
+if($ObjectConsumer){$taskArguments+='--object-consumer'}
 if($CapturePath){$taskArguments+=@('--mixed-capture',$taskCapture)}elseif($CancelLoad){$taskArguments+='--mixed-cancel'}
 if($taskArguments.Where({$_ -match '["\r\n]'}).Count){throw 'Arguments containing quotes/newlines are unsupported.'}
 $taskQuoted=$taskArguments.ForEach({'"'+$_+'"'})

@@ -564,3 +564,103 @@ Use [world-owned typed preview](../docs/OFFLINE_REPLICATED_WORLD_PREVIEW_CONTRAC
 ## Round14 mixed original world — October2,2026
 
 [Generic world](../docs/SCENE_MIXED_WORLD_CONTRACT.md) and [pure completion gate](../docs/SCENE_OBJECT_RESOURCE_VALIDATION_CONTRACT.md) now deliver explicit creature/static router results without replacing legacy APIs. [Mixed preview](../docs/MIXED_WORLD_PREVIEW_CONTRACT.md) displays original human and mission terminal fronts, typed creature Height and opaque static envelopes, exact freshness, one static reload and global failure/drain. Shared --round14-peer/--round14-validation/--round14-world and primary --mixed-world-preview/--scene-static-visual-preview are registered. Native/original/source/mip/wire/state/pixel, Godot GPU/headless/cancel and primary-entry checks pass; all workers idle. Next: reusable acknowledged heterogeneous presentation, with typed static schemas and complete renderer/live behavior separately scoped.
+
+## Round15: reusable mixed presentation
+
+A bounded engine-neutral object presentation consumer now joins accepted generic
+world publications to Godot creature/static recipe adapters. Exact resource
+attempt/creation incarnation and typed/opaque state freshness remain separate;
+only the exact current applied batch acknowledges. Alternate-ID original assets,
+state-only updates without reload, isolated terminal recreation, stale acknowledgment
+retry, failure retirement and cancellation drain pass native/GPU/headless checks.
+Use ObjectConsumer with the existing mixed launcher for the new mode; the default
+explicit preview remains available.
+[Consumer](../docs/SCENE_WORLD_OBJECT_PRESENTATION_CONTRACT.md),
+[factory](../docs/SCENE_WORLD_OBJECT_VISUAL_CONTRACT.md),
+[Round15 results](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_15_2026-10-02.md).
+No continuous world pump or live interoperability is claimed.
+
+## Continuous scene hosting - Round16
+
+The bounded pump and Godot process host are implemented and pass joined original
+human/terminal headless/GPU/cancel and independent peer checks.
+See [Round16](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_16_2026-10-02.md).
+Run the standalone preview with round16-tests/Integration/Launch.ps1 against the
+existing replacement Godot executable and original archive/config/profile paths.
+This is a continuous offline compatibility preview; movement/interior hosting
+is next. No original executable or live contact is needed.
+
+## Native motion - Round17
+
+[Round17](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_17_2026-10-02.md)
+adds exact compact codecs, native pose storage, local body envelopes and a
+Godot pose wrapper. The continuous preview optionally accepts -MotionPeer on
+round16 Integration/Launch.ps1. Native/independent/original/GPU/headless/cancel
+checks pass. This uses explicit modern zero-yaw/immediate-pose diagnostics;
+unified ingress, input locomotion and interior traversal are next.
+
+## Round18 controls and motion ingress
+
+[Accepted integration](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R18_LOCAL_INTEGRATION.md)
+adds --round18-local and --round18-ingress shared native gates and continuous
+launcher -LocalInput (requires -MotionPeer). This is deterministic offline
+planar input, supplied walk/run clips and explicit diagnostic motion projection.
+The [nine-stage oracle](round18-tests/Integration/verify_local.py) checks native/
+engine pose, integer time, pause/focus/correction/reset and retained resources.
+The [head diagnostic](../docs/SCENE_HUMAN_HEAD_MATERIAL_GAP.md) records the next
+generated-face integration requirement; actual player customization is unknown.
+
+## Round19 explicit face inspection
+
+[Accepted joined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R19_FACE_INTEGRATION.md)
+registers --round19-face-resources/--round19-face-validation. Continuous launcher
+-LocalInput/-MotionPeer supports -FaceProfile with the existing explicit
+human-face-zero.json. Separate -InputLoss proves driver-incarnation failure
+cleanup. [Face receipt oracle](round19-tests/Integration/verify_face_join.py)
+compares actual publication to independently verified native resources.
+Standalone default/generated captures verify only the intended face region.
+Packed field4 decoding and actual player values are the next boundary.
+
+## Round20 compatibility increment
+
+[Customization and drain integration](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R20_CUSTOMIZATION_INTEGRATION.md) adds original CIDM/raw packed fixtures, supplied appearance revisions over retained motion/resources and cancellation-aware host shutdown. Shared flags --round20-cidm, --round20-packed and --round20-drain register the native gates. Continuous launcher CustomizationRevisions/CustomizationClosePending exercise full supplied zero/varied values and a real pending owned CPU close. Rawfield4 state/translation and recovered player values remain separate; engine startup diagnostic limits are recorded in the checkpoint.
+
+## Round21 integrated boundary
+
+Round21 exposes --round21-projection, --round21-customization-delta, --round21-customization-state and --round21-customization-source native gates. Continuous launcher adds CustomizationWirePeer/CustomizationDictionary with LocalInput/MotionPeer/FaceProfile. Synthetic field4 frames plus pinned original CIDM reach retained GPU appearance under explicit consumer context. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R21_WIRE_CUSTOMIZATION_INTEGRATION.md).
+
+## Round22 integrated boundary
+
+Round22 adds native ACST, customization-scalars/state and height-race flags. Joined launcher CustomizationScalars uses independently mixed packets; Rendering22 launcher exercises held composition with generation/destroy retirement. Original ACST defaults remain metadata until palette/context binding. [Evidence/reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R22_CUSTOMIZATION_SCALAR_INTEGRATION.md).
+
+## Round23 integrated boundary
+
+The supported CREO:3 union4/5/11–17 now stages raw customization, scalars, components, wounds and pending world state together. Original selected ACST/CIDM context supplies exact ranges and authored defaults through five already owned palettes. Main independent native, headless/GPU, motion and held-container gates pass. Broader fields/views, live mounts/player seeds and graphical attachment/wound behavior remain open. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R23_FULL_CREATURE_INTEGRATION.md).
+
+## Round24 integrated boundary
+
+Supported CREO3 fixed common fields0/3/6–10 join the existing union. Current common state survives older ingress; visibility uses that overlay while hidden appearance work commits. Actual delta headless/GPU/motion and separate held-baseline visibility proofs pass. Names1/2, TANO, gameplay meanings and live interoperability remain open. STF variant1 exact owned lookup passes two original tables; locale/cache/fallback is deferred. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R24_EXTENDED_CREATURE_INTEGRATION.md).
+
+## Round25 named creature increment
+
+The supported ordered CREO3 union now covers indices0–17, including raw StringId/custom names. Current name overlays and variable charge survive older ingress. Bounded original STF1 resolution drives an optional caption; actual delta headless/GPU and separate held-baseline name proofs pass. Explicit modern name precedence/directory/display policies do not establish original UI/locale behavior. Other families/views and live interoperability remain open. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R25_NAMED_CREATURE_INTEGRATION.md).
+
+## Round26 tangible stages
+
+Complete owned TANO3 baseline and ordered0–10 delta codecs, standalone current tangible store and bounded original STF preload pass independent native oracles. Static supplied-projection caption/visibility passes original terminal GPU and lifecycle checks. Lead codec-store-preload join passes; atomic typed SceneWorld publication is next. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R26_TANGIBLE_STAGE_INTEGRATION.md).
+
+## Round27 typed tangible publication
+
+Optional complete TANO3 world state commits with its journal after private preparation. Static typed token gates actual original terminal caption/raw visibility beside supported CREO ingress; five headless/GPU states, retained resources and teardown pass independent oracles. Default opaque behavior remains. Authored template names and local SWTS selector semantics are separately documented; outer clock and live interoperability remain open. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R27_TANGIBLE_WORLD_INTEGRATION.md).
+
+## Round29 accepted behavior
+
+Original mission terminal all-frame loading and mixed-world playback pass headless/GPU:34 unique sources,15 retained images/126mips/2490372decoded bytes,3969782pending weight;8 cached GPU frame uploads,13 independently checked states and deterministic retirement. Initializer policy-copy omission was caught in the main-host gate and fixed before acceptance. Typed TANO3 captions/visibility and prior CREO3 regressions pass. Standalone object clock passes390checks/36cases/157independentoperations; direct TANO6 state audit109anchors/twoRTTI/16models. Modern numeric/time policy and absent live interoperability remain explicit. [Combined acceptance](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R29_SWITCH_FRAME_INTEGRATION.md).
+
+## Round30 clock and defender increment
+
+Owned TANO6 state passes21 sequences/23 transitions,700 negatives,315 budget and114 ownership checks with an independent wire/state/event/work oracle. Clock-to-cursor147 checks/14 cases/79 reference operations and resource-option20 projections/seven completions pass. Actual main headless/GPU fourteen-state clock delivery and prior supplied-time mode retain original terminal geometry/captions and drain caches/clock without update I/O. First-visible-frame uncertainty and absent live interoperability remain explicit. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R30_CLOCK_AND_DEFENDER_STAGES.md).
+
+## Round31 outdoor and view6 prerequisites
+
+Owned direct-version terrain masks and all nine exact terrain patch patterns pass independent original-byte/table and native oracles. Current-incarnation TANO6 publication and historical-event ownership pass143 checks/23 transitions/38 events. CREO6 prefix/extension structure passes109 anchors/18 registrations/16RTTI; complete codec/world routing remain next. Actual headless/GPU consumed-time failure retires the clock and cached presentation without retry. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R31_TERRAIN_AND_REPLICATION_STAGES.md).

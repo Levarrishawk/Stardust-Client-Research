@@ -49,12 +49,13 @@ public sealed class CreatureView3WoundsDeltaPlan
     public int MaximumElements { get; }
     public CreatureWoundsApplicationPolicy Policy { get; }
     /// <summary>Selected bounded policy; returns a new state only after every field succeeds.</summary>
-    public CreatureView3WoundsState Apply(CreatureView3WoundsState initial)
+    public CreatureView3WoundsState Apply(CreatureView3WoundsState initial) => Apply(initial,null);
+    internal CreatureView3WoundsState Apply(CreatureView3WoundsState initial,Action<int>? observeElementCount)
     {
         ArgumentNullException.ThrowIfNull(initial);
         if (initial.ObjectId != ObjectId) throw new InvalidDataException("Wounds object identity mismatch.");
         if (initial.Values.Count > MaximumElements) throw new InvalidDataException("Initial wounds exceed budget.");
-        if (Policy == CreatureWoundsApplicationPolicy.LegacyBounded) return ApplyLegacy(initial);
+        if (Policy == CreatureWoundsApplicationPolicy.LegacyBounded) return ApplyLegacy(initial,observeElementCount);
         List<int> values = new(initial.Values); uint counter = initial.Counter;
         foreach (var update in Updates)
         {
@@ -81,12 +82,13 @@ public sealed class CreatureView3WoundsDeltaPlan
                     case CreatureWoundsCommandKind.Clear: values.Clear(); break;
                     default: throw new InvalidDataException("Unknown wounds command.");
                 }
+                observeElementCount?.Invoke(values.Count);
             }
             counter = update.Counter;
         }
         return new(ObjectId, counter, values.ToArray(), MaximumElements);
     }
-    private CreatureView3WoundsState ApplyLegacy(CreatureView3WoundsState initial)
+    private CreatureView3WoundsState ApplyLegacy(CreatureView3WoundsState initial,Action<int>? observeElementCount)
     {
         List<int> values = new(initial.Values); uint counter = initial.Counter;
         foreach (var update in Updates)
@@ -123,6 +125,7 @@ public sealed class CreatureView3WoundsDeltaPlan
                         values.Clear(); counter = unchecked(counter + 1); break;
                     default: throw new InvalidDataException("Unknown wounds command.");
                 }
+                observeElementCount?.Invoke(values.Count);
             }
         }
         return new(ObjectId, counter, values.ToArray(), MaximumElements);

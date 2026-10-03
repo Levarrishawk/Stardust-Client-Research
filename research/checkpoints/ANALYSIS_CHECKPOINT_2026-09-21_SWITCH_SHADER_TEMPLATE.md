@@ -42,3 +42,7 @@ All ten use version 0000. The broader `.sht` namespace contains 23,124 effective
 - Class identity, registry, version, recursive child list, and runtime indexed forwarding: confirmed.
 - Ten-file effective corpus and version distribution: confirmed.
 - Exact class/editor name of the common selector object embedded at `+0x18`: unknown.
+
+## Address correction recorded 2026-10-03
+
+The dated interpretation above is preserved. Round27 pinned RTTI/instruction audit assigns00785C30/50 to SwitchTextureShader (SWTS), not SwitchShader (SWSH). SWSH corresponding selected-child forwarders are007860A0/C0 and its update forwarder00786080. Runtime construction00785C90 remains the SWSH path. [Corrected class attribution and evidence](../../docs/SWITCH_TEXTURE_RUNTIME_CONTRACT.md).

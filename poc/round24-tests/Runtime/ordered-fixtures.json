@@ -1,0 +1,78 @@
+{
+  "assign": [
+    8,
+    9
+  ],
+  "add": 123,
+  "raw_forward": [
+    "01020304",
+    "02",
+    "03"
+  ],
+  "raw_reverse": [
+    "01020304",
+    "03",
+    "02"
+  ],
+  "height": 6,
+  "wrap_replace": 7,
+  "common_events": [
+    {
+      "index": 0,
+      "bits": 2147483648
+    },
+    {
+      "raw": "08"
+    },
+    {
+      "index": 3,
+      "value": 4294967295
+    },
+    {
+      "height": 2
+    },
+    {
+      "index": 6,
+      "value": 4043440900
+    },
+    {
+      "wounds": [
+        8,
+        9
+      ]
+    },
+    {
+      "index": 7,
+      "value": 42
+    },
+    {
+      "component": 123
+    },
+    {
+      "index": 8,
+      "value": 4294967295
+    },
+    {
+      "index": 9,
+      "value": 1234
+    },
+    {
+      "index": 10,
+      "value": 0
+    },
+    {
+      "raw": "09"
+    },
+    {
+      "height": 4
+    },
+    {
+      "index": 0,
+      "bits": 1067450368
+    },
+    {
+      "index": 10,
+      "value": 255
+    }
+  ]
+}

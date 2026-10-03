@@ -14,10 +14,11 @@ using Stardust.Core.Session;
 /// <summary>Bounded original human/terminal diagnostic over one accepted mixed world.</summary>
 public partial class SceneMixedWorldPreview : Node
 {
-    private const ulong Human=0xF122334455667788, Terminal=0xE122334455667799;
+    private ulong Human, Terminal;
     private readonly TaskCompletionSource<bool> completion=new(TaskCreationOptions.RunContinuationsAsynchronously);
     public Task Completion=>completion.Task;
     private SceneWorldCoordinator? world;
+    private SceneWorldObjectPresentationConsumer? consumer;
     private SceneCreatureVisual? human;
     private SceneStaticVisual? terminal;
     private Godot.Environment? environment;
@@ -41,6 +42,15 @@ public partial class SceneMixedWorldPreview : Node
         string root=Arg("--asset-root"),configPath=Arg("--asset-config");
         peer=JsonSerializer.Deserialize<Dictionary<string,string>>(File.ReadAllBytes(Arg("--mixed-peer")))??throw new InvalidDataException("Peer required");
         if(peer.Count!=14 || peer.Values.Any(v=>v.Length>4096))throw new InvalidDataException("Bounded mixed fixture required");
+        ulong ObjectId(string key)
+        {
+            byte[] bytes=Convert.FromHexString(peer[key]);
+            try { if(bytes.Length!=47)throw new InvalidDataException("Create fixture size");return System.Buffers.Binary.BinaryPrimitives.ReadUInt64LittleEndian(bytes.AsSpan(6,8)); }
+            finally { Array.Clear(bytes); }
+        }
+        Human=ObjectId("human_create");Terminal=ObjectId("terminal_create");
+        if(Human==Terminal)throw new InvalidDataException("Distinct fixture identities required");
+        bool useConsumer=args.Contains("--object-consumer");
         bool gpu=DisplayServer.GetName()!="headless",cancel=args.Contains("--mixed-cancel");
         string? capture=args.Contains("--mixed-capture")?Arg("--mixed-capture"):null;
         if(capture is not null)
@@ -101,34 +111,63 @@ public partial class SceneMixedWorldPreview : Node
         Check(hp.Resources.Kind==SceneObjectResourceRecipe.CreatureDetail0 && hp.Resources.ExternalReads==39 && hp.Resources.SourceBytes==4686371 &&
             tp.Resources.Kind==SceneObjectResourceRecipe.StaticAppearance && tp.Resources.ExternalReads==27 && tp.Resources.SourceBytes==1401794,"exact original recipe closures");
         var baseHuman=GodotAppearanceTransform.ToGodot(hp.Placement.Transform);
-        human=SceneCreatureVisual.TryPublishCurrent(hp.Resources.Creature!,baseHuman,this,()=>world.IsCurrent(hp))??throw new InvalidDataException("Human transfer");
+        if(useConsumer)
+        {
+            var factory=new SceneWorldObjectVisualFactory(world,this,terminalFrame0Inspection:true);
+            consumer=new(world,factory.Create,maximumActors:2);
+            foreach(var publication in publications.Values)Check(consumer.AcceptResource(publication),"generic resource transfer");
+            Check(consumer.Count==2 && consumer.AcceptResource(hp),"bounded idempotent transfer");
+            human=((SceneWorldObjectVisual)consumer.Find(Human)!).CreatureVisual??throw new InvalidDataException("Creature adapter");
+            terminal=((SceneWorldObjectVisual)consumer.Find(Terminal)!).StaticVisual??throw new InvalidDataException("Static adapter");
+        }
+        else
+        {
+            human=SceneCreatureVisual.TryPublishCurrent(hp.Resources.Creature!,baseHuman,this,()=>world.IsCurrent(hp))??throw new InvalidDataException("Human transfer");
+            terminal=SceneStaticVisual.TryPublish(tp.Resources.Static!,GodotAppearanceTransform.ToGodot(tp.Placement.Transform),this,()=>world.IsCurrent(tp),terminalFrame0Inspection:true)??throw new InvalidDataException("Terminal transfer");
+        }
         human.SeekIdle(0);human.SetPlaying(false);
-        terminal=SceneStaticVisual.TryPublish(tp.Resources.Static!,GodotAppearanceTransform.ToGodot(tp.Placement.Transform),this,()=>world.IsCurrent(tp),terminalFrame0Inspection:true)??throw new InvalidDataException("Terminal transfer");
         Check(human.Verify(gpu) && terminal.Verify(gpu),"owned GPU boundaries");
         string humanIds=human.Fingerprint(gpu:gpu)!,terminalIds=terminal.Fingerprint(gpu)!;
         var originalHumanInc=world.Snapshots().Single(s=>s.Object.Handle.ObjectId==Human).Object.Incarnation;
         environment=new(){BackgroundMode=Godot.Environment.BGMode.Color,BackgroundColor=new Color("#14202e")};AddChild(new WorldEnvironment{Environment=environment});
         var camera=new Camera3D{Current=true,Fov=40,Position=new Vector3(0,1.3f,-9)};AddChild(camera);camera.LookAt(new Vector3(0,1.3f,0));
         var canvas=new CanvasLayer();AddChild(canvas);canvas.AddChild(new Label{Position=new Vector2(20,20),Text="One mixed world / original human + terminal / frame0 inspection; opaque TANO"});
-        var held=world.DrainChanges(generation)!;Check(world.AcknowledgeChanges(held),"initial acknowledgment");
+        var held=world.DrainChanges(generation)!;
+        Check(useConsumer?consumer!.ApplyBatch(held) && consumer.AcknowledgeAppliedBatch(held):world.AcknowledgeChanges(held),"initial acknowledgment");
         State("initial");if(capture is not null)await Capture(Captures(capture)[0]);
-        Accept("human_height");var stale=world.DrainChanges(generation)!;Accept("terminal_delta");Check(!world.AcknowledgeChanges(stale),"stale batch preserves both IDs");
+        Accept("human_height");var stale=world.DrainChanges(generation)!;
+        if(useConsumer)Check(consumer!.ApplyBatch(stale),"apply held batch before newer mutation");
+        Accept("terminal_delta");Check(useConsumer?!consumer!.AcknowledgeAppliedBatch(stale):!world.AcknowledgeChanges(stale),"stale batch preserves both IDs");
         var latest=world.DrainChanges(generation)!;var state=world.FindReplication(generation,Human)!;
-        Check(world.IsCurrent(state) && human.SetEngineTransform(SceneCreatureStatePresentation.DeriveTransform(baseHuman,state.Scalars.Height)) && world.IsCurrent(state),"typed Height application");
-        Check(latest.Entries.Count==2 && world.AcknowledgeChanges(latest),"current mixed batch acknowledgment");
+        if(useConsumer)Check(latest.Entries.Count==2 && consumer!.ConsumePending(),"generic current batch retry");
+        else
+        {
+            Check(world.IsCurrent(state) && human.SetEngineTransform(SceneCreatureStatePresentation.DeriveTransform(baseHuman,state.Scalars.Height)) && world.IsCurrent(state),"typed Height application");
+            Check(latest.Entries.Count==2 && world.AcknowledgeChanges(latest),"current mixed batch acknowledgment");
+        }
         Check(world.IsCurrent(hp) && world.IsCurrent(tp) && human.Fingerprint(gpu:gpu)==humanIds && terminal.Fingerprint(gpu)==terminalIds && calls==2,"state has no resource reload");
         State("updated");if(capture is not null)await Capture(Captures(capture)[1]);
-        Accept("terminal_destroy");Check(!terminal.Tick() && terminal.IsRetired && !world.IsCurrent(tp) && human.Fingerprint(gpu:gpu)==humanIds,"only terminal retires");
+        Accept("terminal_destroy");
+        if(useConsumer)Check(consumer!.Tick(0) && consumer.Count==1 && consumer.Find(Terminal) is null,"consumer removes destroyed actor");
+        Check(!terminal.Tick() && terminal.IsRetired && !world.IsCurrent(tp) && human.Fingerprint(gpu:gpu)==humanIds,"only terminal retires");
         Accept("terminal_create");Accept("terminal_end");world.PollObjectResources();Check(calls==3,"one static reload");await jobs[^1];
         var replacement=world.PollObjectResources().Prepared.Single();Check(replacement.Ticket.Handle.ObjectId==Terminal && world.IsCurrent(replacement),"static replacement");
-        terminal=SceneStaticVisual.TryPublish(replacement.Resources.Static!,GodotAppearanceTransform.ToGodot(replacement.Placement.Transform),this,()=>world.IsCurrent(replacement),terminalFrame0Inspection:true)??throw new InvalidDataException("Replacement transfer");
+        if(useConsumer)
+        {
+            Check(!consumer!.AcceptResource(tp) && consumer.AcceptResource(replacement) && consumer.Count==2,"consumer rejects stale and accepts replacement");
+            terminal=((SceneWorldObjectVisual)consumer.Find(Terminal)!).StaticVisual??throw new InvalidDataException("Replacement adapter");
+        }
+        else terminal=SceneStaticVisual.TryPublish(replacement.Resources.Static!,GodotAppearanceTransform.ToGodot(replacement.Placement.Transform),this,()=>world.IsCurrent(replacement),terminalFrame0Inspection:true)??throw new InvalidDataException("Replacement transfer");
         Check(terminal.Verify(gpu) && terminal.Fingerprint(gpu)!=terminalIds && human.Fingerprint(gpu:gpu)==humanIds &&
             world.Snapshots().Single(s=>s.Object.Handle.ObjectId==Human).Object.Incarnation==originalHumanInc,"unaffected human and new static GPU IDs");
-        var recreated=world.DrainChanges(generation)!;Check(world.AcknowledgeChanges(recreated),"recreated acknowledgment");
+        var recreated=world.DrainChanges(generation)!;
+        Check(useConsumer?consumer!.ApplyBatch(recreated) && consumer.AcknowledgeAppliedBatch(recreated):world.AcknowledgeChanges(recreated),"recreated acknowledgment");
         State("recreated");if(capture is not null)await Capture(Captures(capture)[2]);
         bool failed=false;try{Accept("terminal_bad_family");}catch(InvalidDataException){failed=true;}
+        if(useConsumer)Check(!consumer!.Tick(0) && consumer.Count==0,"consumer retires failed generation");
         Check(failed && world.State==ZoneSceneTransitionState.Failed && !human.Tick(0) && !terminal.Tick() && world.DrainChanges(generation)is null,"family disagreement retires both");
         GD.Print("PASS: mixed lifecycle typed_creature=true opaque_terminal=true stale_ack_retained=true static_only_reload=true human_ids_unchanged=true family_failure_retired=2 calls=3");
+        if(useConsumer)GD.Print("PASS: generic consumer dynamic_ids=true actors=2 idempotent=true applied_stale_ack_retried=true stale_resource_rejected=true failed_count=0");
         await Shutdown();Array.Clear(cfg);GD.Print("PASS: mixed teardown roots_released=true archives_closed=true drain_complete=true outstanding=0");GetTree().Quit();
     }
     private void Accept(string key){byte[] bytes=Convert.FromHexString(peer[key]);try{Check(world!.Accept(generation,bytes),"current application");}finally{Array.Clear(bytes);}}
@@ -139,9 +178,9 @@ public partial class SceneMixedWorldPreview : Node
     }
     public static string[] Captures(string first)=>new[]{first,Path.Combine(Path.GetDirectoryName(first)!,Path.GetFileNameWithoutExtension(first)+"-updated.png"),Path.Combine(Path.GetDirectoryName(first)!,Path.GetFileNameWithoutExtension(first)+"-recreated.png")};
     private async Task Capture(string path){await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);using var image=GetViewport().GetTexture().GetImage();if(image.SavePng(path)!=Error.Ok)throw new IOException("Mixed capture");}
-    private async Task Shutdown(){if(disposed)return;disposed=true;human?.Dispose();terminal?.Dispose();world?.Close();if(world is not null){await world.DrainCompletion;Check(world.OutstandingJobs==0 && closed==calls && jobs.All(j=>j.IsCompleted),"mixed drain");}jobs.Clear();peer.Clear();environment?.Dispose();environment=null;}
+    private async Task Shutdown(){if(disposed)return;disposed=true;consumer?.Dispose();human?.Dispose();terminal?.Dispose();world?.Close();if(world is not null){await world.DrainCompletion;Check(world.OutstandingJobs==0 && closed==calls && jobs.All(j=>j.IsCompleted),"mixed drain");}jobs.Clear();peer.Clear();environment?.Dispose();environment=null;}
     private static void Check(bool value,string reason){if(!value)throw new InvalidDataException(reason);}
     private async Task CloseEarly(){try{await Shutdown();}finally{GetTree().Quit(1);}}
     public override void _Notification(int what){if(what==NotificationWMCloseRequest && !disposed)_=CloseEarly();}
-    public override void _ExitTree(){human?.Dispose();terminal?.Dispose();world?.Close();environment?.Dispose();environment=null;}
+    public override void _ExitTree(){consumer?.Dispose();human?.Dispose();terminal?.Dispose();world?.Close();environment?.Dispose();environment=null;}
 }

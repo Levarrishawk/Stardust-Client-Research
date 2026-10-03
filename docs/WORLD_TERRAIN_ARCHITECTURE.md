@@ -114,3 +114,9 @@ The byte grid at `ClientChunk +0xA8` is confirmed as a binary baked-lighting/sha
 Static-collidable flora does not use the three client radial managers. Shared terrain code at `0x00B5E780` divides the world into deterministic 16-meter cells, derives a stable linear cell seed, queries `ClientChunk +0xA4`, creates full objects/appearances and tracks them in cell-residency maps. This must remain a distinct replacement subsystem from instanced decorative flora.
 
 ClientChunk `+0xD4` is now confirmed as the environment-family byte grid. Query `0x008628E0` samples it using terrain position and resolves the byte through the PTAT family group. GroundEnvironment combines the resulting family ID with current weather and selects a 25-field descriptor from `datatables/environment/<terrain>.iff`; missing nonzero weather falls back to the same family at weather zero. The installed Tatooine terrain has 17 families and a complete five-weather matrix. Preserve this family grid as a gameplay-visible terrain output even if a modern engine replaces the legacy chunk renderer.
+
+## Round31 bounded implementation prerequisites
+
+[Owned map masks](TERRAIN_MAP_MASKS_CONTRACT.md) confirm effective Tatooine PTAT/0014 stores a direct FORM0001 containing DATA/WMAP/SMAP; MAPS is a conceptual object name, not a required literal wrapper. The earlier top-level diagram already reflects this direct form. One original sample and independent hashes/grid bits validate retained mask bytes; world-coordinate conversion and active SMAP use remain outside the new API.
+
+[Exact patch topology](TERRAIN_PATCH_TOPOLOGY_CONTRACT.md) implements all nine observed index patterns and checked rebasing. It selects explicit pattern indices, not an unverified neighbor mask mapping. Synthetic coordinates validate the helper without claiming generated procedural terrain. PTAT DATA/TGEN generation and complete outdoor rendering remain subsequent implementation milestones.

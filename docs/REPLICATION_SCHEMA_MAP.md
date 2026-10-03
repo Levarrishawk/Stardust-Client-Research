@@ -694,3 +694,62 @@ The [composite CREO3 codec](CREATURE_VIEW3_COMPOSITE_DELTA_CONTRACT.md) and [opt
 ## Round14 bounded mixed-world routing
 
 The [generic coordinator](SCENE_MIXED_WORLD_CONTRACT.md) resolves explicit catalog recipe during ordered replay before applying owned replication envelopes. CREO typed modes remain creature-only; static TANO is bounded opaque history and has no inferred field schema. Static CREO or creature TANO rejects before state/history publication and retires the modern world generation. Legacy early typed decoding remains unchanged. This is implementation policy over accepted envelope bytes; no wire keys, server packet rows, executable names or protocol coverage counts change. Original typed static families/views remain separate work.
+
+## Round19 appearance customization ingress
+
+[Field4 ingress](CREATURE_APPEARANCE_CUSTOMIZATION_INGRESS.md) connects the known
+U16/extended-U32 byte string to original nonempty appearance callback, unescape/
+version1 records, installed CIDM name lookup and typed variable setter. Outer
+CREO baseline and opaque envelopes preserve owned bytes, including noncanonical
+extended lengths; current typed CREO field4 delta application is still absent.
+Six independent exact cases and947 negative probes pass. Original inner reader
+can mutate earlier setters before later failure and does not test final decoded
+tail on success; strict atomic replacement parsing must be labeled modern policy.
+Typed setter conversion/clamping and actual player values remain open. No schema,
+packet or provisional-name denominator changes.
+
+## Round20 customization boundary
+
+[Packed version1 contract](PACKED_CUSTOMIZATION_CONTRACT.md) and [CIDM dictionary](CUSTOMIZATION_ID_DICTIONARY_CONTRACT.md) now have owned codecs/original byte fixtures. Confirmed U8/S16 and range rejection apply to the two concrete classes traced there. Supplied presentation is implemented separately; current-incarnation rawfield4 delta/state and live variable mounting remain next. Existing345 packet-source rows do not imply345 executable handlers and are unchanged.
+
+## Round21 integrated boundary
+
+Round21 implements CREO:3 field4-only deltas: ordered immutable strings, raw declared count, U16/FFFF+U32 lengths and preserved extended-small spelling. Store journals every update with exact-current acknowledgment; projection owns full explicit values. Mixed4+scalar/component/wounds and inherited TANO routing remain deferred. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R21_WIRE_CUSTOMIZATION_INTEGRATION.md).
+
+## Round22 integrated boundary
+
+Round22 ordered CREO:3 union now accepts4 plus11..16; raw/scalar order/count/extended spelling preserved. Native rejection preserves all state candidates. Indices5/17 with4 and inherited TANO remain deferred. [Evidence/reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R22_CUSTOMIZATION_SCALAR_INTEGRATION.md).
+
+## Round23 integrated boundary
+
+The supported CREO:3 union4/5/11–17 now stages raw customization, scalars, components, wounds and pending world state together. Original selected ACST/CIDM context supplies exact ranges and authored defaults through five already owned palettes. Main independent native, headless/GPU, motion and held-container gates pass. Broader fields/views, live mounts/player seeds and graphical attachment/wound behavior remain open. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R23_FULL_CREATURE_INTEGRATION.md).
+
+## Round24 integrated boundary
+
+Supported CREO3 fixed common fields0/3/6–10 join the existing union. Current common state survives older ingress; visibility uses that overlay while hidden appearance work commits. Actual delta headless/GPU/motion and separate held-baseline visibility proofs pass. Names1/2, TANO, gameplay meanings and live interoperability remain open. STF variant1 exact owned lookup passes two original tables; locale/cache/fallback is deferred. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R24_EXTENDED_CREATURE_INTEGRATION.md).
+
+## Round25 named creature increment
+
+The supported ordered CREO3 union now covers indices0–17, including raw StringId/custom names. Current name overlays and variable charge survive older ingress. Bounded original STF1 resolution drives an optional caption; actual delta headless/GPU and separate held-baseline name proofs pass. Explicit modern name precedence/directory/display policies do not establish original UI/locale behavior. Other families/views and live interoperability remain open. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R25_NAMED_CREATURE_INTEGRATION.md).
+
+## Round26 tangible stages
+
+Complete owned TANO3 baseline and ordered0–10 delta codecs, standalone current tangible store and bounded original STF preload pass independent native oracles. Static supplied-projection caption/visibility passes original terminal GPU and lifecycle checks. Lead codec-store-preload join passes; atomic typed SceneWorld publication is next. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R26_TANGIBLE_STAGE_INTEGRATION.md).
+
+## Round27 typed tangible publication
+
+Optional complete TANO3 world state commits with its journal after private preparation. Static typed token gates actual original terminal caption/raw visibility beside supported CREO ingress; five headless/GPU states, retained resources and teardown pass independent oracles. Default opaque behavior remains. Authored template names and local SWTS selector semantics are separately documented; outer clock and live interoperability remain open. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R27_TANGIBLE_WORLD_INTEGRATION.md).
+
+## Round28 exact TANO6 codec boundary
+
+[Owned TANO6 codec](TANGIBLE_VIEW6_CODEC_CONTRACT.md) closes two-field passiveU32/orderedU64-ID consumption and specialized assignment overshoot with pinned static evidence and deterministic exact/malformed/cap fixtures. Raw counters are preserved, no defender-state/world application yet. Existing packet-source inventory is unchanged; no gap-matrix row changes are warranted by this implementation stage.
+
+[Round29 TANO6 state policy](TANGIBLE_VIEW6_STATE_POLICY.md) confirms specialized counter arithmetic, zero-filled growth and mutation/no-op increments. Codec exists; state/world integration remains pending. Modern whole-message atomicity must be distinguished from original partial snapshot effects.
+
+Round30 [owned TANO6 state](TANGIBLE_VIEW6_STATE_CONTRACT.md) applies the accepted specialized codec/policy with immutable modern candidate publication and events. World current-incarnation join remains pending; raw modulo32 counter and whole-assignment rules are preserved.
+
+## Round31 view6 inheritance and publication
+
+[CREO6 prefix contract](CREATURE_VIEW6_PREFIX_CONTRACT.md) consolidates directly verified shared TANO6 field objects0–1 and creature fields2–17, including raw strings with FFFF/U32 lengths and a two-U64 field. Shared schema does not mean contiguous delta byte prefix or permission to accept CREO in the TANO-only codec. Existing packet rows/denominators remain unchanged.
+
+[Owned TANO6 store](SCENE_TANGIBLE_VIEW6_STORE_CONTRACT.md) separately publishes modern immutable state/journal against exact registry currentness. Historical event acknowledgment is not target delivery. Coordinator/router integration remains pending.

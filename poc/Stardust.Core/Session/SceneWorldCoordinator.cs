@@ -28,7 +28,7 @@ public enum SceneWorldReplicationMode { Opaque, CreatureView3Scalars, CreatureVi
 public sealed record SceneWorldReplicationPolicy(SceneWorldReplicationMode Mode, CreatureView3BaselineLimits BaselineLimits,
     int MaximumScalarUpdates, long MaximumDecodedBytes, CreatureView3MixedDeltaLimits? MixedLimits = null,
     CreatureWoundsApplicationPolicy WoundsPolicy = CreatureWoundsApplicationPolicy.StrictInterval,
-    CreatureView3ComponentsDeltaLimits? ComponentsLimits = null, SceneCreatureComponentsReplicationPolicy? ComponentsPolicy = null);
+    CreatureView3ComponentsDeltaLimits? ComponentsLimits = null, SceneCreatureComponentsReplicationPolicy? ComponentsPolicy = null, ulong RevisionSeed = 0);
 public sealed class SceneWorldReplicationSnapshot
 {
     internal SceneWorldReplicationSnapshot(object owner, long generation, SceneCreatureReplicationSnapshot state)
@@ -42,10 +42,32 @@ public sealed class SceneWorldReplicationSnapshot
     public CreatureView3ScalarState Scalars => State.Scalars;
     public CreatureView3WoundsState? Wounds => State.Wounds;
     public CreatureView3ComponentsState? Components => State.Components;
+    public CreatureView3TangibleScalarState TangibleScalars => State.TangibleScalars;
+    public CreatureView3NameState Names => State.Names;
+}
+public sealed record SceneWorldTangibleReplicationPolicy(CreatureView3BaselineLimits BaselineLimits,
+    TangibleView3DeltaLimits DeltaLimits,SceneTangibleReplicationLimits StoreLimits,ulong RevisionSeed=0,
+    Func<ReplicationEnvelope,TangibleView3BaselineSnapshot>? BaselineDecoder=null,
+    Func<ReplicationEnvelope,TangibleView3DeltaPlan>? DeltaDecoder=null);
+public sealed class SceneWorldTangibleReplicationSnapshot
+{
+    internal SceneWorldTangibleReplicationSnapshot(object owner,long generation,SceneTangibleReplicationSnapshot state)
+    {Owner=owner;Generation=generation;State=state;}
+    internal object Owner {get;}
+    internal SceneTangibleReplicationSnapshot State {get;}
+    public long Generation {get;}
+    public SceneObjectIncarnation Incarnation=>State.Incarnation;
+    public ulong Revision=>State.Revision;
+    public TangibleView3BaselineSnapshot Baseline=>State.Baseline;
+    public CreatureView3NameState Names=>State.Names;
+    public CreatureView3TangibleScalarState TangibleScalars=>State.TangibleScalars;
+    public ReplicationByteString Customization=>State.Customization;
+    public CreatureView3ComponentsState Components=>State.Components;
 }
 public sealed record SceneWorldObjectSnapshot(SceneObjectSnapshot Object, SceneCreatePlacement Placement, IReadOnlyList<ReplicationEnvelope> Envelopes)
 {
     public SceneWorldReplicationSnapshot? Replication { get; init; }
+    public SceneWorldTangibleReplicationSnapshot? TangibleReplication {get;init;}
 }
 public sealed class ScenePreparedCreaturePublication
 {
@@ -75,7 +97,7 @@ public sealed class SceneWorldCoordinator : IDisposable
 {
     private sealed record Pending(SceneObjectHandle Handle, bool Restart);
     private readonly record struct ChangeSlot(SceneWorldChangeKind Kind, ulong FirstRevision);
-    private readonly Dictionary<ulong, ChangeSlot> changes = new();
+    private Dictionary<ulong, ChangeSlot> changes = new();
     private readonly int maximumPendingChanges;
     private ulong mutationRevision;
     private readonly int ownerThread = Environment.CurrentManagedThreadId;
@@ -86,6 +108,10 @@ public sealed class SceneWorldCoordinator : IDisposable
     private readonly SceneObjectResourceInitializer? objectInitializer;
     private readonly ObjectTemplateCatalog catalog;
     private readonly IReadOnlyDictionary<SceneObjectResourceRecipe, SceneObjectResourceOptions>? objectOptions;
+    private readonly SceneTangibleReplicationStore? tangible;
+    private readonly SceneWorldTangibleReplicationPolicy? tangiblePolicy;
+    private bool reentered;
+    private ulong callbackVersion;
     private readonly SceneCreatureReplicationStore? replication;
     private readonly SceneWorldReplicationPolicy? replicationPolicy;
     private readonly CreatureView3CompositeDeltaLimits? compositeLimits;
@@ -104,17 +130,19 @@ public sealed class SceneWorldCoordinator : IDisposable
     public int StagedCount => transition.StagedCount;
     public int OutstandingJobs => objectInitializer?.OutstandingJobs ?? initializer!.OutstandingJobs;
     public Task DrainCompletion => objectInitializer?.DrainCompletion ?? initializer!.DrainCompletion;
+    public bool TangibleReplicationEnabled=>tangiblePolicy is not null;
     public SceneWorldReplicationMode ReplicationMode => replicationPolicy?.Mode ?? SceneWorldReplicationMode.Opaque;
     public long RetainedReplicationDecodedBytes
     { get { Enter(); try { return replication?.RetainedDecodedBytes ?? 0; } finally { busy = false; } } }
+    public long RetainedTangibleReplicationDecodedBytes {get{Enter();try{return tangible?.RetainedDecodedBytes??0;}finally{busy=false;}}}
     public SceneWorldCoordinator(ObjectTemplateCatalog catalog, LogicalAnimationClipSelection idle,
         IReadOnlyDictionary<string, LogicalAnimationClipSelection> movement,
         Func<SceneCreatureResourceRequest, CancellationToken, Task<SceneCreatureResources>> loader,
         SceneCreateZeroQuaternionPolicy zeroPolicy, int maximumObjects = 64, int maximumOutstandingJobs = 8,
         int maximumStagedMessages = 256, int maximumStagedBytes = 1048576,
         int maximumEnvelopes = 256, int maximumEnvelopeBytes = 1048576, int maximumPayloadBytes = 65536,
-        SceneWorldReplicationPolicy? replicationPolicy = null, SceneWorldChangePolicy? changePolicy = null)
-        : this(catalog, zeroPolicy, maximumObjects, maximumOutstandingJobs, maximumStagedMessages, maximumStagedBytes, maximumEnvelopes, maximumEnvelopeBytes, maximumPayloadBytes, replicationPolicy, changePolicy)
+        SceneWorldReplicationPolicy? replicationPolicy = null, SceneWorldChangePolicy? changePolicy = null, SceneWorldTangibleReplicationPolicy? tangibleReplicationPolicy = null)
+        : this(catalog, zeroPolicy, maximumObjects, maximumOutstandingJobs, maximumStagedMessages, maximumStagedBytes, maximumEnvelopes, maximumEnvelopeBytes, maximumPayloadBytes, replicationPolicy, changePolicy, tangibleReplicationPolicy)
     {
         var recipe = catalog.Entries.Values.First();
         configuration = new(new(default, new(1, 0, 0, 0, 1, 0, 0, 0, recipe.TemplateCrc, 0), SceneObjectPhase.PendingBaselines, 0, 0), catalog, idle, movement);
@@ -126,8 +154,8 @@ public sealed class SceneWorldCoordinator : IDisposable
         SceneCreateZeroQuaternionPolicy zeroPolicy, int maximumObjects = 64, int maximumOutstandingJobs = 8,
         int maximumStagedMessages = 256, int maximumStagedBytes = 1048576,
         int maximumEnvelopes = 256, int maximumEnvelopeBytes = 1048576, int maximumPayloadBytes = 65536,
-        SceneWorldReplicationPolicy? replicationPolicy = null, SceneWorldChangePolicy? changePolicy = null)
-        : this(catalog, zeroPolicy, maximumObjects, maximumOutstandingJobs, maximumStagedMessages, maximumStagedBytes, maximumEnvelopes, maximumEnvelopeBytes, maximumPayloadBytes, replicationPolicy, changePolicy)
+        SceneWorldReplicationPolicy? replicationPolicy = null, SceneWorldChangePolicy? changePolicy = null, SceneWorldTangibleReplicationPolicy? tangibleReplicationPolicy = null)
+        : this(catalog, zeroPolicy, maximumObjects, maximumOutstandingJobs, maximumStagedMessages, maximumStagedBytes, maximumEnvelopes, maximumEnvelopeBytes, maximumPayloadBytes, replicationPolicy, changePolicy, tangibleReplicationPolicy)
     {
         ArgumentNullException.ThrowIfNull(options); ArgumentNullException.ThrowIfNull(loader);
         var copy = new Dictionary<SceneObjectResourceRecipe, SceneObjectResourceOptions>();
@@ -144,7 +172,7 @@ public sealed class SceneWorldCoordinator : IDisposable
         SceneCreateZeroQuaternionPolicy zeroPolicy, int maximumObjects = 64, int maximumOutstandingJobs = 8,
         int maximumStagedMessages = 256, int maximumStagedBytes = 1048576,
         int maximumEnvelopes = 256, int maximumEnvelopeBytes = 1048576, int maximumPayloadBytes = 65536,
-        SceneWorldReplicationPolicy? replicationPolicy = null, SceneWorldChangePolicy? changePolicy = null)
+        SceneWorldReplicationPolicy? replicationPolicy = null, SceneWorldChangePolicy? changePolicy = null, SceneWorldTangibleReplicationPolicy? tangibleReplicationPolicy = null)
     {
         ArgumentNullException.ThrowIfNull(catalog); this.catalog = catalog;
         if (catalog.Entries.Count == 0) throw new ArgumentException("Explicit nonempty catalog required.", nameof(catalog));
@@ -195,22 +223,35 @@ public sealed class SceneWorldCoordinator : IDisposable
         }
         transition = new(maximumStagedMessages, maximumStagedBytes); registry = new(maximumObjects, 0);
         if (ReplicationMode is SceneWorldReplicationMode.CreatureView3Scalars or SceneWorldReplicationMode.CreatureView3Mixed or SceneWorldReplicationMode.CreatureView3MixedComponents)
-            replication = new(registry, maximumObjects, this.replicationPolicy!.MaximumDecodedBytes, mixedPolicy:
+            replication = new(registry, maximumObjects, this.replicationPolicy!.MaximumDecodedBytes, revisionSeed:this.replicationPolicy.RevisionSeed, mixedPolicy:
                 ReplicationMode is SceneWorldReplicationMode.CreatureView3Mixed or SceneWorldReplicationMode.CreatureView3MixedComponents ? new(this.replicationPolicy.WoundsPolicy, this.replicationPolicy.MixedLimits!.MaximumWoundsElements) : null,
                 componentsPolicy: ReplicationMode == SceneWorldReplicationMode.CreatureView3MixedComponents ? this.replicationPolicy.ComponentsPolicy : null);
+        if(tangibleReplicationPolicy is {} tp)
+        {
+            ArgumentNullException.ThrowIfNull(tp.BaselineLimits);ArgumentNullException.ThrowIfNull(tp.DeltaLimits);ArgumentNullException.ThrowIfNull(tp.StoreLimits);
+            var bl=tp.BaselineLimits;var dl=tp.DeltaLimits;
+            if(bl.MaximumPayloadBytes is <2||bl.MaximumPayloadBytes>maximumPayloadBytes||bl.MaximumStringBytes is <0 or >1048576||bl.MaximumUnicodeUnits is <0 or >524288||bl.MaximumContainerElements is <0 or >262144||bl.MaximumDecodedBytes is <0 or >134217728||
+                dl.MaximumPayloadBytes is <2||dl.MaximumPayloadBytes>maximumPayloadBytes||dl.MaximumFields is <0 or >4096||dl.MaximumTangibleUpdates is <0 or >4096||dl.MaximumRawUpdates is <0 or >4096||dl.MaximumStringBytes is <0 or >1048576||dl.MaximumDecodedBytes is <0 or >134217728||
+                dl.MaximumComponentCommands is <0 or >65536||dl.MaximumComponentKeys is <0 or >65536||dl.MaximumComponentElements is <0 or >65536||dl.MaximumNameUpdates is <0 or >4096||dl.MaximumNameStringBytes is <0 or >65536||dl.MaximumUnicodeUnits is <0 or >65536||dl.MaximumComponentElements!=tp.StoreLimits.MaximumComponentsElements)
+                throw new ArgumentOutOfRangeException(nameof(tangibleReplicationPolicy));
+            tangiblePolicy=tp with {BaselineLimits=tp.BaselineLimits with {},DeltaLimits=tp.DeltaLimits with {},StoreLimits=tp.StoreLimits with {}};
+            tangible=new(registry,tangiblePolicy.StoreLimits,tp.RevisionSeed);
+        }
         this.zeroPolicy = zeroPolicy; this.maximumOutstandingJobs = maximumOutstandingJobs; this.maximumEnvelopes = maximumEnvelopes;
         this.maximumEnvelopeBytes = maximumEnvelopeBytes; this.maximumPayloadBytes = maximumPayloadBytes;
     }
     public SceneWorldSelection BeginSelection(ulong objectId)
     {
-        Enter(); try { EnsureOpen(); byte[] select = ZoneSceneProtocolCodec.EncodeSelectCharacter(objectId); long generation = transition.BeginSelection(objectId); ClearWorld(); return new(generation, select); }
+        Enter(true); try { EnsureOpen(); byte[] select = ZoneSceneProtocolCodec.EncodeSelectCharacter(objectId); long generation = transition.BeginSelection(objectId); ClearWorld(); return new(generation, select); }
         finally { busy = false; }
     }
     public bool Accept(long generation, ReadOnlySpan<byte> application)
     {
-        Enter(); try
+        Enter(true); try
         {
             EnsureOpen(); if (generation != Generation) return false;
+            bool typedAttempt=tangible is not null&&application.Length>=ReplicationEnvelopeCodec.MinimumMessageLength&&BinaryPrimitives.ReadUInt32LittleEndian(application[14..])==TangibleView3BaselineCodec.RawTag&&application[18]==3&&
+                (BinaryPrimitives.ReadUInt32LittleEndian(application[2..]) is ReplicationEnvelopeCodec.BaselineOpcode or ReplicationEnvelopeCodec.DeltaOpcode)&&State is ZoneSceneTransitionState.AwaitingServerReady or ZoneSceneTransitionState.Ready;
             try
             {
                 object value = Decode(application);
@@ -220,12 +261,207 @@ public sealed class SceneWorldCoordinator : IDisposable
                 Require(State is ZoneSceneTransitionState.AwaitingServerReady or ZoneSceneTransitionState.Ready, "World lifecycle outside active scene.");
                 Apply(value); return true;
             }
-            catch { Fail(); throw; }
+            catch { if(!typedAttempt)Fail(); throw; }
         } finally { busy = false; }
+    }
+    /// <summary>Atomic frozen field4/six-scalar application; rejected preparations leave world/source semantics unchanged.</summary>
+    public bool ApplyCustomizationScalars(long generation,CreatureView3CustomizationScalarDeltaPlan plan,SceneWorldCustomizationStateStore rawStore)
+    {
+        Enter(true);SceneCreatureReplicationStore.PreparedScalars? typed=null;
+        SceneWorldCustomizationStateStore.PreparedWorldCustomization? raw=null;
+        try
+        {
+            EnsureOpen();if(generation!=Generation)return false;
+            ArgumentNullException.ThrowIfNull(plan);ArgumentNullException.ThrowIfNull(rawStore);
+            Require(State is ZoneSceneTransitionState.AwaitingServerReady or ZoneSceneTransitionState.Ready,"Active customization world required.");
+            var target=registry.Find(plan.ObjectId);
+            var state=target is not null?replication?.InspectCurrent(target.Incarnation):null;
+            var latest=target is not null?new SceneWorldObjectSnapshot(target,placements[plan.ObjectId],Array.AsReadOnly(envelopes.GetValueOrDefault(plan.ObjectId)?.ToArray()??Array.Empty<ReplicationEnvelope>()))
+                {Replication=state is not null?new(identity,Generation,state):null,TangibleReplication=TangibleFor(plan.ObjectId)}:null;
+            Require(latest?.Object.Phase==SceneObjectPhase.Finalized && latest.Replication is not null,"Finalized complete creature target required.");
+            RequireCreature(plan.ObjectId);
+            var scalars=plan.Updates.Where(u=>u.Scalar is not null).Select(u=>u.Scalar!).ToArray();
+            var strings=plan.Updates.Where(u=>u.Customization is not null).Select(u=>u.Customization!).ToArray();
+            Require(scalars.Length<=replicationPolicy!.MaximumScalarUpdates,"Scalar update budget exhausted.");
+            if(replicationPolicy.MixedLimits is {} limits)Require(plan.Updates.Count<=limits.MaximumFields && scalars.Length<=limits.MaximumScalarUpdates,"Mixed field/scalar budget exhausted.");
+            if(replicationPolicy.ComponentsLimits is {} components)Require(plan.Updates.Count<=components.MaximumFields,"Components field budget exhausted.");
+            ulong next=checked(mutationRevision+1);
+            Require(changes.ContainsKey(plan.ObjectId) || changes.Count<maximumPendingChanges,"Undelivered world change capacity exhausted.");
+            var stagedChanges=new Dictionary<ulong,ChangeSlot>(changes);
+            stagedChanges[plan.ObjectId]=changes.TryGetValue(plan.ObjectId,out var slot)?slot with {Kind=slot.Kind|SceneWorldChangeKind.Replication}:new(SceneWorldChangeKind.Replication,next);
+            var current=registry.Snapshots().Where(o=>o.Phase==SceneObjectPhase.Finalized && replication!.InspectCurrent(o.Incarnation) is not null).Select(o=>o.Incarnation).ToHashSet();
+            raw=rawStore.PrepareWorldCustomization(this,latest!,strings,current);
+            if(scalars.Length>0)typed=replication!.PrepareScalars(latest!.Replication!.State,scalars);
+            // Everything below is owner-held assignment of prebuilt state: no callbacks, parsing, allocations or checked increments.
+            if(typed is not null)replication!.CommitScalars(typed);
+            rawStore.CommitWorldCustomization(raw);changes=stagedChanges;mutationRevision=next;return true;
+        }
+        finally
+        {
+            if(typed is not null)replication!.ReleaseScalars(typed);
+            if(raw is not null)rawStore.ReleaseWorldCustomization(raw);
+            busy=false;
+        }
+    }
+    /// <summary>Atomic frozen full creature application; rejected preparations leave world/source semantics unchanged.</summary>
+    public bool ApplyFullCreatureDelta(long generation,CreatureView3FullDeltaPlan plan,SceneWorldCustomizationStateStore rawStore)
+    {
+        Enter(true);SceneCreatureReplicationStore.PreparedScalars? typed=null;
+        SceneWorldCustomizationStateStore.PreparedWorldCustomization? raw=null;
+        try
+        {
+            EnsureOpen();if(generation!=Generation)return false;
+            ArgumentNullException.ThrowIfNull(plan);ArgumentNullException.ThrowIfNull(rawStore);
+            Require(State is ZoneSceneTransitionState.AwaitingServerReady or ZoneSceneTransitionState.Ready,"Active customization world required.");
+            var target=registry.Find(plan.ObjectId);
+            var state=target is not null?replication?.InspectCurrent(target.Incarnation):null;
+            var latest=target is not null?new SceneWorldObjectSnapshot(target,placements[plan.ObjectId],Array.AsReadOnly(envelopes.GetValueOrDefault(plan.ObjectId)?.ToArray()??Array.Empty<ReplicationEnvelope>()))
+                {Replication=state is not null?new(identity,Generation,state):null,TangibleReplication=TangibleFor(plan.ObjectId)}:null;
+            Require(latest?.Object.Phase==SceneObjectPhase.Finalized && latest.Replication is not null,"Finalized complete creature target required.");
+            RequireCreature(plan.ObjectId);
+            var scalars=plan.Updates.Where(u=>u.Scalar is not null).Select(u=>u.Scalar!).ToArray();
+            var strings=plan.Updates.Where(u=>u.Customization is not null).Select(u=>u.Customization!).ToArray();
+            Require(scalars.Length<=replicationPolicy!.MaximumScalarUpdates,"Scalar update budget exhausted.");
+            if(replicationPolicy.MixedLimits is {} limits)Require(plan.Updates.Count<=limits.MaximumFields && scalars.Length<=limits.MaximumScalarUpdates,"Mixed field/scalar budget exhausted.");
+            if(replicationPolicy.ComponentsLimits is {} components)Require(plan.Updates.Count<=components.MaximumFields,"Components field budget exhausted.");
+            var wounds=plan.Updates.Where(u=>u.Wounds is not null).Select(u=>u.Wounds!).ToArray();
+            var componentsUpdates=plan.Updates.Where(u=>u.Components is not null).Select(u=>u.Components!).ToArray();
+            if(wounds.Length>0)
+            {
+                Require(replicationPolicy.MixedLimits is not null,"Wounds-enabled world required.");var ml=replicationPolicy.MixedLimits!;
+                Require(wounds.Sum(u=>(long)u.CommandCount)<=ml.MaximumWoundsCommands && wounds.Sum(u=>u.Commands.Sum(c=>(long)c.Values.Count))<=ml.MaximumWoundsValues,"Wounds aggregate command/value capacity.");
+            }
+            if(componentsUpdates.Length>0)
+            {
+                Require(replicationPolicy.ComponentsLimits is not null,"Components-enabled world required.");var cl=replicationPolicy.ComponentsLimits!;
+                Require(componentsUpdates.Sum(u=>(long)u.Commands.Count)<=cl.MaximumCommands && componentsUpdates.Sum(u=>u.Commands.LongCount(c=>c.Kind!=CreatureComponentsCommandKind.Clear))<=cl.MaximumKeys,"Component aggregate command/key capacity.");
+            }
+            ulong next=checked(mutationRevision+1);
+            Require(changes.ContainsKey(plan.ObjectId) || changes.Count<maximumPendingChanges,"Undelivered world change capacity exhausted.");
+            var stagedChanges=new Dictionary<ulong,ChangeSlot>(changes);
+            stagedChanges[plan.ObjectId]=changes.TryGetValue(plan.ObjectId,out var slot)?slot with {Kind=slot.Kind|SceneWorldChangeKind.Replication}:new(SceneWorldChangeKind.Replication,next);
+            var current=registry.Snapshots().Where(o=>o.Phase==SceneObjectPhase.Finalized && replication!.InspectCurrent(o.Incarnation) is not null).Select(o=>o.Incarnation).ToHashSet();
+            raw=rawStore.PrepareWorldCustomization(this,latest!,strings,current);
+            if(scalars.Length+wounds.Length+componentsUpdates.Length>0)typed=replication!.PrepareFull(latest!.Replication!.State,plan);
+            // Everything below is owner-held assignment of prebuilt state: no callbacks, parsing, allocations or checked increments.
+            if(typed is not null)replication!.CommitScalars(typed);
+            rawStore.CommitWorldCustomization(raw);changes=stagedChanges;mutationRevision=next;return true;
+        }
+        finally
+        {
+            if(typed is not null)replication!.ReleaseScalars(typed);
+            if(raw is not null)rawStore.ReleaseWorldCustomization(raw);
+            busy=false;
+        }
+    }
+    /// <summary>Atomic frozen extended creature application; rejected preparations leave world/source semantics unchanged.</summary>
+    public bool ApplyExtendedCreatureDelta(long generation,CreatureView3ExtendedDeltaPlan plan,SceneWorldCustomizationStateStore rawStore)
+    {
+        Enter(true);SceneCreatureReplicationStore.PreparedScalars? typed=null;
+        SceneWorldCustomizationStateStore.PreparedWorldCustomization? raw=null;
+        try
+        {
+            EnsureOpen();if(generation!=Generation)return false;
+            ArgumentNullException.ThrowIfNull(plan);ArgumentNullException.ThrowIfNull(rawStore);
+            Require(State is ZoneSceneTransitionState.AwaitingServerReady or ZoneSceneTransitionState.Ready,"Active customization world required.");
+            var target=registry.Find(plan.ObjectId);
+            var state=target is not null?replication?.InspectCurrent(target.Incarnation):null;
+            var latest=target is not null?new SceneWorldObjectSnapshot(target,placements[plan.ObjectId],Array.AsReadOnly(envelopes.GetValueOrDefault(plan.ObjectId)?.ToArray()??Array.Empty<ReplicationEnvelope>()))
+                {Replication=state is not null?new(identity,Generation,state):null,TangibleReplication=TangibleFor(plan.ObjectId)}:null;
+            Require(latest?.Object.Phase==SceneObjectPhase.Finalized && latest.Replication is not null,"Finalized complete creature target required.");
+            RequireCreature(plan.ObjectId);
+            var scalars=plan.Updates.Count(u=>u.Tangible is not null || u.Full?.Scalar is not null);
+            var strings=plan.Updates.Where(u=>u.Full?.Customization is not null).Select(u=>u.Full!.Customization!).ToArray();
+            Require(scalars<=replicationPolicy!.MaximumScalarUpdates,"Scalar update budget exhausted.");
+            if(replicationPolicy.MixedLimits is {} limits)Require(plan.Updates.Count<=limits.MaximumFields && scalars<=limits.MaximumScalarUpdates,"Mixed field/scalar budget exhausted.");
+            if(replicationPolicy.ComponentsLimits is {} components)Require(plan.Updates.Count<=components.MaximumFields,"Components field budget exhausted.");
+            var wounds=plan.Updates.Where(u=>u.Full?.Wounds is not null).Select(u=>u.Full!.Wounds!).ToArray();
+            var componentsUpdates=plan.Updates.Where(u=>u.Full?.Components is not null).Select(u=>u.Full!.Components!).ToArray();
+            if(wounds.Length>0)
+            {
+                Require(replicationPolicy.MixedLimits is not null,"Wounds-enabled world required.");var ml=replicationPolicy.MixedLimits!;
+                Require(wounds.Sum(u=>(long)u.CommandCount)<=ml.MaximumWoundsCommands && wounds.Sum(u=>u.Commands.Sum(c=>(long)c.Values.Count))<=ml.MaximumWoundsValues,"Wounds aggregate command/value capacity.");
+            }
+            if(componentsUpdates.Length>0)
+            {
+                Require(replicationPolicy.ComponentsLimits is not null,"Components-enabled world required.");var cl=replicationPolicy.ComponentsLimits!;
+                Require(componentsUpdates.Sum(u=>(long)u.Commands.Count)<=cl.MaximumCommands && componentsUpdates.Sum(u=>u.Commands.LongCount(c=>c.Kind!=CreatureComponentsCommandKind.Clear))<=cl.MaximumKeys,"Component aggregate command/key capacity.");
+            }
+            ulong next=checked(mutationRevision+1);
+            Require(changes.ContainsKey(plan.ObjectId) || changes.Count<maximumPendingChanges,"Undelivered world change capacity exhausted.");
+            var stagedChanges=new Dictionary<ulong,ChangeSlot>(changes);
+            stagedChanges[plan.ObjectId]=changes.TryGetValue(plan.ObjectId,out var slot)?slot with {Kind=slot.Kind|SceneWorldChangeKind.Replication}:new(SceneWorldChangeKind.Replication,next);
+            var current=registry.Snapshots().Where(o=>o.Phase==SceneObjectPhase.Finalized && replication!.InspectCurrent(o.Incarnation) is not null).Select(o=>o.Incarnation).ToHashSet();
+            raw=rawStore.PrepareWorldCustomization(this,latest!,strings,current);
+            if(scalars+wounds.Length+componentsUpdates.Length>0)typed=replication!.PrepareExtended(latest!.Replication!.State,plan);
+            // Everything below is owner-held assignment of prebuilt state: no callbacks, parsing, allocations or checked increments.
+            if(typed is not null)replication!.CommitScalars(typed);
+            rawStore.CommitWorldCustomization(raw);changes=stagedChanges;mutationRevision=next;return true;
+        }
+        finally
+        {
+            if(typed is not null)replication!.ReleaseScalars(typed);
+            if(raw is not null)rawStore.ReleaseWorldCustomization(raw);
+            busy=false;
+        }
+    }
+    /// <summary>Atomic frozen named creature application; rejected preparations leave world/source semantics unchanged.</summary>
+    public bool ApplyNamedCreatureDelta(long generation,CreatureView3NamedDeltaPlan plan,SceneWorldCustomizationStateStore rawStore)
+    {
+        Enter(true);SceneCreatureReplicationStore.PreparedScalars? typed=null;
+        SceneWorldCustomizationStateStore.PreparedWorldCustomization? raw=null;
+        try
+        {
+            EnsureOpen();if(generation!=Generation)return false;
+            ArgumentNullException.ThrowIfNull(plan);ArgumentNullException.ThrowIfNull(rawStore);
+            Require(State is ZoneSceneTransitionState.AwaitingServerReady or ZoneSceneTransitionState.Ready,"Active customization world required.");
+            var target=registry.Find(plan.ObjectId);
+            var state=target is not null?replication?.InspectCurrent(target.Incarnation):null;
+            var latest=target is not null?new SceneWorldObjectSnapshot(target,placements[plan.ObjectId],Array.AsReadOnly(envelopes.GetValueOrDefault(plan.ObjectId)?.ToArray()??Array.Empty<ReplicationEnvelope>()))
+                {Replication=state is not null?new(identity,Generation,state):null,TangibleReplication=TangibleFor(plan.ObjectId)}:null;
+            Require(latest?.Object.Phase==SceneObjectPhase.Finalized && latest.Replication is not null,"Finalized complete creature target required.");
+            RequireCreature(plan.ObjectId);
+            var scalars=plan.Updates.Count(u=>u.Name is not null || u.Extended?.Tangible is not null || u.Extended?.Full?.Scalar is not null);
+            var strings=plan.Updates.Where(u=>u.Extended?.Full?.Customization is not null).Select(u=>u.Extended!.Full!.Customization!).ToArray();
+            Require(scalars<=replicationPolicy!.MaximumScalarUpdates,"Scalar update budget exhausted.");
+            if(replicationPolicy.MixedLimits is {} limits)Require(plan.Updates.Count<=limits.MaximumFields && scalars<=limits.MaximumScalarUpdates,"Mixed field/scalar budget exhausted.");
+            if(replicationPolicy.ComponentsLimits is {} components)Require(plan.Updates.Count<=components.MaximumFields,"Components field budget exhausted.");
+            var wounds=plan.Updates.Where(u=>u.Extended?.Full?.Wounds is not null).Select(u=>u.Extended!.Full!.Wounds!).ToArray();
+            var componentsUpdates=plan.Updates.Where(u=>u.Extended?.Full?.Components is not null).Select(u=>u.Extended!.Full!.Components!).ToArray();
+            if(wounds.Length>0)
+            {
+                Require(replicationPolicy.MixedLimits is not null,"Wounds-enabled world required.");var ml=replicationPolicy.MixedLimits!;
+                Require(wounds.Sum(u=>(long)u.CommandCount)<=ml.MaximumWoundsCommands && wounds.Sum(u=>u.Commands.Sum(c=>(long)c.Values.Count))<=ml.MaximumWoundsValues,"Wounds aggregate command/value capacity.");
+            }
+            if(componentsUpdates.Length>0)
+            {
+                Require(replicationPolicy.ComponentsLimits is not null,"Components-enabled world required.");var cl=replicationPolicy.ComponentsLimits!;
+                Require(componentsUpdates.Sum(u=>(long)u.Commands.Count)<=cl.MaximumCommands && componentsUpdates.Sum(u=>u.Commands.LongCount(c=>c.Kind!=CreatureComponentsCommandKind.Clear))<=cl.MaximumKeys,"Component aggregate command/key capacity.");
+            }
+            foreach(var update in plan.Updates.Where(u=>u.Name is not null).Select(u=>u.Name!))
+                Require(update.Index==1?update.NameFile!.Length<=replicationPolicy.BaselineLimits.MaximumStringBytes && update.NameKey!.Length<=replicationPolicy.BaselineLimits.MaximumStringBytes:
+                    update.CustomNameUnits!.Count<=replicationPolicy.BaselineLimits.MaximumUnicodeUnits,"Configured name string/unit capacity.");
+            ulong next=checked(mutationRevision+1);
+            Require(changes.ContainsKey(plan.ObjectId) || changes.Count<maximumPendingChanges,"Undelivered world change capacity exhausted.");
+            var stagedChanges=new Dictionary<ulong,ChangeSlot>(changes);
+            stagedChanges[plan.ObjectId]=changes.TryGetValue(plan.ObjectId,out var slot)?slot with {Kind=slot.Kind|SceneWorldChangeKind.Replication}:new(SceneWorldChangeKind.Replication,next);
+            var current=registry.Snapshots().Where(o=>o.Phase==SceneObjectPhase.Finalized && replication!.InspectCurrent(o.Incarnation) is not null).Select(o=>o.Incarnation).ToHashSet();
+            raw=rawStore.PrepareWorldCustomization(this,latest!,strings,current);
+            if(scalars+wounds.Length+componentsUpdates.Length>0)typed=replication!.PrepareNamed(latest!.Replication!.State,plan);
+            // Everything below is owner-held assignment of prebuilt state: no callbacks, parsing, allocations or checked increments.
+            if(typed is not null)replication!.CommitScalars(typed);
+            rawStore.CommitWorldCustomization(raw);changes=stagedChanges;mutationRevision=next;return true;
+        }
+        finally
+        {
+            if(typed is not null)replication!.ReleaseScalars(typed);
+            if(raw is not null)rawStore.ReleaseWorldCustomization(raw);
+            busy=false;
+        }
     }
     public byte[]? CompleteMinimumSceneBarrier(long generation, bool callerBarrierSatisfied)
     {
-        Enter(); try
+        Enter(true); try
         {
             EnsureOpen(); if (generation != Generation || !callerBarrierSatisfied || State != ZoneSceneTransitionState.Initializing) return null;
             try
@@ -239,7 +475,7 @@ public sealed class SceneWorldCoordinator : IDisposable
     }
     public bool RestartResource(long generation, ulong objectId)
     {
-        Enter(); try
+        Enter(true); try
         {
             EnsureOpen(); if (generation != Generation) return false;
             try
@@ -254,7 +490,7 @@ public sealed class SceneWorldCoordinator : IDisposable
     }
     public SceneWorldResourcePoll PollResources()
     {
-        Enter(); try
+        Enter(true); try
         {
             EnsureOpen(); if (initializer is null) throw new InvalidOperationException("Generic world requires PollObjectResources.");
             var publications = new List<ScenePreparedCreaturePublication>();
@@ -278,7 +514,7 @@ public sealed class SceneWorldCoordinator : IDisposable
     }
     public SceneWorldObjectResourcePoll PollObjectResources()
     {
-        Enter(); try
+        Enter(true); try
         {
             EnsureOpen(); if (objectInitializer is null) throw new InvalidOperationException("Legacy world requires PollResources.");
             var publications = new List<ScenePreparedObjectPublication>(); var retired = new List<SceneObjectResourceCompletion>();
@@ -358,7 +594,7 @@ public sealed class SceneWorldCoordinator : IDisposable
     }
     public bool AcknowledgeChanges(SceneWorldChangeBatch batch)
     {
-        Enter(); try
+        Enter(true); try
         {
             ArgumentNullException.ThrowIfNull(batch); if (!CurrentBatch(batch)) return false;
             changes.Clear(); return true;
@@ -371,7 +607,7 @@ public sealed class SceneWorldCoordinator : IDisposable
     {
         var snapshot = registry.Find(objectId);
         return snapshot is null ? null : new(snapshot, placements[objectId], Array.AsReadOnly(envelopes.GetValueOrDefault(objectId)?.ToArray() ?? Array.Empty<ReplicationEnvelope>()))
-            { Replication = ReplicationFor(objectId) };
+            { Replication = ReplicationFor(objectId),TangibleReplication=TangibleFor(objectId) };
     }
     public SceneWorldReplicationSnapshot? FindReplication(long generation, ulong objectId)
     {
@@ -393,14 +629,84 @@ public sealed class SceneWorldCoordinator : IDisposable
         var incarnation = registry.Find(objectId)?.Incarnation;
         return incarnation is { } token && replication?.Find(token) is { } state ? new(identity, Generation, state) : null;
     }
+    private SceneWorldTangibleReplicationSnapshot? TangibleFor(ulong id)
+    {
+        var incarnation=registry.Find(id)?.Incarnation;
+        return incarnation is {} token && tangible?.Find(token) is {} state?new(identity,Generation,state):null;
+    }
+    public SceneWorldTangibleReplicationSnapshot? FindTangibleReplication(long generation,ulong id)
+    {Enter();try{return !closed&&generation==Generation?TangibleFor(id):null;}finally{busy=false;}}
+    public bool IsCurrent(SceneWorldTangibleReplicationSnapshot snapshot)
+    {Enter();try{ArgumentNullException.ThrowIfNull(snapshot);return !closed&&ReferenceEquals(snapshot.Owner,identity)&&snapshot.Generation==Generation&&State is ZoneSceneTransitionState.AwaitingServerReady or ZoneSceneTransitionState.Ready&&tangible?.IsCurrent(snapshot.State)==true;}finally{busy=false;}}
+    private void ApplyTangibleCore(ulong id,TangibleView3BaselineSnapshot? baseline,TangibleView3DeltaPlan? plan)
+    {
+        Require(tangible is not null&&objectOptions is not null,"Typed tangible generic world required.");
+        var target=registry.Find(id);
+        Require(target is not null&&catalog.Require(target.Create.TemplateCrc).Recipe==SceneObjectResourceRecipe.StaticAppearance,"Static tangible recipe required.");
+        if(plan is not null)Require(target!.Phase==SceneObjectPhase.Finalized,"Finalized tangible target required.");
+        ulong next=checked(mutationRevision+1);
+        Require(changes.ContainsKey(id)||changes.Count<maximumPendingChanges,"Undelivered world change capacity exhausted.");
+        var staged=new Dictionary<ulong,ChangeSlot>(changes);
+        staged[id]=changes.TryGetValue(id,out var slot)?slot with {Kind=slot.Kind|SceneWorldChangeKind.Replication}:new(SceneWorldChangeKind.Replication,next);
+        SceneTangibleReplicationStore.Prepared? prepared=null;
+        try
+        {
+            prepared=baseline is not null?tangible!.PrepareSeed(target!.Incarnation,baseline):tangible!.PrepareApply(target!.Incarnation,plan!);
+            Require(prepared is not null,"Stale tangible preparation.");
+            // Owner-held prebuilt assignment only. All validation/arithmetic/allocation precedes this point.
+            tangible!.CommitPrepared(prepared!);changes=staged;mutationRevision=next;
+        }
+        finally{if(prepared is not null)tangible!.ReleasePrepared(prepared);}
+    }
+    internal sealed record TangibleIngressStamp(long Generation,ZoneSceneTransitionState State,ulong Revision,ulong CallbackVersion,
+        SceneWorldChangeEntry[] Changes,SceneWorldObjectSnapshot[] Objects);
+    internal TangibleIngressStamp CaptureTangibleIngress()
+    {
+        Enter();try{EnsureOpen();return new(Generation,State,mutationRevision,callbackVersion,
+            changes.OrderBy(p=>p.Key).Select(p=>new SceneWorldChangeEntry(p.Key,p.Value.Kind,null)).ToArray(),
+            registry.Snapshots().Select(o=>ObjectFor(o.Handle.ObjectId)!).ToArray());}finally{busy=false;}
+    }
+    internal bool MatchesTangibleIngress(TangibleIngressStamp stamp)
+    {
+        Enter();try
+        {
+            if(closed||stamp.CallbackVersion!=callbackVersion||stamp.Generation!=Generation||stamp.State!=State||stamp.Revision!=mutationRevision||stamp.Changes.Length!=changes.Count)return false;
+            if(stamp.Changes.Any(c=>!changes.TryGetValue(c.ObjectId,out var slot)||slot.Kind!=c.Kind))return false;
+            var now=registry.Snapshots();if(now.Count!=stamp.Objects.Length)return false;
+            return stamp.Objects.All(o=>ReferenceEquals(registry.Find(o.Object.Handle.ObjectId),o.Object)&&
+                ReplicationFor(o.Object.Handle.ObjectId)?.Revision==o.Replication?.Revision&&TangibleFor(o.Object.Handle.ObjectId)?.Revision==o.TangibleReplication?.Revision);
+        }finally{busy=false;}
+    }
+    internal TangibleView3DeltaPlan ParseTangibleDeltaEnvelope(ReplicationEnvelope envelope)
+    {Enter();try{EnsureOpen();Require(tangiblePolicy is not null,"Typed tangible policy required.");return TangibleView3DeltaCodec.Decode(envelope,tangiblePolicy!.DeltaLimits);}finally{busy=false;}}
+    internal TangibleView3DeltaPlan DecodeTangibleDelta(ReplicationEnvelope envelope,TangibleView3DeltaPlan? parsed=null)
+    {
+        Enter();try
+        {
+            EnsureOpen();Require(tangiblePolicy is not null,"Typed tangible policy required.");
+            var grammar=parsed??TangibleView3DeltaCodec.Decode(envelope,tangiblePolicy!.DeltaLimits);
+            var plan=tangiblePolicy!.DeltaDecoder is {} decoder?decoder(envelope):grammar;
+            if(reentered)throw new InvalidOperationException("Tangible decoder reentered world.");
+            Require(plan is not null&&plan.ObjectId==envelope.ObjectId&&plan.DeclaredCount==envelope.DeclaredCount,"Decoded tangible identity mismatch.");return plan!;
+        }finally{busy=false;}
+    }
+    public bool ApplyTangibleDelta(long generation,TangibleView3DeltaPlan plan)
+    {
+        Enter(true);try
+        {
+            EnsureOpen();if(generation!=Generation)return false;ArgumentNullException.ThrowIfNull(plan);
+            Require(State is ZoneSceneTransitionState.AwaitingServerReady or ZoneSceneTransitionState.Ready,"Active tangible world required.");
+            ApplyTangibleCore(plan.ObjectId,null,plan);return true;
+        }finally{busy=false;}
+    }
     public IReadOnlyList<SceneWorldObjectSnapshot> Snapshots()
     {
-        Enter(); try { return Array.AsReadOnly(registry.Snapshots().Select(s => new SceneWorldObjectSnapshot(s, placements[s.Handle.ObjectId], Array.AsReadOnly(envelopes.GetValueOrDefault(s.Handle.ObjectId)?.ToArray() ?? Array.Empty<ReplicationEnvelope>())) { Replication = ReplicationFor(s.Handle.ObjectId) }).ToArray()); }
+        Enter(); try { return Array.AsReadOnly(registry.Snapshots().Select(s => new SceneWorldObjectSnapshot(s, placements[s.Handle.ObjectId], Array.AsReadOnly(envelopes.GetValueOrDefault(s.Handle.ObjectId)?.ToArray() ?? Array.Empty<ReplicationEnvelope>())) { Replication = ReplicationFor(s.Handle.ObjectId),TangibleReplication=TangibleFor(s.Handle.ObjectId) }).ToArray()); }
         finally { busy = false; }
     }
     public void Close()
     {
-        Enter(); try { if (closed) return; transition.Close(); closed = true; registry.Close(); replication?.Close(); changes.Clear(); placements.Clear(); envelopes.Clear(); pending.Clear(); started.Clear(); initializer?.Dispose(); objectInitializer?.Dispose(); }
+        Enter(true); try { if (closed) return; transition.Close(); closed = true; registry.Close(); tangible?.Close(); replication?.Close(); changes.Clear(); placements.Clear(); envelopes.Clear(); pending.Clear(); started.Clear(); initializer?.Dispose(); objectInitializer?.Dispose(); }
         finally { busy = false; }
     }
     public void Dispose() => Close();
@@ -433,6 +739,20 @@ public sealed class SceneWorldCoordinator : IDisposable
         Require(snapshot is not null, "Replication for missing object.");
         bool creature = catalog.Require(snapshot!.Create.TemplateCrc).Recipe == SceneObjectResourceRecipe.CreatureDetail0;
         Require(creature ? envelope.RawTag == CreatureView3BaselineCodec.RawTag : envelope.RawTag == 0x54414E4F, "Replication family/recipe disagreement.");
+        if(!creature && tangible is not null && envelope.View==3)
+        {
+            object grammar=envelope.Kind==ReplicationEnvelopeKind.Baseline?
+                TangibleView3BaselineCodec.Decode(envelope,tangiblePolicy!.BaselineLimits):
+                (object)TangibleView3DeltaCodec.Decode(envelope,tangiblePolicy!.DeltaLimits);
+            object decoded=envelope.Kind==ReplicationEnvelopeKind.Baseline?
+                (tangiblePolicy!.BaselineDecoder is {} bd?bd(envelope):grammar):
+                (tangiblePolicy!.DeltaDecoder is {} dd?dd(envelope):grammar);
+            if(reentered)throw new InvalidOperationException("Tangible decoder reentered world.");
+            Require(decoded is not null,"Null tangible decoder result.");
+            if(decoded is TangibleView3BaselineSnapshot tb)Require(tb.ObjectId==envelope.ObjectId&&tb.DeclaredCount==envelope.DeclaredCount,"Tangible decoder baseline identity mismatch.");
+            if(decoded is TangibleView3DeltaPlan td)Require(td.ObjectId==envelope.ObjectId&&td.DeclaredCount==envelope.DeclaredCount,"Tangible decoder plan identity mismatch.");
+            return decoded!;
+        }
         if (!creature || replication is null) return envelope;
         if (envelope.Kind == ReplicationEnvelopeKind.Baseline) return CreatureView3BaselineCodec.Decode(value.Message, replicationPolicy!.BaselineLimits);
         return ReplicationMode switch
@@ -450,6 +770,8 @@ public sealed class SceneWorldCoordinator : IDisposable
     private void Apply(object value)
     {
         if (value is ObjectReplication incoming) value = ResolveObjectReplication(incoming);
+        if(value is TangibleView3BaselineSnapshot tangibleBaseline){ApplyTangibleCore(tangibleBaseline.ObjectId,tangibleBaseline,null);return;}
+        if(value is TangibleView3DeltaPlan tangibleDelta){ApplyTangibleCore(tangibleDelta.ObjectId,null,tangibleDelta);return;}
         ulong generation = registry.SceneGeneration;
         ulong nextMutationRevision = checked(mutationRevision + 1);
         ulong[] affected;
@@ -477,6 +799,7 @@ public sealed class SceneWorldCoordinator : IDisposable
                 RequireRecipe(create); var placement = SceneCreatePlacementBuilder.Create(create, zeroPolicy);
                 var created = registry.Create(generation, create)!; placements[created.Handle.ObjectId] = placement; break;
             case SceneEndBaselinesMessage end:
+                if(tangible is not null && registry.Find(end.ObjectId) is {} staticTarget && catalog.Require(staticTarget.Create.TemplateCrc).Recipe==SceneObjectResourceRecipe.StaticAppearance)Require(tangible.Find(staticTarget.Incarnation) is not null,"Complete TANO3 baseline required before static end barrier.");
                 registry.EndBaselines(generation, end); Queue(registry.Find(end.ObjectId)!, false); break;
             case UpdateContainmentMessage contain:
                 registry.Contain(generation, contain); var contained = registry.Find(contain.ObjectId)!;
@@ -527,6 +850,7 @@ public sealed class SceneWorldCoordinator : IDisposable
         foreach (ulong id in affected)
             changes[id] = changes.TryGetValue(id, out var slot) ? slot with { Kind = slot.Kind | kind } : new(kind, nextMutationRevision);
         mutationRevision = nextMutationRevision;
+        _ = tangible?.Snapshots();
         _ = replication?.Snapshots(); // Retire destroyed incarnations; lifecycle revisions preserve scalar state.
         foreach (ulong id in started.ToArray())
             if (FindResourceHandle(id) is { } handle && !registry.IsCurrent(handle)) { CancelResource(id); started.Remove(id); }
@@ -540,12 +864,12 @@ public sealed class SceneWorldCoordinator : IDisposable
     }
     private void ClearWorld()
     {
-        registry.Reset(); _ = replication?.Snapshots(); changes.Clear(); placements.Clear(); envelopes.Clear(); pending.Clear(); envelopeCount = envelopeBytes = 0;
+        registry.Reset(); _ = tangible?.Snapshots(); _ = replication?.Snapshots(); changes.Clear(); placements.Clear(); envelopes.Clear(); pending.Clear(); envelopeCount = envelopeBytes = 0;
         foreach (ulong id in started) CancelResource(id);
         started.Clear();
     }
     private void Fail() { transition.Fail(Generation); ClearWorld(); }
     private void EnsureOpen() { ObjectDisposedException.ThrowIf(closed, this); }
-    private void Enter() { if (Environment.CurrentManagedThreadId != ownerThread) throw new InvalidOperationException("World serialized owner thread required."); if (busy) throw new InvalidOperationException("World owner is reentrant."); busy = true; }
+    private void Enter(bool mutation=false) { if (Environment.CurrentManagedThreadId != ownerThread) throw new InvalidOperationException("World serialized owner thread required."); if (busy){reentered=true;throw new InvalidOperationException("World owner is reentrant.");} if(mutation)callbackVersion=checked(callbackVersion+1);reentered=false;busy = true; }
     private static void Require(bool condition, string message) { if (!condition) throw new InvalidDataException(message); }
 }

@@ -19,6 +19,9 @@ public sealed class SceneStaticVisual : IDisposable
     private readonly List<Resource> owned=new();
     private readonly int ownerThread=System.Environment.CurrentManagedThreadId;
     private bool disposed;
+    private StandardMaterial3D? terminalMaterial;
+    private Texture2D? terminalDefault;
+    private object? terminalBindingOwner;
     public Node3D Root{get;}
     public bool IsRetired=>disposed;
     public bool IsPublished{get;private set;}
@@ -118,11 +121,46 @@ public sealed class SceneStaticVisual : IDisposable
                 node.SetSurfaceOverrideMaterial(i,inspection);count++;
             }
         }
+        terminalMaterial=inspection;terminalDefault=inspection?.AlbedoTexture;
         if(count!=2)throw new InvalidDataException("Two pinned screens required.");Root.SetMeta("inspection_policy","Pinned terminal frame0; two SWTS surfaces use unshaded MAIN/UV0; original effect/timing unknown");
     }
     private static void MainThread(){if(OS.GetThreadCallerId()!=OS.GetMainThreadId())throw new InvalidOperationException("Static visual requires Godot main thread.");}
     private void OwnerThread(){if(System.Environment.CurrentManagedThreadId!=ownerThread)throw new InvalidOperationException("Serialized static visual owner thread required.");MainThread();}
     private bool Current(){OwnerThread();if(disposed)return false;if(currentLifetime!())return true;Dispose();return false;}
+    // Exclusive borrowed binding seam; no effect policy or default verification is widened.
+    internal bool CanBindTerminal=>Current() && terminalMaterial is not null && terminalBindingOwner is null;
+    internal bool AcquireTerminalBinding(object owner)
+    {if(!CanBindTerminal)return false;terminalBindingOwner=owner;return true;}
+    internal bool TryBindTerminalTexture(object owner,ImageTexture texture)
+    {
+        if(!Current())return false;
+        if(!ReferenceEquals(owner,terminalBindingOwner) || terminalMaterial is null)throw new InvalidOperationException("Exclusive terminal binding required.");
+        if(!GodotObject.IsInstanceValid(texture) || texture.GetWidth()!=128 || texture.GetHeight()!=64)throw new ArgumentException("Prevalidated terminal texture required.");
+        if(!Current())return false;
+        terminalMaterial.AlbedoTexture=texture;return true;
+    }
+    internal bool ReleaseTerminalBinding(object owner)
+    {if(!Current())return false;if(!ReferenceEquals(owner,terminalBindingOwner))throw new InvalidOperationException("Terminal binding owner differs.");terminalMaterial!.AlbedoTexture=terminalDefault;terminalBindingOwner=null;return true;}
+    internal bool HasTerminalTexture(ImageTexture texture)=>Current() && ReferenceEquals(terminalMaterial?.AlbedoTexture,texture);
+    /// <summary>Separate animated structure proof: excludes only selected screen texture, preserves all other material/texture identities and optional bytes.</summary>
+    public string? StructureFingerprint(bool gpu=false)
+    {
+        if(!Current())return null;using var hash=IncrementalHash.CreateHash(HashAlgorithmName.SHA256);hash.AppendData(BitConverter.GetBytes(Root.GetInstanceId()));
+        foreach(var node in Meshes(geometry!.Root))
+        {
+            hash.AppendData(BitConverter.GetBytes(node.GetInstanceId()));hash.AppendData(BitConverter.GetBytes(node.Mesh.GetInstanceId()));
+            for(int surface=0;surface<node.Mesh.GetSurfaceCount();surface++)
+            {
+                var material=node.GetSurfaceOverrideMaterial(surface)??node.Mesh.SurfaceGetMaterial(surface);hash.AppendData(BitConverter.GetBytes(material.GetInstanceId()));
+                if(ReferenceEquals(material,terminalMaterial))continue;
+                ImageTexture texture;if(material is ShaderMaterial shader){hash.AppendData(BitConverter.GetBytes(shader.Shader.GetInstanceId()));texture=(ImageTexture)shader.GetShaderParameter("albedo_texture").AsGodotObject();}else texture=(ImageTexture)((StandardMaterial3D)material).AlbedoTexture;
+                hash.AppendData(BitConverter.GetBytes(texture.GetInstanceId()));if(gpu){using var image=texture.GetImage();hash.AppendData(image.GetData());}
+            }
+        }
+        return Convert.ToHexString(hash.GetHashAndReset());
+    }
+    public bool VerifyGeometry()
+    {if(!Current())return false;foreach(var node in Meshes(geometry!.Root)){var mesh=source!.Appearance.Meshes[node.GetMeta("original_mesh_path").AsString()];StaticMeshPreview.VerifyUploadedGeometry((ArrayMesh)node.Mesh,mesh.Mesh);}return true;}
     public bool Tick()=>Current();
     public bool SetVisible(bool value){if(!Current())return false;Root.Visible=value;return true;}
     public bool ApplyPlacement(SceneCreateObjectByCrcMessage create)
@@ -165,5 +203,5 @@ public sealed class SceneStaticVisual : IDisposable
         return true;
     }
     public void Dispose()
-    {OwnerThread();if(disposed)return;disposed=true;IsPublished=false;geometry?.Dispose();geometry=null;foreach(var r in owned.AsEnumerable().Reverse())r.Dispose();owned.Clear();currentLifetime=null;source=null;ulong id=Root.GetInstanceId();Root.Free();Disposals++;if(GodotObject.InstanceFromId(id)is not null)throw new InvalidOperationException("Static root survived disposal.");}
+    {OwnerThread();if(disposed)return;disposed=true;IsPublished=false;terminalBindingOwner=null;terminalMaterial=null;terminalDefault=null;geometry?.Dispose();geometry=null;foreach(var r in owned.AsEnumerable().Reverse())r.Dispose();owned.Clear();currentLifetime=null;source=null;ulong id=Root.GetInstanceId();Root.Free();Disposals++;if(GodotObject.InstanceFromId(id)is not null)throw new InvalidOperationException("Static root survived disposal.");}
 }
