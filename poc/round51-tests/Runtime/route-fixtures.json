@@ -1,0 +1,552 @@
+{
+  "Synthetic": true,
+  "Meaning": "Branch routing only; no original numerical-return or unit claim",
+  "Cases": [
+    {
+      "Name": "less-guard0",
+      "Guards": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "3f800000",
+      "CurrentBits": "40000000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "less-guard1",
+      "Guards": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "3f800000",
+      "CurrentBits": "40000000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "less-guard2",
+      "Guards": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "3f800000",
+      "CurrentBits": "40000000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "less-guard3",
+      "Guards": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "3f800000",
+      "CurrentBits": "40000000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "less-argument-low-byte",
+      "Guards": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "SecondArgument": 1,
+      "WalkBits": "3f800000",
+      "CurrentBits": "40000000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "equal-guard0",
+      "Guards": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "3f800000",
+      "CurrentBits": "3f800000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "equal-guard1",
+      "Guards": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "3f800000",
+      "CurrentBits": "3f800000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "equal-guard2",
+      "Guards": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "3f800000",
+      "CurrentBits": "3f800000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "equal-guard3",
+      "Guards": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "3f800000",
+      "CurrentBits": "3f800000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "equal-argument-low-byte",
+      "Guards": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "SecondArgument": 1,
+      "WalkBits": "3f800000",
+      "CurrentBits": "3f800000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "greater-guard0",
+      "Guards": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "40000000",
+      "CurrentBits": "3f800000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "greater-guard1",
+      "Guards": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "40000000",
+      "CurrentBits": "3f800000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "greater-guard2",
+      "Guards": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "40000000",
+      "CurrentBits": "3f800000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "greater-guard3",
+      "Guards": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "40000000",
+      "CurrentBits": "3f800000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "greater-argument-low-byte",
+      "Guards": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "SecondArgument": 1,
+      "WalkBits": "40000000",
+      "CurrentBits": "3f800000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "unordered-walk-guard0",
+      "Guards": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "7fc00000",
+      "CurrentBits": "3f800000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "unordered-walk-guard1",
+      "Guards": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "7fc00000",
+      "CurrentBits": "3f800000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "unordered-walk-guard2",
+      "Guards": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "7fc00000",
+      "CurrentBits": "3f800000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "unordered-walk-guard3",
+      "Guards": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "7fc00000",
+      "CurrentBits": "3f800000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "unordered-walk-argument-low-byte",
+      "Guards": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "SecondArgument": 1,
+      "WalkBits": "7fc00000",
+      "CurrentBits": "3f800000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "unordered-current-guard0",
+      "Guards": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "3f800000",
+      "CurrentBits": "7fc00000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "unordered-current-guard1",
+      "Guards": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "3f800000",
+      "CurrentBits": "7fc00000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "unordered-current-guard2",
+      "Guards": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "3f800000",
+      "CurrentBits": "7fc00000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "unordered-current-guard3",
+      "Guards": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "3f800000",
+      "CurrentBits": "7fc00000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "unordered-current-argument-low-byte",
+      "Guards": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "SecondArgument": 1,
+      "WalkBits": "3f800000",
+      "CurrentBits": "7fc00000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "signed-zero-guard0",
+      "Guards": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "80000000",
+      "CurrentBits": "00000000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "signed-zero-guard1",
+      "Guards": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "80000000",
+      "CurrentBits": "00000000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "signed-zero-guard2",
+      "Guards": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "80000000",
+      "CurrentBits": "00000000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "signed-zero-guard3",
+      "Guards": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "80000000",
+      "CurrentBits": "00000000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "signed-zero-argument-low-byte",
+      "Guards": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "SecondArgument": 1,
+      "WalkBits": "80000000",
+      "CurrentBits": "00000000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "negative-guard0",
+      "Guards": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "bf800000",
+      "CurrentBits": "00000000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "negative-guard1",
+      "Guards": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "bf800000",
+      "CurrentBits": "00000000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "negative-guard2",
+      "Guards": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "bf800000",
+      "CurrentBits": "00000000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "negative-guard3",
+      "Guards": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "bf800000",
+      "CurrentBits": "00000000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "negative-argument-low-byte",
+      "Guards": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "SecondArgument": 1,
+      "WalkBits": "bf800000",
+      "CurrentBits": "00000000",
+      "Expected": "template0/base/modifier"
+    },
+    {
+      "Name": "positive-infinity-guard0",
+      "Guards": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "7f800000",
+      "CurrentBits": "3f800000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "positive-infinity-guard1",
+      "Guards": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "7f800000",
+      "CurrentBits": "3f800000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "positive-infinity-guard2",
+      "Guards": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "7f800000",
+      "CurrentBits": "3f800000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "positive-infinity-guard3",
+      "Guards": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "7f800000",
+      "CurrentBits": "3f800000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "positive-infinity-argument-low-byte",
+      "Guards": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "SecondArgument": 1,
+      "WalkBits": "7f800000",
+      "CurrentBits": "3f800000",
+      "Expected": "template1/base/modifier"
+    },
+    {
+      "Name": "vehicle-0",
+      "Guards": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "SecondArgument": 0,
+      "WalkBits": "7fc00000",
+      "CurrentBits": "7fc00000",
+      "Expected": "vehicle/base"
+    },
+    {
+      "Name": "vehicle-256",
+      "Guards": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "SecondArgument": 256,
+      "WalkBits": "7fc00000",
+      "CurrentBits": "7fc00000",
+      "Expected": "vehicle/base"
+    }
+  ]
+}

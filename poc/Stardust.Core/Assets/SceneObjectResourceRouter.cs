@@ -16,13 +16,18 @@ public sealed class SceneCreatureResourceOptions : SceneObjectResourceOptions
     public LogicalAnimationClipSelection Idle { get; }
     public IReadOnlyDictionary<string, LogicalAnimationClipSelection> Movement { get; }
     public bool LoadAlbedoFactors { get; }
+    public bool LoadAuthoredMovementInputs { get; }
+    public CreatureMovementResourceLimits? MovementLimits { get; }
     public SceneCreatureFaceInspectionPolicy? FaceInspection { get; }
     public int MaximumResources { get; }
     public long MaximumSourceBytes { get; }
     public SceneCreatureResourceOptions(LogicalAnimationClipSelection idle,
         IReadOnlyDictionary<string, LogicalAnimationClipSelection> movement, bool loadAlbedoFactors,
-        int maximumResources = 64, long maximumSourceBytes = 16777216, SceneCreatureFaceInspectionPolicy? faceInspection = null)
+        int maximumResources = 64, long maximumSourceBytes = 16777216, SceneCreatureFaceInspectionPolicy? faceInspection = null,
+        bool loadAuthoredMovementInputs=false,CreatureMovementResourceLimits? movementLimits=null)
     {
+        MovementLimits=CreatureMovementResourceLimits.CopyValidated(loadAuthoredMovementInputs,movementLimits);
+        LoadAuthoredMovementInputs=loadAuthoredMovementInputs;
         ArgumentNullException.ThrowIfNull(movement);
         if (maximumResources is < 1 or > 4096 || maximumSourceBytes is < 1 or > 134217728)
             throw new ArgumentOutOfRangeException(nameof(maximumResources));
@@ -105,7 +110,7 @@ public static class SceneObjectResourceRouter
         SceneObjectResources result = options switch
         {
             SceneCreatureResourceOptions c => new(SceneCreatureResourceReader.Load(create, catalog, c.Idle, c.Movement, resolve, token,
-                c.MaximumResources, c.MaximumSourceBytes, c.LoadAlbedoFactors, c.FaceInspection)),
+                c.MaximumResources, c.MaximumSourceBytes, c.LoadAlbedoFactors, c.FaceInspection,c.LoadAuthoredMovementInputs,c.MovementLimits)),
             SceneStaticResourceOptions s => new(SceneStaticResourceReader.Load(create, catalog, resolve, s.MaterialPolicy, token,
                 s.Limits, s.MaximumDecodedBytes, s.SwitchTextureFrame, s.SwitchFrames)),
             _ => throw new InvalidDataException("Unsupported resource options.")

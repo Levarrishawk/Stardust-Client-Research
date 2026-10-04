@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+<PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><TreatWarningsAsErrors>true</TreatWarningsAsErrors><EnableDefaultCompileItems>false</EnableDefaultCompileItems><UseAppHost>false</UseAppHost><UseSharedCompilation>false</UseSharedCompilation></PropertyGroup>
+<ItemGroup><Compile Include="Program.cs"/><ProjectReference Include="../../Stardust.Core/Stardust.Core.csproj"/><Compile Include="../../Stardust.Core.SmokeTests/TerrainCircleHeightPatchScenarios.cs" Link="TerrainCircleHeightPatchScenarios.cs"/></ItemGroup>
+</Project>

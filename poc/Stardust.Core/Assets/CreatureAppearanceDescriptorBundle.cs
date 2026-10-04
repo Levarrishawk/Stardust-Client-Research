@@ -2,6 +2,25 @@ using System.Collections.ObjectModel;
 
 namespace Stardust.Core.Assets;
 
+public sealed record CreatureMovementResourceLimits(SharedCreatureMovementInputLimits? ProfileLimits=null,
+    AuthoredMovementSnapshotLimits? SnapshotLimits=null,long MaximumDecodedBytes=12582912)
+{
+    internal static CreatureMovementResourceLimits? CopyValidated(bool enabled,CreatureMovementResourceLimits? value)
+    {
+        if(!enabled) { if(value is not null)throw new ArgumentException("Movement limits require explicit opt-in.");return null; }
+        value??=new();var p=value.ProfileLimits??new();var a=value.SnapshotLimits??new();
+        if(value.MaximumDecodedBytes is <1 or >71303168||p.MaximumDepth is <1 or >16||p.MaximumResources is <1 or >16
+            ||p.MaximumTemplateBytes is <1 or >1048576||p.MaximumSourceBytes is <1 or >16777216
+            ||p.MaximumParameterBytes is <2 or >65536||p.MaximumParameterNesting is <1 or >16||p.MaximumArrayEntries is <1 or >64
+            ||p.MaximumDecodedBytes is <1 or >67108864||p.MaximumWork is <1 or >67108864
+            ||a.MaximumSources is <1 or >16||a.MaximumEvidence is <1 or >80||a.MaximumRawBytes is <0 or >1048576
+            ||a.MaximumSnapshotBytes is <1 or >4194304||a.MaximumWork is <1 or >4194304)
+            throw new ArgumentOutOfRangeException(nameof(value));
+        return value with{ProfileLimits=p with{},SnapshotLimits=a with{}};
+    }
+}
+public sealed record CreatureAuthoredMovementResources(SharedCreatureMovementInputProfile Profile,
+    SharedCreatureAuthoredMovementInputs Inputs,long DecodedBytes,long Work);
 public sealed record CreatureAppearanceDescriptorBundle(SharedCreatureTemplateProfile Profile,
     SkeletalAppearanceDescription Appearance,IReadOnlyDictionary<string,LodMeshGeneratorDescription> LodMeshes,
     IReadOnlyDictionary<string,AssetSourceIdentity> Sources,
@@ -9,14 +28,16 @@ public sealed record CreatureAppearanceDescriptorBundle(SharedCreatureTemplatePr
     IReadOnlyDictionary<string,SkeletalMeshSkinSourceDescription>? SkinSources=null,
     IReadOnlyDictionary<string,SkeletalMeshGeometryDescription>? Geometries=null,
     IReadOnlyDictionary<string,LogicalAnimationTableDescription>? LogicalTables=null,
-    SelectedLogicalAnimationClip? SelectedAnimation=null,PreparedSkeletalAnimation? PreparedAnimation=null,SkeletalMaterialBundle? MaterialBundle=null,IReadOnlyDictionary<string,BlueprintTextureRendererDescription>? FaceBlueprints=null,BlueprintFaceResources? FaceResources=null,BlueprintGeneratedFaces? GeneratedFaces=null,IReadOnlyDictionary<ShaderCustomizationKey,int>? CustomizationValues=null,IReadOnlyDictionary<string,SkeletalBlendShapeDescription>? BlendShapes=null,SkeletalShapeSelection? ShapeSelection=null,IReadOnlyDictionary<string,PreparedSkeletalAnimation>? AdditionalAnimations=null);
+    SelectedLogicalAnimationClip? SelectedAnimation=null,PreparedSkeletalAnimation? PreparedAnimation=null,SkeletalMaterialBundle? MaterialBundle=null,IReadOnlyDictionary<string,BlueprintTextureRendererDescription>? FaceBlueprints=null,BlueprintFaceResources? FaceResources=null,BlueprintGeneratedFaces? GeneratedFaces=null,IReadOnlyDictionary<ShaderCustomizationKey,int>? CustomizationValues=null,IReadOnlyDictionary<string,SkeletalBlendShapeDescription>? BlendShapes=null,SkeletalShapeSelection? ShapeSelection=null,IReadOnlyDictionary<string,PreparedSkeletalAnimation>? AdditionalAnimations=null,CreatureAuthoredMovementResources? AuthoredMovement=null);
 
 public static class CreatureAppearanceDescriptorBundleReader
 {
     public static CreatureAppearanceDescriptorBundle Load(Func<string,TreLookupResult> resolve,string objectPath,
-        string objectSha256,string appearanceSha256,AppearanceGraphLimits? limits=null,bool loadSkeletons=false,bool loadSkinSources=false,int meshDetail=0,bool loadGeometry=false,bool loadLogicalTables=false,LogicalAnimationClipSelection? animationSelection=null,bool prepareSelectedAnimation=false,bool loadMaterialDefaults=false,bool loadPaletteDefaults=false,bool loadFaceBlueprints=false,bool loadFaceResources=false,bool loadFacePixelPrograms=false,bool loadAlbedoFactors=false,bool loadBlendShapes=false,bool loadTextureChoices=false,bool loadCompressedNormals=false,bool loadVertexLitSpecular=false,IReadOnlyDictionary<string,LogicalAnimationClipSelection>? additionalAnimationSelections=null)
+        string objectSha256,string appearanceSha256,AppearanceGraphLimits? limits=null,bool loadSkeletons=false,bool loadSkinSources=false,int meshDetail=0,bool loadGeometry=false,bool loadLogicalTables=false,LogicalAnimationClipSelection? animationSelection=null,bool prepareSelectedAnimation=false,bool loadMaterialDefaults=false,bool loadPaletteDefaults=false,bool loadFaceBlueprints=false,bool loadFaceResources=false,bool loadFacePixelPrograms=false,bool loadAlbedoFactors=false,bool loadBlendShapes=false,bool loadTextureChoices=false,bool loadCompressedNormals=false,bool loadVertexLitSpecular=false,IReadOnlyDictionary<string,LogicalAnimationClipSelection>? additionalAnimationSelections=null,bool loadAuthoredMovementInputs=false,CreatureMovementResourceLimits? movementLimits=null,CancellationToken movementToken=default)
     {
         ArgumentNullException.ThrowIfNull(resolve);
+        movementLimits=CreatureMovementResourceLimits.CopyValidated(loadAuthoredMovementInputs,movementLimits);
+        if(loadAuthoredMovementInputs)movementToken.ThrowIfCancellationRequested();
         if(prepareSelectedAnimation&&animationSelection is null)throw new ArgumentException("Prepared animation requires explicit clip selection.");
         ValidatePin(objectSha256);ValidatePin(appearanceSha256);
         if(additionalAnimationSelections is not null)
@@ -52,6 +73,19 @@ public static class CreatureAppearanceDescriptorBundleReader
         if(!objectPath.StartsWith("object/",StringComparison.Ordinal))throw new ArgumentException("Object-root path required.");
         var cache=new OwnedAssetSourceCache(resolve,limits??new(MaximumResources:64,MaximumSourceBytes:16*1024*1024));
         var profile=SharedCreatureTemplateProfileReader.Load(cache.Read,objectPath,objectSha256);
+        CreatureAuthoredMovementResources? authoredMovement=null;
+        if(loadAuthoredMovementInputs)
+        {
+            var policy=movementLimits!;
+            var movementProfile=SharedCreatureMovementInputProfile.Load(cache.Read,objectPath,objectSha256,
+                policy.ProfileLimits! with{MaximumDecodedBytes=Math.Min(policy.ProfileLimits!.MaximumDecodedBytes,policy.MaximumDecodedBytes)},movementToken);
+            long remaining=policy.MaximumDecodedBytes-movementProfile.DecodedBytes;
+            if(remaining<1)throw new AppearanceGraphBudgetException("Movement retained profile/snapshot decoded budget.");
+            var inputs=SharedCreatureAuthoredMovementInputs.FromProfile(movementProfile,
+                policy.SnapshotLimits! with{MaximumSnapshotBytes=Math.Min(policy.SnapshotLimits!.MaximumSnapshotBytes,remaining)},movementToken);
+            movementToken.ThrowIfCancellationRequested();
+            authoredMovement=new(movementProfile,inputs,checked(movementProfile.DecodedBytes+inputs.SnapshotBytes),checked(movementProfile.Work+inputs.Work));
+        }
         var appearance=SkeletalAppearanceDecoder.Decode(cache.ReadPinned(profile.AppearancePath,appearanceSha256));
         Dictionary<string,LodMeshGeneratorDescription> meshes=new(StringComparer.Ordinal);
         foreach(string path in appearance.MeshGenerators)
@@ -120,7 +154,7 @@ public static class CreatureAppearanceDescriptorBundleReader
             skeletons is null?null:new ReadOnlyDictionary<string,SkeletonTemplateDescription>(skeletons),
             skins is null?null:new ReadOnlyDictionary<string,SkeletalMeshSkinSourceDescription>(skins),
             geometry is null?null:new ReadOnlyDictionary<string,SkeletalMeshGeometryDescription>(geometry),
-            tables is null?null:new ReadOnlyDictionary<string,LogicalAnimationTableDescription>(tables),selected);
+            tables is null?null:new ReadOnlyDictionary<string,LogicalAnimationTableDescription>(tables),selected,AuthoredMovement:authoredMovement);
         if(loadBlendShapes)result=result with{BlendShapes=new ReadOnlyDictionary<string,SkeletalBlendShapeDescription>(result.Geometries!.ToDictionary(p=>p.Key,p=>SkeletalBlendShapeDecoder.Create(p.Value),StringComparer.Ordinal))};
         if(loadMaterialDefaults)result=result with{MaterialBundle=SkeletalMaterialBundleReader.Load(result.Geometries!,cache,loadPaletteDefaults,loadAlbedoFactors,loadTextureChoices,loadCompressedNormals,loadVertexLitSpecular)};
         if(loadFaceBlueprints)
@@ -147,6 +181,7 @@ public static class CreatureAppearanceDescriptorBundleReader
             }
             result=result with{AdditionalAnimations=new ReadOnlyDictionary<string,PreparedSkeletalAnimation>(animations)};
         }
+        if(loadAuthoredMovementInputs)movementToken.ThrowIfCancellationRequested();
         return result;
     }
     private static void ValidatePin(string value)

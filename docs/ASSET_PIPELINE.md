@@ -1,5 +1,12 @@
 # Asset Pipeline
 
+Round44 prerequisite research closes [FSLP startup registration](TERRAIN_FILTER_SLOPE_INITIALIZATION_CONTRACT.md)
+and [one original FHGT height-layer order](TERRAIN_HEIGHT_LAYER_ORDER_CONTRACT.md).
+The slope bound is initialized before ordinary application entry on the returning
+startup path; bit-exact FSIN remains open. The examined original height path uses
+AHFR/FFRA and shared current-height writes, so the supplied FHGT/AHCN slice
+remains synthetic rather than an original terrain-generator replay.
+
 ## Native implementation slice (2026-09-29)
 
 The engine-neutral core owns a bounded unpadded IFF tree and decodes a strict
@@ -634,3 +641,74 @@ Owned TANO6 state passes21 sequences/23 transitions,700 negatives,315 budget and
 ## Round31 outdoor and view6 prerequisites
 
 Owned direct-version terrain masks and all nine exact terrain patch patterns pass independent original-byte/table and native oracles. Current-incarnation TANO6 publication and historical-event ownership pass143 checks/23 transitions/38 events. CREO6 prefix/extension structure passes109 anchors/18 registrations/16RTTI; complete codec/world routing remain next. Actual headless/GPU consumed-time failure retires the clock and cached presentation without retry. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R31_TERRAIN_AND_REPLICATION_STAGES.md).
+
+## Round32 accepted world and terrain inputs
+
+[Owned PTAT input](PROCEDURAL_TERRAIN_INPUT_CONTRACT.md) retains exact DATA raw bits, the complete TGEN form and direct-version map masks. One pinned Tatooine input and independent raw/schema/identity oracle pass. Client metadata getters establish F32 rather than the server reader's U32 interpretation for several group minimum slots; consumer meanings remain separate. TGEN is not evaluated. [CREO6 wearable baseline entries](CREATURE_VIEW6_CODEC_CONTRACT.md) retain raw customization bytes, arrangement, ID and template CRC; resource attachment/rendering is not implied.
+
+## Round33 terrain structure and creature state
+
+Owned TGEN inputs expose 257 layers and 87 AHCN records in the same pinned Tatooine file while retaining unsupported rules. Exact nine-sample terrain assembly and seam branch priority pass independent static/native checks. Complete current CREO6 scalar/string/pair models now have bounded incarnation-owned publication and a prepared commit seam. Separately, the exact HAM/max-HAM vector codec and mutation kernel pass independent wire/state/counter/work oracles. These remain separate partitions, not a composed full CREO6 world update. Original mixed-world headless and combined Core regressions pass. Height evaluation, group semantics, vector composition, original owner side effects and live interoperability remain open. Research89%/readiness94%,2626 names and345 packet-source rows remain unchanged. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R33_TERRAIN_AND_CREATURE_STATE.md).
+
+## Round34 creature world and terrain arithmetic
+
+The same87 original AHCN records contain operation0/1/2 counts62/14/11. Supplied-influence arithmetic supports explicit nearest-even24/53/64-bit profiles, with no original terrain-height claim. Terrain RGB modification and ARGB packing are independently closed for supplied byte-domain configuration. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R34_CREATURE_AND_TERRAIN_KERNELS.md).
+
+## Round35 terrain and composite publication prerequisites
+
+[Owned BCIR inputs](TERRAIN_BOUNDARY_CIRCLE_INPUT_CONTRACT.md) preserve0000/0001/0002, raw geometry/feather words and unsupported opaque bytes. All256 pinned Tatooine circles match independently, with no influence evaluation. The0001 discarded prefix and raw radius loading must survive; editing fabs is a separate path. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R35_TERRAIN_AND_COMPOSITE_PREREQUISITES.md).
+
+## Round36 composite world and terrain boundaries
+
+[BREC inputs](TERRAIN_BOUNDARY_RECTANGLE_INPUT_CONTRACT.md) preserve0000..0003 raw serialized corners/feather/extensions and unknown opaque versions; all29 original records match. Runtime load normalization/cache recomputation remain distinct from raw input. Client does not recognize server0004. No original terrain generation is claimed. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R36_COMPOSITE_WORLD_AND_TERRAIN_BOUNDARIES.md).
+
+## Round37 complete creature kernel and supplied terrain
+
+[BPOL owned input](TERRAIN_BOUNDARY_POLYGON_INPUT_CONTRACT.md) retains0000..0006 raw ordered point pairs and metadata; all57 pinned polygons match. Extension semantics and polygon influence remain open. No original geometry/content is added to public fixtures. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R37_COMPLETE_CREATURE_AND_SUPPLIED_TERRAIN.md).
+
+## Round38 full creature publication and terrain inputs
+
+[BPLN0000/0001 owned input](TERRAIN_BOUNDARY_POLYLINE_INPUT_CONTRACT.md) preserves raw width/feather metadata, ordered pairs and headers; all34 pinned original polylines match. Width units and evaluator arithmetic remain open. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R38_FULL_CREATURE_PUBLICATION_AND_TERRAIN_INPUTS.md).
+
+## Round39 supplied terrain grounding and CREO4 prerequisites
+
+Fresh untransformed BREC influence retains separate cache/query profiles and unspilled query shaping. Padded complete supplied channels join position axes to all accepted seam patterns; original per-channel strides are not assumed equal. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R39_TERRAIN_GROUNDING_AND_PRIVATE_VIEW.md).
+## Round40 layer and CREO4 composition
+
+Fresh BPOL influence, supplied layer combination, restricted CREO4 scalar/encumbrance composition and the separate byte-key skill-map kernel pass independent main replays. The supplied layer/AHCN/coordinate/patch/query join passes nine profiles/3600 samples/144 patches/576 queries. ADTA version-to-runtime inversion mapping is verified separately; unknown flag/cache roles remain explicit. Original-resource headless regressions and combined/default builds pass. Full CREO4 publication, original terrain generation, owner gameplay and live interoperability remain open. Research89%/readiness94%,2626 names and345 packet-source rows remain separate and unchanged. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R40_LAYER_AND_CREATURE4_COMPOSITION.md).
+## Round41 supplied height execution and CREO4 fields
+
+Open-polyline influence, ordered supplied height execution, scalar/encumbrance/skill-map CREO4 composition and the separate mission-set kernel pass independent main replay. The native terrain join passes3600 samples/144 patches/576 queries across nine profiles. Actual computed-height original-actor headless/GPU joins pass400 samples/16 patches/nine grounded states and exact disposal; late malformed fourth-chunk input drains12 partial visuals. Static layer preparation closes enabled counts/local bounds/cache stride conditionally. Full14-field CREO4 composition/publication, real height filters, original complete terrain, gameplay and live interoperability remain open. Research89%/readiness94%,2626 names and345 packet-source rows remain separate and unchanged. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R41_SUPPLIED_HEIGHT_AND_CREO4_FIELDS.md).
+## Round42 complete private state and supplied terrain sequence
+
+Complete14-field CREO4 codec/state and full prepared storage pass122 independent full-model sequences/2439 events. Separate supported storage passes122 sequences/924 events and40 prepared-seam checks. Ordered supplied layer sequences and a two-layer geometry/query join pass15456 plans and3600 joined samples/144 patches/576 queries. Direct FHGT evidence establishes current-height reads before this layer's affectors; the raw/query implementation passes375 raw cases/13959 queries. World routing, query-time filter composition, original recursive terrain, gameplay and live interoperability remain next. Research89%/readiness94%,2626 names and345 packet-source rows remain separate and unchanged. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R42_PRIVATE_CREATURE_AND_TERRAIN_SEQUENCE.md).
+
+## Round43 private world and current-height filters
+
+Optional complete CREO4 world publication and original-resource headless/GPU joins pass independent full-model, ordered-event, variable-journal and cleanup checks. Query-time FHGT supplied execution and its two-layer geometry/query join pass independently. FSLP raw structure is implemented; initializer timing/x87 sine preprocessing remains unresolved. Server observer CREO4 deltas can arrive before end-baselines without a full view4 baseline; original default/template initialization and modern admission for that path remain the next compatibility milestone. The current seeded finalized private route does not yet cover it. Original recursive terrain, gameplay and live interoperability remain open. Research89%/readiness94%,2626 names/zero duplicates and345 packet-source rows remain separate and unchanged. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R43_PRIVATE_WORLD_AND_HEIGHT_FILTERS.md).
+
+## Round45 accepted compatibility increment
+
+The [Round45 report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_45_2026-10-04.md) records independently reviewed/replayed supplied
+AHFR/FFRA consumers, an incarnation-bound received-only partial CREO4 store,
+one human movement-template input chain and the actual current-height FHGT/AHCN
+Godot preview. The store accepts pending/finalized objects without default seeds
+but has no world/router admission yet. Original fractal generation/cache lifetime,
+floating controls, complete terrain and later creature writers remain unknown.
+Research scores and canonical name/packet denominators remain unchanged.
+
+## Round46 accepted compatibility increment
+
+The [Round46 report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_46_2026-10-04.md) records received-only CREO4 world/router admission and its original-resource headless/GPU preview, an owned authored movement profile, and static family-map/sampler prerequisites. Partial/full4 policies are mutually exclusive; no default seed is fabricated. Fractal cache misses can return retained wide values while hits reload F32, so supplied-F32 consumer acceptance is not original sampler parity. Research scores,2626 canonical names and345 packet-source rows are unchanged.
+
+## Round47 compatibility increment
+
+The [authored movement consumer](SHARED_CREATURE_AUTHORED_MOVEMENT_INPUT_CONTRACT.md) exports owned five-slot raw/provenance data and explicit selection without fallback past unresolved nearer inputs. One configured necessary-parent chain agrees independently. The selected [MFRC/0001 child](TERRAIN_FRACTAL_SEED_NOISE_CONTRACT.md) now has a13-word schema; raw original words are derived only into private receipts. Version0 and general production sampling remain separate.
+
+## Round48 compatibility increment
+
+[MFRC/0001 raw decoding](TERRAIN_FRACTAL_RAW_INPUT_CONTRACT.md) preserves13 words, including nonfinite raw patterns, separately from runtime eligibility. One pinned84-byte occurrence is dynamically private. Full unsigned64 supplied samples and actual conditional noise consumers are tested;0000/full family lifecycle remain separate.
+
+## Round49 compatibility increment
+
+[Original-resource sourced preview](SCENE_WORLD_SOURCED_MOVEMENT_RESOURCE_PREVIEW_CONTRACT.md) passes authored/received headless and authored GPU joins through the actual original recipe closure with zero extra movement reads. [Current raw inputs](SCENE_WORLD_CREATURE_MOVEMENT_CURRENT_INPUT_CONTRACT.md) retain explicit constructor provenance and exact received overrides without store seeding; [explicit stop and sourced input](SCENE_WORLD_SOURCED_INPUT_HOST_CONTRACT.md) own the modern direction/clock lifecycle. Original full arbitration, modifier/vehicle semantics and units remain separate.

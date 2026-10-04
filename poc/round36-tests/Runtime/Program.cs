@@ -1,0 +1,1 @@
+try{SceneWorldCreatureView6CompositeScenarios.Run(args[0],args[1]);if(args.Length==6){SceneWorldCreatureView6Scenarios.Run(args[2],args[3]);SceneCreatureView6CompositeStoreScenarios.Run(args[4],args[5]);}}catch(Exception e){Console.Error.WriteLine(e);Environment.ExitCode=1;}

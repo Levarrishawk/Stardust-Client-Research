@@ -1,0 +1,45 @@
+using System.Buffers.Binary;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using Stardust.Core.Protocol;
+namespace Stardust.Core.SmokeTests;
+public static class CreatureHamView6Scenarios
+{
+    private static object Row(CreatureHamView6State s)=>new{s.ObjectId,s.Revision,Ham=new{s.Ham.Counter,Values=s.Ham.Values.ToArray()},MaximumHam=new{s.MaximumHam.Counter,Values=s.MaximumHam.Values.ToArray()}};
+    private static object Plan(CreatureHamView6Delta p)=>new{p.ObjectId,p.DeclaredCount,Updates=p.Updates.Select(u=>new{u.Field,u.Extent,u.Counter,Commands=u.Commands.Select(c=>new{c.Opcode,c.Index,Values=c.Values.ToArray()}).ToArray()}).ToArray()};
+    public static void Run(string input,string output)
+    {
+        if(new FileInfo(input).Length>1048576)throw new InvalidDataException("Bounded HAM fixture");using var doc=JsonDocument.Parse(File.ReadAllBytes(input));var records=new List<object>();int negatives=0,budgets=0,ownership=0;var codec=new CreatureHamView6Limits();
+        void Check(bool value,string reason){if(!value)throw new Exception(reason);}
+        void Equal(object row,JsonElement expected,string reason)=>Check(JsonNode.DeepEquals(JsonSerializer.SerializeToNode(row),JsonNode.Parse(expected.GetRawText())),reason);
+        void Reject(Action a){negatives++;try{a();}catch(InvalidDataException){return;}catch(ArgumentException){return;}catch(OverflowException){return;}throw new Exception("Negative HAM accepted");}
+        foreach(var c in doc.RootElement.GetProperty("Cases").EnumerateArray())
+        {
+            byte[] seedWire=Convert.FromHexString(c.GetProperty("Baseline").GetString()!),wire=Convert.FromHexString(c.GetProperty("Hex").GetString()!);var baseline=CreatureView6Codec.DecodeBaseline(seedWire,new());var plan=CreatureHamView6Codec.Decode(wire,codec);Equal(Plan(plan),c.GetProperty("Plan"),"Independent plan");Check(CreatureHamView6Codec.Encode(plan,codec).SequenceEqual(wire),"Exact HAM wire");
+            var envelope=ReplicationEnvelopeCodec.DecodeDelta(wire,codec.MaximumPayloadBytes);Equal(Plan(CreatureHamView6Codec.Decode(envelope,codec)),c.GetProperty("Plan"),"Envelope decode");Check(CreatureHamView6Codec.EncodeEnvelope(plan,codec).CopyOpaqueFields().SequenceEqual(envelope.CopyOpaqueFields()),"Envelope encode");
+            var state=CreatureHamView6State.FromBaseline(baseline);Equal(Row(state),c.GetProperty("Initial"),"Seed");var old=JsonSerializer.Serialize(Row(state));var change=state.Apply(plan);Equal(Row(change.Current),c.GetProperty("Expected"),"Independent two-vector state");Equal(change.Events.ToArray(),c.GetProperty("Events"),"Modern ordered events");Check(change.WorkUsed==c.GetProperty("Work").GetInt64(),"Independent work");Check(ReferenceEquals(change.Previous,state)&&!ReferenceEquals(change.Current,state),"Immutable publication");Check(JsonSerializer.Serialize(Row(state))==old,"Old state unchanged");ownership++;
+            Check(CreatureView6Codec.EncodeBaseline(baseline,new()).SequenceEqual(seedWire),"Other baseline fields untouched");ownership++;
+            var wireAlias=(byte[])wire.Clone();var owned=CreatureHamView6Codec.Decode(wireAlias,codec);Array.Clear(wireAlias);Check(CreatureHamView6Codec.Encode(owned,codec).SequenceEqual(wire),"Owned plan");ownership++;
+            var command=plan.Updates.SelectMany(u=>u.Commands).FirstOrDefault();if(command is not null){var alias=command.Values.ToArray();var frozen=new CreatureHamView6Command(command.Opcode,command.Index,alias);Array.Clear(alias);Check(frozen.Values.SequenceEqual(command.Values),"Command freezes values");ownership++;}
+            var inspect=change.Current.Ham.Values.ToArray();Array.Clear(inspect);Equal(Row(change.Current),c.GetProperty("Expected"),"Inspection alias detached");ownership++;
+            var cross=Task.Run(()=>state.Apply(plan)).GetAwaiter().GetResult();Equal(Row(cross.Current),c.GetProperty("Expected"),"Independent immutable branch");ownership++;
+            var cost=c.GetProperty("CodecCost");int N(string k)=>cost.GetProperty(k).GetInt32();var exact=new CreatureHamView6Limits(N("Bytes")+2,N("Fields"),N("Commands"),N("Values"),N("Bytes"));_=CreatureHamView6Codec.Decode(wire,exact);Check(CreatureHamView6Codec.Encode(plan,exact).SequenceEqual(wire),"Exact codec caps");budgets+=2;
+            var tighter=new List<CreatureHamView6Limits>{exact with{MaximumPayloadBytes=exact.MaximumPayloadBytes-1},exact with{MaximumFields=exact.MaximumFields-1},exact with{MaximumDecodedBytes=exact.MaximumDecodedBytes-1}};if(exact.MaximumCommands>0)tighter.Add(exact with{MaximumCommands=exact.MaximumCommands-1});if(exact.MaximumValues>0)tighter.Add(exact with{MaximumValues=exact.MaximumValues-1});
+            foreach(var tight in tighter){Reject(()=>CreatureHamView6Codec.Decode(wire,tight));Reject(()=>CreatureHamView6Codec.Encode(plan,tight));budgets+=2;}
+            var sc=c.GetProperty("StateCost");int SN(string k)=>sc.GetProperty(k).GetInt32();long SL(string k)=>sc.GetProperty(k).GetInt64();var exactState=new CreatureHamView6StateLimits(SN("Elements"),SN("Combined"),SL("StateBytes"),SN("Events"),SL("OutputBytes"),SL("Work"),exact);var limited=state.Apply(plan,exactState);Equal(Row(limited.Current),c.GetProperty("Expected"),"Exact combined state caps");budgets++;
+            var less=new List<CreatureHamView6StateLimits>{exactState with{MaximumStateBytes=exactState.MaximumStateBytes-1},exactState with{MaximumOutputBytes=exactState.MaximumOutputBytes-1},exactState with{MaximumWork=exactState.MaximumWork-1}};if(exactState.MaximumElements>0)less.Add(exactState with{MaximumElements=exactState.MaximumElements-1});if(exactState.MaximumCombinedElements>0)less.Add(exactState with{MaximumCombinedElements=exactState.MaximumCombinedElements-1});if(exactState.MaximumEvents>0)less.Add(exactState with{MaximumEvents=exactState.MaximumEvents-1});
+            foreach(var tight in less){Reject(()=>state.Apply(plan,tight));Check(JsonSerializer.Serialize(Row(state))==old,"Cap failure preserves old state");budgets++;}
+            var reseed=change.Current.Reseed(baseline);Equal(Row(reseed),c.GetProperty("Reseed"),"Reseed");
+            Reject(()=>state.Apply(new CreatureHamView6Delta(state.ObjectId+1,0,plan.Updates)));var wrong=(byte[])seedWire.Clone();BinaryPrimitives.WriteUInt64LittleEndian(wrong.AsSpan(6),state.ObjectId+1);Reject(()=>state.Reseed(CreatureView6Codec.DecodeBaseline(wrong,new())));
+            Reject(()=>CreatureHamView6State.FromBaseline(baseline,null,ulong.MaxValue));var end=CreatureHamView6State.FromBaseline(baseline,null,ulong.MaxValue-1);Reject(()=>end.Apply(plan));Reject(()=>end.Reseed(baseline));
+            for(int n=0;n<wire.Length;n++){var truncated=wire[..n];Reject(()=>CreatureHamView6Codec.Decode(truncated,codec));if(n>=25&&plan.Updates.Count==1){BinaryPrimitives.WriteUInt32LittleEndian(truncated.AsSpan(19),(uint)(n-23));Reject(()=>CreatureHamView6Codec.Decode(truncated,codec));}}
+            var seedExact=new CreatureHamView6StateLimits(Math.Max(state.Ham.Values.Count,state.MaximumHam.Values.Count),state.Ham.Values.Count+state.MaximumHam.Values.Count,state.DecodedBytes,0,state.DecodedBytes,state.Ham.Values.Count+state.MaximumHam.Values.Count);_=CreatureHamView6State.FromBaseline(baseline,seedExact);budgets++;
+            records.Add(new{Name=c.GetProperty("Name").GetString(),Plan=Plan(plan),Initial=Row(state),Expected=Row(change.Current),Events=change.Events.ToArray(),Work=change.WorkUsed,Reseed=Row(reseed)});
+        }
+        foreach(var m in doc.RootElement.GetProperty("Malformed").EnumerateArray())Reject(()=>CreatureHamView6Codec.Decode(Convert.FromHexString(m.GetString()!),codec));
+        foreach(ushort f in new ushort[]{0,1,12,15,65535})Reject(()=>new CreatureHamView6Update(f,0,0,[]));Reject(()=>new CreatureHamView6Command(5,0,[]));Reject(()=>new CreatureHamView6Command(1,0,[]));Reject(()=>new CreatureHamView6Command(3,1,[]));Reject(()=>new CreatureHamView6Command(4,0,[1]));
+        Reject(()=>CreatureHamView6Codec.Encode(new(1,0,[]),codec));Reject(()=>CreatureHamView6Codec.Encode(new(1,0,[new(13,0,0,[new(4,0,[])])]),codec));Reject(()=>CreatureHamView6Codec.Encode(new(1,0,[new(14,1,0,[])]),codec));
+        var first=doc.RootElement.GetProperty("Cases")[0];var sample=CreatureView6Codec.DecodeBaseline(Convert.FromHexString(first.GetProperty("Baseline").GetString()!),new());var kept=CreatureHamView6State.FromBaseline(sample);var valid=CreatureHamView6Codec.Decode(Convert.FromHexString(first.GetProperty("Hex").GetString()!),codec);var earlier=kept.Apply(valid).Current;string earlierRow=JsonSerializer.Serialize(Row(earlier));Reject(()=>earlier.Apply(valid,new(MaximumWork:0)));Check(JsonSerializer.Serialize(Row(earlier))==earlierRow,"Earlier valid result survives later failure");ownership++;
+        File.WriteAllText(output,JsonSerializer.Serialize(new{Records=records,Negatives=negatives,Budgets=budgets,Ownership=ownership},new JsonSerializerOptions{WriteIndented=true}));Console.WriteLine($"PASS HAM {records.Count} exact cases, {negatives} negatives, {budgets} budgets, {ownership} ownership checks");
+    }
+}

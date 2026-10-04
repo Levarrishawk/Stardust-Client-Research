@@ -1,0 +1,35 @@
+# Round 50: immutable owned MGRP family data
+
+Date: 2026-10-04. Question: can one MGRP/0000 be represented as owned raw family evidence with exact order, signed IDs, uninterpreted terminated names and frozen MFRC inputs, while rejecting malformed or over-budget inputs before snapshots?
+
+Stopping condition: the selected effective Tatooine MGRP agrees with an independent byte/chunk/field/hash oracle; synthetic signed-ID, name, duplicate, truncation, ownership, cap and cancellation cases pass; frozen raw/U64/sampler/default gates remain green; exact scope/links/whitespace/HEAD/index pass.
+
+## Input identity and preparation
+
+Frozen Round 50 snapshot: 3,548 public files; manifest SHA-256 `4c041de82399f47d5968db6752dae245835f953e2d0b192e2aaf9690bb2f5627`; ZIP `d50c8328081477f21bc610001553b942dd997f9710ec87e67c05f907304be140`. All twelve own Round 49 reviewed final rows matched acceptance before overwrite. Complete archive/member/casefold/path/hash/size, lexical ancestor/target reparse and resolved containment checks plus all destination preflight preceded the single overlay; all 3,548 files passed postflight. Worker HEAD remains `65de8c88141071744dc75594be126b3bab3696a5`; accepted main HEAD remains `5493338d9cd4255cf58f25de6c4cd15f6507b818`.
+
+The original executable SHA-256 is `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`, configuration `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`, selected terrain source `6039D0C15F9CCB518D72AE01A1ABDF41FCFF2153B5CBF7EB3BA6E6C634A3A427`, TGEN `B623B789E5F8486414C1D68CD341005E7E25FD97AF30567E64E7AC848DEB6C32`. Group SHA-256: `A221167452D8D67719BD72A3DB30CC10B7B652881B935D3571B9D55328B444A1`.
+
+Tools: bundled Python and cached static-analysis packages; installed .NET and offline cached NuGet; the frozen [family verifier](../../tools/python/verify_terrain_fractal_family_lookup.py), existing TRE/IFF evidence tools, new [independent peer](../../poc/round50-tests/Assets/peer.py), and [runner](../../poc/round50-tests/Assets/Invoke-FamilySet.ps1). The executable is read statically and SHA-gated before address interpretation. No original executable execution, live contact, download, capture or fuzzing occurred.
+
+## Evidence, interpretation and consequences
+
+Observation: original MGRP/0000 loader 00B75920/00B75F40 reads MFAM DATA ID/name followed by MFRC; signed lookup and ownership evidence are in [the prior contract](../../docs/TERRAIN_FRACTAL_FAMILY_LOOKUP_CONTRACT.md). The fresh verifier checks 180 instruction anchors, 28 direct branches, eight wrong-executable identity cases, 32 selected-data identity cases and frozen AHFR/FFRA prerequisites. Confidence: Confirmed structure, bounded direct-call coverage. Consequence: preserve signed ID and exact raw bytes, while keeping original duplicate and pointer-lifetime semantics separate.
+
+Observation: the single effective group at priority 42 and TGEN offset 6602 is 5,633 bytes with 43 ordered MFAM entries. Independent raw parsing agrees on every signed ID, terminated name byte, embedded envelope, thirteen raw words, relative offset, length and source hash. Aggregate names: 965 bytes; embedded snapshots: 3,612 encoded bytes; logical retained snapshots: 6,813 bytes; logical work: 9,245. Confidence: Confirmed for this occurrence. Consequence: an owned evidence set can serve selected samplers without retaining original pointers. Original names and raw words remain private; no additional terrain was surveyed.
+
+Interpretation: `Find` returning an immutable entry or explicit missing, rejecting duplicate IDs and enforcing exact grammar are bounded modern policies. Original constructor `-1` sentinel behavior, duplicate allocation cleanup, concurrent map queries and reload invalidation remain Unknown. All raw signed IDs are accepted structurally; raw mode/flag/nonfinite acceptance does not establish runtime eligibility. Confidence: Confirmed modern behavior; no original parity claim.
+
+The [durable contract](../../docs/TERRAIN_FRACTAL_FAMILY_SET_CONTRACT.md) defines APIs, accounting, hard bounds and cancellation. A complete structural and budget pass plus duplicate pass precede owned name/raw copies. Source spans are never retained. Existing IFF rules are reused by a fixed extent preflight rather than its whole-input-copying tree parser.
+
+## Validation record
+
+Initial actual Core build and native/oracle comparison passed: 681 deterministic cases, 29 positive and 652 negative, 347 ownership checks, and exact original 43-entry agreement. The synthetic matrix includes signed extrema and `-1`, arbitrary high name bytes and raw nonfinite words, duplicates, missing/embedded terminators, every prefix truncation of the multi-entry fixture, altered tags/sizes/versions, trailing bytes, exact/undersized aggregate caps, invalid hard-limit policies and pre-cancellation. A final native refinement additionally verifies each rejected request leaves the prior result unchanged.
+
+The final fresh guarded runner passed all 681 cases with 347 independently counted ownership checks and 652 prior-result preservation checks. The final index is constructed before the publication cancellation check. Cancellation checks inside passes and after construction are confirmed by inspection; deterministic cancellation fixtures cover pre-cancellation, not a claimed scheduler-specific late interruption. The guarded launcher separately rejected an existing root, an outside-private root, and a junction ancestor with zero output writes.
+
+Frozen gates passed: 274 conditional sampler cases, 5,940 queries, 1,134 action rejections and 792 miss/hit witnesses; 330 raw cases and 2,592 wide cases, including 468 accepted full-U64 cases; 1,155 kernel cases and 786 retained consumer joins. The default Core smoke completed with 18 allowlisted journal events and zero failures. Final Core/runner/default builds had zero warnings/errors. Python AST, XML and PowerShell parsing passed. Workspace validation found 1,515 Markdown files, zero broken links and zero private links, with 2,626 unique canonical addresses and 345 packet rows unchanged. Exact scope review found nine additions, zero existing-file edits and all 3,548 baseline files unchanged; per-file whitespace checks passed, HEAD is unchanged, index empty and private/build output ignored. No staging, commit or publication occurred. A discovery command used an unsupported Windows wildcard path and a guessed raw-decoder directory; repository discovery resolved both. An offset error and omitted per-name check were corrected during source inspection before the first build; independent expected outputs were not changed.
+
+## Resume point
+
+Review the new four-file implementation/evidence scope plus its runner. Next, a caller may choose an entry and construct an owned conditional sampler under explicit profiles, cache and limits. Do not infer original map quiescence, reload safety, final terrain parity or generation request semantics from this snapshot.

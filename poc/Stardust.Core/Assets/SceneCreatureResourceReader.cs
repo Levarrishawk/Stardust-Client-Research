@@ -12,8 +12,10 @@ public static class SceneCreatureResourceReader
     public static SceneCreatureResources Load(SceneCreateObjectByCrcMessage create, ObjectTemplateCatalog catalog,
         LogicalAnimationClipSelection idle, IReadOnlyDictionary<string, LogicalAnimationClipSelection> movementSelections,
         Func<string, TreLookupResult> resolve, CancellationToken token = default,
-        int maximumResources = 64, long maximumSourceBytes = 16 * 1024 * 1024, bool loadAlbedoFactors = false, SceneCreatureFaceInspectionPolicy? faceInspection = null)
+        int maximumResources = 64, long maximumSourceBytes = 16 * 1024 * 1024, bool loadAlbedoFactors = false, SceneCreatureFaceInspectionPolicy? faceInspection = null,
+        bool loadAuthoredMovementInputs=false,CreatureMovementResourceLimits? movementLimits=null)
     {
+        movementLimits=CreatureMovementResourceLimits.CopyValidated(loadAuthoredMovementInputs,movementLimits);
         ArgumentNullException.ThrowIfNull(create); ArgumentNullException.ThrowIfNull(catalog);
         ArgumentNullException.ThrowIfNull(resolve); ArgumentNullException.ThrowIfNull(movementSelections);
         if (maximumResources is < 1 or > 4096 || maximumSourceBytes is < 1 or > 134217728)
@@ -45,7 +47,8 @@ public static class SceneCreatureResourceReader
             loadSkeletons: true, loadSkinSources: true, meshDetail: 0, loadGeometry: true,
             loadLogicalTables: true, animationSelection: ownedIdle, prepareSelectedAnimation: true,
             loadMaterialDefaults: true, loadPaletteDefaults: true, loadAlbedoFactors: loadAlbedoFactors, additionalAnimationSelections: bank,
-            loadFaceBlueprints: faceInspection is not null, loadFaceResources: faceInspection is not null, loadFacePixelPrograms: faceInspection is not null);
+            loadFaceBlueprints: faceInspection is not null, loadFaceResources: faceInspection is not null, loadFacePixelPrograms: faceInspection is not null,
+            loadAuthoredMovementInputs:loadAuthoredMovementInputs,movementLimits:movementLimits,movementToken:token);
         token.ThrowIfCancellationRequested();
         long decodedBytes = UniqueDecodedBytes(creature, token);
         long decodedLimit = faceInspection?.MaximumDecodedBytes ?? 32 * 1024 * 1024;
@@ -81,6 +84,7 @@ public static class SceneCreatureResourceReader
                 foreach (var mip in pair.Value.Mips) bytes = checked(bytes + mip.Rgba.Length);
             }
         }
+        bytes=creature.AuthoredMovement?.DecodedBytes??0;
         Add(creature.MaterialBundle!.Textures);
         if (creature.FaceResources is not null) Add(creature.FaceResources.Textures);
         return bytes;

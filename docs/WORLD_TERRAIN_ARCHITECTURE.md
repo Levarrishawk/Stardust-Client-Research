@@ -1,5 +1,12 @@
 # World and Terrain Architecture
 
+The [Round44 original layer-order trace](TERRAIN_HEIGHT_LAYER_ORDER_CONTRACT.md)
+confirms fresh preparation, separate height/influence/product grids, and parent
+whole-grid completion before child traversal for one pinned FHGT occurrence.
+Actual preceding height writers are AHFR and a preceding filter is FFRA; fractal
+values, FSLP/AFDN and derived-cache numerics remain open. The accepted supplied
+flat sequence is a bounded implementation slice, not full original terrain parity.
+
 The separate space-terrain family is `STAT/0000`, not a ground `PTAT` variant. All 16 effective space `.trn` files and their eleven child-form families have executable-backed grammar, including repeated `PLAN`, `DIST`, and `CELE` entries and active `SKYB` parsing. See [STAT space-terrain checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-23_STAT_SPACE_TERRAIN_GRAMMAR.md). Runtime rendering/visibility is still open.
 
 ## Confirmed ground-terrain container
@@ -120,3 +127,82 @@ ClientChunk `+0xD4` is now confirmed as the environment-family byte grid. Query 
 [Owned map masks](TERRAIN_MAP_MASKS_CONTRACT.md) confirm effective Tatooine PTAT/0014 stores a direct FORM0001 containing DATA/WMAP/SMAP; MAPS is a conceptual object name, not a required literal wrapper. The earlier top-level diagram already reflects this direct form. One original sample and independent hashes/grid bits validate retained mask bytes; world-coordinate conversion and active SMAP use remain outside the new API.
 
 [Exact patch topology](TERRAIN_PATCH_TOPOLOGY_CONTRACT.md) implements all nine observed index patterns and checked rebasing. It selects explicit pattern indices, not an unverified neighbor mask mapping. Synthetic coordinates validate the helper without claiming generated procedural terrain. PTAT DATA/TGEN generation and complete outdoor rendering remain subsequent implementation milestones.
+
+## Round32 accepted world and terrain inputs
+
+[PTAT0013/0014 input](PROCEDURAL_TERRAIN_INPUT_CONTRACT.md) implements the exact DATA/read branches and owns complete TGEN bytes, with one original0014 sample and synthetic0013 fixtures. [Supplied patch geometry](TERRAIN_PATCH_GEOMETRY_CONTRACT.md) owns nine positions/normals/ARGB words, scaled base UVs, up to three of four exact auxiliary sets and explicit topology. The inspection adapter supports one auxiliary set, verifies reflection/winding/readback and balanced disposal. Original generated sample ordering, seam-mask selection and procedural height/material evaluation remain subsequent boundaries.
+
+## Round33 terrain structure and creature state
+
+Owned TGEN inputs expose 257 layers and 87 AHCN records in the same pinned Tatooine file while retaining unsupported rules. Exact nine-sample terrain assembly and seam branch priority pass independent static/native checks. Complete current CREO6 scalar/string/pair models now have bounded incarnation-owned publication and a prepared commit seam. Separately, the exact HAM/max-HAM vector codec and mutation kernel pass independent wire/state/counter/work oracles. These remain separate partitions, not a composed full CREO6 world update. Original mixed-world headless and combined Core regressions pass. Height evaluation, group semantics, vector composition, original owner side effects and live interoperability remain open. Research89%/readiness94%,2626 names and345 packet-source rows remain unchanged. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R33_TERRAIN_AND_CREATURE_STATE.md).
+
+## Round34 creature world and terrain arithmetic
+
+[Constant-height operation](TERRAIN_HEIGHT_CONSTANT_OPERATION_CONTRACT.md) closes arithmetic order/local gating under explicit precision profiles. [Vertex color](TERRAIN_VERTEX_COLOR_CONTRACT.md) preserves normalization, conditional binary-mask endpoint selection and truncation-before-add. Influence, active worker control word, source RGB/mask production and full generator remain separate. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R34_CREATURE_AND_TERRAIN_KERNELS.md).
+
+## Round35 terrain and composite publication prerequisites
+
+[BCIR input](TERRAIN_BOUNDARY_CIRCLE_INPUT_CONTRACT.md) adds typed boundary metadata. [Runtime arithmetic audit](TERRAIN_ARITHMETIC_RUNTIME_POLICY.md) traces actual worker creation and CRT endpoint initialization, while leaving worker initial/control-word mutation unknown. Precision, color enable/endpoints and coordinate producers remain explicit inputs. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R35_TERRAIN_AND_COMPOSITE_PREREQUISITES.md).
+
+## Round36 composite world and terrain boundaries
+
+[Circle influence](TERRAIN_BOUNDARY_CIRCLE_INFLUENCE_CONTRACT.md) closes supplied finite query/shaping arithmetic with exact division/sqrt rounding and mandatory separate cache/loading and query/shaping precision. It retains the unspilled query for shaping. [BREC serialized input](TERRAIN_BOUNDARY_RECTANGLE_INPUT_CONTRACT.md) precedes a separate evaluator. Sample-coordinate production, boundary/filter/layer combination and complete generation remain open. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R36_COMPOSITE_WORLD_AND_TERRAIN_BOUNDARIES.md).
+
+## Round37 complete creature kernel and supplied terrain
+
+[Supplied circle/AHCN patch](TERRAIN_CIRCLE_HEIGHT_PATCH_CONTRACT.md) and [surface query](TERRAIN_PATCH_SURFACE_QUERY_CONTRACT.md) pass a joined independent59-case/268-patch/4704-query oracle. All27 explicit precision triples are represented. [Coordinate producer](TERRAIN_SAMPLE_COORDINATE_PRODUCER_CONTRACT.md) closes the builder/layer/position graph and F32 stores, while actual margin/requests/runtime arithmetic and full layer combination remain open. Modern fixed up normals/color and direct influence handoff are not original generator behavior. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R37_COMPLETE_CREATURE_AND_SUPPLIED_TERRAIN.md).
+
+## Round38 full creature publication and terrain inputs
+
+[Explicit coordinate grids](TERRAIN_SAMPLE_COORDINATE_GRID_CONTRACT.md) retain separate layer/position raw axes under four mandatory arithmetic profiles.81 combinations pass; duplicate finite axes are preserved separately from display eligibility. [Fresh request provenance](TERRAIN_CHUNK_SAMPLE_REQUEST_CONTRACT.md) confirms margin3 at construction and20-byte worker record arguments. Later settings, active profiles, cell-border joining and complete original generation remain open. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R38_FULL_CREATURE_PUBLICATION_AND_TERRAIN_INPUTS.md).
+
+## Round39 supplied terrain grounding and CREO4 prerequisites
+
+[Padded supplied assembly](TERRAIN_COORDINATE_HEIGHT_PATCH_CONTRACT.md) and [original-actor supplied-terrain host](SCENE_WORLD_SUPPLIED_TERRAIN_PREVIEW_CONTRACT.md) pass independent native/headless/GPU joins. [General layer influence](TERRAIN_LAYER_INFLUENCE_CONTRACT.md) now records direct unspilled max/min, exact early exits, two inversions and incoming products. Original generator output remains unresolved. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R39_TERRAIN_GROUNDING_AND_PRIVATE_VIEW.md).
+## Round40 layer and CREO4 composition
+
+Fresh BPOL influence, supplied layer combination, restricted CREO4 scalar/encumbrance composition and the separate byte-key skill-map kernel pass independent main replays. The supplied layer/AHCN/coordinate/patch/query join passes nine profiles/3600 samples/144 patches/576 queries. ADTA version-to-runtime inversion mapping is verified separately; unknown flag/cache roles remain explicit. Original-resource headless regressions and combined/default builds pass. Full CREO4 publication, original terrain generation, owner gameplay and live interoperability remain open. Research89%/readiness94%,2626 names and345 packet-source rows remain separate and unchanged. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R40_LAYER_AND_CREATURE4_COMPOSITION.md).
+## Round41 supplied height execution and CREO4 fields
+
+Open-polyline influence, ordered supplied height execution, scalar/encumbrance/skill-map CREO4 composition and the separate mission-set kernel pass independent main replay. The native terrain join passes3600 samples/144 patches/576 queries across nine profiles. Actual computed-height original-actor headless/GPU joins pass400 samples/16 patches/nine grounded states and exact disposal; late malformed fourth-chunk input drains12 partial visuals. Static layer preparation closes enabled counts/local bounds/cache stride conditionally. Full14-field CREO4 composition/publication, real height filters, original complete terrain, gameplay and live interoperability remain open. Research89%/readiness94%,2626 names and345 packet-source rows remain separate and unchanged. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R41_SUPPLIED_HEIGHT_AND_CREO4_FIELDS.md).
+## Round42 complete private state and supplied terrain sequence
+
+Complete14-field CREO4 codec/state and full prepared storage pass122 independent full-model sequences/2439 events. Separate supported storage passes122 sequences/924 events and40 prepared-seam checks. Ordered supplied layer sequences and a two-layer geometry/query join pass15456 plans and3600 joined samples/144 patches/576 queries. Direct FHGT evidence establishes current-height reads before this layer's affectors; the raw/query implementation passes375 raw cases/13959 queries. World routing, query-time filter composition, original recursive terrain, gameplay and live interoperability remain next. Research89%/readiness94%,2626 names and345 packet-source rows remain separate and unchanged. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R42_PRIVATE_CREATURE_AND_TERRAIN_SEQUENCE.md).
+
+## Round43 private world and current-height filters
+
+Optional complete CREO4 world publication and original-resource headless/GPU joins pass independent full-model, ordered-event, variable-journal and cleanup checks. Query-time FHGT supplied execution and its two-layer geometry/query join pass independently. FSLP raw structure is implemented; initializer timing/x87 sine preprocessing remains unresolved. Server observer CREO4 deltas can arrive before end-baselines without a full view4 baseline; original default/template initialization and modern admission for that path remain the next compatibility milestone. The current seeded finalized private route does not yet cover it. Original recursive terrain, gameplay and live interoperability remain open. Research89%/readiness94%,2626 names/zero duplicates and345 packet-source rows remain separate and unchanged. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R43_PRIVATE_WORLD_AND_HEIGHT_FILTERS.md).
+
+## Round45 accepted compatibility increment
+
+The [Round45 report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_45_2026-10-04.md) records independently reviewed/replayed supplied
+AHFR/FFRA consumers, an incarnation-bound received-only partial CREO4 store,
+one human movement-template input chain and the actual current-height FHGT/AHCN
+Godot preview. The store accepts pending/finalized objects without default seeds
+but has no world/router admission yet. Original fractal generation/cache lifetime,
+floating controls, complete terrain and later creature writers remain unknown.
+Research scores and canonical name/packet denominators remain unchanged.
+
+## Round46 accepted compatibility increment
+
+The [Round46 report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_46_2026-10-04.md) records received-only CREO4 world/router admission and its original-resource headless/GPU preview, an owned authored movement profile, and static family-map/sampler prerequisites. Partial/full4 policies are mutually exclusive; no default seed is fabricated. Fractal cache misses can return retained wide values while hits reload F32, so supplied-F32 consumer acceptance is not original sampler parity. Research scores,2626 canonical names and345 packet-source rows are unchanged.
+
+## Round47 compatibility increment
+
+[Retained supplied sample consumers](TERRAIN_RETAINED_FRACTAL_SAMPLE_CONTRACT.md) and the [786-case composition](TERRAIN_RETAINED_FRACTAL_CONSUMER_JOIN_CONTRACT.md) preserve AHFR retained scaling and FFRA mandatory F32 storage, including conditional unit-scale double rounding. A [seeded noise element](TERRAIN_FRACTAL_SEED_NOISE_CONTRACT.md) is independently modeled under explicit profiles. Complete sampler/cache/lifetime/effective control and original terrain admission remain open.
+
+## Round48 compatibility increment
+
+[Owned immediate seeded noise](TERRAIN_SEEDED_NOISE_KERNEL_CONTRACT.md) and [864 computed consumer joins](TERRAIN_COMPUTED_NOISE_CONSUMER_JOIN_CONTRACT.md) are implemented under explicit table/query profiles. The raw MFRC decoder preserves metadata but does not apply octaves/modes/optional curves. Full sampler/cache composition and original generated parity remain open.
+
+## Round49 compatibility increment
+
+[Complete conditional sampler composition](TERRAIN_COMPLETE_SAMPLER_CONSUMER_JOIN_CONTRACT.md) now passes432 actual Core joins, preserving108 final miss/cache differences. The [owned mode0 sampler](TERRAIN_CONDITIONAL_FRACTAL_SAMPLER_CONTRACT.md) preserves normalization/octave stores and atomic modern cache batches. Other modes/curves, effective original controls, request/family lifetime and generated terrain parity remain open.
+
+## Round50 accepted boundary
+
+The [owned family/sampler join](TERRAIN_FRACTAL_FAMILY_SAMPLER_JOIN_CONTRACT.md), [current resource movement host](SCENE_WORLD_CURRENT_MOVEMENT_RESOURCE_PREVIEW_CONTRACT.md), and [controller input chain](CREATURE_CONTROLLER_SPEED_INPUT_CONTRACT.md) extend the prior accepted slice. Exact conditional compositions and modern movement/source ownership are independently checked; original terrain/controls/full movement parity remain Unknown. See [Round50](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_50_2026-10-04.md) for assembled acceptance and next probes.
+
+## Round51 bounded boundary
+
+[Generator-to-family height routing](TERRAIN_GENERATOR_FAMILY_HEIGHT_JOIN_CONTRACT.md) passes486 actual joins under explicit fresh-call controls. [Run-default preference](PLAYER_CONTROLLER_RUN_FLAG_CONTRACT.md) and [acceleration helper](CREATURE_ACCELERATION_HELPER_CONTRACT.md) have bounded static evidence; message timing, getter sampling and units remain open. The shared original-resource host remains the separately accepted Round50 slice. [Round51 record](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_51_2026-10-04.md).

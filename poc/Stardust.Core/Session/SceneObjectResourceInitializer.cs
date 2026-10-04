@@ -19,7 +19,7 @@ public sealed class SceneObjectResourceRequest
     }
     internal static SceneObjectResourceOptions CopyOptions(SceneObjectResourceOptions options) => options switch
     {
-        SceneCreatureResourceOptions c => new SceneCreatureResourceOptions(c.Idle, c.Movement, c.LoadAlbedoFactors, c.MaximumResources, c.MaximumSourceBytes, c.FaceInspection),
+        SceneCreatureResourceOptions c => new SceneCreatureResourceOptions(c.Idle, c.Movement, c.LoadAlbedoFactors, c.MaximumResources, c.MaximumSourceBytes, c.FaceInspection,c.LoadAuthoredMovementInputs,c.MovementLimits),
         SceneStaticResourceOptions s => new SceneStaticResourceOptions(s.MaterialPolicy, s.SwitchTextureFrame, s.Limits, s.MaximumDecodedBytes, s.SwitchFrames),
         _ => throw new InvalidDataException("Unsupported explicit options.")
     };

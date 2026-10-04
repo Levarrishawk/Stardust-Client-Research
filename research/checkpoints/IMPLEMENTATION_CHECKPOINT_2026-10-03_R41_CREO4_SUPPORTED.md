@@ -1,0 +1,32 @@
+# Round41: supported CREO4 immutable composition
+
+Date:2026-10-03. Question: can the frozen scalar/encumbrance and skill-map kernels compose in source order into one complete immutable model with deterministic shared budgets and atomic late rejection? Stop condition: independent byte/model/event/work agreement, negative and ownership scenarios, separate assemblies, exact assigned-file scope and reviewable durable contract. Mission field13, networking publication and shared living ledgers are outside this worker's assigned scope.
+
+## Input identity and orientation
+
+The authoritative frozen snapshot contains3174 public files. Manifest SHA-256:74cc0552f0715e52b782c9aec68dc003584fabbdd8987f55cc6684c971238ea8. ZIP SHA-256:c788a27f07bb5d5b5c4613c6b54a015ecf673288e3518fadff2cad79dd94c746. Main HEAD:5493338d9cd4255cf58f25de6c4cd15f6507b818. Worker HEAD:65de8c88141071744dc75594be126b3bab3696a5. The main frozen round41 snapshot, not sibling worktrees, is the implementation baseline.
+
+Orientation covered START_HERE and its accepted round40 session, current status/ledger/unknown-function terminology, relevant durable scalar/encumbrance and skill-map contracts/checkpoints, curated CreatureObjectMessage4 boundary row and the exact frozen child source. No original executable addresses were relied on; no original executable hash or execution verification is claimed.
+
+The private overlay was applied once after verifying both pins, archive/manifest exact sets and hashes, canonical case-insensitive paths, containment, lexical root/ancestor links, reparse points and every target ancestor. Existing-file overwrite admission used prior manifest, own reviewed round40 paths or incoming-identical bytes. The original helper sampled own round40 hashes from current bytes; a subsequent independent reconstruction from the reviewed final round40 focused diff proved all ten own hashes equal those reviewed bytes and incoming bytes. This is post-execution corroboration, not a claim that the initial helper derived those hashes from the diff. HEAD and index were captured and retained. Proprietary/private receipts remain ignored.
+
+## Findings, confidence and consequence
+
+- Observation: the supported codec owns a three-branch union, rejects field13/unknown map opcodes and scans shared command/value/key budgets before DTO ownership. Independent literal fixtures round-trip and truncation/shape/policy scenarios reject. Confidence: Confirmed for this implementation. Consequence: callers can pass mixed supported fields without a child codec bypassing whole-message limits.
+- Observation: supported seed invokes the frozen skill runtime map and projects sorted unique binary keys, last duplicate pair, command0 and canonical prefix. Raw baseline codec remains frozen. Confidence: Confirmed for this implementation; legacy kernel interpretation retains reviewed round40 confidence. Consequence: Model is runtime-normalized, not raw skill-record storage; raw duplicates still consume seed capacity/work.
+- Observation: scalar/encumbrance whole records and skill whole records delegate to their frozen kernels. Preflight predicts shared intermediate capacity/work; native results are checked before final publication. Confidence: Confirmed for tested bounded behavior. Consequence: exact wrapped skip, counter repair, zero extent, equal upsert and missing remove effects coexist with checked modern revision and atomic immutable publication.
+- Observation: complete state cost uses16 bytes per runtime map entry, whereas raw scalar-child accounting uses9+prefix; variable map events cost64+key and child summaries32+key. Confidence: Confirmed by independent exact/one-less budget checks. Consequence: neither retained mission values, extended-prefix spelling nor key-dependent summaries escape full capacity.
+
+The [durable supported contract](../../docs/CREATURE_VIEW4_SUPPORTED_CONTRACT.md) owns the API, formulas, normalized representation and compatibility boundary. No new function semantic labels, packet-gap closure, protocol-coverage percentages or original-client callback claims are introduced.
+
+## Validation
+
+Native separate Core/role runner build completed with0 warnings/errors. Native scenario result:122 sequences,37176 negatives,3893 budget checks and1951 ownership checks. Independent Python receipt verification passed all122 models, raw bits/counters, ordered events and work/output costs, with924 events. Fixtures are synthetic and include binary duplicate names, shortest/extended prefixes,65534/65535-byte boundaries, wrapped counters, all-skipped/no-op/extent0 records, interleaved scalar/encumbrance/map changes, full-width recipient, retained branches, reseed and revision overflow.
+
+Reproduce with cached .NET8, private APPDATA/NUGET_PACKAGES and the role NuGet.Config (sources cleared), NuGetAudit=false. Restore/build the role Runtime.csproj; execute Runtime.dll with ordered-fixtures.json and a private receipt path; then run `python poc/round41-tests/Runtime/peer.py verify poc/round41-tests/Runtime/ordered-fixtures.json <receipt>`. Regenerate the fixture using peer.py generate and compare bytes. The runner references the actual Core project and links only public scenario code, never production source; independent Python does not import native expectations.
+
+The separate SmokeTests assembly also built with0 warnings/errors. Organized-workspace validation passed:1409 Markdown files,0 broken links,0 links into private evidence,0 duplicate provisional addresses. Python syntax, role XML and whitespace checks passed. The exact scope audit found ten assigned additions and all3174 frozen files unchanged; HEAD and index remain unchanged and generated evidence/build output is ignored. Fixture SHA-256:2b20073f186de1bc83e33c8915db41d1166ce42b0f2fd788698a3736bef37b7f. Independent fixture regeneration passed byte-for-byte. No executed restore, build, native scenario or verifier failure occurred. No live server, packet capture, original client process, GPU run, download, commit, stage or publication occurred. Any final check limitation must be reported in that handoff rather than inferred from source inspection.
+
+## Exact resume point
+
+After review, the lead may compose publication using CreatureView4SupportedState.FromBaseline/Apply and complete returned Model; this worker adds no owner/store. Alternatively begin a separately bounded field13 mission investigation. Do not infer its delta grammar from the retained raw baseline mission pairs. Stop here until the next authorized round.

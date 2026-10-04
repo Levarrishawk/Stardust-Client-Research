@@ -1,6 +1,6 @@
 # Scene tangible view 6 publication store
 
-Round31, 2026-10-03. This is a bounded modern implementation policy over the accepted [TANO6 state contract](TANGIBLE_VIEW6_STATE_CONTRACT.md) and [state policy](TANGIBLE_VIEW6_STATE_POLICY.md). It introduces no recovered protocol, executable-address claim, world integration or callback delivery.
+Round31, 2026-10-03. This is a bounded modern implementation policy over the accepted [TANO6 state contract](TANGIBLE_VIEW6_STATE_CONTRACT.md) and [state policy](TANGIBLE_VIEW6_STATE_POLICY.md). The standalone store introduces no recovered protocol, executable-address claim or callback delivery. Round32 adds an internal preparation seam for the separately owned optional world adapter.
 
 Implementation: [SceneTangibleView6ReplicationStore](../poc/Stardust.Core/Session/SceneTangibleView6ReplicationStore.cs). Verification: [native scenarios](../poc/Stardust.Core.SmokeTests/SceneTangibleView6StoreScenarios.cs), [isolated runner](../poc/round31-tests/Runtime/Program.cs), [synthetic wire fixtures](../poc/round31-tests/Runtime/ordered-fixtures.json), [independent verifier](../poc/round31-tests/Runtime/verify.py).
 
@@ -40,4 +40,10 @@ State charges are the sum of current mapped states' `DecodedBytes` (`8 + 8 * ID 
 
 Confirmed by implementation and executable modern tests: exact-token publication, state/event atomicity, global logical budget rejection, stale/foreign/owner/closed/overflow negatives, historical journals, moved-handle carry-forward, recreation/reset and acknowledgment ownership. Independent accepted30 Python replay confirms 21 sequences, 23 transitions and 38 ordered events. Native suite: 143 checks across those sequences and nine store-specific case groups. These counts are test evidence, not research/function/protocol coverage percentages.
 
-No original executable, assets, live server, packet capture or dynamic legacy execution was used. The next integration question is who owns recipient validation and acknowledges historical batches at an eventual serialized scene boundary; this store intentionally implements neither world dispatch nor that host policy.
+No original executable, assets, live server, packet capture or dynamic legacy execution was used. The optional Round32 world adapter owns recipient validation and historical-batch acknowledgment guards; this standalone store still performs no world dispatch. See the prepared seam below.
+
+## Round32 prepared world seam
+
+The [optional world adapter](SCENE_WORLD_TANGIBLE_VIEW6_CONTRACT.md) now uses internal `PrepareSeed`, `PrepareApply`, `CheckPrepared`, `CommitPrepared` and `ReleasePrepared`. Preparation retains the owner gate and builds the entire map/queue/snapshot/accounting without publication. Only the exact active owned candidate can pass checks, with current handle/incarnation and unconsumed status. The coordinator finishes all world journal capacity/arithmetic/allocation before checking and committing. Commit contains assignments only; release drops the active preparation and gate. These methods are internal trusted serialized composition seams, not public caller APIs. No callbacks may intervene between check and commit.
+
+Public Seed/Apply delegate through that seam and preserve all accepted31 behavior. Accepted31 native143 checks and independent23-transition/38-event oracle pass after extension. World tokens intentionally use current incarnation plus exact stored state identity, so handle revisions may preserve world currentness while the historical store snapshot's own IsCurrent remains false. Event guards and generation journal retirement belong to the optional world adapter; the standalone store still has no dispatch/world ownership.

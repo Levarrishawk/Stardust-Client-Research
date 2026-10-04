@@ -26,6 +26,7 @@ public sealed class SceneTangibleView6ReplicationStore:IDisposable
  private readonly object identity=new(); private readonly int ownerThread=Environment.CurrentManagedThreadId;
  private SortedDictionary<ulong,SceneTangibleView6Snapshot> entries=new();
  private SceneTangibleView6EventRecord[] pending=Array.Empty<SceneTangibleView6EventRecord>();
+ private Prepared? activePrepared;
  private SceneTangibleView6EventBatch? issued; private long bytes; private ulong revision,epoch; private bool busy,closed;
  public SceneTangibleView6ReplicationStore(SceneObjectRegistry registry,SceneTangibleView6StoreLimits? limits=null,TangibleView6StateLimits? stateLimits=null,ulong revisionSeed=0)
  {
@@ -44,7 +45,7 @@ public sealed class SceneTangibleView6ReplicationStore:IDisposable
   if(state<8||output<8)throw new InvalidDataException("Global TANO6 state/output capacity.");
   return stateLimits with {MaximumStateBytes=state,MaximumOutputBytes=output,MaximumEvents=Math.Min(stateLimits.MaximumEvents,Math.Min(limits.MaximumEventsPerApply,limits.MaximumPendingEvents-pending.Length)),MaximumWork=Math.Min(stateLimits.MaximumWork,limits.MaximumWork)};
  }
- private void Publish(SceneObjectHandle handle,SceneObjectIncarnation incarnation,TangibleView6State state,IReadOnlyList<TangibleView6StateEvent> events,long other,ulong next)
+ private Prepared Build(SceneObjectHandle handle,SceneObjectIncarnation incarnation,TangibleView6State state,IReadOnlyList<TangibleView6StateEvent> events,long other,ulong next)
  {
   var snapshot=new SceneTangibleView6Snapshot(identity,handle,incarnation,next,state);
   var staged=new SortedDictionary<ulong,SceneTangibleView6Snapshot>(entries){[handle.ObjectId]=snapshot};
@@ -53,32 +54,56 @@ public sealed class SceneTangibleView6ReplicationStore:IDisposable
   long total=checked(other+state.DecodedBytes);ulong nextEpoch=checked(epoch+1);
   if(!CurrentHandle(handle)||registry.Find(handle.ObjectId)?.Incarnation!=incarnation)throw new InvalidDataException("Stale TANO6 commit recipient.");
   // Prebuilt assignment only: state is published before events become observable after owner gate releases.
-  entries=staged;bytes=total;pending=queue;revision=next;epoch=nextEpoch;issued=null;
+  var prepared=new Prepared(this,handle,incarnation,staged,total,queue,next,nextEpoch,snapshot);activePrepared=prepared;return prepared;
  }
- public SceneTangibleView6Snapshot? Seed(SceneObjectHandle handle,TangibleView6Baseline baseline)
+ internal sealed class Prepared
+ {
+  internal Prepared(SceneTangibleView6ReplicationStore owner,SceneObjectHandle handle,SceneObjectIncarnation incarnation,SortedDictionary<ulong,SceneTangibleView6Snapshot> entries,long bytes,SceneTangibleView6EventRecord[] events,ulong revision,ulong epoch,SceneTangibleView6Snapshot snapshot)
+  {Owner=owner;Handle=handle;Incarnation=incarnation;Entries=entries;Bytes=bytes;Events=events;Revision=revision;Epoch=epoch;Snapshot=snapshot;}
+  internal SceneTangibleView6ReplicationStore Owner{get;} internal SceneObjectHandle Handle{get;} internal SceneObjectIncarnation Incarnation{get;}
+  internal SortedDictionary<ulong,SceneTangibleView6Snapshot> Entries{get;} internal long Bytes{get;} internal SceneTangibleView6EventRecord[] Events{get;}
+  internal ulong Revision{get;} internal ulong Epoch{get;} internal SceneTangibleView6Snapshot Snapshot{get;} internal bool Consumed{get;set;}
+ }
+ internal Prepared? PrepareSeed(SceneObjectHandle handle,TangibleView6Baseline baseline)
  {
   Enter();try
   {
-   Open();if(!CurrentHandle(handle))return null;ArgumentNullException.ThrowIfNull(baseline);
+   Open();if(!CurrentHandle(handle)){busy=false;return null;}ArgumentNullException.ThrowIfNull(baseline);
    if(baseline.ObjectId!=handle.ObjectId)throw new InvalidDataException("TANO6 seed recipient.");
    var incarnation=registry.Find(handle.ObjectId)!.Incarnation;entries.TryGetValue(handle.ObjectId,out var old);
    if(old is null&&entries.Count==limits.MaximumObjects)throw new InvalidDataException("TANO6 object capacity.");
    long other=checked(bytes-(old?.State.DecodedBytes??0));ulong next=checked(revision+1);
    var state=TangibleView6State.FromBaseline(baseline,Effective(other),old?.Incarnation==incarnation?old.State.Revision:0);
-   Publish(handle,incarnation,state,Array.Empty<TangibleView6StateEvent>(),other,next);return entries[handle.ObjectId];
-  }finally{busy=false;}
+   return Build(handle,incarnation,state,Array.Empty<TangibleView6StateEvent>(),other,next);
+  }catch{busy=false;throw;}
  }
- public SceneTangibleView6Snapshot? Apply(SceneObjectHandle handle,SceneTangibleView6Snapshot expected,TangibleView6Delta plan)
+ internal Prepared? PrepareApply(SceneObjectHandle handle,SceneTangibleView6Snapshot expected,TangibleView6Delta plan)
  {
   Enter();try
   {
-   Open();if(!CurrentHandle(handle))return null;ArgumentNullException.ThrowIfNull(expected);
-   if(!ReferenceEquals(expected.Owner,identity)||!entries.TryGetValue(handle.ObjectId,out var current)||!ReferenceEquals(expected,current)||registry.Find(handle.ObjectId)!.Incarnation!=expected.Incarnation)return null;
+   Open();if(!CurrentHandle(handle)){busy=false;return null;}ArgumentNullException.ThrowIfNull(expected);
+   if(!ReferenceEquals(expected.Owner,identity)||!entries.TryGetValue(handle.ObjectId,out var current)||!ReferenceEquals(expected,current)||registry.Find(handle.ObjectId)!.Incarnation!=expected.Incarnation){busy=false;return null;}
    ArgumentNullException.ThrowIfNull(plan);if(plan.ObjectId!=handle.ObjectId)throw new InvalidDataException("TANO6 delta recipient.");
    long other=checked(bytes-current.State.DecodedBytes);ulong next=checked(revision+1);
-   var change=current.State.Apply(plan,Effective(other));Publish(handle,current.Incarnation,change.Current,change.Events,other,next);return entries[handle.ObjectId];
-  }finally{busy=false;}
+   var change=current.State.Apply(plan,Effective(other));return Build(handle,current.Incarnation,change.Current,change.Events,other,next);
+  }catch{busy=false;throw;}
  }
+ internal void CheckPrepared(Prepared p)
+ {
+  if(Environment.CurrentManagedThreadId!=ownerThread||!busy||closed||!ReferenceEquals(p.Owner,this)||!ReferenceEquals(activePrepared,p)||p.Consumed||p.Revision!=revision+1||p.Epoch!=epoch+1||!CurrentHandle(p.Handle)||registry.Find(p.Handle.ObjectId)?.Incarnation!=p.Incarnation)
+   throw new InvalidOperationException("Stale/foreign TANO6 prepared candidate.");
+ }
+ // Caller checks while the owner gate is held; no callbacks or foreign mutations may intervene.
+ internal void CommitPrepared(Prepared p)
+ {entries=p.Entries;bytes=p.Bytes;pending=p.Events;revision=p.Revision;epoch=p.Epoch;issued=null;p.Consumed=true;}
+ internal void ReleasePrepared(Prepared p)
+ {if(Environment.CurrentManagedThreadId!=ownerThread||!ReferenceEquals(p.Owner,this)||!ReferenceEquals(activePrepared,p))throw new InvalidOperationException("Foreign TANO6 preparation release.");activePrepared=null;busy=false;}
+ public SceneTangibleView6Snapshot? Seed(SceneObjectHandle handle,TangibleView6Baseline baseline)
+ {var p=PrepareSeed(handle,baseline);if(p is null)return null;try{CheckPrepared(p);CommitPrepared(p);return p.Snapshot;}finally{ReleasePrepared(p);}}
+ public SceneTangibleView6Snapshot? Apply(SceneObjectHandle handle,SceneTangibleView6Snapshot expected,TangibleView6Delta plan)
+ {var p=PrepareApply(handle,expected,plan);if(p is null)return null;try{CheckPrepared(p);CommitPrepared(p);return p.Snapshot;}finally{ReleasePrepared(p);}}
+ internal bool IsCurrentBatch(SceneTangibleView6EventBatch batch)
+ {Enter();try{return !closed&&ReferenceEquals(batch.Owner,identity)&&ReferenceEquals(batch,issued)&&batch.StoreRevision==revision&&batch.Epoch==epoch;}finally{busy=false;}}
  private void Retire()
  {
   var stale=entries.Where(p=>!registry.IsCurrent(p.Value.Incarnation)).Select(p=>p.Key).ToArray();if(stale.Length==0)return;

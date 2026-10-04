@@ -2,7 +2,7 @@
 import argparse
 import hashlib
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import subprocess
 import zipfile
 
@@ -15,12 +15,32 @@ def listed(root):
     result = subprocess.check_output([
         'git', '-c', f'safe.directory={root.as_posix()}', '-C', str(root),
         'ls-files', '-co', '--exclude-standard', '-z'])
-    return sorted(set(result.decode('utf-8').split('\0')) - {''})
+    paths = sorted(set(result.decode('utf-8').split('\0')) - {''})
+    if len({path.casefold() for path in paths}) != len(paths):
+        raise ValueError('Case-folded workspace path collision')
+    return paths
 
 
 def safe(root, relative):
-    path = (root / relative).resolve()
-    if not path.is_relative_to(root) or '.git' in Path(relative).parts:
+    portable = PurePosixPath(relative)
+    if (not relative or '\\' in relative or ':' in relative or portable.is_absolute()
+            or portable.as_posix() != relative
+            or any(part in ('.', '..') or part.casefold() == '.git' for part in portable.parts)):
+        raise ValueError(f'Unsafe workspace path: {relative}')
+    path = root
+    candidates = [*reversed(root.parents), root]
+    for part in portable.parts:
+        path = path / part
+        candidates.append(path)
+    for path in candidates:
+        try:
+            metadata = path.lstat()
+        except FileNotFoundError:
+            continue
+        if path.is_symlink() or getattr(metadata, 'st_file_attributes', 0) & 0x400:
+            raise ValueError(f'Linked workspace path: {relative}')
+    path = root / portable
+    if not path.resolve().is_relative_to(root.resolve()):
         raise ValueError(f'Unsafe workspace path: {relative}')
     return path
 
@@ -33,7 +53,7 @@ def main():
     parser.add_argument('--worker', type=Path)
     parser.add_argument('--allowed', type=Path, help='JSON list of exact paths; no globs')
     args = parser.parse_args()
-    root = args.root.resolve()
+    root = args.root.absolute()
     if args.mode == 'snapshot':
         args.baseline.mkdir(parents=True, exist_ok=True)
         if (args.baseline / 'baseline.json').exists():
@@ -53,7 +73,7 @@ def main():
         return
     if args.worker is None or args.allowed is None:
         parser.error('review/integrate require --worker and --allowed')
-    worker = args.worker.resolve()
+    worker = args.worker.absolute()
     allowed = set(json.loads(args.allowed.read_text(encoding='utf-8')))
     manifest = json.loads((args.baseline / 'baseline.json').read_text(encoding='utf-8'))
     baseline = {row['path']: row['sha256'] for row in manifest['files']}
@@ -69,15 +89,23 @@ def main():
         raise ValueError(f'Changes outside assignment: {unexpected}')
     if args.mode == 'integrate':
         # Complete preflight before the first write. Never delete, stage or commit.
+        prepared = []
         for row in changes:
             target = safe(root, row['path'])
             current = digest(target.read_bytes()) if target.is_file() else None
             if row['after'] is None or current not in (row['before'], row['after']):
                 raise ValueError(f'Integration conflict/deletion: {row["path"]}')
-        for row in changes:
+            data = safe(worker, row['path']).read_bytes()
+            if digest(data) != row['after']:
+                raise ValueError(f'Worker bytes changed during preflight: {row["path"]}')
+            prepared.append((row, data))
+        for row, data in prepared:
             target = safe(root, row['path'])
             target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_bytes(safe(worker, row['path']).read_bytes())
+            safe(root, row['path']).write_bytes(data)
+        for row, _ in prepared:
+            if digest(safe(root, row['path']).read_bytes()) != row['after']:
+                raise ValueError(f'Integration postflight mismatch: {row["path"]}')
     print(json.dumps(dict(mode=args.mode, worker=str(worker), changes=changes), indent=2))
 
 

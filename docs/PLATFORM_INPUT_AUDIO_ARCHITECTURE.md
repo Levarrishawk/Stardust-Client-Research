@@ -73,3 +73,11 @@ Shutdown should reverse dependency order: stop accepting scene/network work, can
 - File and terrain worker roles, queues and shutdown ownership: **Confirmed**; see the file-streamer and terrain-chunk checkpoints.
 - Custom fixed-block allocators: **Confirmed**; individual allocation-site coverage is incomplete.
 - The effective SD2D/SD3D descriptor corpus, major scalar distributions, playback bridge, category gain path, game-music policy and spatial coordinate adapter are reconstructed. Listener position uses transform X/Y/Z, forward uses K and up uses J; sources pass X/Y/Z directly to Miles. Individual scalar labels and category-13 intended gain remain incomplete.
+
+## Round50 accepted boundary
+
+The [owned family/sampler join](TERRAIN_FRACTAL_FAMILY_SAMPLER_JOIN_CONTRACT.md), [current resource movement host](SCENE_WORLD_CURRENT_MOVEMENT_RESOURCE_PREVIEW_CONTRACT.md), and [controller input chain](CREATURE_CONTROLLER_SPEED_INPUT_CONTRACT.md) extend the prior accepted slice. Exact conditional compositions and modern movement/source ownership are independently checked; original terrain/controls/full movement parity remain Unknown. See [Round50](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_50_2026-10-04.md) for assembled acceptance and next probes.
+
+## Round51 bounded boundary
+
+[Generator-to-family height routing](TERRAIN_GENERATOR_FAMILY_HEIGHT_JOIN_CONTRACT.md) passes486 actual joins under explicit fresh-call controls. [Run-default preference](PLAYER_CONTROLLER_RUN_FLAG_CONTRACT.md) and [acceleration helper](CREATURE_ACCELERATION_HELPER_CONTRACT.md) have bounded static evidence; message timing, getter sampling and units remain open. The shared original-resource host remains the separately accepted Round50 slice. [Round51 record](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_51_2026-10-04.md).

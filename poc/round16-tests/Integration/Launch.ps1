@@ -9,6 +9,7 @@ param(
  [switch]$Gpu,
  [string]$MotionPeer,
  [switch]$LocalInput,
+ [ValidateSet("AuthoredSpeed0","AuthoredSpeed1","ReceivedField7","ReceivedField11","CurrentField7","CurrentField11")][string]$SourcedInputSource,
  [switch]$InputLoss,
  [switch]$CustomizationRevisions,
  [switch]$CustomizationClosePending,
@@ -19,6 +20,13 @@ param(
  [switch]$CustomizationExtended,
  [string]$CustomizationNameContext,
  [string]$TangiblePeer,
+ [string]$TangibleView6Peer,
+ [string]$CreatureView6Peer,
+ [string]$CreatureView6CompositePeer,
+ [string]$CreatureView6FullPeer,
+ [string]$CreatureView4FullPeer,
+ [string]$CreatureView4PartialPeer,
+ [string]$TerrainPeer,
  [switch]$TerminalAnimation,
  [switch]$TerminalClock,
  [switch]$TerminalClockFault,
@@ -49,12 +57,22 @@ $taskArguments+=@('--','--asset-root',$taskArchive,'--asset-config',$taskConfig,
 if($CancelLoad){$taskArguments+='--pump-cancel'}
 if($MotionPeer){$taskArguments+=@('--motion-peer',(Resolve-Path -LiteralPath $MotionPeer).Path)}
 if($LocalInput){if(-not $MotionPeer){throw 'Local input requires motion peer'};$taskArguments+='--local-input'}
+if($TerrainPeer){if(-not $LocalInput -or $CancelLoad -or $InputLoss){throw 'Supplied terrain requires bounded local input mode'};$taskArguments+=@('--terrain-peer',(Resolve-Path -LiteralPath $TerrainPeer).Path)}
 if($FaceProfile){$taskArguments+=@('--face-profile',(Resolve-Path -LiteralPath $FaceProfile).Path)}
 if($CustomizationWirePeer){if(-not $LocalInput -or -not $FaceProfile -or -not $CustomizationDictionary -or $CustomizationRevisions -or $InputLoss -or $CancelLoad){throw 'Wire customization requires separate local-input face and dictionary mode'};$taskArguments+=@('--customization-wire','--customization-peer',(Resolve-Path -LiteralPath $CustomizationWirePeer).Path,'--customization-dictionary',(Resolve-Path -LiteralPath $CustomizationDictionary).Path)}
 if($CustomizationAssetContext){if(-not $CustomizationScalars -or -not $CustomizationWirePeer){throw 'Full creature context requires mixed wire mode'};$taskArguments+=@('--customization-full','--customization-asset-context',(Resolve-Path -LiteralPath $CustomizationAssetContext).Path)}
 if($CustomizationExtended){if(-not $CustomizationAssetContext){throw 'Extended creature mode requires original context'};$taskArguments+='--customization-extended'}
 if($CustomizationNameContext){if(-not $CustomizationExtended){throw 'Named mode requires extended mode'};$taskArguments+=@('--customization-named','--customization-name-context',(Resolve-Path -LiteralPath $CustomizationNameContext).Path)}
 if($TangiblePeer){if(-not $CustomizationNameContext){throw 'Typed tangible proof requires the named mixed host'};$taskArguments+=@('--tangible-peer',(Resolve-Path -LiteralPath $TangiblePeer).Path)}
+if($TangibleView6Peer){if(-not $TangiblePeer -or -not $TerminalClock -or $TerminalClockFault){throw 'TANO6 peer requires normal typed terminal clock mode'};$taskArguments+=@('--tangible6-peer',(Resolve-Path -LiteralPath $TangibleView6Peer).Path)}
+if(@($CreatureView6Peer,$CreatureView6CompositePeer,$CreatureView6FullPeer).Where({$_}).Count -gt 1){throw 'Choose one CREO6 world partition'}
+if($CreatureView6Peer){if(-not $TangibleView6Peer){throw 'CREO6 peer requires joined TANO6 mode'};$taskArguments+=@('--creature6-peer',(Resolve-Path -LiteralPath $CreatureView6Peer).Path)}
+if($CreatureView6CompositePeer){if(-not $TangibleView6Peer){throw 'Composite CREO6 peer requires joined TANO6 mode'};$taskArguments+=@('--creature6-composite-peer',(Resolve-Path -LiteralPath $CreatureView6CompositePeer).Path)}
+if($CreatureView6FullPeer){if(-not $TangibleView6Peer){throw 'Full CREO6 peer requires joined TANO6 mode'};$taskArguments+=@('--creature6-full-peer',(Resolve-Path -LiteralPath $CreatureView6FullPeer).Path)}
+if($CreatureView4FullPeer -and $CreatureView4PartialPeer){throw 'Choose one CREO4 world policy'}
+if($CreatureView4PartialPeer){if(-not $CreatureView6FullPeer){throw 'Partial CREO4 preview requires joined full CREO6 proof'};$taskArguments+=@('--creature4-partial-peer',(Resolve-Path -LiteralPath $CreatureView4PartialPeer).Path)}
+if($CreatureView4FullPeer){if(-not $CreatureView6FullPeer){throw 'Full CREO4 preview requires joined full CREO6 proof'};$taskArguments+=@('--creature4-full-peer',(Resolve-Path -LiteralPath $CreatureView4FullPeer).Path)}
+if($SourcedInputSource){if(-not $LocalInput -or -not $CreatureView4PartialPeer -or $TerrainPeer -or $InputLoss -or $CancelLoad){throw 'Sourced input requires the complete planar partial-view host'};$taskArguments+=@('--sourced-input',$SourcedInputSource)}
 if($TerminalAnimation){if(-not $TangiblePeer){throw 'Terminal animation requires typed tangible proof'};$taskArguments+='--terminal-animation'}
 if($TerminalClock){if(-not $TerminalAnimation){throw 'Terminal clock requires animation'};$taskArguments+='--terminal-clock'}
 if($TerminalClockFault){if(-not $TerminalClock){throw 'Clock fault proof requires clock'};$taskArguments+='--terminal-clock-fault'}

@@ -1,0 +1,31 @@
+# Round46: owned authored movement-input profile
+
+Date: 2026-10-04 UTC. Question: can the accepted one-chain serialized movement boundary become a bounded engine-neutral owned input profile without guessed runtime defaults? Stop at five tagged input records, exact provenance/raw agreement, modern safety gates and frozen regressions. Do not add simulation, angle conversion, CREO4 seeds or runtime-writer claims.
+
+## Inputs and scope
+
+The [Round45 serialized contract](../../docs/CREATURE_TEMPLATE_MOVEMENT_INPUT_CONTRACT.md) and [Round44 initialization](../../docs/CREATURE_VIEW4_INITIALIZATION_CONTRACT.md) are prerequisites. Fresh executable/configuration pins and the unchanged 50 loader anchors were replayed by the accepted45 verifier. Executable SHA-256 remains `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`; configuration is `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`. Only the human root and four necessary original parents were read through configured overlays; no asset/template survey occurred.
+
+Frozen46 overlay: 3,374 members, manifest SHA-256 `a31daab4cf81f243120d95933afa8e79135025d58381139d6846c8c2910b2074`, ZIP SHA-256 `f0af95216baeb5a8d60658c034ce74ebf08c969914825445ddad78b57b8f7732`, source/main HEAD `5493338d9cd4255cf58f25de6c4cd15f6507b818`. Complete lexical root/ancestor/target/member/canonical/casefold/link/reparse/containment/size/hash/destination preflight preceded any write. Every own45 row was separately checked against independently reviewed integration/worker receipt hashes; checked incoming bytes were retained. One overlay and all-member postflight preserved worker HEAD `65de8c88141071744dc75594be126b3bab3696a5`, empty index and private/unrelated bytes.
+
+Owned files are the new Core reader, new opt-in smoke scenarios, contract/checkpoint and own Round46 runner project/program/peer. Existing collision/name/cache/decoder/profile consumers and shared canonical artifacts remain frozen. Source payloads and original-derived values are not checked into Git.
+
+## Implementation and compatibility consequence
+
+The [profile contract](../../docs/SHARED_CREATURE_MOVEMENT_INPUT_PROFILE_CONTRACT.md) specifies the [reader](../../poc/Stardust.Core/Assets/SharedCreatureMovementInputProfile.cs), operational/unresolved tags, exact limits, accounting and original-versus-modern policy.
+
+**Observation:** raw encodings, mode/relative bytes and source/provenance survive independent native/Python comparison. **Interpretation:** five authored records can be retained without guessing later runtime state. **Confidence:** Confirmed for the pinned source chain and modern reader; runtime application remains Unknown. **Consequence:** consumers must check `Kind`/`Operational`; null unresolved values are not zero, and authored zero is a real literal.
+
+Nearest mode-1/space finite literals are operational. Missing/mode-0 entries continue inheritance. Sampled or relative entries stop nearest selection with an owned unsupported tag and null resolved value; public retained operands expose raw bits rather than unresolved numeric values. Unsupported serialized modes/nonfinite literals/malformed lengths reject explicitly. Speed stores first two and consumes bounded extras. Resource/source/parameter/nesting/array/decoded/work limits are checked before owned allocations where applicable; same-thread caught reentry poisons the outer transaction, cancellation aborts and finally cleanup permits later loads. No result aliases caller buffers.
+
+## Validation and corrections
+
+Native/peer agreement: 352 fixtures, 16 positive, 336 negative, 573 independent checks; 16 ownership, eight lifecycle/recovery and three exact/one-below aggregate boundary checks. The configured original native result has five sources/8,290 bytes and all selected raw records/provenance match the fresh accepted45 oracle. Default synthetic native smoke and both Core/runner builds pass with zero warnings/errors. Existing default smoke includes its established synthetic host/loopback checks; no original game process or live Stardust server was contacted.
+
+The first restore incorrectly disabled lockfile generation while a frozen Core lockfile exists, yielding NU1005 and cascading missing dependency compile errors. Correct locked offline restore recovered using the cached package store. The first SDK startup log included a development-certificate notice; later commands explicitly disable certificate generation and first-run experience, with no trust command invoked. The first fixture harness caught input errors but omitted the existing `AppearanceGraphBudgetException : IOException`; adding the correct exception type fixed the harness without changing production behavior. Orientation initially guessed collision/scenario filenames that do not exist; `rg --files` located the actual conventions. All failures are retained privately and none supports a compatibility claim.
+
+After reference-capacity reservation was moved before allocation, the smallest-output-budget case correctly invoked zero resolvers instead of one; its stale call-count assertion was updated to require this earlier rejection. A no-index whitespace check initially treated Git's expected LF-to-CRLF conversion warning as an error; disabling only the check's safe-CRLF warning completed whitespace validation without changing repository preferences. Final AST/XML/link/whitespace and exact frozen-byte/scope/HEAD/index checks are recorded in the private handoff receipt. Source, fixture and oracle hashes identify the reproducible run. Living status, ledgers and registries remain for lead reconciliation; research/function/protocol/readiness denominators do not change.
+
+## Resume point
+
+The bounded authored-input profile is complete; stop/idle after handoff. Next implementation decision is an explicit consumer preserving authored-input provenance, not conversion into replicated defaults. If runtime interpretation is needed first, resume the precise Round44 ranged-int virtual `+20`, `007D6C10` propagation or `005F1CD0` event-dispatch writer questions. Angle conversion, active RNG/globals, original version failure policy and final runtime constructor values remain unclosed.

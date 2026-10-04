@@ -1,0 +1,36 @@
+# Round45: one creature movement-template input chain
+
+Date: 2026-10-04 UTC. Question: what exact serialized modes, relative bytes and literal/sample structures supply `speed[0/1]`, `slopeModAngle`, `slopeModPercent`, `waterModPercent` for one effective `object/creature/player/shared_human_male.iff` inheritance chain? Stop after the five serialized provenance paths are classified with pinned source/loader evidence; do not broaden into runtime callback or corpus analysis.
+
+## Inputs and tools
+
+Executable SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`; configuration SHA-256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`. Original root pin `E0B61445E8A85CCF0AC5937F0F9CBCA8711718AFEE63384F30970D5AEE120243`. Every VA probe starts with executable identity; every archive parse begins after configuration/static-loader gates, and each source is pinned before structural interpretation.
+
+Python, pefile and Capstone provide read-only x86/32 instruction/data evidence. The [new verifier](../../tools/python/verify_creature_template_movement.py) reuses the accepted archive configuration/index/path/tombstone lookup and shared-template hierarchy parser. The [durable movement-input contract](../../docs/CREATURE_TEMPLATE_MOVEMENT_INPUT_CONTRACT.md) records the exact five source identities, version tags, source priorities, loader schema and confidence. Prior work was checked in [Round44 initialization](ANALYSIS_CHECKPOINT_2026-10-03_R44_CREO4_INITIALIZATION.md) and [original collision profile](IMPLEMENTATION_CHECKPOINT_2026-10-01_ORIGINAL_CREATURE_TEMPLATE_PROFILE.md).
+
+Round45 frozen overlay: 3,337 files; manifest SHA-256 `7f542061c7a18c463dbcd7bb59952bc810c89aef3175ce67995cdb3b1c96479e`; ZIP SHA-256 `8cd8ff837cac21f27d86301bf8f06de9876280f4cba054be434d7280b01a3d8e`; source/main HEAD `5493338d9cd4255cf58f25de6c4cd15f6507b818`. Preflight checked all member paths/canonical forms/casefold uniqueness/hash/size/link/reparse/containment/current destinations before any write, retained checked bytes and separately verified every own44 row against the independently reviewed integration hashes and worker receipt. All 3,337 postflight bytes, worker HEAD `65de8c88141071744dc75594be126b3bab3696a5`, empty index and unlisted/public/private preservation passed. The overlay ran once.
+
+## Findings and confidence
+
+- **Confirmed observation:** one chain contains five effective payloads totaling 8,290 bytes, across priorities 39, 51 and 53 in 48 configured mounts. It is the same source-count/byte-count boundary as the earlier collision investigation. Only these payloads were read; resolver index metadata is not a template corpus survey.
+- **Confirmed observation:** root has two mode-0/space speed entries and three mode-0/space scalar entries. Base player has two mode-1/space speed entries and three mode-1/space scalar entries. Base creature also supplies literals; the nearer base-player records override them. Remaining two parents have no SCOT movement parameters.
+- **Confirmed interpretation:** all five selected serialized provenance paths are inherited deterministic literals from base player. Exact raw bit patterns, decoded literal numbers, offsets and parent/source evidence are retained privately, not promoted as extracted public payloads.
+- **Confirmed observation:** `013FA200` reads a sign-extended one-byte mode and one raw relative byte, then dispatches serialized modes 0–3 through table `013FA468`. Mode 1 is four scalar bytes; mode 2 is signed count then signed weight/nested parameter entries; mode 3 is two four-byte endpoints. Raw-copy routine `00A94F00` has no byte swap in the inspected body.
+- **Confirmed observation:** speed count uses signed loop comparisons and stores no more than two values. Surplus positive-count records are loaded/destructed in a temporary. Serialized mode 4 is outside this float loader's accepted dispatch; the Round44 runtime getter's mode-4 global load is a separate state possibility.
+- **Unknown:** original version diagnostic/acceptance policy, effective runtime installation/use, active globals/RNG, exact x87 conversion and transitive later writers. No final constructor values, null/default zero or absence-of-writes claim follows from these serialized facts.
+
+## Validation and corrected failures
+
+Static replay passes 50 new loader instruction anchors, one raw mode table and one float-loader vtable. It reuses accepted Round44's 101 initialization anchors, four getter tables, constructor/registration/delivery evidence and existing pinned server prerequisites. Source priorities, byte counts, all five SHA-256 values and chain order are checked before reporting classifications.
+
+The [own synthetic runner](../../poc/round45-tests/Networking/research_checks.py) passes 40 serialized-input/fresh-process gates. Its synthetic structures cover exact literal order/width, absence, nearest override, relative/sampled classification, nested weights, extra/short speed arrays, nonfinite raw bits, truncation/duplicate/count/depth failures, missing/masked/cyclic parents, wrong root source identity and executable/configuration/public-receipt rejection. Negative count/unsupported-mode rejection is explicitly a research inspector rule, not an original fatal-error claim.
+
+The first static replay failed at a manually mistyped cursor-store address `00A94F3E`; direct instructions show pop at that address and the cursor store at `00A94F3F`. Correcting that anchor produced the passing replay. A discovery search again passed literal wildcard paths to Windows `rg`, which rejected those paths; directory-based discovery and exact checkpoint reads replaced it. Neither error yielded a promoted behavior claim. Instruction windows extending past `013FA464` were not used to interpret raw jump-table bytes as code.
+
+Two original-chain replays agree on the complete private receipts, including all source metadata, selected raw records and five provenance results. Organized-workspace validation passes 1,455 Markdown files, zero broken/private links, 2,626 provisional addresses with zero duplicates and 345 packet rows. Whitespace/AST and exact scope/frozen-byte/HEAD/index results are retained in the final private handoff receipt. Shared status, ledgers, navigation, canonical names and registries stay frozen for lead reconciliation. Research/function/protocol/readiness denominators are unchanged; no production parser, default, world or registry edit occurred.
+
+## Compatibility consequence and resume
+
+A replacement can separate the determinate authored movement-input records from conditional runtime initialization and later mutation. Absent root entries continue inheritance rather than supply zero; nearest authored records win, two speed indexes remain distinct and serialized modes must not be conflated with every runtime getter mode.
+
+The serialized-input question is closed for this exact pinned chain. Stop this worker milestone here. Next bounded investigation: trace ranged-int customization virtual `+20`, `007D6C10` child callback propagation or `005F1CD0` client-data event dispatch for writes before observer delivery. Those existing Round44 paths remain open and need no additional template/corpus survey to resume.

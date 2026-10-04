@@ -34,6 +34,17 @@ public partial class ScenePumpedWorldPreview : Node
     private string? retainedTerminalFingerprint;
     private Transform3D retainedTerminalTransform;
     private int tangibleIndex;
+    private JsonDocument? tangible6Fixture;
+    private SceneWorldTangibleView6ApplicationRouter? tangible6Router;
+    private int tangible6Index;
+    private JsonDocument? creature6Fixture;
+    private SceneWorldCreatureView6ApplicationRouter? creature6Router;
+    private SceneWorldCreatureView6CompositeApplicationRouter? creature6CompositeRouter;
+    private bool creature6Composite;
+    private bool creature6Full;
+    private SceneWorldCreatureView6FullApplicationRouter? creature6FullRouter;
+    private int creature6Index;
+    private Transform3D retainedCreature6Transform;
     private bool terminalAnimationEnabled;
     private bool terminalClockEnabled;
     private bool terminalClockFaultEnabled;
@@ -99,6 +110,7 @@ public partial class ScenePumpedWorldPreview : Node
         {
             GetTree().AutoAcceptQuit=false;
             var args=OS.GetCmdlineUserArgs();
+            LoadSourcedInputArguments(args);
             string Arg(string name) { int i=Array.IndexOf(args,name);if(i<0 || i+1>=args.Length || args.Count(a=>a==name)!=1)throw new ArgumentException(name);return args[i+1]; }
             string root=Arg("--asset-root");
             cfg=File.ReadAllBytes(Arg("--asset-config"));
@@ -125,7 +137,7 @@ public partial class ScenePumpedWorldPreview : Node
             if(terminalClockEnabled&&!terminalAnimationEnabled)throw new ArgumentException("Terminal clock requires animation");
             if(terminalAnimationEnabled&&!args.Contains("--tangible-peer"))throw new ArgumentException("Terminal animation requires typed tangible proof");
             var options=new Dictionary<SceneObjectResourceRecipe,SceneObjectResourceOptions> {
-                [SceneObjectResourceRecipe.CreatureDetail0]=new SceneCreatureResourceOptions(idle,bank,true,faceInspection is null?64:128,faceInspection is null?16777216:33554432,faceInspection),
+                [SceneObjectResourceRecipe.CreatureDetail0]=new SceneCreatureResourceOptions(idle,bank,true,faceInspection is null?64:128,faceInspection is null?16777216:33554432,faceInspection,loadAuthoredMovementInputs:sourcedRequested),
                 [SceneObjectResourceRecipe.StaticAppearance]=new SceneStaticResourceOptions(SceneStaticMaterialPolicy.RequireComplete,new("shader/anim_mission_terminal.sht","B5AA5A251A76AD8F152DB85F50FBC3061D0494847499F1068A9B55C375785A62",0),switchFrames:terminalAnimationEnabled?new SceneStaticSwitchFramePolicy():null) };
             cancel=args.Contains("--pump-cancel");
             localInput=args.Contains("--local-input");
@@ -145,6 +157,32 @@ public partial class ScenePumpedWorldPreview : Node
                     tangibleData.GetProperty("ObjectId").GetUInt64()==terminalId && tangibleData.GetProperty("Updates").GetArrayLength()==4,"Bounded synthetic tangible fixture");
                 peer["terminal_baseline"]=tangibleData.GetProperty("Baseline").GetString()!;
                 peer["terminal_delta"]=tangibleData.GetProperty("Noop").GetString()!;
+            }
+            if(args.Contains("--tangible6-peer")) {
+                Check(tangibleFixture is not null && terminalClockEnabled && !terminalClockFaultEnabled,"TANO6 requires normal typed clock proof");
+                tangible6Fixture=JsonDocument.Parse(File.ReadAllBytes(Arg("--tangible6-peer")));
+                var data6=tangible6Fixture.RootElement;
+                Check(data6.GetProperty("Version").GetInt32()==1 && data6.GetProperty("Synthetic").GetBoolean() && data6.GetProperty("ObjectId").GetUInt64()==terminalId && data6.GetProperty("Steps").GetArrayLength()==5,"Bounded synthetic TANO6 peer");
+                peer["terminal_view6_baseline"]=data6.GetProperty("Baseline").GetString()!;
+            }
+            Check(new[]{"--creature4-full-peer","--creature4-partial-peer"}.Count(args.Contains)<=1,"Choose one CREO4 world policy");
+            if(args.Contains("--creature4-partial-peer")){Check(args.Contains("--creature6-full-peer"),"Partial host requires full6 regression");LoadCreature4PartialPeer(Arg("--creature4-partial-peer"));}
+            if(args.Contains("--creature4-full-peer")) {
+                Check(args.Contains("--creature6-full-peer"),"Private-view host proof requires complete view6 regression");
+                LoadCreature4FullPeer(Arg("--creature4-full-peer"));
+            }
+            Check(new[]{"--creature6-peer","--creature6-composite-peer","--creature6-full-peer"}.Count(args.Contains)<=1,"Choose one CREO6 world partition");
+            creature6Full=args.Contains("--creature6-full-peer");
+            creature6Composite=args.Contains("--creature6-composite-peer");
+            if(args.Contains("--creature6-peer") || creature6Composite || creature6Full) {
+                Check(tangible6Fixture is not null,"CREO6 requires the normal joined TANO6 proof");
+                string path6=Arg(creature6Full?"--creature6-full-peer":creature6Composite?"--creature6-composite-peer":"--creature6-peer");
+                Check(new FileInfo(path6).Length<=32768,"Bounded CREO6 peer file");
+                creature6Fixture=JsonDocument.Parse(File.ReadAllBytes(path6));
+                var data6=creature6Fixture.RootElement;
+                Check(data6.GetProperty("Version").GetInt32()==1 && data6.GetProperty("Synthetic").GetBoolean() && data6.GetProperty("ObjectId").GetUInt64()==humanId && data6.GetProperty("Steps").GetArrayLength()==5,"Explicit synthetic CREO6 peer");
+                Check(data6.GetProperty("Baseline").GetString()!.Length<=2048 && data6.GetProperty("Steps").EnumerateArray().All(step=>step.GetProperty("Hex").GetString()!.Length<=2048 && step.GetProperty("ModelHex").GetString()!.Length<=2048),"CREO6 peer wire bounds");
+                peer["human_view6_baseline"]=data6.GetProperty("Baseline").GetString()!;
             }
             if(customizationExtended && !customizationFull)throw new ArgumentException("Extended creature mode requires full context mode");
             if(customizationFull && !customizationScalars)throw new ArgumentException("Full creature mode requires mixed scalar wire mode");
@@ -210,13 +248,19 @@ public partial class ScenePumpedWorldPreview : Node
                 },token);
                 jobs.Add(task);return task;
             }
-            world=new(catalog,options,Load,SceneCreateZeroQuaternionPolicy.Reject,maximumObjects:2,maximumOutstandingJobs:2,maximumStagedMessages:8,maximumPayloadBytes:1024,maximumEnvelopes:4,maximumEnvelopeBytes:1024,
+            world=new(catalog,options,Load,SceneCreateZeroQuaternionPolicy.Reject,maximumObjects:2,maximumOutstandingJobs:2,maximumStagedMessages:creature4Fixture is null&&creature4PartialFixture is null?8:9,maximumPayloadBytes:1024,maximumEnvelopes:4,maximumEnvelopeBytes:1024,
                 replicationPolicy:customizationFull?new(SceneWorldReplicationMode.CreatureView3MixedComponents,new(1024,1024,1024,128,16384),16,16384,
                     MixedLimits:new(1024,16,16,64,256,64),WoundsPolicy:CreatureWoundsApplicationPolicy.LegacyBounded,
                     ComponentsLimits:new(1024,16,64,256,64),ComponentsPolicy:new(128,64)):new(SceneWorldReplicationMode.CreatureView3Scalars,new(1024,1024,1024,128,16384),16,16384),
                 tangibleReplicationPolicy:tangibleFixture is null?null:new(BaselineLimits:new(1024,1024,128,64,4096),
                     DeltaLimits:new(1024,32,32,32,1024,4096,64,64,64,32,1024,128),
-                    StoreLimits:new(2,512,64,64,1024,128,32,64)));
+                    StoreLimits:new(2,512,64,64,1024,128,32,64)),
+                tangibleView6Policy:tangible6Fixture is null?null:new(new(MaximumPayloadBytes:1024),new(),new(MaximumObjects:2)),
+                creatureView6Policy:creature6Fixture is null || creature6Composite || creature6Full?null:new(new(MaximumPayloadBytes:1024),new(),new(MaximumObjects:2)),
+                creatureView6CompositePolicy:creature6Fixture is null || !creature6Composite?null:new(new(MaximumPayloadBytes:1024),new(MaximumPayloadBytes:1024),new(),new(MaximumObjects:2)),
+                creatureView6FullPolicy:creature6Fixture is null || !creature6Full?null:new(new(MaximumPayloadBytes:1024),new(MaximumPayloadBytes:1024),new(),new(MaximumObjects:2)),
+                creatureView4FullPolicy:creature4Fixture is null?null:new(new(MaximumPayloadBytes:1024),new(MaximumPayloadBytes:1024),new(),new(MaximumObjects:2)),
+                creatureView4PartialPolicy:creature4PartialFixture is null?null:new(new(MessageLimits:new(MaximumPayloadBytes:1024)),new(MaximumObjects:2)));
             generation=world.BeginSelection(humanId).Generation;
             if(args.Contains("--motion-peer")) {
                 motionPeer=JsonSerializer.Deserialize<Dictionary<string,string>>(File.ReadAllBytes(Arg("--motion-peer")))!;
@@ -309,15 +353,38 @@ public partial class ScenePumpedWorldPreview : Node
                     visuals[publication.Ticket.Handle.ObjectId]=inner;return result;
                 } catch {result.Dispose();throw;}
             }
+            if(tangible6Fixture is not null)tangible6Router=new(world,downstream:(g,bytes)=>tangibleRouter is not null?tangibleRouter.Accept(g,bytes):world.Accept(g,bytes.Span),maximumPayloadBytes:1024);
+            if(creature6Fixture is not null && !creature6Composite && !creature6Full)creature6Router=new(world,downstream:(g,bytes)=>tangible6Router!.Accept(g,bytes),maximumPayloadBytes:1024);
+            if(creature6Fixture is not null && creature6Composite)creature6CompositeRouter=new(world,downstream:(g,bytes)=>tangible6Router!.Accept(g,bytes),maximumPayloadBytes:1024);
+            if(creature6Fixture is not null && creature6Full)creature6FullRouter=new(world,downstream:(g,bytes)=>tangible6Router!.Accept(g,bytes),maximumPayloadBytes:1024);
+            if(creature4Fixture is not null)creature4FullRouter=new(world,downstream:(g,bytes)=>creature6FullRouter!.Accept(g,bytes),maximumPayloadBytes:4096);
+            if(creature4PartialFixture is not null)creature4PartialRouter=new(world,downstream:(g,bytes)=>creature6FullRouter!.Accept(g,bytes),maximumPayloadBytes:4096);
             pump=new(world,CreateVisual,new(MaximumQueuedMessages:16,MaximumQueuedBytes:16384,MaximumMessageBytes:4096,MaximumMessagesPerStep:2,MaximumPendingPublications:2,MaximumPublicationsPerStep:1,MaximumActors:2,MaximumPendingResourceWeight:faceInspection is null?67108864:134217728),
                 r=>SceneObjectResourceAccounting.Measure(r).PendingWeight,
-                applicationReceiver:tangibleRouter is not null?(g,bytes)=>tangibleRouter.Accept(g,bytes):namedCreatureRouter is not null?(g,bytes)=>namedCreatureRouter.Accept(g,bytes):extendedCreatureRouter is not null?(g,bytes)=>extendedCreatureRouter.Accept(g,bytes):fullCreatureRouter is not null?(g,bytes)=>fullCreatureRouter.Accept(g,bytes):customizationScalarRouter is not null?(g,bytes)=>customizationScalarRouter.Accept(g,bytes):customizationRouter is not null?(g,bytes)=>customizationRouter.Accept(g,bytes):router is null?null:(g,bytes)=>router.Accept(g,bytes.Span));
+                applicationReceiver:creature4PartialRouter is not null?(g,bytes)=>creature4PartialRouter.Accept(g,bytes):creature4FullRouter is not null?(g,bytes)=>creature4FullRouter.Accept(g,bytes):creature6FullRouter is not null?(g,bytes)=>creature6FullRouter.Accept(g,bytes):creature6CompositeRouter is not null?(g,bytes)=>creature6CompositeRouter.Accept(g,bytes):creature6Router is not null?(g,bytes)=>creature6Router.Accept(g,bytes):tangible6Router is not null?(g,bytes)=>tangible6Router.Accept(g,bytes):tangibleRouter is not null?(g,bytes)=>tangibleRouter.Accept(g,bytes):namedCreatureRouter is not null?(g,bytes)=>namedCreatureRouter.Accept(g,bytes):extendedCreatureRouter is not null?(g,bytes)=>extendedCreatureRouter.Accept(g,bytes):fullCreatureRouter is not null?(g,bytes)=>fullCreatureRouter.Accept(g,bytes):customizationScalarRouter is not null?(g,bytes)=>customizationScalarRouter.Accept(g,bytes):customizationRouter is not null?(g,bytes)=>customizationRouter.Accept(g,bytes):router is null?null:(g,bytes)=>router.Accept(g,bytes.Span));
             Queue("start");
-            foreach(string prefix in new[]{"human","terminal"})foreach(string suffix in new[]{"create","baseline","end"})Queue(prefix+"_"+suffix);
+            foreach(string prefix in new[]{"human","terminal"})foreach(string suffix in new[]{"create","baseline","end"}) {
+                Queue(prefix+"_"+suffix);
+                if(prefix=="terminal" && suffix=="baseline" && tangible6Fixture is not null)Queue("terminal_view6_baseline");
+                if(prefix=="human" && suffix=="baseline" && creature4PartialFixture is not null)Queue("human_view4_partial");
+                if(prefix=="human" && suffix=="baseline" && creature6Fixture is not null)Queue("human_view6_baseline");
+                if(prefix=="human" && suffix=="baseline" && creature4Fixture is not null)Queue("human_view4_baseline");
+            }
             environment=new(){BackgroundMode=Godot.Environment.BGMode.Color,BackgroundColor=new Color("#14202e")};
             AddChild(new WorldEnvironment{Environment=environment});
             var camera=new Camera3D{Current=true,Fov=40,Position=new Vector3(0,1.3f,-9)};
             AddChild(camera);camera.LookAt(new Vector3(0,1.3f,0));
+            if(args.Contains("--terrain-peer")) {
+                Check(localInput && !cancel && !inputLoss,"Supplied terrain requires bounded local-input mode");
+                LoadSuppliedTerrain(Arg("--terrain-peer"));
+                camera.Position=suppliedLayerMotion is null?new Vector3(0,4,-9):new Vector3(0,6,-10);
+                camera.LookAt(suppliedLayerMotion is null?new Vector3(0,.7f,0):new Vector3(0,2,0));
+                if(heightFilteredTerrain)
+                {
+                    camera.Projection=Camera3D.ProjectionType.Orthogonal;camera.Size=22;
+                    camera.Position=new Vector3(14,18,-20);camera.LookAt(new Vector3(0,4,0));
+                }
+            }
             host=new();host.FrameCompleted+=Frame;AddChild(host);host.Configure(pump,Before);
             _=ObserveHost();
         }
@@ -360,6 +427,83 @@ public partial class ScenePumpedWorldPreview : Node
             } finally {foreach(var bytes in sources.Values)Array.Clear(bytes);sources.Clear();}
         } finally {Array.Clear(input);}
     }
+    private void QueueCreature6(int index) {
+        byte[] bytes=Convert.FromHexString(creature6Fixture!.RootElement.GetProperty("Steps")[index].GetProperty("Hex").GetString()!);
+        try {pump!.QueueApplication(generation,bytes);} finally {Array.Clear(bytes);}
+    }
+    private void Creature6State(int index) {
+        if(creature6Full){Creature6FullState(index);return;}
+        if(creature6Composite){Creature6CompositeState(index);return;}
+        var snapshot=world!.FindCreatureView6(generation,humanId)!;
+        Check(snapshot is not null && world.IsCurrent(snapshot),"Current CREO6 publication");
+        var state=snapshot!.State;
+        var expected=index==0?creature6Fixture!.RootElement.GetProperty("Seed"):creature6Fixture!.RootElement.GetProperty("Steps")[index-1];
+        string modelHex=Convert.ToHexString(CreatureView6Codec.EncodeBaseline(state.Model,new(MaximumPayloadBytes:1024)));
+        Check(modelHex==expected.GetProperty("ModelHex").GetString(),"Exact full CREO6 raw model/vector/counter retention");
+        Check(ReferenceEquals(visuals[humanId].Publication,originalHuman) && visuals[humanId].CreatureVisual!.Root.Transform.IsEqualApprox(retainedCreature6Transform) && calls==3 && closed==3,"CREO6 preserves original visual/transform and performs no archive I/O");
+        var events=world.DrainCreatureView6Events(generation)!;
+        int count=index==0?0:expected.GetProperty("Events").GetInt32();
+        Check(events.Events.Count==count && Enumerable.Range(0,count).All(i=>world.IsCurrentCreatureView6Event(events,i)),"Current finalized CREO6 event recipients");
+        Check(world.AcknowledgeCreatureView6Events(events) && !world.AcknowledgeCreatureView6Events(events),"Exact CREO6 event acknowledgment once");
+        Check(world.RetainedCreatureView6Bytes==state.DecodedBytes && state.DecodedBytes==expected.GetProperty("StateBytes").GetInt64(),"CREO6 retained logical charge after ack");
+        GD.Print("creature6_state="+JsonSerializer.Serialize(new{Index=index,Name=index==0?"seed":expected.GetProperty("Name").GetString(),state.ObjectId,ModelHex=modelHex,StateRevision=state.Revision,StoreRevision=snapshot.Revision,RetainedBytes=world.RetainedCreatureView6Bytes,Events=count,Indices=events.Events.Select(e=>e.Event.Index).ToArray(),Current=true,AcknowledgedOnce=true,VisualRetained=true,Archives=closed}));
+    }
+    private void Creature6CompositeState(int index) {
+        var snapshot=world!.FindCreatureView6Composite(generation,humanId)!;
+        Check(snapshot is not null && world.IsCurrent(snapshot),"Current composite CREO6 publication");
+        var state=snapshot!.State;
+        var expected=index==0?creature6Fixture!.RootElement.GetProperty("Seed"):creature6Fixture!.RootElement.GetProperty("Steps")[index-1];
+        string modelHex=Convert.ToHexString(CreatureView6Codec.EncodeBaseline(state.Model,new(MaximumPayloadBytes:1024)));
+        Check(modelHex==expected.GetProperty("ModelHex").GetString(),"Exact scalar/HAM full model, raw counters and untouched vectors");
+        Check(ReferenceEquals(visuals[humanId].Publication,originalHuman) && visuals[humanId].CreatureVisual!.Root.Transform.IsEqualApprox(retainedCreature6Transform) && calls==3 && closed==3,"Composite CREO6 retains original visual/transform without archive I/O");
+        var batch=world.DrainCreatureView6CompositeEvents(generation)!;
+        var events=batch.Events.Select(record=>new{Kind=record.Event.Kind.ToString(),record.Event.Field,record.Event.UpdateOrdinal,record.Event.Opcode,record.Event.ElementIndex,record.Event.OldValue,record.Event.NewValue}).ToArray();
+        Check(Enumerable.Range(0,events.Length).All(i=>world.IsCurrentCreatureView6CompositeEvent(batch,i)),"Current finalized composite event recipients");
+        Check(index==0?events.Length==0:JsonSerializer.Serialize(events)==JsonSerializer.Serialize(expected.GetProperty("Events")),"Independent exact ordered assignment/HAM event metadata");
+        long pendingBytes=world.RetainedCreatureView6CompositeBytes;
+        Check(pendingBytes==state.DecodedBytes+24L*events.Length,"Composite pending journal charge");
+        Check(world.AcknowledgeCreatureView6CompositeEvents(batch) && !world.AcknowledgeCreatureView6CompositeEvents(batch),"Exact composite journal acknowledgment once");
+        Check(world.RetainedCreatureView6CompositeBytes==state.DecodedBytes && state.DecodedBytes==expected.GetProperty("StateBytes").GetInt64(),"Composite current charge after ack");
+        GD.Print("creature6_composite_state="+JsonSerializer.Serialize(new{Index=index,Name=index==0?"seed":expected.GetProperty("Name").GetString(),state.ObjectId,ModelHex=modelHex,StateRevision=state.Revision,StoreRevision=snapshot.Revision,RetainedBytes=world.RetainedCreatureView6CompositeBytes,Events=events,PendingBytesBeforeAck=pendingBytes,Current=true,AcknowledgedOnce=true,VisualRetained=true,Archives=closed}));
+    }
+    private void Creature6FullState(int index) {
+        var snapshot=world!.FindCreatureView6Full(generation,humanId)!;
+        Check(snapshot is not null && world.IsCurrent(snapshot),"Current full CREO6 publication");
+        var state=snapshot!.State;
+        var expected=index==0?creature6Fixture!.RootElement.GetProperty("Seed"):creature6Fixture!.RootElement.GetProperty("Steps")[index-1];
+        string modelHex=Convert.ToHexString(CreatureView6Codec.EncodeBaseline(state.Model,new(MaximumPayloadBytes:1024)));
+        Check(modelHex==expected.GetProperty("ModelHex").GetString(),"Exact all18 model, raw counters and ordered vectors");
+        Check(ReferenceEquals(visuals[humanId].Publication,originalHuman) && visuals[humanId].CreatureVisual!.Root.Transform.IsEqualApprox(retainedCreature6Transform) && calls==3 && closed==3,"Full CREO6 retains original visual/transform without archive I/O");
+        var batch=world.DrainCreatureView6FullEvents(generation)!;
+        var events=batch.Events.Select(record=>new{Kind=record.Event.Kind.ToString(),record.Event.Field,record.Event.UpdateOrdinal,record.Event.Opcode,record.Event.Index,record.Event.OldId,record.Event.NewId,record.Event.OldValue,record.Event.NewValue}).ToArray();
+        Check(Enumerable.Range(0,events.Length).All(i=>world.IsCurrentCreatureView6FullEvent(batch,i)),"Current finalized full event recipients");
+        Check(index==0?events.Length==0:JsonSerializer.Serialize(events)==JsonSerializer.Serialize(expected.GetProperty("Events")),"Independent exact full ordered event metadata");
+        long pendingBytes=world.RetainedCreatureView6FullBytes;
+        Check(pendingBytes==state.DecodedBytes+48L*events.Length,"Full pending journal charge");
+        Check(world.AcknowledgeCreatureView6FullEvents(batch) && !world.AcknowledgeCreatureView6FullEvents(batch),"Exact full journal acknowledgment once");
+        Check(world.RetainedCreatureView6FullBytes==state.DecodedBytes && state.DecodedBytes==expected.GetProperty("StateBytes").GetInt64(),"Full current charge after ack");
+        GD.Print("creature6_full_state="+JsonSerializer.Serialize(new{Index=index,Name=index==0?"seed":expected.GetProperty("Name").GetString(),state.ObjectId,ModelHex=modelHex,StateRevision=state.Revision,StoreRevision=snapshot.Revision,RetainedBytes=world.RetainedCreatureView6FullBytes,Events=events,PendingBytesBeforeAck=pendingBytes,Current=true,AcknowledgedOnce=true,VisualRetained=true,Archives=closed}));
+    }
+    private void QueueTangible6(int index)
+    {
+        byte[] bytes=Convert.FromHexString(tangible6Fixture!.RootElement.GetProperty("Steps")[index].GetProperty("Hex").GetString()!);
+        try {pump!.QueueApplication(generation,bytes);}finally{Array.Clear(bytes);}
+    }
+    private void Tangible6State(int index)
+    {
+        var snapshot=world!.FindTangibleView6(generation,terminalId)!;
+        var state=snapshot.State;
+        var expected=index==0?tangible6Fixture!.RootElement.GetProperty("Seed"):tangible6Fixture!.RootElement.GetProperty("Steps")[index-1];
+        Check(world.IsCurrent(snapshot) && state.Passive==expected.GetProperty("Passive").GetUInt32() && state.Counter==expected.GetProperty("Counter").GetUInt32() && state.Ids.SequenceEqual(expected.GetProperty("Ids").EnumerateArray().Select(v=>v.GetUInt64())),"Current TANO6 literal state");
+        var visual=visuals[terminalId].StaticVisual!;
+        bool gpu=DisplayServer.GetName()!="headless";
+        Check(ReferenceEquals(visuals[terminalId].Publication,retainedTerminal) && visual.Root.Transform==retainedTerminalTransform && visual.Fingerprint(gpu)==retainedTerminalFingerprint,"TANO6 retains original visual and resource publication");
+        var events=world.DrainTangibleView6Events(generation)!;
+        Check(Enumerable.Range(0,events.Events.Count).All(i=>world.IsCurrentTangibleView6Event(events,i)),"Current finalized TANO6 event recipients");
+        Check(world.AcknowledgeTangibleView6Events(events) && !world.AcknowledgeTangibleView6Events(events),"Exact TANO6 event acknowledgment once");
+        Check(world.RetainedTangibleView6Bytes==state.DecodedBytes,"TANO6 retained logical accounting after ack");
+        GD.Print("tangible6_state="+JsonSerializer.Serialize(new{Index=index,Name=index==0?"seed":expected.GetProperty("Name").GetString(),state.ObjectId,state.Passive,state.Counter,Ids=state.Ids.ToArray(),StateRevision=state.Revision,StoreRevision=snapshot.Revision,RetainedBytes=world.RetainedTangibleView6Bytes,Events=events.Events.Count,Current=true,AcknowledgedOnce=true,VisualRetained=true,Archives=closed}));
+    }
     private void Queue(string key)
     {
         byte[] bytes=Convert.FromHexString(peer[key]);
@@ -367,6 +511,7 @@ public partial class ScenePumpedWorldPreview : Node
     }
     private void Before(double seconds)
     {
+        AdvanceSourcedInput();
         if(++frames>1500)throw new InvalidDataException("Frame deadline");
         if(phase==0 && pump!.QueuedMessageCount==0 && world!.State==ZoneSceneTransitionState.Initializing) {
             Check(world.CompleteMinimumSceneBarrier(generation,true)is not null,"Explicit host barrier");
@@ -384,6 +529,7 @@ public partial class ScenePumpedWorldPreview : Node
         Check(receipt.AcceptedMessages+receipt.DroppedMessages<=2 && receipt.PublishedResources<=1,"Per-frame work budget");
         GD.Print("pump_frame="+JsonSerializer.Serialize(new{frames,receipt,actors=pump!.Consumer.Count}));
         if(cancel || finishing)return;
+        if(sourcedStarted && !sourcedComplete){FrameSourcedInput();return;}
         if(phase==1 && pump!.Consumer.Count==2) {
             var h=visuals[humanId];
             var t=visuals[terminalId];
@@ -415,7 +561,7 @@ public partial class ScenePumpedWorldPreview : Node
             Queue("terminal_destroy");phase=3;
         } else if(phase==3 && pump!.Consumer.Count==1) {
             Check(pump.Consumer.Find(terminalId)is null,"Only terminal retired");
-            Queue("terminal_create");if(tangibleFixture is not null)Queue("terminal_baseline");Queue("terminal_end");phase=4;
+            Queue("terminal_create");if(tangibleFixture is not null)Queue("terminal_baseline");if(tangible6Fixture is not null)Queue("terminal_view6_baseline");Queue("terminal_end");phase=4;
         } else if(phase==4 && pump!.Consumer.Count==2 && calls==3) {
             Check(closed==3 && visuals[humanId].CreatureVisual!.Fingerprint()==humanIds &&
                 ReferenceEquals(visuals[humanId].Publication,originalHuman),"Human retained through static reload");
@@ -424,7 +570,7 @@ public partial class ScenePumpedWorldPreview : Node
             if(motions is null)ScheduleFinish();
             else if(localInput) {
                 inputHost=new(()=>localClock);AddChild(inputHost);
-                inputHost.Configure(new SceneWorldLocalMotionDriver(world!,motions!,humanId));
+                inputHost.Configure(CreateLocalDriver());
                 KeyInput(Key.W,true);phase=8;
             }
             else {Check(RouteMotion("move_b") && !RouteMotion("move_stale"),"Wrap and stale motion");phase=5;}
@@ -519,11 +665,45 @@ public partial class ScenePumpedWorldPreview : Node
         } else if(phase==40 && pump!.QueuedMessageCount==0) {
             TangibleState(tangibleIndex);
             if(tangibleIndex<4){QueueTangible(tangibleIndex);tangibleIndex++;}
+            else if(tangible6Fixture is not null && tangible6Index==0) {
+                Tangible6State(0);QueueTangible6(0);tangible6Index=1;phase=50;
+            }
             else if(terminalAnimationEnabled) {
                 terminalAnimationStructure=visuals[terminalId].StaticVisual!.StructureFingerprint(DisplayServer.GetName()!="headless");
                 terminalTextureIds.Clear();AnimationState("initial",0);terminalAnimation!.SetPlaying(true);terminalAnimationStep=0;phase=42;
             }
             else {phase=41;ScheduleFinish();}
+        } else if(phase==50 && pump!.QueuedMessageCount==0) {
+            Tangible6State(tangible6Index);
+            if(tangible6Index<5){QueueTangible6(tangible6Index);tangible6Index++;}
+            else if(creature6Fixture is not null) {
+                retainedCreature6Transform=visuals[humanId].CreatureVisual!.Root.Transform;
+                Creature6State(0);QueueCreature6(0);creature6Index=1;phase=51;
+            }
+            else {
+                terminalAnimationStructure=visuals[terminalId].StaticVisual!.StructureFingerprint(DisplayServer.GetName()!="headless");
+                terminalTextureIds.Clear();AnimationState("initial",0);terminalAnimation!.SetPlaying(true);terminalAnimationStep=0;phase=42;
+            }
+        } else if(phase==51 && pump!.QueuedMessageCount==0) {
+            Creature6State(creature6Index);
+            if(creature6Index<5){QueueCreature6(creature6Index);creature6Index++;}
+            else if(creature4PartialFixture is not null){Creature4PartialState(0);QueueCreature4Partial(0);creature4PartialIndex=1;phase=53;}
+            else if(creature4Fixture is not null) {Creature4FullState(0);QueueCreature4Full(0);creature4Index=1;phase=52;}
+            else {
+                terminalAnimationStructure=visuals[terminalId].StaticVisual!.StructureFingerprint(DisplayServer.GetName()!="headless");
+                terminalTextureIds.Clear();AnimationState("initial",0);terminalAnimation!.SetPlaying(true);terminalAnimationStep=0;phase=42;
+            }
+        } else if(phase==52 && pump!.QueuedMessageCount==0) {
+            Creature4FullState(creature4Index);
+            if(creature4Index<5){QueueCreature4Full(creature4Index);creature4Index++;}
+            else {
+                terminalAnimationStructure=visuals[terminalId].StaticVisual!.StructureFingerprint(DisplayServer.GetName()!="headless");
+                terminalTextureIds.Clear();AnimationState("initial",0);terminalAnimation!.SetPlaying(true);terminalAnimationStep=0;phase=42;
+            }
+        } else if(phase==53 && pump!.QueuedMessageCount==0) {
+            Creature4PartialState(creature4PartialIndex);
+            if(creature4PartialIndex<5){QueueCreature4Partial(creature4PartialIndex);creature4PartialIndex++;}
+            else {terminalAnimationStructure=visuals[terminalId].StaticVisual!.StructureFingerprint(DisplayServer.GetName()!="headless");terminalTextureIds.Clear();AnimationState("initial",0);terminalAnimation!.SetPlaying(true);terminalAnimationStep=0;phase=42;}
         } else if(phase==42) {
             terminalAnimationStep++;
             AnimationState("frame"+terminalAnimationStep,BitConverter.SingleToUInt32Bits(visuals[terminalId].Publication.Resources.Static!.SwitchFrames!.Interval));
@@ -629,6 +809,7 @@ public partial class ScenePumpedWorldPreview : Node
         Check(inputHost!.HandleInput(input),"Accepted key transition");
     }
     private void LocalState(string name,System.Numerics.Vector3 expected,float speed,string clip) {
+        expected=TerrainExpected(name,expected);
         var state=inputHost!.LastState!;var position=state.Transform.Translation;
         var visual=visuals[humanId].CreatureVisual!;var origin=visual.Root.Position;
         Check(System.Numerics.Vector3.Distance(position,expected)<2e-5f && MathF.Abs(state.Speed-speed)<1e-5f,"Integer-clock local pose/speed");
@@ -664,19 +845,24 @@ public partial class ScenePumpedWorldPreview : Node
             Native=new[]{expected.X,expected.Y,expected.Z},Engine=new[]{origin.X,origin.Y,origin.Z},Height=1.4f,
             CreateHex=Convert.ToHexString(SceneObjectLifecycleCodec.EncodeCreate(originalHuman.Resources.Create)),calls}));
     }
-    private void ScheduleFinish(){finishing=true;CallDeferred(MethodName.Finish);}
+    private void ScheduleFinish(){if(sourcedRequested && !sourcedStarted && phase==47){BeginSourcedInput();return;}finishing=true;CallDeferred(MethodName.Finish);}
     public async void Finish()
     {
         try {
-            Check(cancel?calls==2 && entered==2:(phase==4 || phase==7 || phase==16 || phase==26 || phase==28 || phase==37 || phase==41 || phase==47 || phase==48) && frames>=7,"Continuous frame/lifecycle proof");
+            Check(cancel?calls==2 && entered==2:(phase==4 || phase==7 || phase==16 || phase==26 || phase==28 || phase==37 || phase==41 || phase==47 || phase==48 || phase==64) && frames>=7,"Continuous frame/lifecycle proof");
             if(motionCapture is not null) {
                 await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
                 await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
                 using var image=GetViewport().GetTexture().GetImage();
                 if(image.SavePng(motionCapture)!=Error.Ok)throw new IOException("Motion capture");
             }
-            inputHost?.Close();await host!.CloseAsync();router?.Dispose();
-            tangibleRouter?.Dispose();tangibleFixture?.Dispose();tangibleFixture=null;
+            inputHost?.Close();CloseSourcedInput();await host!.CloseAsync();router?.Dispose();CloseSuppliedTerrain();
+            if(creature4Fixture is not null) {
+                Check(world!.RetainedCreatureView4FullBytes==0,"Private world state/journal drained");
+                GD.Print("creature4_full_cleanup="+JsonSerializer.Serialize(new{StateAndJournalBytes=0,Drained=true}));
+            }
+            if(creature4PartialFixture is not null){Check(world!.RetainedCreatureView4PartialBytes==0,"Partial state/journal drained");GD.Print("creature4_partial_cleanup="+JsonSerializer.Serialize(new{StateAndJournalBytes=0,Drained=true}));}
+            CloseCreature4Partial();CloseCreature4Full();creature6FullRouter?.Dispose();creature6CompositeRouter?.Dispose();creature6Router?.Dispose();creature6Fixture?.Dispose();creature6Fixture=null;tangible6Router?.Dispose();tangible6Fixture?.Dispose();tangible6Fixture=null;tangibleRouter?.Dispose();tangibleFixture?.Dispose();tangibleFixture=null;
             if(tangibleVisual is not null)Check(tangibleVisual.DrainCompletion.IsCompleted && tangibleVisual.IsRetired && world!.RetainedTangibleReplicationDecodedBytes==0,"Typed tangible shutdown drains state and caption");
             if(terminalAnimation is not null) {
                 Check(terminalAnimation.IsRetired&&terminalAnimation.DrainCompletion.IsCompleted&&terminalAnimation.Animation.IsRetired&&terminalAnimation.Animation.SelectedTextureId==0&&terminalTextureIds.Count==8&&terminalTextureIds.Values.All(id=>GodotObject.InstanceFromId(id)is null),"Animated caches and inner presentation drain");
@@ -702,10 +888,15 @@ public partial class ScenePumpedWorldPreview : Node
             if(customizationRevisions && !cancel)GD.Print("PASS: pumped customization revisions=true latest_only=true failure_retained=true pose_clock_retained=true no_asset_io=true drained=true");
             if(customizationFull)GD.Print("PASS: pumped full_creature=true containers_retained=true authored_context=true raw_order=true scalar_height_once=true no_asset_reload=true drained=true");
             if(customizationNamed)GD.Print("PASS: pumped named_creature=true current_names=true original_table_resolution=true");
+            if(creature6Index==5)GD.Print(creature6Full?"PASS: pumped creature_view6_full=true current_state=true exact_ack=true visual_retained=true":creature6Composite?"PASS: pumped creature_view6_composite=true current_state=true exact_ack=true visual_retained=true":"PASS: pumped creature_view6=true current_state=true exact_ack=true visual_retained=true");
+            if(tangible6Index==5)GD.Print("PASS: pumped tangible_view6=true current_state=true exact_ack=true visual_retained=true");
+            if(creature4PartialIndex==5)GD.Print("PASS: pumped creature_view4_partial=true current_state=true exact_ack=true visual_retained=true no_default_seeds=true");
+            if(creature4Index==5)GD.Print("PASS: pumped creature_view4_full=true current_state=true exact_ack=true visual_retained=true");
             if(terminalAnimationEnabled)GD.Print("PASS: pumped terminal_animation=true frames=8 bounded=true no_update_io=true drained=true");
             if(customizationExtended)GD.Print("PASS: pumped extended_creature=true common_state=true hidden_composition=true raw_visibility_retained=true no_asset_reload=true drained=true");
             if(customizationScalars)GD.Print("PASS: pumped mixed_customization=true scalar_height_once=true ordered=true raw_empty_retains_display=true pose_clock_retained=true no_asset_reload=true drained=true");
             if(customizationWire)GD.Print("PASS: pumped wire_customization=true outer_owned=true ordered=true range_rejection=true empty_retention=true extended_preserved=true pose_clock_retained=true no_asset_reload=true drained=true");
+            if(sourcedComplete)GD.Print("PASS: pumped sourced_input=true explicit_source=true original_resource_chain=true stopped=true no_update_io=true drained=true");
             GetTree().Quit();
         } catch(Exception error) { await Fail(error); }
     }
@@ -714,14 +905,15 @@ public partial class ScenePumpedWorldPreview : Node
     {
         if(!finishing)finishing=true;
         GD.PushError("Pumped world failed: "+error);
-        try{inputHost?.Close();}catch(Exception cleanup){GD.PushError("Input cleanup: "+cleanup);}
+        try{inputHost?.Close();CloseSourcedInput();}catch(Exception cleanup){GD.PushError("Input cleanup: "+cleanup);}
+        try{CloseSuppliedTerrain();}catch(Exception cleanup){GD.PushError("Terrain cleanup: "+cleanup);}
         try{if(host is not null)await host.CloseAsync();else{pump?.Close();world?.Close();if(world is not null)await world.DrainCompletion;}}
         catch(Exception cleanup){GD.PushError("Pumped cleanup: "+cleanup);}
         bool expectedInputLoss=inputLoss && phase==17 && inputHost?.LastState?.FaultType=="InvalidOperationException";
         bool drained=world is null || world.OutstandingJobs==0;
         drained=drained && closed==calls && jobs.All(j=>j.IsCompleted);
         GD.Print("pump_failure_cleanup="+JsonSerializer.Serialize(new{calls,closed,drained,expectedInputLoss,DriverFault=inputHost?.LastState?.FaultType,actors=pump?.Consumer.Count??0}));
-        tangibleRouter?.Dispose();tangibleFixture?.Dispose();tangibleFixture=null;
+        CloseCreature4Partial();CloseCreature4Full();creature6FullRouter?.Dispose();creature6CompositeRouter?.Dispose();creature6Router?.Dispose();creature6Fixture?.Dispose();creature6Fixture=null;tangible6Router?.Dispose();tangible6Fixture?.Dispose();tangible6Fixture=null;tangibleRouter?.Dispose();tangibleFixture?.Dispose();tangibleFixture=null;
         customizationAdapter?.Dispose();customizationRouter?.Dispose();customizationScalarRouter?.Dispose();fullCreatureRouter?.Dispose();extendedCreatureRouter?.Dispose();namedCreatureRouter?.Dispose();nameTables?.Clear();nameTables=null;rawCustomizations?.Dispose();wirePeer?.Clear();customizationDictionary=null;customizationRanges=null;customizationDirectory=null;authoredContext=null;router?.Dispose();motions?.Dispose();visuals.Clear();motionPeer?.Clear();Array.Clear(cfg);environment?.Dispose();environment=null;
         if(expectedInputLoss && drained){GD.Print("PASS: pumped input_loss=true driver_stopped=true cleanup_attempted=true drained=true");GetTree().Quit();}
         else GetTree().Quit(1);
@@ -729,8 +921,8 @@ public partial class ScenePumpedWorldPreview : Node
     private static void Check(bool value,string name){if(!value)throw new InvalidDataException(name);}
     public override void _Notification(int what){if(what==NotificationWMCloseRequest && !finishing)_=Fail(new OperationCanceledException("Window close"));}
     public override void _ExitTree(){
-        foreach(var close in new Action[]{()=>inputHost?.Close(),()=>pump?.Close(),()=>world?.Close(),()=>tangibleRouter?.Dispose(),()=>tangibleFixture?.Dispose(),()=>customizationAdapter?.Dispose(),()=>customizationRouter?.Dispose(),()=>customizationScalarRouter?.Dispose(),()=>fullCreatureRouter?.Dispose(),()=>extendedCreatureRouter?.Dispose(),()=>namedCreatureRouter?.Dispose(),()=>nameTables?.Clear(),()=>rawCustomizations?.Dispose(),()=>router?.Dispose(),()=>motions?.Dispose()})
+        foreach(var close in new Action[]{()=>inputHost?.Close(),()=>CloseSourcedInput(),()=>pump?.Close(),()=>world?.Close(),()=>CloseCreature4Partial(),()=>CloseCreature4Full(),()=>creature6FullRouter?.Dispose(),()=>creature6CompositeRouter?.Dispose(),()=>creature6Router?.Dispose(),()=>creature6Fixture?.Dispose(),()=>tangible6Router?.Dispose(),()=>tangible6Fixture?.Dispose(),()=>tangibleRouter?.Dispose(),()=>tangibleFixture?.Dispose(),()=>customizationAdapter?.Dispose(),()=>customizationRouter?.Dispose(),()=>customizationScalarRouter?.Dispose(),()=>fullCreatureRouter?.Dispose(),()=>extendedCreatureRouter?.Dispose(),()=>namedCreatureRouter?.Dispose(),()=>nameTables?.Clear(),()=>rawCustomizations?.Dispose(),()=>router?.Dispose(),()=>motions?.Dispose()})
             try{close();}catch(Exception cleanup){GD.PushError("Exit cleanup: "+cleanup);}
-        visuals.Clear();motionPeer?.Clear();Array.Clear(cfg);environment?.Dispose();environment=null;
+        CloseSuppliedTerrain();visuals.Clear();motionPeer?.Clear();Array.Clear(cfg);environment?.Dispose();environment=null;
     }
 }

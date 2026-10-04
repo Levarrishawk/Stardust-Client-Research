@@ -1,5 +1,46 @@
 # Unknown and Provisional Functions
 
+## 2026-10-03 Round44 initialization prerequisites
+
+The [creature template investigation](docs/CREATURE_VIEW4_INITIALIZATION_CONTRACT.md)
+confirms constructor input identity through RTTI/vtables and concrete factory
+006126D0. Getter011ADE40 resolves speed slots0/1;011AE700/011AEA90/011AEE20
+resolve slope angle/percent and water percent. Local/parent loaded flags,
+conditional zero fallback, parameter modes and relative operand order are
+evidenced; effective values, globals/RNG and transitive later writers remain
+Unknown. This supersedes the four getter-identity questions below without
+assigning new canonical semantic names or changing the2626-address registry.
+
+The [slope startup investigation](docs/TERRAIN_FILTER_SLOPE_INITIALIZATION_CONTRACT.md)
+finds slot018560AC -> thunk00B77660 -> helper00B77670, storing exact3FC90FDB
+to01947228 before ordinary application entry on the returning startup path.
+Earlier-callback construction, later indirect writes and FSIN outcomes remain
+Unknown. The [real height-order trace](docs/TERRAIN_HEIGHT_LAYER_ORDER_CONTRACT.md)
+identifies AHFR process00B768A0 as a shared state+18 cell writer preceding the
+selected FHGT through root/earlier-sibling order; original fractal values and
+derived-cache behavior remain separate open questions.
+
+## 2026-10-03 CREO4 constructor input-getter follow-up
+
+The SHA-gated [delivery investigation](docs/CREATURE_VIEW4_DELIVERY_CONTRACT.md)
+adds58 direct constructor anchors. Five scalar fields0/1/4/5/10 receive F32 one
+at construction; five others take results from the constructor's supplied object.
+No new semantic names are assigned. The registry remains2626 distinct addresses
+with zero duplicates. These observations do not establish a complete default
+model or rule out subsequent template/subclass/other writes.
+
+| Address | Observation / confidence | Exact unresolved question |
+|---|---|---|
+| `0x011ADE40` | Calls0042F0AA with argument1 and0042F0E0 with argument0; returned values spill F32 into registered fields11 and7. Confirmed caller/store chain. | Identify supplied object's type, getter branches/defaults/inheritance and effective values. |
+| `0x011AE700` | Call0042F194 with argument0 feeds two multiplications then F32 field8 stores0042F1B8/BE. Confirmed graph. | Establish getter semantics, literal conversion role and active arithmetic controls. |
+| `0x011AEA90` | Call0042F1D6 with argument0 spills into field9 stores0042F1EE/F4. Confirmed caller/store chain. | Establish getter semantics and overrides before first observer delta. |
+| `0x011AEE20` | Call0042F20C with argument0 spills into field12 stores0042F226/229. Confirmed caller/store chain. | Establish getter semantics and effective constructor/template defaults. |
+
+Next: follow these four callees and constructor0042ECF0 callers/input identity,
+then reconcile all fourteen initial fields with observer deltas before
+SceneEndBaselines. An all-zero network seed is not justified. No original
+execution or live capture supports this follow-up.
+
 ## 2026-09-22 playback-script boundary
 
 The `PBSC/0002` template grammar and scheduler are now bounded, but this is not a closure of all individual action semantics. The effective overlay has 32 scripts, 68 threads and 124 action nodes. One installed script contains `FIPL` and `PPRL`, which were not found among 25 direct factory registrations; its ordinary runtime reachability is unproven. See `research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_PLAYBACK_SCRIPT_CORPUS_AND_FACTORY.md`.
@@ -3123,3 +3164,37 @@ Three new canonical roles: CachedNetworkId vector snapshot serializer00641690, d
 ## Round29 specialized identity state reconciliation
 
 Five roles adopted after the pinned 109-anchor/two-RTTI audit: default construction00B2FCC0, raw-bit equality00B2FFF0, resize00643CD0, assignment00641D20 and clear00641850. [State policy](docs/TANGIBLE_VIEW6_STATE_POLICY.md) distinguishes counter mutation, default-zero growth, observer ownership and callbacks from modern atomic publication. Registry2626 distinct addresses, zero duplicates; function coverage remains uncalibrated.
+
+## Round45 accepted compatibility increment
+
+The [Round45 report](research/sessions/PARALLEL_DEVELOPMENT_ROUND_45_2026-10-04.md) records independently reviewed/replayed supplied
+AHFR/FFRA consumers, an incarnation-bound received-only partial CREO4 store,
+one human movement-template input chain and the actual current-height FHGT/AHCN
+Godot preview. The store accepts pending/finalized objects without default seeds
+but has no world/router admission yet. Original fractal generation/cache lifetime,
+floating controls, complete terrain and later creature writers remain unknown.
+Research scores and canonical name/packet denominators remain unchanged.
+
+## Round46 accepted compatibility increment
+
+Round46 adds bounded static descriptions without adding or renaming curated rows. Family signed lower-bound00B76420, exact lookup00B75DE0, unchecked inline sampler getter00B757A0, clear00B75A50 and MGRP loader00B75920 are described in [family lookup](docs/TERRAIN_FRACTAL_FAMILY_LOOKUP_CONTRACT.md). Sampler013E7C00, cache clear013E6B50, resize013E6AD0, normalization013E6DD0, noise013E66F0, seed initialization013E64D0, RNG00B59EF0 and integer helper0131E27C are correlated in [sampler evidence](docs/TERRAIN_FRACTAL_SAMPLER_CONTRACT.md). Last three bodies/table semantics remain incomplete. Supplied F32 does not reproduce wide miss return; same-key pointer reload/quiescence remains Unknown.2626 distinct names/zero duplicate rows unchanged.
+
+## Round47 compatibility increment
+
+The [conditional seed/noise record](docs/TERRAIN_FRACTAL_SEED_NOISE_CONTRACT.md) reuses canonical legacy_shuffled_park_miller_next_VA_00B59EF0 and closes bounded semantics at013E64D0/013E66F0/0131E27C:322 shuffle entries, rounded floating-index division,514-entry tables, signed64 truncation/restoration and asymmetric x/z storage.289 instruction anchors and520 fixed-width recurrence checks support the interpretations. No provisional names are added or renamed; original active controls/exception recovery/optional postprocessing remain Unknown.
+
+## Round48 compatibility increment
+
+[Movement writer evidence](docs/CREATURE_MOVEMENT_WRITER_CONTRACT.md) pins runtime readers004388A0/00438950, current slots+674/+660, generic local assignment00439B00 and caller00629F7E/8A. Indirect targeting/notification/global lifetime and units remain unresolved; no canonical semantic rename or registry row is added. Conditional noise code does not establish original worker controls.
+
+## Round49 bounded normalization verification and implementation (2026-10-04)
+
+SHA-gated013E6DD0 confirms retained weight sum/multiply at013E6DF8/FE and final F32 sum/reciprocal stores013E6E06/12. This reinforces the existing Round46 observation and introduces no new provisional address/name. Conditional software sampler and derived current-input implementation do not recover original controls, optional helpers, related-object arbitration or final controller units. See [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R49_SAMPLER_AND_SOURCED_HOST.md). Canonical2626-name registry unchanged.
+
+## Round50: owned families and current movement inputs (2026-10-04)
+
+Four Low milestones are integrated: owned MGRP/0000 sets, explicit sampler modes0..5, current field7/11 admission and the original controller receiver/consumption chain. Lead independently replays the focused suites and2592 actual family/sampler/consumer compositions; current-field11 original-resource headless/GPU and nonfinite rejection pass. The current host remains an explicit modern planar policy; optional fractal curves/sine, original controls, controller flag/helper semantics and full terrain/movement parity remain open. [Lead checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R50_CURRENT_INPUTS_AND_FRACTAL_FAMILIES.md) and [round record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_50_2026-10-04.md). Research89/readiness94 heuristics,2626 names and345 packet rows are unchanged; no implementation-completion percentage is inferred.
+
+## Round51: generator routing and controller gates (2026-10-04)
+
+The owned generator now publishes exact fractal families into a fresh family-routed height-affector slice;486 complete native joins pass. Controller evidence identifies the run-default preference/local inversion and closes the direct acceleration helper, while getter sampling, input-message timing and units remain open. [Lead checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R51_GENERATOR_ROUTING_AND_CONTROLLER_GATES.md) and [round record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_51_2026-10-04.md). Conservative generator-copy reservation and fresh-call cache policy are explicit modern limits. Research89/readiness94 weighted heuristics,2626 names and345 packet rows remain unchanged and separate from client implementation completion.

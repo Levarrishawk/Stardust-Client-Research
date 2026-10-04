@@ -1,0 +1,31 @@
+# Round46: fractal sampler cache and return boundary
+
+Date: 2026-10-04. Question: how does sampler `013E7C00` choose/hit/invalidate a cell, transform coordinates on miss, and distinguish returned arithmetic from its F32 cache? Stop after the exact finite cache/store graph and immediate noise boundaries; do not introduce a production sampler while RNG, interpolation, optional curves and original controls remain unclosed.
+
+Canonical observations, interpretations, confidence, consequences and unknowns are in the [sampler contract](../../docs/TERRAIN_FRACTAL_SAMPLER_CONTRACT.md). This follows the accepted [AHFR](../../docs/TERRAIN_HEIGHT_FRACTAL_CONTRACT.md) and [FFRA](../../docs/TERRAIN_FILTER_FRACTAL_CONTRACT.md) supplied boundaries, and the [height order investigation](../../docs/TERRAIN_HEIGHT_LAYER_ORDER_CONTRACT.md). Their F32 boundaries remain narrower than an original wide miss.
+
+## Inputs and tools
+
+Executable SHA256: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Static VA interpretation is SHA-gated before PE/Capstone import and decoding. Original execution, live systems, downloads, bulk corpus exploration and publication are absent. Detailed instruction listings, synthetic fixture receipts and build logs remain ignored private evidence.
+
+ONE frozen46 overlay passed complete archive member/canonical/casefold/size/hash/lexical root+ancestor+target reparse/containment/destination preflight before writes; checked source bytes were retained, then all3374 public hashes verified. Every own45 final row matched the independently reviewed integration receipt before overwrite. Manifest SHA256 `a31daab4cf81f243120d95933afa8e79135025d58381139d6846c8c2910b2074`; archive SHA256 `f0af95216baeb5a8d60658c034ce74ebf08c969914825445ddad78b57b8f7732`. Worker HEAD `65de8c88141071744dc75594be126b3bab3696a5`, baseline main HEAD `5493338d9cd4255cf58f25de6c4cd15f6507b818`; index bytes preserved and empty.
+
+[Verifier](../../tools/python/verify_terrain_fractal_sampler.py): 230 selected instruction anchors, exact mode targets/constants/four FST return stores, mask-parity truth table, independent Fraction vectors and early identity rejection. [Runner](../../poc/round46-tests/Rendering/Invoke-FractalSampler.ps1): Python, installed .NET SDK8.0.300, cached PE/Capstone and offline BCnEncoder.Net dependencies. It uses fresh private outputs, cleared feeds, locked restore, disabled shared compiler/apphost/NuGet audit, and the actual Core project reference. Provide explicit Exe, Packages, AssetRoot, Config, CachedPackages, Python, Dotnet, and a fresh private RunRoot. No sibling46 APIs are used.
+
+The selected accepted AHFR and FFRA original snapshots are rechecked by their frozen regressions. This new cache investigation does not decode another terrain or family record: family-specific controls are not needed to close the universal finite hit/store graph, and no original numeric sample is claimed. Actual selected family noise/control closure remains the next question.
+
+## Findings and compatibility impact
+
+Confirmed: retained row stride /16-byte cells; nonzero flag plus inclusive original-coordinate tolerance; F32 reload on hit; key/flag publication before miss completion; full-cell clearing and observed setters; resize-only-on-growth with both requested dimensions replacing retained dimensions; mandatory coordinate/offset/octave F32 stores; six mode dispatch entries; four FST cache finishes retaining ST0; distinct AHFR and FFRA downstream stores.
+
+Strongly inferred: seeded gradient-noise role from initialization, conversion, permutations and gradient accesses. Unknown: exact seed/RNG/tables/interpolation, all original arithmetic controls/exceptions, optional sine/log/helper precision and domains, thread/mutation/failure validity, and original generated sample reachability. The map lookup/item-destruction investigation belongs to Assets and is not duplicated here.
+
+The modern native research model implements no external cache ownership, sampler or engine API. Its finite/dimension rejection rules are independently documented test eligibility. Existing production files remain byte-identical to all3374 frozen baseline rows. Canonical living ledger/status/registry reconciliation belongs to the lead; this role supplies only the three authorized new tool/doc/checkpoint files and its own runner subtree. Lead acceptance is not claimed.
+
+## Validation and corrections
+
+Final replay compares 2466 synthetic cases (66 rejects),360 hits,715 AHFR-side and303 FFRA-side retained-return witnesses. Those post-result witnesses use a synthetic non-unit scale; they do not claim a numerical difference for the selected original unit-scale FFRA. All frozen AHFR151/8836, FFRA152/2326, carrier6354 and filtered1141 cases and their ownership checks pass. The actual Core/reference build has zero warnings/errors. Eight internal identity negatives and four external early negatives pass with no decoder imports or output roots for the external wrong inputs. Focused baseline/scope/text/link/AST/XML/PowerShell, organized workspace and git whitespace checks are in the final hash handoff. Default smoke was not rerun because production is entirely unchanged.
+
+Corrected failures: the selected instruction inventory split REP STOSD/STOSB into mnemonic/operand incorrectly; exact Capstone compound mnemonics corrected that anchor comparison. A provisional strict tolerance model was corrected to inclusive endpoints after explicit TEST AH,41 parity analysis; replay02 used the provisional model and is not the final evidence. Replay03 uses the corrected model plus retained-stride growth tests. Guessed starts at `013E7800`, `013E8000` and `013E6430` yielded mid-instruction/data decodes; those excerpts support no conclusions, and valid known starts supplied the retained evidence. Guessed missing runner/glob paths were replaced by discovered paths. These corrections do not imply noise reproduction.
+
+Precise next action: recover initialization `013E64D0 -> 00B59EF0` and noise consumer `013E66F0 -> 0131E27C` for one selected original family, accounting for seeded tables, integer conversion/interpolation, optional mode/sine/curve controls and effective floating state before production noise or original terrain admission.

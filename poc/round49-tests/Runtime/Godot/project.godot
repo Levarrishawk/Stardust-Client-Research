@@ -1,0 +1,8 @@
+config_version=5
+[application]
+config/name="Round49 sourced input proof"
+run/main_scene="res://Main.tscn"
+[dotnet]
+project/assembly_name="Round49Sourced"
+[rendering]
+renderer/rendering_method="gl_compatibility"

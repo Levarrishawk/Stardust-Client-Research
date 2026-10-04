@@ -1,0 +1,15 @@
+# Received movement inspection in the original-resource preview
+
+The accepted [partial CREO4 host](SCENE_WORLD_CREATURE_VIEW4_PARTIAL_PREVIEW_CONTRACT.md) now constructs the [received movement consumer](SCENE_WORLD_RECEIVED_CREATURE_MOVEMENT_INPUT_CONTRACT.md) on the Godot owner thread. For each of six partial publications it prints a separate bounded diagnostic receipt: all ten nullable raw F32 slots, source provenance, finite/nonfinite/missing classification, captured finalized phase and exact current-source revisions. It does not apply these words to motion or supply authored/default values.
+
+The initial observer knows only fields1,5,10. Fields7/11 remain missing even though the human has loaded original resources. Later repeated, equal, nonfinite, signed-zero and all-scalar messages retain the exact accepted raw/source semantics. Listen field6 is excluded from movement fields; its source publication still participates in currency. Source state/accounting and the existing33-event partial journal remain independently checked. The reader is disposed during the partial host's success/failure/exit cleanup.
+
+Fresh headless and GPU actual-Godot launches and [independent host peer](../poc/round47-tests/Integration/received_movement_host_peer.py) pass six models/60 fixed-slot observations plus the frozen partial-state, height-filtered terrain and full6/TANO6/customization/material/clock oracles. Original human/terminal publications and poses remain retained; three resource archive calls/closes are unchanged and no update I/O is introduced. The actual Godot project builds with zero warnings/errors. These are offline synthetic packets over original resources, not live observer/default validation.
+
+**Observation:** actual host receipts agree with a literal independent peer and retain current original visuals. **Interpretation:** received availability can be inspected safely at the engine boundary without replacing missing values. **Confidence:** Confirmed for this bounded modern host. Authored-versus-received arbitration and original final movement remain Unknown.
+
+Reproduce the accepted partial mode through [Launch.ps1](../poc/round16-tests/Integration/Launch.ps1), then verify its exact fresh log with received_movement_host_peer.py, creature4_partial_host_peer.py, height_filtered_host_peer.py and the existing complete host oracle. Generated logs/fixtures/pixels remain private. The terrain is supplied synthetic height data, with16 patches/exact16 disposal; no original terrain parity follows.
+
+## Round49 compatibility increment
+
+[Original-resource sourced preview](SCENE_WORLD_SOURCED_MOVEMENT_RESOURCE_PREVIEW_CONTRACT.md) passes authored/received headless and authored GPU joins through the actual original recipe closure with zero extra movement reads. [Current raw inputs](SCENE_WORLD_CREATURE_MOVEMENT_CURRENT_INPUT_CONTRACT.md) retain explicit constructor provenance and exact received overrides without store seeding; [explicit stop and sourced input](SCENE_WORLD_SOURCED_INPUT_HOST_CONTRACT.md) own the modern direction/clock lifecycle. Original full arbitration, modifier/vehicle semantics and units remain separate.

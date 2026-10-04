@@ -1,0 +1,4 @@
+<Project Sdk="Godot.NET.Sdk/4.7.2">
+<PropertyGroup><TargetFramework>net8.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><EnableDynamicLoading>true</EnableDynamicLoading><EnableDefaultCompileItems>false</EnableDefaultCompileItems><UseSharedCompilation>false</UseSharedCompilation><UseAppHost>false</UseAppHost></PropertyGroup>
+<ItemGroup><Compile Include="CircleHeightProof.cs"/><ProjectReference Include="../../Stardust.Core/Stardust.Core.csproj"/><Compile Include="../../Stardust.Godot/TerrainCircleHeightPreview.cs" Link="TerrainCircleHeightPreview.cs"/><Compile Include="../../Stardust.Godot/TerrainPatchVisual.cs" Link="TerrainPatchVisual.cs"/></ItemGroup>
+</Project>

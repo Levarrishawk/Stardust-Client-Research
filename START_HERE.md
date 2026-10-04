@@ -2,13 +2,13 @@
 
 This is the canonical entry point for reviewing the `Stardust.exe` research before designing or implementing a replacement client.
 
-Latest development session: [Round31 outcomes and resume point](research/sessions/PARALLEL_DEVELOPMENT_ROUND_31_2026-10-03.md).
-Latest accepted parallel round: [Round31 assignments and acceptance](research/sessions/PARALLEL_DEVELOPMENT_ROUND_31_2026-10-03.md). Successive rounds authorized by the overnight instruction.
+Latest development session: [Round51 outcomes and resume point](research/sessions/PARALLEL_DEVELOPMENT_ROUND_51_2026-10-04.md).
+Latest accepted parallel round: [Round51 assignments and acceptance](research/sessions/PARALLEL_DEVELOPMENT_ROUND_51_2026-10-04.md). The overnight window ended October4 at05:00 Eastern; workers are idle and continuation requires renewed authorization. See the [overnight handoff](research/sessions/OVERNIGHT_DEVELOPMENT_2026-10-03_TO_04.md).
 Earlier accepted parallel round: [Round 3 results and integration record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_3_2026-10-01.md); [Round 2 accepted results](research/sessions/PARALLEL_DEVELOPMENT_ROUND_2_2026-10-01.md).
 Current executable acceptance gates: [implementation record](docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
-Latest research checkpoint: [exact components-set kernel](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-02_R12_COMPONENTS_SET_POLICY.md).
+Latest research checkpoint: [original run-default preference](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-04_R51_CONTROLLER_RUN_FLAG.md).
 Latest follow-up: [direct status CRC receive rule](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-29_STATUS_CRC_RECEIVE.md).
-Latest implementation checkpoint: [outdoor and replication stages](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R31_TERRAIN_AND_REPLICATION_STAGES.md).
+Latest implementation checkpoint: [generator routing and controller gates](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R51_GENERATOR_ROUTING_AND_CONTROLLER_GATES.md).
 Latest collision research: [creature fallback dimensions](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-01_CREATURE_COLLISION_FALLBACK.md).
 
 ## Scope and current position
@@ -28,7 +28,7 @@ fixture-backed compatibility slice, and return to targeted executable/server
 analysis only when a concrete implementation uncertainty blocks or risks it.
 Function-level accounting remains separate from behavioral readiness.
 
-Parallel development: [adopted operating rules](docs/PARALLEL_DEVELOPMENT_RULES.md). Rounds4 through31 are accepted; workers await the next lead assignment. [Latest four-round assessment](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_9_12_ASSESSMENT_2026-10-02.md). [Five-round outcomes and next milestone](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_4_8_ASSESSMENT_2026-10-02.md). Successive rounds are authorized until October3 at07:00 Eastern; see [overnight resume](research/sessions/OVERNIGHT_DEVELOPMENT_2026-10-02_TO_03.md). [Prior organizational assessment](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_2_3_ASSESSMENT_2026-10-01.md).
+Parallel development: [adopted operating rules](docs/PARALLEL_DEVELOPMENT_RULES.md). Rounds4 through51 are accepted. [Latest four-round assessment](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_9_12_ASSESSMENT_2026-10-02.md). [Five-round outcomes and next milestone](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_4_8_ASSESSMENT_2026-10-02.md). Overnight development stopped October4 at05:00 Eastern; see [outcomes and prepared next assignments](research/sessions/OVERNIGHT_DEVELOPMENT_2026-10-03_TO_04.md). [Prior organizational assessment](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_2_3_ASSESSMENT_2026-10-01.md).
 
 ## Recommended review order
 

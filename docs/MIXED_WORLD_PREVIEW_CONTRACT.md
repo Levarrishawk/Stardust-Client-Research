@@ -137,3 +137,31 @@ Owned TANO6 state passes21 sequences/23 transitions,700 negatives,315 budget and
 ## Round31 outdoor and view6 prerequisites
 
 Owned direct-version terrain masks and all nine exact terrain patch patterns pass independent original-byte/table and native oracles. Current-incarnation TANO6 publication and historical-event ownership pass143 checks/23 transitions/38 events. CREO6 prefix/extension structure passes109 anchors/18 registrations/16RTTI; complete codec/world routing remain next. Actual headless/GPU consumed-time failure retires the clock and cached presentation without retry. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R31_TERRAIN_AND_REPLICATION_STAGES.md).
+
+## Round32 accepted world and terrain inputs
+
+The optional `-TangibleView6Peer` / `--tangible6-peer` mode requires normal typed terminal-clock mode and a bounded explicitly synthetic fixture. It seeds TANO6 before both static end barriers and routes its deltas above TANO3/CREO ingress. Six current states, eight guarded events, once-only ownership acknowledgment and post-ack logical accounting pass headless/GPU while retained original resource/geometry/caption/clock checks pass. Supplied IDs have no gameplay target resolution. [Independent joined verifier](../poc/round32-tests/Integration/verify_world.py).
+
+## Round34 creature world and terrain arithmetic
+
+Optional `-CreatureView6Peer` / `--creature6-peer` requires the accepted joined TANO6 clock mode. A bounded synthetic complete human CREO6 seed is queued after CREO3/before end; five ordered scalar/string/pair plans pass six full-model comparisons, twelve assignment events, current-recipient guards, exact ack and post-ack accounting while original publications/transform and prior gates remain retained. [Independent generator/verifier](../poc/round34-tests/Integration/verify_world.py). [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R34_CREATURE_AND_TERRAIN_KERNELS.md).
+
+## Round36 composite world and terrain boundaries
+
+Optional `-CreatureView6CompositePeer` / `--creature6-composite-peer` requires joined TANO6 mode and rejects simultaneous scalar peer selection. Five mixed scalar/HAM plans pass six full raw models, eleven ordered events, exact current guards/once-only acknowledgment,24-byte pending journal charges and retained original visual/transform/resources in actual headless/GPU. [Independent generator/verifier](../poc/round36-tests/Integration/verify_world.py). Prior scalar mode also passes after the coordinator/host extension. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R36_COMPOSITE_WORLD_AND_TERRAIN_BOUNDARIES.md).
+
+## Round37 complete creature kernel and supplied terrain
+
+Existing original-resource scalar/HAM CREO6/TANO6 preview remains regression-tested. New Round37 [terrain inspection](TERRAIN_CIRCLE_HEIGHT_PATCH_CONTRACT.md) is a separate synthetic supplied-grid scene with actual headless/GPU readback, front/back tests and balanced resource teardown. The independent surface join is engine-neutral and tests the documented Z reflection mathematically; it does not attach original terrain or ground the existing human yet. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R37_COMPLETE_CREATURE_AND_SUPPLIED_TERRAIN.md).
+
+## Round38 full creature publication and terrain inputs
+
+Optional --creature6-full-peer uses complete CREO6 prepared publication. Original human/terminal headless/GPU joins pass all18 fields, sixmodels/45ordered events, exact acknowledgments, current recipients and retained resource/transform/name/customization/clock state. No new archive reads occur during those updates. Journals describe metadata; they do not attach wearables or reproduce owner gameplay callbacks. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R38_FULL_CREATURE_PUBLICATION_AND_TERRAIN_INPUTS.md).
+
+## Round39 supplied terrain grounding and CREO4 prerequisites
+
+Optional --terrain-peer adds synthetic supplied native-height grounding to the retained original human/terminal host.16 patches/128 triangles/nine local states and exact16-adapter cleanup pass; complete CREO6/TANO6/clock/name/customization gates also pass. The supplied debug ground is not recovered original terrain. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R39_TERRAIN_GROUNDING_AND_PRIVATE_VIEW.md).
+
+## Round43 private world and current-height filters
+
+Optional complete CREO4 world publication and original-resource headless/GPU joins pass independent full-model, ordered-event, variable-journal and cleanup checks. Query-time FHGT supplied execution and its two-layer geometry/query join pass independently. FSLP raw structure is implemented; initializer timing/x87 sine preprocessing remains unresolved. Server observer CREO4 deltas can arrive before end-baselines without a full view4 baseline; original default/template initialization and modern admission for that path remain the next compatibility milestone. The current seeded finalized private route does not yet cover it. Original recursive terrain, gameplay and live interoperability remain open. Research89%/readiness94%,2626 names/zero duplicates and345 packet-source rows remain separate and unchanged. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R43_PRIVATE_WORLD_AND_HEIGHT_FILTERS.md).

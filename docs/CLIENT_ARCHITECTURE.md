@@ -1,5 +1,16 @@
 # Client Architecture
 
+## Received observer-state boundary
+
+The [partial CREO4 kernel](CREATURE_VIEW4_PARTIAL_STATE_CONTRACT.md) preserves
+received scalar availability and provenance without inventing a complete private
+baseline. Its [literal join](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R44_OBSERVER_STATE_AND_TERRAIN_PREREQUISITES.md)
+confirms the server-shaped1/5/10 update and distinguishes absent fields from
+received zero. Current-incarnation storage and pending-baseline world admission
+are implemented by the explicit received-only partial policy; existing opt-in full4 remains seeded
+and finalized. [Template initialization](CREATURE_VIEW4_INITIALIZATION_CONTRACT.md)
+constrains defaults separately and does not supply a complete effective model.
+
 ## Reconstructed high-level model
 
 ```mermaid
@@ -187,3 +198,82 @@ Owned TANO6 state passes21 sequences/23 transitions,700 negatives,315 budget and
 ## Round31 outdoor and view6 prerequisites
 
 Owned direct-version terrain masks and all nine exact terrain patch patterns pass independent original-byte/table and native oracles. Current-incarnation TANO6 publication and historical-event ownership pass143 checks/23 transitions/38 events. CREO6 prefix/extension structure passes109 anchors/18 registrations/16RTTI; complete codec/world routing remain next. Actual headless/GPU consumed-time failure retires the clock and cached presentation without retry. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R31_TERRAIN_AND_REPLICATION_STAGES.md).
+
+## Round32 accepted world and terrain inputs
+
+Optional typed TANO6 world publication uses prebuilt store/world candidates and guarded historical event ownership. Main headless and GPU joins pass six literal full-width/wrap/assignment states, eight current events, exact acknowledgment, retained accounting and original human/terminal visuals; prior fourteen-state animation/name/customization gates also pass. Complete18-field CREO6 baselines and the explicit scalar/string/pair delta subset pass independent byte/model/budget oracles. Owned PTAT0013/0014 DATA/TGEN inputs and supplied terrain geometry/UV/color adapters pass original-byte/static/native/headless/GPU checks. Complete TGEN generation, CREO6 vector deltas/state, terrain seam/sample mapping, gameplay and live interoperability remain open. Research89%/readiness94%,2626 names and345 packet-source rows are unchanged. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R32_WORLD_AND_TERRAIN_INPUTS.md).
+
+## Round33 terrain structure and creature state
+
+Owned TGEN inputs expose 257 layers and 87 AHCN records in the same pinned Tatooine file while retaining unsupported rules. Exact nine-sample terrain assembly and seam branch priority pass independent static/native checks. Complete current CREO6 scalar/string/pair models now have bounded incarnation-owned publication and a prepared commit seam. Separately, the exact HAM/max-HAM vector codec and mutation kernel pass independent wire/state/counter/work oracles. These remain separate partitions, not a composed full CREO6 world update. Original mixed-world headless and combined Core regressions pass. Height evaluation, group semantics, vector composition, original owner side effects and live interoperability remain open. Research89%/readiness94%,2626 names and345 packet-source rows remain unchanged. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R33_TERRAIN_AND_CREATURE_STATE.md).
+
+## Round34 creature world and terrain arithmetic
+
+The optional CREO6 world partition reuses genuine prepared store/world candidates. A separate ordered scalar/HAM kernel returns one complete current model and outer revision; its current-incarnation publication remains next. Terrain arithmetic stays engine-neutral and requires explicit unresolved producer/precision inputs. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R34_CREATURE_AND_TERRAIN_KERNELS.md).
+
+## Round35 terrain and composite publication prerequisites
+
+[Composite prepared store](SCENE_CREATURE_VIEW6_COMPOSITE_STORE_CONTRACT.md) owns complete current models and a24-byte logical event journal over a borrowed serialized registry. Genuine prepared/check/assignment-only commit/release joins remain next. Wearable projection remains separate until full-union accounting is accepted. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R35_TERRAIN_AND_COMPOSITE_PREREQUISITES.md).
+
+## Round36 composite world and terrain boundaries
+
+[Composite CREO6 world](SCENE_WORLD_CREATURE_VIEW6_COMPOSITE_CONTRACT.md) joins prepared store and world publication, guards current event delivery, and preserves earlier valid state after later exact active rejection. Scalar and composite policies are mutually exclusive; default/scalar/TANO6 paths remain accepted. Full-vector composition is a later partition. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R36_COMPOSITE_WORLD_AND_TERRAIN_BOUNDARIES.md).
+
+## Round37 complete creature kernel and supplied terrain
+
+The new complete CREO6 wire/state kernel composes frozen scalar/HAM/defender/wearable components without changing the existing scalar/HAM world API. Supplied terrain geometry/query objects remain engine-neutral, while [Godot inspection](TERRAIN_CIRCLE_HEIGHT_PATCH_CONTRACT.md) owns rendering resources. Full current-incarnation storage and optional world ingress are the next integration seam. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R37_COMPLETE_CREATURE_AND_SUPPLIED_TERRAIN.md).
+
+## Round38 full creature publication and terrain inputs
+
+The optional [full CREO6 world partition](SCENE_WORLD_CREATURE_VIEW6_FULL_CONTRACT.md) owns complete state/current incarnation and guarded historical journals. It coexists with CREO3/TANO3/TANO6 and is exclusive with earlier CREO6 policies. Callback attempt stamps precede preparation; assignment-only store/world publication follows. CREO4 is currently an engine-neutral immutable snapshot/scalar component. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R38_FULL_CREATURE_PUBLICATION_AND_TERRAIN_INPUTS.md).
+
+## Round39 supplied terrain grounding and CREO4 prerequisites
+
+The optional supplied-terrain driver implements the existing local-input interface with native Y grounding, first-source query ties and last-valid-tick retention. Original actors retain their resource publications. Complete CREO4 state/world composition remains separate. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R39_TERRAIN_GROUNDING_AND_PRIVATE_VIEW.md).
+## Round40 layer and CREO4 composition
+
+Fresh BPOL influence, supplied layer combination, restricted CREO4 scalar/encumbrance composition and the separate byte-key skill-map kernel pass independent main replays. The supplied layer/AHCN/coordinate/patch/query join passes nine profiles/3600 samples/144 patches/576 queries. ADTA version-to-runtime inversion mapping is verified separately; unknown flag/cache roles remain explicit. Original-resource headless regressions and combined/default builds pass. Full CREO4 publication, original terrain generation, owner gameplay and live interoperability remain open. Research89%/readiness94%,2626 names and345 packet-source rows remain separate and unchanged. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R40_LAYER_AND_CREATURE4_COMPOSITION.md).
+## Round41 supplied height execution and CREO4 fields
+
+Open-polyline influence, ordered supplied height execution, scalar/encumbrance/skill-map CREO4 composition and the separate mission-set kernel pass independent main replay. The native terrain join passes3600 samples/144 patches/576 queries across nine profiles. Actual computed-height original-actor headless/GPU joins pass400 samples/16 patches/nine grounded states and exact disposal; late malformed fourth-chunk input drains12 partial visuals. Static layer preparation closes enabled counts/local bounds/cache stride conditionally. Full14-field CREO4 composition/publication, real height filters, original complete terrain, gameplay and live interoperability remain open. Research89%/readiness94%,2626 names and345 packet-source rows remain separate and unchanged. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R41_SUPPLIED_HEIGHT_AND_CREO4_FIELDS.md).
+## Round42 complete private state and supplied terrain sequence
+
+Complete14-field CREO4 codec/state and full prepared storage pass122 independent full-model sequences/2439 events. Separate supported storage passes122 sequences/924 events and40 prepared-seam checks. Ordered supplied layer sequences and a two-layer geometry/query join pass15456 plans and3600 joined samples/144 patches/576 queries. Direct FHGT evidence establishes current-height reads before this layer's affectors; the raw/query implementation passes375 raw cases/13959 queries. World routing, query-time filter composition, original recursive terrain, gameplay and live interoperability remain next. Research89%/readiness94%,2626 names and345 packet-source rows remain separate and unchanged. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R42_PRIVATE_CREATURE_AND_TERRAIN_SEQUENCE.md).
+
+## Round43 private world and current-height filters
+
+Optional complete CREO4 world publication and original-resource headless/GPU joins pass independent full-model, ordered-event, variable-journal and cleanup checks. Query-time FHGT supplied execution and its two-layer geometry/query join pass independently. FSLP raw structure is implemented; initializer timing/x87 sine preprocessing remains unresolved. Server observer CREO4 deltas can arrive before end-baselines without a full view4 baseline; original default/template initialization and modern admission for that path remain the next compatibility milestone. The current seeded finalized private route does not yet cover it. Original recursive terrain, gameplay and live interoperability remain open. Research89%/readiness94%,2626 names/zero duplicates and345 packet-source rows remain separate and unchanged. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R43_PRIVATE_WORLD_AND_HEIGHT_FILTERS.md).
+
+## Round45 accepted compatibility increment
+
+The [Round45 report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_45_2026-10-04.md) records independently reviewed/replayed supplied
+AHFR/FFRA consumers, an incarnation-bound received-only partial CREO4 store,
+one human movement-template input chain and the actual current-height FHGT/AHCN
+Godot preview. The store accepts pending/finalized objects without default seeds
+but has no world/router admission yet. Original fractal generation/cache lifetime,
+floating controls, complete terrain and later creature writers remain unknown.
+Research scores and canonical name/packet denominators remain unchanged.
+
+## Round46 accepted compatibility increment
+
+The [Round46 report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_46_2026-10-04.md) records received-only CREO4 world/router admission and its original-resource headless/GPU preview, an owned authored movement profile, and static family-map/sampler prerequisites. Partial/full4 policies are mutually exclusive; no default seed is fabricated. Fractal cache misses can return retained wide values while hits reload F32, so supplied-F32 consumer acceptance is not original sampler parity. Research scores,2626 canonical names and345 packet-source rows are unchanged.
+
+## Round47 compatibility increment
+
+[Received movement receipts](SCENE_WORLD_RECEIVED_CREATURE_MOVEMENT_INPUT_CONTRACT.md) and [authored selection](SHARED_CREATURE_AUTHORED_MOVEMENT_INPUT_CONTRACT.md) have separate immutable origins. The72-case source join and actual headless/GPU host preserve unknown fields; no effective arbitration or motion formula is inferred. The existing direct supplied-velocity motion drivers remain unchanged.
+
+## Round48 compatibility increment
+
+[Conditional seeded noise](TERRAIN_SEEDED_NOISE_KERNEL_CONTRACT.md) reaches retained AHFR/FFRA/layer consumers in864 independent actual joins. [Explicit sourced movement](SCENE_WORLD_EXPLICIT_MOVEMENT_ADMISSION_CONTRACT.md) owns the actual current-incarnation driver and passes144 original-authored/synthetic-state joins. Host caller/resource integration and full sampler/cache composition remain next.
+
+## Round49 compatibility increment
+
+[Original-resource sourced preview](SCENE_WORLD_SOURCED_MOVEMENT_RESOURCE_PREVIEW_CONTRACT.md) passes authored/received headless and authored GPU joins through the actual original recipe closure with zero extra movement reads. [Current raw inputs](SCENE_WORLD_CREATURE_MOVEMENT_CURRENT_INPUT_CONTRACT.md) retain explicit constructor provenance and exact received overrides without store seeding; [explicit stop and sourced input](SCENE_WORLD_SOURCED_INPUT_HOST_CONTRACT.md) own the modern direction/clock lifecycle. Original full arbitration, modifier/vehicle semantics and units remain separate.
+
+## Round50 accepted boundary
+
+The [owned family/sampler join](TERRAIN_FRACTAL_FAMILY_SAMPLER_JOIN_CONTRACT.md), [current resource movement host](SCENE_WORLD_CURRENT_MOVEMENT_RESOURCE_PREVIEW_CONTRACT.md), and [controller input chain](CREATURE_CONTROLLER_SPEED_INPUT_CONTRACT.md) extend the prior accepted slice. Exact conditional compositions and modern movement/source ownership are independently checked; original terrain/controls/full movement parity remain Unknown. See [Round50](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_50_2026-10-04.md) for assembled acceptance and next probes.
+
+## Round51 bounded boundary
+
+[Generator-to-family height routing](TERRAIN_GENERATOR_FAMILY_HEIGHT_JOIN_CONTRACT.md) passes486 actual joins under explicit fresh-call controls. [Run-default preference](PLAYER_CONTROLLER_RUN_FLAG_CONTRACT.md) and [acceleration helper](CREATURE_ACCELERATION_HELPER_CONTRACT.md) have bounded static evidence; message timing, getter sampling and units remain open. The shared original-resource host remains the separately accepted Round50 slice. [Round51 record](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_51_2026-10-04.md).

@@ -49,7 +49,7 @@ Read AGENTS.md, START_HERE.md, the latest named session and this document. Confi
 
 For every worker: assigned milestone, accomplishments, lead acceptance and validation, blockers/uncertainty. Include combined integration status, preserved existing changes and proposed next round. Worker completion is not acceptance until lead review and integration validation.
 
-## Sequential round authorization — October 1, 2026
+## Sequential round authorization â€” October 1, 2026
 
 Levarris explicitly authorized Round 2 followed by Round 3 and then reassessment. Lead may dispatch Round 3 after accepting and integrating Round 2 without another prompt. This authorization covers those two rounds only; no Round 4 is authorized. All worker scopes, Low reasoning, isolated ownership and review gates continue to apply.
 
@@ -57,7 +57,7 @@ Levarris explicitly authorized Round 2 followed by Round 3 and then reassessment
 
 [Accepted assessment](../research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_2_3_ASSESSMENT_2026-10-01.md) recommends retaining these specialists for independent work, using fewer active workers for serial/shared-file bottlenecks. Lead assigns the complete acceptance checklist before dispatch, balances milestone size, preserves one GPU owner, and counts only accepted integration. This recommendation grants no new round authorization. All workers stop after Round3.
 
-## Sequential authorization — October2,2026
+## Sequential authorization â€” October2,2026
 
 Levarris authorized Rounds4 through8 in sequence. Lead accepts/integrates each round before dispatching the next, without another prompt between these five rounds. All Low-reasoning, isolated ownership, evidence and safety boundaries remain in force. Stop after Round8; no Round9 authorization. A blocker requiring user intervention stops dependent work and is reported.
 
@@ -78,7 +78,7 @@ Levarris authorized Round13 only. Reuse all four persistent specialists at Low r
 
 [Round13 results](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_13_2026-10-02.md) accepts four scoped milestones and lead composite/original-resource/two-actor integration. All four workers are idle. Keep explicit independent ownership, one GPU owner and serialized shared-contract acceptance. Authorization ends after13; wait for Levarris before any Round14 dispatch.
 
-## Round14 authorization and integration — October2,2026
+## Round14 authorization and integration â€” October2,2026
 
 Levarris authorized Round14 only. Four persistent Low-reasoning specialists completed independent scopes against a2,149-file hashed baseline; lead reviewed and integrated all four, joined the accepted pure validator/generic world/recipe adapters and ran fresh combined original/native/independent/Godot gates. [Round14 record](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_14_2026-10-02.md). Workers are idle. No Round15 dispatch, automation or continuing milestone is authorized. Keep independent ownership, one GPU owner and serialized shared-contract acceptance.
 
@@ -155,3 +155,65 @@ Round25 accepted under overnight authorization: current owned names and variable
 Round26 four Low milestones and combined native integration pass; successive overnight rounds remain authorized. Atomic typed tangible world publication is the next milestone.
 
 Round27 accepted: four Low milestones and actual mixed typed TANO/CREO original-resource headless/GPU host pass. Canonical role correction and2618 distinct names are separately recorded; no coverage percentage change. Successive overnight rounds remain authorized.
+
+## Daytime authorization — October 3, 2026
+
+Levarris authorizes successive rounds through19:00 Eastern today. Lead may dispatch each next round after acceptance without another prompt until the deadline. Four workers remain at Low, isolated scopes and all existing review/safety rules apply. No full new round after18:00 Eastern; finish acceptance/report and stop by19:00. [Daytime resume record](../research/sessions/DAYTIME_DEVELOPMENT_2026-10-03.md).
+
+## Round32 accepted world and terrain inputs
+
+All four Low milestones and main independent acceptance gates pass. Daytime successive-round authorization remains in force through19:00 Eastern, with no full new dispatch after18:00. Workers idle pending the next bounded lead assignment.
+
+## Round34 creature world and terrain arithmetic
+
+Four Low specialist handoffs were reviewed and independently replayed before acceptance. Main headless/GPU integration and combined/default regressions pass. Successive-round authorization remains active through19:00 Eastern, with no full new dispatch after18:00. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R34_CREATURE_AND_TERRAIN_KERNELS.md).
+
+## Round35 terrain and composite publication prerequisites
+
+All four Low handoffs require exact working-byte review and independent lead replay before the next assignment. Research findings that leave an unknown are accepted only with precise evidence and an explicit implementation constraint; they do not justify a guessed runtime API. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R35_TERRAIN_AND_COMPOSITE_PREREQUISITES.md).
+
+## Round36 composite world and terrain boundaries
+
+Lead review found a cross-phase arithmetic assumption: radius-square loading and later query precision cannot be silently shared. Worker revised the API and independent fixtures;96 groups prove the choices can affect output. One transient model-capacity interruption was resumed at Low from saved work. Exact scopes and independent replays precede next dispatch. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R36_COMPOSITE_WORLD_AND_TERRAIN_BOUNDARIES.md).
+
+## Round37 complete creature kernel and supplied terrain
+
+Four existing Low specialists used frozen accepted36 dependencies. Lead caught incorrect remove/clear candidate capacity predictions; the complete kernel now distinguishes shrinking published48-byte events from frozen24/32-byte construction journals. A generic instruction-acknowledgment turn was resumed on the saved Networking milestone at Low. No unfinished sibling APIs were consumed. Leaf main replays, joined terrain oracle and combined gates precede next dispatch. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R37_COMPLETE_CREATURE_AND_SUPPLIED_TERRAIN.md).
+
+## Round38 full creature publication and terrain inputs
+
+Four existing Low specialists used frozen accepted37 dependencies. Lead reviewed final bytes and independently replayed each leaf before full prepared-world/host integration. A first negative world test exposed a missing full-policy typed-failure guard; it was fixed before both original-resource host runs. No unfinished sibling interfaces or extra worker chats were used. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R38_FULL_CREATURE_PUBLICATION_AND_TERRAIN_INPUTS.md).
+
+## Round39 supplied terrain grounding and CREO4 prerequisites
+
+Four existing Low handoffs were reviewed and independently replayed before lead terrain-host integration. Networking resumed a transient model-capacity failure on the same saved milestone at Low. No unfinished sibling code was consumed. The initial camera was below the supplied slope; terrain-mode camera placement was corrected and the GPU join reverified. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R39_TERRAIN_GROUNDING_AND_PRIVATE_VIEW.md).
+
+## Working-file integration guards
+
+The reusable round workspace helper rejects noncanonical relative paths,
+case-folded file collisions and linked roots, ancestors or targets before
+copying. It reviews every destination and retains each source's exact hashed
+bytes before the first write; all copied files receive a hash postflight.
+Private synthetic file and real Windows junction checks are reproducible with
+[the guard runner](../poc/round40-tests/Integration/verify_workspace_guards.py).
+These checks detect changes at their boundaries; they do not provide an atomic
+filesystem transaction against concurrent external replacement.
+
+## Round43 final daytime acceptance
+
+All four existing Low specialists finished before22:30UTC; the lead independently
+reviewed/replayed the leaves and accepted joined native/headless/GPU work at
+22:34:15UTC. No Round44 was dispatched after the18:00 Eastern cutoff. The
+[daytime handoff](../research/sessions/DAYTIME_DEVELOPMENT_2026-10-03.md) contains
+four bounded proposed questions for renewed authorization. The server observer
+finding constrains future world admission; it does not permit guessed defaults.
+Workers remain idle and the lead stops at19:00 Eastern.
+
+## Renewed overnight authorization — October 3–4, 2026
+
+Levarris authorizes successive lead-directed rounds until05:00 Eastern October4
+(09:00UTC). This supersedes the expired19:00 daytime stop. Four existing workers
+remain Low; exact scopes/frozen inputs and independent acceptance precede every
+next assignment. No full new dispatch after04:00 Eastern. Preserve all existing
+static-analysis, original-asset and publication boundaries. Pause the heartbeat
+and leave workers idle at the deadline. [Overnight resume](../research/sessions/OVERNIGHT_DEVELOPMENT_2026-10-03_TO_04.md).

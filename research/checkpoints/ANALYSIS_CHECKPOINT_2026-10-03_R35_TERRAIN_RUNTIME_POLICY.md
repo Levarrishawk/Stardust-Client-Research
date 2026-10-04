@@ -1,0 +1,32 @@
+# Round 35 terrain runtime arithmetic and color policy
+
+2026-10-03. Bounded questions: what sets x87 state on actual worker creation -> `0084BFF0` -> `0085EE60` -> `0084A530` -> TGEN/AHCN; and what registers/writes color endpoints and enable state? Stop condition: close the concrete native entry/configuration chains, or identify exact missing edges with reproducible static checks. The runtime precision remains unresolved; no unsupported profile API is added.
+
+## Identity and method
+
+Original executable SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150` was checked before PE loading. Cached Python, pefile and Capstone only; static disassembly/data/xrefs/import/export and bounded synthetic integer/bit interpretation. No original process, server contact, capture, fuzzing, GPU work, downloads or publication.
+
+Read START_HERE/latest accepted34, AHCN/color contracts and checkpoints, terrain worker/lifecycle evidence, foundation control-word evidence, current status/ledger/unknown terminology and curated rows/tools before new analysis. Frozen baseline source HEAD `5493338d9cd4255cf58f25de6c4cd15f6507b818`: 2,905 files, manifest SHA `edd3e8aac46561b3dc1ff3349d590e32149fe0ceb4b3aab1639d7d5df0b91e6a`, ZIP SHA `b60f83b6d137925d800ff4f3af8beabd8ed16112edf5641110e97a3e912e5ee0`. All archive members were preflighted before any overlay write for identity/size/hash, unique casefold names, path containment and target/ancestor symlink/reparse exclusion; all files passed postflight. Worker HEAD/index preserved. Existing production/shared/durable files remain immutable in this scope; lead reconciles older conclusions.
+
+## Findings and compatibility effects
+
+The [durable runtime policy](../../docs/TERRAIN_ARITHMETIC_RUNTIME_POLICY.md) records exact observations, confidence and implementation consequences.
+
+1. **Confirmed native route:** constructor binds appearance/callback, `00B8D550` reaches CRT `0132104A`, imported CreateThread installs CRT entry `013210B5`, then wrapper `00B8D600` invokes member thunk `0084BFF0` and worker `0085EE60`. The CRT FP hook pointer is `0131DB40`, a one-byte return; thread registration contains no local x87 install. This replaces a nearby-helper inventory with the actual native wrapper/CRT chain.
+2. **Confirmed conditional generation chain:** worker `0085EF69 ->0084A530`; builder `0084A79E ->00B65400`; generator `00B6571A ->00B65280`; layer call `00B65366 ->00B63D20`; affector virtual `00B6418C` selects AHCN `00B76540` through slot `015ED688`. The same builder calls color/geometry builder `008618D0` at `0084A7D0`. Color conversion is on this normal worker path; later render submission is a separate stage. A synchronous builder caller remains a separate context.
+3. **Confirmed local absence; Unknown active state:** ten exact aligned bodies have no local install/restore or direct foundation policy calls. This is not transitive callback/import proof. The missing edge is the actual x87 state supplied at OS CreateThread entry and subsequent transitive/virtual changes. Main-thread startup PC24/nearest cannot be projected onto that worker. Keep AHCN supplied precision and color's nearest assumption explicit.
+4. **Confirmed mutable setter order:** `00AA7C30` maps the prior stored enum to PC bits before recording the new argument. Caller `01264B10` saves/request2/restores enum around other work. The decoded integer oracle reproduces the resulting prior-mode behavior; no intended setter semantics or actual terrain value is inferred. Global word changes apply to the calling thread, not every thread.
+5. **Confirmed CRT endpoint registration:** PE entry -> `01324772` -> table walker `01324896`, range `0184D000..01866B90`, includes black wrapper at slot `01855ED0` and white at `01855EEC`. Six initializer stores are the only decoded writes among44 exact literal references to the six endpoint-byte addresses. Source-pointer users reach read-only formatting or accepted RGB interpolation with another output. Endpoint stability is Strongly inferred within this literal-reference scope; computed/external aliases remain Unknown.
+6. **Confirmed enable producer search:** zero-filled virtual .data byte `01924B80`; getter/setter only literal references; no E8 direct call, literal function-address reference or export for setter `0084A4C0`. Ordinary disabled/dormant behavior is Strongly inferred, not a universal impossibility claim. Keep enable explicitly supplied until a concrete indirect producer or stronger ownership proof closes the remainder.
+
+No stable active-runtime arithmetic profile is directly established. Optional production profile/scenario files were intentionally omitted. No prior compatibility percentage, function registry or packet denominator changes.
+
+## Verification and handoff
+
+[Static verifier/oracle](../../poc/round35-tests/Rendering/verify_runtime_policy.py), [runner](../../poc/round35-tests/Rendering/Invoke-RuntimePolicy.ps1), and [identity negatives](../../poc/round35-tests/Rendering/test_identity.py) pass70 core anchors/five pointers,50 literal occurrences/11 keys,44 endpoint sites/six writes/ten pointer-use anchors, five call target inventories and ten local no-install ranges. Independent installer bit oracle: 4,194,304 synthetic cases. Decoded setter interpreter against separate model:125 synthetic states. Modified identity and one-byte truncation both reject before decoding/imports/receipt creation. These counts describe static/synthetic checks, not observed original thread executions.
+
+Workspace validator, focused documentation links/whitespace, `git diff --check`, status and entire baseline-preservation audit are recorded in the private handoff. Every new file belongs to the allowed two docs or own test directory. No production integration or active value claims are left for a reviewer to disentangle.
+
+## Exact next probe
+
+Obtain independently authorized OS-specific thread-initial x87 evidence for the deployed environment, then audit the bounded allocator/lock/import and layer/filter/affector virtual paths between native entry and AHCN/color. A dynamic observation would require separate explicit authorization and a bounded plan; none is performed here. For color configuration, pursue a concrete computed alias/indirect setter producer if evidence appears. Until those conditions are met, use supplied precision and explicit endpoint/enable configuration.

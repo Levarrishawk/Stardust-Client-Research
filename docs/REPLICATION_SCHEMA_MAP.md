@@ -4,6 +4,15 @@ This document tracks the SWG object replication boundary recovered from `Stardus
 
 ## Common envelopes
 
+The [received-only CREO4 scalar kernel](CREATURE_VIEW4_PARTIAL_STATE_CONTRACT.md)
+preserves explicit field availability/source provenance without a fabricated
+network baseline. The [constructor/template investigation](CREATURE_VIEW4_INITIALIZATION_CONTRACT.md)
+establishes conditional initialization inputs separately. The
+[literal observer join](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R44_OBSERVER_STATE_AND_TERRAIN_PREREQUISITES.md)
+confirms the current seeded-finalized world gap before end-baselines;
+current-incarnation partial storage/admission remains open. No packet registry,
+opcode, source-matrix denominator or gameplay claim changes.
+
 Both message types use operand count 5 and little-endian application fields.
 
 | Message | Opcode | Envelope after opcode | Executable path | Confidence |
@@ -753,3 +762,70 @@ Round30 [owned TANO6 state](TANGIBLE_VIEW6_STATE_CONTRACT.md) applies the accept
 [CREO6 prefix contract](CREATURE_VIEW6_PREFIX_CONTRACT.md) consolidates directly verified shared TANO6 field objects0–1 and creature fields2–17, including raw strings with FFFF/U32 lengths and a two-U64 field. Shared schema does not mean contiguous delta byte prefix or permission to accept CREO in the TANO-only codec. Existing packet rows/denominators remain unchanged.
 
 [Owned TANO6 store](SCENE_TANGIBLE_VIEW6_STORE_CONTRACT.md) separately publishes modern immutable state/journal against exact registry currentness. Historical event acknowledgment is not target delivery. Coordinator/router integration remains pending.
+
+## Round32 accepted world and terrain inputs
+
+[Complete CREO6 baseline codec](CREATURE_VIEW6_CODEC_CONTRACT.md) consumes all eighteen registered fields, preserves declared-count metadata and raw strings/bits/counters, and supports ordered deltas0,2–12,16–17. Field1 and13–15 delta bodies are explicitly unsupported by this codec. [Optional TANO6 world integration](SCENE_WORLD_TANGIBLE_VIEW6_CONTRACT.md) seeds the static end barrier, publishes immutable current-incarnation state and exposes guarded event receipts. World budgets remain separate partitions; no weak target resolution or live delivery is established. Packet inventory and source-gap rows are unchanged.
+
+## Round33 terrain structure and creature state
+
+Owned TGEN inputs expose 257 layers and 87 AHCN records in the same pinned Tatooine file while retaining unsupported rules. Exact nine-sample terrain assembly and seam branch priority pass independent static/native checks. Complete current CREO6 scalar/string/pair models now have bounded incarnation-owned publication and a prepared commit seam. Separately, the exact HAM/max-HAM vector codec and mutation kernel pass independent wire/state/counter/work oracles. These remain separate partitions, not a composed full CREO6 world update. Original mixed-world headless and combined Core regressions pass. Height evaluation, group semantics, vector composition, original owner side effects and live interoperability remain open. Research89%/readiness94%,2626 names and345 packet-source rows remain unchanged. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R33_TERRAIN_AND_CREATURE_STATE.md).
+
+## Round34 creature world and terrain arithmetic
+
+[Supported CREO6 world partition](SCENE_WORLD_CREATURE_VIEW6_CONTRACT.md) requires its complete baseline before the creature end barrier and guards current event delivery. [Ordered composite union](CREATURE_VIEW6_COMPOSITE_CONTRACT.md) adds13/14 HAM to scalar/string/pair updates, preserving interleaved order under one immutable result. Defender1/wearable15 deltas, composite world routing and original owner effects remain open; packet rows unchanged. [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R34_CREATURE_AND_TERRAIN_KERNELS.md).
+
+## Round35 terrain and composite publication prerequisites
+
+[Wearable field15](CREATURE_WEARABLES_VIEW6_CONTRACT.md) uses object-ID-only set equality: changed customization/arrangement/CRC alone do not replace an existing equal-ID entry. Sparse defaults are empty customization, arrangementFFFFFFFF, ID0, CRC0. This narrow projection is separate from scalar/HAM composition and world publication; defender1 remains open. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R35_TERRAIN_AND_COMPOSITE_PREREQUISITES.md).
+
+## Round36 composite world and terrain boundaries
+
+[Defender1](CREATURE_DEFENDERS_VIEW6_CONTRACT.md) directly inherits the established CachedNetworkId specialization: full U64 equality, zero sparse defaults and exact counters/ordered notification descriptions. [Scalar/HAM world](SCENE_WORLD_CREATURE_VIEW6_COMPOSITE_CONTRACT.md) accepts the frozen ordered union only; defender1/wearable15 remain separate and rejected by that union until combined accounting is accepted. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R36_COMPOSITE_WORLD_AND_TERRAIN_BOUNDARIES.md).
+
+## Round37 complete creature kernel and supplied terrain
+
+[Complete CREO6 delta composition](CREATURE_VIEW6_FULL_CONTRACT.md) supports indices0..17, retaining raw baseline declared22 metadata and all vector/string/counter semantics. Full event descriptions charge48 logical bytes; inherited construction journals remain separately bounded. Frozen scalar/HAM world/store partitions still reject1/15. Owner private views and gameplay/resource callbacks remain separate. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R37_COMPLETE_CREATURE_AND_SUPPLIED_TERRAIN.md).
+
+## Round38 full creature publication and terrain inputs
+
+[CREO4 complete baseline/scalars](CREATURE_VIEW4_BASELINE_AND_SCALARS_CONTRACT.md) directly verifies fourteen registrations, all snapshot specializations and eleven scalar delta indices. Client mission field13 is a set of complete NetworkId pairs; owner-keyed server map correlation does not establish client mutation. Collections2/3/13 delta semantics remain separately closed. Full CREO6 world publication is now accepted, with48-byte event accounting. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R38_FULL_CREATURE_PUBLICATION_AND_TERRAIN_INPUTS.md).
+
+## Round39 supplied terrain grounding and CREO4 prerequisites
+
+The separate [CREO4 field2 encumbrance kernel](CREATURE_ENCUMBRANCES_VIEW4_CONTRACT.md) closes all five exact vector commands. Field3/13 deltas and complete view4 composition remain next. Existing packet-source inventory boundaries and345 rows are unchanged; this is an internal view-field closure. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R39_TERRAIN_GROUNDING_AND_PRIVATE_VIEW.md).
+## Round40 layer and CREO4 composition
+
+[Restricted scalar/encumbrance composition](CREATURE_VIEW4_SCALAR_ENCUMBRANCE_CONTRACT.md) and the separate [skill-map kernel](CREATURE_SKILL_MODS_VIEW4_CONTRACT.md) now pass independent ordered wire/state/budget oracles. Field3 supports opcodes0..2; unknown-opcode framing is context-dependent and excluded. Field13 and complete CREO4 publication remain next. No outer packet-source boundary or345-row inventory change is claimed.
+## Round41 supplied height execution and CREO4 fields
+
+[The supported CREO4 union](CREATURE_VIEW4_SUPPORTED_CONTRACT.md) now includes skill maps alongside eleven scalars and encumbrances. [Mission-set13](CREATURE_MISSION_OBJECTS_VIEW4_CONTRACT.md) is independently implemented with complete signed64 pair ordering. Full union/publication is next; packet-source inventory is unchanged.
+## Round42 complete private state and supplied terrain sequence
+
+[Full14-field CREO4 union](CREATURE_VIEW4_FULL_CONTRACT.md) and [complete prepared storage](SCENE_CREATURE_VIEW4_FULL_STORE_CONTRACT.md) now pass independent wire/model/event/identity/global-cap oracles. Full world ingress and original owner effects remain separate. Packet-source inventory is unchanged.
+
+## Round43 private world and current-height filters
+
+Optional complete CREO4 world publication and original-resource headless/GPU joins pass independent full-model, ordered-event, variable-journal and cleanup checks. Query-time FHGT supplied execution and its two-layer geometry/query join pass independently. FSLP raw structure is implemented; initializer timing/x87 sine preprocessing remains unresolved. Server observer CREO4 deltas can arrive before end-baselines without a full view4 baseline; original default/template initialization and modern admission for that path remain the next compatibility milestone. The current seeded finalized private route does not yet cover it. Original recursive terrain, gameplay and live interoperability remain open. Research89%/readiness94%,2626 names/zero duplicates and345 packet-source rows remain separate and unchanged. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R43_PRIVATE_WORLD_AND_HEIGHT_FILTERS.md).
+
+## Round45 accepted compatibility increment
+
+The [Round45 report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_45_2026-10-04.md) records independently reviewed/replayed supplied
+AHFR/FFRA consumers, an incarnation-bound received-only partial CREO4 store,
+one human movement-template input chain and the actual current-height FHGT/AHCN
+Godot preview. The store accepts pending/finalized objects without default seeds
+but has no world/router admission yet. Original fractal generation/cache lifetime,
+floating controls, complete terrain and later creature writers remain unknown.
+Research scores and canonical name/packet denominators remain unchanged.
+
+## Round46 accepted compatibility increment
+
+The [Round46 report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_46_2026-10-04.md) records received-only CREO4 world/router admission and its original-resource headless/GPU preview, an owned authored movement profile, and static family-map/sampler prerequisites. Partial/full4 policies are mutually exclusive; no default seed is fabricated. Fractal cache misses can return retained wide values while hits reload F32, so supplied-F32 consumer acceptance is not original sampler parity. Research scores,2626 canonical names and345 packet-source rows are unchanged.
+
+## Round47 compatibility increment
+
+The [received movement reader](SCENE_WORLD_RECEIVED_CREATURE_MOVEMENT_INPUT_CONTRACT.md) classifies the ten established CREO4 F32 slots as missing/finite/nonfinite and binds exact current world/phase provenance. It changes no wire grammar or packet-source row. [Authored and received selection](EXPLICIT_AUTHORED_RECEIVED_MOVEMENT_JOIN_CONTRACT.md) remain distinct; no defaults are merged.
+
+## Round48 compatibility increment
+
+[Original movement writers](CREATURE_MOVEMENT_WRITER_CONTRACT.md) show constructor and received run/walk updates feed the same mutable current slots, with alternate-source/modifier branches in consumers. Modern received-only state remains distinct from authored provenance; explicit admission does not implement original full arbitration. Packet registries/counts are unchanged.
