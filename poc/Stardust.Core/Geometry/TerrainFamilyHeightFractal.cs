@@ -6,11 +6,15 @@ public readonly record struct TerrainFamilyHeightFractalRequest(int Width,int Ro
 public readonly record struct TerrainFamilyHeightFractalControls(int TablePrecision,int ConstructionPrecision,
     int QueryPrecision,TerrainHeightArithmeticPrecision ConsumerPrecision);
 public sealed record TerrainFamilyHeightFractalLimits(int MaximumRuleBytes=65536,long MaximumOwnedBytes=1048576,long MaximumWork=1048576);
+public enum TerrainFamilyHeightFractalAccountingPolicy { IndependentRoute, SharedPreparationCell }
 public sealed record TerrainFamilyHeightFractalReceipt(string FamilySetSha256,int FamilySetInputBytes,
     TerrainFractalFamilyEntry Family,TerrainFractalRawInput Raw,TerrainHeightFractalInput Rule,
     TerrainFamilyHeightFractalRequest Request,TerrainFamilyHeightFractalControls Controls,
     TerrainConditionalFractalOrigin Origin,TerrainSuppliedFractalSample Sample,TerrainRetainedHeightFractalResult Affector,
-    long AccountedBytes,long AccountedWork);
+    long AccountedBytes,long AccountedWork)
+{
+    public TerrainFamilyHeightFractalAccountingPolicy AccountingPolicy{get;init;}=TerrainFamilyHeightFractalAccountingPolicy.IndependentRoute;
+}
 
 /// <summary>Explicit enabled AHFR route with exact signed family lookup and one fresh computed miss per call.</summary>
 public static class TerrainFamilyHeightFractal
@@ -35,8 +39,22 @@ public static class TerrainFamilyHeightFractal
         long bytes=8L*ruleEncoded.Length+65536+TerrainSeededNoiseKernel.TableBytes+136+32L*cells+160+16*80+256;
         long work=ruleEncoded.Length+TerrainSeededNoiseKernel.BuildWork+16*16+cells+16*512+64+32;
         Need(bytes<=limits.MaximumOwnedBytes&&work<=limits.MaximumWork,"Complete logical route budget before decoding/builds.");
+        var prepared=Prepare(families,ruleEncoded,limits.MaximumRuleBytes,cancellation);
+        var raw=prepared.Raw;
+        using var sampler=TerrainConditionalFractalSampler.CreateForSupportedModes(raw,request.Width,request.Rows,
+            controls.TablePrecision,controls.ConstructionPrecision,1048576,1048576,false,cancellation);
+        var computed=sampler.Query([new(request.Column,request.Row,request.XBits,request.ZBits)],controls.QueryPrecision,2097152,16777216,cancellation)[0];
+        return Complete(prepared,request,controls,computed,bytes,work,cancellation);
+    }
+
+    internal readonly record struct Preparation(TerrainFractalFamilySet Families,TerrainFractalFamilyEntry Family,
+        TerrainFractalRawInput Raw,TerrainHeightFractalInput Rule);
+    // One strict grammar shared by independent-call and opt-in patch preparation.
+    internal static Preparation Prepare(TerrainFractalFamilySet families,ReadOnlySpan<byte> ruleEncoded,
+        int maximumRuleBytes,CancellationToken cancellation)
+    {
         cancellation.ThrowIfCancellationRequested();
-        var rule=TerrainHeightFractalInput.Decode(ruleEncoded,new(limits.MaximumRuleBytes,64,8,4096,65536));
+        var rule=TerrainHeightFractalInput.Decode(ruleEncoded,new(maximumRuleBytes,64,8,4096,65536));
         Need(rule.Version=="0003"&&rule.Header is not null&&rule.Fields is not null,"Known typed AHFR/0003 required.");
         Need(rule.Header!.IsEnabled,"Explicitly enabled rule required; disabled is rejected.");
         var fields=rule.Fields!;Need(fields.OperationBits<=3&&fields.HasFiniteScale,"Only supported operations0..3 and finite scale are operational.");
@@ -46,13 +64,16 @@ public static class TerrainFamilyHeightFractal
         Need(f.ModeBits<=5&&!f.FirstCurveEnabled&&!f.SecondCurveEnabled&&f.SignedOctaveCount is >=1 and <=16&&f.SignedSeed!=int.MaxValue,"Family sampler operational subset required.");
         Need(Finite(f.FrequencyMultiplierBits)&&Finite(f.AmplitudeMultiplierBits)&&Finite(f.FirstCoordinateScaleBits)&&Finite(f.SecondCoordinateScaleBits)&&Finite(f.FirstOffsetBits)&&Finite(f.SecondOffsetBits),"Finite used family fields required; disabled curve words remain unused.");
         cancellation.ThrowIfCancellationRequested();
-        using var sampler=TerrainConditionalFractalSampler.CreateForSupportedModes(raw,request.Width,request.Rows,
-            controls.TablePrecision,controls.ConstructionPrecision,1048576,1048576,false,cancellation);
-        var computed=sampler.Query([new(request.Column,request.Row,request.XBits,request.ZBits)],controls.QueryPrecision,2097152,16777216,cancellation)[0];
+        return new(families,family!,raw,rule);
+    }
+    internal static TerrainFamilyHeightFractalReceipt Complete(Preparation prepared,TerrainFamilyHeightFractalRequest request,
+        TerrainFamilyHeightFractalControls controls,TerrainConditionalFractalSampler.Result computed,long bytes,long work,
+        CancellationToken cancellation,TerrainFamilyHeightFractalAccountingPolicy accountingPolicy=TerrainFamilyHeightFractalAccountingPolicy.IndependentRoute)
+    {
         Need(computed.Origin==TerrainConditionalFractalOrigin.ConditionalComputedMiss,"Fresh-call miss provenance required.");
-        var affector=TerrainSuppliedHeightFractal.Evaluate(rule,request.InitialHeightBits,request.InfluenceBits,computed.Sample,controls.ConsumerPrecision);
+        var affector=TerrainSuppliedHeightFractal.Evaluate(prepared.Rule,request.InitialHeightBits,request.InfluenceBits,computed.Sample,controls.ConsumerPrecision);
         Need(affector.Consumer.Outcome==TerrainHeightFractalOutcome.Applied&&ReferenceEquals(affector.Sample,computed.Sample),"Actual retained affector/sample identity required.");
         cancellation.ThrowIfCancellationRequested();
-        return new(families.SourceSha256,families.InputBytes,family,raw,rule,request,controls,computed.Origin,computed.Sample,affector,bytes,work);
+        return new(prepared.Families.SourceSha256,prepared.Families.InputBytes,prepared.Family,prepared.Raw,prepared.Rule,request,controls,computed.Origin,computed.Sample,affector,bytes,work){AccountingPolicy=accountingPolicy};
     }
 }

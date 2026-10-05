@@ -1,0 +1,9 @@
+{
+  "Synthetic": true,
+  "Purpose": "Opaque-word and receiver identity contract examples, not execution traces or recovered packets",
+  "Words": [0, 2147483648, 1065353216, 1008981770, 2139095040, 4286578688, 2143289345, 1, 4294967295],
+  "Receivers": [4096, 305419896],
+  "OptionalSideCall": [false, true],
+  "ReturnedWord": 1073741824,
+  "ConditionalUnits": [0.001, 0.016, 0.1, 1.0]
+}

@@ -199,3 +199,15 @@ Next bounded probe: one boundary/filter family and its layer influence contract,
 plus exact AHCN operation and inherited activation behavior before implementing
 any height evaluation. Group family payloads and legacy0000 layer migration
 remain independent prerequisites.
+
+## Round52 immutable source identity
+
+EncodedBytes and cached uppercase SourceSha256 expose complete owned input identity without a root copy. Hashing occurs once after successful grammar/semantic budget validation. Exported copies remain independent. [Identity/budget contract](TERRAIN_GENERATOR_IDENTITY_BUDGET_CONTRACT.md) records actual reservation and ownership checks.
+
+## Round53 selected height rule
+
+[Owned AHFR selection](TERRAIN_GENERATOR_HEIGHT_FRACTAL_RULE_CONTRACT.md) uses the
+existing Rules index and identity without a new parser. Serialized ChildOrdinal
+includes IHDR/ADTA; indexed layer.Children omits those two positions. Selection
+checks their exact offset relationship, signed family binding and pre-copy caps.
+It does not infer layer activation.

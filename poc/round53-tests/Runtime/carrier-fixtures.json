@@ -1,0 +1,448 @@
+{
+  "Synthetic": true,
+  "OriginalFloatingPointParity": false,
+  "OriginalMalformedTimingAcceptance": false,
+  "Forwarding": [
+    {
+      "Bits": "00000000",
+      "ObjectFlags": 2,
+      "ControllerPresent": true,
+      "ExpectedCalled": true,
+      "ExpectedWord": "00000000"
+    },
+    {
+      "Bits": "00000000",
+      "ObjectFlags": 2,
+      "ControllerPresent": false,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "00000000",
+      "ObjectFlags": 0,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "00000000",
+      "ObjectFlags": 4,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "00000000",
+      "ObjectFlags": 6,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "80000000",
+      "ObjectFlags": 2,
+      "ControllerPresent": true,
+      "ExpectedCalled": true,
+      "ExpectedWord": "80000000"
+    },
+    {
+      "Bits": "80000000",
+      "ObjectFlags": 2,
+      "ControllerPresent": false,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "80000000",
+      "ObjectFlags": 0,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "80000000",
+      "ObjectFlags": 4,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "80000000",
+      "ObjectFlags": 6,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "3f800000",
+      "ObjectFlags": 2,
+      "ControllerPresent": true,
+      "ExpectedCalled": true,
+      "ExpectedWord": "3f800000"
+    },
+    {
+      "Bits": "3f800000",
+      "ObjectFlags": 2,
+      "ControllerPresent": false,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "3f800000",
+      "ObjectFlags": 0,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "3f800000",
+      "ObjectFlags": 4,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "3f800000",
+      "ObjectFlags": 6,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "3c83126f",
+      "ObjectFlags": 2,
+      "ControllerPresent": true,
+      "ExpectedCalled": true,
+      "ExpectedWord": "3c83126f"
+    },
+    {
+      "Bits": "3c83126f",
+      "ObjectFlags": 2,
+      "ControllerPresent": false,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "3c83126f",
+      "ObjectFlags": 0,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "3c83126f",
+      "ObjectFlags": 4,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "3c83126f",
+      "ObjectFlags": 6,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "00000001",
+      "ObjectFlags": 2,
+      "ControllerPresent": true,
+      "ExpectedCalled": true,
+      "ExpectedWord": "00000001"
+    },
+    {
+      "Bits": "00000001",
+      "ObjectFlags": 2,
+      "ControllerPresent": false,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "00000001",
+      "ObjectFlags": 0,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "00000001",
+      "ObjectFlags": 4,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "00000001",
+      "ObjectFlags": 6,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "7f7fffff",
+      "ObjectFlags": 2,
+      "ControllerPresent": true,
+      "ExpectedCalled": true,
+      "ExpectedWord": "7f7fffff"
+    },
+    {
+      "Bits": "7f7fffff",
+      "ObjectFlags": 2,
+      "ControllerPresent": false,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "7f7fffff",
+      "ObjectFlags": 0,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "7f7fffff",
+      "ObjectFlags": 4,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "7f7fffff",
+      "ObjectFlags": 6,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "7fa00001",
+      "ObjectFlags": 2,
+      "ControllerPresent": true,
+      "ExpectedCalled": true,
+      "ExpectedWord": "7fa00001"
+    },
+    {
+      "Bits": "7fa00001",
+      "ObjectFlags": 2,
+      "ControllerPresent": false,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "7fa00001",
+      "ObjectFlags": 0,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "7fa00001",
+      "ObjectFlags": 4,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "7fa00001",
+      "ObjectFlags": 6,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "7fc00000",
+      "ObjectFlags": 2,
+      "ControllerPresent": true,
+      "ExpectedCalled": true,
+      "ExpectedWord": "7fc00000"
+    },
+    {
+      "Bits": "7fc00000",
+      "ObjectFlags": 2,
+      "ControllerPresent": false,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "7fc00000",
+      "ObjectFlags": 0,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "7fc00000",
+      "ObjectFlags": 4,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "7fc00000",
+      "ObjectFlags": 6,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "7f800000",
+      "ObjectFlags": 2,
+      "ControllerPresent": true,
+      "ExpectedCalled": true,
+      "ExpectedWord": "7f800000"
+    },
+    {
+      "Bits": "7f800000",
+      "ObjectFlags": 2,
+      "ControllerPresent": false,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "7f800000",
+      "ObjectFlags": 0,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "7f800000",
+      "ObjectFlags": 4,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "7f800000",
+      "ObjectFlags": 6,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "ff800000",
+      "ObjectFlags": 2,
+      "ControllerPresent": true,
+      "ExpectedCalled": true,
+      "ExpectedWord": "ff800000"
+    },
+    {
+      "Bits": "ff800000",
+      "ObjectFlags": 2,
+      "ControllerPresent": false,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "ff800000",
+      "ObjectFlags": 0,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "ff800000",
+      "ObjectFlags": 4,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "ff800000",
+      "ObjectFlags": 6,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "bf800000",
+      "ObjectFlags": 2,
+      "ControllerPresent": true,
+      "ExpectedCalled": true,
+      "ExpectedWord": "bf800000"
+    },
+    {
+      "Bits": "bf800000",
+      "ObjectFlags": 2,
+      "ControllerPresent": false,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "bf800000",
+      "ObjectFlags": 0,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "bf800000",
+      "ObjectFlags": 4,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    },
+    {
+      "Bits": "bf800000",
+      "ObjectFlags": 6,
+      "ControllerPresent": true,
+      "ExpectedCalled": false,
+      "ExpectedWord": null
+    }
+  ],
+  "NominalScheduler": [
+    {
+      "Last": 1000,
+      "Current": 1000,
+      "ExpectedSecondsFraction": [
+        0,
+        1000
+      ],
+      "ExpectedDispatch": false
+    },
+    {
+      "Last": 1000,
+      "Current": 1001,
+      "ExpectedSecondsFraction": [
+        1,
+        1000
+      ],
+      "ExpectedDispatch": true
+    },
+    {
+      "Last": 1000,
+      "Current": 1017,
+      "ExpectedSecondsFraction": [
+        17,
+        1000
+      ],
+      "ExpectedDispatch": true
+    },
+    {
+      "Last": 1000,
+      "Current": 2000,
+      "ExpectedSecondsFraction": [
+        1000,
+        1000
+      ],
+      "ExpectedDispatch": true
+    },
+    {
+      "Last": 1000,
+      "Current": 2500,
+      "ExpectedSecondsFraction": [
+        1500,
+        1000
+      ],
+      "ExpectedDispatch": true
+    },
+    {
+      "Last": 1000,
+      "Current": 4294968296,
+      "ExpectedSecondsFraction": [
+        4294967296,
+        1000
+      ],
+      "ExpectedDispatch": true
+    }
+  ]
+}

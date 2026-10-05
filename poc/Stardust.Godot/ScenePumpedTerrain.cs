@@ -17,9 +17,16 @@ public partial class ScenePumpedWorldPreview
     // Explicit synthetic supplied channels; this is not original terrain generation.
     private void LoadSuppliedTerrain(string path)
     {
-        Check(!suppliedTerrain && new FileInfo(path).Length is > 0 and <= 262144, "Bounded terrain fixture");
+        long fixtureBytes=new FileInfo(path).Length;
+        Check(!suppliedTerrain && fixtureBytes is > 0 and <= 524288, "Bounded terrain fixture");
         using var fixture = JsonDocument.Parse(File.ReadAllBytes(path), new JsonDocumentOptions { MaxDepth = 16 });
         var root = fixture.RootElement;
+        if(root.GetProperty("Version").GetInt32()==9){LoadSparseFirstCurveTerrain(root);return;}
+        if(root.GetProperty("Version").GetInt32()==8){LoadFirstCurveTerrain(root);return;}
+        if(root.GetProperty("Version").GetInt32()==7){LoadFilteredHeightTerrain(root);return;}
+        if(root.GetProperty("Version").GetInt32()==6){LoadHeightFieldTerrain(root);return;}
+        if(root.GetProperty("Version").GetInt32() is 4 or 5){LoadFamilyHeightTerrain(root);return;}
+        Check(fixtureBytes<=262144,"Existing terrain fixture cap");
         if(root.GetProperty("Version").GetInt32()==3){LoadHeightFilteredTerrain(root);return;}
         if(root.GetProperty("Version").GetInt32()==2){LoadCalculatedLayerTerrain(root);return;}
         Check(root.GetProperty("Version").GetInt32() == 1 && root.GetProperty("Synthetic").GetBoolean()
@@ -97,6 +104,7 @@ public partial class ScenePumpedWorldPreview
 
     private void CloseSuppliedTerrain()
     {
+        CloseSparseTerrainLight();
         foreach (var visual in suppliedTerrainVisuals) visual.Dispose();
         suppliedTerrainVisuals.Clear(); suppliedTerrainQueries.Clear();
         suppliedLayerMotion?.Clear();suppliedLayerMotion=null;

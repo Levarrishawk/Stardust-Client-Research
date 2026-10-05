@@ -206,3 +206,50 @@ The [owned family/sampler join](TERRAIN_FRACTAL_FAMILY_SAMPLER_JOIN_CONTRACT.md)
 ## Round51 bounded boundary
 
 [Generator-to-family height routing](TERRAIN_GENERATOR_FAMILY_HEIGHT_JOIN_CONTRACT.md) passes486 actual joins under explicit fresh-call controls. [Run-default preference](PLAYER_CONTROLLER_RUN_FLAG_CONTRACT.md) and [acceleration helper](CREATURE_ACCELERATION_HELPER_CONTRACT.md) have bounded static evidence; message timing, getter sampling and units remain open. The shared original-resource host remains the separately accepted Round50 slice. [Round51 record](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_51_2026-10-04.md).
+
+## Round52 accepted boundary
+
+[Computed family-height terrain](SCENE_WORLD_FAMILY_HEIGHT_TERRAIN_PREVIEW_CONTRACT.md) reaches headless/GPU surface and grounding checks under explicit synthetic rules/controls. [Acceleration getter](CREATURE_ACCELERATION_TEMPLATE_GETTER_CONTRACT.md) and [run-input producer](PLAYER_CONTROLLER_RUN_INPUT_PRODUCER_CONTRACT.md) have bounded original evidence; update units, active queue binding and full terrain/controller parity remain open. [Round52](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_52_2026-10-04.md) records independent acceptance gates.
+
+## Round53 controlled original-rule preview
+
+The [owned selected AHFR](TERRAIN_GENERATOR_HEIGHT_FRACTAL_RULE_CONTRACT.md) now
+feeds the [single-sampler patch](TERRAIN_SINGLE_SAMPLER_HEIGHT_PATCH_CONTRACT.md)
+and [Godot surface/grounding preview](SCENE_WORLD_FAMILY_HEIGHT_TERRAIN_PREVIEW_CONTRACT.md#round53-selected-original-rule-with-one-sampler-per-patch).
+Exact400 retained samples/heights and headless/GPU cleanup pass. Coordinates,
+initial height/influence and arithmetic controls are caller-supplied preview
+policy; full recursive terrain, activation and materials remain Unknown.
+
+
+## Round54 accepted increment
+
+The [selected original filter](TERRAIN_GENERATOR_FRACTAL_FILTER_RULE_CONTRACT.md) and [per-cell field](TERRAIN_FAMILY_HEIGHT_FIELD_CONTRACT.md) pass independent replays. Lead Version6 composes selected root AHFR and layer3 FFRA under explicit synthetic coordinates, prior heights and controls;400 native/headless/GPU cells, mixed/zero-state checks and late zero-visual-allocation rejection pass. Original layer admission, traversal and active controls remain Unknown.
+
+
+## Round55 owned slice and filter pipeline
+
+[Accepted bounded integration](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R55_LAYER_SLICE_AND_FILTERED_FIELD.md) adds explicit original-layer evidence/rejection and immutable retained filter-to-field composition. Version7 headless/GPU/native/Fraction matches400 cells/16 patches/128 triangles/nine grounded states; late fourth-chunk invalid input allocates zero terrain visuals and drains cleanly. Prior Version6 remains verified. Original layer3's height curves are unsupported; full terrain traversal and original numeric parity remain unclaimed. Controller seconds have conditional carrier evidence; queue lifetime and physical acceleration remain open.
+
+
+## Round56 boundary and nominal motion
+
+[Round56 integration](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R56_BOUNDARY_ADMISSION_AND_NOMINAL_SPEED.md) adds retained boundary-only first-gate evaluation and a60-step supplied nominal-speed trace through the real native motion driver/original-resource presentation. Native/Fraction/headless/GPU, late invalid-step preflight/no-new-publication drain and prior terrain gates pass. Original layer3 curve support remains unsupported; curve operand/store research closes with exact power/control parity still Unknown. Queue storage writer/cleanup is evidenced, with internals/lifecycle still open.
+
+
+## Round57 filters, approximate curves and supplied targets
+
+[Round57 integration](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R57_BOUNDARY_FILTER_AND_TARGET_SPEED.md) adds boundary-admitted retained FFRA products, a separately labeled modern first-curve batch and supplied target construction through the original-resource motion host. Worker/lead numeric and malformed-input/cleanup gates pass; exact original curve output and full original locomotion remain unclaimed. Strict curve admission is unchanged.
+
+
+## Round58 conditional curved-height display
+
+[Version8 preview](SCENE_WORLD_FIRST_CURVE_TERRAIN_PREVIEW_CONTRACT.md) joins one original local BCIR/FFRA/AHFR layer using explicit modern first-curve approximation. Native/Fraction/Decimal/headless/GPU and late invalid-input zero-allocation cleanup pass. The [sparse batch](TERRAIN_FIRST_CURVE_FRACTAL_SPARSE_BATCH_CONTRACT.md) is independently verified; this complete-batch host claims no sparse query suppression. Original recursive activation and transcendental/control parity remain Unknown.
+
+
+## Round59 sparse terrain and received local speed
+
+[Round59 lead checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R59_SPARSE_HEIGHT_NORMALS_AND_CURRENT_SPEED.md) adds positive-cell sparse heights, modern stored-height normals/lit policy and actual received local fields through paired supplied readers/atomic speed planning. Independent worker/main/native/headless/GPU/malformed-input/cleanup and prior-mode gates pass. Height-query count200 versus400 with explicit supplied warm priors; no original cache/normal/control/locomotion parity is inferred. Queue backing release ordering closes while concrete payload ownership remains Unknown. Research89/readiness94,2626 names and345 packet rows stay unchanged.
+
+## Round60 composition boundary
+
+The preview now consumes actual bounded engine-neutral [owned sparse evaluation](TERRAIN_HEIGHT_LAYER_SPARSE_FIRST_CURVE_EVALUATION_CONTRACT.md) and [modern height patch](TERRAIN_MODERN_HEIGHT_PATCH_CONTRACT.md) receipts. Height/normal output, accounting, ownership and rejection cleanup pass independent native and replacement-host checks. Original material and numerical parity remain open. Development stops after this round at Levarris's request.

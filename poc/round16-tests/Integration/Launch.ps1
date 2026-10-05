@@ -27,6 +27,7 @@ param(
  [string]$CreatureView4FullPeer,
  [string]$CreatureView4PartialPeer,
  [string]$TerrainPeer,
+ [string]$NominalSpeedFixture,
  [switch]$TerminalAnimation,
  [switch]$TerminalClock,
  [switch]$TerminalClockFault,
@@ -72,6 +73,7 @@ if($CreatureView6FullPeer){if(-not $TangibleView6Peer){throw 'Full CREO6 peer re
 if($CreatureView4FullPeer -and $CreatureView4PartialPeer){throw 'Choose one CREO4 world policy'}
 if($CreatureView4PartialPeer){if(-not $CreatureView6FullPeer){throw 'Partial CREO4 preview requires joined full CREO6 proof'};$taskArguments+=@('--creature4-partial-peer',(Resolve-Path -LiteralPath $CreatureView4PartialPeer).Path)}
 if($CreatureView4FullPeer){if(-not $CreatureView6FullPeer){throw 'Full CREO4 preview requires joined full CREO6 proof'};$taskArguments+=@('--creature4-full-peer',(Resolve-Path -LiteralPath $CreatureView4FullPeer).Path)}
+if($NominalSpeedFixture){if(-not $LocalInput -or -not $CreatureView4PartialPeer -or $SourcedInputSource -or $TerrainPeer -or $InputLoss -or $CancelLoad){throw 'Nominal speed requires the separate complete planar partial-view host'};$taskArguments+=@('--nominal-speed-fixture',(Resolve-Path -LiteralPath $NominalSpeedFixture).Path)}
 if($SourcedInputSource){if(-not $LocalInput -or -not $CreatureView4PartialPeer -or $TerrainPeer -or $InputLoss -or $CancelLoad){throw 'Sourced input requires the complete planar partial-view host'};$taskArguments+=@('--sourced-input',$SourcedInputSource)}
 if($TerminalAnimation){if(-not $TangiblePeer){throw 'Terminal animation requires typed tangible proof'};$taskArguments+='--terminal-animation'}
 if($TerminalClock){if(-not $TerminalAnimation){throw 'Terminal clock requires animation'};$taskArguments+='--terminal-clock'}

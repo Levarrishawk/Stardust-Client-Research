@@ -712,3 +712,32 @@ The [authored movement consumer](SHARED_CREATURE_AUTHORED_MOVEMENT_INPUT_CONTRAC
 ## Round49 compatibility increment
 
 [Original-resource sourced preview](SCENE_WORLD_SOURCED_MOVEMENT_RESOURCE_PREVIEW_CONTRACT.md) passes authored/received headless and authored GPU joins through the actual original recipe closure with zero extra movement reads. [Current raw inputs](SCENE_WORLD_CREATURE_MOVEMENT_CURRENT_INPUT_CONTRACT.md) retain explicit constructor provenance and exact received overrides without store seeding; [explicit stop and sourced input](SCENE_WORLD_SOURCED_INPUT_HOST_CONTRACT.md) own the modern direction/clock lifecycle. Original full arbitration, modifier/vehicle semantics and units remain separate.
+
+
+## Round55 owned slice and filter pipeline
+
+[Accepted bounded integration](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R55_LAYER_SLICE_AND_FILTERED_FIELD.md) adds explicit original-layer evidence/rejection and immutable retained filter-to-field composition. Version7 headless/GPU/native/Fraction matches400 cells/16 patches/128 triangles/nine grounded states; late fourth-chunk invalid input allocates zero terrain visuals and drains cleanly. Prior Version6 remains verified. Original layer3's height curves are unsupported; full terrain traversal and original numeric parity remain unclaimed. Controller seconds have conditional carrier evidence; queue lifetime and physical acceleration remain open.
+
+
+## Round56 boundary and nominal motion
+
+[Round56 integration](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R56_BOUNDARY_ADMISSION_AND_NOMINAL_SPEED.md) adds retained boundary-only first-gate evaluation and a60-step supplied nominal-speed trace through the real native motion driver/original-resource presentation. Native/Fraction/headless/GPU, late invalid-step preflight/no-new-publication drain and prior terrain gates pass. Original layer3 curve support remains unsupported; curve operand/store research closes with exact power/control parity still Unknown. Queue storage writer/cleanup is evidenced, with internals/lifecycle still open.
+
+
+## Round57 filters, approximate curves and supplied targets
+
+[Round57 integration](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R57_BOUNDARY_FILTER_AND_TARGET_SPEED.md) adds boundary-admitted retained FFRA products, a separately labeled modern first-curve batch and supplied target construction through the original-resource motion host. Worker/lead numeric and malformed-input/cleanup gates pass; exact original curve output and full original locomotion remain unclaimed. Strict curve admission is unchanged.
+
+
+## Round58 original-layer approximation
+
+The [height consumer](TERRAIN_HEIGHT_LAYER_FIRST_CURVE_CONSUMER_CONTRACT.md) retains exact selected source/grid identity and applies the actual supplied modern curve dyadic to admitted products. [Preview contract](SCENE_WORLD_FIRST_CURVE_TERRAIN_PREVIEW_CONTRACT.md) verifies400 cells/16 patches/nine grounded states. Strict operational admission is unchanged; full original terrain activation and numeric parity remain Unknown.
+
+
+## Round59 sparse terrain and received local speed
+
+[Round59 lead checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R59_SPARSE_HEIGHT_NORMALS_AND_CURRENT_SPEED.md) adds positive-cell sparse heights, modern stored-height normals/lit policy and actual received local fields through paired supplied readers/atomic speed planning. Independent worker/main/native/headless/GPU/malformed-input/cleanup and prior-mode gates pass. Height-query count200 versus400 with explicit supplied warm priors; no original cache/normal/control/locomotion parity is inferred. Queue backing release ordering closes while concrete payload ownership remains Unknown. Research89/readiness94,2626 names and345 packet rows stay unchanged.
+
+## Round60 composition boundary
+
+The preview now consumes actual bounded engine-neutral [owned sparse evaluation](TERRAIN_HEIGHT_LAYER_SPARSE_FIRST_CURVE_EVALUATION_CONTRACT.md) and [modern height patch](TERRAIN_MODERN_HEIGHT_PATCH_CONTRACT.md) receipts. Height/normal output, accounting, ownership and rejection cleanup pass independent native and replacement-host checks. Original material and numerical parity remain open. Development stops after this round at Levarris's request.

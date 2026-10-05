@@ -1,5 +1,6 @@
 using System.Buffers.Binary;
 using System.Collections.ObjectModel;
+using System.Security.Cryptography;
 
 namespace Stardust.Core.Assets;
 
@@ -96,7 +97,9 @@ public sealed class TerrainGeneratorInput
 {
     private readonly byte[] source;
     private TerrainGeneratorInput(byte[] source,TerrainGeneratorGroup[] groups,TerrainGeneratorLayer[] layers,TerrainGeneratorRule[] rules,int records,int strings)
-    { this.source=source;Groups=Array.AsReadOnly(groups);Layers=Array.AsReadOnly(layers);Rules=Array.AsReadOnly(rules);GroupRecordCount=records;DecodedStringBytes=strings; }
+    { this.source=source;Groups=Array.AsReadOnly(groups);Layers=Array.AsReadOnly(layers);Rules=Array.AsReadOnly(rules);GroupRecordCount=records;DecodedStringBytes=strings;SourceSha256=Convert.ToHexString(SHA256.HashData(source)); }
+    public int EncodedBytes=>source.Length;
+    public string SourceSha256 { get; }
     public IReadOnlyList<TerrainGeneratorGroup> Groups { get; }
     public IReadOnlyList<TerrainGeneratorLayer> Layers { get; }
     public IReadOnlyList<TerrainGeneratorRule> Rules { get; }

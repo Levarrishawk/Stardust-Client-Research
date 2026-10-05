@@ -1,0 +1,40 @@
+# Round 53: one original enabled AHFR selected from an owned generator
+
+Date: 2026-10-04. Assets worker; static original-input research and bounded native replacement-code tests only.
+
+## Question and stopping condition
+
+Can one explicitly indexed TGEN rule be published as an immutable, provenance-bound typed AHFR/0003, resolve its exact signed fractal family, enforce a caller-selected raw-evidence versus enabled-operational policy, and reproduce one independently computed original-rule sample under synthetic controls?
+
+Stop after implementing this single boundary, comparing one bounded original occurrence plus synthetic failures, documenting its limits, and reviewing only the nine allowed new files. No whole-generator traversal or additional terrain subsystem is included.
+
+## Input identity and tools
+
+Accepted round 53 frozen baseline: 3659 files, main HEAD `beee58c2fe14fa8c90ae0e2ae2f3f67e91c69e0b`; manifest SHA-256 `0373dac76092ab2cb10fc6311436885f9ecb5cfd62285f37042d57dd912693b4`; archive SHA-256 `434824c9edfc15d6390d339551207f7cf5701e934fa337444f09181a2dbc3ca0`. Worker HEAD remains `65de8c88141071744dc75594be126b3bab3696a5`. A complete path/member/hash/size/link/containment/current-destination preflight preceded the single overlay, and all 3659 resulting files matched. Prior worker outputs were reconciled against the lead's accepted round 52 hashes before overlay.
+
+The original executable SHA-256 gate precedes virtual-address interpretation: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Read-only archive root was `C:/Stardust-DEV`; archive-priority configuration SHA-256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`. Effective priority 42 Tatooine source: 1188446 bytes, SHA-256 `6039D0C15F9CCB518D72AE01A1ABDF41FCFF2153B5CBF7EB3BA6E6C634A3A427`. TGEN at source offset 210: 139608 bytes, SHA-256 `B623B789E5F8486414C1D68CD341005E7E25FD97AF30567E64E7AC848DEB6C32`. Fractal MGRP at TGEN offset 6602: 5633 bytes, 43 entries, SHA-256 `A221167452D8D67719BD72A3DB30CC10B7B652881B935D3571B9D55328B444A1`.
+
+Tools: bundled Python, SHA-256, independent BE-IFF metadata and LE-word parsers, PE/Capstone static anchors from the [existing AHFR verifier](../../tools/python/verify_terrain_height_fractal.py), the frozen independent family and retained-fraction height oracles, and .NET8 compiling the actual Core project. No original executable execution or new downloads occurred. Private fixture/native/receipt files remain ignored and are not promoted into curated data.
+
+## Evidence and conclusions
+
+1. **Observation, Confirmed:** the existing first-AHFR record in the [durable AHFR evidence](../../docs/TERRAIN_HEIGHT_FRACTAL_CONTRACT.md) is generator rule index 0, layer 0, child ordinal 2, TGEN offset 12346, length 114, SHA-256 `51735AECA9C172F0BD1E8194ACBCECD8CEF03041075CF307822E275D5E936B1E`. Fresh source extraction and the independent byte parser reproduced that same rule, AHFR0003/IHDR 0001, raw inherited enabled state and 33 decoded-copy bytes. Its signed family key resolves exactly in the pinned group. One candidate was inspected and eligible; zero prior exclusions. **Interpretation, Confirmed within explicit policy:** this occurrence supplies a real enabled rule and family in the frozen operational input subset. **Consequence:** a bounded selection can use original evidence without synthesizing the rule or claiming layer activation.
+2. **Observation, Confirmed implementation:** [the selector](../../poc/Stardust.Core/Assets/TerrainGeneratorHeightFractalRule.cs) checks immutable root identity and accepted group role/version/extents, explicit index/type/version/layer-child metadata, and deterministic copy/decode caps before section export. It strictly decodes typed AHFR, resolves the signed ID without fallback, retains exact provenance and owned immutable references, and checks cancellation before publication. **Interpretation:** the boundary publishes one atomic selection with independent raw state and explicit caller policy. **Consequence:** engines can retain this descriptor without holding borrowed asset buffers or embedding activation logic in an adapter.
+3. **Observation, Confirmed implementation:** 59 independent cases matched; 37 reject. Nine ownership/pre-copy allocation checks passed. Cases cover signed key extremes, second-index selection, binding mismatch, bad indexes/policy/type/version/header/PARM, disabled/missing-family and operational eligibility failures, conservative exact/failed budgets, cancellation, borrowed-buffer/export mutation and equivalent-generator acceptance. A 60000-byte synthetic name with zero aggregate selection cap rejected while allocating less than 16384 bytes after descriptor/binding construction, guarding the before-copy budget order. **Consequence:** malformed or ineligible selection is bounded and leaves prior accepted results intact.
+4. **Observation, Confirmed replacement-code calculation:** one copy of the selected original rule passed to the frozen fresh family-height route matched the independent retained-fraction sample, projection bits and final height bits. Coordinates, 2x2 cell, influence, initial height and 53-bit controls were explicitly synthetic. **Interpretation, Unknown for original runtime:** this establishes the bounded replacement calculation, not original executable sample parity or active controls. **Consequence:** do not promote it to full terrain generation or whole-layer coverage.
+
+No original rule names, raw field arrays, asset payloads, raw decompiler corpus or extracted content are committed or embedded here. No semantic function names, protocol registry rows, living status counts or historical ledger entries were changed; consolidation belongs to the lead's round integration.
+
+## Validation and reproduction
+
+Run the [isolated PowerShell entry point](../../poc/round53-tests/Assets/Invoke-SelectedRule.ps1) with explicit `Python`, offline `CachedPackages`, original `Exe`, static-analysis `Packages`, `AssetRoot`, pinned `Config` and optional `Dotnet`. It requires a fresh ignored output root under the repository's private directory, rejects linked ancestors, clears package sources, generates fresh original/synthetic fixtures, builds the actual Core/selector scenarios, compares independent results, then builds/runs the full default smoke project.
+
+The final fresh isolated replay passed: 59 cases/37 rejections, 9 ownership checks, 96 static instruction anchors and 8 wrong-executable negatives, plus the one original-rule synthetic-control sample. The final replay includes the explicit family-extent guard. Both isolated and default builds had zero warnings/errors; default smoke execution succeeded.
+
+The workspace validator passed across 1550 Markdown files: zero broken links,zero links into private material, 2626 unique provisional rows and 345 packet rows. The complete frozen-manifest scope review found 3659 unchanged baseline files,zero modified existing files and exactly the nine allowed new files. Each new file passed a focused whitespace check; private/build outputs are ignored. Receipts retain all nine final hashes, unchanged worker HEAD and an empty index. No staging, commit, push or publication occurred.
+
+## Remaining uncertainty and exact next probe
+
+Original ancestor activation, traversal order, active arithmetic controls, runtime sampler ownership/invalidation and arbitrary query normalization remain **Unknown**. A necessary input subset is not a sampling-success guarantee. Selection accounting bounds logical byte buffers and byte-processing work, not actual heap/object overhead or wall-clock time. Cancellation brackets the bounded synchronous decode.
+
+Next probe: define and evidence one original LAYR activation decision, including inherited enabled/ADTA fields, parent suppression and child ordering, before any engine-neutral generator traversal consumes this selected-rule descriptor. Keep that question separate from family sampling and original floating-point control recovery.

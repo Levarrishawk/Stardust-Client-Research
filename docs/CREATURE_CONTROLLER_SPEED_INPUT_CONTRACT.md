@@ -47,3 +47,13 @@ The [static verifier](../tools/python/verify_creature_controller_speed_inputs.py
 The [independent runner](../poc/round50-tests/Networking/research_checks.py) maps PE sections without the producer's decoder, checks literal instruction bytes and relative calls, and rejects wrong/missing executables, a deliberately wrong assertion, truncated helper spans, unmapped spans, existing outputs, and public outputs. Helper truncation cases are synthetic, not execution of a modified original executable. Both launchers require fresh private output and inspect lexical symlink/reparse ancestors before resolving or creating output.
 
 Next bounded probe: resolve the meaning and permitted transitions of global `01882394` and its input branch, using direct executable callers/strings and a concrete stopping condition. Keep related-object lookup, factor units, helper semantics, and vector destination type separately unresolved; do not promote this evidence to full locomotion fidelity or runtime arbitration readiness.
+
+
+## Round56 supplied transition
+
+[Conditional callback seconds](TANGIBLE_CONTROLLER_UPDATE_CARRIER_CONTRACT.md) closes the prior carrier gap under explicit runtime-selection premises. [Nominal transition](CREATURE_NOMINAL_SPEED_TRANSITION_CONTRACT.md) and [host trace](CREATURE_NOMINAL_SPEED_TRANSITION_HOST_CONTRACT.md) implement the immediate supplied-rate store/clamp graph; full target construction, dynamic getter/physical units, later zeroing/vector/root-motion and original controls remain separate. The historical Unknown unit statement above describes the earlier stopping point.
+
+
+## Round57 supplied target construction
+
+[Target builder](CREATURE_NOMINAL_TARGET_SPEED_CONTRACT.md) implements the selected finite sum/sqrt/intermediate-store/retained-factor graph using supplied getter-return words and factor. [Host trace](CREATURE_NOMINAL_TARGET_SPEED_HOST_CONTRACT.md) joins actual targets to the supplied nominal transition. Getter/factor ownership, physical semantics, original controls and complete locomotion remain separate.

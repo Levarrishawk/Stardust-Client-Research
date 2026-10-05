@@ -1,5 +1,7 @@
 # Generator-to-fractal-family publication
 
+Current reservation behavior is superseded by the [Round52 identity/budget contract](TERRAIN_GENERATOR_IDENTITY_BUDGET_CONTRACT.md). The Round51 conservative reservation description and measurements below are historical; current reservations use actual immutable input length.
+
 Date: 2026-10-04. `TerrainGeneratorFractalFamilies.Bind` publishes an immutable owned family set from an existing [TerrainGeneratorInput](TERRAIN_GENERATOR_INPUT_CONTRACT.md). It selects the sole `FractalMap` role, requires recognized exact MGRP/0000, and delegates raw family decoding to the [frozen family set](TERRAIN_FRACTAL_FAMILY_SET_CONTRACT.md). It performs no asset I/O, callbacks, sampler creation or runtime map operation. [The checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R51_GENERATOR_FRACTAL_FAMILIES.md) records the bounded evidence and validation.
 
 ## Selection and provenance

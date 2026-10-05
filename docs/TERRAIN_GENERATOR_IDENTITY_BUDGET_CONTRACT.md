@@ -1,0 +1,27 @@
+# Generator identity and actual copy budgets
+
+Date: 2026-10-04, Round 52. This increment supersedes the current conservative reservation behavior described in the dated [Round 51 publication contract](TERRAIN_GENERATOR_FRACTAL_FAMILY_CONTRACT.md). That document and its counts remain historical. Generator grammar, source ownership, hard limits, family grammar and cancellation checks are preserved.
+
+## Immutable identity
+
+`TerrainGeneratorInput.EncodedBytes` returns the complete owned TGEN form length without copying. `SourceSha256` is an uppercase SHA-256 string cached exactly once from the owned bytes when a successful parsed descriptor is constructed. Both have no public setter; neither exposes a span or backing buffer. Repeated getter access requires no encoded copy or hash recomputation. `CopyGeneratorForm` and section exports remain independent caller-owned copies.
+
+The existing decoder validates policy and input length before its initial snapshot, then performs bounded IFF parsing and all existing section/group/layer/rule/string checks. Its only result-constructor call remains after complete grammar and semantic budget acceptance. SHA calculation is in that private constructor, after the already validated model has been formed; failed parse/cap paths do not construct or publish an identity. The hash adds one source-length scan on successful parsing, bounded by the unchanged 64 MiB hard input cap. It consumes the existing owned buffer, plus a digest and cached string; it does not allocate another full root snapshot. Parse hashing is separate from binding's logical copy/work charges, and no CLR heap-size or measured instruction-count guarantee is claimed.
+
+## Binding before allocation
+
+`TerrainGeneratorFractalFamilies.Bind` reads the immutable actual length and cached hash before copying. It computes copy reservation as generator bytes plus selected group bytes, and work reservation as generator bytes plus group bytes plus frozen family logical work. Those charges are checked against outer limits, together with the unchanged recognized-role/version, section bounds and nested family budgets, before either `CopyGeneratorForm` or `CopyEncodedBytes` is called. Root and group temporary copies still establish the same region-equality invariant. The root copy must match the preflight length. Binding uses the cached hash and does not hash the copied root again.
+
+`ReservedEncodedCopyBytes` now equals `EncodedCopyBytes`; `ReservedWork` equals `Work` for a published result. Exact allowances accept; one-byte undersized allowances reject before root/section copying. The historical public `GeneratorCopyReservationBytes` constant remains for compatibility as the existing root hard-bound check, and no longer contributes its fixed value to a reservation. Default/hard outer and nested policies are unchanged. Cancellation checks still precede binding copies and follow construction before publication.
+
+The pinned original TGEN remains 139,608 bytes, SHA-256 `B623B789E5F8486414C1D68CD341005E7E25FD97AF30567E64E7AC848DEB6C32`. Its sole FractalMap at offset 6602 is 5,633 bytes, SHA-256 `A221167452D8D67719BD72A3DB30CC10B7B652881B935D3571B9D55328B444A1`, with 43 owned families. Exact copy allowance is 145,241 bytes, retained logical family snapshot is 6,813 bytes, and exact binding work allowance is 154,486. Root and group provenance, raw names/words and decoded family order are unchanged. Original names/words remain private; these are aggregates for one installed occurrence, not corpus or original runtime parity claims.
+
+## Reproduction and limitations
+
+[Invoke-GeneratorIdentity.ps1](../poc/round52-tests/Assets/Invoke-GeneratorIdentity.ps1) creates only fresh ignored private output after lexical reparse-ancestor checks. It needs explicit offline Python, cached static packages/NuGet, original executable, configuration and installed asset inputs. It regenerates an independent raw original oracle and current synthetic fixtures, builds actual Core, runs new identity scenarios and unchanged Round 51 bridge/50 family scenarios, then runs default Core smoke. Current expectations change only reservation policy; dated fixtures and reports are not edited.
+
+New tests cover exact and undersized parse/copy/work/section/snapshot caps, malformed and invalid policies, pre-cancellation, same-length differing source identities, borrowed/export mutation, cached getter stability, and failure preservation. Allocation checks for four undersized allowances on the large original descriptor measure the synchronous failing Bind call after parsing; each allocates under 8,192 bytes, far below a full 139,608-byte root copy. This verifies rejection before a full root copy for those cases, not a universal allocation bound or instrumented proof of every failure branch. Repeated identity getter checks use current-thread allocation accounting, with zero bytes over 1,000 reads per accepted descriptor.
+
+There is no new cancellation API for `TerrainGeneratorInput.Decode`; its existing synchronous parse contract is unchanged. Binding pre-cancellation is tested; subsequent cooperative checks are verified by inspection without a scheduler-specific late-cancellation assertion. Original map quiescence/reload, active floating controls, generation request semantics and full terrain parity remain Unknown.
+
+Next: use these actual allowances when selecting a retained family and constructing a sampler under named profiles/cache/limits, without widening the proven terrain or movement boundary.

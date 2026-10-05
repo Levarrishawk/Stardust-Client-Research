@@ -33,3 +33,16 @@ Ten ownership checks cover input/rule/export mutation, family/raw/sample identit
 **Confirmed:** the modern bounded family lookup-to-retained-affector route and its tested rejection/ownership behavior. **Strongly inferred:** compatibility of this finite arithmetic composition from the accepted executable-backed component evidence. **Unknown:** original active controls, runtime family/cache lifetime, exceptional behavior, optional helper modes and complete terrain parity. These measures add no function/protocol/research completion count.
 
 The next probe is one explicitly controlled accepted-family filter/height composition with supplied traversal and cache policy. Keep original policy and broader layer recursion separate until evidence closes them.
+
+## Round53 shared preparation
+
+[Opt-in patch sampling](TERRAIN_SINGLE_SAMPLER_HEIGHT_PATCH_CONTRACT.md) shares
+internal strict preparation/completion with this public route. Evaluate retains
+its fresh-call behavior and independent accounting. Only opt-in patch receipts
+carry SharedPreparationCell accounting; a computed miss is never relabeled from
+a hit. Frozen203 direct-route cases and151 complete patch cases pass.
+
+
+## Round54 accepted increment
+
+The [selected original filter](TERRAIN_GENERATOR_FRACTAL_FILTER_RULE_CONTRACT.md) and [per-cell field](TERRAIN_FAMILY_HEIGHT_FIELD_CONTRACT.md) pass independent replays. Lead Version6 composes selected root AHFR and layer3 FFRA under explicit synthetic coordinates, prior heights and controls;400 native/headless/GPU cells, mixed/zero-state checks and late zero-visual-allocation rejection pass. Original layer admission, traversal and active controls remain Unknown.

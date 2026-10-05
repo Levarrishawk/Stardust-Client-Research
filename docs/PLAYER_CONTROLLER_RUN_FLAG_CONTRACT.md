@@ -38,3 +38,14 @@ The [verifier](../tools/python/verify_player_controller_run_flag.py) SHA-gates b
 The [independent runner](../poc/round51-tests/Networking/research_checks.py) maps PE sections independently and checks six byte witnesses, five relative calls and three strings. Eleven rejection cases cover identity/missing inputs, wrong assertion, truncation/unmapped spans, existing/public outputs and synthetic symlink/reparse ancestors. Lexical rejection is tested before resolution or creation; host links are not created. Private output must be fresh. Synthetic malformed helper spans do not execute a mutated original.
 
 Next bounded action: identify the producer of queue message `0x99` and its held/edge/release emission rule, stopping at one input-map command and enqueue boundary. Leave full configuration/reset lifecycle and indirect writers separately open.
+
+## Round52 producer boundary
+
+[Original command-to-queue evidence](PLAYER_CONTROLLER_RUN_INPUT_PRODUCER_CONTRACT.md) closes one deactivation-slot0x99 producer and exact scalar/null-payload tuple. Its begin/held/cancel slots do not contain0x99. Selected InputMap/controller queue identity and normalized raw event invocation remain Unknown; no physical binding or live held-toggle claim follows.
+
+## Round53 normalized input edge
+
+[Selected GroundScene routing](PLAYER_CONTROLLER_INPUT_QUEUE_BINDING_CONTRACT.md)
+reaches the accepted end-binding producer under type8/device/index conditions.
+The queue instance assignment and effective physical profile remain Unknown;
+matching producer/consumer roles do not prove instance identity.

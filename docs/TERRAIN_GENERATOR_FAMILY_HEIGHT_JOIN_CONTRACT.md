@@ -13,3 +13,10 @@ Reproduce from repository root with the peer positional interface `generate|veri
 Observation: pinned original identities/grammar and recovered component stores are Confirmed. Interpretation: the composed fresh-call modern route is independently verified; original runtime policy equivalence is not established. Consequence: preserve exact signed selection, retained arithmetic and independent controls; use the conservative64MiB root-copy reservation until a scoped descriptor identity API exists. Actual selected original copies total145241 bytes, not64MiB allocation.
 
 Remaining questions: complete active-layer/filter traversal, inherited flags and gates, persistent caller cell/cache invalidation, original control selection, curves/sine, source reload/quiescence and original generated-terrain parity. Next bounded implementation milestone: expose immutable generator length/hash without cloning, then publish one explicitly controlled family-backed height patch to the existing Godot surface. Keep original traversal/cache policy separately evidence-dependent.
+
+## Round53 selected-rule increment
+
+[Explicit original AHFR selection](TERRAIN_GENERATOR_HEIGHT_FRACTAL_RULE_CONTRACT.md)
+now carries exact generator/group/rule extents, hashes, layer/ordinal and signed
+family provenance into the [controlled original-rule host](SCENE_WORLD_FAMILY_HEIGHT_TERRAIN_PREVIEW_CONTRACT.md#round53-selected-original-rule-with-one-sampler-per-patch).
+No root/ancestor activation or whole-terrain evaluation follows from selection.

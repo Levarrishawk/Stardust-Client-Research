@@ -81,3 +81,20 @@ The [owned family/sampler join](TERRAIN_FRACTAL_FAMILY_SAMPLER_JOIN_CONTRACT.md)
 ## Round51 bounded boundary
 
 [Generator-to-family height routing](TERRAIN_GENERATOR_FAMILY_HEIGHT_JOIN_CONTRACT.md) passes486 actual joins under explicit fresh-call controls. [Run-default preference](PLAYER_CONTROLLER_RUN_FLAG_CONTRACT.md) and [acceleration helper](CREATURE_ACCELERATION_HELPER_CONTRACT.md) have bounded static evidence; message timing, getter sampling and units remain open. The shared original-resource host remains the separately accepted Round50 slice. [Round51 record](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_51_2026-10-04.md).
+
+## Round52 accepted boundary
+
+[Computed family-height terrain](SCENE_WORLD_FAMILY_HEIGHT_TERRAIN_PREVIEW_CONTRACT.md) reaches headless/GPU surface and grounding checks under explicit synthetic rules/controls. [Acceleration getter](CREATURE_ACCELERATION_TEMPLATE_GETTER_CONTRACT.md) and [run-input producer](PLAYER_CONTROLLER_RUN_INPUT_PRODUCER_CONTRACT.md) have bounded original evidence; update units, active queue binding and full terrain/controller parity remain open. [Round52](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_52_2026-10-04.md) records independent acceptance gates.
+
+## Round53 ground normalized event carrier
+
+[Selected-map/end-binding evidence](PLAYER_CONTROLLER_INPUT_QUEUE_BINDING_CONTRACT.md)
+establishes the normalized event caller, selector-dependent routing, null-map
+skip, type8/device match and family1 input-index dispatch. Selected queue instance
+identity, effective physical profile and binding/reset behavior remain Unknown.
+No replacement key-map behavior is inferred.
+
+
+## Round54 accepted increment
+
+The [map/controller queue assignment](GROUND_SCENE_INPUT_MAP_QUEUE_ASSIGNMENT_CONTRACT.md) is now directly evidenced for the selected GroundScene setup. [Update carrier continuity](CREATURE_CONTROLLER_UPDATE_CARRIER_CONTRACT.md) reaches00554C60; player units and queue lifetime are still pending. This is static executable evidence, with no live contact or physical key-profile claim.

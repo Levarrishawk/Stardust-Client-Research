@@ -3,6 +3,8 @@ using System.Linq;
 using Godot;
 using Stardust.Core.Geometry;
 
+public enum TerrainPatchRenderPolicy { DiagnosticUvColor, ModernLitVertexColor }
+
 /// <summary>Owned synthetic inspection adapter. Z reflection, original index order, explicit UV/COLOR shader.</summary>
 public sealed class TerrainPatchVisual : IDisposable
 {
@@ -14,12 +16,16 @@ public sealed class TerrainPatchVisual : IDisposable
     private ShaderMaterial? material;
     public Node3D Root { get; }
     public bool IsDisposed => disposed;
+    public TerrainPatchRenderPolicy Policy { get; }
     public int OwnedResourceCount => disposed ? 0 : 3;
     public static int Allocations { get; private set; }
     public static int Disposals { get; private set; }
 
-    public TerrainPatchVisual(TerrainPatchGeometry source, Node parent)
+    public TerrainPatchVisual(TerrainPatchGeometry source, Node parent):this(source,parent,TerrainPatchRenderPolicy.DiagnosticUvColor) { }
+
+    public TerrainPatchVisual(TerrainPatchGeometry source, Node parent,TerrainPatchRenderPolicy policy)
     {
+        if(policy is not (TerrainPatchRenderPolicy.DiagnosticUvColor or TerrainPatchRenderPolicy.ModernLitVertexColor))throw new ArgumentOutOfRangeException(nameof(policy));
         if (OS.GetThreadCallerId() != OS.GetMainThreadId()) throw new InvalidOperationException("Godot main thread required.");
         ArgumentNullException.ThrowIfNull(source); ArgumentNullException.ThrowIfNull(parent);
         if (!GodotObject.IsInstanceValid(parent) || !parent.IsInsideTree()) throw new ArgumentException("Live parent required.");
@@ -27,11 +33,14 @@ public sealed class TerrainPatchVisual : IDisposable
         if (source.UvScale > 16) throw new ArgumentException("Inspection UV scale cap is 16.");
         ValidateWinding(source);
         this.source = source;
+        Policy=policy;
         Root = new Node3D { Name = "OwnedTerrainPatch" }; Allocations++;
         try
         {
             mesh = new ArrayMesh();
-            shader = new Shader { Code = "shader_type spatial; render_mode unshaded, cull_back; void fragment() { ALBEDO=vec3(step(0.5,UV.x),step(0.5,UV.y),step(0.5,COLOR.r)); }" };
+            shader = new Shader { Code = policy==TerrainPatchRenderPolicy.DiagnosticUvColor
+                ? "shader_type spatial; render_mode unshaded, cull_back; void fragment() { ALBEDO=vec3(step(0.5,UV.x),step(0.5,UV.y),step(0.5,COLOR.r)); }"
+                : "shader_type spatial; render_mode cull_back; void fragment() { ALBEDO=COLOR.rgb; ROUGHNESS=1.0; METALLIC=0.0; }" };
             material = new ShaderMaterial { Shader = shader };
             using var arrays = new Godot.Collections.Array(); arrays.Resize((int)Mesh.ArrayType.Max);
             arrays[(int)Mesh.ArrayType.Vertex] = source.CopyPositions().Select(v => new Vector3(v.X,v.Y,-v.Z)).ToArray();

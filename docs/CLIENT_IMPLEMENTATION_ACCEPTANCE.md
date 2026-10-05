@@ -1051,3 +1051,50 @@ The [owned family/sampler join](TERRAIN_FRACTAL_FAMILY_SAMPLER_JOIN_CONTRACT.md)
 ## Round51 bounded boundary
 
 [Generator-to-family height routing](TERRAIN_GENERATOR_FAMILY_HEIGHT_JOIN_CONTRACT.md) passes486 actual joins under explicit fresh-call controls. [Run-default preference](PLAYER_CONTROLLER_RUN_FLAG_CONTRACT.md) and [acceleration helper](CREATURE_ACCELERATION_HELPER_CONTRACT.md) have bounded static evidence; message timing, getter sampling and units remain open. The shared original-resource host remains the separately accepted Round50 slice. [Round51 record](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_51_2026-10-04.md).
+
+## Round52 accepted boundary
+
+[Computed family-height terrain](SCENE_WORLD_FAMILY_HEIGHT_TERRAIN_PREVIEW_CONTRACT.md) reaches headless/GPU surface and grounding checks under explicit synthetic rules/controls. [Acceleration getter](CREATURE_ACCELERATION_TEMPLATE_GETTER_CONTRACT.md) and [run-input producer](PLAYER_CONTROLLER_RUN_INPUT_PRODUCER_CONTRACT.md) have bounded original evidence; update units, active queue binding and full terrain/controller parity remain open. [Round52](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_52_2026-10-04.md) records independent acceptance gates.
+
+## Round53 accepted functional gates
+
+[Selected original-rule preview](SCENE_WORLD_FAMILY_HEIGHT_TERRAIN_PREVIEW_CONTRACT.md#round53-selected-original-rule-with-one-sampler-per-patch)
+passes400 retained samples/heights with4 batch versus400 reference samplers,
+headless/GPU surfaces and grounding, late rejection with zero terrain visuals,
+prior Version4/3 previews and final Core/Godot builds. The [round record](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_53_2026-10-04.md)
+keeps full original terrain and the two remaining controller/input carrier edges
+separate. These gates do not measure whole-client completion.
+
+
+## Round54 accepted increment
+
+[Round54](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_54_2026-10-04.md) passes all four independent worker replays,400 selected-filter native/reference/Fraction/headless/GPU cells,16 patches/128 triangles/nine grounded states, late invalid-cell zero-allocation cleanup, prior Version5 host and final Core/Godot builds. Full original terrain traversal and player-update units remain Unknown.
+
+
+## Round55 owned slice and filter pipeline
+
+[Accepted bounded integration](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R55_LAYER_SLICE_AND_FILTERED_FIELD.md) adds explicit original-layer evidence/rejection and immutable retained filter-to-field composition. Version7 headless/GPU/native/Fraction matches400 cells/16 patches/128 triangles/nine grounded states; late fourth-chunk invalid input allocates zero terrain visuals and drains cleanly. Prior Version6 remains verified. Original layer3's height curves are unsupported; full terrain traversal and original numeric parity remain unclaimed. Controller seconds have conditional carrier evidence; queue lifetime and physical acceleration remain open.
+
+
+## Round56 boundary and nominal motion
+
+[Round56 integration](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R56_BOUNDARY_ADMISSION_AND_NOMINAL_SPEED.md) adds retained boundary-only first-gate evaluation and a60-step supplied nominal-speed trace through the real native motion driver/original-resource presentation. Native/Fraction/headless/GPU, late invalid-step preflight/no-new-publication drain and prior terrain gates pass. Original layer3 curve support remains unsupported; curve operand/store research closes with exact power/control parity still Unknown. Queue storage writer/cleanup is evidenced, with internals/lifecycle still open.
+
+
+## Round57 filters, approximate curves and supplied targets
+
+[Round57 integration](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R57_BOUNDARY_FILTER_AND_TARGET_SPEED.md) adds boundary-admitted retained FFRA products, a separately labeled modern first-curve batch and supplied target construction through the original-resource motion host. Worker/lead numeric and malformed-input/cleanup gates pass; exact original curve output and full original locomotion remain unclaimed. Strict curve admission is unchanged.
+
+
+## Round58 height display and atomic planning
+
+[Lead gates](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R58_APPROXIMATE_LAYER_HEIGHT_AND_SPEED_PLAN.md) pass400 native/host height cells,16 patches/128 triangles/nine grounded states and60 atomic-plan target/transition/motion comparisons. Late fourth-chunk NaN allocates zero terrain visuals; final-direction NaN publishes zero plan steps/motion. Both drain archives and leave zero actors. Prior Version7 terrain and Version1 nominal traces pass. Final assembled scope/link review precedes acceptance.
+
+
+## Round59 sparse terrain and received local speed
+
+[Round59 lead checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R59_SPARSE_HEIGHT_NORMALS_AND_CURRENT_SPEED.md) adds positive-cell sparse heights, modern stored-height normals/lit policy and actual received local fields through paired supplied readers/atomic speed planning. Independent worker/main/native/headless/GPU/malformed-input/cleanup and prior-mode gates pass. Height-query count200 versus400 with explicit supplied warm priors; no original cache/normal/control/locomotion parity is inferred. Queue backing release ordering closes while concrete payload ownership remains Unknown. Research89/readiness94,2626 names and345 packet rows stay unchanged.
+
+## Round60 owned compositions and requested stop
+
+[Round60 lead checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R60_OWNED_TERRAIN_AND_CURRENT_SPEED_COMPOSITION.md) records independently replayed owned sparse evaluation, modern height/normal patch assembly, paired current-speed inputs and the exact queue-entry producer boundary. Native/headless/GPU comparisons preserve400 terrain heights/normals and60 movement steps; rejected inputs prevent publication and drain resources. Cleanup now attempts independent closures and releases source/buffers through finally. Original numerical/material/movement parity and payload ownership remain Unknown. Research89/readiness94,2626 names and345 packet rows are unchanged. Levarris requested completion of60 then a stop; all workers idle, continuation heartbeat paused, no61 dispatched.

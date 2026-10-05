@@ -1,0 +1,15 @@
+{
+  "Synthetic": true,
+  "Purpose": "Opaque copying and current-receiver gate model; not original execution or packets",
+  "Words": [0, 2147483648, 1065353216, 1008981770, 2139095040, 4286578688, 2143289345, 1, 4294967295],
+  "Owners": [4096, 305419896],
+  "Flags": [0, 2, 4, 6],
+  "CurrentControllers": [
+    {"Pointer": 8192, "Vtable": 22938444, "Role": "setup-installed player"},
+    {"Pointer": 0, "Vtable": 0, "Role": "cleared after setup"},
+    {"Pointer": 12288, "Vtable": 123456, "Role": "replaced by other type"},
+    {"Pointer": 16384, "Vtable": 22938444, "Role": "replacement player"}
+  ],
+  "ReturnedWord": 1073741824,
+  "ConditionalSeconds": [0.001, 0.016, 0.1, 1.0]
+}

@@ -2676,3 +2676,52 @@ Four Low milestones are integrated: owned MGRP/0000 sets, explicit sampler modes
 ## Round51: generator routing and controller gates (2026-10-04)
 
 The owned generator now publishes exact fractal families into a fresh family-routed height-affector slice;486 complete native joins pass. Controller evidence identifies the run-default preference/local inversion and closes the direct acceleration helper, while getter sampling, input-message timing and units remain open. [Lead checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R51_GENERATOR_ROUTING_AND_CONTROLLER_GATES.md) and [round record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_51_2026-10-04.md). Conservative generator-copy reservation and fresh-call cache policy are explicit modern limits. Research89/readiness94 weighted heuristics,2626 names and345 packet rows remain unchanged and separate from client implementation completion.
+
+## 2026-10-04 Round52 development increment
+
+Four reviewed Low milestones add actual generator budgets, immutable computed patches, complete indexed acceleration getter/endpoint evidence and an original deactivation-slot run producer. Lead400-height headless/GPU/grounding joins and zero-allocation late rejection pass; final Core/Godot and old terrain regressions pass. [Evidence](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R52_FAMILY_PATCH_AND_INPUT_PRODUCER.md). No research rescore, registry changes, original execution, live contact or publication.
+
+## 2026-10-04 — Round53 original rule and shared sampler
+
+Four Low milestones pass independent lead review/replay: owned explicit AHFR
+selection59 cases/37 rejects; opt-in height patch156 cases/2238 heights; two
+complete controller carrier bodies with precise override-unit gap; GroundScene
+normalized deactivation caller with precise queue-identity gap. Lead400 original-rule
+retained values/heights agree with reference/Fraction oracles and use4 samplers
+versus400. Headless/GPU/negative/prior previews and final Core/Godot gates pass.
+[Evidence](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R53_ORIGINAL_RULE_AND_BATCHED_PATCH.md).
+No original execution, registry rescore, live contact or publication.
+
+
+## Round54 accepted increment
+
+[Round54](research/sessions/PARALLEL_DEVELOPMENT_ROUND_54_2026-10-04.md): selected FFRA ownership/per-cell height fields and synthetic original-rule composition pass worker/native/Fraction/headless/GPU/negative/regression gates. Input-map queue pointer assignment closes for one scene setup; update carrier reaches00554C60 while player units remain Unknown. Research89/readiness94 remain separate unchanged weighted heuristics;2626 names/345 packet rows unchanged.
+
+
+## Round55 accepted increment
+
+[Round55](research/sessions/PARALLEL_DEVELOPMENT_ROUND_55_2026-10-04.md) adds an owned explicit layer slice and retained filter-only height pipeline. Original layer3 is evidence-valid but operationally rejected for enabled height curves. Lead400-cell native/Fraction/headless/GPU, late rejection and prior host gates pass. ClientObject carrier closes; player seconds are conditional on documented current attachment/type and gates. Queue creation/ownership stops at00B4AE50. Research89/readiness94,2626 names and345 packet rows remain unchanged and separate from implementation completion.
+
+
+## Round56 accepted increment
+
+[Round56](research/sessions/PARALLEL_DEVELOPMENT_ROUND_56_2026-10-04.md) adds owned full-grid boundary admission and a supplied nominal speed transition through the original-resource motion/presentation host.60 native/Fraction/headless/GPU speed/position comparisons, late invalid-step zero-new-publication cleanup and prior400-cell terrain gates pass. Curve finish operand/store order and queue +4 writer/cleanup close; transcendental parity and queue internals remain open. Research89/readiness94,2626 names and345 packet rows remain unchanged, separate from implementation completion.
+
+
+## Round57 accepted increment
+
+[Round57](research/sessions/PARALLEL_DEVELOPMENT_ROUND_57_2026-10-04.md) adds boundary-admitted FFRA composition, an explicitly modern first-curve batch and supplied target construction. Lead replay passes149 filter cases,250 curve cases/1800 approximate outputs,1032 target cases and60 native/headless/GPU target/transition/position comparisons. Late invalid direction rejects before a new motion publication; prior nominal trace passes. Queue initializer return identity/five fields/reserve arithmetic and cleanup close, with payload semantics delegated. Research89/readiness94,2626 names and345 packet rows remain unchanged and separate from client completion. Final scope/link checks pass; HEAD/index preserved.
+
+
+## Round58 accepted increment
+
+[Round58](research/sessions/PARALLEL_DEVELOPMENT_ROUND_58_2026-10-04.md): Round58 adds an owned original-layer height consumer under explicit modern first-curve approximation, sparse curve queries and an atomic supplied nominal speed plan. Lead native/headless/GPU, late rejection/no-new-publication cleanup and prior host regressions pass. Original numerical terrain/full locomotion parity remains unclaimed; strict operational curve rejection is unchanged. Queue A+8 initialization and per-entry call-then-zero order close; actual payload deletion/ownership and00AA6710 storage cleanup remain Unknown. No original execution/live contact/publication.
+
+
+## Round59 sparse terrain and received local speed
+
+[Round59 lead checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R59_SPARSE_HEIGHT_NORMALS_AND_CURRENT_SPEED.md) adds positive-cell sparse heights, modern stored-height normals/lit policy and actual received local fields through paired supplied readers/atomic speed planning. Independent worker/main/native/headless/GPU/malformed-input/cleanup and prior-mode gates pass. Height-query count200 versus400 with explicit supplied warm priors; no original cache/normal/control/locomotion parity is inferred. Queue backing release ordering closes while concrete payload ownership remains Unknown. Research89/readiness94,2626 names and345 packet rows stay unchanged.
+
+## Round60 owned compositions and requested stop
+
+[Round60 lead checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R60_OWNED_TERRAIN_AND_CURRENT_SPEED_COMPOSITION.md) records independently replayed owned sparse evaluation, modern height/normal patch assembly, paired current-speed inputs and the exact queue-entry producer boundary. Native/headless/GPU comparisons preserve400 terrain heights/normals and60 movement steps; rejected inputs prevent publication and drain resources. Cleanup now attempts independent closures and releases source/buffers through finally. Original numerical/material/movement parity and payload ownership remain Unknown. Research89/readiness94,2626 names and345 packet rows are unchanged. Levarris requested completion of60 then a stop; all workers idle, continuation heartbeat paused, no61 dispatched.

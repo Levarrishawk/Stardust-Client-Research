@@ -3198,3 +3198,51 @@ Four Low milestones are integrated: owned MGRP/0000 sets, explicit sampler modes
 ## Round51: generator routing and controller gates (2026-10-04)
 
 The owned generator now publishes exact fractal families into a fresh family-routed height-affector slice;486 complete native joins pass. Controller evidence identifies the run-default preference/local inversion and closes the direct acceleration helper, while getter sampling, input-message timing and units remain open. [Lead checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R51_GENERATOR_ROUTING_AND_CONTROLLER_GATES.md) and [round record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_51_2026-10-04.md). Conservative generator-copy reservation and fresh-call cache policy are explicit modern limits. Research89/readiness94 weighted heuristics,2626 names and345 packet rows remain unchanged and separate from client implementation completion.
+
+## 2026-10-04 Round52 controller prerequisites
+
+[Indexed acceleration getter011ADD30](docs/CREATURE_ACCELERATION_TEMPLATE_GETTER_CONTRACT.md) and endpoint013FA1E0 have complete bounded static bodies, indexed/inherited/relative storage evidence and one original serialized record. [Run producer](docs/PLAYER_CONTROLLER_RUN_INPUT_PRODUCER_CONTRACT.md) establishes one deactivation-slot0x99 enqueue boundary. No canonical names change. Remaining exact questions: one controller update-argument caller/units and selected InputMap queue/end-binding caller; transitive global/lifetime and arithmetic controls remain separate.
+
+## 2026-10-04 Round53 bounded carriers
+
+[Controller-unit evidence](docs/PLAYER_CONTROLLER_UPDATE_UNITS_CONTRACT.md)
+closes common Object alter00B23100 and wrapper00B3D1C0 forwarding to player
+slot+14/00629750. Actual carrier across CreatureObject slot+10/00430260 remains
+Unknown. [Ground normalized routing](docs/PLAYER_CONTROLLER_INPUT_QUEUE_BINDING_CONTRACT.md)
+closes0051AF10's selected prefix through0051AA40/00AAE2E0 to00AAE150 family1;
+non-null scene+4C acquisition and queue+0C/controller+4 equality remain Unknown.
+No canonical address name is introduced or changed.
+
+
+## Round54 accepted increment
+
+[CreatureObject carrier](docs/CREATURE_CONTROLLER_UPDATE_CARRIER_CONTRACT.md):00430260/0063F3B0 forward word/receiver to00554C60. [Input map assignment](docs/GROUND_SCENE_INPUT_MAP_QUEUE_ASSIGNMENT_CONTRACT.md):0051FAD0 uses getter00B3D340 identical to0062A9B0 and assigns current controller+4 into selected map+0C. No canonical names changed. Next00554C60/006385C0; full units/queue lifetime unknown.
+
+
+## 2026-10-04 Round55 carrier and base lifecycle
+
+[ClientObject carrier](docs/TANGIBLE_CONTROLLER_UPDATE_CARRIER_CONTRACT.md):00554C60 forwards the unchanged word/receiver into00B23100 before branching. Player seconds are supported conditionally under the explicit scheduler/attachment/type/flag/normal-return premises. [Base queue lifecycle](docs/PLAYER_CONTROLLER_QUEUE_LIFECYCLE_CONTRACT.md):006385C0/006E4A20 forward construction into00B4AE50; queue layout, allocation, ownership and destruction timing remain Unknown. No canonical semantic names are introduced or changed.
+
+
+## 2026-10-04 Round56 selected queue and curve boundaries
+
+[Queue storage](docs/OBJECT_CONTROLLER_QUEUE_STORAGE_CONTRACT.md): NetworkController00B4AE50/00B4AEA0 forwards to Controller00B3D0F0/00B3D190; exact returned queue +4 writer/cleanup/null/order observed. Initializer00AA6050 and cleanup00AA6310 internals remain unclosed; no queue-class name inferred. [Curve finish](docs/TERRAIN_FRACTAL_CURVE_FINISH_CONTRACT.md):013E7C00 first/second finish stores/operands closed, wrapper0131E2B0 and denominator initializer bounded, power core0131E2D2 only partial. No canonical semantic names change.
+
+
+## 2026-10-04 Round57 queue initializer boundary
+
+[Initializer/cleanup](docs/OBJECT_CONTROLLER_QUEUE_INITIALIZATION_CONTRACT.md) closes00AA6050 normal-return receiver identity and00AA6310 selected record cleanup order. Five fields and16-byte arithmetic are observed; concrete queue class/payload ownership remain Unknown. Next00AA67C0/00AA6370. No canonical address names change. [First-curve prototype](docs/TERRAIN_FIRST_CURVE_FRACTAL_BATCH_CONTRACT.md) is modern binary64 approximation only; exact original power/control parity remains Unknown.
+
+
+## 2026-10-04 Round58 queue record boundary
+
+[Record initialization/cleanup](docs/OBJECT_CONTROLLER_QUEUE_RECORD_CLEANUP_CONTRACT.md) closes00AA67C0 direct store/return and00AA6370 captured bounds/16-byte stride/entry+8 virtual slot-zero argument1/call-then-zero order. Caller flag and queue receiver are unused locally. Concrete payload deletion/ownership and00AA6710 storage release remain Unknown. No canonical names change; exact original curve/control and full locomotion parity remain unclosed.
+
+
+## 2026-10-04 Round59 record storage boundary
+
+[Storage cleanup](docs/OBJECT_CONTROLLER_QUEUE_RECORD_STORAGE_CLEANUP_CONTRACT.md) closes00AA6710 with tiny00AA6040: exact entry+8 zeroing,16-byte traversal and unsigned128-byte route to00AC1640/012EA920; outer descriptor release remains separate. Concrete payload vtable/deletion, allocator internals and exception handler014BA44B remain Unknown. No canonical names change.
+
+## 2026-10-04 Round60 entry producer boundary
+
+[Queue entry producer](docs/OBJECT_CONTROLLER_QUEUE_ENTRY_PRODUCER_CONTRACT.md) closes00AA6480 normal-return entry construction/spare/growth/publication ordering and tiny initializer00AA6030. Entry+8 receives stack argument three; the optional queue+10 callback receiver is separately loaded and does not prove payload RTTI. Payload class/vtable/deletion/ownership, caller argument construction and exceptional recovery remain Unknown. No canonical semantic names or address counts change. Next exact caller probe is deferred until Levarris resumes.

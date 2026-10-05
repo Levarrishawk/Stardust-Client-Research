@@ -50,3 +50,19 @@ The [independent runner](../poc/round51-tests/Runtime/research_checks.py) maps P
 Preserve selected-object identity, current-speed first argument, low-byte discriminator, ordered gate fallback, walk-threshold selection, current scalar provenance, multiplication order, x87 return and caller-side update/sign/clamp separation in any future compatibility specification. The current modern planar admission remains unchanged. Native acceleration is deferred while getter semantics, physical units and original effective arithmetic remain unresolved.
 
 **Exact next probe:** bound `011ADD30`'s indexed template getter: identify parameter storage, allowed indices, loaded/parent/sample branches and return narrowing, correlating one serialized acceleration record through the accepted read-only overlay. Stop at delegated sampler/RNG/global semantics and record them Unknown. Independently justify the controller incoming update argument's units before implementing compatibility integration. Vehicle getter/related lifetime are separate follow-ups.
+
+## Round52 indexed-getter closure
+
+[011ADD30](CREATURE_ACCELERATION_TEMPLATE_GETTER_CONTRACT.md) now has complete bounded storage/inheritance/relative and endpoint-reader evidence. Mode3 returns the second endpoint without RNG calls in these bodies; a recursive parent result is narrowed to F32 by its child. This closes the indexed-getter probe above. Controller update units, global/parent invariants, active controls and vehicle getter remain Unknown; compatibility acceleration remains deferred.
+
+## Round53 caller carrier
+
+[Update-unit contract](PLAYER_CONTROLLER_UPDATE_UNITS_CONTRACT.md) distinguishes
+the unchanged controller argument carrier from helper current speed. Scheduler
+seconds do not yet prove player units across override00430260. No native
+acceleration implementation is admitted by this static increment.
+
+
+## Round56 bounded nominal prototype
+
+[Supplied nominal speed](CREATURE_NOMINAL_SPEED_TRANSITION_CONTRACT.md) now implements the caller's finite rise/fall/store/retained-clamp graph. It supplies synthetic rates and conditionally justified seconds, invokes no original helper/getter and does not infer physical SI units or vehicle behavior. The old deferred native-acceleration statements remain applicable to recovered physical locomotion; [host integration](CREATURE_NOMINAL_SPEED_TRANSITION_HOST_CONTRACT.md) is an explicitly modern controlled trace.

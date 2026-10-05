@@ -1,0 +1,476 @@
+{
+  "Synthetic": true,
+  "OriginalPrecisionParity": false,
+  "EndpointRelative": [
+    {
+      "Mode": 0,
+      "Relative": " ",
+      "Parent": false,
+      "ExpectedNominal": 0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 0,
+      "Relative": " ",
+      "Parent": true,
+      "ExpectedNominal": 0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 0,
+      "Relative": "+",
+      "Parent": false,
+      "ExpectedNominal": 0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 0,
+      "Relative": "+",
+      "Parent": true,
+      "ExpectedNominal": 10,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 0,
+      "Relative": "-",
+      "Parent": false,
+      "ExpectedNominal": 0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 0,
+      "Relative": "-",
+      "Parent": true,
+      "ExpectedNominal": 10,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 0,
+      "Relative": "=",
+      "Parent": false,
+      "ExpectedNominal": 0.0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 0,
+      "Relative": "=",
+      "Parent": true,
+      "ExpectedNominal": 10.0,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 0,
+      "Relative": "_",
+      "Parent": false,
+      "ExpectedNominal": 0.0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 0,
+      "Relative": "_",
+      "Parent": true,
+      "ExpectedNominal": 10.0,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 1,
+      "Relative": " ",
+      "Parent": false,
+      "ExpectedNominal": 2,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 1,
+      "Relative": " ",
+      "Parent": true,
+      "ExpectedNominal": 2,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 1,
+      "Relative": "+",
+      "Parent": false,
+      "ExpectedNominal": 2,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 1,
+      "Relative": "+",
+      "Parent": true,
+      "ExpectedNominal": 12,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 1,
+      "Relative": "-",
+      "Parent": false,
+      "ExpectedNominal": -2,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 1,
+      "Relative": "-",
+      "Parent": true,
+      "ExpectedNominal": 8,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 1,
+      "Relative": "=",
+      "Parent": false,
+      "ExpectedNominal": 0.0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 1,
+      "Relative": "=",
+      "Parent": true,
+      "ExpectedNominal": 10.199999995529652,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 1,
+      "Relative": "_",
+      "Parent": false,
+      "ExpectedNominal": 0.0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 1,
+      "Relative": "_",
+      "Parent": true,
+      "ExpectedNominal": 9.800000004470348,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 2,
+      "Relative": " ",
+      "Parent": false,
+      "ExpectedNominal": 0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 2,
+      "Relative": " ",
+      "Parent": true,
+      "ExpectedNominal": 0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 2,
+      "Relative": "+",
+      "Parent": false,
+      "ExpectedNominal": 0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 2,
+      "Relative": "+",
+      "Parent": true,
+      "ExpectedNominal": 10,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 2,
+      "Relative": "-",
+      "Parent": false,
+      "ExpectedNominal": 0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 2,
+      "Relative": "-",
+      "Parent": true,
+      "ExpectedNominal": 10,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 2,
+      "Relative": "=",
+      "Parent": false,
+      "ExpectedNominal": 0.0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 2,
+      "Relative": "=",
+      "Parent": true,
+      "ExpectedNominal": 10.0,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 2,
+      "Relative": "_",
+      "Parent": false,
+      "ExpectedNominal": 0.0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 2,
+      "Relative": "_",
+      "Parent": true,
+      "ExpectedNominal": 10.0,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 3,
+      "Relative": " ",
+      "Parent": false,
+      "ExpectedNominal": 8,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 3,
+      "Relative": " ",
+      "Parent": true,
+      "ExpectedNominal": 8,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 3,
+      "Relative": "+",
+      "Parent": false,
+      "ExpectedNominal": 8,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 3,
+      "Relative": "+",
+      "Parent": true,
+      "ExpectedNominal": 18,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 3,
+      "Relative": "-",
+      "Parent": false,
+      "ExpectedNominal": -8,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 3,
+      "Relative": "-",
+      "Parent": true,
+      "ExpectedNominal": 2,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 3,
+      "Relative": "=",
+      "Parent": false,
+      "ExpectedNominal": 0.0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 3,
+      "Relative": "=",
+      "Parent": true,
+      "ExpectedNominal": 10.799999982118607,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 3,
+      "Relative": "_",
+      "Parent": false,
+      "ExpectedNominal": 0.0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 3,
+      "Relative": "_",
+      "Parent": true,
+      "ExpectedNominal": 9.200000017881393,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 4,
+      "Relative": " ",
+      "Parent": false,
+      "ExpectedNominal": 0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 4,
+      "Relative": " ",
+      "Parent": true,
+      "ExpectedNominal": 0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 4,
+      "Relative": "+",
+      "Parent": false,
+      "ExpectedNominal": 0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 4,
+      "Relative": "+",
+      "Parent": true,
+      "ExpectedNominal": 10,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 4,
+      "Relative": "-",
+      "Parent": false,
+      "ExpectedNominal": 0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 4,
+      "Relative": "-",
+      "Parent": true,
+      "ExpectedNominal": 10,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 4,
+      "Relative": "=",
+      "Parent": false,
+      "ExpectedNominal": 0.0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 4,
+      "Relative": "=",
+      "Parent": true,
+      "ExpectedNominal": 10.0,
+      "ParentCalled": true
+    },
+    {
+      "Mode": 4,
+      "Relative": "_",
+      "Parent": false,
+      "ExpectedNominal": 0.0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": 4,
+      "Relative": "_",
+      "Parent": true,
+      "ExpectedNominal": 10.0,
+      "ParentCalled": true
+    },
+    {
+      "Mode": -1,
+      "Relative": " ",
+      "Parent": false,
+      "ExpectedNominal": 0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": -1,
+      "Relative": " ",
+      "Parent": true,
+      "ExpectedNominal": 0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": -1,
+      "Relative": "+",
+      "Parent": false,
+      "ExpectedNominal": 0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": -1,
+      "Relative": "+",
+      "Parent": true,
+      "ExpectedNominal": 10,
+      "ParentCalled": true
+    },
+    {
+      "Mode": -1,
+      "Relative": "-",
+      "Parent": false,
+      "ExpectedNominal": 0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": -1,
+      "Relative": "-",
+      "Parent": true,
+      "ExpectedNominal": 10,
+      "ParentCalled": true
+    },
+    {
+      "Mode": -1,
+      "Relative": "=",
+      "Parent": false,
+      "ExpectedNominal": 0.0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": -1,
+      "Relative": "=",
+      "Parent": true,
+      "ExpectedNominal": 10.0,
+      "ParentCalled": true
+    },
+    {
+      "Mode": -1,
+      "Relative": "_",
+      "Parent": false,
+      "ExpectedNominal": 0.0,
+      "ParentCalled": false
+    },
+    {
+      "Mode": -1,
+      "Relative": "_",
+      "Parent": true,
+      "ExpectedNominal": 10.0,
+      "ParentCalled": true
+    }
+  ],
+  "Inheritance": [
+    {
+      "Index": 0,
+      "Parent": false,
+      "GlobalNonzero": false,
+      "Expected": "unguarded-null-reentry"
+    },
+    {
+      "Index": 0,
+      "Parent": false,
+      "GlobalNonzero": true,
+      "Expected": "F32-zero"
+    },
+    {
+      "Index": 0,
+      "Parent": true,
+      "GlobalNonzero": false,
+      "Expected": "parent-same-index"
+    },
+    {
+      "Index": 0,
+      "Parent": true,
+      "GlobalNonzero": true,
+      "Expected": "parent-same-index"
+    },
+    {
+      "Index": 1,
+      "Parent": false,
+      "GlobalNonzero": false,
+      "Expected": "unguarded-null-reentry"
+    },
+    {
+      "Index": 1,
+      "Parent": false,
+      "GlobalNonzero": true,
+      "Expected": "F32-zero"
+    },
+    {
+      "Index": 1,
+      "Parent": true,
+      "GlobalNonzero": false,
+      "Expected": "parent-same-index"
+    },
+    {
+      "Index": 1,
+      "Parent": true,
+      "GlobalNonzero": true,
+      "Expected": "parent-same-index"
+    }
+  ]
+}

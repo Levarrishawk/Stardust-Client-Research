@@ -1,5 +1,3 @@
-using System.Security.Cryptography;
-
 namespace Stardust.Core.Assets;
 
 public sealed record TerrainGeneratorFractalFamilyLimits(TerrainFractalFamilySetLimits? FamilyLimits=null,
@@ -9,7 +7,7 @@ public sealed record TerrainGeneratorFractalFamilyLimits(TerrainFractalFamilySet
 /// <summary>One-shot owned family publication with exact generator and group provenance; no runtime map.</summary>
 public sealed class TerrainGeneratorFractalFamilies
 {
-    // Frozen TerrainGeneratorInput exposes only CopyGeneratorForm, not its source length/hash.
+    // Retained historical hard-bound constant; reservations now use the actual immutable root length.
     public const int GeneratorCopyReservationBytes=67108864;
     private TerrainGeneratorFractalFamilies(TerrainFractalFamilySet families,string generatorHash,int generatorBytes,
         int offset,int groupBytes,long copies,long reservedCopies,long work,long reservedWork)
@@ -43,18 +41,20 @@ public sealed class TerrainGeneratorFractalFamilies
         long names=section.EncodedBytes-24L-108L*chosen.RecordCount;
         long snapshot=names+136L*chosen.RecordCount;
         long familyWork=section.EncodedBytes+84L*chosen.RecordCount;
-        long reservedCopies=GeneratorCopyReservationBytes+(long)section.EncodedBytes;
-        long reservedWork=GeneratorCopyReservationBytes+section.EncodedBytes+familyWork;
-        // Exact-grammar necessary aggregate charges and conservative root-copy reservation before any copies.
-        Need(section.EncodedBytes>=24&&section.EncodedBytes<=limits.MaximumSectionBytes&&section.EncodedBytes<=f.MaximumInputBytes
+        int generatorBytes=generator.EncodedBytes;string generatorHash=generator.SourceSha256;
+        long reservedCopies=generatorBytes+(long)section.EncodedBytes;
+        long reservedWork=generatorBytes+section.EncodedBytes+familyWork;
+        // Exact-grammar aggregate charges and actual root/section lengths before any copies.
+        Need(generatorBytes is >=24 and <=GeneratorCopyReservationBytes&&section.Offset>=0
+            &&(long)section.Offset+section.EncodedBytes<=generatorBytes
+            &&section.EncodedBytes>=24&&section.EncodedBytes<=limits.MaximumSectionBytes&&section.EncodedBytes<=f.MaximumInputBytes
             &&chosen.RecordCount<=f.MaximumEntries&&names>=chosen.RecordCount&&names<=f.MaximumAggregateNameBytes
             &&84L*chosen.RecordCount<=f.MaximumEmbeddedBytes&&snapshot<=f.MaximumSnapshotBytes
             &&snapshot<=limits.MaximumSnapshotBytes&&familyWork<=f.MaximumWork
             &&reservedCopies<=limits.MaximumEncodedCopyBytes&&reservedWork<=limits.MaximumWork,"Bridge preflight cap/extent.");
         token.ThrowIfCancellationRequested();byte[] generatorCopy=generator.CopyGeneratorForm();
-        Need(generatorCopy.Length<=GeneratorCopyReservationBytes&&section.Offset>=0
+        Need(generatorCopy.Length==generatorBytes&&section.Offset>=0
             &&(long)section.Offset+section.EncodedBytes<=generatorCopy.Length,"Frozen generator extent invariant.");
-        string generatorHash=Convert.ToHexString(SHA256.HashData(generatorCopy));int generatorBytes=generatorCopy.Length;
         token.ThrowIfCancellationRequested();byte[] encoded=section.CopyEncodedBytes();
         Need(encoded.Length==section.EncodedBytes&&generatorCopy.AsSpan(section.Offset,section.EncodedBytes).SequenceEqual(encoded),"Generator/group identity mismatch.");
         var families=TerrainFractalFamilySet.Decode(encoded,f,token);
