@@ -741,3 +741,60 @@ The [height consumer](TERRAIN_HEIGHT_LAYER_FIRST_CURVE_CONSUMER_CONTRACT.md) ret
 ## Round60 composition boundary
 
 The preview now consumes actual bounded engine-neutral [owned sparse evaluation](TERRAIN_HEIGHT_LAYER_SPARSE_FIRST_CURVE_EVALUATION_CONTRACT.md) and [modern height patch](TERRAIN_MODERN_HEIGHT_PATCH_CONTRACT.md) receipts. Height/normal output, accounting, ownership and rejection cleanup pass independent native and replacement-host checks. Original material and numerical parity remain open. Development stops after this round at Levarris's request.
+
+## Round61 input and retained composition acceptance
+
+[Round61 lead checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-05_R61_SHADER_PATCH_SET_AND_CURRENT_PLAN.md) adds raw SGRP0006 families, strict retained patch sets, current-source atomic planning and one exact queue-payload caller. Independent replay/native/headless/GPU and four rejection-cleanup gates pass, preserving400 terrain samples and60 movement steps. Original shader meanings/numerical/material/movement parity and payload ownership remain Unknown. One round only; workers idle and continuation paused. Timing is recorded separately from research/readiness/function/protocol measures, which are unchanged.
+
+## Round62 retained queries and playback
+
+[Round62 acceptance](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-05_R62_SET_QUERY_AND_PLAN_PLAYBACK.md) adds actual retained-set surface queries and current-source playback with pre-effect freshness/driver checks. Independent native/headless/GPU, rejection and prior-mode gates pass; shader first-string pointer flow and message+38 forwarding are verified separately. Original resolver/material/movement parity and payload ownership remain Unknown. One round complete; workers idle and continuation paused. Research/readiness/function/protocol measures remain separate and unchanged.
+
+
+## Round63 rays and owned terrain playback
+
+[Round63 integration](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-05_R63_RAY_QUERY_AND_TERRAIN_PLAYBACK.md) joins actual retained geometry ray queries and proven world/store/current-plan terrain playback. Independent worker/native/headless/GPU, malformed-input cleanup and prior-mode gates pass.104 rays and one actual camera ray accompany60 grounded current-plan steps. Conditional shader comparison and parser payload writer evidence remain separate from unknown asset/material/ownership meanings. Original parity and research/readiness/function/protocol scores are unchanged. Overnight continuation remains authorized until October6 at07:00 Eastern.
+
+## Round64 explicit supplied material
+
+[Two-read SSHT/MAIN closure](TERRAIN_SUPPLIED_STATIC_MATERIAL_CONTRACT.md) retains source identity and detached DDS mip exports with explicit modern color modulation. The original defaultemis/defaulttexture diagnostic passes independent mip hashes; it is not established terrain-family mapping. [Second-string pointer flow](TERRAIN_SHADER_FAMILY_SECOND_STRING_CONTRACT.md) separately ends at unresolved selection/outward borrowed pointer, with no open/fetch proof.
+
+## Round65 second-string caller boundary
+
+[Complete caller](TERRAIN_SHADER_FAMILY_SECOND_STRING_CALLER_CONTRACT.md) proves a null fallback or second getter reread forwarded unchanged to00A949D0. Structured serialization is strongly inferred; exact output bytes and resource-loading meaning are Unknown. The full18-lead/29-site amended denominator includes unexpanded SEH metadata. No terrain material mapping or new corpus/name registry is inferred.
+
+## Round66 family-entry record accessor
+
+[Complete accessor and selected wrapper](TERRAIN_SHADER_FAMILY_ENTRY_ACCESSOR_CONTRACT.md) establish family raw word, selected entry pointer and entry raw word copied into a supplied three-word destination. Tiny initializer00B69160 preserves the saved family receiver. Wrapper00B69B40 forwards the record and returns the destination; no string conversion/resource loading follows. Cleanup00B69170 remains unexpanded. Next raw candidate00B69779 needs instruction/body provenance before interpreting resource use; no new corpus or resolver is inferred.
+
+## Round67 ordered family-entry lookup
+
+[Complete lookup caller](TERRAIN_SHADER_FAMILY_ENTRY_CONSUMER_CONTRACT.md) proves call00B69779 inside strongly inferred137-byte body00B69700, ordered first-zero predicate selection, record forwarding and zero-triple no-match output. Match explicitly returns destination; cleanup return/lifetime and actual predicate mode/resource meaning remain Unknown. One existing SGRP supplies35 conditional witnesses. Next raw incoming00B6B5A8 still needs instruction/body provenance; no resolver or corpus expansion.
+
+## Round68 group lookup forwarding wrapper
+
+[Complete wrapper](TERRAIN_SHADER_FAMILY_LOOKUP_CONSUMER_CONTRACT.md) proves00B6B5A8 within55-byte00B6B580. Search input is caller argument three; opaque argument two enters first unresolved selector00B69860, whose EAX indexes group+4 before accepted lookup. The wrapper explicitly returns EDI. Conforming selector stack cleanup/register preservation remain stated preconditions; no resource conversion/open or additional corpus follows. Next bound selector ABI before interpreting family identity.
+
+## Round69 family selector normal ABI closure
+
+[Selector/getter](TERRAIN_SHADER_FAMILY_SELECTOR_CONTRACT.md) proves first equal32-bit family word index or FFFFFFFF, ret4 and pending-stack/nonvolatile preservation. Accepted68 wrapper ABI precondition is now closed on readable normal paths; unchecked sentinel addresses array_base−4 modulo32, without executed invalid read.33 anchors/121 guards/22 independent checks/15 original-byte models; two leads/eleven sites. Resource meaning/use and runtime reachability remain Unknown; next export/indirect caller and key/search producer.
+
+## Round70 lookup export boundary
+
+[Bounded metadata](TERRAIN_SHADER_LOOKUP_EXPORT_BOUNDARY_CONTRACT.md) proves00B6B580 has no exact named/ordinal export among78 address/name rows. Lead-approved metadata-only79 leads/315 sites, zero new bodies/helpers; ten synthetic checks/73 guards pass. Containment/indirect callers/runtime reachability remain Unknown. Next relocation metadata plus typed registration/RTTI anchor; no guessed resource/naming/resolver or arbitrary pointer census.
+
+## Round71 absolute root-rotation implementation
+
+[Owned QCHN sampling](COMPRESSED_ROOT_ROTATION_CONTRACT.md) separately imports top-level root rotation, preserving U32 bits and source identity under8MiB pre-copy admission.242 checks/56 independent samples over synthetic and two selected original clips pass. Existing locomotion importer still rejects QCHN; no actor authority or relative/combined transform follows. Next implement/evaluate the already recovered computational order; external actor basis/application remains Unknown.
+
+## Round72 recovered root-delta implementation
+
+[Separate evaluator](COMPRESSED_ROOT_MOTION_EVALUATION_CONTRACT.md) supports None/Rotation/Translation/Combined modes with owned tracks and recovered q1*conj(q0)/q1 matrix scalar order.351 checks/64 independent deltas/44 malformed fixtures pass, reusing two selected original clips. Modern numerical policy explicit; external actor basis/application remains Unknown and no delta drives gameplay. Original EXE bodies/corpus were not rescanned.
+
+## Round73 bounded root consumer
+
+[Typed CKAT wrapper](COMPRESSED_ROOT_EXTERNAL_CONSUMER_CONTRACT.md) invokes recovered evaluator then uniformly scales translation from runtime+4C pointed float. One body/typed RTTI slot verified; scalar owner/units and actor application remain Unknown. Inner algebra stays closed; no names/production placement changed. Next verify physical-track0083E630 exact active-animation slot and immediate accumulation destination.
+
+## Round74 physical-track root boundary
+
+[One typed conditional consumer](COMPRESSED_ROOT_PHYSICAL_TRACK_CONSUMER_CONTRACT.md) confirms virtual+18 root extraction into track-local translation/quaternion before ordinary active replacement. One606-byte body/204 instructions/26 anchors/18 guards; reset cells virtual-only and runtime values Unknown. Actor binding/basis/application unproved; no new names or production root placement. Next one controller output/accessor path, using known0083EC70/0082F990 anchors.

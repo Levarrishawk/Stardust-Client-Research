@@ -46,6 +46,11 @@ public sealed class SceneWorldObjectMotionStore : ISceneWorldObjectMotionSource,
     }
     public bool PublishLocal(SceneWorldObjectSnapshot snapshot, AppearanceTransform transform, float speed)
     { Enter(); try { return Publish(snapshot, transform, speed, null); } finally { busy = false; } }
+    internal bool IsBoundTo(SceneWorldCoordinator candidate)
+    {
+        ArgumentNullException.ThrowIfNull(candidate);
+        Enter(); try { return !disposed && ReferenceEquals(world, candidate); } finally { busy = false; }
+    }
     public bool PublishAuthoritative(SceneWorldObjectSnapshot snapshot, AppearanceTransform transform, float speed, uint movementCounter)
     { Enter(); try { return Publish(snapshot, transform, speed, movementCounter); } finally { busy = false; } }
     private bool Publish(SceneWorldObjectSnapshot snapshot, AppearanceTransform transform, float speed, uint? counter)

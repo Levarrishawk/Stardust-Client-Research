@@ -285,6 +285,7 @@ public sealed class SoeClientTransport
         catch
         {
             foreach (byte[] application in applications) CryptographicOperations.ZeroMemory(application);
+            foreach (byte[] control in controls) CryptographicOperations.ZeroMemory(control);
             throw;
         }
         finally

@@ -17,7 +17,7 @@ Current server `ObjectControllerMessage.h` and the executable parser `obj_contro
 | `0x06` | U32 LE | priority/flags word |
 | `0x0A` | S32/U32 LE | inner controller type |
 | `0x0E` | U64 LE | addressed object ID |
-| `0x16` | F32 LE | sequence/time scalar; server constructors currently write zero through `insertInt(0)` |
+| `0x16` | 4-byte LE word | client outer storage/parser uses F32; current server CtoS movement parses U32 timestamp bits; StoC constructors write zero through `insertInt(0)` |
 | `0x1A` | variable | inner-type-specific payload |
 
 The executable proves the four outer fields through RTTI-backed archive wrappers:
@@ -83,9 +83,9 @@ Every intersection row's client capability flag is `1`. Conversely, a checked se
 
 ### Parent-relative movement (`0xF1`) directional grammar
 
-`0xF1` is bidirectional but not structurally identical in both directions. On C→S, the outer controller scalar is the timestamp: the server outer callback deliberately leaves it unread, and `Transform::parseDataTransformWithParent` consumes it before nested movement counter, parent U64, quaternion, x/z/y position and speed. On S→C, the outer parser has already consumed the server's zero scalar; executable unpacker `0x00AD43B0` starts with movement counter and then reads the same parent/transform/speed tail. Packer `0x00AD4360` and payload constructor `0x00AD4260` confirm the client object layout. Do not model this as one symmetric serialized struct.
+`0xF1` is bidirectional but not structurally identical in both directions. On C→S, the outer word is a U32 timestamp in the current server parser: the server outer callback deliberately leaves it unread, and `Transform::parseDataTransformWithParent` consumes it before nested movement counter, parent U64, quaternion, x/z/y position and speed. On S→C, the outer parser has already consumed the server's zero scalar; executable unpacker `0x00AD43B0` starts with movement counter and then reads the same parent/transform/speed tail. Packer `0x00AD4360` and payload constructor `0x00AD4260` confirm the client object layout. Do not model this as one symmetric serialized struct.
 
-`0x71` follows the same directional scalar rule without a parent ID. C→S `Transform::parseDataTransform` consumes timestamp, counter, quaternion x/y/z/w, position x/z/y and speed. S→C unpacker `0x00AD4860` starts at counter after the outer parser consumes Stardust's zero scalar. Dispatcher `0x00B4B000` calls virtual `+0x24`: player `0x0062C980` applies an immediate correction through `0x006E4E50`; remote `0x00637D30` filters freshness and installs an interpolation target through `0x00637270`.
+`0x71` follows the same directional scalar rule without a parent ID. C→S `Transform::parseDataTransform` consumes U32 timestamp, U32 counter, quaternion x/y/z/w, position x/z/y and speed. S→C unpacker `0x00AD4860` starts at counter after the outer parser consumes Stardust's zero scalar. Dispatcher `0x00B4B000` calls virtual `+0x24`: player `0x0062C980` applies an immediate correction through `0x006E4E50`; remote `0x00637D30` filters freshness and installs an interpolation target through `0x00637270`.
 
 The top-level compact `UpdateTransformWithParent` remains a separate observer-bandwidth path: U64 parent/object, three S16 eighth-unit coordinates, U32 counter and two S8 speed/heading values. Both feed the parent-relative controller family, but only `0xF1` retains full quaternion, F32 position and F32 speed.
 
@@ -178,3 +178,35 @@ The replacement should model the envelope as fixed-width wire DTOs and translate
 - Confirm the semantic meaning of priority normalization and the outer scalar beyond its observed cursor behavior.
 - Trace client consumers for less common emitted messages to independently validate server-derived semantic labels.
 - Resolve dynamic `ObjCtrlMessageQueueString(type)` call sites not included by the constant-constructor inventory.
+
+## Round64 directional word implementation
+
+[Full transform codec](OBJECT_CONTROLLER_TRANSFORM_CODEC_CONTRACT.md) implements exact62/70-byte frames with mandatory direction. Current server `MMOCoreORB/src/server/zone/packets/object/transform/Transform.h:15` declares U32 `timeStamp`; both parsers at48/58 use `parseInt` at outer0x16. This is Confirmed server interpretation, distinct from the executable outer AutoVariable<float> storage observation. All outbound timestamp bit patterns are retained, including words that would be nonfinite floats. Inbound outer scalar and transform float fields use explicit modern finite admission; no quaternion normalization or speed-sign policy is imposed. No timestamp unit, original sender conversion, live dispatch or world application parity is established by this codec.
+
+## Round65 modern full-root application
+
+The [explicit-direction application router](SCENE_WORLD_FULL_TRANSFORM_APPLICATION_CONTRACT.md) now consumes the existing full0x71 schema into the current typed authoritative motion store under explicit modern immediate-correction/zero-quaternion policy. Parent0xF1, contained, stale or ineligible targets decline; unsigned counters preserve prior issued rows on duplicates. Independent pose/serial/lifecycle tests and direct offline host correction pass. This adds no recovered schema, original interpolation/queued-ingress proof or live contact. Canonical packet-source345-row matrix and coverage counts remain unchanged.
+
+## Round66 modern queued motion ingress
+
+The [combined router](SCENE_WORLD_COMBINED_MOTION_INGRESS_CONTRACT.md) selects accepted compact opcodes, explicit inbound full-root/parent codecs or existing world fallback. Recognized malformed full packets propagate errors; unsigned duplicate/wrap behavior remains in existing children. Actual queued host correction and duplicate are processed before subsequent grounded steering; malformed61-byte root drains the actual world/presentation/controller prefix. No wire schema, original interpolation claim, live contact or345-row packet-matrix change follows.
+
+## Round67 modern outbound local root construction
+
+[Current-local builder](SCENE_WORLD_CLIENT_ROOT_MOTION_CONTRACT.md) constructs the existing62-byte ClientToServer root grammar from exact current store-issued local typed motion. Flags, counter and timestamp bits are explicit caller inputs; native matrix conversion preserves XYZ and wire X/Z/Y without engine reflection. Nine cases/93 checks/eight exact whole-frame fixtures and sign-equivalent near180 basis checks pass. No queue/send/cadence or original sender policy is established. Wire schema and345-row matrix remain unchanged; malformed numerical guards unreachable through store admission are source-inspected rather than claimed as dynamically exercised.
+
+## Round68 modern root FIFO ownership
+
+[Offline queue](SCENE_WORLD_CLIENT_ROOT_MOTION_QUEUE_CONTRACT.md) owns builder-produced root arrays and essential generation/incarnation metadata. Capacity is checked before build; eligible take drops stale prefixes then transfers a same-incarnation historical frame. Typed/motion/containment refresh does not authorize current send or stale already-built bytes. Three exact frames/70 checks/six lifecycle gates and nine joined FIFO frames pass. No transport send, schema or345-row matrix change; sender cadence/units/gameplay policy remain Unknown.
+
+## Round69 offline root queue-to-SOE admission
+
+[Transport bridge](SCENE_WORLD_ROOT_MOTION_TRANSPORT_BRIDGE_CONTRACT.md) adopts historical root FIFO bytes and lets existing SOE copy to reliable channel0. Whole-transport pending backpressure is checked before take. Bridge owns no socket/pump/send and preserves borrowed queue/transport on disposal. Three exact application frames/five exact datagrams/five ACKs/80 component checks and nine joined transfers/ACK releases pass. Layered joined framing uses independently validated application fields/basis; rare post-take fault is source-inspected. No schema/345-row matrix change or original sender cadence/timestamp/gameplay inference.
+
+## Round70 offline SOE application ingress
+
+[Ingress contract](SCENE_WORLD_SOE_APPLICATION_INGRESS_CONTRACT.md) borrows current world/pump/transport, copies transport-owned applications to pump and transfers caller-owned unsent controls. Reliability may be consumed before count/byte/capacity failure; four actual failure prefixes are explicit. Five exact controls/73 component checks, two joined correction/duplicate messages and20-update later malformed-application cleanup pass. No schema/345-row matrix change, socket/send or live zone legality inference.
+
+## Round71 peer-disconnect lifecycle proof
+
+[Disconnect ownership](SCENE_WORLD_PEER_DISCONNECT_CONTRACT.md) uses actual frozen codec/ingress/bridge/FIFO/pump. Matching ID closes transport without closing borrowed scene; caller drains pending scene/root owners and canceled resources.39 component checks and109-update joined closure/wrong-ID failure pass. Reason bytes remain uninterpreted; no schema or345-row matrix change, socket/send/live phase claim.

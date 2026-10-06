@@ -309,3 +309,39 @@ The [owned palette implementation](PALETTE_DECODER_CONTRACT.md) verifies all cur
 
 
 [Logical animation tables](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_LOGICAL_ANIMATION_TABLES.md) independently matches14 original sources/710,463 bytes and1,046 serialized entries. Four duplicated body names retained; authored/synthetic default and opaque typed subtrees validated. Selected clip/proxy execution remains next; metrics unchanged.
+
+## Round71 absolute root-rotation implementation
+
+[Owned QCHN sampling](COMPRESSED_ROOT_ROTATION_CONTRACT.md) separately imports top-level root rotation, preserving U32 bits and source identity under8MiB pre-copy admission.242 checks/56 independent samples over synthetic and two selected original clips pass. Existing locomotion importer still rejects QCHN; no actor authority or relative/combined transform follows. Next implement/evaluate the already recovered computational order; external actor basis/application remains Unknown.
+
+## Round72 recovered root-delta implementation
+
+[Separate evaluator](COMPRESSED_ROOT_MOTION_EVALUATION_CONTRACT.md) supports None/Rotation/Translation/Combined modes with owned tracks and recovered q1*conj(q0)/q1 matrix scalar order.351 checks/64 independent deltas/44 malformed fixtures pass, reusing two selected original clips. Modern numerical policy explicit; external actor basis/application remains Unknown and no delta drives gameplay. Original EXE bodies/corpus were not rescanned.
+
+## Round73 bounded root consumer
+
+[Typed CKAT wrapper](COMPRESSED_ROOT_EXTERNAL_CONSUMER_CONTRACT.md) invokes recovered evaluator then uniformly scales translation from runtime+4C pointed float. One body/typed RTTI slot verified; scalar owner/units and actor application remain Unknown. Inner algebra stays closed; no names/production placement changed. Next verify physical-track0083E630 exact active-animation slot and immediate accumulation destination.
+
+## Round74 physical-track root boundary
+
+[One typed conditional consumer](COMPRESSED_ROOT_PHYSICAL_TRACK_CONSUMER_CONTRACT.md) confirms virtual+18 root extraction into track-local translation/quaternion before ordinary active replacement. One606-byte body/204 instructions/26 anchors/18 guards; reset cells virtual-only and runtime values Unknown. Actor binding/basis/application unproved; no new names or production root placement. Next one controller output/accessor path, using known0083EC70/0082F990 anchors.
+
+## Round75 root evidence reconciliation
+
+[Scale-source and prior-application record](COMPRESSED_ROOT_SCALE_SOURCE_CONTRACT.md). The September25 ROOT_MOTION_OBJECT_APPLICATION report already establishes eligible CreatureController object-local rotation post-composition and local translation converted into parent space. Recent local-body Unknown statements did not replace that prior code conclusion. Round75 reconciles/audits existing evidence without fresh actor arithmetic replay or additional coverage. Constructor00822FC0 confirms runtime+4C lookup initialization; scalar storage ownership remains Unknown.
+
+## Round76 root storage boundary
+
+[Storage contract](COMPRESSED_ROOT_SCALE_STORAGE_CONTRACT.md). Lookup007D3790 confirms lazy object+10 container and returns node+20 interior storage on hit/miss. Miss prepares zero payload bits; effective float default0 is Strongly inferred until insertion007D40C0 is expanded. Original key/type/units/node stability/lifetime remain Unknown. Prior September25 actor closure is not repeated or recounted.
+
+## Round77 root insertion boundary
+
+[Insertion contract](COMPRESSED_ROOT_SCALE_INSERTION_CONTRACT.md). Insertion007D40C0 publishes a0x24 node and delegates payload construction to77-byte007D64B0; conditional source+10/destination+10 maps to node+20. Actual zero/default remains Strongly inferred; key/type/units/lifetime Unknown. No actor-chain repetition or function-name increment.
+
+## Round78 scalar copy and key type
+
+[Value construction](COMPRESSED_ROOT_SCALE_VALUE_CONSTRUCTION_CONTRACT.md). Value construction007D64B0 copies32 then-current bits source+10 to destination+10, composing to node+20. Constructed key CrcLowerString directly identified by installed-vtable RTTI. Source preservation across107-byte00AA3FE0/all alternate defaults remains unproved; effective default Strongly inferred and key contents/units/lifetime Unknown.
+
+## Round79 key-base boundary
+
+[Key-base contract](COMPRESSED_ROOT_KEY_BASE_COPY_CONTRACT.md). Key-base00AA3FE0 explicitly writes destination0/8/C, installs PersistentCrcString and has no local scalar+10 write. Virtual getter/initializer/setter effects remain Unknown; complete source-zero/reference/lifetime proof is not claimed. Conditional13-byte00AA41C0 getter is the next bounded probe.

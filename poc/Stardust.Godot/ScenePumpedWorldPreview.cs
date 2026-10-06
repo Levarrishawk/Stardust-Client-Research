@@ -112,10 +112,12 @@ public partial class ScenePumpedWorldPreview : Node
             var args=OS.GetCmdlineUserArgs();
             LoadSourcedInputArguments(args);
             LoadNominalSpeedArguments(args);
+            LoadPointTargetArguments(args);
             string Arg(string name) { int i=Array.IndexOf(args,name);if(i<0 || i+1>=args.Length || args.Count(a=>a==name)!=1)throw new ArgumentException(name);return args[i+1]; }
             string root=Arg("--asset-root");
             cfg=File.ReadAllBytes(Arg("--asset-config"));
             if(Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(cfg))!=RetainedSkeletalDetailBundleReader.ConfigurationPin)throw new InvalidDataException("Configuration identity");
+            LoadTerrainMaterialArguments(args,root);
             peer=JsonSerializer.Deserialize<Dictionary<string,string>>(File.ReadAllBytes(Arg("--mixed-peer")))!;
             if(peer.Count!=14 || peer.Values.Any(v=>v.Length>4096))throw new InvalidDataException("Bounded peer");
             humanId=SceneObjectLifecycleCodec.DecodeCreate(Convert.FromHexString(peer["human_create"])).ObjectId;
@@ -277,22 +279,23 @@ public partial class ScenePumpedWorldPreview : Node
                 Check(message.ParentId is null && message.DirectionRaw==0 && message.SpeedRaw>=0,"Explicit diagnostic world projection");
                 return(AppearanceTransform.Identity with {Translation=message.NativePosition},(float)message.SpeedRaw);
             });
+            PrepareCombinedMotionIngress();
             if(customizationWire) {
                 rawCustomizations=new(world,maximumObjects:2);
                 var limits=new CreatureView3CustomizationDeltaLimits(4096,16,1536,24576);
                 if(customizationNamed) {
                     var namedLimits=new CreatureView3NamedDeltaLimits(new(new(4096,16,16,16,1536,24576,64,256,64,64,256,64),16),16,1024,128);
-                    namedCreatureRouter=new(world,rawCustomizations,e=>CreatureView3NamedDeltaCodec.Decode(e,namedLimits,CreatureWoundsApplicationPolicy.LegacyBounded),(g,bytes)=>router!.Accept(g,bytes.Span),maximumPayloadBytes:4096);
+                    namedCreatureRouter=new(world,rawCustomizations,e=>CreatureView3NamedDeltaCodec.Decode(e,namedLimits,CreatureWoundsApplicationPolicy.LegacyBounded),(g,bytes)=>AcceptHostMotion(g,bytes),maximumPayloadBytes:4096);
                 } else if(customizationExtended) {
                     var extendedLimits=new CreatureView3ExtendedDeltaLimits(new(4096,16,16,16,1536,24576,64,256,64,64,256,64),16);
-                    extendedCreatureRouter=new(world,rawCustomizations,e=>CreatureView3ExtendedDeltaCodec.Decode(e,extendedLimits,CreatureWoundsApplicationPolicy.LegacyBounded),(g,bytes)=>router!.Accept(g,bytes.Span),maximumPayloadBytes:4096);
+                    extendedCreatureRouter=new(world,rawCustomizations,e=>CreatureView3ExtendedDeltaCodec.Decode(e,extendedLimits,CreatureWoundsApplicationPolicy.LegacyBounded),(g,bytes)=>AcceptHostMotion(g,bytes),maximumPayloadBytes:4096);
                 } else if(customizationFull) {
                     var fullLimits=new CreatureView3FullDeltaLimits(4096,16,16,16,1536,24576,64,256,64,64,256,64);
-                    fullCreatureRouter=new(world,rawCustomizations,e=>CreatureView3FullDeltaCodec.Decode(e,fullLimits,CreatureWoundsApplicationPolicy.LegacyBounded),(g,bytes)=>router!.Accept(g,bytes.Span),maximumPayloadBytes:4096);
+                    fullCreatureRouter=new(world,rawCustomizations,e=>CreatureView3FullDeltaCodec.Decode(e,fullLimits,CreatureWoundsApplicationPolicy.LegacyBounded),(g,bytes)=>AcceptHostMotion(g,bytes),maximumPayloadBytes:4096);
                 } else if(customizationScalars) {
                     var mixedLimits=new CreatureView3CustomizationScalarDeltaLimits(4096,16,16,16,1536,24576);
-                    customizationScalarRouter=new(world,rawCustomizations,e=>CreatureView3CustomizationScalarDeltaCodec.Decode(e,mixedLimits),(g,bytes)=>router!.Accept(g,bytes.Span),maximumPayloadBytes:4096);
-                } else customizationRouter=new(world,rawCustomizations,e=>CreatureView3CustomizationDeltaCodec.Decode(e,limits),(g,bytes)=>router!.Accept(g,bytes.Span),maximumPayloadBytes:4096);
+                    customizationScalarRouter=new(world,rawCustomizations,e=>CreatureView3CustomizationScalarDeltaCodec.Decode(e,mixedLimits),(g,bytes)=>AcceptHostMotion(g,bytes),maximumPayloadBytes:4096);
+                } else customizationRouter=new(world,rawCustomizations,e=>CreatureView3CustomizationDeltaCodec.Decode(e,limits),(g,bytes)=>AcceptHostMotion(g,bytes),maximumPayloadBytes:4096);
                 customizationAdapter=new(world,rawCustomizations,snapshot=> {
                     Check(snapshot.Object.Handle.ObjectId==humanId,"One explicit human consumer context");return customizationZero!;
                 },(packed,current)=>CustomizationVariableProjection.Apply(customizationDictionary!,customizationRanges!,current,packed).Values,maxObjects:2);
@@ -351,6 +354,7 @@ public partial class ScenePumpedWorldPreview : Node
                         Check(jobs.Any(j=>j.IsCompletedSuccessfully&&ReferenceEquals(j.Result,publication.Resources)),"Terminal archive job completed before publication");
                         GD.Print("terminal_animation_resource="+JsonSerializer.Serialize(new {publication.Resources.ExternalReads,publication.Resources.SourceBytes,ReadsOnce=true,ArchivesClosed=true,BundleSources=bundle.Sources.Count,BundleDecodedBytes=bundle.DecodedBytes,BundleMips=bundle.MipCount,RetainedDecodedBytes=accounting.DecodedTextureBytes,accounting.PendingWeight,DefaultFrame0DecodedSeparately=true}));
                     }
+                    if(pointAcceptedLocomotionHosted&&inner.CreatureVisual is not null)result=WrapAcceptedLocomotion(result,locomotion!.Inner);
                     visuals[publication.Ticket.Handle.ObjectId]=inner;return result;
                 } catch {result.Dispose();throw;}
             }
@@ -362,7 +366,7 @@ public partial class ScenePumpedWorldPreview : Node
             if(creature4PartialFixture is not null)creature4PartialRouter=new(world,downstream:(g,bytes)=>creature6FullRouter!.Accept(g,bytes),maximumPayloadBytes:4096);
             pump=new(world,CreateVisual,new(MaximumQueuedMessages:16,MaximumQueuedBytes:16384,MaximumMessageBytes:4096,MaximumMessagesPerStep:2,MaximumPendingPublications:2,MaximumPublicationsPerStep:1,MaximumActors:2,MaximumPendingResourceWeight:faceInspection is null?67108864:134217728),
                 r=>SceneObjectResourceAccounting.Measure(r).PendingWeight,
-                applicationReceiver:creature4PartialRouter is not null?(g,bytes)=>creature4PartialRouter.Accept(g,bytes):creature4FullRouter is not null?(g,bytes)=>creature4FullRouter.Accept(g,bytes):creature6FullRouter is not null?(g,bytes)=>creature6FullRouter.Accept(g,bytes):creature6CompositeRouter is not null?(g,bytes)=>creature6CompositeRouter.Accept(g,bytes):creature6Router is not null?(g,bytes)=>creature6Router.Accept(g,bytes):tangible6Router is not null?(g,bytes)=>tangible6Router.Accept(g,bytes):tangibleRouter is not null?(g,bytes)=>tangibleRouter.Accept(g,bytes):namedCreatureRouter is not null?(g,bytes)=>namedCreatureRouter.Accept(g,bytes):extendedCreatureRouter is not null?(g,bytes)=>extendedCreatureRouter.Accept(g,bytes):fullCreatureRouter is not null?(g,bytes)=>fullCreatureRouter.Accept(g,bytes):customizationScalarRouter is not null?(g,bytes)=>customizationScalarRouter.Accept(g,bytes):customizationRouter is not null?(g,bytes)=>customizationRouter.Accept(g,bytes):router is null?null:(g,bytes)=>router.Accept(g,bytes.Span));
+                applicationReceiver:creature4PartialRouter is not null?(g,bytes)=>creature4PartialRouter.Accept(g,bytes):creature4FullRouter is not null?(g,bytes)=>creature4FullRouter.Accept(g,bytes):creature6FullRouter is not null?(g,bytes)=>creature6FullRouter.Accept(g,bytes):creature6CompositeRouter is not null?(g,bytes)=>creature6CompositeRouter.Accept(g,bytes):creature6Router is not null?(g,bytes)=>creature6Router.Accept(g,bytes):tangible6Router is not null?(g,bytes)=>tangible6Router.Accept(g,bytes):tangibleRouter is not null?(g,bytes)=>tangibleRouter.Accept(g,bytes):namedCreatureRouter is not null?(g,bytes)=>namedCreatureRouter.Accept(g,bytes):extendedCreatureRouter is not null?(g,bytes)=>extendedCreatureRouter.Accept(g,bytes):fullCreatureRouter is not null?(g,bytes)=>fullCreatureRouter.Accept(g,bytes):customizationScalarRouter is not null?(g,bytes)=>customizationScalarRouter.Accept(g,bytes):customizationRouter is not null?(g,bytes)=>customizationRouter.Accept(g,bytes):router is null?null:(g,bytes)=>AcceptHostMotion(g,bytes));
             Queue("start");
             foreach(string prefix in new[]{"human","terminal"})foreach(string suffix in new[]{"create","baseline","end"}) {
                 Queue(prefix+"_"+suffix);
@@ -386,8 +390,11 @@ public partial class ScenePumpedWorldPreview : Node
                     camera.Position=new Vector3(14,18,-20);camera.LookAt(new Vector3(0,4,0));
                 }
                 ConfigureFirstCurveTerrainCamera(camera);
+                InspectTerrainRays(camera);
+                PrepareCameraOrbitHost(camera);
+                PreparePointPicker(camera);
             }
-            host=new();host.FrameCompleted+=Frame;AddChild(host);host.Configure(pump,Before);
+            host=new();host.FrameCompleted+=Frame;AddChild(host);ConfigureOfflinePresentationHost();
             _=ObserveHost();
         }
         catch(Exception error) { GD.PushError(error.ToString()); _=Fail(error); }
@@ -515,7 +522,8 @@ public partial class ScenePumpedWorldPreview : Node
     {
         AdvanceSourcedInput();
         AdvanceNominalSpeed();
-        if(++frames>1500)throw new InvalidDataException("Frame deadline");
+        AdvancePointTarget();
+        if(++frames>(pointInteractive&&pointStarted?offlineBootstrapFrames+100000:pointElapsedHosted&&pointStarted?offlineBootstrapFrames+2000:1500))throw new InvalidDataException("Frame deadline");
         if(phase==0 && pump!.QueuedMessageCount==0 && world!.State==ZoneSceneTransitionState.Initializing) {
             Check(world.CompleteMinimumSceneBarrier(generation,true)is not null,"Explicit host barrier");
             Queue("ready");phase=1;
@@ -534,6 +542,7 @@ public partial class ScenePumpedWorldPreview : Node
         if(cancel || finishing)return;
         if(sourcedStarted && !sourcedComplete){FrameSourcedInput();return;}
         if(nominalStarted && !nominalComplete){FrameNominalSpeed();return;}
+        if(pointStarted && !pointComplete){if(!FrameQueuedPointCorrection(receipt))FramePointTarget();return;}
         if(phase==1 && pump!.Consumer.Count==2) {
             var h=visuals[humanId];
             var t=visuals[terminalId];
@@ -849,18 +858,18 @@ public partial class ScenePumpedWorldPreview : Node
             Native=new[]{expected.X,expected.Y,expected.Z},Engine=new[]{origin.X,origin.Y,origin.Z},Height=1.4f,
             CreateHex=Convert.ToHexString(SceneObjectLifecycleCodec.EncodeCreate(originalHuman.Resources.Create)),calls}));
     }
-    private void ScheduleFinish(){if(nominalRequested&&!nominalStarted&&phase==47){BeginNominalSpeed();return;}if(sourcedRequested && !sourcedStarted && phase==47){BeginSourcedInput();return;}finishing=true;CallDeferred(MethodName.Finish);}
+    private void ScheduleFinish(){if(pointRequested&&!pointStarted&&phase==47){BeginPointTarget();return;}if(nominalRequested&&!nominalStarted&&phase==47){BeginNominalSpeed();return;}if(sourcedRequested && !sourcedStarted && phase==47){BeginSourcedInput();return;}finishing=true;CallDeferred(MethodName.Finish);}
     public async void Finish()
     {
         try {
-            Check(cancel?calls==2 && entered==2:(phase==4 || phase==7 || phase==16 || phase==26 || phase==28 || phase==37 || phase==41 || phase==47 || phase==48 || phase==64 || phase==71) && frames>=7,"Continuous frame/lifecycle proof");
+            Check(cancel?calls==2 && entered==2:(phase==4 || phase==7 || phase==16 || phase==26 || phase==28 || phase==37 || phase==41 || phase==47 || phase==48 || phase==64 || phase==71 || phase==73) && frames>=7,"Continuous frame/lifecycle proof");
             if(motionCapture is not null) {
                 await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
                 await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
                 using var image=GetViewport().GetTexture().GetImage();
                 if(image.SavePng(motionCapture)!=Error.Ok)throw new IOException("Motion capture");
             }
-            inputHost?.Close();CloseSourcedInput();CloseNominalSpeed();await host!.CloseAsync();router?.Dispose();CloseSuppliedTerrain();
+            inputHost?.Close();CloseSourcedInput();CloseNominalSpeed();ClosePointTarget();await host!.CloseAsync();LogAcceptedLocomotionVisualCleanup();router?.Dispose();CloseSuppliedTerrain();
             if(creature4Fixture is not null) {
                 Check(world!.RetainedCreatureView4FullBytes==0,"Private world state/journal drained");
                 GD.Print("creature4_full_cleanup="+JsonSerializer.Serialize(new{StateAndJournalBytes=0,Drained=true}));
@@ -901,6 +910,7 @@ public partial class ScenePumpedWorldPreview : Node
             if(customizationScalars)GD.Print("PASS: pumped mixed_customization=true scalar_height_once=true ordered=true raw_empty_retains_display=true pose_clock_retained=true no_asset_reload=true drained=true");
             if(customizationWire)GD.Print("PASS: pumped wire_customization=true outer_owned=true ordered=true range_rejection=true empty_retention=true extended_preserved=true pose_clock_retained=true no_asset_reload=true drained=true");
             if(nominalComplete)GD.Print("PASS: pumped nominal_speed=true supplied_rate=true retained_clamp=true original_resource_retained=true stopped=true drained=true");
+            if(pointComplete)GD.Print(pointInteractive?"PASS: pumped point_target=true idle_start=true grounded=true scripted_correction=false stopped=true retained=true drained=true":"PASS: pumped point_target=true actual_camera_hit=true grounded=true full_correction=true stopped=true retained=true drained=true");
             if(sourcedComplete)GD.Print("PASS: pumped sourced_input=true explicit_source=true original_resource_chain=true stopped=true no_update_io=true drained=true");
             GetTree().Quit();
         } catch(Exception error) { await Fail(error); }
@@ -910,7 +920,8 @@ public partial class ScenePumpedWorldPreview : Node
     {
         if(!finishing)finishing=true;
         GD.PushError("Pumped world failed: "+error);
-        foreach(var closeInput in new Action[]{()=>inputHost?.Close(),()=>CloseSourcedInput(),()=>CloseNominalSpeed()})
+        try{RecordConfiguredOutcome();}catch(Exception reportFailure){GD.Print("offline_outcome_capture_failed="+reportFailure.GetType().Name);}
+        foreach(var closeInput in new Action[]{()=>inputHost?.Close(),()=>CloseSourcedInput(),()=>CloseNominalSpeed(),()=>ClosePointTarget()})
             try{closeInput();}catch(Exception cleanup){GD.PushError("Input cleanup: "+cleanup);}
         try{CloseSuppliedTerrain();}catch(Exception cleanup){GD.PushError("Terrain cleanup: "+cleanup);}
         try{if(host is not null)await host.CloseAsync();else{pump?.Close();world?.Close();if(world is not null)await world.DrainCompletion;}}
@@ -927,7 +938,7 @@ public partial class ScenePumpedWorldPreview : Node
     private static void Check(bool value,string name){if(!value)throw new InvalidDataException(name);}
     public override void _Notification(int what){if(what==NotificationWMCloseRequest && !finishing)_=Fail(new OperationCanceledException("Window close"));}
     public override void _ExitTree(){
-        foreach(var close in new Action[]{()=>inputHost?.Close(),()=>CloseSourcedInput(),()=>CloseNominalSpeed(),()=>pump?.Close(),()=>world?.Close(),()=>CloseCreature4Partial(),()=>CloseCreature4Full(),()=>creature6FullRouter?.Dispose(),()=>creature6CompositeRouter?.Dispose(),()=>creature6Router?.Dispose(),()=>creature6Fixture?.Dispose(),()=>tangible6Router?.Dispose(),()=>tangible6Fixture?.Dispose(),()=>tangibleRouter?.Dispose(),()=>tangibleFixture?.Dispose(),()=>customizationAdapter?.Dispose(),()=>customizationRouter?.Dispose(),()=>customizationScalarRouter?.Dispose(),()=>fullCreatureRouter?.Dispose(),()=>extendedCreatureRouter?.Dispose(),()=>namedCreatureRouter?.Dispose(),()=>nameTables?.Clear(),()=>rawCustomizations?.Dispose(),()=>router?.Dispose(),()=>motions?.Dispose()})
+        foreach(var close in new Action[]{()=>inputHost?.Close(),()=>CloseSourcedInput(),()=>CloseNominalSpeed(),()=>ClosePointTarget(),()=>pump?.Close(),()=>world?.Close(),()=>CloseCreature4Partial(),()=>CloseCreature4Full(),()=>creature6FullRouter?.Dispose(),()=>creature6CompositeRouter?.Dispose(),()=>creature6Router?.Dispose(),()=>creature6Fixture?.Dispose(),()=>tangible6Router?.Dispose(),()=>tangible6Fixture?.Dispose(),()=>tangibleRouter?.Dispose(),()=>tangibleFixture?.Dispose(),()=>customizationAdapter?.Dispose(),()=>customizationRouter?.Dispose(),()=>customizationScalarRouter?.Dispose(),()=>fullCreatureRouter?.Dispose(),()=>extendedCreatureRouter?.Dispose(),()=>namedCreatureRouter?.Dispose(),()=>nameTables?.Clear(),()=>rawCustomizations?.Dispose(),()=>router?.Dispose(),()=>motions?.Dispose()})
             try{close();}catch(Exception cleanup){GD.PushError("Exit cleanup: "+cleanup);}
         CloseSuppliedTerrain();visuals.Clear();motionPeer?.Clear();Array.Clear(cfg);environment?.Dispose();environment=null;
     }

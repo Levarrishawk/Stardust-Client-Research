@@ -1,0 +1,13 @@
+config_version=5
+[application]
+config/name="TerrainPickerVerification"
+run/main_scene="res://Picker.tscn"
+config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=720
+[dotnet]
+project/assembly_name="Picker"
+[rendering]
+renderer/rendering_method="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.02,0.03,0.04,1)

@@ -1,0 +1,29 @@
+# Round73: explicit bounded offline session capacity
+
+Date2026-10-06. Question: can an explicit immutable opt-in budget permit sustained actual terrain/locomotion/camera state beyond128 updates while preserving all null/default semantics and per-step work limits? Stop after1,200 joined steps, targeted regressions and sealed scope/handoff; IDLE until explicit next assignment.
+
+## Inputs and orientation
+
+Read root instructions, START_HERE/latest accepted72, status/ledger/unknown, point/manual/speed/observer/follow contracts, relevant checkpoints/tools/curated rows and main73 assignments/allowlist. Inspect three constructor guards and dependent fixed-step/terrain/store/event cursor/phase limits. Trusted sync verifies4371 frozen public paths preserving HEAD/index/private. Manifest SHA-256 `138f9b7dcbbc43bf7be0a564beb5ffd0771747307f1c72ee108d46a0fef742a5`; archive `5848eb383951c9a452a3ddf013c23e30132ed8876579101273f277b1d7f302ea`. No original executable/VA dependency.
+
+Exactly three existing owned source amendments: append optional budget after token; replace only requested-count ceiling guards; add opt-in observer total-clock admission. Eight additions: immutable budget, scenarios, contract/checkpoint and four own runner files. All4368 other frozen paths, original clocks/store/terrain/byte/input/event code, shared projects and sibling73 work stay unchanged. Cached Python/.NET/offline packages only; certificate generation disabled. No stage/commit/publication/live/capture/fuzz/download/external mutation/original execution.
+
+Runtime/profile recipe SHA-256 `c69010c21428da37435ccef1f8f371449c01481687332482774616aaf257dd21`; terrain `85226fe4fb7f1961c3ebb1e3df520d3d5ec0e9ac1601b0c2338ee08a9d7698cd`. Selected idle/walk/run metadata `9cebf47f94457a5604c1ab4054e270024a4d231b9ebbe70ca1a4bea8361dddc2` from lead's prior pinned original read is reused. Own producer repacks descriptor/message records into synthetic CKAT containers/zero translation keys, never public original asset bytes. Private expected/input/native artifacts retain derived details.
+
+## Evidence, confidence and consequences
+
+Confirmed source/native: sealed immutable budget validates1..6000 updates and1..128 targets; optional parameter does not alter defaults/requested counts. Null guards preserve128/16 point and256 observer/follow ceilings. Explicit budget requests only replace total ceilings; rebases and per-step/byte/object/event/cycle limits remain unchanged. Full configured point/follow clock admission remains; opt-in observer validates complete interval before its clock. Consequence: caller must both pass budget and explicitly request larger counts.6000 is60 seconds at10ms, not universal duration.
+
+Confirmed sustained behavior:1,200 oracle-compared actual grounded steps (12seconds),20 point admissions,28 ordered selected-record events. Manual/walk/run/idle/pause/correction/point handoff remain bounded within supplied terrain. Observer and follow rebase before actual correction adoption; accepted phase excludes teleport. Native counters, historical receipts and camera/locomotion phase persist across128 without resetting owners. Production retains no added sample history; private verification alone records rows.
+
+Confirmed failure/lifecycle:1,251 checks/28 negatives include malformed budgets, old point129/target17 and observer/follow257 rejection, opt-in over-budget rejection, small-budget defaults, unchanged rebase cap, long end-clock overflow for all three, canceled mid-session updates, final target/update/observation/follow rejection and borrower survival. Separate128-step default join proves even a6000 budget leaves default requested caps at128. No rollback/refund/rearm; existing identity/provenance/source-inspected failure-prefix and rare allocation limits remain unchanged.
+
+Confirmed numerical boundary: frozen locomotion clock multiplies authoredSpeed(float) by endFrame(ushort) in binary32 before dividing double distance. Recorded nonintegral original speeds exposed this after initial native success: row0 frame0.5809301672615822 versus initial oracle0.5809301808071896. Retained failed verification; own new oracle explicitly models float denominator and regenerated expectations before final native. No production clock or frozen old oracle changed, no native phase seed. Final F32/integer/event identities exact, double phase2e-13 relative/absolute. Original live/gait/graph/scheduling/camera/control/cadence/units/gameplay parity remains Unknown.
+
+## Validation and replay
+
+[Native scenarios](../../poc/Stardust.Core.SmokeTests/TerrainOfflineSessionBudgetScenarios.cs) and [independent producer/verifier](../../poc/round73-tests/Runtime/verify_long.py) pass final1,200 steps/28 events. Unchanged72 runtime63 pure/21 grounded actions with1,597 checks/764 negatives; unchanged65 point111 updates/721 checks/136 negatives pass. Three builds zero warnings/errors. No broad default/host/GPU/whole-corpus or original/live run.
+
+Generate with explicit pinned runtime/terrain/locomotion-metadata paths into fresh private input/expected files, offline restore/build [runner](../../poc/round73-tests/Runtime/Runtime.csproj), run actual DLL into fresh output, independently verify fresh receipt. Replay two frozen regressions similarly. Final private handoff records all11 hashes, UTC/commands/receipts and exact mechanical three-source diff, frozen SHA/length/path inventory, UTF8/AST/XML/PowerShell/links/diff/validator/HEAD/index/private-ignore evidence.
+
+Next probe: lead reviews/replays exact final sources, explicitly requests opt-in session counts through all three owners while retaining existing step/rebase/input/scene cleanup limits, then builds the longer bounded offline playground with sustained animation/camera state and cancellation. Worker IDLE after73; no74 without explicit assignment. Research/readiness/function/protocol denominators remain separate and unchanged.

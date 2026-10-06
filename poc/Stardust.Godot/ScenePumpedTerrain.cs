@@ -11,6 +11,7 @@ public partial class ScenePumpedWorldPreview
 {
     private readonly List<TerrainPatchVisual> suppliedTerrainVisuals = new();
     private readonly List<TerrainPatchSurfaceQuery> suppliedTerrainQueries = new();
+    private TerrainModernPatchSetSurfaceQuery? suppliedTerrainSetQuery;
     private bool suppliedTerrain;
     private int terrainAllocationsBefore, terrainDisposalsBefore;
 
@@ -21,6 +22,7 @@ public partial class ScenePumpedWorldPreview
         Check(!suppliedTerrain && fixtureBytes is > 0 and <= 524288, "Bounded terrain fixture");
         using var fixture = JsonDocument.Parse(File.ReadAllBytes(path), new JsonDocumentOptions { MaxDepth = 16 });
         var root = fixture.RootElement;
+        Check(suppliedTerrainMaterial is null||root.GetProperty("Version").GetInt32()==9,"Supplied MAIN material requires retained sparse terrain mode");
         if(root.GetProperty("Version").GetInt32()==9){LoadSparseFirstCurveTerrain(root);return;}
         if(root.GetProperty("Version").GetInt32()==8){LoadFirstCurveTerrain(root);return;}
         if(root.GetProperty("Version").GetInt32()==7){LoadFilteredHeightTerrain(root);return;}
@@ -90,7 +92,9 @@ public partial class ScenePumpedWorldPreview
         catch { CloseSuppliedTerrain(); throw; }
     }
 
-    private ISceneWorldLocalMotionDriver CreateLocalDriver() => suppliedTerrain
+    private ISceneWorldLocalMotionDriver CreateLocalDriver() => suppliedTerrainSetQuery is not null
+        ? new SceneWorldTerrainMotionDriver(world!,motions!,humanId,suppliedTerrainSetQuery)
+        : suppliedTerrain
         ? new SceneWorldTerrainMotionDriver(world!, motions!, humanId, suppliedTerrainQueries)
         : new SceneWorldLocalMotionDriver(world!, motions!, humanId);
 
@@ -106,7 +110,8 @@ public partial class ScenePumpedWorldPreview
     {
         CloseSparseTerrainLight();
         foreach (var visual in suppliedTerrainVisuals) visual.Dispose();
-        suppliedTerrainVisuals.Clear(); suppliedTerrainQueries.Clear();
+        CloseTerrainMaterial();
+        suppliedTerrainVisuals.Clear(); suppliedTerrainQueries.Clear();suppliedTerrainRayQuery=null;suppliedTerrainSetQuery=null;
         suppliedLayerMotion?.Clear();suppliedLayerMotion=null;
         if (suppliedTerrain)
         {

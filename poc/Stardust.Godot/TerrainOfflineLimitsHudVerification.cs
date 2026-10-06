@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
+using Godot;
+
+public partial class TerrainOfflineLimitsHudVerification : Node3D
+{
+    private int checks;
+    private void Check(bool value,string why){checks++;if(!value)throw new InvalidDataException(why);}
+    private void Reject(Action call){bool rejected=false;try{call();}catch(Exception e) when(e is InvalidOperationException or ArgumentException or OperationCanceledException or IOException or InvalidDataException){rejected=true;}Check(rejected,"Expected limits HUD rejection");}
+    public override async void _Ready(){try{await Run();GetTree().Quit();}catch(Exception e){GD.PushError("Limits HUD: "+e);GetTree().Quit(1);}}
+    private async Task Run()
+    {
+        var args=OS.GetCmdlineUserArgs();string Arg(string key){int i=Array.IndexOf(args,key);if(i<0)throw new ArgumentException(key);return args[i+1];}
+        string output=Arg("--out");using var doc=JsonDocument.Parse(File.ReadAllText(Arg("--fixtures")));var states=doc.RootElement.Deserialize<TerrainOfflineLimitsHudState[]>()!;
+        var probe=new TerrainLimitsInputProbe();AddChild(probe);var owner=new Node3D();AddChild(owner);var hud=new TerrainOfflineLimitsHud();int reads=0;var state=states[0];hud.Configure(owner,()=>{reads++;return state;});var rows=new List<object>();
+        for(int i=0;i<states.Length;i++)
+        {
+            state=states[i];if(i>0)Check(hud.Refresh(),"actual fresh display");var layer=(CanvasLayer)owner.GetChild(0);var label=(Label)layer.GetChild(0);
+            Check(label.Text==hud.Caption&&label.Position==new Vector2(28,286)&&label.GetThemeFontSize("font_size")==16&&label.MouseFilter==Control.MouseFilterEnum.Ignore&&label.FocusMode==Control.FocusModeEnum.None,"actual caption/layout/input policy");
+            rows.Add(new{Index=i,Caption=hud.Caption,Actual=label.Text,RefreshCount=hud.RefreshCount,Reads=reads});
+        }
+        using(var key=new InputEventKey{Pressed=true,Keycode=Key.W})GetViewport().PushInput(key,true);
+        using(var mouse=new InputEventMouseButton{Pressed=true,ButtonIndex=MouseButton.Left,Position=new(40,296),GlobalPosition=new(40,296)})GetViewport().PushInput(mouse,true);
+        Check(probe.Events==2&&GetViewport().GuiGetFocusOwner() is null,"actual input crosses noninteractive visible limits label");
+        string historical=hud.Caption;hud.Dispose();hud.Dispose();Check(hud.IsRetired&&hud.RetirementCount==1&&hud.Caption==historical&&hud.RefreshCount==states.Length&&owner.GetChildCount()==0&&!hud.Refresh(new CancellationToken(true))&&reads==states.Length,"single retirement/history/no source after disposal");owner.Free();probe.Free();
+        var failures=new List<object>();
+        foreach(string kind in new[]{"updates-zero","updates-large","clicks-zero","clicks-large","remaining-negative","remaining-large","null-state","source-throw","source-reentry","source-dispose-reentry","source-cancel","initial-cancel","owner-exit","source-owner-free","layer-free","label-free","label-captures","second-configure","unconfigured-refresh","off-thread","detached-configure"})
+        {
+            owner=new();if(kind!="detached-configure")AddChild(owner);hud=new();int calls=0;bool ready=false;using var cancel=new CancellationTokenSource();
+            TerrainOfflineLimitsHudState Source()
+            {
+                calls++;if(!ready)return states[0];
+                if(kind=="source-throw")throw new IOException("source");if(kind=="source-reentry"){try{hud.Refresh();}catch(InvalidOperationException){}}
+                if(kind=="source-dispose-reentry"){try{hud.Dispose();}catch(InvalidOperationException){}}if(kind=="source-cancel")cancel.Cancel();if(kind=="source-owner-free")owner.Free();
+                return kind switch{"updates-zero"=>states[0] with{MaximumUpdates=0},"updates-large"=>states[0] with{MaximumUpdates=6001},"clicks-zero"=>states[0] with{MaximumClickAttempts=0},"clicks-large"=>states[0] with{MaximumClickAttempts=129},"remaining-negative"=>states[0] with{RemainingClickAttempts=-1},"remaining-large"=>states[0] with{RemainingClickAttempts=33},"null-state"=>null!,_=>states[0]};
+            }
+            if(kind=="detached-configure")Reject(()=>hud.Configure(owner,Source));
+            else if(kind=="unconfigured-refresh")Reject(()=>hud.Refresh());
+            else
+            {
+                hud.Configure(owner,Source);ready=true;
+                if(kind=="owner-exit")RemoveChild(owner);
+                if(kind=="layer-free")owner.GetChild(0).Free();
+                if(kind=="label-free")owner.GetChild(0).GetChild(0).Free();
+                if(kind=="label-captures")((Label)owner.GetChild(0).GetChild(0)).MouseFilter=Control.MouseFilterEnum.Stop;
+                if(kind=="initial-cancel")cancel.Cancel();
+                if(kind=="off-thread")
+                {
+                    Check(await Task.Run(()=>{try{hud.Refresh();return false;}catch(InvalidOperationException){return true;}}),"off-thread before source");Check(!hud.IsRetired&&calls==1,"off-thread preserves owner");hud.Dispose();
+                }
+                else if(kind is "owner-exit" or "layer-free")Check(!hud.Refresh(),"native retirement before another read");
+                else if(kind=="second-configure")Reject(()=>hud.Configure(owner,Source));
+                else Reject(()=>hud.Refresh(cancel.Token));
+            }
+            Check(hud.IsRetired&&hud.RetirementCount==1,"one retirement "+kind);
+            failures.Add(new{Kind=kind,Reads=calls,RefreshCount=hud.RefreshCount,RetirementCount=hud.RetirementCount,Caption=hud.Caption});
+            ((IDisposable)hud).Dispose();hud.Dispose();if(GodotObject.IsInstanceValid(owner))owner.Free();
+        }
+        var teardown=new List<object>();
+        foreach(string mode in new[]{"parent-free","parent-queue-free","layer-detached-free","layer-queue-free","interface-dispose"})
+        {
+            owner=new();AddChild(owner);hud=new();int calls=0;hud.Configure(owner,()=>{calls++;return states[0];});var owned=owner.GetChild(0);
+            if(mode=="parent-free")owner.Free();else if(mode=="parent-queue-free"){owner.QueueFree();await ToSignal(GetTree(),SceneTree.SignalName.ProcessFrame);await ToSignal(GetTree(),SceneTree.SignalName.ProcessFrame);}
+            else if(mode=="layer-detached-free"){owner.RemoveChild(owned);owned.Free();}else if(mode=="layer-queue-free"){owned.QueueFree();await ToSignal(GetTree(),SceneTree.SignalName.ProcessFrame);await ToSignal(GetTree(),SceneTree.SignalName.ProcessFrame);}else((IDisposable)hud).Dispose();
+            hud.Dispose();hud.Dispose();bool alive=GodotObject.IsInstanceValid(owner);Check(hud.IsRetired&&hud.RetirementCount==1&&calls==1&&(!alive||owner.GetChildCount()==0),"safe native/interface/deferred deletion "+mode);
+            teardown.Add(new{Kind=mode,OwnerAlive=alive,Reads=calls,RefreshCount=hud.RefreshCount,RetirementCount=hud.RetirementCount,Caption=hud.Caption});if(alive)owner.Free();
+        }
+        owner=new();AddChild(owner);var existing=new TerrainOfflinePlaygroundHud();existing.Configure(owner,()=>new("Idle",0,0,120,120,false,true));string legacyCaption=existing.Caption;Check(existing.RefreshCount==1,"frozen default HUD admission");existing.Dispose();
+        existing=new();existing.Configure(owner,()=>new("Idle",0,0,1000,1000,false,true),default,true);
+        hud=new();hud.Configure(owner,()=>new(1000,32,0,true,false));bool gpu=DisplayServer.GetName()!="headless";
+        if(gpu){await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);using var image=GetViewport().GetTexture().GetImage();Check(image.SavePng(Path.ChangeExtension(output,"png"))==Error.Ok,"private GPU limits HUD capture");}
+        hud.Dispose();existing.Dispose();owner.Free();Check(GetChildCount()==0,"all HUD fixture nodes released");
+        File.WriteAllText(output,JsonSerializer.Serialize(new{Passed=true,Checks=checks,Gpu=gpu,Rows=rows,Failures=failures,Teardown=teardown,LegacyCaption=legacyCaption,InputPassThrough=true,BorrowedSurvival=true}));GD.Print("PASS offline limits HUD");
+    }
+}
+public partial class TerrainLimitsInputProbe : Node
+{public int Events;public override void _UnhandledInput(InputEvent input){Events++;}}

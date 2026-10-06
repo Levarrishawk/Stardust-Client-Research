@@ -1,0 +1,35 @@
+# Round69: supplied walk/run intent and offline SOE root transfer
+
+October6,2026. Question: can actual held Shift events change only the engine-neutral driver's supplied speed, then preserve queued historical root ownership through the existing reliable transport? Stop after component proofs, one positive headless/GPU join, exact-clock rejection and prior changed-branch regressions. Final acceptance/time/scope are in the [session](../sessions/PARALLEL_DEVELOPMENT_ROUND_69_2026-10-06.md).
+
+## Identity and evidence
+
+Frozen accepted68:4226 public files, manifest069f8419cc82801ee88484f8e20f1d519f8e30044c4427a9cd653c972841bf9d, archive5f3333ab06f047348a3aed85ee1ef824591801ee19c26d6954ba45074cefddee. Original EXE SHA E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150 is checked before static evidence; it is never executed. Godot4.7.2 .NET x64/cache-only build; independently authored synthetic fixtures and unchanged original object/APT/LOD/mesh/material paths. Original inputs remain ignored, unmodified and unpublished.
+
+Observed [speed setter](../../docs/SCENE_WORLD_TERRAIN_MOVEMENT_SPEED_CONTRACT.md) admits finite(0,10], exact healthy current clock/owner/incarnation/token/cap before changing only owned speed. Existing target/manual/pause/driver/store row and capacities remain unchanged; next ordinary tick applies it. Lead independently passes96 updates/489 native checks/133 negatives/four ULP-adjusted ticks and prior102 manual/111 point updates. Confirmed executed modern contract; original walk/run units/control/gait semantics Unknown.
+
+Observed [actual Shift Node](../../docs/TERRAIN_RUN_INPUT_HOST_CONTRACT.md) uses separate left/right/unspecified masks and physical-key preference. Clock/sink runs only aggregate bool transitions; mask changes still commit/consume. Disable/focus stop and GUI ownership are explicit; Close clears its own references without external speed reset. Lead146 headless/147 GPU checks compare46 authored actions,23 mask commits,19 handled keys and14 sink calls. Callback failure prefixes retain completed external effects, with no rollback claim.
+
+Observed [bridge](../../docs/SCENE_WORLD_ROOT_MOTION_TRANSPORT_BRIDGE_CONTRACT.md) declines any existing SOE pending message before FIFO take, adopts transferred bytes, lets actual SOE copy, clears its own source and leaves caller to pump/ACK. Dispose preserves borrowed queue/transport; caller closes its owned synthetic transport. Lead three exact application frames/five datagrams/five ACKs/80 checks. Rare post-take cancellation/failure and retained-byte zeroing are source-inspected, distinct from dynamic admission/backpressure/ownership checks. Existing transport has no owner-affinity API; serialized access is a caller requirement.
+
+[Legacy selector evidence](../../docs/TERRAIN_SHADER_FAMILY_SELECTOR_CONTRACT.md) closes59-byte00B69860 plus explicitly approved three-byte getter00B69440: first equal DWORD index or FFFFFFFF, ret4 and nonvolatile/pending-stack preservation on readable normal paths. Lead33 anchors/121 guards/22 independent checks/15 original-byte family models. Two leads/eleven raw sites remain below separate12/12 ceilings. Unchecked wrapper failure address is array_base−4 modulo32; no invalid read/crash executed. Complete extent Strongly inferred; direct instructions Confirmed; actual keys/resource use/reachability Unknown. No naming or resolver change.
+
+## Joined behavior and independent oracle
+
+Version5 policy SuppliedViewportWalkRunAndOfflineSoeRootTransfer keeps accepted68 point/manual/GUI/correction schedule. Initial point speed4; explicit supplied walk3 at25, actual Shift run4 at27, release walk3 at29, Shift run4 at34. Setter logs prove exact identities and intents preserved. Four point picks/eight manual intents/two GUI-consumed keys continue; each headless/GPU run110 updates crosses two patches/two chunks, arrives and performs a consecutive zero-speed tick.
+
+[Independent oracle](../../poc/round69-tests/Integration/run_transport_peer.py) derives targets by intersecting captured camera rays with independently supplied geometry; it does not seed expected hits/poses from native results. It models binary32 trajectory/speed/time and orientation basis, validates nine historical root payloads, then checks exact SOE framing around those independently validated application bytes. This layered check is not an independently exact quaternion-byte claim; component bridge fixtures independently pin full bytes before native execution. Synthetic response and nine ACKs are independently packed before native runs using accepted SOE peer model. Actual transport reliably pumps nine datagrams and releases nine retained packets on ACK, without socket creation or send. Busy-before-take leaves FIFO unchanged at each of nine transfers.
+
+Cleanup observes run Node/adapter/controller/marker/GUI, borrowed FIFO, bridge, caller-owned synthetic transport,16 terrain visuals,one original eight-mip texture,three jobs and all actors drained. Close of run Node preserves external selected speed4 while final actual velocity is zero. GPU capture visually inspected original actors on diagnostic textured terrain; no original terrain/shader fidelity or joined marker-pixel proof follows.
+
+## Negative prefix and regressions
+
+[Clock failure oracle](../../poc/round69-tests/Integration/run_clock_failure_peer.py) rejects Shift sink clock at27 before speed/mask commit, preserving walk3 and prior manual/target/driver.27 completed updates remain; three datagrams had transferred/ACKed and two retained62-byte FIFO frames drain after outer world closes. All owners drain; no rollback/retry claimed. Previous Version4 host passes110 updates. Main normal build zero warnings/errors; default smoke result is recorded in the session.
+
+Verification command initially supplied a component terrain fixture instead of the host fixture and then exposed a conditional-index typo in the new lead oracle. Both command/oracle errors were corrected against the previously supplied policy, without changing native results or using them to generate expected values. Retained first failure outputs remain private. Actual joined native runs passed; the repaired independent comparisons passed for their existing captured outputs.
+
+## Consequences, limits and next probe
+
+Keep movement intent and codecs engine-neutral, Godot event lifecycle in Node, and queue/bridge/SOE ownership explicit. Modern configured speeds/GUI/input/camera policy and original sender cadence/timestamp units/gameplay authority remain separate. Original terrain shader-family association/resource lookup remains unproved. Research89/readiness94/function uncalibrated/names2626/packet rows345 are unchanged separate measures. No live-server contact or original EXE execution.
+
+Next: accept final canonical/hygiene gates, snapshot accepted69, then choose bounded camera control and locomotion integration or a concrete original terrain-resource producer probe. Four workers Low; no full new round after10:00UTC; stop11:00UTC.

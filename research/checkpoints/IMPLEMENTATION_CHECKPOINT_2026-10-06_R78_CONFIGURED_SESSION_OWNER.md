@@ -1,0 +1,31 @@
+# Round78: actual configured session ownership
+
+Date:2026-10-06. Bounded question: can one small owner build actual frozen point/controller children from immutable settings, expose exact guarded dependencies and retire owned children in controller-before-point order without closing borrowed resources or claiming initial row rollback? Stop condition: one owner API, short independent parsed maximum3/click32 actual session, admission/owner/failure/history checks and sealed narrow handoff. Worker completion remains subject to lead acceptance.
+
+## Input identity and orientation
+
+Trusted main Round78 Runtime sync passes4537 frozen accepted77 public files with HEAD/index/private preserved. Manifest SHA256 `fae3830a886e9cb4bfd6639c6337052539a35e77c84dd9c5dadf62212f32650f`; archive `4a11a66f312fd654aae850dc94c3214b58130068ce7896108e31dc78a5d275d4`. Read synced START_HERE/latest77/overnight, AGENTS, status/ledger/unknown current conclusions, relevant curated offline-name lead, settings/budget/point/controller/destination docs and prior implementation evidence. Inspected actual constructor, foreign-progress and disposal contracts before composition. Frozen77 interfaces only; no unfinished sibling78 inputs or shared canonical changes. No EXE/address claim is involved.
+
+Cached Python3.11/.NET8 and existing offline package cache run explicit-input synthetic fixtures. Runtime recipe SHA256 `c69010c21428da37435ccef1f8f371449c01481687332482774616aaf257dd21`; terrain recipe `85226fe4fb7f1961c3ebb1e3df520d3d5ec0e9ac1601b0c2338ee08a9d7698cd`. Own runner validates both hashes, fresh private outputs and generates expected data before native execution. Main inputs are read only. No original EXE execution, live contact/capture/fuzz/download/staging/commit/push/publication/external mutation.
+
+## Observation, interpretation and confidence
+
+Observation: immutable settings CreateBudget produces exact matching counts; actual point constructor admits and initially publishes its grounded local row, owns its frozen terrain driver, and releases borrowed geometry/world/store references on disposal. Controller borrows the point driver and preserves its actual historical state when disposed. It detects foreign completed/attempted/clock progress and reserves the last configured tick for zero-speed Idle.
+
+Interpretation: composition can centralize initial ownership and teardown while keeping those exact movement/lifecycle policies. Controller must retire before the owned point driver; failed construction cannot undo a row that a child already published. Confidence: Confirmed modern source/fixture behavior; no original ownership/control parity is inferred. Consequence: lead can replace duplicated configured construction with this owner while preserving existing child caller contracts and default profiles.
+
+Implemented [TerrainConfiguredOfflineSession](../../poc/Stardust.Core/Session/TerrainConfiguredOfflineSession.cs), constructor(world,motions,objectId,rayQuery,settings,initialTimestampMicroseconds,footOffset=0,SceneWorldTerrainMotionLimits? terrainLimits=null,token=default). Owner-guarded PointDriver,Controller,Settings,Budget,IsDisposed; exact actual children and budget, matching settings counts/step/walk/radius/hold. Dispose controller then point with finally cleanup, idempotent historical getters and borrowed-resource retention. Constructor cleans returned ownership prefixes on late failure without rollback claims. [Durable contract](../../docs/TERRAIN_CONFIGURED_OFFLINE_SESSION_CONTRACT.md) records exact signature, child use and failure limits.
+
+## Executed verification and unrun branches
+
+Independent before-native expected budget3/32 and three exact Fraction-grounded binary32 position/speed steps plus integer clocks/counts/modes/stop/held/target counts pass. Native uses parsed settings maximum3/click32, issues32 actual target receipts and rejects33 unchanged, then replaces point intent with manual, completes two moving ticks and one ordinary final zero Idle tick. Exact settings/query/children/budget identity and actual row publication are checked.
+
+Native94 checks/28 negatives pass: pre-cancel child/constructor, null dependencies, invalid initial clock/object/foot/caps, owner constructor/all getters/dispose, foreign store and stale world, actual frozen initial grounding failure with existing outside row retained and borrowers alive, external point advance with honest controller fault prefix, no extra terminal tick, post-disposal child calls, repeated parent disposal and previously disposed-child cleanup. Historical controller state and value-only destination receipt survive; borrowed current world/store/query and exact row remain intact. One build zero warnings/errors; no build/native/numeric failure.
+
+Source directly establishes controller-before-point cleanup order and its finally path. No callback/injection hook exists for a deterministic failure after the returned point's initial publication but before controller construction/return. Those late cancellation/allocation/returned-prefix cleanup branches remain source-inspected and unexecuted; tests do not claim to prove rollback or an unreturned child's cleanup. Actual prepublication admission/grounding failures are executed. No redundant long movement/cadence/corpus/default-suite or host/GPU run is claimed; the addition changes no frozen production/default source.
+
+Exactly eight own additions; all4537 frozen public files SHA/length unchanged. Organized-workspace/link/private checks, UTF8/noBOM/AST/XML/PowerShell replay syntax, whitespace/focused diff/status and complete frozen scope/HEAD/index audit are retained in the sealed handoff. No shared navigation/ledger/status/unknown/registry edit; lead consolidates after acceptance.
+
+## Precise next probe
+
+Lead independently reviews/replays hashes then uses the owner for configured offline construction/teardown, borrowing PointDriver/Controller for existing input/session consumers and preserving old profiles. Finish actual final zero stop before owner disposal when required; separately count click attempts and preserve explicit failures. Original movement/physics/input/terrain/live parity remains Unknown. Worker stops IDLE pending lead acceptance; no next milestone without explicit assignment and no work beyond11UTC.

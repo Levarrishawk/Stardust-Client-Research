@@ -1,0 +1,27 @@
+# Round70: supplied camera-relative movement
+
+Date2026-10-06. Question: can a pure native-camera projection produce bounded binary32 manual directions and join the actual frozen69 driver through pause/correction/speed and point handoff without changing shared source? Stop after38 pure mappings,11 invalid mappings, four cases/48 updates and sealed scope/handoff; idle until explicit next assignment.
+
+## Inputs, orientation and tools
+
+Read root instructions, START_HERE/latest accepted69, status/ledger/unknown, manual/speed/point durable contracts, prior69 checkpoint, camera tools/curated discovery and round70 assignments/allowlist. Trusted sync verifies4261 public files while preserving HEAD/index/private. Manifest SHA-256 `9abb3d6f79d4e1e910399db06eb62d6713b966338c7fe4c8bdfdfff8f4a6f722`; archive `dacae463495e3cb15506e0bff08817336a1ed62c374b9ed5d97990105cd639de`. No original executable or virtual-address dependency.
+
+Eight assigned additions: new pure helper, scenarios, contract/checkpoint and four own runner files. All4261 frozen public files, existing driver/oracles/shared projects and sibling70 work remain unchanged. Cached Python/.NET/offline packages only; no live contact/capture/fuzz/download/stage/commit/publication/external mutation or original execution.
+
+Synthetic recipe identities are checked before use: runtime/profile `c69010c21428da37435ccef1f8f371449c01481687332482774616aaf257dd21`, terrain `85226fe4fb7f1961c3ebb1e3df520d3d5ec0e9ac1601b0c2338ee08a9d7698cd`. Independent projection derives from supplied double/F32 arithmetic. The frozen69 reference supplies existing terrain/movement arithmetic through the retained Fraction barycentric geometry; no old oracle is rewritten or expected value seeded from native.
+
+## Evidence, confidence and consequences
+
+Confirmed source/native observation: [Project](../../poc/Stardust.Core/Session/TerrainCameraRelativeMovement.cs) rejects nonfinite/out-of-range raw keys, nonfinite/extreme camera components and horizontal double length below1e-6. It normalizes forward horizontally in double, derives right=(Z,-X), normalizes raw diagonals before projection, then casts output once. It checks double squared norm and actual float length separately, using at most four per-component ULP moves toward zero. Interpretation: bounded supplied modern camera policy; consequence: adapter must reflect engine Z exactly once before this native helper and explicitly handle invalid/near-vertical input.
+
+Confirmed numerical observation:38 independent mapping vectors match exact binary32 native outputs; five total mapping ULP reductions include an independently selected witness. Y tilt is validated then ignored. Value inputs remain unchanged, repeated calls deterministic and worker-thread pure calls agree.11 invalid mappings reject; the float literal1e-6 is slightly below the double threshold and rejects, while a supplied value just above admits. Consequence: neither fallback camera forward nor original camera behavior is inferred.
+
+Confirmed actual join observation: four cases/48 consecutive terrain-driver updates match independently expected geometry, pose/speed/basis/manual/selected-speed and integer clocks. Cases cover yaw/cardinal/diagonal/zero; analog/tilt/pause/correction/resume; manual-to-point; point-to-manual/near-vertical/large admitted camera. Speed3/4 remains authored. Invalid projection before setter preserves actual driver/result/target/query/motion identities and counts. Disposal owns only existing driver and borrowed row survives. Original camera/control/gait/units/cadence/gameplay/physics remain Unknown; solewriter and historical ray-emitter provenance stay unchanged.
+
+## Validation and exact resume
+
+[Scenarios](../../poc/Stardust.Core.SmokeTests/TerrainCameraRelativeMovementScenarios.cs) pass377 checks/85 negatives. [Producer/verifier](../../poc/round70-tests/Runtime/verify_projection.py) writes expected fixtures before native and independently compares38 vectors/48 updates. One offline build zero warnings/errors. Initial native and exact numerical comparisons passed; verifier's mistaken minimum90 negative-check assertion failed because the bounded authored suite has85. Corrected the count assertion, retained failure record and reran into fresh independently generated final expected/native/receipt files; no numerical expected value changed.
+
+Replay: generate with explicit sealed runtime/terrain paths into fresh private input/expected files; offline restore/build [runner](../../poc/round70-tests/Runtime/Runtime.csproj); execute actual DLL into fresh native output; verify into fresh receipt. Final private handoff includes exact commands, file hashes, UTC timings and scope proof. All4261 frozen SHA/lengths and public-path inventory match; UTF8/AST/XML/PowerShell/links/whitespace/validator/diff/HEAD/index/private-ignore gates seal the eight additions. No repeated full old102/111 oracles, default suite or host/GPU execution is claimed.
+
+Next probe: lead reviews and independently replays, then obtains actual engine camera forward, reflects Z once and joins this pure helper to frozen manual input/speed callbacks with explicit input/focus/pause release and owner/current-clock policy. Worker IDLE after70; no71 without explicit assignment. Research/readiness/function/protocol denominators remain separate and unchanged.

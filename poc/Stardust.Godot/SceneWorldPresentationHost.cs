@@ -13,6 +13,12 @@ public partial class SceneWorldPresentationHost : Node
     private ISceneWorldPresentationPump? pump;
     private Action<double>? beforeStep;
     private Action<SceneWorldPresentationPumpStep>? frameCompleted;
+    private Func<double,int>? fixedStepSchedule;
+    private Func<bool>? continueFixedSteps;
+    private double fixedStepSeconds=.01;
+    private Node? fixedStepParent;
+    private Viewport? fixedStepViewport;
+    private bool scheduledFrame,scheduledConfiguration,scheduledReentered;
     private bool configured, configuring, closing, inFrame, drainFinished;
     public Task Completion => completion.Task;
     public Exception? Failure { get; private set; }
@@ -37,35 +43,52 @@ public partial class SceneWorldPresentationHost : Node
     private void MutableCallbacks()
     {
         OwnerThread();
-        if (inFrame || configuring || closing) throw new InvalidOperationException("Callbacks cannot change during configuration, a frame or after close.");
+        if (inFrame || configuring || closing)
+        { if(scheduledFrame||scheduledConfiguration)scheduledReentered=true;throw new InvalidOperationException("Callbacks cannot change during configuration, a frame or after close."); }
     }
     public void Configure(ISceneWorldPresentationPump pump, Action<double>? beforeStep = null)
+        => Configure(pump,beforeStep,null,.01,null);
+    public void Configure(ISceneWorldPresentationPump pump, Action<double>? beforeStep,
+        Func<double,int>? fixedStepSchedule,double fixedStepSeconds=.01,Func<bool>? continueFixedSteps=null)
     {
-        OwnerThread(); ArgumentNullException.ThrowIfNull(pump);
-        if (configured || configuring || closing || inFrame) throw new InvalidOperationException("Host configuration is accepted once.");
-        configuring = true;
+        OwnerThread();if((scheduledFrame||scheduledConfiguration)&&(inFrame||configuring))scheduledReentered=true;
+        ArgumentNullException.ThrowIfNull(pump);
+        if (configured || configuring || closing || inFrame)
+        { if(scheduledFrame||scheduledConfiguration)scheduledReentered=true;throw new InvalidOperationException("Host configuration is accepted once."); }
+        if(!double.IsFinite(fixedStepSeconds)||fixedStepSeconds<.001||fixedStepSeconds>.1)
+            throw new ArgumentOutOfRangeException(nameof(fixedStepSeconds));
+        if(fixedStepSchedule is null&&(fixedStepSeconds!=.01||continueFixedSteps is not null))
+            throw new ArgumentException("Fixed-step options require a schedule.");
+        configuring = true;scheduledConfiguration=fixedStepSchedule is not null;scheduledReentered=false;
         try
         {
             if (!GodotObject.IsInstanceValid(this) || !IsInsideTree() || GetParent() is not { } parent ||
                 !GodotObject.IsInstanceValid(parent) || !parent.IsInsideTree()) throw new InvalidOperationException("Live parent required before configuration.");
             if (pump.DrainCompletion is null) throw new ArgumentException("Pump must expose drain completion.", nameof(pump));
             if (closing) throw new InvalidOperationException("Host closed during configuration.");
+            if(scheduledConfiguration&&(scheduledReentered||!GodotObject.IsInstanceValid(this)||!IsInsideTree()||
+                IsQueuedForDeletion()||!GodotObject.IsInstanceValid(parent)||!parent.IsInsideTree()||parent.IsQueuedForDeletion()||GetParent()!=parent))
+                throw new InvalidOperationException("Scheduled configuration changed during drain acquisition.");
             // All rejection checks precede ownership transfer. The caller retains rejected pumps.
             SetProcess(true);
             this.pump = pump; this.beforeStep = beforeStep; configured = true;
+            this.fixedStepSchedule=fixedStepSchedule;this.fixedStepSeconds=fixedStepSeconds;this.continueFixedSteps=continueFixedSteps;
+            if(fixedStepSchedule is not null){fixedStepParent=parent;fixedStepViewport=GetViewport();}
         }
-        finally { configuring = false; }
+        finally { configuring = false;scheduledConfiguration=false; }
     }
     public override void _EnterTree() { OwnerThread(); SetProcess(configured && !closing); }
     public override void _Process(double delta)
     {
         OwnerThread();
-        if (inFrame) throw new InvalidOperationException("Presentation frame reentrancy.");
+        if (inFrame||scheduledConfiguration)
+        { if(scheduledFrame||scheduledConfiguration)scheduledReentered=true;throw new InvalidOperationException("Presentation frame reentrancy."); }
         if (!configured || closing) return;
-        inFrame = true;
+        inFrame = true;scheduledFrame=fixedStepSchedule is not null;scheduledReentered=false;
         try
         {
             if (!double.IsFinite(delta) || delta < 0) throw new ArgumentOutOfRangeException(nameof(delta), "Finite nonnegative delta required.");
+            if(scheduledFrame){Scheduled(delta);return;}
             if (beforeStep is not null)
                 foreach (Action<double> callback in beforeStep.GetInvocationList())
                 { if (closing) break; callback(delta); }
@@ -79,7 +102,40 @@ public partial class SceneWorldPresentationHost : Node
                 { if (closing) break; callback(step); }
         }
         catch (Exception error) { StartClose(error); }
-        finally { inFrame = false; if (drainFinished) Finish(); }
+        finally { inFrame = false;scheduledFrame=false;if (drainFinished) Finish(); }
+    }
+    private bool ScheduledGuard()
+    {
+        if(scheduledReentered)throw new InvalidOperationException("Scheduled callback attempted host reentry.");
+        if(closing)return false;
+        if(!GodotObject.IsInstanceValid(this)||!IsInsideTree()||IsQueuedForDeletion()||
+            !GodotObject.IsInstanceValid(fixedStepParent)||!fixedStepParent!.IsInsideTree()||fixedStepParent.IsQueuedForDeletion()||
+            GetParent()!=fixedStepParent||!GodotObject.IsInstanceValid(fixedStepViewport)||GetViewport()!=fixedStepViewport||fixedStepParent.GetViewport()!=fixedStepViewport)
+            throw new InvalidOperationException("Exact live scheduled host parent/viewport required.");
+        return true;
+    }
+    private void Scheduled(double delta)
+    {
+        if(!ScheduledGuard())return;
+        int slots=fixedStepSchedule!(delta);if(!ScheduledGuard())return;
+        if(slots is <0 or >8)throw new InvalidOperationException("Schedule must return0..8 slots.");
+        for(int index=0;index<slots;index++)
+        {
+            if(!ScheduledGuard())return;
+            if(continueFixedSteps is not null)
+            { bool proceed=continueFixedSteps();if(!ScheduledGuard()||!proceed)return; }
+            if(beforeStep is not null)
+                foreach(Action<double> callback in beforeStep.GetInvocationList())
+                {if(!ScheduledGuard())return;callback(fixedStepSeconds);if(!ScheduledGuard())return;}
+            if(!ScheduledGuard())return;
+            var step=pump!.Step(fixedStepSeconds)??throw new InvalidOperationException("Pump returned no step receipt.");
+            if(!ScheduledGuard())return;
+            var receipt=new SceneWorldPresentationHostFrame(checked(CompletedFrames+1),fixedStepSeconds,step);
+            CompletedFrames=receipt.Index;LastFrame=receipt;
+            if(frameCompleted is not null)
+                foreach(Action<SceneWorldPresentationPumpStep> callback in frameCompleted.GetInvocationList())
+                {if(!ScheduledGuard())return;callback(step);if(!ScheduledGuard())return;}
+        }
     }
     public Task CloseAsync()
     {
@@ -94,6 +150,7 @@ public partial class SceneWorldPresentationHost : Node
         if (error is not null) Remember(error);
         if (closing) return;
         closing = true; SetProcess(false); beforeStep = null; frameCompleted = null;
+        fixedStepSchedule=null;continueFixedSteps=null;fixedStepParent=null;fixedStepViewport=null;
         var owned = pump; pump = null;
         if (owned is null) { Finish(); return; }
         try { owned.Close(); } catch (Exception closeError) { Remember(closeError); }

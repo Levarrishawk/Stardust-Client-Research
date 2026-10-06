@@ -364,3 +364,39 @@ The [bounded legacy light-selection contract](LEGACY_LIGHT_SELECTION_CONTRACT.md
 ## Bounded replicated-state presentation —Round10
 
 [Creature state presentation](CREATURE_STATE_PRESENTATION_CONTRACT.md) checks state revision/incarnation separately from resource revision and applies modern bounded Height/visibility without new GPU resources. Original Height/posture behavior remains unresolved. Original albedo data are available through the optional [scene resource path](SCENE_CREATURE_ALBEDO_RESOURCE_CONTRACT.md); the full interior presentation remains separate.
+
+## Round71 accepted displacement and disconnect
+
+[Joined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R71_ACCEPTED_LOCOMOTION_AND_DISCONNECT.md) passes109 headless/GPU updates with actual grounded displacement driving retained original idle/walk/run frames and two footstep occurrences. [Observer](SCENE_WORLD_TERRAIN_LOCOMOTION_OBSERVER_CONTRACT.md) rebases authoritative correction without teleport distance; [presentation](SCENE_WORLD_ACCEPTED_LOCOMOTION_VISUAL_CONTRACT.md) adds no elapsed clock. Matching offline peer disconnect closes transport before caller scene teardown; wrong-ID failure preserves109 updates and all owners drain. Prior Version6 passes109. Modern selection/scheduling remains explicit, original graph/control/terrain/live parity unclaimed.
+
+## Round72 following-camera join
+
+[Joined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R72_FOLLOWING_CAMERA_AND_DISCONNECT_PREFIX.md) passes109 headless/GPU updates using actual accepted player position, native offset and explicit correction snap. [Follow clock](TERRAIN_CAMERA_PIVOT_FOLLOW_CONTRACT.md) and [pivot adapter](TERRAIN_CAMERA_PIVOT_HOST_CONTRACT.md) preserve orbit/input ownership; new follow-only held-direction deadband squared1e-12 avoids float translation jitter. Original supplied poses/two footstep events remain retained. Final outer disconnect queues one reliable application/ACK prefix; explicit caller policy drops copied prefix on scene close, suffix never delivers. Wrong-ID after109 updates drains all owners; prior Version7 passes109. Modern camera/selection policy and original terrain/root/live limitations remain explicit.
+
+## Round73 longer offline session
+
+[Joined checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R73_LONG_OFFLINE_SESSION.md) passes1000 headless/GPU updates with persistent original supplied poses/17 footstep occurrences, modern following camera, six later viewport target changes, owned controls/status HUD and90 scheduled offline root frames/ACKs. Explicit budget preserves earlier defaults; wrong-ID disconnect drains all owners, prior Version8 passes109. Scripted10 simulated seconds does not establish real-time interactive play or original camera/movement/cadence/live parity. [Budget](TERRAIN_OFFLINE_SESSION_BUDGET_CONTRACT.md), [HUD](TERRAIN_OFFLINE_PLAYGROUND_HUD_CONTRACT.md) and [cadence](SCENE_WORLD_ROOT_MOTION_CADENCE_OUTBOX_CONTRACT.md) remain separate boundaries.
+
+## Round74 elapsed offline scene
+
+[Joined checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R74_ELAPSED_OFFLINE_HOST.md) passes1000 motion updates with actual separate fixed presentation steps, original supplied poses/17 events/HUD/camera and90 offline protected roots/ACKs. [Planner](TERRAIN_OFFLINE_FRAME_CLOCK_CONTRACT.md) separates reserved slots and explicit time drops from completed motion; [host](SCENE_WORLD_FIXED_STEP_PRESENTATION_HOST_CONTRACT.md) preserves its exact old signature/default proof. [Reusable drain](SCENE_WORLD_OFFLINE_ROOT_MOTION_DRAIN_CONTRACT.md) validates ACK before FIFO take and owns one bridge. Measured GPU593 plans/10,013,260us/no time drop; supplied headless379 plans/exact drop accounting. Rejected first stop ACK preserves one queued frame until caller cleanup; prior Version9 passes1000. Modern offline policy, original actor/camera/cadence/live limits remain explicit.
+
+## Round75 offline session controls
+
+[Joined checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R75_OFFLINE_SESSION_CONTROLS.md). Actual P pause/resume and Escape finish join passes601 headless/measured GPU updates, original supplied animation/events/camera/HUD and53 scheduled protected roots/ACKs. Final ordinary tick is zero-speed Idle without target or displacement; caller closes owners without injected peer disconnect. Rejected P sink preserves five completed updates and clean failure teardown; prior Version10 passes1000/17/90. Scripted control replay and unrestricted terrain roaming remain separate.
+
+## Round76 idle-start playground
+
+[Joined checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R76_IDLE_START_PLAYGROUND.md). Separate Version12 idle-start offline playground passes401 headless/measured GPU updates,25 edge holds/reverse recovery,seven original footstep events/39 protected root frames,focus/P/Escape ownership. Unscripted default reaches6000 updates/zero input/60 stationary frames and normal zero stop. Rejected focus preserves40-row/four-frame prefix and clean teardown; unchanged Version11 passes601/9/53. Original/live parity remains unverified.
+
+## Round77 configured playground
+
+[Joined checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R77_CONFIGURED_OFFLINE_PLAYGROUND.md). Version13 configured idle-start playground passes401 headless/measured GPU updates,32 issued targets and a nonfaulting33rd-click decline,25 edge holds/reverse recovery,seven original footstep occurrences/39 protected offline roots. Unscripted three-update/128-click configuration reaches its exact final zero stop; unchanged Version12 passes401/7/39. Original/live parity remains unverified.
+
+## Round78 configured owners
+
+[Joined checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R78_CONFIGURED_OWNERS.md). Configured Version13 now owns actual point/controller, limits display, and offline transport/root session through dedicated lifetimes.401 headless/measured GPU updates preserve32 clicks/33rd decline/25 holds/seven original events/39 protected roots. Unscripted3/128 exact stop, pre-world one-bit settings contradiction rejection and unchanged12 replay pass. Original/live parity remains unverified.
+
+## Round79 offline outcome and failure prefix
+
+[Joined checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R79_OFFLINE_OUTCOME.md). Configured preview now captures primitive actual completion/root-buffer reports and an owned outcome panel.401 headless/measured GPU updates retain32 clicks/33rd decline/25 holds/seven original events/39 protected roots. Separate128-click/129th-decline native join passes. Budget3 reports BudgetCompleted; strict terrain failure preserves225 completed/226 attempted updates/five events/23 roots, reports Faulted rather than successful stop, and drains all owners/actors. Unchanged12 passes. Original/live parity remains unverified. [Runbook](../docs/OFFLINE_PLAYGROUND_RUNBOOK.md).

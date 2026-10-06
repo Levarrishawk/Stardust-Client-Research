@@ -441,3 +441,15 @@ CRC-disabled status framing, optional leaves, adaptive timing, historical zlib,
 or live-server validation. The fixed response deadline and storage limits are
 replacement policies. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_TRANSPORT_RECOVERY.md)
 and [acceptance register](CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
+
+## Round71 peer-disconnect lifecycle proof
+
+[Disconnect ownership](SCENE_WORLD_PEER_DISCONNECT_CONTRACT.md) uses actual frozen codec/ingress/bridge/FIFO/pump. Matching ID closes transport without closing borrowed scene; caller drains pending scene/root owners and canceled resources.39 component checks and109-update joined closure/wrong-ID failure pass. Reason bytes remain uninterpreted; no schema or345-row matrix change, socket/send/live phase claim.
+
+## Round72 outer disconnect completion prefix
+
+[Ordering and ownership](SCENE_WORLD_MULTIPACKET_DISCONNECT_CONTRACT.md) pass52 component checks and109-update joined closure/failure. Outer transport validates all framing then dispatches through matching disconnect, retaining only prior application/control output. Caller explicitly applies or drops queued prefix; suffix never dispatches. Exceptional untransferred ACK arrays now clear with applications; successful caller-owned arrays survive. Source-inspected private zeroing is distinguished from executed lifetime tests. No wire schema/345-row matrix, reason semantics or live phase claim changes.
+
+## Round74 elapsed offline scene
+
+[Joined checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R74_ELAPSED_OFFLINE_HOST.md) passes1000 motion updates with actual separate fixed presentation steps, original supplied poses/17 events/HUD/camera and90 offline protected roots/ACKs. [Planner](TERRAIN_OFFLINE_FRAME_CLOCK_CONTRACT.md) separates reserved slots and explicit time drops from completed motion; [host](SCENE_WORLD_FIXED_STEP_PRESENTATION_HOST_CONTRACT.md) preserves its exact old signature/default proof. [Reusable drain](SCENE_WORLD_OFFLINE_ROOT_MOTION_DRAIN_CONTRACT.md) validates ACK before FIFO take and owns one bridge. Measured GPU593 plans/10,013,260us/no time drop; supplied headless379 plans/exact drop accounting. Rejected first stop ACK preserves one queued frame until caller cleanup; prior Version9 passes1000. Modern offline policy, original actor/camera/cadence/live limits remain explicit.

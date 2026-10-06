@@ -3246,3 +3246,80 @@ No canonical address name is introduced or changed.
 ## 2026-10-04 Round60 entry producer boundary
 
 [Queue entry producer](docs/OBJECT_CONTROLLER_QUEUE_ENTRY_PRODUCER_CONTRACT.md) closes00AA6480 normal-return entry construction/spare/growth/publication ordering and tiny initializer00AA6030. Entry+8 receives stack argument three; the optional queue+10 callback receiver is separately loaded and does not prove payload RTTI. Payload class/vtable/deletion/ownership, caller argument construction and exceptional recovery remain Unknown. No canonical semantic names or address counts change. Next exact caller probe is deferred until Levarris resumes.
+
+## 2026-10-05 Round61 shader and caller boundaries
+
+[Shader families](docs/TERRAIN_GENERATOR_SHADER_FAMILIES_CONTRACT.md) establishes SGRP0006 inline SFAM layout at00B6AAF0 selected by00B69C90, ordered construction and exact legacy/modern strictness distinctions. Field meanings/resolver behavior remain Unknown. [Queue caller](docs/OBJECT_CONTROLLER_QUEUE_PAYLOAD_CALLER_CONTRACT.md) establishes00B3D250 incoming third-argument forwarding to00AA6480, distinct receiver+8 callbacks and AL gating; payload construction/class/vtable/ownership remain Unknown. No canonical names are added or repurposed. Next00462F60 source boundary is deferred until renewed authorization.
+
+## 2026-10-05 Round62 consumer/source boundaries
+
+[Shader string consumer](docs/TERRAIN_SHADER_FAMILY_CONSUMER_CONTRACT.md) closes00B69310 ownership,00B69300 getter and00B6B360 pointer/result flow;01320590 comparison/first-argument type and asset meanings remain Unknown. [Dispatch payload source](docs/OBJECT_CONTROLLER_DISPATCH_PAYLOAD_SOURCE_CONTRACT.md) closes00462F60 incoming message+38 forwarding and distinct fallback slot0/argument1 call. Concrete payload type/deletion/ownership remains Unknown. No canonical names are added or repurposed. Next parser00AC9660 factory-return field writer is separately bounded.
+
+
+## 2026-10-05 Round63 conditional comparison and payload writer
+
+[01320590](docs/TERRAIN_SHADER_FAMILY_PREDICATE_CONTRACT.md) proves both arguments as byte-string pointers and ASCII-folded normalized comparison only when DWORD019AA110 is zero; nonzero-mode delegates/runtime mode/resource meaning remain Unknown. [00AC9660](docs/OBJECT_CONTROLLER_PARSER_PAYLOAD_WRITER_CONTRACT.md) proves+38 initialization and the00AC97AC factory-return write including null, without local later clear; concrete type/ownership/delete/reuse remains Unknown. No canonical semantic names or counts change. Second-SFAM consumer and direction-specific transform implementation are preferred next; factory discriminant remains a separately bounded prerequisite when needed.
+
+## 2026-10-06 Round64 second-string boundary
+
+[Second SFAM string](docs/TERRAIN_SHADER_FAMILY_SECOND_STRING_CONTRACT.md) proves setter00B69390 copying into+14, getter00B69370 and accessor00B6B480 selecting via unresolved00B69860. Resource meaning, selector range/failure and indirect reachability remain Unknown. Next concrete getter caller contains00B6AE0F/00B6AE18. No canonical names are added or repurposed; registry stays2626 addresses.
+
+## Round65 second-string caller observations
+
+[Caller evidence](docs/TERRAIN_SHADER_FAMILY_SECOND_STRING_CALLER_CONTRACT.md):00B6AD70 is a complete464-byte structured-output body (serialization strongly inferred),156 instructions/74 anchors.00B6AE0F null-checks the first getter result; non-null takes a second read at00B6AE18, then00B6AE27 forwards its unchecked result to00A949D0. Null first read instead supplies virtual-only01908090, whose contents are unread/Unknown.00B6AD75 references executable SEH014D2508, unexpanded. The amended18 function/handler leads and29 raw sites include this metadata. Resource use, runtime reachability, output/copy/error semantics remain Unknown; no canonical semantic name or count changes. Next concrete resource probe: candidate00B692A0 and one directly proved non-serialization caller.
+
+## Round66 family-entry accessor observations
+
+[Static record evidence](docs/TERRAIN_SHADER_FAMILY_ENTRY_ACCESSOR_CONTRACT.md):00B692A0 is a complete84-byte/30-instruction accessor copying family+0, selected12-byte entry+4 pointer and entry+8 raw word to destination+0/+4/+8. Selected00B69B40 is43 bytes/18 instructions, selects family via group+4 and returns the supplied destination. Approved13-byte initializer00B69160 is six instructions, preserves EDX, zeroes ECX and initializes three local words. Cleanup00B69170 remains Unknown; accessor EAX after it is not established. Four leads/four raw sites,54 anchors/142 guards/27 independent checks and35 original-entry model witnesses pass. Selected wrapper does not prove resource use. No semantic-name registry changes; raw00B69779 is the next bounded caller probe.
+
+## Round67 family-entry lookup observations
+
+[Caller evidence](docs/TERRAIN_SHADER_FAMILY_ENTRY_CONSUMER_CONTRACT.md): call00B69779 is Confirmed on the decoded00B69700 control graph;137-byte complete function extent is Strongly inferred. Signed count and twelve-byte entries drive first-zero predicate selection. Accessor re-reads selected record; no-match fills a zero triple then unresolved00B69170. Full inventory10 leads/11 sites,58 anchors,150 guards,23 independent checks and35 conditional original-record witnesses pass. No semantic-name changes. Raw incoming00B6B5A8 is the next provenance/consumer probe; resource use and no-match EAX remain Unknown.
+
+## Round68 lookup wrapper observations
+
+[Wrapper evidence](docs/TERRAIN_SHADER_FAMILY_LOOKUP_CONSUMER_CONTRACT.md) confirms00B6B5A8 on24-instruction00B6B580 body; complete55-byte extent Strongly inferred. Caller argument three supplies search pointer;00B69860 returns unchecked group-array index. Wrapper returns current EDI and ignores lookupEAX. Selector cleanup/nonvolatile preservation, caller/resource consumer and runtime reachability remain Unknown. Three leads/five sites,24 anchors/102 guards/39 independent checks and35 conditional witnesses pass. No semantic-name changes; next selector00B69860 with bounded ABI proof.
+
+## Round69 selector follow-up closure
+
+[Evidence](docs/TERRAIN_SHADER_FAMILY_SELECTOR_CONTRACT.md) closes59-byte00B69860 and approved three-byte00B69440 getter, first equal DWORD index/all-one sentinel, ret4/nonvolatile/deeper pending-stack preservation. Direct instructions Confirmed, complete frame extent Strongly inferred. Accepted68 unchecked caller failure arithmetic is array_base−4 modulo32; no invalid read observed. Two leads/eleven sites,33 anchors/121 guards/22 independent checks/15 original-byte models pass. No semantic-name changes. Key/resource identity and reachable producer/consumer Unknown; next one export/indirect caller metadata probe.
+
+## Round70 lookup export boundary
+
+[Bounded metadata](docs/TERRAIN_SHADER_LOOKUP_EXPORT_BOUNDARY_CONTRACT.md) proves00B6B580 has no exact named/ordinal export among78 address/name rows. Lead-approved metadata-only79 leads/315 sites, zero new bodies/helpers; ten synthetic checks/73 guards pass. Containment/indirect callers/runtime reachability remain Unknown. Next relocation metadata plus typed registration/RTTI anchor; no guessed resource/naming/resolver or arbitrary pointer census.
+
+## Round71 absolute root-rotation implementation
+
+[Owned QCHN sampling](docs/COMPRESSED_ROOT_ROTATION_CONTRACT.md) separately imports top-level root rotation, preserving U32 bits and source identity under8MiB pre-copy admission.242 checks/56 independent samples over synthetic and two selected original clips pass. Existing locomotion importer still rejects QCHN; no actor authority or relative/combined transform follows. Next implement/evaluate the already recovered computational order; external actor basis/application remains Unknown.
+
+## Round72 recovered root-delta implementation
+
+[Separate evaluator](docs/COMPRESSED_ROOT_MOTION_EVALUATION_CONTRACT.md) supports None/Rotation/Translation/Combined modes with owned tracks and recovered q1*conj(q0)/q1 matrix scalar order.351 checks/64 independent deltas/44 malformed fixtures pass, reusing two selected original clips. Modern numerical policy explicit; external actor basis/application remains Unknown and no delta drives gameplay. Original EXE bodies/corpus were not rescanned.
+
+## Round73 bounded root consumer
+
+[Typed CKAT wrapper](docs/COMPRESSED_ROOT_EXTERNAL_CONSUMER_CONTRACT.md) invokes recovered evaluator then uniformly scales translation from runtime+4C pointed float. One body/typed RTTI slot verified; scalar owner/units and actor application remain Unknown. Inner algebra stays closed; no names/production placement changed. Next verify physical-track0083E630 exact active-animation slot and immediate accumulation destination.
+
+## Round74 physical-track root boundary
+
+[One typed conditional consumer](docs/COMPRESSED_ROOT_PHYSICAL_TRACK_CONSUMER_CONTRACT.md) confirms virtual+18 root extraction into track-local translation/quaternion before ordinary active replacement. One606-byte body/204 instructions/26 anchors/18 guards; reset cells virtual-only and runtime values Unknown. Actor binding/basis/application unproved; no new names or production root placement. Next one controller output/accessor path, using known0083EC70/0082F990 anchors.
+
+## Round75 bounded session and root-source increment
+
+[Session](research/sessions/PARALLEL_DEVELOPMENT_ROUND_75_2026-10-06.md). Actual P pause/resume and Escape finish join passes601 headless/measured GPU updates, original supplied animation/events/camera/HUD and53 scheduled protected roots/ACKs. Final ordinary tick is zero-speed Idle without target or displacement; caller closes owners without injected peer disconnect. Rejected P sink preserves five completed updates and clean failure teardown; prior Version10 passes1000/17/90. Scripted control replay and unrestricted terrain roaming remain separate. The September25 ROOT_MOTION_OBJECT_APPLICATION report already establishes eligible CreatureController object-local rotation post-composition and local translation converted into parent space. Recent local-body Unknown statements did not replace that prior code conclusion. Round75 reconciles/audits existing evidence without fresh actor arithmetic replay or additional coverage. Constructor00822FC0 confirms runtime+4C lookup initialization; scalar storage ownership remains Unknown. Research89/readiness94/function uncalibrated/2626 names/345 packet rows remain separate and unchanged; final acceptance scope/time follows in the session.
+
+## Round76 idle-start and scalar storage increment
+
+[Session](research/sessions/PARALLEL_DEVELOPMENT_ROUND_76_2026-10-06.md). Separate Version12 idle-start offline playground passes401 headless/measured GPU updates,25 edge holds/reverse recovery,seven original footstep events/39 protected root frames,focus/P/Escape ownership. Unscripted default reaches6000 updates/zero input/60 stationary frames and normal zero stop. Rejected focus preserves40-row/four-frame prefix and clean teardown; unchanged Version11 passes601/9/53. Original/live parity remains unverified. Lookup007D3790 confirms lazy object+10 container and returns node+20 interior storage on hit/miss. Miss prepares zero payload bits; effective float default0 is Strongly inferred until insertion007D40C0 is expanded. Original key/type/units/node stability/lifetime remain Unknown. Prior September25 actor closure is not repeated or recounted. Research89/readiness94/function uncalibrated/2626 names/345 packet rows unchanged and separate.
+
+## Round77 configured playground and node insertion
+
+[Session](research/sessions/PARALLEL_DEVELOPMENT_ROUND_77_2026-10-06.md). Version13 configured idle-start playground passes401 headless/measured GPU updates,32 issued targets and a nonfaulting33rd-click decline,25 edge holds/reverse recovery,seven original footstep occurrences/39 protected offline roots. Unscripted three-update/128-click configuration reaches its exact final zero stop; unchanged Version12 passes401/7/39. Original/live parity remains unverified. Insertion007D40C0 publishes a0x24 node and delegates payload construction to77-byte007D64B0; conditional source+10/destination+10 maps to node+20. Actual zero/default remains Strongly inferred; key/type/units/lifetime Unknown. No actor-chain repetition or function-name increment. Research89/readiness94/function uncalibrated/2626 names/345 packet rows remain separate and unchanged.
+
+## Round78 configured ownership and scalar copy
+
+[Session](research/sessions/PARALLEL_DEVELOPMENT_ROUND_78_2026-10-06.md). Configured Version13 now owns actual point/controller, limits display, and offline transport/root session through dedicated lifetimes.401 headless/measured GPU updates preserve32 clicks/33rd decline/25 holds/seven original events/39 protected roots. Unscripted3/128 exact stop, pre-world one-bit settings contradiction rejection and unchanged12 replay pass. Original/live parity remains unverified. Value construction007D64B0 copies32 then-current bits source+10 to destination+10, composing to node+20. Constructed key CrcLowerString directly identified by installed-vtable RTTI. Source preservation across107-byte00AA3FE0/all alternate defaults remains unproved; effective default Strongly inferred and key contents/units/lifetime Unknown. Research89/readiness94/function uncalibrated/2626 names/345 packets remain separate and unchanged.
+
+## Round79 completion reports and fault cleanup
+
+[Session](research/sessions/PARALLEL_DEVELOPMENT_ROUND_79_2026-10-06.md). Configured preview now captures primitive actual completion/root-buffer reports and an owned outcome panel.401 headless/measured GPU updates retain32 clicks/33rd decline/25 holds/seven original events/39 protected roots. Separate128-click/129th-decline native join passes. Budget3 reports BudgetCompleted; strict terrain failure preserves225 completed/226 attempted updates/five events/23 roots, reports Faulted rather than successful stop, and drains all owners/actors. Unchanged12 passes. Original/live parity remains unverified. Key-base00AA3FE0 explicitly writes destination0/8/C, installs PersistentCrcString and has no local scalar+10 write. Virtual getter/initializer/setter effects remain Unknown; complete source-zero/reference/lifetime proof is not claimed. Conditional13-byte00AA41C0 getter is the next bounded probe. Research89/readiness94/function uncalibrated/2626 names/345 packet rows remain separate and unchanged.

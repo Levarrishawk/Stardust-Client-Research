@@ -17,6 +17,7 @@ public sealed class SceneWorldTerrainMotionDriver : ISceneWorldLocalMotionDriver
     private FixedStepActorHost<Pose>? host;
     private PortalActorInputTimeline<Pose>? timeline;
     private TerrainPatchSurfaceQuery[]? surfaces;
+    private TerrainModernPatchSetSurfaceQuery? aggregateSurface;
     private readonly SceneWorldTerrainMotionLimits limits;
     private readonly float footOffset;
     private readonly SceneObjectIncarnation incarnation;
@@ -33,6 +34,23 @@ public sealed class SceneWorldTerrainMotionDriver : ISceneWorldLocalMotionDriver
         IReadOnlyList<TerrainPatchSurfaceQuery> surfaces, float footOffset = 0,
         long initialTimestampMicroseconds = 0, long stepMicroseconds = 16667, int maximumStepsPerUpdate = 8,
         SceneWorldTerrainMotionLimits? limits = null)
+        : this(world,motions,objectId,surfaces,footOffset,initialTimestampMicroseconds,stepMicroseconds,maximumStepsPerUpdate,limits,null) { }
+    public SceneWorldTerrainMotionDriver(SceneWorldCoordinator world, SceneWorldObjectMotionStore motions, ulong objectId,
+        TerrainModernPatchSetSurfaceQuery surface, float footOffset = 0,
+        long initialTimestampMicroseconds = 0, long stepMicroseconds = 16667, int maximumStepsPerUpdate = 8,
+        SceneWorldTerrainMotionLimits? limits = null)
+        : this(world,motions,objectId,AggregateSurfaces(surface,limits),footOffset,initialTimestampMicroseconds,stepMicroseconds,maximumStepsPerUpdate,limits,surface) { }
+    private static TerrainPatchSurfaceQuery[] AggregateSurfaces(TerrainModernPatchSetSurfaceQuery surface,SceneWorldTerrainMotionLimits? limits)
+    {
+        ArgumentNullException.ThrowIfNull(surface);var policy=limits??new();
+        if(surface.PatchCount<1||surface.PatchCount>policy.MaximumPatches||surface.TotalTriangles>policy.MaximumTriangleTestsPerCandidate)
+            throw new ArgumentOutOfRangeException(nameof(surface),"Complete retained query set exceeds motion admission limits.");
+        _=surface.GetQueryReservation(1);
+        return surface.Children.Select(c=>c.Query).ToArray();
+    }
+    private SceneWorldTerrainMotionDriver(SceneWorldCoordinator world, SceneWorldObjectMotionStore motions, ulong objectId,
+        IReadOnlyList<TerrainPatchSurfaceQuery> surfaces,float footOffset,long initialTimestampMicroseconds,
+        long stepMicroseconds,int maximumStepsPerUpdate,SceneWorldTerrainMotionLimits? limits,TerrainModernPatchSetSurfaceQuery? aggregate)
     {
         ArgumentNullException.ThrowIfNull(world); ArgumentNullException.ThrowIfNull(motions);
         if (initialTimestampMicroseconds < 0) throw new ArgumentOutOfRangeException(nameof(initialTimestampMicroseconds));
@@ -51,7 +69,7 @@ public sealed class SceneWorldTerrainMotionDriver : ISceneWorldLocalMotionDriver
             throw new ArgumentOutOfRangeException(nameof(surfaces));
         var owned = new TerrainPatchSurfaceQuery[surfaceCount];
         for (int i = 0; i < owned.Length; i++) owned[i] = surfaces[i] ?? throw new ArgumentException("Null supplied surface.", nameof(surfaces));
-        this.limits = policy with {}; this.footOffset = footOffset; this.surfaces = owned;
+        this.limits = policy with {}; this.footOffset = footOffset; this.surfaces = owned; aggregateSurface=aggregate;
         var snapshot = world.Snapshots().SingleOrDefault(s => s.Object.Handle.ObjectId == objectId);
         if (world.State is not (ZoneSceneTransitionState.AwaitingServerReady or ZoneSceneTransitionState.Ready) ||
             snapshot is not { Object.Phase: SceneObjectPhase.Finalized, Replication: not null } || !world.IsCurrent(snapshot.Replication))
@@ -78,6 +96,11 @@ public sealed class SceneWorldTerrainMotionDriver : ISceneWorldLocalMotionDriver
     {
         // Validate X/Z and the incoming Y before replacing height; no invalid transform is masked.
         ValidatePosition(candidate.Translation);
+        if(aggregateSurface is not null){
+            var selected=aggregateSurface.Query(candidate.Translation.X,candidate.Translation.Z)
+                ??throw new InvalidDataException("Local motion candidate outside retained terrain coverage.");
+            return GroundHeight(candidate,selected.Hit.Height);
+        }
         int reserved = 0;
         foreach (var surface in surfaces!)
         {
@@ -85,13 +108,17 @@ public sealed class SceneWorldTerrainMotionDriver : ISceneWorldLocalMotionDriver
             if (reserved > limits.MaximumTriangleTestsPerCandidate)
                 throw new InvalidDataException("Terrain candidate triangle-test budget.");
             if (surface.Query(candidate.Translation.X, candidate.Translation.Z) is not { } hit) continue;
-            double height = hit.Height + (double)footOffset;
-            if (!double.IsFinite(height) || Math.Abs(height) > limits.MaximumPositionComponent)
-                throw new InvalidDataException("Grounded terrain height outside finite position cap.");
-            var grounded = candidate with { Translation = new(candidate.Translation.X, (float)height, candidate.Translation.Z) };
-            ValidatePosition(grounded.Translation); return grounded;
+            return GroundHeight(candidate,hit.Height);
         }
         throw new InvalidDataException("Local motion candidate outside supplied terrain coverage.");
+    }
+    private AppearanceTransform GroundHeight(AppearanceTransform candidate,double surfaceHeight)
+    {
+        double height=surfaceHeight+(double)footOffset;
+        if(!double.IsFinite(height)||Math.Abs(height)>limits.MaximumPositionComponent)
+            throw new InvalidDataException("Grounded terrain height outside finite position cap.");
+        var grounded=candidate with { Translation=new(candidate.Translation.X,(float)height,candidate.Translation.Z) };
+        ValidatePosition(grounded.Translation);return grounded;
     }
     private void Enter()
     {
@@ -197,7 +224,7 @@ public sealed class SceneWorldTerrainMotionDriver : ISceneWorldLocalMotionDriver
         Enter(); try
         {
             if (disposed) return; disposed = true;
-            state = state with { Active = false }; timeline = null; host = null; world = null; motions = null; lastPublication = null; surfaces = null; resetPose = null!;
+            state = state with { Active = false }; timeline = null; host = null; world = null; motions = null; lastPublication = null; surfaces = null; aggregateSurface=null; resetPose = null!;
         } finally { busy = false; }
     }
 }

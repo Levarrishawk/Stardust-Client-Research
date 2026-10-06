@@ -46,3 +46,11 @@ python tools/python/verify_skeletal_descriptors.py C:/Stardust-DEV C:/Stardust-D
 The directory is created by the preceding extraction/descriptor work; create it before running these commands in a fresh workspace. Configure the documented local toolchain first if project dependencies have not been restored. The native output includes all source identities, the complete structure hash, unmatched-name diagnostic and numerical rows; the verifier reads both original archive bytes and the baseline executable tables without executing the original client.
 
 Validated MSGS/translation-only LOCT ownership and sampling now have a separate [locomotion contract](COMPRESSED_LOCOMOTION_CONTRACT.md); raw structure retention remains distinct from root rotation and callback execution.
+
+## Round71 absolute root-rotation implementation
+
+[Owned QCHN sampling](COMPRESSED_ROOT_ROTATION_CONTRACT.md) separately imports top-level root rotation, preserving U32 bits and source identity under8MiB pre-copy admission.242 checks/56 independent samples over synthetic and two selected original clips pass. Existing locomotion importer still rejects QCHN; no actor authority or relative/combined transform follows. Next implement/evaluate the already recovered computational order; external actor basis/application remains Unknown.
+
+## Round72 recovered root-delta implementation
+
+[Separate evaluator](COMPRESSED_ROOT_MOTION_EVALUATION_CONTRACT.md) supports None/Rotation/Translation/Combined modes with owned tracks and recovered q1*conj(q0)/q1 matrix scalar order.351 checks/64 independent deltas/44 malformed fixtures pass, reusing two selected original clips. Modern numerical policy explicit; external actor basis/application remains Unknown and no delta drives gameplay. Original EXE bodies/corpus were not rescanned.

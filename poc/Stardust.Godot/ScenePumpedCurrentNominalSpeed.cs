@@ -12,6 +12,8 @@ public partial class ScenePumpedWorldPreview
     private SceneWorldCreatureMovementCurrentReceipt? nominalCurrentView;
     private SceneWorldSuppliedCurrentSpeedInputs? nominalCurrentPairReader;
     private SceneWorldSuppliedCurrentSpeedReceipt? nominalCurrentPair;
+    private SceneWorldSuppliedCurrentSpeedPlan? nominalCurrentPlanReader;
+    private SceneWorldSuppliedCurrentSpeedPlanReceipt? nominalCurrentComposedPlan;
     private CreatureSuppliedCurrentSpeedResult? nominalCurrentRun,nominalCurrentWalk;
     private void PrepareCurrentNominalSource(CreatureNominalSpeedPrecision precision)
     {
@@ -41,24 +43,25 @@ public partial class ScenePumpedWorldPreview
             GD.Print("current_nominal_source_rejected="+JsonSerializer.Serialize(new{PublishedReaderResults=0,DriverConstructed=false,MotionPublication=false}));throw;
         }
     }
-    private CreatureNominalSpeedPlanStep ReadCurrentNominalPlanStep(JsonElement step,uint seconds,CreatureNominalRate rate)
+    private SceneWorldSuppliedCurrentSpeedPlanStep ReadCurrentNominalPlanStep(JsonElement step,uint seconds,CreatureNominalRate rate)
     {
         Check(!step.TryGetProperty("RunSpeedBits",out _)&&!step.TryGetProperty("WalkSpeedBits",out _),"Current trace takes actual reader outputs only");
         var words=step.GetProperty("DirectionWordsInRecoveredOrder");Check(words.GetArrayLength()==3,"Three supplied ordered direction words");
         var factor=step.GetProperty("Factor");
-        return new(nominalCurrentRun!.ReturnBits,nominalCurrentWalk!.ReturnBits,step.GetProperty("RunFlag").GetByte(),
+        return new(step.GetProperty("RunFlag").GetByte(),
             new(words[0].GetUInt32(),words[1].GetUInt32(),words[2].GetUInt32()),
             new(factor.GetProperty("Magnitude").GetUInt64(),factor.GetProperty("Exponent").GetInt32(),factor.GetProperty("IsNegative").GetBoolean()),seconds,rate);
     }
     private void FrameCurrentNominalSource()
     {
         if(!nominalCurrentRequested)return;
-        Check(nominalCurrentPairReader!.IsCurrent(nominalCurrentPair!),"Actual paired source remains valid during bounded playback");
+        Check(nominalCurrentPlanReader!.IsCurrent(nominalCurrentComposedPlan!),"Actual composed plan source remains current during bounded playback");
         GD.Print("current_nominal_source_state="+JsonSerializer.Serialize(new{Index=nominalIndex,Current=true,
             RunBits=nominalCurrentRun!.ReturnBits,WalkBits=nominalCurrentWalk!.ReturnBits,OriginalGetterBranchParity=false}));
     }
     private void CloseCurrentNominalSource()
     {
+        nominalCurrentPlanReader?.Dispose();nominalCurrentPlanReader=null;nominalCurrentComposedPlan=null;
         nominalCurrentPairReader?.Dispose();nominalCurrentPairReader=null;nominalCurrentPair=null;
         nominalCurrentReader?.Dispose();nominalCurrentReader=null;nominalCurrentView=null;nominalCurrentRun=null;nominalCurrentWalk=null;
         if(nominalCurrentRequested)GD.Print("current_nominal_source_cleanup="+JsonSerializer.Serialize(new{Closed=true}));

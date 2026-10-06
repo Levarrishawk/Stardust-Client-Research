@@ -1,0 +1,4 @@
+<Project Sdk="Godot.NET.Sdk/4.7.2">
+<PropertyGroup><TargetFramework>net8.0</TargetFramework><EnableDynamicLoading>true</EnableDynamicLoading><Nullable>enable</Nullable><TreatWarningsAsErrors>true</TreatWarningsAsErrors><EnableDefaultCompileItems>false</EnableDefaultCompileItems></PropertyGroup>
+<ItemGroup><Compile Include="TerrainManualInputHost.cs"/><Compile Include="TerrainManualInputHostVerification.cs"/></ItemGroup>
+</Project>

@@ -17,3 +17,20 @@ Independent Fraction reader/target/plan/transition checks pass, including actual
 The NaN source rejects before reader-pair publication, plan publication, driver construction or new motion. Existing resources drain with3/3 calls/closures and zero actors. Source rejection and plan-failure markers both report zero published results. Prior Version2 target trace passes after the host option change. The first lead preview exposed an absent optional authored snapshot; the single load option was corrected and the successful rebuild/replay used fresh output. No original executable or live server was run.
 
 Observation: direct actual receipt/reference and independent arithmetic/log checks. Confidence: Confirmed bounded implementation. Interpretation: explicit local-only supplied arithmetic through modern playback. Consequence: alternate/global/related-object getters, original arithmetic controls, physical units, source lifetime beyond this trace and full locomotion remain Unknown. Round60 uses the [engine-neutral paired adapter](SCENE_WORLD_SUPPLIED_CURRENT_SPEED_INPUTS_CONTRACT.md), whose disposal preserves its borrowed reader. The host owns and subsequently disposes that reader. All60 frames use actual pair freshness. Independent closure attempts and finally-based source/document/buffer disposal also pass the original NaN-source rejection. Broader source-update/lifetime behavior remains outside this bounded trace.
+
+## Round61 current-source plan consumption
+
+The host now consumes the [bounded current-source plan](SCENE_WORLD_SUPPLIED_CURRENT_SPEED_PLAN_CONTRACT.md), retaining its actual Pair and Plan. Caller steps omit run/walk overrides, reader reloads are zero, and all60 playback frames check composed-source freshness. Disposal releases composition before its borrowed paired adapter/current reader. A late invalid direction retains the pair but publishes no plan/driver/new motion; cleanup drains. Prior Version2 mode remains valid. Original physical/getter/control behavior remains Unknown.
+
+## Round62 engine-neutral playback
+
+The current-source host now advances the actual [playback adapter](SCENE_WORLD_CURRENT_SPEED_PLAN_PLAYBACK_CONTRACT.md) at explicit10000-microsecond quanta. Each of60 retained steps checks source/driver currency before motion, and exposes actual source/step/result identity with one State/Submit/Advance triple. The host owns final inactive stop and driver teardown, then releases playback before its borrowed source composition. Prior Version2 remains accepted. Source-update/failure effects are bounded modern policy; original effective movement parity remains Unknown.
+
+
+## Round63 explicit terrain binding
+
+Explicit synthetic Version4 joins the actual current plan with the retained terrain query through the owned world/store/incarnation binding. The host checks60 grounded steps, actual source/step/results, final inactive stop and owned cleanup while preserving borrowed sources. Version3 planar mode remains accepted; original movement/floor/physics parity is Unknown. See [Round63](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-05_R63_RAY_QUERY_AND_TERRAIN_PLAYBACK.md).
+
+## Round64 explicit replacement host
+
+Version5 selects the actual [owned slot](SCENE_WORLD_TERRAIN_PLAYBACK_SLOT_CONTRACT.md) at step30; old owned children/receipt retire and a30-step continuation preserves pose and clock. Invalid and foreign-source candidates preserve installed ownership. [Joined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R64_MATERIAL_REPLACEMENT_AND_TRANSFORMS.md) retains the60-step independent numerical/grounding trace and explicit constructor-prefix limits. Earlier Version3/4 modes still pass their independent peers.

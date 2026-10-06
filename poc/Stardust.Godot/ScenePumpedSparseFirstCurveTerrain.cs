@@ -32,6 +32,10 @@ public partial class ScenePumpedWorldPreview
         string hex=root.GetProperty("GeneratorHex").GetString()??throw new InvalidOperationException("Missing generator");
         Check(hex.Length==279216,"Pinned bounded original generator bytes");
         var generator=TerrainGeneratorInput.Decode(Convert.FromHexString(hex));
+        var shaderFamilies=TerrainGeneratorShaderFamilies.Bind(generator);
+        GD.Print("terrain_shader_families_ready="+JsonSerializer.Serialize(new{shaderFamilies.EncodedBytes,shaderFamilies.SourceSha256,Families=shaderFamilies.Families.Count,
+            shaderFamilies.TotalEntries,shaderFamilies.TotalStringBytes,shaderFamilies.HasShaderSemantics,
+            ActualSource=ReferenceEquals(shaderFamilies.Generator,generator)&&ReferenceEquals(shaderFamilies.Group,generator.Groups[0])}));
         var binding=TerrainGeneratorFractalFamilies.Bind(generator);
         Check(binding.GeneratorSha256=="B623B789E5F8486414C1D68CD341005E7E25FD97AF30567E64E7AC848DEB6C32"
             &&binding.GroupSha256=="A221167452D8D67719BD72A3DB30CC10B7B652881B935D3571B9D55328B444A1","Pinned generator/group");
@@ -44,7 +48,7 @@ public partial class ScenePumpedWorldPreview
         Check(values.EnumerateObject().Count()==9,"Nine independent grounding observations");
         foreach(string name in names){float value=BitConverter.UInt32BitsToSingle(values.GetProperty(name).GetUInt32());Check(float.IsFinite(value)&&Math.Abs(value)<=1000000,"Finite bounded observation");motion.Add(name,value);}
         Check(root.GetProperty("Chunks").GetArrayLength()==4,"Four bounded chunks");
-        var candidates=new TerrainCoordinateHeightPatch[4];int c=0;
+        var candidates=new TerrainCoordinateHeightPatch[4];var assemblies=new TerrainModernHeightPatch[4];TerrainModernHeightPatchSet? patchSet=null;int c=0;
         int allocations=TerrainPatchVisual.Allocations,disposals=TerrainPatchVisual.Disposals;
         try {
             foreach(var chunk in root.GetProperty("Chunks").EnumerateArray()){
@@ -62,7 +66,7 @@ public partial class ScenePumpedWorldPreview
                 Check(heights.SequenceEqual(root.GetProperty("Expected")[c].GetProperty("HeightBits").EnumerateArray().Select(x=>x.GetUInt32())),"Independently verified native height observations");
                 var initial=TerrainCoordinateHeightPatch.Build(grid,heights,Enumerable.Repeat(System.Numerics.Vector3.UnitY,100).ToArray(),Enumerable.Repeat(0xFF20A060u,100).ToArray(),0,1);
                 var assembly=TerrainModernHeightPatch.Build(initial,TerrainModernNormalPolicy.ModernBinary64CentralDifference);
-                var normals=assembly.NormalField;candidates[c]=assembly.Patch;
+                assemblies[c]=assembly;var normals=assembly.NormalField;candidates[c]=assembly.Patch;
                 Check(ReferenceEquals(normals.Source,initial)&&normals.Count==100,"Actual stored-position normal source");
                 GD.Print("owned_sparse_evaluation_ready="+JsonSerializer.Serialize(new{Chunk=c,SparseReservation=evaluation.Reservation,
                     OwnedSamplerFactories=evaluation.OwnedSamplerFactories,OwnedSamplerQueryBatches=evaluation.OwnedSamplerQueryBatches,OwnedSamplerDisposals=evaluation.OwnedSamplerDisposals,
@@ -75,6 +79,25 @@ public partial class ScenePumpedWorldPreview
                     batch.ComputedMisses,batch.KernelOctaves,batch.SamplerFactories,batch.KernelBatches,batch.SamplerDisposals,OriginalNumericParity=false}));
                 c++;
             }
+            patchSet=TerrainModernHeightPatchSet.Build(assemblies,TerrainModernPatchEdgePolicy.RequireBitIdenticalActiveSharedEdges,TerrainModernPatchNormalPolicy.RequireBitIdenticalSharedNormals);
+            GD.Print("modern_patch_set_ready="+JsonSerializer.Serialize(new{patchSet.Count,patchSet.TotalCells,patchSet.TotalPatches,patchSet.SelectedSamples,
+                patchSet.OwnCopyBytes,patchSet.OwnArrayBytes,patchSet.OwnWork,patchSet.BorrowedCopyReservation,patchSet.BorrowedArrayReservation,patchSet.BorrowedWorkReservation,
+                patchSet.SharedEdgePairs,patchSet.SharedCornerPairs,patchSet.SharedSampleComparisons,patchSet.NormalBuilds,patchSet.GeometryBuilds,
+                ActualReferences=patchSet.Patches.Select((p,i)=>ReferenceEquals(p,assemblies[i])&&ReferenceEquals(p.Patch,candidates[i])).All(v=>v),
+                EdgePolicy=patchSet.EdgePolicy.ToString(),NormalPolicy=patchSet.NormalPolicy.ToString()}));
+            suppliedTerrainSetQuery=TerrainModernPatchSetSurfaceQuery.Build(patchSet);
+            var aggregate=suppliedTerrainSetQuery;
+            GD.Print("modern_set_surface_query_ready="+JsonSerializer.Serialize(new{aggregate.ChunkCount,aggregate.PatchCount,aggregate.TotalTriangles,
+                aggregate.ChildBuilds,aggregate.NormalBuilds,aggregate.GeometryBuilds,aggregate.SetAdmissions,aggregate.AggregateCopyBytes,
+                aggregate.AggregateArrayBytes,aggregate.AggregateWork,aggregate.ChildLogicalOwnedBytes,ActualSource=ReferenceEquals(aggregate.Source,patchSet),
+                ActualChildren=aggregate.Children.All(child=>ReferenceEquals(child.Chunk,patchSet.Patches[child.ChunkIndex])
+                    &&ReferenceEquals(child.Patch,child.Chunk.Patch.Patches[child.PatchIndex])&&ReferenceEquals(child.Geometry,child.Patch.Geometry)),OriginalCollisionParity=false}));
+            var locations=new List<TerrainPatchSurfaceLocation>();for(int z=-8;z<=8;z+=2)for(int x=-8;x<=8;x+=2)locations.Add(new(x,z));
+            locations.AddRange(new TerrainPatchSurfaceLocation[]{new(-10,0),new(10,0),new(0,-10),new(0,10)});
+            var hits=aggregate.QueryBatch(locations.ToArray());
+            GD.Print("modern_set_surface_query_samples="+JsonSerializer.Serialize(locations.Select((point,i)=>new{point.X,point.Z,
+                Hit=hits[i] is { } hit?new{hit.ChunkIndex,hit.PatchIndex,Surface=hit.Hit}:null})));
+
         } catch {
             GD.Print("sparse_first_curve_height_preflight_failure="+JsonSerializer.Serialize(new{CompletedChunks=c,AllocatedTerrain=TerrainPatchVisual.Allocations-allocations,DisposedTerrain=TerrainPatchVisual.Disposals-disposals,OriginalNumericParity=false}));
             throw;
@@ -85,9 +108,10 @@ public partial class ScenePumpedWorldPreview
         try {
             sparseTerrainLight=new DirectionalLight3D{Name="ModernTerrainLight",RotationDegrees=new Vector3(-55,-35,0),LightEnergy=1.2f};AddChild(sparseTerrainLight);
             GD.Print("sparse_terrain_light_ready="+JsonSerializer.Serialize(new{Count=1,Owned=true,OriginalLightingParity=false}));
-            for(c=0;c<4;c++)foreach(var patch in candidates[c].Patches){
-                var query=new TerrainPatchSurfaceQuery(patch.Geometry);var visual=new TerrainPatchVisual(patch.Geometry,this,TerrainPatchRenderPolicy.ModernLitVertexColor);
-                Check(visual.Policy==TerrainPatchRenderPolicy.ModernLitVertexColor,"Explicit lit policy");
+            foreach(var child in suppliedTerrainSetQuery!.Children){
+                c=child.ChunkIndex;var patch=child.Patch;var query=child.Query;
+                var visual=CreateSparseTerrainVisual(patch.Geometry);
+                Check(visual.Policy==(suppliedTerrainMaterial is null?TerrainPatchRenderPolicy.ModernLitVertexColor:TerrainPatchRenderPolicy.ModernSuppliedMainTexture),"Explicit lit policy");
                 suppliedTerrainVisuals.Add(visual);suppliedTerrainQueries.Add(query);visual.VerifyReadback();
                 GD.Print("supplied_terrain_patch="+JsonSerializer.Serialize(new{Chunk=c,patch.Cell.Column,patch.Cell.Row,
                     RenderPolicy=visual.Policy.ToString(),NormalBits=patch.Geometry.CopyNormals().Select(v=>new[]{BitConverter.SingleToUInt32Bits(v.X),BitConverter.SingleToUInt32Bits(v.Y),BitConverter.SingleToUInt32Bits(v.Z)}),

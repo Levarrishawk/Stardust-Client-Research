@@ -211,3 +211,7 @@ existing Rules index and identity without a new parser. Serialized ChildOrdinal
 includes IHDR/ADTA; indexed layer.Children omits those two positions. Selection
 checks their exact offset relationship, signed family binding and pre-copy caps.
 It does not infer layer activation.
+
+## Round61 separate shader-family decoder
+
+The original input decoder retains its opaque group policy. A separate [SGRP0006 typed decoder](TERRAIN_GENERATOR_SHADER_FAMILIES_CONTRACT.md) now binds the actual shader-group section and retains raw ordered SFAM records, with the observed static read widths plus one original occurrence. This closes structural fields and ownership, not shader semantics, resolution or materials. Other recognized versions remain opaque here.

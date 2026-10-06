@@ -1,0 +1,15 @@
+# Round69 offline root transport bridge - 2026-10-06
+
+Question: can the current owned root FIFO transfer one historical frame to actual socket-independent SOE pending ownership, with whole-transport backpressure and precise failure/cleanup prefixes? Stop condition: independent framed/root/ACK bytes, actual offline transport lifecycle/ownership gates and frozen scope pass.
+
+Input: synchronized4,226 accepted68 public files; manifest SHA-256 `069f8419cc82801ee88484f8e20f1d519f8e30044c4427a9cd653c972841bf9d`, archive `5f3333ab06f047348a3aed85ee1ef824591801ee19c26d6954ba45074cefddee`. Trusted sync verifies incoming/prior/own-final before writes. Orientation: AGENTS/START_HERE/latest68, living status/ledger/unknown, queue/builder/motion and SOE contracts, existing session/transport/framing/control source and frozen independent wire model. No original executable/VAs, assets, socket or live contact.
+
+Observation: QueueReliableMessage copies supplied bytes; PendingMessageCount spans all four channels. Implementation declines before take unless Established and no pending channel, adopts one actual queue transfer, calls reliable channel0 and clears its own array after success. Rare post-take failure retains pending and latches terminal fault; no rollback/requeue. Durable API/ownership and exact limits are in the [contract](../../docs/SCENE_WORLD_ROOT_MOTION_TRANSPORT_BRIDGE_CONTRACT.md).
+
+Narrow assignment correction: frozen SoeSessionCodec has no EncodeResponse. Independent Python response packing drives actual BeginSession/AcceptSessionResponse instead, without editing any shared codec. Frozen round14 selector4/seededCRC fixture model independently predicts raw reliable/frame/ACK bytes before native execution.
+
+Validation: three representative full-root cases, five exact datagrams/five exact ACKs and80 native checks pass with zero-warning build. Actual synthetic typed world/local rows/FIFO, actual SOE copy/pump/receive/ACK, other-channel conservative backpressure, session/closed/preCanceled/generation/thread/queue/store/world lifecycle, stale-prefix replacement and world batch preservation are dynamically verified. Final accepted SOE copy remains after bridge disposal and pumps unchanged. Normal caller-owned unrelated-channel input is cleared after queuing; actual SOE copy survives.
+
+Evidence limits: bridge/transport private retained zeroing and terminal post-take branch are source-inspected. No callback/backdoor/reflection manufactures rare fault coverage; precancellation is a distinct executed pre-effect path. AcceptedCount overflow and concurrent transport mutation are unrun. Builder/queue mathematical and lifetime policies are inherited, not recensused. No original sender cadence/units/parity or live network use follows these tests.
+
+Next probe: bounded lead host consumes actual owned root FIFO through this bridge, compares in-memory framed output/ACK and borrower-surviving teardown against grounded local trajectory; no sends. Shared host/status/ledger remain lead-owned. Stop after sealed final hashes/scope and wait for explicit reassignment.

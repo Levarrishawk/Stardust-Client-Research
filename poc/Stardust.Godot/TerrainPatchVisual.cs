@@ -1,9 +1,10 @@
 using System;
 using System.Linq;
 using Godot;
+using Stardust.Core.Assets;
 using Stardust.Core.Geometry;
 
-public enum TerrainPatchRenderPolicy { DiagnosticUvColor, ModernLitVertexColor }
+public enum TerrainPatchRenderPolicy { DiagnosticUvColor, ModernLitVertexColor, ModernSuppliedMainTexture }
 
 /// <summary>Owned synthetic inspection adapter. Z reflection, original index order, explicit UV/COLOR shader.</summary>
 public sealed class TerrainPatchVisual : IDisposable
@@ -14,6 +15,8 @@ public sealed class TerrainPatchVisual : IDisposable
     private ArrayMesh? mesh;
     private Shader? shader;
     private ShaderMaterial? material;
+    private TerrainSuppliedStaticMaterial? suppliedMaterial;
+    private ImageTexture? borrowedTexture;
     public Node3D Root { get; }
     public bool IsDisposed => disposed;
     public TerrainPatchRenderPolicy Policy { get; }
@@ -23,16 +26,21 @@ public sealed class TerrainPatchVisual : IDisposable
 
     public TerrainPatchVisual(TerrainPatchGeometry source, Node parent):this(source,parent,TerrainPatchRenderPolicy.DiagnosticUvColor) { }
 
-    public TerrainPatchVisual(TerrainPatchGeometry source, Node parent,TerrainPatchRenderPolicy policy)
+    public TerrainPatchVisual(TerrainPatchGeometry source, Node parent,TerrainPatchRenderPolicy policy,
+        TerrainSuppliedStaticMaterial? suppliedMaterial=null,ImageTexture? suppliedTexture=null)
     {
-        if(policy is not (TerrainPatchRenderPolicy.DiagnosticUvColor or TerrainPatchRenderPolicy.ModernLitVertexColor))throw new ArgumentOutOfRangeException(nameof(policy));
+        if(policy is not (TerrainPatchRenderPolicy.DiagnosticUvColor or TerrainPatchRenderPolicy.ModernLitVertexColor or TerrainPatchRenderPolicy.ModernSuppliedMainTexture))throw new ArgumentOutOfRangeException(nameof(policy));
+        if((policy==TerrainPatchRenderPolicy.ModernSuppliedMainTexture)!=(suppliedMaterial is not null&&suppliedTexture is not null)
+            ||policy!=TerrainPatchRenderPolicy.ModernSuppliedMainTexture&&(suppliedMaterial is not null||suppliedTexture is not null))throw new ArgumentException("Explicit material and borrowed texture required together.");
         if (OS.GetThreadCallerId() != OS.GetMainThreadId()) throw new InvalidOperationException("Godot main thread required.");
+        if(suppliedTexture is not null&&(!GodotObject.IsInstanceValid(suppliedTexture)||suppliedTexture.GetWidth()!=suppliedMaterial!.Width||suppliedTexture.GetHeight()!=suppliedMaterial.Height))throw new ArgumentException("Actual live matching texture required.");
         ArgumentNullException.ThrowIfNull(source); ArgumentNullException.ThrowIfNull(parent);
         if (!GodotObject.IsInstanceValid(parent) || !parent.IsInsideTree()) throw new ArgumentException("Live parent required.");
         if (source.AuxiliarySetCount > 1) throw new ArgumentException("Inspection adapter supports base UV plus at most one auxiliary UV.");
         if (source.UvScale > 16) throw new ArgumentException("Inspection UV scale cap is 16.");
         ValidateWinding(source);
         this.source = source;
+        this.suppliedMaterial=suppliedMaterial;borrowedTexture=suppliedTexture;
         Policy=policy;
         Root = new Node3D { Name = "OwnedTerrainPatch" }; Allocations++;
         try
@@ -40,8 +48,11 @@ public sealed class TerrainPatchVisual : IDisposable
             mesh = new ArrayMesh();
             shader = new Shader { Code = policy==TerrainPatchRenderPolicy.DiagnosticUvColor
                 ? "shader_type spatial; render_mode unshaded, cull_back; void fragment() { ALBEDO=vec3(step(0.5,UV.x),step(0.5,UV.y),step(0.5,COLOR.r)); }"
-                : "shader_type spatial; render_mode cull_back; void fragment() { ALBEDO=COLOR.rgb; ROUGHNESS=1.0; METALLIC=0.0; }" };
+                : policy==TerrainPatchRenderPolicy.ModernLitVertexColor
+                ? "shader_type spatial; render_mode cull_back; void fragment() { ALBEDO=COLOR.rgb; ROUGHNESS=1.0; METALLIC=0.0; }"
+                : "shader_type spatial; render_mode cull_back; uniform sampler2D main_texture : "+(suppliedMaterial!.ColorSpace==DdsColorSpace.Srgb?"source_color, ":"")+"filter_nearest, repeat_enable; uniform vec4 diffuse_multiplier; void fragment() { ALBEDO=texture(main_texture,UV).rgb*COLOR.rgb*diffuse_multiplier.rgb; ROUGHNESS=1.0; METALLIC=0.0; }" };
             material = new ShaderMaterial { Shader = shader };
+            if(suppliedMaterial is not null){var d=suppliedMaterial.DiffuseMultiplier;material.SetShaderParameter("main_texture",suppliedTexture!);material.SetShaderParameter("diffuse_multiplier",new Color(d.X,d.Y,d.Z,d.W));}
             using var arrays = new Godot.Collections.Array(); arrays.Resize((int)Mesh.ArrayType.Max);
             arrays[(int)Mesh.ArrayType.Vertex] = source.CopyPositions().Select(v => new Vector3(v.X,v.Y,-v.Z)).ToArray();
             arrays[(int)Mesh.ArrayType.Normal] = source.CopyNormals().Select(v => new Vector3(v.X,v.Y,-v.Z).Normalized()).ToArray();
@@ -76,6 +87,10 @@ public sealed class TerrainPatchVisual : IDisposable
     {
         Owner(); if(disposed)throw new ObjectDisposedException(nameof(TerrainPatchVisual));
         using var a=mesh!.SurfaceGetArrays(0);
+        if(suppliedMaterial is not null){var d=suppliedMaterial.DiffuseMultiplier;
+            if(!ReferenceEquals(material!.GetShaderParameter("main_texture").AsGodotObject(),borrowedTexture)
+                ||material.GetShaderParameter("diffuse_multiplier").AsColor()!=new Color(d.X,d.Y,d.Z,d.W)
+                ||shader!.Code.Contains("source_color",StringComparison.Ordinal)!=(suppliedMaterial.ColorSpace==DdsColorSpace.Srgb))throw new InvalidOperationException("Actual supplied MAIN material binding readback.");}
         var p=a[(int)Mesh.ArrayType.Vertex].AsVector3Array();var n=a[(int)Mesh.ArrayType.Normal].AsVector3Array();
         var c=a[(int)Mesh.ArrayType.Color].AsColorArray();var uv=a[(int)Mesh.ArrayType.TexUV].AsVector2Array();
         var ix=a[(int)Mesh.ArrayType.Index].AsInt32Array();
@@ -101,7 +116,7 @@ public sealed class TerrainPatchVisual : IDisposable
         if(mesh is not null && GodotObject.IsInstanceValid(mesh)){mesh.ClearSurfaces();mesh.Dispose();}
         if(material is not null && GodotObject.IsInstanceValid(material))material.Dispose();
         if(shader is not null && GodotObject.IsInstanceValid(shader))shader.Dispose();
-        mesh=null;material=null;shader=null;Disposals++;
+        mesh=null;material=null;shader=null;suppliedMaterial=null;borrowedTexture=null;Disposals++;
     }
     private void Owner(){if(System.Environment.CurrentManagedThreadId!=owner)throw new InvalidOperationException("Visual owner thread required.");}
 }

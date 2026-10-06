@@ -1,6 +1,6 @@
 # Client Analysis Status
 
-Updated: 2026-10-04 (parallel development through Round60 acceptance; research scores unchanged)
+Updated: 2026-10-06 (parallel development through Round79 acceptance; research scores unchanged)
 
 Round44 lead review closes the received-only CREO4 kernel and its literal
 observer join, plus FSLP startup registration, one original FHGT/AHFR/FFRA
@@ -1698,3 +1698,80 @@ Round58 adds an owned original-layer height consumer under explicit modern first
 ## Round60 owned compositions and requested stop
 
 [Round60 lead checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R60_OWNED_TERRAIN_AND_CURRENT_SPEED_COMPOSITION.md) records independently replayed owned sparse evaluation, modern height/normal patch assembly, paired current-speed inputs and the exact queue-entry producer boundary. Native/headless/GPU comparisons preserve400 terrain heights/normals and60 movement steps; rejected inputs prevent publication and drain resources. Cleanup now attempts independent closures and releases source/buffers through finally. Original numerical/material/movement parity and payload ownership remain Unknown. Research89/readiness94,2626 names and345 packet rows are unchanged. Levarris requested completion of60 then a stop; all workers idle, continuation heartbeat paused, no61 dispatched.
+
+## Round61 input and retained composition acceptance
+
+[Round61 lead checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-05_R61_SHADER_PATCH_SET_AND_CURRENT_PLAN.md) adds raw SGRP0006 families, strict retained patch sets, current-source atomic planning and one exact queue-payload caller. Independent replay/native/headless/GPU and four rejection-cleanup gates pass, preserving400 terrain samples and60 movement steps. Original shader meanings/numerical/material/movement parity and payload ownership remain Unknown. One round only; workers idle and continuation paused. Timing is recorded separately from research/readiness/function/protocol measures, which are unchanged.
+
+## Round62 retained queries and playback
+
+[Round62 acceptance](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-05_R62_SET_QUERY_AND_PLAN_PLAYBACK.md) adds actual retained-set surface queries and current-source playback with pre-effect freshness/driver checks. Independent native/headless/GPU, rejection and prior-mode gates pass; shader first-string pointer flow and message+38 forwarding are verified separately. Original resolver/material/movement parity and payload ownership remain Unknown. One round complete; workers idle and continuation paused. Research/readiness/function/protocol measures remain separate and unchanged.
+
+
+## Round63 rays and owned terrain playback
+
+[Round63 integration](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-05_R63_RAY_QUERY_AND_TERRAIN_PLAYBACK.md) joins actual retained geometry ray queries and proven world/store/current-plan terrain playback. Independent worker/native/headless/GPU, malformed-input cleanup and prior-mode gates pass.104 rays and one actual camera ray accompany60 grounded current-plan steps. Conditional shader comparison and parser payload writer evidence remain separate from unknown asset/material/ownership meanings. Original parity and research/readiness/function/protocol scores are unchanged. Overnight continuation remains authorized until October6 at07:00 Eastern.
+
+## Round64 accepted gates
+
+[Integration evidence](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R64_MATERIAL_REPLACEMENT_AND_TRANSFORMS.md) records owned replacement, two-read supplied material and full directional transform codecs. Independent worker/host/rejection/regression gates pass. U32 outbound timestamp interpretation is current-server confirmed; original client conversion remains unproved. Static second-string meaning and original terrain/material/movement parity remain open. Research/readiness/function/protocol measures stay separate and unchanged. Final scope/link/HEAD/index acceptance is recorded in the round session.
+
+## Round65 implementation increment
+
+[Round65](research/sessions/PARALLEL_DEVELOPMENT_ROUND_65_2026-10-06.md) joins actual camera selection, grounded point targeting and direct typed full-root correction. Headless/GPU89 updates cross two patches/two chunks and stop; independent four-worker, two failure and prior-mode gates pass. Callback reentry/staged marker cleanup is verified. Second-string serialization is strongly inferred, resource use Unknown. Research89/readiness94,2626 names and345 packet rows are unchanged; no overall implementation completion denominator is invented.
+
+## Round66 implementation increment
+
+[Round66](research/sessions/PARALLEL_DEVELOPMENT_ROUND_66_2026-10-06.md) joins reusable admitted camera input, active paused/resumed targeting and actual combined queued motion ingress. Independent102-update headless/GPU trajectories, malformed queued-root owner cleanup and unchanged89-update host/111-update core regressions pass. Selected original family-entry wrapper proves record forwarding, resource semantics Unknown. Research89/readiness94/function uncalibrated/2626 names/345 packet rows remain separate and unchanged.
+
+## Round67 implementation increment
+
+[Round67](research/sessions/PARALLEL_DEVELOPMENT_ROUND_67_2026-10-06.md) joins actual viewport input, clear/idle/retarget and explicit offline current-local root encoding. Independent102-update headless/GPU, invalid-clock owner cleanup and unchanged core/host regressions pass. Static ordered family-entry lookup closes one caller; resource meaning remains Unknown. All30 final worker hashes match. Research89/readiness94/function uncalibrated/2626 names/345 packet rows remain separate and unchanged.
+
+## Round68 implementation increment
+
+[Round68](research/sessions/PARALLEL_DEVELOPMENT_ROUND_68_2026-10-06.md) joins actual manual direction, GUI disable/consume/resume, point handoff and owned offline root FIFO. Independent110-update headless/GPU,25-update clock failure/pending-frame cleanup and prior core/host regressions pass. Static group wrapper proves pointer forwarding; selector ABI/resource use remains Unknown. All30 worker hashes match; research89/readiness94/function uncalibrated/2626 names/345 packet rows remain separate and unchanged.
+
+## Round69 implementation increment
+
+[Round69](research/sessions/PARALLEL_DEVELOPMENT_ROUND_69_2026-10-06.md) joins actual held Shift, supplied dynamic speed and offline reliable root transport.110-update headless/GPU,27-update failure/drain, previous host and102/111-update core regressions pass. Selector normal ABI closes with bounded tiny getter; resource identity remains Unknown. All30 sealed worker hashes match. Research89/readiness94/function uncalibrated/2626 names/345 packet rows remain separate and unchanged. Final acceptance/time/scope are recorded in session.
+
+## Round70 implementation increment
+
+[Round70](research/sessions/PARALLEL_DEVELOPMENT_ROUND_70_2026-10-06.md) joins actual perspective orbit, native camera-relative held movement and offline SOE-to-pump correction.109-update headless/GPU,20-update malformed application cleanup and110-update prior host pass. Metadata closes exact export absence only; resource reachability remains Unknown. All30 worker hashes match; research89/readiness94/function uncalibrated/2626 names/345 packet rows remain unchanged and separate. Final acceptance/time/scope are in session.
+
+## Round71 implementation increment
+
+[Round71](research/sessions/PARALLEL_DEVELOPMENT_ROUND_71_2026-10-06.md) connects accepted movement to original animation/footstep records without teleport distance and proves offline disconnect ownership.109-update headless/GPU/wrong-ID failure and prior109-update host pass. Separate absolute root-rotation sampling passes242 checks/56 independent samples; relative/combined actor application remains open. Research89/readiness94/function uncalibrated/2626 names/345 packet rows stay separate unchanged. Final accepted time/scope are in session.
+
+## Round72 implementation increment
+
+[Round72](research/sessions/PARALLEL_DEVELOPMENT_ROUND_72_2026-10-06.md) adds native accepted-position camera following/correction snap and actual outer-disconnect application/control prefix handling.109-update headless/GPU/wrong-ID failure and prior109-update host pass. Separate four-mode root algebra implemented without actor authority. Research89/readiness94/function uncalibrated/2626 names/345 packet rows unchanged and separate. Final time/scope/hash postflight in session.
+
+## Round73 implementation increment
+
+[Round73](research/sessions/PARALLEL_DEVELOPMENT_ROUND_73_2026-10-06.md) joins1000 offline updates,17 original footstep occurrences, six later point events, persistent camera/HUD and90 scheduled protected root packets/ACKs. Explicit budget/cadence/lifecycle and changed-failure/prior109-update gates pass. Typed root wrapper scales translation; external actor basis/scalar lifetime Unknown. Research89/readiness94/function uncalibrated/2626 names/345 packet rows unchanged and separate. Final canonical postflight/time in session.
+
+## Round74 implementation increment
+
+[Round74](research/sessions/PARALLEL_DEVELOPMENT_ROUND_74_2026-10-06.md) adds actual elapsed fixed-step scene scheduling and reusable single offline packet drain.1000-step headless/measured GPU/17 events/90 protected frames, rejected ACK prefix cleanup and unchanged1000-step prior mode pass. Static physical-track consumer confirms track-local accumulation; actor basis Unknown. Research89/readiness94/function uncalibrated/2626 names/345 packet rows unchanged and separate. Canonical scope/time postflight in session.
+
+## Round75 bounded session and root-source increment
+
+[Session](research/sessions/PARALLEL_DEVELOPMENT_ROUND_75_2026-10-06.md). Actual P pause/resume and Escape finish join passes601 headless/measured GPU updates, original supplied animation/events/camera/HUD and53 scheduled protected roots/ACKs. Final ordinary tick is zero-speed Idle without target or displacement; caller closes owners without injected peer disconnect. Rejected P sink preserves five completed updates and clean failure teardown; prior Version10 passes1000/17/90. Scripted control replay and unrestricted terrain roaming remain separate. The September25 ROOT_MOTION_OBJECT_APPLICATION report already establishes eligible CreatureController object-local rotation post-composition and local translation converted into parent space. Recent local-body Unknown statements did not replace that prior code conclusion. Round75 reconciles/audits existing evidence without fresh actor arithmetic replay or additional coverage. Constructor00822FC0 confirms runtime+4C lookup initialization; scalar storage ownership remains Unknown. Research89/readiness94/function uncalibrated/2626 names/345 packet rows remain separate and unchanged; final acceptance scope/time follows in the session.
+
+## Round76 idle-start and scalar storage increment
+
+[Session](research/sessions/PARALLEL_DEVELOPMENT_ROUND_76_2026-10-06.md). Separate Version12 idle-start offline playground passes401 headless/measured GPU updates,25 edge holds/reverse recovery,seven original footstep events/39 protected root frames,focus/P/Escape ownership. Unscripted default reaches6000 updates/zero input/60 stationary frames and normal zero stop. Rejected focus preserves40-row/four-frame prefix and clean teardown; unchanged Version11 passes601/9/53. Original/live parity remains unverified. Lookup007D3790 confirms lazy object+10 container and returns node+20 interior storage on hit/miss. Miss prepares zero payload bits; effective float default0 is Strongly inferred until insertion007D40C0 is expanded. Original key/type/units/node stability/lifetime remain Unknown. Prior September25 actor closure is not repeated or recounted. Research89/readiness94/function uncalibrated/2626 names/345 packet rows unchanged and separate.
+
+## Round77 configured playground and node insertion
+
+[Session](research/sessions/PARALLEL_DEVELOPMENT_ROUND_77_2026-10-06.md). Version13 configured idle-start playground passes401 headless/measured GPU updates,32 issued targets and a nonfaulting33rd-click decline,25 edge holds/reverse recovery,seven original footstep occurrences/39 protected offline roots. Unscripted three-update/128-click configuration reaches its exact final zero stop; unchanged Version12 passes401/7/39. Original/live parity remains unverified. Insertion007D40C0 publishes a0x24 node and delegates payload construction to77-byte007D64B0; conditional source+10/destination+10 maps to node+20. Actual zero/default remains Strongly inferred; key/type/units/lifetime Unknown. No actor-chain repetition or function-name increment. Research89/readiness94/function uncalibrated/2626 names/345 packet rows remain separate and unchanged.
+
+## Round78 configured ownership and scalar copy
+
+[Session](research/sessions/PARALLEL_DEVELOPMENT_ROUND_78_2026-10-06.md). Configured Version13 now owns actual point/controller, limits display, and offline transport/root session through dedicated lifetimes.401 headless/measured GPU updates preserve32 clicks/33rd decline/25 holds/seven original events/39 protected roots. Unscripted3/128 exact stop, pre-world one-bit settings contradiction rejection and unchanged12 replay pass. Original/live parity remains unverified. Value construction007D64B0 copies32 then-current bits source+10 to destination+10, composing to node+20. Constructed key CrcLowerString directly identified by installed-vtable RTTI. Source preservation across107-byte00AA3FE0/all alternate defaults remains unproved; effective default Strongly inferred and key contents/units/lifetime Unknown. Research89/readiness94/function uncalibrated/2626 names/345 packets remain separate and unchanged.
+
+## Round79 completion reports and fault cleanup
+
+[Session](research/sessions/PARALLEL_DEVELOPMENT_ROUND_79_2026-10-06.md). Configured preview now captures primitive actual completion/root-buffer reports and an owned outcome panel.401 headless/measured GPU updates retain32 clicks/33rd decline/25 holds/seven original events/39 protected roots. Separate128-click/129th-decline native join passes. Budget3 reports BudgetCompleted; strict terrain failure preserves225 completed/226 attempted updates/five events/23 roots, reports Faulted rather than successful stop, and drains all owners/actors. Unchanged12 passes. Original/live parity remains unverified. Key-base00AA3FE0 explicitly writes destination0/8/C, installs PersistentCrcString and has no local scalar+10 write. Virtual getter/initializer/setter effects remain Unknown; complete source-zero/reference/lifetime proof is not claimed. Conditional13-byte00AA41C0 getter is the next bounded probe. Research89/readiness94/function uncalibrated/2626 names/345 packet rows remain separate and unchanged.

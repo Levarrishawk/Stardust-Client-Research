@@ -58,3 +58,15 @@ Reset requires the same current incarnation, grounds and publishes initial place
 Late outside, insufficient second-patch budget, invalid selected normal and position-bound cases retain two accepted ticks, their exact current publication and sticky-fault/no-retry behavior. Exact/one-less constructor caps, input bounds/order/horizon/capacity, collection/inspection-copy isolation, zero-velocity orientation retention, maximum diagonal yaw, pause/stall/corrections, borrowed store closure/capacity, owner thread, recreate/generation/failure/close and disposal are tested. Core, own runner and actual separate SmokeTests builds have zero warnings/errors. No original assets/executable, resource loads, GPU, world integration or live contact are used.
 
 [Checkpoint and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R39_TERRAIN_MOTION.md). Next probe: lead-owned original host integration with explicitly supplied native-space geometry and existing local-driver interface, preserving modern grounding and original collision/procedural parity boundaries.
+
+## Round62 retained-set overload
+
+A new driver constructor borrows the actual [retained-set surface query](TERRAIN_MODERN_PATCH_SET_SURFACE_QUERY_CONTRACT.md), reserves its complete patch/triangle upper bound before local publication, and routes initial/tick/reset grounding through aggregate Query. The existing supplied-list constructor preserves its prior ordered policy. Common finite height/foot-offset checks remain shared. Native admission/grounding, the prior deterministic motion suite and original-resource preview gates pass. Disposal releases references and preserves borrowed source/motion. Original floor/collision parity remains Unknown.
+
+## Round65 point-target consumer
+
+[Point controller](SCENE_WORLD_TERRAIN_POINT_TARGET_CONTRACT.md) owns this driver and computes supplied modern planar velocity toward an admitted actual terrain hit. It reads a newer authoritative row before steering, matching adoption during Advance before Tick. One consecutive zero-speed update after arrival stops borrowed motion before owned disposal. Sole-writer, bounded fixed-clock, source-provenance and late-publication-prefix limits remain explicit.
+
+## Round66 queued correction ordering
+
+[Joined acceptance](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R66_POINT_INPUT_PAUSE_AND_QUEUED_CORRECTION.md) uses active zero-velocity pause ticks while retaining this actual driver. A queued full correction is processed through the existing pump before a subsequent steering tick; the host does not advance the controller clock during that pump frame. No extra zero-time driver update, direct full-router bypass, timeline suspension or original interpolation claim is introduced.

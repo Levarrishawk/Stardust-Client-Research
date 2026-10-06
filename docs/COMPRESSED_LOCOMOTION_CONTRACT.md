@@ -1,6 +1,6 @@
 # Compressed locomotion and messages contract
 
-Engine-neutral `CompressedLocomotion` owns validated CKAT/0001 MSGS and translation-only LOCT suffix records. Joint sampling remains independent. It rejects top-level QCHN until a separate root-rotation evaluator is requested; accepting its raw tree is not execution support.
+Engine-neutral `CompressedLocomotion` owns validated CKAT/0001 MSGS and translation-only LOCT suffix records. Joint sampling remains independent. It rejects top-level QCHN. The separate [absolute root-rotation importer](COMPRESSED_ROOT_ROTATION_CONTRACT.md) now samples that track without actor authority or relative/combined evaluation; accepting its raw tree is not execution support.
 
 ## Evidence and grammar
 
@@ -30,3 +30,23 @@ Unknown: complete animation graph execution, original speed-node blend/transitio
 ## Modern event cursor — 2026-10-01
 
 [AnimationEventCursor](ANIMATION_EVENT_CURSOR_CONTRACT.md) consumes these owned message records with an explicit modern (previous, target] playback policy, loop boundary ordering, pause/reset and per-advance budgets. Its independent oracle and original walk/run checks pass. This does not replace the recovered integer [start, end) collector or establish original scheduler semantics. Effect/audio dispatch is a future integration boundary.
+
+## Round75 root evidence reconciliation
+
+[Scale-source and prior-application record](COMPRESSED_ROOT_SCALE_SOURCE_CONTRACT.md). The September25 ROOT_MOTION_OBJECT_APPLICATION report already establishes eligible CreatureController object-local rotation post-composition and local translation converted into parent space. Recent local-body Unknown statements did not replace that prior code conclusion. Round75 reconciles/audits existing evidence without fresh actor arithmetic replay or additional coverage. Constructor00822FC0 confirms runtime+4C lookup initialization; scalar storage ownership remains Unknown.
+
+## Round76 root storage boundary
+
+[Storage contract](COMPRESSED_ROOT_SCALE_STORAGE_CONTRACT.md). Lookup007D3790 confirms lazy object+10 container and returns node+20 interior storage on hit/miss. Miss prepares zero payload bits; effective float default0 is Strongly inferred until insertion007D40C0 is expanded. Original key/type/units/node stability/lifetime remain Unknown. Prior September25 actor closure is not repeated or recounted.
+
+## Round77 root insertion boundary
+
+[Insertion contract](COMPRESSED_ROOT_SCALE_INSERTION_CONTRACT.md). Insertion007D40C0 publishes a0x24 node and delegates payload construction to77-byte007D64B0; conditional source+10/destination+10 maps to node+20. Actual zero/default remains Strongly inferred; key/type/units/lifetime Unknown. No actor-chain repetition or function-name increment.
+
+## Round78 scalar copy and key type
+
+[Value construction](COMPRESSED_ROOT_SCALE_VALUE_CONSTRUCTION_CONTRACT.md). Value construction007D64B0 copies32 then-current bits source+10 to destination+10, composing to node+20. Constructed key CrcLowerString directly identified by installed-vtable RTTI. Source preservation across107-byte00AA3FE0/all alternate defaults remains unproved; effective default Strongly inferred and key contents/units/lifetime Unknown.
+
+## Round79 key-base boundary
+
+[Key-base contract](COMPRESSED_ROOT_KEY_BASE_COPY_CONTRACT.md). Key-base00AA3FE0 explicitly writes destination0/8/C, installs PersistentCrcString and has no local scalar+10 write. Virtual getter/initializer/setter effects remain Unknown; complete source-zero/reference/lifetime proof is not claimed. Conditional13-byte00AA41C0 getter is the next bounded probe.

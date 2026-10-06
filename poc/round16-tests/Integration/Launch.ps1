@@ -27,7 +27,9 @@ param(
  [string]$CreatureView4FullPeer,
  [string]$CreatureView4PartialPeer,
  [string]$TerrainPeer,
+ [string]$TerrainMaterialProfile,
  [string]$NominalSpeedFixture,
+ [string]$TerrainPointTargetProfile,
  [switch]$TerminalAnimation,
  [switch]$TerminalClock,
  [switch]$TerminalClockFault,
@@ -59,6 +61,7 @@ if($CancelLoad){$taskArguments+='--pump-cancel'}
 if($MotionPeer){$taskArguments+=@('--motion-peer',(Resolve-Path -LiteralPath $MotionPeer).Path)}
 if($LocalInput){if(-not $MotionPeer){throw 'Local input requires motion peer'};$taskArguments+='--local-input'}
 if($TerrainPeer){if(-not $LocalInput -or $CancelLoad -or $InputLoss){throw 'Supplied terrain requires bounded local input mode'};$taskArguments+=@('--terrain-peer',(Resolve-Path -LiteralPath $TerrainPeer).Path)}
+if($TerrainMaterialProfile){if(-not $TerrainPeer){throw 'Explicit material requires terrain'};$taskArguments+=@('--terrain-material-profile',(Resolve-Path -LiteralPath $TerrainMaterialProfile).Path)}
 if($FaceProfile){$taskArguments+=@('--face-profile',(Resolve-Path -LiteralPath $FaceProfile).Path)}
 if($CustomizationWirePeer){if(-not $LocalInput -or -not $FaceProfile -or -not $CustomizationDictionary -or $CustomizationRevisions -or $InputLoss -or $CancelLoad){throw 'Wire customization requires separate local-input face and dictionary mode'};$taskArguments+=@('--customization-wire','--customization-peer',(Resolve-Path -LiteralPath $CustomizationWirePeer).Path,'--customization-dictionary',(Resolve-Path -LiteralPath $CustomizationDictionary).Path)}
 if($CustomizationAssetContext){if(-not $CustomizationScalars -or -not $CustomizationWirePeer){throw 'Full creature context requires mixed wire mode'};$taskArguments+=@('--customization-full','--customization-asset-context',(Resolve-Path -LiteralPath $CustomizationAssetContext).Path)}
@@ -73,7 +76,40 @@ if($CreatureView6FullPeer){if(-not $TangibleView6Peer){throw 'Full CREO6 peer re
 if($CreatureView4FullPeer -and $CreatureView4PartialPeer){throw 'Choose one CREO4 world policy'}
 if($CreatureView4PartialPeer){if(-not $CreatureView6FullPeer){throw 'Partial CREO4 preview requires joined full CREO6 proof'};$taskArguments+=@('--creature4-partial-peer',(Resolve-Path -LiteralPath $CreatureView4PartialPeer).Path)}
 if($CreatureView4FullPeer){if(-not $CreatureView6FullPeer){throw 'Full CREO4 preview requires joined full CREO6 proof'};$taskArguments+=@('--creature4-full-peer',(Resolve-Path -LiteralPath $CreatureView4FullPeer).Path)}
-if($NominalSpeedFixture){if(-not $LocalInput -or -not $CreatureView4PartialPeer -or $SourcedInputSource -or $TerrainPeer -or $InputLoss -or $CancelLoad){throw 'Nominal speed requires the separate complete planar partial-view host'};$taskArguments+=@('--nominal-speed-fixture',(Resolve-Path -LiteralPath $NominalSpeedFixture).Path)}
+if($TerrainPointTargetProfile){
+ if(-not $LocalInput -or -not $TerrainPeer -or -not $CreatureView4PartialPeer -or $NominalSpeedFixture -or $SourcedInputSource -or $InputLoss -or $CancelLoad){throw 'Point target requires separate complete terrain partial-view host'}
+ if((Get-Item -LiteralPath $TerrainPointTargetProfile).Length -gt 16384 -or (Get-Item -LiteralPath $TerrainPeer).Length -gt 524288){throw 'Bounded point/terrain inputs required'}
+ $taskPoint=Get-Content -LiteralPath $TerrainPointTargetProfile -Raw | ConvertFrom-Json
+ $taskTerrain=Get-Content -LiteralPath $TerrainPeer -Raw | ConvertFrom-Json
+ $taskPointV1=$taskPoint.Version -eq 1 -and $taskPoint.Policy -eq 'SuppliedTerrainCameraPointTargetWithFullRootCorrection'
+ $taskPointV2=$taskPoint.Version -eq 2 -and $taskPoint.Policy -eq 'SuppliedTerrainInputPausedTargetWithQueuedFullRootCorrection'
+ $taskPointV3=$taskPoint.Version -eq 3 -and $taskPoint.Policy -eq 'SuppliedViewportPointTargetClearAndOfflineRootMotion'
+ $taskPointV4=$taskPoint.Version -eq 4 -and $taskPoint.Policy -eq 'SuppliedViewportManualPointTargetAndOwnedOfflineQueue'
+ $taskPointV11=$taskPoint.Version -eq 11 -and $taskPoint.Policy -eq 'SuppliedOfflineSessionControls'
+ $taskPointV13=$taskPoint.Version -eq 13 -and $taskPoint.Policy -eq 'SuppliedConfiguredOfflinePlayground'
+ $taskPointV12=$taskPointV13 -or ($taskPoint.Version -eq 12 -and $taskPoint.Policy -eq 'SuppliedIdleOfflinePlayground')
+ $taskPointV10=$taskPoint.Version -eq 10 -and $taskPoint.Policy -eq 'SuppliedElapsedOfflinePlayground'
+ $taskPointV9=$taskPoint.Version -eq 9 -and $taskPoint.Policy -eq 'SuppliedLongOfflinePlayground'
+ if(-not $taskPointV9 -and -not $taskPointV10 -and -not $taskPointV11 -and -not $taskPointV12 -and (Get-Item -LiteralPath $TerrainPointTargetProfile).Length -gt 4096){throw 'Prior bounded point policy required'}
+ $taskPointV8=$taskPoint.Version -eq 8 -and $taskPoint.Policy -eq 'SuppliedFollowingCameraAndOuterPeerDisconnect'
+ $taskPointV7=$taskPoint.Version -eq 7 -and $taskPoint.Policy -eq 'SuppliedAcceptedLocomotionAndOfflinePeerDisconnect'
+ $taskPointV6=$taskPoint.Version -eq 6 -and $taskPoint.Policy -eq 'SuppliedCameraRelativeOrbitAndOfflineSoeIngress'
+ $taskPointV5=$taskPoint.Version -eq 5 -and $taskPoint.Policy -eq 'SuppliedViewportWalkRunAndOfflineSoeRootTransfer'
+ if((-not $taskPointV1 -and -not $taskPointV2 -and -not $taskPointV3 -and -not $taskPointV4 -and -not $taskPointV5 -and -not $taskPointV6 -and -not $taskPointV7 -and -not $taskPointV8 -and -not $taskPointV9 -and -not $taskPointV10 -and -not $taskPointV11 -and -not $taskPointV12) -or $taskTerrain.Version -ne 9){throw 'Explicit point-target and terrain policy required'}
+ $taskArguments+=@('--terrain-point-target-profile',(Resolve-Path -LiteralPath $TerrainPointTargetProfile).Path)
+}
+if($NominalSpeedFixture){
+ if(-not $LocalInput -or -not $CreatureView4PartialPeer -or $SourcedInputSource -or $InputLoss -or $CancelLoad){throw 'Nominal speed requires the complete partial-view host'}
+ if($TerrainPeer){
+  if((Get-Item -LiteralPath $NominalSpeedFixture).Length -gt 262144 -or (Get-Item -LiteralPath $TerrainPeer).Length -gt 524288){throw 'Bounded joined terrain/playback inputs required'}
+  $taskNominal=Get-Content -LiteralPath $NominalSpeedFixture -Raw | ConvertFrom-Json
+  $taskTerrain=Get-Content -LiteralPath $TerrainPeer -Raw | ConvertFrom-Json
+  $taskDirect=$taskNominal.Version -eq 4 -and $taskNominal.Policy -eq 'supplied_local_current_reader_and_nominal_plan_modern_terrain_trace' -and $taskNominal.TerrainBindingPolicy -eq 'OwnedTerrainDriverAndCurrentPlanPlayback'
+  $taskSlot=$taskNominal.Version -eq 5 -and $taskNominal.Policy -eq 'supplied_local_current_reader_and_replaced_nominal_plan_modern_terrain_trace' -and $taskNominal.TerrainBindingPolicy -eq 'OwnedTerrainPlaybackSlot' -and $taskNominal.ReplacementAtStep -eq 30
+  if((-not $taskDirect -and -not $taskSlot) -or $taskTerrain.Version -ne 9){throw 'Explicit current-plan terrain binding required'}
+ }
+ $taskArguments+=@('--nominal-speed-fixture',(Resolve-Path -LiteralPath $NominalSpeedFixture).Path)
+}
 if($SourcedInputSource){if(-not $LocalInput -or -not $CreatureView4PartialPeer -or $TerrainPeer -or $InputLoss -or $CancelLoad){throw 'Sourced input requires the complete planar partial-view host'};$taskArguments+=@('--sourced-input',$SourcedInputSource)}
 if($TerminalAnimation){if(-not $TangiblePeer){throw 'Terminal animation requires typed tangible proof'};$taskArguments+='--terminal-animation'}
 if($TerminalClock){if(-not $TerminalAnimation){throw 'Terminal clock requires animation'};$taskArguments+='--terminal-clock'}
@@ -99,7 +135,8 @@ try {
 } finally {
  if($null -eq $taskSavedAppData){Remove-Item Env:APPDATA -ErrorAction SilentlyContinue}else{$env:APPDATA=$taskSavedAppData}
 }
-if(-not $taskProcess.WaitForExit(45000)){Stop-Process -Id $taskProcess.Id;throw 'Pump preview exceeded45-second deadline'}
+$taskDeadlineMilliseconds=if($TerrainPointTargetProfile -and $taskPointV12 -and -not $taskPoint.InteractiveReplay){90000}else{45000}
+if(-not $taskProcess.WaitForExit($taskDeadlineMilliseconds)){Stop-Process -Id $taskProcess.Id;throw ('Pump preview exceeded bounded deadline: '+$taskDeadlineMilliseconds+'ms')}
 $taskMarker=if($InputLoss){'PASS: pumped input_loss'}elseif($CancelLoad){'PASS: pumped canceled'}else{'PASS: pumped world'}
 if($taskProcess.ExitCode -ne 0 -or -not(Select-String -LiteralPath $taskLog -SimpleMatch $taskMarker)){
  Get-Content -LiteralPath $taskLog -Tail 35

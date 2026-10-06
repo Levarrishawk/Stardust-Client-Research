@@ -1,0 +1,33 @@
+# Terrain point-target input host
+
+[TerrainPointTargetInputHost](../poc/Stardust.Godot/TerrainPointTargetInputHost.cs) is an actual Godot Node over the frozen [point-target input adapter](TERRAIN_POINT_TARGET_INPUT_CONTRACT.md). It borrows that adapter and a caller `Func<long>` clock reader. It owns configuration/callback references, counters and one latest managed diagnostic. It does not advance a clock, tick simulation, send network messages, build terrain or dispose any borrower. The caller owns the Node's final Free.
+
+## Configuration and event route
+
+Attach the host under a live parent in the intended viewport, then call `Configure(adapter, clock, maximumT = 1000)` once on its constructing managed thread and Godot main thread. MaximumT must be finite in 0..1e9. The exact host/parent must be alive, in the tree, not queued for deletion and in the same viewport. Configuration rejects a disposed adapter but performs no clock read, ray query or synthetic controller/target admission. Host-parent viewport admission is explicit; actual camera/marker and controller admission remains the child's responsibility on input. Callers must supply the adapter intended for this viewport and serialize ownership.
+
+`Dispatch(InputEvent input, CancellationToken cancellation = default)` returns true for an admitted pressed-left result and false for released-left, other buttons and motion. An open configured host and non-null input are required. Ignored input does not read the clock, inspect child admission or change counters, query, selection or diagnostic. A selected press checks live host/parent and cancellation, increments ClockReadCount just before calling the reader, checks caught callback reentry/liveness/cancellation, then passes that exact caller clock immediately to actual adapter HandleInput. It copies no controller checks and performs no independent admission query.
+
+Actual `_UnhandledInput` calls Dispatch and calls `GetViewport().SetInputAsHandled()` only after true. It increments HandledCount only after that call. AcceptedCount counts successful Dispatch calls, including direct calls; direct Dispatch does not mark the viewport handled. ClockReadCount counts reader invocations even if the reader throws. All inspections are owner/main-thread guarded and do not call the reader or child mutation methods.
+
+`LastDiagnostic` is one immutable latest record containing the exact actual child result, nullable failure type, nullable returned clock and whether the engine event boundary produced it. `LastResult` and `LastFailure` expose those fields. No exception message, stack or exception object is retained. Successful/ignored/preflight results do not create a history. A child admission failure can leave its existing LastResult unchanged; the host retains that exact existing reference rather than inventing a failed child receipt.
+
+## Failure and callback phases
+
+Direct Dispatch failures propagate. A selected routing failure records the exact child LastResult and failure type, marks the host faulted and disables unhandled-input processing. Already closed, faulted, unconfigured or null-input direct calls reject before routing without replacing its diagnostic. The actual Godot event boundary records failures, suppresses their escape into the engine callback, disables further host input and does not consume the failed event. There is no retry or implicit recovery; inspect LastFailure, then Close and create a new configured host when appropriate.
+
+Nested Dispatch, Configure or Close during a clock read sets a poison flag before throwing. A caller catching that exception cannot restore outer dispatch: the host checks the flag before invoking the adapter. This prevents the host's child pick/query/target work in that phase. Clock-reader external effects, including token cancellation, remain external prefixes and are not rolled back.
+
+Once actual adapter HandleInput has begun, Godot marker callbacks can reenter the host. The adapter has its own independent gate and can complete both its pick and target before the host observes its poisoned flag after the child returns. The host then faults and leaves AcceptedCount/HandledCount at their prior values while retaining the exact completed child result, including its new actual target. **Host failure is not proof that selection or target publication was prevented.** Child failures may instead retain the child's own partial pick prefix. Neither layer promises transactionality or borrower/marker rollback.
+
+## Terminal lifetime
+
+Close is owner-thread guarded, idempotent and terminal. It disables processing, drops adapter, reader and parent references and clears the diagnostic's child-result reference. Scalar counters, failure type, clock and terminal inspections remain available. It never disposes an adapter, picker, controller, world, store or terrain and never frees itself. External previously obtained immutable diagnostics remain caller-owned references.
+
+Actual `_ExitTree` closes the host. If exit occurs inside a busy caller callback, it poisons the outer operation and closes immediately; the later routing failure cannot repopulate a child-result reference on that closed host. Detach/reparent or parent Free therefore requires a new host to resume. The caller finally frees the Node; borrowed owners subsequently drain their own resources.
+
+## Reproduction and limits
+
+The [offline standalone runner](../poc/round67-tests/Rendering/Invoke-Picker.ps1) stages the exact accepted66 Core and three actual borrower sources from the verified Round67 baseline archive under a fresh ignored private run root. Only the new host and verification node are taken from the current checkout. Its [independent oracle](../poc/round67-tests/Rendering/verify_picker.py) reuses accepted Fraction geometry/camera projection and casts independently expected target X/Z to binary32; native hit/target fields do not seed expectations. It supplies an actual typed world/store, synthetic terrain, actual camera and actual Viewport.PushInput events without resource jobs.
+
+Tests use a later actual unhandled-input observer to prove propagation: ignored/failing events reach it with an unhandled flag; admitted host events suppress it. This avoids relying on the root window's post-PushInput handled flag outside the event lifetime. Headless/GPU numerical, callback-prefix, ownership and scope results are recorded in the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R67_POINT_INPUT_HOST.md). GPU diagnostic marker readback does not establish original rendering, picking or gameplay parity. Pause/clear-target behavior is outside this host milestone; no unfinished sibling API is consumed.
