@@ -15,6 +15,16 @@ public partial class ScenePumpedWorldPreview
         GD.Print("offline_completion_summary="+JsonSerializer.Serialize(new{Reason=completion.Reason.ToString(),completion.MaximumUpdates,
             completion.CompletedUpdates,completion.AttemptedUpdates,completion.Stopped,completion.Faulted,completion.Mode,completion.Speed,completion.TargetActive}));
         GD.Print("offline_root_completion_summary="+JsonSerializer.Serialize(roots));
+        if(offlineRestartConfigured){
+            // RecordConfiguredOutcome is called before disposal; this snapshot is actual configured state.
+            if(pointStarted&&pointConfigured&&configuredSessionOwner is not null&&offlineSessionInput is not null&&offlineFocus is not null&&
+                manualEventHost is not null&&runEventHost is not null&&cameraOrbitHost is not null&&pointEventHost is not null&&
+                suppliedTerrainRayQuery is not null&&visuals.Count==2)offlineRestartReachedReady=true;
+            offlineRestartSnapshot=new(completion.Reason.ToString(),completion.MaximumUpdates,completion.CompletedUpdates,completion.AttemptedUpdates,
+                roots.Drained,roots.QueueCount,roots.PendingMessages,roots.RetainedPackets,roots.CleanDrain&&completion.Reason is TerrainOfflineCompletionReason.BudgetCompleted or TerrainOfflineCompletionReason.FinishRequested or TerrainOfflineCompletionReason.Faulted,offlineRestartReachedReady,
+                false,-1,-1,-1,-1,calls,closed,null,"",false);
+            offlineOutcomeRecorded=true;return;
+        }
         offlineOutcomeHud=new();offlineOutcomeHud.Configure(this,()=>new TerrainOfflineOutcomeHudState(completion.Reason.ToString(),
             completion.CompletedUpdates,completion.MaximumUpdates,roots.Drained,roots.QueueCount,roots.PendingMessages,roots.RetainedPackets));
         GD.Print("offline_outcome_caption="+JsonSerializer.Serialize(new{Reason=completion.Reason.ToString(),Caption=offlineOutcomeHud.Caption,

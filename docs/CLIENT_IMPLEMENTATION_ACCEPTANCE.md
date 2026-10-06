@@ -1,5 +1,13 @@
 # Client implementation acceptance record
 
+## Current end-to-end gates (Round83)
+
+The oversight integration concern is valid. [Milestone plan](REPLACEMENT_CLIENT_MILESTONE_PLAN.md) separates component proofs from replacement-client gates. [Session](REPLACEMENT_CLIENT_SESSION_CONTRACT.md) now joins login → unique character/galaxy → fresh zone SOE → opaque ClientId → accepted permissions → one SelectCharacter and forwards a valid CmdStartScene unchanged. Lead independently replays actual sources and protected byte fixtures. No scene is created by this session, and no server accepted it.
+
+[Installation preflight](ORIGINAL_INSTALLATION_PREFLIGHT_CONTRACT.md) uses explicit root/config/logical resources and an owned configured overlay. Lead read-only original check matches48 mounts and the selected1974-byte player object; transitive appearance/terrain/player closure remains unverified. [Regression command](CLIENT_REGRESSION_RUNBOOK.md) now runs default Core plus later81/82/83 component suites; its full default passed on integrated sources, with original/Godot fixture suites explicitly skipped-unverified. Earlier native evidence remains valid, not replayed this round.
+
+Remaining: pinned two-port session I/O, session → world → Godot composition, complete dependency preparation, authoritative selected-player movement, outbound disconnect/server release, and controlled-server validation. [Plan](CONTROLLED_SERVER_VALIDATION_PLAN.md) is bounded and unexecuted. Local cleanup and synthetic bytes do not establish live interoperability. Four Low workers idle after one focused round.
+
 Updated: 2026-10-06. This record describes executable implementation checks,
 separately from research coverage, address naming, and the server packet inventory.
 No overall client completion percentage is assigned.
@@ -34,8 +42,8 @@ No overall client completion percentage is assigned.
 | Async login host | One pending receive across ticks, pinned IPv4/port, cancellation, retries, owned result and failure cleanup | Injected I/O tests; UDP adapter compiles but has not been instantiated or executed |
 | Persisted journal | Allowlisted bounded JSONL, whole-record limits, no-overwrite files, partial-I/O stop | Synthetic secrets absent; actual temporary file readback and failure fixtures |
 | Static mesh geometry | Owned unpadded IFF; MESH/0004-0005, SPS/0001, primitive/0000-0001, VTXA/0003 declaration 1105 | One original mesh: 9 batches, 190 vertices, 159 triangles; independent Python geometry hash |
-| Configured mounts/references | Explicit TREE/0005 mount owner; raw index keys and normalized requests; bounded SSHT/TXM external references | All 48 configured archives opened; one mesh's 9 shaders, 9 DDS envelopes and 1 EFCT resolve; no pixel/material decoding |
-| Godot hosting | Injected async login host transcript runs headlessly | Build and exit 0; root-certificate-store diagnostic remains in sandbox |
+| Configured mounts/references | Explicit TREE/0005 mount owner; raw index keys and normalized requests; bounded SSHT/TXM external references | All48 configured archives open. Later accepted [DDS decoding](DDS_DECODER_CONTRACT.md), material and original-resource GPU proofs extend this early reference check; full original runtime lighting remains open |
+| Godot hosting | Injected login and original-resource skeletal/interior/terrain presentation, input/motion and persistent offline scene ownership | Earlier native headless/GPU proofs include [Round82](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_82_2026-10-06.md); physical OS input and integrated live session remain unverified |
 
 ## Ownership and caller contract
 
@@ -1175,3 +1183,15 @@ separate. These gates do not measure whole-client completion.
 ## Round79 offline outcome and failure prefix
 
 [Joined checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R79_OFFLINE_OUTCOME.md). Configured preview now captures primitive actual completion/root-buffer reports and an owned outcome panel.401 headless/measured GPU updates retain32 clicks/33rd decline/25 holds/seven original events/39 protected roots. Separate128-click/129th-decline native join passes. Budget3 reports BudgetCompleted; strict terrain failure preserves225 completed/226 attempted updates/five events/23 roots, reports Faulted rather than successful stop, and drains all owners/actors. Unchanged12 passes. Original/live parity remains unverified. [Runbook](../docs/OFFLINE_PLAYGROUND_RUNBOOK.md).
+
+## Round80 persistent offline restart slice
+
+[Session](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_80_2026-10-06.md) and [joined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R80_RESTART_COMPOSITION.md). Four Low milestones add bounded configured-session/root restart owners, a persistent outcome/restart button and the13-byte conditional getter. Lead replays129 runtime checks/37 negatives,92 networking checks,94 headless/95 GPU display checks and19 static guards/eight getter fixtures. Joined headless/GPU each pass60 checks across two completed runs, a real completed1/attempted2 terrain fault and healthy recovery, four handshakes/three exact protected roots, rejected/retried factory and actual GUI replacement. Cleanup failure is terminal; damaged passive subtrees cannot dispatch. Version13 playground remains one-session; full persistent playground wiring is next. Getter returns this+C or01908090 without calls/writes; dynamic type, fallback contents, setter/lifetime remain Unknown. Research89/readiness94/function uncalibrated/2626 names/345 packet rows remain separate and unchanged. Four workers idle after this one round; heartbeat paused.
+
+## Round81 persistent full configured preview
+
+[Joined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R81_FULL_PLAYGROUND_RESTART.md). Actual original-resource terrain/actor/input/camera/world children restart only after full drain. Headless/GPU each pass401,401,225/226 strict terrain fault and401 recovery;1428 successful updates/140 protected roots/26 original events. Actual GUI factory rejection/retry and three replacements preserve outcomes until successor readiness; changed heldinput/orbit and clocks/latches/root state reset. Controlled active close through the interactive launcher retains31-update Incomplete prefix/three roots and exits after drain without a successor. Unchanged single-run normal/fault fixtures pass. Failed cleanup is terminal and retains its prefix. Physical OS pointer/close routing and live multiplayer remain unverified.
+
+## Round82 scenario entry and inspection
+
+[Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R82_SCENARIO_PLAYGROUND.md). Strict authored manifest validates bounded UTF8, exact duplicate-free fields, local input existence and explicit options before factory creation; returns defensive run arguments. Independent producer reseeds inherited protected profiles and records private identities. Actual Core/producer join preserves accepted context; original-resource headless/GPU each pass two three-update idle previews/fresh owners/drain/visible disabled cap. Synthetic owned Window.CloseRequested through actual manifest launcher retains31-update Incomplete prefix/three protected roots and drains without successor. Four malformed native launch cases reject before preview admission. New inspection checks52 headless/25 GPU; existing94/95 HUD and25 shell regression separate. Physical OS events, actual terrain fault through new manifest entry, missing-context preparation and live gameplay remain open. Private input existence is not an immutable content pin.

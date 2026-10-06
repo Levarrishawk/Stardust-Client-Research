@@ -68,8 +68,10 @@ public partial class ScenePumpedWorldPreview
             _=root.GetProperty("InvalidManualClock").GetBoolean();
         }
         if(pointRunHosted){
+            uint soeConnectionId=root.GetProperty("SoeConnectionId").GetUInt32();
+            uint soeSeed=root.GetProperty("SoeSeed").GetUInt32();
             Check((pointConfigured||root.GetProperty("WalkSpeedBits").GetUInt32()==0x40400000&&root.GetProperty("RunSpeedBits").GetUInt32()==0x40800000)
-                &&root.GetProperty("SoeConnectionId").GetUInt32()==0xF00D00DB&&root.GetProperty("SoeSeed").GetUInt32()==0xA1B2C3D4
+                &&(pointConfigured||soeConnectionId==0xF00D00DB&&soeSeed==0xA1B2C3D4)
                 &&root.GetProperty("SoeMaximumDatagram").GetInt32()==496&&root.GetProperty("SoeCrcWidth").GetInt32()==2
                 &&(pointInteractive||root.GetProperty("SoeAckHex").GetArrayLength()==9),"Explicit supplied speed and synthetic SOE policy");
             _=root.GetProperty("InvalidRunClock").GetBoolean();
@@ -105,6 +107,7 @@ public partial class ScenePumpedWorldPreview
         var start=pointDriver.State.DriverResult.Transform.Translation;
         GD.Print("point_target_ready="+JsonSerializer.Serialize(new{Start=new[]{start.X,start.Y,start.Z},Target=target is null?null:new[]{target.X,target.Z},Speed=speed,Radius=radius,
             TimestampMicroseconds=localClock,StepMicroseconds=10000,MaximumUpdates=OfflineMaximumUpdates,calls,closed,ActualTarget=target is not null,OriginalMovementParity=false}));
+        RecordOfflineFreshPreviewState();
     }
     private void ApplyPointCorrection()
     {

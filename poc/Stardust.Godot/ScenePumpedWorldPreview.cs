@@ -109,7 +109,7 @@ public partial class ScenePumpedWorldPreview : Node
         try
         {
             GetTree().AutoAcceptQuit=false;
-            var args=OS.GetCmdlineUserArgs();
+            var args=offlineRestartArguments??OS.GetCmdlineUserArgs();
             LoadSourcedInputArguments(args);
             LoadNominalSpeedArguments(args);
             LoadPointTargetArguments(args);
@@ -858,18 +858,24 @@ public partial class ScenePumpedWorldPreview : Node
             Native=new[]{expected.X,expected.Y,expected.Z},Engine=new[]{origin.X,origin.Y,origin.Z},Height=1.4f,
             CreateHex=Convert.ToHexString(SceneObjectLifecycleCodec.EncodeCreate(originalHuman.Resources.Create)),calls}));
     }
-    private void ScheduleFinish(){if(pointRequested&&!pointStarted&&phase==47){BeginPointTarget();return;}if(nominalRequested&&!nominalStarted&&phase==47){BeginNominalSpeed();return;}if(sourcedRequested && !sourcedStarted && phase==47){BeginSourcedInput();return;}finishing=true;CallDeferred(MethodName.Finish);}
+    private void ScheduleFinish(){if(pointRequested&&!pointStarted&&phase==47){BeginPointTarget();CaptureOfflineRestartReadiness();return;}if(nominalRequested&&!nominalStarted&&phase==47){BeginNominalSpeed();return;}if(sourcedRequested && !sourcedStarted && phase==47){BeginSourcedInput();return;}finishing=true;CallDeferred(MethodName.Finish);}
     public async void Finish()
+    {
+        if(offlineRestartConfigured){if(offlineRestartCleanupTask is not null)return;await StartOfflineCleanup(FinishCore);}
+        else await FinishCore();
+    }
+    private async Task FinishCore()
     {
         try {
             Check(cancel?calls==2 && entered==2:(phase==4 || phase==7 || phase==16 || phase==26 || phase==28 || phase==37 || phase==41 || phase==47 || phase==48 || phase==64 || phase==71 || phase==73) && frames>=7,"Continuous frame/lifecycle proof");
             if(motionCapture is not null) {
                 await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
                 await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
+                if(!OfflineContinuationAllowed)return;
                 using var image=GetViewport().GetTexture().GetImage();
                 if(image.SavePng(motionCapture)!=Error.Ok)throw new IOException("Motion capture");
             }
-            inputHost?.Close();CloseSourcedInput();CloseNominalSpeed();ClosePointTarget();await host!.CloseAsync();LogAcceptedLocomotionVisualCleanup();router?.Dispose();CloseSuppliedTerrain();
+            BeforeOfflineRetirement();inputHost?.Close();CloseSourcedInput();CloseNominalSpeed();ClosePointTarget();await host!.CloseAsync();if(!OfflineContinuationAllowed)return;LogAcceptedLocomotionVisualCleanup();router?.Dispose();CloseSuppliedTerrain();
             if(creature4Fixture is not null) {
                 Check(world!.RetainedCreatureView4FullBytes==0,"Private world state/journal drained");
                 GD.Print("creature4_full_cleanup="+JsonSerializer.Serialize(new{StateAndJournalBytes=0,Drained=true}));
@@ -912,11 +918,40 @@ public partial class ScenePumpedWorldPreview : Node
             if(nominalComplete)GD.Print("PASS: pumped nominal_speed=true supplied_rate=true retained_clamp=true original_resource_retained=true stopped=true drained=true");
             if(pointComplete)GD.Print(pointInteractive?"PASS: pumped point_target=true idle_start=true grounded=true scripted_correction=false stopped=true retained=true drained=true":"PASS: pumped point_target=true actual_camera_hit=true grounded=true full_correction=true stopped=true retained=true drained=true");
             if(sourcedComplete)GD.Print("PASS: pumped sourced_input=true explicit_source=true original_resource_chain=true stopped=true no_update_io=true drained=true");
-            GetTree().Quit();
-        } catch(Exception error) { await Fail(error); }
+            CompleteOfflineRestart(0);
+        } catch(Exception error) {if(offlineRestartConfigured)offlineFinishCleanupFailed=true;await FailCore(error);}
     }
     private async Task ObserveHost(){try{await host!.Completion;}catch(Exception error){await Fail(error);}}
-    private async Task Fail(Exception error)
+    private Task Fail(Exception error)
+    {
+        if(!offlineRestartConfigured)return FailCore(error);
+        if(offlineRestartDelivered||offlineRestartNativeExit)return Task.CompletedTask;
+        return StartOfflineCleanup(()=>FailCore(error));
+    }
+    private async Task FailCore(Exception error)
+    {
+        if(!offlineRestartConfigured){await FailDefault(error);return;}
+        if(!OfflineContinuationAllowed)return;
+        finishing=true;GD.PushError("Pumped world failed: "+error);
+        var failures=new List<string>();
+        void Attempt(Action cleanup,string label){try{cleanup();}catch(Exception failure){failures.Add(label+":"+failure.GetType().Name);GD.PushError(label+": "+failure);}}
+        Attempt(RecordConfiguredOutcome,"offline_outcome_capture_failed");
+        Attempt(BeforeOfflineRetirement,"before_retirement_failed");
+        foreach(var closeInput in new Action[]{()=>inputHost?.Close(),()=>CloseSourcedInput(),()=>CloseNominalSpeed(),()=>ClosePointTarget()})Attempt(closeInput,"Input cleanup");
+        Attempt(CloseSuppliedTerrain,"Terrain cleanup");
+        try{if(host is not null)await DrainOfflineFailureHost(error);else{pump?.Close();world?.Close();if(world is not null)await world.DrainCompletion;}}
+        catch(Exception cleanup){failures.Add("Pumped cleanup:"+cleanup.GetType().Name);GD.PushError("Pumped cleanup: "+cleanup);}
+        if(!OfflineContinuationAllowed)return;
+        bool expectedInputLoss=inputLoss&&phase==17&&inputHost?.LastState?.FaultType=="InvalidOperationException";
+        bool drained=(world is null||world.OutstandingJobs==0)&&closed==calls&&jobs.All(j=>j.IsCompleted);
+        GD.Print("pump_failure_cleanup="+JsonSerializer.Serialize(new{calls,closed,drained,expectedInputLoss,DriverFault=inputHost?.LastState?.FaultType,actors=pump?.Consumer.Count??0,CleanupFailures=failures.ToArray()}));
+        foreach(var cleanup in new Action[]{()=>CloseCreature4Partial(),()=>CloseCreature4Full(),()=>creature6FullRouter?.Dispose(),()=>creature6CompositeRouter?.Dispose(),()=>creature6Router?.Dispose(),()=>creature6Fixture?.Dispose(),()=>tangible6Router?.Dispose(),()=>tangible6Fixture?.Dispose(),()=>tangibleRouter?.Dispose(),()=>tangibleFixture?.Dispose(),()=>customizationAdapter?.Dispose(),()=>customizationRouter?.Dispose(),()=>customizationScalarRouter?.Dispose(),()=>fullCreatureRouter?.Dispose(),()=>extendedCreatureRouter?.Dispose(),()=>namedCreatureRouter?.Dispose(),()=>nameTables?.Clear(),()=>rawCustomizations?.Dispose(),()=>router?.Dispose(),()=>motions?.Dispose()})Attempt(cleanup,"Resource cleanup");
+        creature6Fixture=null;tangible6Fixture=null;tangibleFixture=null;nameTables=null;customizationDictionary=null;customizationRanges=null;customizationDirectory=null;authoredContext=null;customizationSource.Current=null;
+        Attempt(()=>wirePeer?.Clear(),"Wire cleanup");Attempt(()=>visuals.Clear(),"Visual history cleanup");Attempt(()=>motionPeer?.Clear(),"Motion history cleanup");Attempt(()=>Array.Clear(cfg),"Configuration cleanup");Attempt(()=>peer.Clear(),"Peer cleanup");Attempt(()=>environment?.Dispose(),"Environment cleanup");environment=null;
+        if(expectedInputLoss&&drained&&failures.Count==0)GD.Print("PASS: pumped input_loss=true driver_stopped=true cleanup_attempted=true drained=true");
+        CompleteOfflineRestart(expectedInputLoss&&drained&&failures.Count==0?0:1,error.GetType().FullName,string.Join("|",failures));
+    }
+    private async Task FailDefault(Exception error)
     {
         if(!finishing)finishing=true;
         GD.PushError("Pumped world failed: "+error);
@@ -936,8 +971,9 @@ public partial class ScenePumpedWorldPreview : Node
         else GetTree().Quit(1);
     }
     private static void Check(bool value,string name){if(!value)throw new InvalidDataException(name);}
-    public override void _Notification(int what){if(what==NotificationWMCloseRequest && !finishing)_=Fail(new OperationCanceledException("Window close"));}
+    public override void _Notification(int what){if(what==NotificationWMCloseRequest&&!offlineRestartConfigured&&!finishing)_=Fail(new OperationCanceledException("Window close"));}
     public override void _ExitTree(){
+        if(offlineRestartConfigured){OfflineRestartExited();return;}
         foreach(var close in new Action[]{()=>inputHost?.Close(),()=>CloseSourcedInput(),()=>CloseNominalSpeed(),()=>ClosePointTarget(),()=>pump?.Close(),()=>world?.Close(),()=>CloseCreature4Partial(),()=>CloseCreature4Full(),()=>creature6FullRouter?.Dispose(),()=>creature6CompositeRouter?.Dispose(),()=>creature6Router?.Dispose(),()=>creature6Fixture?.Dispose(),()=>tangible6Router?.Dispose(),()=>tangible6Fixture?.Dispose(),()=>tangibleRouter?.Dispose(),()=>tangibleFixture?.Dispose(),()=>customizationAdapter?.Dispose(),()=>customizationRouter?.Dispose(),()=>customizationScalarRouter?.Dispose(),()=>fullCreatureRouter?.Dispose(),()=>extendedCreatureRouter?.Dispose(),()=>namedCreatureRouter?.Dispose(),()=>nameTables?.Clear(),()=>rawCustomizations?.Dispose(),()=>router?.Dispose(),()=>motions?.Dispose()})
             try{close();}catch(Exception cleanup){GD.PushError("Exit cleanup: "+cleanup);}
         CloseSuppliedTerrain();visuals.Clear();motionPeer?.Clear();Array.Clear(cfg);environment?.Dispose();environment=null;

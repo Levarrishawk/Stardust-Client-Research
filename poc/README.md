@@ -1,5 +1,11 @@
 # Stardust Client Prototype
 
+## Current replacement-client path
+
+[Round83 session](../docs/REPLACEMENT_CLIENT_SESSION_CONTRACT.md) drives login enumeration through a fresh zone SOE connection, opaque authentication and permission-gated selection. [Explicit installation preflight](../docs/ORIGINAL_INSTALLATION_PREFLIGHT_CONTRACT.md) supplies reusable original root/config/resource admission. Run the [consolidated offline regressions](../docs/CLIENT_REGRESSION_RUNBOOK.md) to include newer accepted component tests absent from default Core smoke. Synthetic peers remain test inputs; no sockets or live interoperability are proved.
+
+Next: connect owned zone applications to SceneWorldCoordinator and Godot presentation, with phase-specific pinned injected I/O and complete original resource preparation. [Milestone gates](../docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md) and [controlled-server plan](../docs/CONTROLLED_SERVER_VALIDATION_PLAN.md) describe missing behavior and acceptance. Historical dated increments below remain evidence, not current next-task instructions.
+
 Round44 adds [received-only CREO4 scalar state](../docs/CREATURE_VIEW4_PARTIAL_STATE_CONTRACT.md)
 and a [43-check observer counterexample/kernel join](round44-tests/Integration/Program.cs).
 No complete baseline is fabricated; partial recipient storage and pre-end-baseline
@@ -873,3 +879,15 @@ The preview now consumes actual bounded engine-neutral [owned sparse evaluation]
 ## Round79 offline outcome and failure prefix
 
 [Joined checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R79_OFFLINE_OUTCOME.md). Configured preview now captures primitive actual completion/root-buffer reports and an owned outcome panel.401 headless/measured GPU updates retain32 clicks/33rd decline/25 holds/seven original events/39 protected roots. Separate128-click/129th-decline native join passes. Budget3 reports BudgetCompleted; strict terrain failure preserves225 completed/226 attempted updates/five events/23 roots, reports Faulted rather than successful stop, and drains all owners/actors. Unchanged12 passes. Original/live parity remains unverified. [Runbook](../docs/OFFLINE_PLAYGROUND_RUNBOOK.md).
+
+## Round80 restart lifecycle slice
+
+Bounded movement/root restart owners and a persistent outcome button pass independent component tests and a four-generation headless/GPU composition (two completed runs, terrain fault, healthy recovery). [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R80_RESTART_COMPOSITION.md). Factories are explicit, ownership is serialized and failed retirement is terminal. The existing playground remains one-session; integrating the reusable components into its persistent scene is next. No socket/live-server proof is claimed.
+
+## Round81 persistent full playground
+
+The full original-resource terrain/actor/input/camera preview now runs under a persistent outer shell and explicit interactive launcher. Old children drain and are freed before a successor; prior outcome remains until new resources/input are ready. [Runbook](../docs/OFFLINE_PLAYGROUND_RUNBOOK.md) and [evidence/reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R81_FULL_PLAYGROUND_RESTART.md). Four-run headless/GPU joins each pass1428 successful updates,140 protected roots and26 original events through two normal completions, strict terrain fault and recovery, actual GUI reject/retry and fresh input/camera/clock/transport reset. Controlled active close preserves31-update Incomplete prefix and drains. Existing one-run normal/fault behavior passes unchanged. Physical native-window input/close and live networking remain unverified; no socket is created.
+
+## Round82 named scenario and inspection
+
+The persistent playground accepts one explicit `--offline-scenario` file, compiled by engine-neutral strict admission into fresh run arguments. A private producer names existing input paths/options and reseeds each Version13 profile. [Runbook](../docs/OFFLINE_PLAYGROUND_RUNBOOK.md), [scenario contract](../docs/OFFLINE_SCENARIO_MANIFEST_CONTRACT.md) and [inspection contract](../docs/OFFLINE_PLAYGROUND_INSPECTION_CONTRACT.md). The visible panel retains actual historical outcome/cleanup counts; the run cap disables Restart and Close drains/exits. Original-resource headless/GPU each pass two three-update runs. Actual owned synthetic close through the manifest launcher preserves31-update Incomplete prefix/three protected roots and drains. Four invalid native admissions reject before a child. Physical OS routing and actual terrain fault through this new entry remain separate; full context inputs are still explicitly required. [Joined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R82_SCENARIO_PLAYGROUND.md).
