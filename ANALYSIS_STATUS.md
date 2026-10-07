@@ -2,11 +2,11 @@
 
 ## Current implementation priority
 
-[Round84](research/sessions/PARALLEL_DEVELOPMENT_ROUND_84_2026-10-06.md) joins login/enumeration, pinned injected I/O, zone authentication/selection, world readiness and typed selected-player state to original-resource Godot publication. Explicit installation/template/logical animation choices derive catalog and pins. Lead verifies the joined path headlessly and on GPU, independently checks protected exchanges and source identities, and verifies failure/cancellation drain. The peer and CREO3 remain authored; live interoperability is unproved.
+Round93 adds an explicit controlled-transport entry over the reusable installation/application/Godot host and a bounded redacted attempt receipt written after actual local drain or startup rollback. Default startup still refuses contact. Offline native headless/GPU replay verifies the same strict admission/composition with mandatory synthetic spy ports, protected exchanges, one approved original human, bounded movement, deadlines and disconnect. Run, cleanup, rollback and diagnostic failures remain distinct; standalone quit follows ownership completion. The real UDP constructor branch is compiled and source-reviewed, never executed.
 
-[Ordered gates](docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md) now prioritize complete server-shaped player baselines/lifecycle and nearby-object admission through the joined session, then authoritative movement and protocol disconnect/server release. The adapter supports one selected creature; arbitrary avatar/customization, populated zones and full procedural terrain readiness remain open. The [controlled-server plan](docs/CONTROLLED_SERVER_VALIDATION_PLAN.md) is unexecuted; these offline gates precede specific live authorization. Further playground polish and unnamed reverse-engineering probes are deferred. No executable function, research or test denominator measures replacement-client completion.
+Next: obtain operator-approved deployment/account access, explicit advertised hostname-to-IPv4 mappings/ports and client version, one existing supported outdoor human with measured CREO3/4/6 limits and original resource identity, and a bounded minimum-readiness scenario. Keep movement disabled unless fresh stamp/ready state, matching validated position and passable floor are established. Then request specific authorization for one bounded controlled attempt. No original executable, real socket, DNS/server contact or live interoperability has been verified. General avatar/customization, nearby actors, full terrain and server-observed authority/release remain open.
 
-Updated: 2026-10-06 (parallel development through Round84; research scores unchanged)
+Updated: 2026-10-07 (parallel development through Round93; research scores unchanged)
 
 Round44 lead review closes the received-only CREO4 kernel and its literal
 observer join, plus FSLP startup registration, one original FHGT/AHFR/FFRA

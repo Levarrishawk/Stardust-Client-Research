@@ -1,5 +1,7 @@
 # Active Object-Controller Schemas
 
+Round89 clarification of the historical0x13F row: “occupies scalar position” describes the current server callback cursor, not a recovered client packer overlay. The executable typed serializer emits four counter bytes and the actual sender queues a separate scalar0. [Lifecycle evidence](REPLACEMENT_TELEPORT_ACK_LIFECYCLE.md) preserves that discrepancy and the unclosed final wire extent. Fresh server scene-ready also clears teleporting; it is distinct from the full-transform-triggered ACK.
+
 Baseline: `C:\Stardust-DEV\Stardust.exe`, SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`; correlated against the local Stardust-3 server tree on 2026-09-11.
 
 ## Scope and cursor convention

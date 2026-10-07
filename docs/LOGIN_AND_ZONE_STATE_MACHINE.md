@@ -128,6 +128,8 @@ The automation client sends `SelectCharacter(uint64 oid)` and waits for final sc
 
 It rejects a scene start whose object ID differs from the selected character, sends `CmdSceneReady`, and marks the scene started. A later server `CmdSceneReady` marks it ready and releases the zone-in action.
 
+Round89 source clarification: current server SelectCharacter resets movement counter/client stamp0 and sets teleporting true; CmdSceneReadyCallback calls PlayerObject.notifySceneReady, which clears teleporting/load-screen/forced-transform before replying. This supports a modern origin0 policy after a verified fresh selection/readiness path, without a blanket0x13F ACK. Database validated-position refresh is an ordered task; readiness alone does not prove its completion/current-floor equality. [Teleport lifecycle contract](REPLACEMENT_TELEPORT_ACK_LIFECYCLE.md) separates normal scene readiness, received full-transform ACK triggers and the remaining final ACK wire-packing question.
+
 Between those signals the server may stream object creation, baselines, containment, controller, chat, and related messages. This stream belongs to Phase 2/3, not the narrow Phase 1 login POC.
 
 Direct Stardust.exe analysis now confirms the boundary more precisely:

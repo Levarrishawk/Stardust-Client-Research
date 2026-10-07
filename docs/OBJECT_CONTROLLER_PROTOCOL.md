@@ -2,6 +2,8 @@
 
 Baseline: `C:\Stardust-DEV\Stardust.exe`, image base `0x00400000`, SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`.
 
+Round89 lifecycle addition: [TeleportAck trigger and fresh readiness](REPLACEMENT_TELEPORT_ACK_LIFECYCLE.md) directly checks the0x13F typed four-byte serializer and player full-transform acknowledgement queue calls. Queue scalar0 is distinct from the typed incoming counter; current server consumes an unused first word after ID. Final acknowledgement wire extent/packer special cases remain Unknown. Normal fresh server CmdSceneReady clears teleporting separately, so registration alone does not justify an ACK on scene-ready.
+
 ## Why this envelope matters
 
 `ObjControllerMessage` / hash `0x80CE5E46` is a protocol-within-the-protocol. Movement, commands, targeting, trade initiation, object menus, crafting, image design, and much of Jump to Lightspeed use a shared outer message and a numeric inner type. Recovering this registry avoids treating each inner command as an unrelated packet.

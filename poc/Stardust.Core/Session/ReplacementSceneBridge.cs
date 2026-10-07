@@ -11,16 +11,21 @@ public sealed class ReplacementSceneBridge : IDisposable
     private readonly ReplacementClientSession session;
     private readonly SceneWorldCoordinator world;
     private readonly Func<CmdStartSceneMessage, CancellationToken, Task> minimumResources;
+    private readonly ReplacementSelectedPlayerIngress? selectedIngress;
+    private readonly ReplacementPlayerMotionSession? playerMotion;
     private CancellationTokenSource? cancellation;
     private Task? job;
     private Task drain = Task.CompletedTask;
     private bool bound, busy, disposed, failed;
     public ReplacementSceneBridge(ReplacementClientSession session, SceneWorldCoordinator world,
-        Func<CmdStartSceneMessage, CancellationToken, Task> minimumResources)
+        Func<CmdStartSceneMessage, CancellationToken, Task> minimumResources,
+        ReplacementSelectedPlayerIngress? selectedIngress = null, ReplacementPlayerMotionSession? playerMotion = null)
     {
         this.session = session ?? throw new ArgumentNullException(nameof(session));
         this.world = world ?? throw new ArgumentNullException(nameof(world));
         this.minimumResources = minimumResources ?? throw new ArgumentNullException(nameof(minimumResources));
+        this.selectedIngress = selectedIngress;
+        this.playerMotion = playerMotion;
     }
     public Task DrainCompletion => drain;
     public long Generation { get; private set; }
@@ -34,7 +39,9 @@ public sealed class ReplacementSceneBridge : IDisposable
             if (bound || session.SelectedObjectId == 0 || session.Phase is not
                 (ReplacementClientPhase.ZoneHandshake or ReplacementClientPhase.ZonePermissions or ReplacementClientPhase.Selected))
                 throw new InvalidOperationException("Admitted fresh zone selection required.");
-            Generation = world.BeginSelection(session.SelectedObjectId).Generation; bound = true;
+            Generation = world.BeginSelection(session.SelectedObjectId).Generation;
+            selectedIngress?.Bind(Generation, session.SelectedObjectId);
+            playerMotion?.Bind(Generation, session.SelectedObjectId); bound = true;
         }
         catch { Fail(); throw; }
         finally { busy = false; }
@@ -55,6 +62,9 @@ public sealed class ReplacementSceneBridge : IDisposable
                 if (session.Phase != ReplacementClientPhase.Selected || message.Length < 6 || message.Length > SoeClientTransport.MaximumMessageSize)
                     throw new InvalidDataException("Selected complete application required.");
                 uint opcode = BinaryPrimitives.ReadUInt32LittleEndian(message.AsSpan(2));
+                if (selectedIngress is not null && !selectedIngress.Route(Generation, message))
+                { unhandled.Add((byte[])message.Clone()); continue; }
+                if (playerMotion?.TryHandleIncoming(Generation, message) == true) continue;
                 if (!WorldMessage(opcode, message)) { unhandled.Add((byte[])message.Clone()); continue; }
                 if (!world.Accept(Generation, message)) throw new InvalidDataException("World application rejected.");
                 if (opcode == ZoneSceneProtocolCodec.CmdStartSceneOpcode)

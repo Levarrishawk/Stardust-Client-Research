@@ -1,5 +1,7 @@
 # Replacement session-to-world bridge
 
+Round86 adds optional borrowed `ReplacementPlayerMotionSession? playerMotion = null` after selectedIngress. BindSelection binds both to the admitted ID and new generation. ObserveExchange routes motion after selected ingress and before WorldMessage; selected full-root corrections are consumed even on a router decline, while unsupported or unrelated frames are copied to caller-owned remainder. Known malformed root/parent frames fail the bridge and close session/world. Default construction preserves earlier behavior. Normal bridge disposal leaves motion seam and its borrowed store alive. See the [motion session contract](REPLACEMENT_PLAYER_MOTION_SESSION_CONTRACT.md).
+
 ## Question, scope and evidence
 
 Can accepted login/zone application delivery bind one selected world generation, preserve staged lifecycle order, and emit one ready only after an explicit asynchronous minimum-resource provider succeeds? The bounded [ReplacementSceneBridge](../poc/Stardust.Core/Session/ReplacementSceneBridge.cs) does that using the existing SceneWorldCoordinator. It borrows session/world and owns only its minimum-resource job/cancellation. No Godot, terrain decoding, port or world implementation is added.
@@ -59,3 +61,9 @@ Set private APPDATA/NuGet.Config, DOTNET_CLI_HOME, existing exact offline NUGET_
 Observed result: zero-warning/error Core and test build;70 checks/18 rejection cases. Tests cover delayed readiness, exact wire, selected identity, ordered opaque staging, unhandled ownership, synchronous/faulted/canceled/ignoring-cancel jobs, duplicate start, wrong ID, early server ready, malformed baseline, failed barrier replay, stale generation, bind/phase errors, foreign thread/reentry, input budget and normal borrowed-owner preservation. QueueZoneApplication also exercises fragmented submission and rejects invalid short headers. Confidence Confirmed for these tested transitions and bytes; actual installed resource minimum policy, Godot actor publication and live server scene readiness remain separate.
 
 Exact next action: lead joins reviewed injected ports, installed selected-creature resources and presentation adapter, supplies a delayed explicit minimum-resource policy, and independently verifies one ready and full cleanup on the native selected-player path. Keep full terrain/surface parity, arbitrary customization, authority/movement and server-observed disconnect as separate gates.
+
+## Round85 optional selected-player ingress
+
+The constructor appends `ReplacementSelectedPlayerIngress? selectedIngress = null`. The bridge borrows it and binds it once to the admitted selected ID and world generation. It calls Route before its existing world classification. False returns an owned unhandled copy; true continues the original routing. Existing default behavior is unchanged. Normal bridge disposal does not dispose the ingress; the caller does so after bridge retirement. [Policy contract](REPLACEMENT_SELECTED_PLAYER_INGRESS_CONTRACT.md).
+
+With this bounded modern policy, unrelated lifecycle/envelopes never reach the selected catalog/world, and selected end-baselines requires observed CREO3/4/6 baseline envelopes. CREO1 and unsupported selected families/views are explicitly deferred. Observed presence is not typed completeness: existing world decoders remain authoritative, and a well-framed but invalid full4 body fails at staged barrier replay without ready. No complete CREO1/PLAY semantics or recovered dispatch rule is claimed.

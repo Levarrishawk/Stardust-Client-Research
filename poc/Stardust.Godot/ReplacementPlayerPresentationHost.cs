@@ -15,6 +15,7 @@ public partial class ReplacementPlayerPresentationHost : Node
     private SceneWorldPresentationPump? pump;
     private SceneWorldCoordinator? world;
     private Action<double>? update;
+    private ISceneWorldObjectMotionSource? motionSource;
     private Node? fixedParent;
     private Viewport? fixedViewport;
     private long generation;
@@ -31,15 +32,22 @@ public partial class ReplacementPlayerPresentationHost : Node
     public Task Completion => completion.Task;
     public ulong CompletedFrames { get { AssertOwner();return host?.CompletedFrames ?? frames; } }
     public Exception? Failure { get { AssertOwner();return host?.Failure ?? failure; } }
-    public bool PlayerPublished
+    public bool PlayerPublished => SelectedVisual?.CreatureVisual?.IsPublished == true;
+    public SceneWorldObjectVisual? SelectedVisual
     {
         get
         {
             AssertOwner();
             if (closing || nativeExit || host?.IsClosing != false || world?.Generation != generation ||
-                world.State is ZoneSceneTransitionState.Closed or ZoneSceneTransitionState.Failed) return false;
+                world.State is ZoneSceneTransitionState.Closed or ZoneSceneTransitionState.Failed) return null;
             // Borrow only during this observation; retain no actor, publication or resource reference.
-            return (pump!.Consumer.Find(selected) as SceneWorldObjectVisual)?.CreatureVisual?.IsPublished == true;
+            var presentation=pump!.Consumer.Find(selected);
+            var visual=presentation is SceneWorldObjectMotionVisual wrapper ? wrapper.IsRetired?null:wrapper.Inner : presentation as SceneWorldObjectVisual;
+            if(visual?.CreatureVisual is not { IsPublished:true, IsRetired:false })return null;
+            var root=visual.CreatureVisual.Root;
+            if(!GodotObject.IsInstanceValid(root)||!root.IsInsideTree()||root.IsQueuedForDeletion())return null;
+            var snapshot=world.Snapshots().SingleOrDefault(s=>s.Object.Handle.ObjectId==selected);
+            return snapshot is not null&&SceneWorldObjectVisual.Matches(world,visual.Publication,snapshot)?visual:null;
         }
     }
     private void Live()
@@ -58,7 +66,7 @@ public partial class ReplacementPlayerPresentationHost : Node
             world.Scene is { } scene && scene.ObjectId != selected)
             throw new InvalidDataException("Selected-player generation or identity changed; create a fresh adapter.");
     }
-    public void Configure(SceneWorldCoordinator world, ulong selectedObjectId, Action<double> updateSession)
+    public void Configure(SceneWorldCoordinator world, ulong selectedObjectId, Action<double> updateSession, ISceneWorldObjectMotionSource? motionSource=null)
     {
         AssertOwner();
         if (configuring || inUpdate) { reentered = true;throw new InvalidOperationException("Selected-player configuration reentry."); }
@@ -79,13 +87,17 @@ public partial class ReplacementPlayerPresentationHost : Node
         {
             candidate = new SceneWorldPresentationHost { Name = "SelectedPlayerProcessHost", DeferNativeExitClose = true };AddChild(candidate);Live();
             var visualFactory = new SceneWorldObjectVisualFactory(world, this);
+            this.motionSource=motionSource;
             accepted = new SceneWorldPresentationPump(world, (publication, snapshot) =>
             {
                 Boundary();
                 if (publication.Ticket.Handle.ObjectId != selected || snapshot.Object.Handle.ObjectId != selected ||
                     publication.Resources.Kind != SceneObjectResourceRecipe.CreatureDetail0)
                     throw new InvalidDataException("Bounded selected-creature adapter refuses unrelated publication.");
-                return visualFactory.Create(publication, snapshot);
+                var inner=visualFactory.Create(publication, snapshot);
+                if(this.motionSource is null||inner is null)return inner;
+                try{return new SceneWorldObjectMotionVisual(world,(SceneWorldObjectVisual)inner,this.motionSource);}
+                catch{inner.Dispose();throw;}
             }, new SceneWorldPresentationPumpPolicy(MaximumActors: 1));
             this.world = world;selected = selectedObjectId;generation = world.Generation;update = updateSession;
             candidate.Configure(accepted, BeforeStep);
@@ -94,7 +106,7 @@ public partial class ReplacementPlayerPresentationHost : Node
         }
         catch (Exception error)
         {
-            update = null;fixedParent = null;fixedViewport = null;
+            update = null;this.motionSource=null;fixedParent = null;fixedViewport = null;
             if (accepted is not null)
             {
                 // Construction has acquired pump/world ownership. Close this admitted prefix on engine failure.
@@ -117,7 +129,7 @@ public partial class ReplacementPlayerPresentationHost : Node
     }
     public void RequestClose()
     {
-        AssertOwner();if (closing) return;closing = true;update = null;
+        AssertOwner();if (closing) return;closing = true;update = null;motionSource=null;
         if (host is not null) _ = host.CloseAsync();
         else completion.TrySetResult(true);
     }
@@ -128,7 +140,7 @@ public partial class ReplacementPlayerPresentationHost : Node
         finally
         {
             // Managed state only: continuation may run after native exit while the Godot loop still drains.
-            frames = accepted.CompletedFrames;closing = true;update = null;world = null;fixedParent = null;fixedViewport = null;host = null;
+            frames = accepted.CompletedFrames;closing = true;update = null;motionSource=null;world = null;fixedParent = null;fixedViewport = null;host = null;
             if (failure is null) completion.TrySetResult(true);else completion.TrySetException(failure);
         }
     }

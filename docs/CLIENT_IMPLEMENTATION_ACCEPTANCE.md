@@ -1,12 +1,12 @@
 # Client implementation acceptance record
 
-## Current end-to-end gates (Round84)
+## Current end-to-end gates (Round93)
 
-[Round84 acceptance](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_84_2026-10-06.md) joins reusable session, pinned injected ports, world bridge, installation-derived human preparation and Godot publication. Lead replays sealed components and the actual joined headless/GPU path. Independent Python verifies protected auth/select/ready and original preparation, 39 loaded source identities and terrain hash; delayed readiness, cancellation/failure and local drain are executed. The default consolidated command includes twelve required suites. [Reproduce the join](../poc/round84-tests/Integration/README.md).
+Round93 adds an explicit controlled-transport entry over the reusable installation/application/Godot host and a bounded redacted attempt receipt written after actual local drain or startup rollback. Default startup still refuses contact. Offline native headless/GPU replay verifies the same strict admission/composition with mandatory synthetic spy ports, protected exchanges, one approved original human, bounded movement, deadlines and disconnect. Run, cleanup, rollback and diagnostic failures remain distinct; standalone quit follows ownership completion. The real UDP constructor branch is compiled and source-reviewed, never executed.
 
-The peer and typed CREO3 are authored; this one-creature adapter and PTAT decode provider do not establish full server baseline sets, arbitrary avatar/customization, populated zones or complete procedural readiness. Local close is distinct from protocol disconnect/server release. Native removal has a deferred teardown repair; direct active Free is a faulted abort. Close, await completion, then free/quit.
+Next: obtain operator-approved deployment/account access, explicit advertised hostname-to-IPv4 mappings/ports and client version, one existing supported outdoor human with measured CREO3/4/6 limits and original resource identity, and a bounded minimum-readiness scenario. Keep movement disabled unless fresh stamp/ready state, matching validated position and passable floor are established. Then request specific authorization for one bounded controlled attempt. No original executable, real socket, DNS/server contact or live interoperability has been verified. General avatar/customization, nearby actors, full terrain and server-observed authority/release remain open.
 
-[Current gates](REPLACEMENT_CLIENT_MILESTONE_PLAN.md): complete server-shaped player baseline/lifecycle and nearby-object admission, then authoritative movement and protocol disconnect before separately authorized controlled validation. No live interoperability or replacement-client completion percentage is inferred. Four Low workers idle after this one round.
+[Launch profile](REPLACEMENT_LAUNCH_PROFILE_CONTRACT.md), [run contract](REPLACEMENT_CLIENT_RUN_CONTRACT.md), [server movement prerequisites](REPLACEMENT_SERVER_MOVEMENT_ADMISSION.md) and [consolidated reproduction](CLIENT_REGRESSION_RUNBOOK.md) define the accepted boundaries. Asynchronous I/O failures can fault drain; successful final send followed by failed disposal remains a separate cleanup failure. The joined synchronous send error and cancellable timeout report typed failure and successful local drain.
 
 ## Verified boundaries
 

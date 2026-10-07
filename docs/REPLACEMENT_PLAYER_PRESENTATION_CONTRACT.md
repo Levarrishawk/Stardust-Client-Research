@@ -7,18 +7,21 @@ This adds no recovered executable behavior or live compatibility claim.
 connects one selected creature to the existing concrete
 [presentation pump](SCENE_WORLD_PRESENTATION_PUMP_CONTRACT.md) and
 [process host](SCENE_WORLD_PRESENTATION_HOST_CONTRACT.md).
-Its factory returns the ordinary `SceneWorldObjectVisual`; callers can borrow
-that concrete visual for existing movement wiring without another wrapper.
+Its default factory returns the ordinary `SceneWorldObjectVisual`. An optional
+borrowed motion source wraps that fresh result with the existing
+`SceneWorldObjectMotionVisual`; `SelectedVisual` exposes the current inner visual
+for caller observation in either mode.
 
 ## Public boundary
 
 ```csharp
 public partial class ReplacementPlayerPresentationHost : Godot.Node
 public void Configure(SceneWorldCoordinator world, ulong selectedObjectId,
-    Action<double> updateSession);
+    Action<double> updateSession, ISceneWorldObjectMotionSource? motionSource = null);
 public SceneWorldPresentationPump Pump { get; }
 public Task Completion { get; }
 public bool PlayerPublished { get; }
+public SceneWorldObjectVisual? SelectedVisual { get; }
 public ulong CompletedFrames { get; }
 public Exception? Failure { get; }
 public void RequestClose();
@@ -62,6 +65,23 @@ only after actual pump close, job drain and disposal, or faults after cleanup
 attempts. The adapter clears its update callback and managed world/parent/viewport
 references on completion. It retains the disposed concrete pump for borrowed
 primitive/empty-consumer observations.
+
+October 6, 2026 Round86 extension: the optional source preserves three-argument
+behavior. The consumer owns the motion wrapper, which owns its accepted inner;
+the caller owns the source/store. If wrapper construction fails, the adapter
+disposes the fresh factory result before propagating failure. It never disposes
+the borrowed source. Existing wrapper rules supply native-to-engine conversion,
+Height application, immutable revision checks and missing/foreign/stale fallback;
+this adapter introduces no motion math, interpolation, animation choice or cadence.
+
+`SelectedVisual` is a creating/main-thread borrowed observation. It returns only
+a current selected live creature visual, unwrapping `wrapper.Inner` when needed,
+and returns null before publication, after generation replacement, during close
+or after retirement. `PlayerPublished` uses this same boundary. Neither property
+caches an actor/resource. Do not retain or mutate a retired borrowed visual. The
+adapter clears its own callback/source references on close and completion;
+the wrapper retains its borrowed source only until actual pump cleanup. Await
+host completion before disposing the caller's motion store.
 
 The child host opts into `DeferNativeExitClose` before configuration. Removing
 the adapter from its parent stops admission and processing immediately, then
@@ -121,3 +141,20 @@ Consequence: the lead can configure this adapter after selection binding and
 join it to independently verified session/ports/original preparation, then run
 combined acceptance. Next action: execute that joined proof; this component
 alone establishes no live-server or total replacement-client coverage.
+
+Round86 [headless runner](../poc/round86-tests/Rendering/replay.py) uses the same
+explicit local runtime/cache/private-output arguments and requires
+`--asset-root ABS --config ABS`. GPU is reserved for lead acceptance. Its 104
+checks retain the 39 structural and 20 original-resource checks, then add actual
+`SceneWorldObjectMotionStore` local/authoritative publication, duplicate/older
+counter rejection, copied immutable rows, foreign incarnation and stale revision
+fallback, disposed-source fallback, borrowed thread guards, and four concrete
+cleanup cases: native removal, wrapper constructor failure, callback failure and
+generation replacement. The original source is decoded once for the selected
+object and reused as immutable CPU descriptors across fresh visuals; the two
+overlay-job counts include the separately prepared unrelated object, not archives.
+The independent verifier compares authored native positions against actual engine
+positions `(4,5,6)`, `(7,8,9)` and fallback `(1.5,2,3)` before accepting the receipt.
+Disposed-store fallback is a deliberate negative probe, not recommended shutdown
+ordering. Source/visual lifecycle claims are confirmed for these executed modern
+fixtures; actual session movement submission and lead GPU join remain separate.

@@ -16,8 +16,19 @@ public sealed class ReplacementDatagramPump : IDisposable
     private bool busy, disposed, zoneWaiting;
     private long clock = -1;
     private Task drain = Task.CompletedTask;
+    private long disconnectDeadline;
     public string? FailureType { get; private set; }
     public Task DrainCompletion => drain;
+    public bool DisconnectRequested { get; private set; }
+    public bool DisconnectSubmitted { get; private set; }
+    public bool DisconnectSendCompleted { get; private set; }
+
+    internal bool IsBoundTo(ReplacementClientSession candidate)
+    {
+        if (Environment.CurrentManagedThreadId != owner || busy)
+            throw new InvalidOperationException("Pump owner thread without reentry required.");
+        return !disposed && FailureType is null && active is not null && ReferenceEquals(session, candidate);
+    }
 
     private sealed class Lane(IDatagramPort port, DatagramPeer peer, ReplacementConnection connection)
     {
@@ -43,6 +54,34 @@ public sealed class ReplacementDatagramPump : IDisposable
     public void StartLogin(uint id, long now) => Operation(now, () => Capture(session.StartLogin(id, now)));
     public void Authenticate(string user, string password, long now) => Operation(now, () => Capture(session.Authenticate(user, password, now)));
 
+    public void BeginDisconnect(long now, long timeoutMilliseconds = 3000, ushort reasonWord = 0x0006)
+    {
+        Enter(null);
+        ReplacementClientExchange? exchange = null;
+        bool preparing = false;
+        try
+        {
+            EnsureActive(true);
+            if (DisconnectRequested) throw new InvalidOperationException("Disconnect already requested.");
+            if (now < 0 || now < clock) throw new ArgumentOutOfRangeException(nameof(now));
+            if (timeoutMilliseconds is <= 0 or > 30000) throw new ArgumentOutOfRangeException(nameof(timeoutMilliseconds));
+            long deadline = checked(now + timeoutMilliseconds);
+            if (active!.Connection != ReplacementConnection.Zone || session.Phase != ReplacementClientPhase.Selected
+                || !drain.IsCompleted) throw new InvalidOperationException("Selected zone with retired login required.");
+            drain.GetAwaiter().GetResult();
+            clock = now; preparing = true; exchange = session.CloseWithDisconnect(now, reasonWord);
+            Lane lane = active;
+            while (lane.Queue.TryDequeue(out byte[]? bytes))
+            { lane.Bytes -= bytes.Length; CryptographicOperations.ZeroMemory(bytes); }
+            foreach (var notice in notices) foreach (byte[] app in notice.ZoneApplications) CryptographicOperations.ZeroMemory(app);
+            notices.Clear();
+            TakeWire(exchange); exchange = null;
+            disconnectDeadline = deadline; DisconnectRequested = true; zoneWaiting = false;
+        }
+        catch (Exception error) { ClearWire(exchange); if (preparing) Fail(error); throw; }
+        finally { busy = false; }
+    }
+
     public void BeginZone(ulong oid, uint id, IDatagramPort zonePort, DatagramPeer zonePeer, long now)
     {
         Enter(now);
@@ -60,7 +99,7 @@ public sealed class ReplacementDatagramPump : IDisposable
             active = new(zonePort, zonePeer, ReplacementConnection.Zone); zoneWaiting = true;
             Retire(previous); Capture(exchange); exchange = null;
         }
-        catch (Exception error) { ClearWire(exchange); Fail(error); throw; }
+        catch (Exception error) { ClearWire(exchange); if (!DisconnectRequested) Fail(error); throw; }
         finally { busy = false; }
     }
 
@@ -68,7 +107,7 @@ public sealed class ReplacementDatagramPump : IDisposable
     {
         Enter(null);
         try { EnsureActive(); ArgumentNullException.ThrowIfNull(exchange); TakeWire(exchange); }
-        catch (Exception error) { ClearWire(exchange); Fail(error); throw; }
+        catch (Exception error) { ClearWire(exchange); if (!DisconnectRequested) Fail(error); throw; }
         finally { busy = false; }
     }
 
@@ -78,7 +117,8 @@ public sealed class ReplacementDatagramPump : IDisposable
         var result = new List<ReplacementClientExchange>();
         try
         {
-            EnsureActive();
+            EnsureActive(true);
+            if (DisconnectRequested) return TickDisconnect(now, result);
             if (zoneWaiting)
             {
                 if (!drain.IsCompleted) return Flush(result);
@@ -139,7 +179,7 @@ public sealed class ReplacementDatagramPump : IDisposable
     {
         Enter(now);
         try { EnsureActive(); action(); }
-        catch (Exception error) { Fail(error); throw; }
+        catch (Exception error) { if (!DisconnectRequested) Fail(error); throw; }
         finally { busy = false; }
     }
     private void Capture(ReplacementClientExchange exchange)
@@ -185,7 +225,39 @@ public sealed class ReplacementDatagramPump : IDisposable
         if (now is long value) { if (value < 0 || value < clock) throw new ArgumentOutOfRangeException(nameof(now)); clock = value; }
         busy = true;
     }
-    private void EnsureActive() { if (FailureType is not null || active is null) throw new InvalidOperationException("Active pump required."); }
+    private void EnsureActive(bool allowDisconnect = false)
+    {
+        if (FailureType is not null || active is null) throw new InvalidOperationException("Active pump required.");
+        if (DisconnectRequested && !allowDisconnect) throw new InvalidOperationException("Disconnect forbids new protocol work.");
+    }
+    private IReadOnlyList<ReplacementClientExchange> TickDisconnect(long now, List<ReplacementClientExchange> result)
+    {
+        if (now >= disconnectDeadline) throw new TimeoutException("Disconnect send deadline elapsed.");
+        Lane lane = active!;
+        if (lane.Receive is { IsCompleted: true })
+        {
+            var value = lane.Receive.GetAwaiter().GetResult(); lane.Receive = null;
+            CryptographicOperations.ZeroMemory(value.Bytes);
+        }
+        if (lane.Send is { IsCompleted: true })
+        {
+            lane.Send.GetAwaiter().GetResult();
+            CryptographicOperations.ZeroMemory(lane.Sending!); lane.Bytes -= lane.Sending!.Length;
+            lane.Sending = null; lane.Send = null;
+            if (DisconnectSubmitted)
+            {
+                DisconnectSendCompleted = true; active = null; disposed = true; Retire(lane);
+                return Flush(result);
+            }
+        }
+        if (lane.Send is null && lane.Queue.TryDequeue(out byte[]? bytes))
+        {
+            lane.Sending = bytes;
+            DisconnectSubmitted = true;
+            lane.Send = lane.Port.SendAsync(lane.Peer, bytes, lane.Cancellation.Token).AsTask();
+        }
+        return Flush(result);
+    }
     private void Fail(Exception error)
     {
         FailureType ??= error.GetType().Name;

@@ -63,7 +63,13 @@ public sealed class ReplacementClientSession : IDisposable
         var output = login!.Authenticate(username, password, nowMilliseconds);
         Change(ReplacementClientPhase.LoginResponses, nowMilliseconds); return LoginOutput([output]);
     });
-    public ReplacementClientExchange BeginZone(ulong objectId, uint zoneConnectionId, long nowMilliseconds) => Execute(nowMilliseconds, () =>
+    public ReplacementZoneSelection PreflightZone(ulong objectId, uint zoneConnectionId)
+    {
+        if (Environment.CurrentManagedThreadId != ownerThread || busy)
+            throw new InvalidOperationException("Session owner thread without reentry required.");
+        return SelectZone(objectId, zoneConnectionId);
+    }
+    private ReplacementZoneSelection SelectZone(ulong objectId, uint zoneConnectionId)
     {
         Require(ReplacementClientPhase.CharacterList);
         if (objectId == 0) throw new InvalidDataException("Nonzero selected identity required.");
@@ -84,9 +90,16 @@ public sealed class ReplacementClientSession : IDisposable
         if (status.Hostname.Contains('/') || status.Hostname.Contains('\\')
             || status.Hostname.Contains(':') && !System.Net.IPAddress.TryParse(status.Hostname, out _))
             throw new InvalidDataException("Host literal without URI or path required.");
+        return new(objectId, character.GalaxyId, new(status.Hostname, status.ZonePort));
+    }
+
+    public ReplacementClientExchange BeginZone(ulong objectId, uint zoneConnectionId, long nowMilliseconds) => Execute(nowMilliseconds, () =>
+    {
+        var selected = SelectZone(objectId, zoneConnectionId);
+        var session = login!.Session;
         credential = session.CopyCredentialBlob();
         if (credential.Length is < 4 or > 65536) throw new InvalidDataException("Bounded opaque credential required.");
-        ZoneEndpoint = new(status.Hostname, status.ZonePort); selectedObject = objectId;
+        ZoneEndpoint = selected.Endpoint; selectedObject = objectId;
         login.Dispose(); login = null;
         zoneHandshake = new(zone, Milliseconds(options.SessionRetryInterval), Milliseconds(options.SessionTimeout));
         byte[] request = zoneHandshake.Start(zoneConnectionId, options.RequestedMaximumDatagramSize, nowMilliseconds);
@@ -186,6 +199,19 @@ public sealed class ReplacementClientSession : IDisposable
     {
         Enter(null); try { Release(); Change(ReplacementClientPhase.Closed, lastClock); } finally { busy = false; }
     }
+    /// <summary>Prepares one owned zone disconnect, then releases local session state; does not send.</summary>
+    public ReplacementClientExchange CloseWithDisconnect(long nowMilliseconds, ushort reasonWord = 0x0006)
+        => Execute(nowMilliseconds, () =>
+        {
+            Require(ReplacementClientPhase.Selected);
+            byte[] wire = zone.CreateDisconnectDatagram(reasonWord);
+            try
+            {
+                var exchange = ZoneOutput([wire]);
+                Release(); Change(ReplacementClientPhase.Closed, nowMilliseconds); return exchange;
+            }
+            catch { CryptographicOperations.ZeroMemory(wire); throw; }
+        });
     private ReplacementClientExchange Execute(long clock, Func<ReplacementClientExchange> action)
     {
         Enter(clock);

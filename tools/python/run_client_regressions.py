@@ -22,6 +22,16 @@ DEFAULT_PROJECTS = [
     {'id': 'assets83-preflight', 'project': 'poc/round83-tests/Assets/Assets.csproj', 'args': ['{fixture}', '{receipt}']},
     {'id': 'runtime84-scene-bridge', 'project': 'poc/round84-tests/Runtime/Runtime.csproj', 'args': ['{fixture}']},
     {'id': 'assets84-creature-preparation', 'project': 'poc/round84-tests/Assets/Assets.csproj', 'args': ['{fixture}', '{receipt}']},
+    {'id': 'runtime85-selected-ingress', 'project': 'poc/round85-tests/Runtime/Runtime.csproj', 'args': ['{fixture}']},
+    {'id': 'runtime86-player-motion', 'project': 'poc/round86-tests/Runtime/Runtime.csproj', 'args': ['{fixture}']},
+    {'id': 'runtime87-disconnect', 'project': 'poc/round87-tests/Runtime/Runtime.csproj', 'args': ['{fixture}']},
+    {'id': 'runtime88-client-run', 'project': 'poc/round88-tests/Runtime/Runtime.csproj', 'args': ['{fixture}']},
+    {'id': 'runtime89-client-application', 'project': 'poc/round89-tests/Runtime/Runtime.csproj', 'args': ['{fixture}']},
+    {'id': 'runtime90-controlled-movement', 'project': 'poc/round90-tests/Runtime/Runtime.csproj', 'args': ['{fixture}']},
+    {'id': 'runtime91-endpoint-approval', 'project': 'poc/round91-tests/Runtime/Runtime.csproj', 'args': ['{fixture}']},
+    {'id': 'networking91-endpoint-handoff', 'project': 'poc/round91-tests/Networking/Networking.csproj', 'args': ['{fixture}']},
+    {'id': 'runtime92-controlled-launch', 'project': 'poc/round92-tests/Runtime/Runtime.csproj', 'args': ['{fixture}']},
+    {'id': 'assets88-launch-profile', 'project': 'poc/round88-tests/Assets/Assets.csproj', 'args': ['{fixture}', '{receipt}']},
 ]
 PYTHON_SUITES = [
     ('runtime81-verifier', 'poc/round81-tests/Runtime/test_verifier.py', []),
@@ -100,9 +110,19 @@ def projects_from(path):
             raise ValueError('Bounded literal argument array required')
         placeholders = ('{output}', '{profile}', '{fixture}') if (ident, project) in (
             ('runtime83-session', 'poc/round83-tests/Runtime/Runtime.csproj'),
-            ('runtime84-scene-bridge', 'poc/round84-tests/Runtime/Runtime.csproj')) else ('{output}', '{profile}')
+            ('runtime84-scene-bridge', 'poc/round84-tests/Runtime/Runtime.csproj'),
+            ('runtime85-selected-ingress', 'poc/round85-tests/Runtime/Runtime.csproj'),
+            ('runtime86-player-motion', 'poc/round86-tests/Runtime/Runtime.csproj'),
+            ('runtime87-disconnect', 'poc/round87-tests/Runtime/Runtime.csproj'),
+            ('runtime88-client-run', 'poc/round88-tests/Runtime/Runtime.csproj'),
+            ('runtime89-client-application', 'poc/round89-tests/Runtime/Runtime.csproj'),
+            ('runtime90-controlled-movement', 'poc/round90-tests/Runtime/Runtime.csproj'),
+            ('runtime92-controlled-launch', 'poc/round92-tests/Runtime/Runtime.csproj'),
+            ('networking91-endpoint-handoff', 'poc/round91-tests/Networking/Networking.csproj'),
+            ('runtime91-endpoint-approval', 'poc/round91-tests/Runtime/Runtime.csproj')) else ('{output}', '{profile}')
         if (ident, project) in (('assets83-preflight', 'poc/round83-tests/Assets/Assets.csproj'),
-                               ('assets84-creature-preparation', 'poc/round84-tests/Assets/Assets.csproj')):
+                               ('assets84-creature-preparation', 'poc/round84-tests/Assets/Assets.csproj'),
+                               ('assets88-launch-profile', 'poc/round88-tests/Assets/Assets.csproj')):
             placeholders = ('{fixture}', '{receipt}')
         if any('{' in a or '}' in a for a in args if a not in placeholders):
             raise ValueError('Only whole output/profile placeholders allowed')
@@ -237,6 +257,16 @@ def stage_sources(root, workspace):
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_bytes(raw)
                 rows.append({'path': relative.as_posix(), 'sha256': hashlib.sha256(raw).hexdigest(), 'bytes': len(raw)})
+    # The accepted PTAT fixture author imports the archive CRC helper outside
+    # tools/python. Preserve this exact dependency and its identity too.
+    source = root / 'tools/tre_crc_vectors.py'
+    no_links(source)
+    if source.is_file():
+        raw = source.read_bytes()
+        target = workspace / 'tools/tre_crc_vectors.py'
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(raw)
+        rows.append({'path': 'tools/tre_crc_vectors.py', 'sha256': hashlib.sha256(raw).hexdigest(), 'bytes': len(raw)})
     return rows
 
 
@@ -321,6 +351,16 @@ def execute(args, root=ROOT):
             assets83 = ident == 'assets83-preflight'
             runtime84 = ident == 'runtime84-scene-bridge'
             assets84 = ident == 'assets84-creature-preparation'
+            runtime85 = ident == 'runtime85-selected-ingress'
+            runtime86 = ident == 'runtime86-player-motion'
+            runtime87 = ident == 'runtime87-disconnect'
+            runtime88 = ident == 'runtime88-client-run'
+            runtime89 = ident == 'runtime89-client-application'
+            runtime90 = ident == 'runtime90-controlled-movement'
+            runtime91 = ident == 'runtime91-endpoint-approval'
+            networking91 = ident == 'networking91-endpoint-handoff'
+            runtime92 = ident == 'runtime92-controlled-launch'
+            assets88 = ident == 'assets88-launch-profile'
             if runtime83:
                 if row['project'] != 'poc/round83-tests/Runtime/Runtime.csproj' or row['args'] != ['{fixture}']:
                     raise ValueError('runtime83-session requires its exact fixture/native/verify pipeline')
@@ -341,7 +381,60 @@ def execute(args, root=ROOT):
                     raise ValueError('assets84-creature-preparation requires its exact fixture/native/verify pipeline')
                 call(ident + '-fixtures', [str(python), str(workspace / 'poc/round84-tests/Assets/peer.py'), 'generate', str(result_root / ident)], workspace)
                 fixture = result_root / ident / 'fixtures.json'
-            artifacts = output / 'artifacts' / ident
+            if runtime85:
+                if row['project'] != 'poc/round85-tests/Runtime/Runtime.csproj' or row['args'] != ['{fixture}']:
+                    raise ValueError('runtime85-selected-ingress requires its exact fixture/native/verify pipeline')
+                fixture = result_root / 'runtime85-fixtures-before-native.json'
+                call(ident + '-fixtures', [str(python), str(workspace / 'poc/round85-tests/Runtime/fixtures.py'), '--out', str(fixture)], workspace)
+            if runtime86:
+                if row['project'] != 'poc/round86-tests/Runtime/Runtime.csproj' or row['args'] != ['{fixture}']:
+                    raise ValueError('runtime86-player-motion requires its exact fixture/native/verify pipeline')
+                fixture = result_root / 'runtime86-fixtures-before-native.json'
+                call(ident + '-fixtures', [str(python), str(workspace / 'poc/round86-tests/Runtime/fixtures.py'), '--out', str(fixture)], workspace)
+            if runtime87:
+                if row['project'] != 'poc/round87-tests/Runtime/Runtime.csproj' or row['args'] != ['{fixture}']:
+                    raise ValueError('runtime87-disconnect requires its exact fixture/native/verify pipeline')
+                fixture = result_root / 'runtime87-fixtures-before-native.json'
+                call(ident + '-fixtures', [str(python), str(workspace / 'poc/round87-tests/Runtime/fixtures.py'), '--out', str(fixture)], workspace)
+            if runtime88:
+                if row['project'] != 'poc/round88-tests/Runtime/Runtime.csproj' or row['args'] != ['{fixture}']:
+                    raise ValueError('runtime88-client-run requires its exact fixture/native/verify pipeline')
+                fixture = result_root / 'runtime88-fixtures-before-native.json'
+                call(ident + '-fixtures', [str(python), str(workspace / 'poc/round88-tests/Runtime/fixtures.py'), '--out', str(fixture)], workspace)
+            if runtime89:
+                if row['project'] != 'poc/round89-tests/Runtime/Runtime.csproj' or row['args'] != ['{fixture}']:
+                    raise ValueError('runtime89-client-application requires its exact fixture/native/verify pipeline')
+                fixture = result_root / 'runtime89-fixtures-before-native.json'
+                call(ident + '-fixtures', [str(python), str(workspace / 'poc/round89-tests/Runtime/fixtures.py'), '--out', str(fixture)], workspace)
+            if runtime90:
+                if row['project'] != 'poc/round90-tests/Runtime/Runtime.csproj' or row['args'] != ['{fixture}']:
+                    raise ValueError('runtime90-controlled-movement requires its exact fixture/native/verify pipeline')
+                fixture = result_root / 'runtime90-fixtures-before-native.json'
+                call(ident + '-fixtures', [str(python), str(workspace / 'poc/round90-tests/Runtime/fixtures.py'), '--out', str(fixture)], workspace)
+            if runtime91:
+                if row['project'] != 'poc/round91-tests/Runtime/Runtime.csproj' or row['args'] != ['{fixture}']:
+                    raise ValueError('runtime91-endpoint-approval requires its exact fixture/native/verify pipeline')
+                fixture = result_root / 'runtime91-endpoint-approval-fixtures-before-native.json'
+                call(ident + '-fixtures', [str(python), str(workspace / 'poc/round91-tests/Runtime/fixtures.py'), '--out', str(fixture)], workspace)
+            if networking91:
+                if row['project'] != 'poc/round91-tests/Networking/Networking.csproj' or row['args'] != ['{fixture}']:
+                    raise ValueError('networking91-endpoint-handoff requires its exact fixture/native/verify pipeline')
+                fixture = result_root / 'networking91-endpoint-handoff-fixtures-before-native.json'
+                call(ident + '-fixtures', [str(python), str(workspace / 'poc/round91-tests/Networking/fixtures.py'), '--out', str(fixture)], workspace)
+            if runtime92:
+                if row['project'] != 'poc/round92-tests/Runtime/Runtime.csproj' or row['args'] != ['{fixture}']:
+                    raise ValueError('runtime92-controlled-launch requires its exact fixture/native/verify pipeline')
+                fixture = result_root / 'runtime92-fixtures-before-native.json'
+                call(ident + '-fixtures', [str(python), str(workspace / 'poc/round92-tests/Runtime/fixtures.py'), '--out', str(fixture)], workspace)
+            if assets88:
+                if row['project'] != 'poc/round88-tests/Assets/Assets.csproj' or row['args'] != ['{fixture}', '{receipt}']:
+                    raise ValueError('assets88-launch-profile requires its exact fixture/native/verify pipeline')
+                call(ident + '-fixtures', [str(python), str(workspace / 'poc/round88-tests/Assets/peer.py'), 'generate', str(result_root / ident)], workspace)
+                fixture = result_root / ident / 'fixtures.json'
+            # Compact private build paths avoid Windows path limits when a
+            # regression runner is itself staged beneath a consolidated run.
+            # Suite identity remains in command labels and report entries.
+            artifacts = output / 'artifacts' / str(rows.index(row))
             call(ident + '-build', [str(dotnet), 'build', str(project), '--artifacts-path', str(artifacts), '--configfile', str(config),
                                   '-p:NuGetAudit=false', '-p:UseSharedCompilation=false', '-p:UseAppHost=false', '-p:TreatWarningsAsErrors=true', '--nologo'], workspace)
             # AssemblyName may differ from the project filename; inspect the isolated output.
@@ -362,6 +455,36 @@ def execute(args, root=ROOT):
                                         '--result', native['log'], '--out', str(result_root / 'runtime84-verified.json')], workspace)
             if assets84:
                 call(ident + '-verify', [str(python), str(workspace / 'poc/round84-tests/Assets/peer.py'), 'verify', str(result_root / ident)], workspace)
+            if runtime85:
+                call(ident + '-verify', [str(python), str(workspace / 'poc/round85-tests/Runtime/verify.py'), '--fixtures', str(fixture),
+                                        '--result', native['log'], '--out', str(result_root / 'runtime85-verified.json')], workspace)
+            if runtime86:
+                call(ident + '-verify', [str(python), str(workspace / 'poc/round86-tests/Runtime/verify.py'), '--fixtures', str(fixture),
+                                        '--result', native['log'], '--out', str(result_root / 'runtime86-verified.json')], workspace)
+            if runtime87:
+                call(ident + '-verify', [str(python), str(workspace / 'poc/round87-tests/Runtime/verify.py'), '--fixtures', str(fixture),
+                                        '--result', native['log'], '--out', str(result_root / 'runtime87-verified.json')], workspace)
+            if runtime88:
+                call(ident + '-verify', [str(python), str(workspace / 'poc/round88-tests/Runtime/verify.py'), '--fixtures', str(fixture),
+                                        '--result', native['log'], '--out', str(result_root / 'runtime88-verified.json')], workspace)
+            if runtime89:
+                call(ident + '-verify', [str(python), str(workspace / 'poc/round89-tests/Runtime/verify.py'), '--fixtures', str(fixture),
+                                        '--result', native['log'], '--out', str(result_root / 'runtime89-verified.json')], workspace)
+            if runtime90:
+                call(ident + '-verify', [str(python), str(workspace / 'poc/round90-tests/Runtime/verify.py'), '--fixtures', str(fixture),
+                                        '--result', native['log'], '--out', str(result_root / 'runtime90-verified.json')], workspace)
+            if runtime91:
+                call(ident + '-verify', [str(python), str(workspace / 'poc/round91-tests/Runtime/verify.py'), '--fixtures', str(fixture),
+                                        '--result', native['log'], '--out', str(result_root / 'runtime91-endpoint-approval-verified.json')], workspace)
+            if networking91:
+                call(ident + '-verify', [str(python), str(workspace / 'poc/round91-tests/Networking/verify.py'), '--fixtures', str(fixture),
+                                        '--result', native['log'], '--out', str(result_root / 'networking91-endpoint-handoff-verified.json')], workspace)
+                call(ident + '-negative-verifier', [str(python), str(workspace / 'poc/round91-tests/Networking/test.py'), '--fixtures', str(fixture), '--result', native['log']], workspace)
+            if runtime92:
+                call(ident + '-verify', [str(python), str(workspace / 'poc/round92-tests/Runtime/verify.py'), '--fixtures', str(fixture),
+                                        '--result', native['log'], '--out', str(result_root / 'runtime92-verified.json')], workspace)
+            if assets88:
+                call(ident + '-verify', [str(python), str(workspace / 'poc/round88-tests/Assets/peer.py'), 'verify', str(result_root / ident)], workspace)
             suite['status'] = 'passed'
         for ident, script, literals in python_suites:
             suite = next(item for item in report['suites'] if item['id'] == ident)

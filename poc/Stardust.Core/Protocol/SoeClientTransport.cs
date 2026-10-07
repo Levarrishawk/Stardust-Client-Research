@@ -44,6 +44,17 @@ public sealed class SoeClientTransport
     public int RetainedOutboundPackets => reliable.Sum(channel => channel.RetainedCount);
     public int PendingMessageCount => pending.Count(message => message is not null);
 
+    /// <summary>Owned unsequenced disconnect; trailing reason bits have no inferred semantics.</summary>
+    public byte[] CreateDisconnectDatagram(ushort reasonWord = 0x0006)
+    {
+        RequireEstablished();
+        Span<byte> packet = stackalloc byte[8]; packet[0] = 0; packet[1] = 5;
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt32BigEndian(packet[2..], connectionId);
+        System.Buffers.Binary.BinaryPrimitives.WriteUInt16BigEndian(packet[6..], reasonWord);
+        try { return SoeDatagramCodec.EncodeUncompressed(packet, seed, crcWidth, maximumDatagramSize); }
+        finally { CryptographicOperations.ZeroMemory(packet); }
+    }
+
     /// <summary>Owns one bounded message per channel until its fragments enter the send window.</summary>
     public void QueueReliableMessage(ReadOnlySpan<byte> applicationPayload, int channel = 0)
     {

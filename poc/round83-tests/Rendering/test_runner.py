@@ -85,10 +85,39 @@ class Tests(unittest.TestCase):
 
     def test_optional_skips_are_unverified(self):
         self.assertEqual([v['id'] for v in runner.DEFAULT_PROJECTS][2:],
-                         ['runtime83-session', 'assets83-preflight', 'runtime84-scene-bridge', 'assets84-creature-preparation'])
+                         ['runtime83-session', 'assets83-preflight', 'runtime84-scene-bridge', 'assets84-creature-preparation',
+                          'runtime85-selected-ingress', 'runtime86-player-motion', 'runtime87-disconnect',
+                          'runtime88-client-run', 'runtime89-client-application', 'runtime90-controlled-movement', 'runtime91-endpoint-approval', 'networking91-endpoint-handoff', 'runtime92-controlled-launch', 'assets88-launch-profile'])
         self.assertIn('networking83-authentication', [v[0] for v in runner.PYTHON_SUITES])
         self.assertIn('networking84-injected-pump', [v[0] for v in runner.PYTHON_SUITES])
         self.assertTrue(any(v[0] == 'rendering80-84-godot' for v in runner.OPTIONAL))
+
+
+def load_tests(loader, tests, pattern):
+    # Round85 adds actual-process orchestration surrogates to this required suite.
+    # They do not stand in for the separate required Runtime85 Core test project.
+    path = ROOT / 'poc/round85-tests/Rendering/test_pipeline.py'
+    pipeline_spec = importlib.util.spec_from_file_location('runner85_pipeline_tests', path)
+    module = importlib.util.module_from_spec(pipeline_spec)
+    pipeline_spec.loader.exec_module(module)
+    tests.addTests(loader.loadTestsFromModule(module))
+    path86 = ROOT / 'poc/round86-tests/Rendering/test_pipeline.py'
+    spec86 = importlib.util.spec_from_file_location('runner86_pipeline_tests', path86)
+    module86 = importlib.util.module_from_spec(spec86)
+    spec86.loader.exec_module(module86)
+    tests.addTests(loader.loadTestsFromModule(module86))
+    path87 = ROOT / 'poc/round87-tests/Rendering/test_pipeline.py'
+    spec87 = importlib.util.spec_from_file_location('runner87_pipeline_tests', path87)
+    module87 = importlib.util.module_from_spec(spec87)
+    spec87.loader.exec_module(module87)
+    tests.addTests(loader.loadTestsFromModule(module87))
+    for name in ('test_pipeline.py', 'test_validation.py'):
+        path88 = ROOT / 'poc/round88-tests/Rendering' / name
+        spec88 = importlib.util.spec_from_file_location('runner88_' + Path(name).stem, path88)
+        module88 = importlib.util.module_from_spec(spec88)
+        spec88.loader.exec_module(module88)
+        tests.addTests(loader.loadTestsFromModule(module88))
+    return tests
 
 
 if __name__ == '__main__':
