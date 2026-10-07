@@ -44,6 +44,7 @@ public sealed class ReplacementClientSession : IDisposable
     public string? FailureType { get; private set; }
     public int DiagnosticFailures { get; private set; }
     public int SelectionSubmissions { get; private set; }
+    public ulong SelectedObjectId => selectedObject;
     public int CredentialLength => credential?.Length ?? login?.Session.CredentialLength ?? 0;
     public int ZonePendingMessages => zone.PendingMessageCount;
     public int ZoneRetainedPackets => zone.RetainedOutboundPackets;
@@ -168,6 +169,19 @@ public sealed class ReplacementClientSession : IDisposable
         var output = zone.GetRetransmissionDatagrams(nowMilliseconds, Milliseconds(options.ReliableRetransmitInterval)).ToList();
         output.AddRange(zone.PumpQueuedDatagrams(nowMilliseconds)); return ZoneOutput(output);
     });
+    public ReplacementClientExchange QueueZoneApplication(ReadOnlySpan<byte> application, long nowMilliseconds)
+    {
+        Enter(nowMilliseconds);
+        try
+        {
+            Require(ReplacementClientPhase.Selected);
+            if (application.Length < 6) throw new InvalidDataException("Complete application header required.");
+            zone.QueueReliableMessage(application);
+            return ZoneOutput(zone.PumpQueuedDatagrams(nowMilliseconds));
+        }
+        catch (Exception error) { Fault(error); throw; }
+        finally { busy = false; }
+    }
     public void Dispose()
     {
         Enter(null); try { Release(); Change(ReplacementClientPhase.Closed, lastClock); } finally { busy = false; }

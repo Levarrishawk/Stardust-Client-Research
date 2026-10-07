@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Godot;
 using Stardust.Core.Session;
@@ -20,6 +21,14 @@ public partial class SceneWorldPresentationHost : Node
     private Viewport? fixedStepViewport;
     private bool scheduledFrame,scheduledConfiguration,scheduledReentered;
     private bool configured, configuring, closing, inFrame, drainFinished;
+    private bool deferNativeExitClose;
+    private SynchronizationContext? nativeExitContext;
+    /// <summary>Opt-in before Configure: native exit latches close, then dispatches pump cleanup after tree removal.</summary>
+    public bool DeferNativeExitClose
+    {
+        get { OwnerThread();return deferNativeExitClose; }
+        set { MutableCallbacks();if(configured)throw new InvalidOperationException("Native-exit policy is fixed before configuration.");deferNativeExitClose=value; }
+    }
     public Task Completion => completion.Task;
     public Exception? Failure { get; private set; }
     public bool IsClosing => closing;
@@ -65,6 +74,8 @@ public partial class SceneWorldPresentationHost : Node
             if (!GodotObject.IsInstanceValid(this) || !IsInsideTree() || GetParent() is not { } parent ||
                 !GodotObject.IsInstanceValid(parent) || !parent.IsInsideTree()) throw new InvalidOperationException("Live parent required before configuration.");
             if (pump.DrainCompletion is null) throw new ArgumentException("Pump must expose drain completion.", nameof(pump));
+            var exitContext=deferNativeExitClose?SynchronizationContext.Current:null;
+            if(deferNativeExitClose&&exitContext is null)throw new InvalidOperationException("Deferred native exit requires the live Godot main-thread synchronization context.");
             if (closing) throw new InvalidOperationException("Host closed during configuration.");
             if(scheduledConfiguration&&(scheduledReentered||!GodotObject.IsInstanceValid(this)||!IsInsideTree()||
                 IsQueuedForDeletion()||!GodotObject.IsInstanceValid(parent)||!parent.IsInsideTree()||parent.IsQueuedForDeletion()||GetParent()!=parent))
@@ -72,6 +83,7 @@ public partial class SceneWorldPresentationHost : Node
             // All rejection checks precede ownership transfer. The caller retains rejected pumps.
             SetProcess(true);
             this.pump = pump; this.beforeStep = beforeStep; configured = true;
+            nativeExitContext=exitContext;
             this.fixedStepSchedule=fixedStepSchedule;this.fixedStepSeconds=fixedStepSeconds;this.continueFixedSteps=continueFixedSteps;
             if(fixedStepSchedule is not null){fixedStepParent=parent;fixedStepViewport=GetViewport();}
         }
@@ -151,8 +163,14 @@ public partial class SceneWorldPresentationHost : Node
         if (closing) return;
         closing = true; SetProcess(false); beforeStep = null; frameCompleted = null;
         fixedStepSchedule=null;continueFixedSteps=null;fixedStepParent=null;fixedStepViewport=null;
+        nativeExitContext=null;
         var owned = pump; pump = null;
         if (owned is null) { Finish(); return; }
+        CloseOwned(owned);
+    }
+    private void CloseOwned(ISceneWorldPresentationPump owned)
+    {
+        OwnerThread();
         try { owned.Close(); } catch (Exception closeError) { Remember(closeError); }
         Task drain;
         try { drain = owned.DrainCompletion ?? throw new InvalidOperationException("Pump lost drain completion."); }
@@ -173,6 +191,15 @@ public partial class SceneWorldPresentationHost : Node
     }
     public override void _ExitTree()
     {
-        OwnerThread(); StartClose(null); // Synchronous close; callers await Completion while the engine remains alive.
+        OwnerThread();
+        if(!deferNativeExitClose){StartClose(null);return;}
+        if(closing)return;
+        // No actor Free while Godot's parent is traversing/removing children.
+        closing=true;SetProcess(false);beforeStep=null;frameCompleted=null;
+        fixedStepSchedule=null;continueFixedSteps=null;fixedStepParent=null;fixedStepViewport=null;
+        var owned=pump;pump=null;
+        if(owned is null){Finish();return;}
+        var context=nativeExitContext!;nativeExitContext=null;
+        context.Post(_=>CloseOwned(owned),null); // Managed dispatcher survives native detachment; engine loop must remain alive.
     }
 }

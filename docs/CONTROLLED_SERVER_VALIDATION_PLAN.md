@@ -35,4 +35,4 @@ Stop immediately on wrong peer/character/galaxy, unsupported selectors/version/l
 
 ## Current actionable step
 
-Complete and independently verify offline session → world → Godot composition from explicit installation inputs. Round83 ends at permission-gated selection and therefore does not yet make live validation the next action. [Milestone plan](REPLACEMENT_CLIENT_MILESTONE_PLAN.md).
+Round84 independently verifies the offline session → world → selected-human Godot path from explicit installation inputs. Its peer/typed CREO3 are authored, its adapter admits one creature, and its minimum provider decodes PTAT without full procedural surface setup. Before a live attempt, complete server-shaped player baseline/lifecycle and nearby-object handling, required avatar/terrain preparation, authoritative movement and outbound protocol disconnect. No live validation is the next actionable step yet. [Milestone plan](REPLACEMENT_CLIENT_MILESTONE_PLAN.md).

@@ -84,9 +84,11 @@ class Tests(unittest.TestCase):
             runner.projects_from(path)
 
     def test_optional_skips_are_unverified(self):
-        self.assertEqual([v['id'] for v in runner.DEFAULT_PROJECTS][-2:], ['runtime83-session', 'assets83-preflight'])
+        self.assertEqual([v['id'] for v in runner.DEFAULT_PROJECTS][2:],
+                         ['runtime83-session', 'assets83-preflight', 'runtime84-scene-bridge', 'assets84-creature-preparation'])
         self.assertIn('networking83-authentication', [v[0] for v in runner.PYTHON_SUITES])
-        self.assertTrue(any(v[0] == 'rendering80-82-godot' for v in runner.OPTIONAL))
+        self.assertIn('networking84-injected-pump', [v[0] for v in runner.PYTHON_SUITES])
+        self.assertTrue(any(v[0] == 'rendering80-84-godot' for v in runner.OPTIONAL))
 
 
 if __name__ == '__main__':

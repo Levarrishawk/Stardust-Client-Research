@@ -2,11 +2,11 @@
 
 ## Current implementation priority
 
-[Round83](research/sessions/PARALLEL_DEVELOPMENT_ROUND_83_2026-10-06.md) joins real login codecs/enumeration to a separately established zone transport, opaque ClientId authentication, permission-gated SelectCharacter and owned subsequent application delivery, verified with an independent synthetic peer. Explicit installation root/config/resource preflight and the default consolidated offline regression command are implemented. This is a reusable socket-independent component, not proved live interoperability.
+[Round84](research/sessions/PARALLEL_DEVELOPMENT_ROUND_84_2026-10-06.md) joins login/enumeration, pinned injected I/O, zone authentication/selection, world readiness and typed selected-player state to original-resource Godot publication. Explicit installation/template/logical animation choices derive catalog and pins. Lead verifies the joined path headlessly and on GPU, independently checks protected exchanges and source identities, and verifies failure/cancellation drain. The peer and CREO3 remain authored; live interoperability is unproved.
 
-[Ordered gates](docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md) now prioritize session → world → Godot composition and pinned phase-specific I/O. Full player/terrain dependency closure, authoritative visible-player/movement and outbound disconnect/server release remain open. The [controlled-server plan](docs/CONTROLLED_SERVER_VALIDATION_PLAN.md) is prepared but unexecuted; offline integration must precede specific live authorization. Further playground polish and unnamed reverse-engineering probes are deferred. No executable function, research or test denominator measures replacement-client completion.
+[Ordered gates](docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md) now prioritize complete server-shaped player baselines/lifecycle and nearby-object admission through the joined session, then authoritative movement and protocol disconnect/server release. The adapter supports one selected creature; arbitrary avatar/customization, populated zones and full procedural terrain readiness remain open. The [controlled-server plan](docs/CONTROLLED_SERVER_VALIDATION_PLAN.md) is unexecuted; these offline gates precede specific live authorization. Further playground polish and unnamed reverse-engineering probes are deferred. No executable function, research or test denominator measures replacement-client completion.
 
-Updated: 2026-10-06 (parallel development through Round83; research scores unchanged)
+Updated: 2026-10-06 (parallel development through Round84; research scores unchanged)
 
 Round44 lead review closes the received-only CREO4 kernel and its literal
 observer join, plus FSLP startup registration, one original FHGT/AHFR/FFRA

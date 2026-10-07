@@ -22,6 +22,7 @@ public Exception? Failure { get; }
 public bool IsClosing { get; }
 public ulong CompletedFrames { get; }
 public SceneWorldPresentationHostFrame? LastFrame { get; }
+public bool DeferNativeExitClose { get; set; }
 ```
 
 `SceneWorldPresentationHostFrame` contains `Index`, `Seconds` and `Step`. Only the
@@ -71,6 +72,26 @@ and await Completion/CloseAsync before quitting; the library never calls
 not prematurely dispose a pump while its valid drain task is pending, nor impose
 a library timeout that would claim outstanding work had ended. The standalone
 launcher and proof have external deadlines.
+
+October 6, 2026 extension: `DeferNativeExitClose` defaults to false, preserving
+the synchronous exit behavior above. Set it on the owner thread before Configure
+to opt into cleanup after native removal unwinds. Configuration captures the
+current Godot synchronization context and rejects a missing context before
+ownership transfer. The policy cannot change after admission. On `_ExitTree`,
+the opted-in host immediately marks closing, disables processing and clears
+callbacks/parent/viewport references, then posts actual owned-pump close/drain/
+disposal to that context. World close and actor destruction occur in that posted
+callback; they are not promised inside the native removal callback. Completion
+still means actual cleanup, and the application must keep Godot running until it
+finishes. Ordinary CloseAsync retains its immediate close path.
+
+The [selected player adapter](REPLACEMENT_PLAYER_PRESENTATION_CONTRACT.md) opts
+in because freeing its concrete creature while Godot is removing the parent
+produced a native parent-busy failure. Its real-original removal proof checks
+eventual root absence, empty consumer and drained jobs. Direct native Free is an
+explicit faulted abort rather than successful managed visual disposal; callers
+should close, await completion, then free. This extension does not change the
+historical fake-pump proof or its counts below.
 
 ## Evidence and next integration
 

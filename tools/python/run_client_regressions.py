@@ -20,18 +20,21 @@ DEFAULT_PROJECTS = [
     {'id': 'runtime82-manifest', 'project': 'poc/round82-tests/Runtime/Runtime.csproj', 'args': ['{output}']},
     {'id': 'runtime83-session', 'project': 'poc/round83-tests/Runtime/Runtime.csproj', 'args': ['{fixture}']},
     {'id': 'assets83-preflight', 'project': 'poc/round83-tests/Assets/Assets.csproj', 'args': ['{fixture}', '{receipt}']},
+    {'id': 'runtime84-scene-bridge', 'project': 'poc/round84-tests/Runtime/Runtime.csproj', 'args': ['{fixture}']},
+    {'id': 'assets84-creature-preparation', 'project': 'poc/round84-tests/Assets/Assets.csproj', 'args': ['{fixture}', '{receipt}']},
 ]
 PYTHON_SUITES = [
     ('runtime81-verifier', 'poc/round81-tests/Runtime/test_verifier.py', []),
     ('networking81-producer', 'poc/round81-tests/Networking/replay.py', ['--profile', '{profile}', '--output-dir', '{output}']),
     ('networking82-producer', 'poc/round82-tests/Networking/replay.py', ['--profile', '{profile}', '--output', '{output}']),
     ('networking83-authentication', 'poc/round83-tests/Networking/replay.py', ['--dotnet', '{dotnet}', '--output', '{output}']),
+    ('networking84-injected-pump', 'poc/round84-tests/Networking/replay.py', ['--dotnet', '{dotnet}', '--packages', '{packages}', '--output', '{output}']),
     ('runner83-tests', 'poc/round83-tests/Rendering/test_runner.py', []),
 ]
 OPTIONAL = [
     ('runtime80-terrain-restart', 'Requires explicitly supplied pinned runtime/terrain fixture recipes; not run by this command.'),
     ('networking80-native-restart', 'Historical replay hardcodes cache/runtime and tree build outputs; not invoked by this runner.'),
-    ('rendering80-82-godot', 'This command lacks explicit fixture/Godot inputs; no Godot changes this round and no GPU or Godot invocation.'),
+    ('rendering80-84-godot', 'Requires explicit Godot and original inputs; run the documented selected-player join separately. No GPU or Godot invocation here.'),
     ('original-installation', 'Original-resource suites need explicit installation and fixture inputs; no inferred historical vectors.'),
 ]
 
@@ -95,8 +98,11 @@ def projects_from(path):
             raise ValueError('Exact repository-relative poc project required')
         if type(args) is not list or len(args) > 64 or any(type(a) is not str or len(a) > 4096 or '\0' in a for a in args):
             raise ValueError('Bounded literal argument array required')
-        placeholders = ('{output}', '{profile}', '{fixture}') if ident == 'runtime83-session' and project == 'poc/round83-tests/Runtime/Runtime.csproj' else ('{output}', '{profile}')
-        if ident == 'assets83-preflight' and project == 'poc/round83-tests/Assets/Assets.csproj':
+        placeholders = ('{output}', '{profile}', '{fixture}') if (ident, project) in (
+            ('runtime83-session', 'poc/round83-tests/Runtime/Runtime.csproj'),
+            ('runtime84-scene-bridge', 'poc/round84-tests/Runtime/Runtime.csproj')) else ('{output}', '{profile}')
+        if (ident, project) in (('assets83-preflight', 'poc/round83-tests/Assets/Assets.csproj'),
+                               ('assets84-creature-preparation', 'poc/round84-tests/Assets/Assets.csproj')):
             placeholders = ('{fixture}', '{receipt}')
         if any('{' in a or '}' in a for a in args if a not in placeholders):
             raise ValueError('Only whole output/profile placeholders allowed')
@@ -313,6 +319,8 @@ def execute(args, root=ROOT):
             fixture = result_root / 'runtime83-fixtures-before-native.json'
             runtime83 = ident == 'runtime83-session'
             assets83 = ident == 'assets83-preflight'
+            runtime84 = ident == 'runtime84-scene-bridge'
+            assets84 = ident == 'assets84-creature-preparation'
             if runtime83:
                 if row['project'] != 'poc/round83-tests/Runtime/Runtime.csproj' or row['args'] != ['{fixture}']:
                     raise ValueError('runtime83-session requires its exact fixture/native/verify pipeline')
@@ -322,6 +330,16 @@ def execute(args, root=ROOT):
                 if row['project'] != 'poc/round83-tests/Assets/Assets.csproj' or row['args'] != ['{fixture}', '{receipt}']:
                     raise ValueError('assets83-preflight requires its exact fixture/native/verify pipeline')
                 call(ident + '-fixtures', [str(python), str(workspace / 'poc/round83-tests/Assets/peer.py'), 'generate', str(result_root / ident)], workspace)
+                fixture = result_root / ident / 'fixtures.json'
+            if runtime84:
+                if row['project'] != 'poc/round84-tests/Runtime/Runtime.csproj' or row['args'] != ['{fixture}']:
+                    raise ValueError('runtime84-scene-bridge requires its exact fixture/native/verify pipeline')
+                fixture = result_root / 'runtime84-fixtures-before-native.json'
+                call(ident + '-fixtures', [str(python), str(workspace / 'poc/round84-tests/Runtime/fixtures.py'), '--out', str(fixture)], workspace)
+            if assets84:
+                if row['project'] != 'poc/round84-tests/Assets/Assets.csproj' or row['args'] != ['{fixture}', '{receipt}']:
+                    raise ValueError('assets84-creature-preparation requires its exact fixture/native/verify pipeline')
+                call(ident + '-fixtures', [str(python), str(workspace / 'poc/round84-tests/Assets/peer.py'), 'generate', str(result_root / ident)], workspace)
                 fixture = result_root / ident / 'fixtures.json'
             artifacts = output / 'artifacts' / ident
             call(ident + '-build', [str(dotnet), 'build', str(project), '--artifacts-path', str(artifacts), '--configfile', str(config),
@@ -339,11 +357,16 @@ def execute(args, root=ROOT):
                                         '--result', native['log'], '--out', str(result_root / 'runtime83-verified.json')], workspace)
             if assets83:
                 call(ident + '-verify', [str(python), str(workspace / 'poc/round83-tests/Assets/peer.py'), 'verify', str(result_root / ident)], workspace)
+            if runtime84:
+                call(ident + '-verify', [str(python), str(workspace / 'poc/round84-tests/Runtime/verify.py'), '--fixtures', str(fixture),
+                                        '--result', native['log'], '--out', str(result_root / 'runtime84-verified.json')], workspace)
+            if assets84:
+                call(ident + '-verify', [str(python), str(workspace / 'poc/round84-tests/Assets/peer.py'), 'verify', str(result_root / ident)], workspace)
             suite['status'] = 'passed'
         for ident, script, literals in python_suites:
             suite = next(item for item in report['suites'] if item['id'] == ident)
             suite['status'] = 'running'
-            values = {'{output}': str(result_root / ident), '{profile}': str(profile), '{dotnet}': str(dotnet)}
+            values = {'{output}': str(result_root / ident), '{profile}': str(profile), '{dotnet}': str(dotnet), '{packages}': str(cache)}
             call(ident, [str(python), str(workspace / script), *[values.get(v, v) for v in literals]], workspace)
             suite['status'] = 'passed'
         report['status'] = 'passed'

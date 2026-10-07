@@ -2,18 +2,18 @@
 
 This is the canonical entry point for reviewing the `Stardust.exe` research before designing or implementing a replacement client.
 
-Latest development session: [Round83 login-to-zone handoff](research/sessions/PARALLEL_DEVELOPMENT_ROUND_83_2026-10-06.md).
-Current single-round authorization: Round83 completed; see [its acceptance](research/sessions/PARALLEL_DEVELOPMENT_ROUND_83_2026-10-06.md). Four Low workers idle; no further round authorized and the overnight heartbeat remains paused.
+Latest development session: [Round84 selected-player session](research/sessions/PARALLEL_DEVELOPMENT_ROUND_84_2026-10-06.md).
+Current single-round authorization: Round84 completed; see [its acceptance](research/sessions/PARALLEL_DEVELOPMENT_ROUND_84_2026-10-06.md). Four Low workers idle; no further round authorized and the overnight heartbeat remains paused.
 Completed continuation: [October5 to6 overnight development and final handoff](research/sessions/OVERNIGHT_DEVELOPMENT_2026-10-05_TO_06.md). Rounds64 through79 accepted. Authorization ended October6 at07:00 Eastern; heartbeat paused and all four Low workers idle. Further development requires renewed authorization.
-Latest accepted parallel round: [Round83 assignments and acceptance](research/sessions/PARALLEL_DEVELOPMENT_ROUND_83_2026-10-06.md). Overnight authorization has ended. See the [daytime record](research/sessions/DAYTIME_DEVELOPMENT_2026-10-04.md) and [overnight handoff](research/sessions/OVERNIGHT_DEVELOPMENT_2026-10-03_TO_04.md).
+Latest accepted parallel round: [Round84 assignments and acceptance](research/sessions/PARALLEL_DEVELOPMENT_ROUND_84_2026-10-06.md). Overnight authorization has ended. See the [daytime record](research/sessions/DAYTIME_DEVELOPMENT_2026-10-04.md) and [overnight handoff](research/sessions/OVERNIGHT_DEVELOPMENT_2026-10-03_TO_04.md).
 Earlier accepted parallel round: [Round 3 results and integration record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_3_2026-10-01.md); [Round 2 accepted results](research/sessions/PARALLEL_DEVELOPMENT_ROUND_2_2026-10-01.md).
 Current executable acceptance gates: [implementation record](docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
 Latest research checkpoint: [direct root initializer](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-06_R82_ROOT_INITIALIZER.md).
 Latest follow-up: [direct status CRC receive rule](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-29_STATUS_CRC_RECEIVE.md).
-Latest implementation checkpoint: [reusable client handoff](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R83_CLIENT_SESSION.md).
+Latest implementation checkpoint: [selected-player session](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R84_SELECTED_PLAYER_SESSION.md).
 Latest collision research: [creature fallback dimensions](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-01_CREATURE_COLLISION_FALLBACK.md).
 
-Current replacement-client path: [ordered milestone gates](docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md), [offline regression command](docs/CLIENT_REGRESSION_RUNBOOK.md), and [controlled-server validation plan](docs/CONTROLLED_SERVER_VALIDATION_PLAN.md). Login → permission-gated SelectCharacter is now joined offline; session → world → Godot, pinned two-port I/O, full dependency closure, outbound disconnect and live interoperability remain open. No replacement-client completion percentage follows.
+Current replacement-client path: [ordered milestone gates](docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md), [offline regression command](docs/CLIENT_REGRESSION_RUNBOOK.md), and [controlled-server validation plan](docs/CONTROLLED_SERVER_VALIDATION_PLAN.md). Login → world readiness → original selected-human Godot publication is now joined offline through pinned injected ports. Complete server-shaped player baselines, nearby-object handling, arbitrary avatar/terrain preparation, authoritative movement, protocol disconnect/server release and live interoperability remain open. No replacement-client completion percentage follows.
 
 ## Scope and current position
 
@@ -32,7 +32,7 @@ fixture-backed compatibility slice, and return to targeted executable/server
 analysis only when a concrete implementation uncertainty blocks or risks it.
 Function-level accounting remains separate from behavioral readiness.
 
-Parallel development: [adopted operating rules](docs/PARALLEL_DEVELOPMENT_RULES.md). Rounds4 through83 are accepted. [Latest four-round assessment](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_9_12_ASSESSMENT_2026-10-02.md). [Five-round outcomes and next milestone](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_4_8_ASSESSMENT_2026-10-02.md). Overnight development stopped October4 at05:00 Eastern; see [outcomes and prepared next assignments](research/sessions/OVERNIGHT_DEVELOPMENT_2026-10-03_TO_04.md). [Prior organizational assessment](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_2_3_ASSESSMENT_2026-10-01.md).
+Parallel development: [adopted operating rules](docs/PARALLEL_DEVELOPMENT_RULES.md). Rounds4 through84 are accepted. [Latest four-round assessment](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_9_12_ASSESSMENT_2026-10-02.md). [Five-round outcomes and next milestone](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_4_8_ASSESSMENT_2026-10-02.md). Overnight development stopped October4 at05:00 Eastern; see [outcomes and prepared next assignments](research/sessions/OVERNIGHT_DEVELOPMENT_2026-10-03_TO_04.md). [Prior organizational assessment](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_2_3_ASSESSMENT_2026-10-01.md).
 
 ## Recommended review order
 

@@ -10,7 +10,7 @@ Choose a new output directory each time. Existing outputs are never removed. The
 
 ## Required default suites
 
-Execution order is fixed: .NET projects in table order, then Python suites in table order. A synthetic profile-generation command precedes them. Missing Round83 integration is a required-suite failure, never an optional success.
+Execution order is fixed: .NET projects in table order, then Python suites in table order. A synthetic profile-generation command precedes them. Missing required Round83 or Round84 integration is a required-suite failure, never an optional success.
 
 | ID | Entry point and arguments | Evidence boundary |
 | --- | --- | --- |
@@ -18,13 +18,24 @@ Execution order is fixed: .NET projects in table order, then Python suites in ta
 | runtime82-manifest | `poc/round82-tests/Runtime/Runtime.csproj`, fresh private directory | Strict manifest parser/compiler, defensive ownership and malformed admission |
 | runtime83-session | `poc/round83-tests/Runtime/Runtime.csproj`, pre-native fixture JSON | Required fixture authoring, native lifecycle and independent verification pipeline |
 | assets83-preflight | `poc/round83-tests/Assets/Assets.csproj`, authored fixture/receipt paths | Required fixture authoring, native preflight and independent comparison; original install remains optional |
+| runtime84-scene-bridge | `poc/round84-tests/Runtime/Runtime.csproj`, pre-native fixture JSON | Ordered world staging, minimum barrier, one ready, cleanup and independent ready verification |
+| assets84-creature-preparation | `poc/round84-tests/Assets/Assets.csproj`, authored fixture/receipt paths | Installed template/animation discovery and fail-closed preparation; default uses synthetic resources |
 | runtime81-verifier | `poc/round81-tests/Runtime/test_verifier.py` | Authored parser/log mutation tests; no native scene proof |
 | networking81-producer | `poc/round81-tests/Networking/replay.py --profile PROFILE --output-dir DIR` | Protected frame/cadence producer and authored-log verifier positives/negatives |
 | networking82-producer | `poc/round82-tests/Networking/replay.py --profile PROFILE --output DIR` | Scenario authoring/admission and output/source immutability |
 | networking83-authentication | `poc/round83-tests/Networking/replay.py --dotnet DOTNET --output DIR` | Independent authentication vectors before standalone native codec verification |
+| networking84-injected-pump | `poc/round84-tests/Networking/replay.py --dotnet DOTNET --packages CACHE --output DIR` | Pinned injected peers, old I/O retirement, owned sends and independent protected auth/select/ready |
 | runner83-tests | `poc/round83-tests/Rendering/test_runner.py` | Real process nonzero/missing/timeout, descendant termination and input rejection |
 
 The [authored profile helper](../poc/round83-tests/Rendering/synthetic_profile.py) supplies only the fields consumed by the frozen81/82 producers. Its protected bytes come from the existing independent Python encoder. It is labeled synthetic and is **not** a runnable original-resource Godot profile. Producer reports explicitly distinguish authored log fixtures from native execution. No historical private profile is inferred.
+
+For the joined original-resource Godot path, use the explicit command in
+[selected-player verification](../poc/round84-tests/Integration/README.md). It runs
+headless success, cancellation and minimum-service failure; optional `--gpu`
+adds visible publication. This separate native command needs explicit original
+installation and Godot inputs. Its PTAT decode is a bounded modern minimum
+provider; complete procedural terrain readiness, live interoperability, movement
+and protocol disconnect remain unverified.
 
 `--timeout SECONDS` bounds each runner-owned command, default180, range0.1..3600. Windows commands start suspended, join a kill-on-close Job Object and then resume, allowing timeout to terminate their descendants. POSIX uses a new process group. Command arrays are passed without a shell; spaces, ampersands and dollar signs remain literal. Nested test drivers retain their own build/native command logs and receipts inside the same isolated workspace; the runner records their outer command and exit status.
 

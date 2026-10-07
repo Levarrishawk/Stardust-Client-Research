@@ -1,16 +1,12 @@
 # Client implementation acceptance record
 
-## Current end-to-end gates (Round83)
+## Current end-to-end gates (Round84)
 
-The oversight integration concern is valid. [Milestone plan](REPLACEMENT_CLIENT_MILESTONE_PLAN.md) separates component proofs from replacement-client gates. [Session](REPLACEMENT_CLIENT_SESSION_CONTRACT.md) now joins login → unique character/galaxy → fresh zone SOE → opaque ClientId → accepted permissions → one SelectCharacter and forwards a valid CmdStartScene unchanged. Lead independently replays actual sources and protected byte fixtures. No scene is created by this session, and no server accepted it.
+[Round84 acceptance](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_84_2026-10-06.md) joins reusable session, pinned injected ports, world bridge, installation-derived human preparation and Godot publication. Lead replays sealed components and the actual joined headless/GPU path. Independent Python verifies protected auth/select/ready and original preparation, 39 loaded source identities and terrain hash; delayed readiness, cancellation/failure and local drain are executed. The default consolidated command includes twelve required suites. [Reproduce the join](../poc/round84-tests/Integration/README.md).
 
-[Installation preflight](ORIGINAL_INSTALLATION_PREFLIGHT_CONTRACT.md) uses explicit root/config/logical resources and an owned configured overlay. Lead read-only original check matches48 mounts and the selected1974-byte player object; transitive appearance/terrain/player closure remains unverified. [Regression command](CLIENT_REGRESSION_RUNBOOK.md) now runs default Core plus later81/82/83 component suites; its full default passed on integrated sources, with original/Godot fixture suites explicitly skipped-unverified. Earlier native evidence remains valid, not replayed this round.
+The peer and typed CREO3 are authored; this one-creature adapter and PTAT decode provider do not establish full server baseline sets, arbitrary avatar/customization, populated zones or complete procedural readiness. Local close is distinct from protocol disconnect/server release. Native removal has a deferred teardown repair; direct active Free is a faulted abort. Close, await completion, then free/quit.
 
-Remaining: pinned two-port session I/O, session → world → Godot composition, complete dependency preparation, authoritative selected-player movement, outbound disconnect/server release, and controlled-server validation. [Plan](CONTROLLED_SERVER_VALIDATION_PLAN.md) is bounded and unexecuted. Local cleanup and synthetic bytes do not establish live interoperability. Four Low workers idle after one focused round.
-
-Updated: 2026-10-06. This record describes executable implementation checks,
-separately from research coverage, address naming, and the server packet inventory.
-No overall client completion percentage is assigned.
+[Current gates](REPLACEMENT_CLIENT_MILESTONE_PLAN.md): complete server-shaped player baseline/lifecycle and nearby-object admission, then authoritative movement and protocol disconnect before separately authorized controlled validation. No live interoperability or replacement-client completion percentage is inferred. Four Low workers idle after this one round.
 
 ## Verified boundaries
 

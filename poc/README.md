@@ -2,9 +2,9 @@
 
 ## Current replacement-client path
 
-[Round83 session](../docs/REPLACEMENT_CLIENT_SESSION_CONTRACT.md) drives login enumeration through a fresh zone SOE connection, opaque authentication and permission-gated selection. [Explicit installation preflight](../docs/ORIGINAL_INSTALLATION_PREFLIGHT_CONTRACT.md) supplies reusable original root/config/resource admission. Run the [consolidated offline regressions](../docs/CLIENT_REGRESSION_RUNBOOK.md) to include newer accepted component tests absent from default Core smoke. Synthetic peers remain test inputs; no sockets or live interoperability are proved.
+[Round84 selected-player path](round84-tests/Integration/README.md) joins real session codecs, pinned injected I/O, world readiness, typed authored player state and original-resource Godot publication. Explicit installation and public logical animation choices derive pins without historical launch vectors. Run the [default offline regressions](../docs/CLIENT_REGRESSION_RUNBOOK.md) and the separate explicit original/Godot command. Synthetic peers remain test inputs; no sockets or live interoperability are proved.
 
-Next: connect owned zone applications to SceneWorldCoordinator and Godot presentation, with phase-specific pinned injected I/O and complete original resource preparation. [Milestone gates](../docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md) and [controlled-server plan](../docs/CONTROLLED_SERVER_VALIDATION_PLAN.md) describe missing behavior and acceptance. Historical dated increments below remain evidence, not current next-task instructions.
+Next: complete server-shaped selected-player baselines/lifecycle and nearby-object admission, then authoritative movement and protocol disconnect. General avatars/customization, populated zones and full procedural terrain readiness remain open. [Milestone gates](../docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md) and [controlled-server plan](../docs/CONTROLLED_SERVER_VALIDATION_PLAN.md) define acceptance. Historical dated increments below remain evidence, not current next-task instructions.
 
 Round44 adds [received-only CREO4 scalar state](../docs/CREATURE_VIEW4_PARTIAL_STATE_CONTRACT.md)
 and a [43-check observer counterexample/kernel join](round44-tests/Integration/Program.cs).
