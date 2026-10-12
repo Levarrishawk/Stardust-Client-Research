@@ -6,9 +6,10 @@ public partial class PreviewOrbitCamera : Camera3D
     private Vector3 target;
     private float radius, distance, yaw=0.654f, pitch=0.331f;
     private bool dragging;
-    public void Configure(Vector3 center,float boundingRadius)
-    {target=center;radius=Mathf.Max(boundingRadius,1);Reset();}
-    private void Reset(){distance=radius*2.4f;yaw=0.654f;pitch=0.331f;UpdatePose();}
+    private float resetYaw=0.654f;
+    public void Configure(Vector3 center,float boundingRadius,bool front=false)
+    {target=center;radius=Mathf.Max(boundingRadius,1);resetYaw=front?Mathf.Pi+0.654f:0.654f;Reset();}
+    private void Reset(){distance=radius*2.4f;yaw=resetYaw;pitch=0.331f;UpdatePose();}
     private void UpdatePose()
     {
         Position=target+new Vector3(Mathf.Sin(yaw)*Mathf.Cos(pitch),Mathf.Sin(pitch),Mathf.Cos(yaw)*Mathf.Cos(pitch))*distance;

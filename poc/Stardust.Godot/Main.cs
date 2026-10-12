@@ -6,6 +6,13 @@ using Stardust.Core.Assets;
 using System.IO;
 public partial class Main : Node
 {
+    private bool offlineCharacterEntry, offlineCharacterStarting, offlineCloseRequested;
+    private void RequestOfflineClose()
+    {
+        offlineCloseRequested=true;
+        if(offlineCharacterStarting){skeletalLoad?.Cancel();return;}
+        GetTree().Quit();
+    }
     private StaticMeshPreview? assetPreview;
     private DetailAppearancePreview? detailPreview;
     private GeometryAppearancePreview? geometryPreview;
@@ -15,6 +22,8 @@ public partial class Main : Node
     private System.Action<InputEventMouseMotion>? actorMouseInput;
     public override void _Input(InputEvent input)
     {
+        if(offlineCharacterEntry && input is InputEventKey escape && escape.Pressed && !escape.Echo && escape.Keycode==Key.Escape)
+        {RequestOfflineClose();GetViewport().SetInputAsHandled();return;}
         if(input is InputEventKey key)
         {
             try{actorKeyInput?.Invoke(key);}
@@ -30,6 +39,7 @@ public partial class Main : Node
     private System.Action? cameraLodUpdate;
     public override void _Notification(int what)
     {
+        if(offlineCharacterEntry && what==NotificationWMCloseRequest){RequestOfflineClose();return;}
         if(what==NotificationWMWindowFocusIn || what==NotificationWMWindowFocusOut)
         {
             try{actorFocus?.Invoke(what==NotificationWMWindowFocusIn);skeletalAnimationFocus?.Invoke(what==NotificationWMWindowFocusIn);}
@@ -46,9 +56,16 @@ public partial class Main : Node
         try
         {
         if (!System.Environment.Is64BitProcess) { GD.PushError("Stardust client requires a 64-bit host process"); GetTree().Quit(1); return; }
+        string[] args=OS.GetCmdlineUserArgs();
+        if(OS.HasFeature("stardust_offline_terrain")||OS.HasFeature("stardust_offline_mos_taike")){AddChild(new OfflineTerrainClient());return;}
+        offlineCharacterEntry=OS.HasFeature("stardust_offline_character") || args.Contains("--offline-character-profile");
+        if(offlineCharacterEntry){GetTree().AutoAcceptQuit=false;offlineCharacterStarting=true;}
+        RendererAdmission.Verify(args.Contains("--require-d3d12") ||
+            ((OS.HasFeature("stardust_offline_character") || args.Contains("--offline-character-profile")) && DisplayServer.GetName()!="headless"));
+        args=await OfflineCharacterLaunch.ExpandAsync(args);
+        if(offlineCloseRequested){GD.Print("offline_character_close=preparation_drained");GetTree().Quit();return;}
         IReadOnlyList<string> events = await OfflineHostedLoginScenario.RunAsync();
         foreach (string entry in events) GD.Print($"[core] {entry}");
-        string[] args=OS.GetCmdlineUserArgs();
         if(args.Contains("--hdr-fixtures"))
         {
             int option=System.Array.IndexOf(args,"--hdr-fixtures");
@@ -82,8 +99,20 @@ public partial class Main : Node
         {
             if(failure is AssetPreviewException) GD.Print("Asset preview boundary: " + failure.Message);
             GD.PushError("Offline client checkpoint failed: " + failure.GetType().Name);
-            GetTree().Quit(1);
+            string[] launchArguments=OS.GetCmdlineUserArgs();
+            if(offlineCharacterEntry && !offlineCloseRequested && DisplayServer.GetName()!="headless" &&
+                !launchArguments.Contains("--asset-self-test") && !launchArguments.Contains("--capture") && !launchArguments.Contains("--offline-animation-proof"))
+            {
+                var failureLayer=new CanvasLayer();AddChild(failureLayer);
+                var failurePanel=new VBoxContainer{Position=new(36,36),Size=new(1150,500)};failureLayer.AddChild(failurePanel);
+                failurePanel.AddChild(new Label{Text="STARDUST | Offline character could not start"});
+                failurePanel.AddChild(new Label{Text=failure.Message,AutowrapMode=TextServer.AutowrapMode.WordSmart});
+                failurePanel.AddChild(new Label{Text="Check character-launch.json and its original installation/configuration.\nThis build requires Windows x64 and Direct3D 12. Escape closes the client."});
+                var close=new Button{Text="Close client"};failurePanel.AddChild(close);close.Pressed+=()=>GetTree().Quit(1);
+            }
+            else GetTree().Quit(1);
         }
+        finally{offlineCharacterStarting=false;if(offlineCloseRequested && IsInsideTree())GetTree().Quit();}
     }
     public override void _ExitTree(){DisposeCustomization();actorUpdate=null;actorFocus=null;actorKeyInput=null;actorTimeline=null;actorHost=null;actorSimulation?.Dispose();actorSimulation=null;DisposeSkeletalPreview();DisposeInteriorScene();DisposeInteriorDoorResources();doorRuntime?.Dispose();doorRuntime=null;pathPreview?.Dispose();pathPreview=null;floorPick=null;floorPreview?.Dispose();floorPreview=null;cameraLodUpdate=null;assetPreview?.Dispose();assetPreview=null;detailPreview?.Dispose();detailPreview=null;geometryPreview?.Dispose();geometryPreview=null;}
     private async System.Threading.Tasks.Task BuildPalettePreview(string[] args)

@@ -1,5 +1,17 @@
 # Client implementation acceptance record
 
+## October 12 original Mos Taike outdoor district
+
+The [Mos Taike entry](DX12_OFFLINE_MOS_TAIKE_RUNBOOK.md) combines original snapshot placement, a bounded 160 × 160 m height-rule traversal, five buildings and 89 other objects, animated human movement and conservative modern obstacle/camera handling. Independent raw-byte placement, displayed-triangle grounding, five original foundation targets and all22 default regressions pass. Actual DX12 captures show recognizable original facades, stalls and streets with a readable HUD. Nine omissions, modern material/numeric policies and closed interiors are explicit; this is not live interoperability or full-town/world parity. [Exported checks and evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_MOS_TAIKE.md).
+
+## October 12 exported x64 DirectX 12 terrain movement
+
+The [separate terrain build](DX12_OFFLINE_TERRAIN_RUNBOOK.md) joins original human idle/walk/run with a 256 × 256 m original-resource base/detail terrain surface. Eight exported checks pass: original CPU loading/seams/controller, cancellation, headless refusal, invalid option/profile, actual OpenGL refusal, actual DX12 movement and independent triangle/distance checks. Visual review required lower lighting, filmic tone mapping and a readable HUD before acceptance. This is a partial Tatooine generator, not complete geographic parity or live gameplay. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_TERRAIN.md).
+
+## October 12 exported x64 DirectX 12 character
+
+The [runnable build](DX12_OFFLINE_CLIENT_RUNBOOK.md) supplies an offline no-argument original-character entry over the existing loaders and animation host, with a self-contained Windows AMD64 export and runtime D3D12 admission. Eight exported positive/negative cases pass, including original material GPU checks and advancing animation; all 22 existing default core regressions pass on this workstation. Independent lead replay verifies character-region image changes and exact delivery hashes. [Evidence and limits](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_CLIENT.md). Full terrain, generated facial texture, equipment and live interoperability are not established by this milestone; the Round93 session gates below remain separate.
+
 ## Current end-to-end gates (Round93)
 
 Round93 adds an explicit controlled-transport entry over the reusable installation/application/Godot host and a bounded redacted attempt receipt written after actual local drain or startup rollback. Default startup still refuses contact. Offline native headless/GPU replay verifies the same strict admission/composition with mandatory synthetic spy ports, protected exchanges, one approved original human, bounded movement, deadlines and disconnect. Run, cleanup, rollback and diagnostic failures remain distinct; standalone quit follows ownership completion. The real UDP constructor branch is compiled and source-reviewed, never executed.

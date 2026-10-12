@@ -10,6 +10,7 @@ try
 {
 if (!Environment.Is64BitProcess) throw new Exception("Stardust client smoke tests require a 64-bit process.");
 Console.WriteLine("PASS: running engine-neutral core in a 64-bit process");
+WorldSnapshotScenarios.Run();
 Stardust.Core.SmokeTests.ZoneSceneProtocolScenarios.Run();
 AnimationEventCursorScenarios.Run();
 SkeletalVertexLitSourceScenarios.RunMath();

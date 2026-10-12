@@ -1,0 +1,37 @@
+# Runnable Windows x64/DX12 original character — October 12, 2026
+
+## Question and stopping condition
+
+Can the accepted core/Godot implementation become a directly runnable self-contained Windows x64 export displaying an original animated human on an observed D3D12 device? Stop after exported execution, original pose/material checks, real frame advancement, fallback/input/cancellation rejection and independent review. This is a bounded modern offline host run authorized by the user. It creates no real transport, runs no legacy executable, and changes no external system. Full milestone M1 terrain/interior/material breadth is not the stopping condition here.
+
+## Inputs and tools
+
+Existing `Stardust.Core` net8.0 and `Stardust.Godot`, Godot 4.7.2 stable .NET official `ed1daf0bf`, matching x64 export templates, SDK 8.0.425 and self-contained .NET runtime 8.0.31. The parent independently verified official engine/template SHA256 and SDK SHA512. Host restore initially rejected the three historical Godot package-lock hashes; only those hashes were regenerated against the verified official archive, preserving version 4.7.2 and transitive core dependencies. Initial export also revealed that the C# exporter requires a solution: the builder now generates a private two-project solution. No copied legacy/source implementation was used.
+
+Original installation: `C:\Stardust-DEV`, mount file `swgemu_live.cfg`, configuration SHA256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`. Effective precedence uses the existing configured TRE reader and independently authored Round84 preparation oracle. Selected object `object/creature/player/shared_human_male.iff`, SHA256 `E0B61445E8A85CCF0AC5937F0F9CBCA8711718AFEE63384F30970D5AEE120243`; appearance `appearance/hum_m.sat`, SHA256 `951FCE8C2FFC0EB318C751026D24D8C9BF17263D706EB3C93D015867EC801A9C`. `appearance/lat/all_m.lat` selects `emt_standing_idle_ambient_1_ag` and original `appearance/animation/all_b_idl_ambient_01.ans`, SHA256 `798AD8D1BAB2BAF24042EE5276823651B1777F254C7FC97C2C4470F8EFEA292B`. No VA claim is made, so no executable identity was relied upon.
+
+## Observations, interpretation and confidence
+
+**Confirmed:** exported PE machine `0x8664`; `coreclr.dll`, `hostfxr.dll`, `System.Private.CoreLib.dll` and production assemblies are bundled. Exported EXE SHA256 `27FC0A42F8BDDBAFFC6A58E629102F2155E9FF78A7F04CF906CFF6CFAEEF36BD`; PCK SHA256 `769145FD94D0B7FE99406DC7E200C6439344E4D5660EE94377EEA816CD9BC450`. The parent independently inspected package layout and copied all 193 files unchanged into the stable private delivery directory. The executable opens its adjacent profile with no user arguments, editor or SDK requirement. Missing/invalid inputs display an interactive error panel.
+
+**Confirmed:** runtime RenderingServer admission reports X64, pointer size 8, non-headless, `d3d12`, `forward_plus`, live global RenderingDevice and NVIDIA GeForce RTX 5060 Laptop GPU, API `12_0`. The independent OpenGL override reports `opengl3`/`gl_compatibility` and is rejected with exit 1. Headless reports no accepted GPU even when the configured driver string remains `d3d12`; explicit `--require-d3d12` rejects it. This distinguishes configuration from a running backend.
+
+**Confirmed modern implementation behavior:** original selected closure has 48 sources / 5,751,879 source bytes, five surfaces, 1,790 vertices and 2,810 triangles. Owned background delivery closes archives before publication. GPU and headless fixtures check eight weighted diagnostic switches, bind reset, original sampled frames, 480 pose updates / two loops, focus/pause/seek and upload/readback. GPU checks include winding/UV, albedo, compressed-normal basis, normal/vertex specular, mouth interpolation and deterministic probe cleanup. Maximum reported GPU error is approximately 0.002154 in these existing bounded fixtures. Diagnostic power policy remains a modern literal translation; original compiled LIT is still Unknown.
+
+**Confirmed real modern frame advancement:** the exported proof advances from original clip frame 4.28051 to 49.641553 through 144 `_Process` pose updates over measured 1.5644805 seconds, writes two distinct GPU captures and checks selected clip SHA256 against the independent preparation oracle. The focus override is explicitly synthetic in this automation. Parent independent run observes 167 updates over 1.455 seconds, frame 4.477 to 49.573, and 17,766 changed pixels above threshold 3 in the character region excluding UI. Parent inspected the front-view image. Normal no-argument launch uses actual focus and logs advancement after 60 pose updates.
+
+**Interpretation:** the existing engine adapter can deliver this original-character x64/DX12 slice without replacing the core or writing a custom backend. Confidence Strongly inferred for broader integration; only this observed scene/device has been measured. This is not evidence of complete material, terrain, gameplay or live protocol parity.
+
+## Validation and compatibility consequence
+
+All eight exported verifier cases pass: original headless, cancellation with zero GPU publication, headless DX12 rejection, unsupported option, unsupported profile version, actual OpenGL fallback refusal, GPU fixtures and wall-clock animation. Negative expected exits retain code 1. Frozen package hashes remain unchanged across tests. The parent independently reran all 22 default offline regression suites successfully and independently exercised the final exported GPU animation and headless refusal. Builds report zero warnings/errors; export log is explicitly checked for errors as well as exit status.
+
+The runtime admission and package/profile entry live in the host; installed-resource interpretation and animation/material behavior continue to use engine-neutral existing readers. Protocol and original fixed-width data boundaries did not change. Escape/window close route through owned loading retirement. The modern offline synthetic login remains injected and is clearly labeled. Front camera and header changes apply to the new offline entry, preserving existing inspector camera defaults.
+
+## Limits and next probe
+
+Generated face compositing and equipment are absent; the face remains neutral. No original interior or terrain workload is present in this package. Physical Escape/window-close routing, resize/endurance, GPU performance distributions, other hardware and clean-machine deployment are not yet acceptance claims. No real socket, server/DNS contact, legacy executable execution, commit, push or publication occurred. Research, protocol and function metrics are unchanged.
+
+Use the [build/runbook](../../docs/DX12_OFFLINE_CLIENT_RUNBOOK.md) to reproduce. Next: run the existing original interior character scene and a representative terrain/material workload through the same explicit renderer admission, then measure resize/resource retirement and frame/memory behavior. Preserve the separate operator prerequisites for live interoperability.
+
+Final lead documentation check: the workspace validator passes with zero broken links, zero links into private evidence, 2,626 unique provisional addresses and 345 packet rows. `git diff --check` passes; existing unrelated sphere-floor checkpoint changes are preserved. A normal delivered no-argument process was left open, and its loaded modules independently confirm bundled hostfxr/coreclr plus Windows D3D12/D3D12Core.

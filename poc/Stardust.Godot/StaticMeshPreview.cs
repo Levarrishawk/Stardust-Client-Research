@@ -17,18 +17,20 @@ public sealed class StaticMeshPreview : IDisposable
     public int NeutralSurfaces {get;private set;}
     public int OmittedSurfaces {get;private set;}
     private readonly List<int> uploadedPrimitiveIndices=new();
+    private readonly bool modernZeroNormal;
     public ArrayMesh Mesh { get; }
     public StaticMeshPreview(TexturedStaticMesh asset,bool allowMainTextureOnly=false,bool allowNeutralMaterialFallback=false)
         :this(asset,allowMainTextureOnly,allowNeutralMaterialFallback,null){}
-    internal StaticMeshPreview(TexturedStaticMesh asset,bool allowMainTextureOnly,bool allowNeutralMaterialFallback,PreviewTextureCache? sharedTextures,IReadOnlyDictionary<string,StaticNormalMaterial>? normalMaterials=null)
+    internal StaticMeshPreview(TexturedStaticMesh asset,bool allowMainTextureOnly,bool allowNeutralMaterialFallback,PreviewTextureCache? sharedTextures,IReadOnlyDictionary<string,StaticNormalMaterial>? normalMaterials=null,bool modernTownAlpha=false)
     {
+        modernZeroNormal=modernTownAlpha;
         Mesh = Own(new ArrayMesh());
         try
         {
             if(asset.Mesh.Primitives.Count==0 || asset.Mesh.VertexCount==0 || asset.Mesh.TriangleCount==0)
                 throw new AssetPreviewException("Preview requires nonempty geometry.");
             Dictionary<string,ImageTexture> textures = uploadedTextures;
-            Dictionary<DdsColorSpace,Shader> shaders = new();
+            Dictionary<(DdsColorSpace Space,int Blend),Shader> shaders = new();
             Dictionary<string,ShaderMaterial> materials = new(StringComparer.Ordinal);
             HashSet<string> neutralPaths=new(StringComparer.Ordinal);
             HashSet<string> noDrawPaths=new(StringComparer.Ordinal);
@@ -67,6 +69,15 @@ public sealed class StaticMeshPreview : IDisposable
                         !material.Parameters.CoordinateSets.TryGetValue(0x4D41494E,out byte coordinate) || coordinate!=0)
                         throw new AssetPreviewException("Preview requires one named MAIN texture and MAIN UV0.");
                     StaticEffectDescription effect=asset.Effects[material.References.EffectPath];
+                    // Separate town preview policy: original named MAIN/UV0 with explicit modern blending.
+                    // Original shader program, blend equation and capability branch are not reproduced.
+                    int blend=modernTownAlpha?material.References.EffectPath switch
+                    {
+                        "effect/a_alpha.eft" or "effect/a_alpha_emis_full.eft" or "effect/a_alpha_specmap.eft"=>1,
+                        "effect/a_punchout.eft"=>2,
+                        "effect/a_emisadd.eft"=>3,
+                        _=>0
+                    }:0;
                     if(effect.ContainsPrecalculatedVertexLighting && !allowMainTextureOnly)
                         throw new AssetPreviewException("Preview does not translate precalculated lighting.");
                     // Explicit inspection policy: use an authored opaque one-stage MAIN fallback.
@@ -82,16 +93,17 @@ public sealed class StaticMeshPreview : IDisposable
                             pass.Fields[0x7C]==0x4D41494E && (pass.PixelTextures.Any(binding=>binding.TextureTag==0x4D41494E) ||
                             pass.FixedStages.Any(stage=>stage.TextureTag==0x4D41494E && stage.CoordinateTag==0x4D41494E)));
                         if(!allowMainTextureOnly) throw new AssetPreviewException("Preview has no authored opaque single-MAIN fallback; explicit texture-only mode is required for an opaque MAIN candidate.");
-                        if(!opaqueMain)throw new AssetPreviewException("Material is outside opaque MAIN inspection policy.");
+                        if(!opaqueMain&&blend==0)throw new AssetPreviewException("Material is outside opaque MAIN inspection policy.");
                     }
                     if(asset.Textures.TryGetValue(texturePath,out DdsImage? rgba) && rgba.AlphaMode==DdsAlphaMode.Premultiplied)throw new AssetPreviewException("MAIN inspection requires straight/opaque albedo; premultiplied RGB is retained by the CPU decoder.");
                     DdsColorSpace space=rgba?.ColorSpace??DdsColorSpace.Linear;
-                    if(!shaders.TryGetValue(space,out Shader? shader))
+                    if(!shaders.TryGetValue((space,blend),out Shader? shader))
                     {
                         string colorHint=space==DdsColorSpace.Linear?"":"source_color, ";
-                        shader=Own(new Shader{Code="shader_type spatial; render_mode unshaded, cull_back; uniform sampler2D albedo_texture : "+colorHint+
-                            "filter_linear_mipmap, repeat_enable; void fragment() { ALBEDO = texture(albedo_texture, UV).rgb; }"});
-                        shaders.Add(space,shader);
+                        shader=Own(new Shader{Code="shader_type spatial; render_mode unshaded, cull_back"+(blend==3?", blend_add":"")+"; uniform sampler2D albedo_texture : "+colorHint+
+                            "filter_linear_mipmap, repeat_enable; void fragment() { vec4 sample = texture(albedo_texture, UV); ALBEDO = sample.rgb; "+
+                            (blend==2?"if (sample.a < 0.5) discard;":blend==1?"ALPHA = sample.a;":blend==3?"ALPHA = 1.0;":"")+" }"});
+                        shaders.Add((space,blend),shader);
                     }
                     ShaderMaterial preview=Own(new ShaderMaterial{Shader=shader});preview.SetShaderParameter("albedo_texture",textures[texturePath]);
                     materials.Add(path,preview);
@@ -106,7 +118,7 @@ public sealed class StaticMeshPreview : IDisposable
             {
                 MeshPrimitive primitive=asset.Mesh.Primitives[primitiveIndex];
                 if(noDrawPaths.Contains(primitive.ShaderPath)){OmittedSurfaces++;continue;}
-                using Godot.Collections.Array arrays=CreateArrays(primitive,normalMaterials is not null&&normalMaterials.TryGetValue(primitive.ShaderPath,out var normalMaterial)?normalMaterial.TangentCoordinateSet:null);
+                using Godot.Collections.Array arrays=CreateArrays(primitive,normalMaterials is not null&&normalMaterials.TryGetValue(primitive.ShaderPath,out var normalMaterial)?normalMaterial.TangentCoordinateSet:null,modernZeroNormal);
                 Mesh.AddSurfaceFromArrays(Godot.Mesh.PrimitiveType.Triangles,arrays);
                 Mesh.SurfaceSetMaterial(Mesh.GetSurfaceCount()-1,materials[primitive.ShaderPath]);
                 uploadedPrimitiveIndices.Add(primitiveIndex);
@@ -116,10 +128,13 @@ public sealed class StaticMeshPreview : IDisposable
         catch{Dispose();throw;}
     }
 
-    internal static Godot.Collections.Array CreateArrays(MeshPrimitive primitive,byte? tangentSet=null)
+    internal static Godot.Collections.Array CreateArrays(MeshPrimitive primitive,byte? tangentSet=null,bool modernZeroNormal=false)
     {
         Vector3[] positions=primitive.Vertices.Select(vertex=>new Vector3(vertex.Position.X,vertex.Position.Y,-vertex.Position.Z)).ToArray();
         Vector3[] normals=primitive.Vertices.Select(vertex=>new Vector3(vertex.Normal.X,vertex.Normal.Y,-vertex.Normal.Z)).ToArray();
+        // Godot normal compression cannot retain a zero direction. Town unlit materials use an explicit up sentinel;
+        // CPU original bytes stay untouched and the upload oracle checks this exact adapter conversion.
+        if(modernZeroNormal)for(int i=0;i<normals.Length;i++)if(normals[i]==Vector3.Zero)normals[i]=Vector3.Up;
         Vector2[] uvs=primitive.Vertices.Select(vertex=>new Vector2(vertex.TextureCoordinate.X,vertex.TextureCoordinate.Y)).ToArray();
         int[] indices=primitive.Indices.Select(index=>(int)index).ToArray();
         if(primitive.Vertices.Any(v=>v.PackedColor0.HasValue)&&primitive.Vertices.Any(v=>!v.PackedColor0.HasValue))throw new AssetPreviewException("Mixed optional vertex-color declaration.");
@@ -154,11 +169,16 @@ public sealed class StaticMeshPreview : IDisposable
             primitive.Vertices[0].Position!=a || primitive.Indices[1]!=1)
             throw new InvalidOperationException("Asymmetric coordinate/winding/UV fixture failed.");
         try{using var invalid=CreateArrays(primitive with{Vertices=new[]{vertices[0],vertices[1] with{PackedColor0=null},vertices[2]}});throw new AssetPreviewException("Mixed color declaration accepted.");}catch(AssetPreviewException exception)when(exception.Message=="Mixed optional vertex-color declaration."){}
+        var zero=primitive with{Vertices=primitive.Vertices.Select(v=>v with{Normal=System.Numerics.Vector3.Zero}).ToArray()};
+        using var preserved=CreateArrays(zero);using var town=CreateArrays(zero,modernZeroNormal:true);
+        if(preserved[(int)Godot.Mesh.ArrayType.Normal].AsVector3Array().Any(n=>n!=Vector3.Zero)||
+            town[(int)Godot.Mesh.ArrayType.Normal].AsVector3Array().Any(n=>n!=Vector3.Up)||zero.Vertices.Any(v=>v.Normal!=System.Numerics.Vector3.Zero))
+            throw new AssetPreviewException("Town zero-normal conversion altered the original or default policy.");
     }
 
     public void VerifyUploadedAsset(TexturedStaticMesh source)
     {
-        VerifyUploadedGeometry(Mesh,source.Mesh,uploadedPrimitiveIndices);
+        VerifyUploadedGeometry(Mesh,source.Mesh,uploadedPrimitiveIndices,modernZeroNormal);
         foreach((string path,DdsImage original) in source.Textures)
         {
             using Image uploaded=uploadedTextures[path].GetImage();
@@ -183,7 +203,7 @@ public sealed class StaticMeshPreview : IDisposable
         preview.VerifyUploadedAsset(noPass);
         if(preview.Mesh.GetSurfaceCount()!=0||preview.OmittedSurfaces!=source.Mesh.Primitives.Count||preview.TexturedSurfaces!=0||preview.NeutralSurfaces!=0||preview.MaterialDiagnostics.Count!=0)throw new AssetPreviewException("Zero-pass geometry omission policy failed.");
     }
-    internal static void VerifyUploadedGeometry(ArrayMesh mesh,StaticMeshDescription source,IReadOnlyList<int>? primitiveIndices=null)
+    internal static void VerifyUploadedGeometry(ArrayMesh mesh,StaticMeshDescription source,IReadOnlyList<int>? primitiveIndices=null,bool modernZeroNormal=false)
     {
         if(mesh.GetSurfaceCount()!=(primitiveIndices?.Count??source.Primitives.Count))throw new InvalidOperationException("Godot surface count mismatch.");
         if(primitiveIndices is not null&&(primitiveIndices.Any(i=>i<0||i>=source.Primitives.Count)||!primitiveIndices.SequenceEqual(primitiveIndices.Distinct().OrderBy(i=>i))))throw new InvalidOperationException("Godot primitive mapping mismatch.");
@@ -209,8 +229,9 @@ public sealed class StaticMeshPreview : IDisposable
             for(int i=0;i<vertices.Length;i++)
             {
                 var p=original.Vertices[i].Position;var n=original.Vertices[i].Normal;var t=original.Vertices[i].TextureCoordinate;
-                if(vertices[i].DistanceTo(new(p.X,p.Y,-p.Z))>1e-5f || normals[i].DistanceTo(new(n.X,n.Y,-n.Z))>0.002f ||
-                    uv[i].DistanceTo(new(t.X,t.Y))>0.002f)throw new InvalidOperationException("Godot position/normal/UV readback mismatch.");
+                var expectedNormal=modernZeroNormal&&n==System.Numerics.Vector3.Zero?Vector3.Up:new Vector3(n.X,n.Y,-n.Z);
+                if(vertices[i].DistanceTo(new(p.X,p.Y,-p.Z))>1e-5f || normals[i].DistanceTo(expectedNormal)>0.002f ||
+                    uv[i].DistanceTo(new(t.X,t.Y))>0.002f)throw new InvalidOperationException($"Godot position/normal/UV readback mismatch: {original.ShaderPath}, surface {surface}, vertex {i}, position error {vertices[i].DistanceTo(new(p.X,p.Y,-p.Z)):R}, normal error {normals[i].DistanceTo(new(n.X,n.Y,-n.Z)):R}, original normal length {n.Length():R}, UV error {uv[i].DistanceTo(new(t.X,t.Y)):R}, source UV {t}, uploaded UV {uv[i]}.");
             }
             for(int i=0;i<indices.Length;i+=3)
                 if(indices[i]!=original.Indices[i] || indices[i+1]!=original.Indices[i+1] || indices[i+2]!=original.Indices[i+2])

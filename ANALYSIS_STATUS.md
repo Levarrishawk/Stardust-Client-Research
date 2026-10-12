@@ -1,5 +1,21 @@
 # Client Analysis Status
 
+## October 12 recognizable Mos Taike district
+
+The [offline Mos Taike build](docs/DX12_OFFLINE_MOS_TAIKE_RUNBOOK.md) joins a 160 × 160 m west/central district, 94 original placed objects (five buildings), original human idle/walk/run, triangle grounding and modern conservative obstacle/camera handling. Independent original-byte placement checks and five displayed-triangle foundation targets pass. A conservative audit excludes 110 of 122 height-owning layers and admits all twelve candidates affecting the padded region; complete original numeric/material parity remains unproved. All22 existing offline regression suites pass. Nine terminal/crafting/sound omissions, interiors, wider terrain, server-spawned actors and live authority remain open. [Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_MOS_TAIKE.md). No research-score or registry changes.
+
+## October 12 runnable terrain movement
+
+The [offline terrain build](docs/DX12_OFFLINE_TERRAIN_RUNBOOK.md) places the original human on a 256 × 256 m Tatooine base/detail region with original idle/walk/run clips, camera-relative controls, orbit camera and grounding against the displayed triangles. NGE source resolved bounded height-order and base-material selection questions against existing Pre-CU evidence. Eight exported checks pass on actual x64/DX12, including independent triangle grounding, speed integration, cancellation and backend refusal. Full terrain traversal/elevations, material blending, flora, buildings, collision and live authority remain open. [Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_TERRAIN.md). Research scores and registries are unchanged.
+
+## October 12 runnable x64 and DX12 milestone
+
+The [exported offline character client](docs/DX12_OFFLINE_CLIENT_RUNBOOK.md) now launches without arguments and includes its own .NET runtime. The actual exported AMD64 process selects D3D12 Forward+ on the workstation's NVIDIA RTX 5060 Laptop GPU, renders original body textures/geometry and advances the original idle clip. All 22 existing offline regression suites and eight exported application verification cases pass. Independent lead replay confirms animated character-region pixels, DX12 rejection under headless execution, and the delivered process loading its bundled runtime. The generated face remains neutral and this entry has no terrain, equipment or live gameplay. [Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_CLIENT.md). No research-score, address or protocol-registry changes follow.
+
+## October 12 implementation planning direction
+
+The [NGE source acceleration plan](docs/NGE_SOURCE_ACCELERATION_PLAN.md) prioritizes retaining the existing core/Godot implementation and resolving terrain, actor and traversal blockers through bounded source comparison. The checked-in host now defaults to D3D12 Forward+; character and partial terrain exports verify the actual backend. The user prioritizes fastest completion over a custom engine. Live compatibility remains unverified; research metrics and registries remain unchanged.
+
 ## Current implementation priority
 
 Round93 adds an explicit controlled-transport entry over the reusable installation/application/Godot host and a bounded redacted attempt receipt written after actual local drain or startup rollback. Default startup still refuses contact. Offline native headless/GPU replay verifies the same strict admission/composition with mandatory synthetic spy ports, protected exchanges, one approved original human, bounded movement, deadlines and disconnect. Run, cleanup, rollback and diagnostic failures remain distinct; standalone quit follows ownership completion. The real UDP constructor branch is compiled and source-reviewed, never executed.

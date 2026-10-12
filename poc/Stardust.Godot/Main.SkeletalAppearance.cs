@@ -106,6 +106,9 @@ public partial class Main
             foreach(var path in bundle.Geometries!.Keys)GD.Print($"PASS: selected mesh_detail={meshDetail} mesh={path} sha256={bundle.Sources[path].Sha256} skeleton_detail=0 vertex_lit_only={vertexLitOnly}");
         }
         bool fixture=args.Contains("--asset-self-test")||args.Contains("--capture");bool posed=args.Contains("--creature-pose");
+        bool animationProof=args.Contains("--offline-animation-proof");
+        if(animationProof && (fixture || !originalAnimation || !playAnimation || DisplayServer.GetName()=="headless"))throw new ArgumentException("Wall-clock animation proof requires an interactive GPU original animation.");
+        AnimationPreviewClock? playbackClock=null;int renderedPoseUpdates=0;
         if(fixture)
         {
             var bindBounds=skeletalPreview.Bounds;
@@ -148,9 +151,9 @@ public partial class Main
         if(fixture&&DisplayServer.GetName()=="headless"){GetTree().Quit();return;}
         AddChild(new WorldEnvironment{Environment=new Godot.Environment{BackgroundMode=Godot.Environment.BGMode.Color,BackgroundColor=new Color("#14202e"),AmbientLightSource=Godot.Environment.AmbientSource.Color,AmbientLightColor=Colors.White,AmbientLightEnergy=.65f}});
         AddChild(new DirectionalLight3D{RotationDegrees=new(-35,25,0),LightEnergy=.8f});
-        var camera=new PreviewOrbitCamera{Current=true,Fov=50};AddChild(camera);camera.Configure(skeletalPreview.Bounds.GetCenter(),Math.Max(skeletalPreview.Bounds.Size.Length()*(originalAnimation?.72f:.6f),1));
+        var camera=new PreviewOrbitCamera{Current=true,Fov=50};AddChild(camera);camera.Configure(skeletalPreview.Bounds.GetCenter(),Math.Max(skeletalPreview.Bounds.Size.Length()*(originalAnimation?.72f:.6f),1),front:offlineCharacterEntry);
         var info=new CanvasLayer();AddChild(info);var header=new ColorRect{Color=new(.02f,.04f,.08f,.92f),OffsetRight=1280,OffsetBottom=110};info.AddChild(header);
-        header.AddChild(new Label{Text=meshDetail==0?"STARDUST | ORIGINAL CHARACTER GEOMETRY":$"STARDUST | ORIGINAL CHARACTER | DETAIL {meshDetail} | {skeletalPreview.Surfaces} surfaces / {skeletalPreview.Vertices} vertices / {skeletalPreview.Triangles} triangles",Position=new(24,18)});
+        header.AddChild(new Label{Text=offlineCharacterEntry?"STARDUST | WINDOWS x64 | DIRECTX 12 | OFFLINE ORIGINAL CHARACTER":meshDetail==0?"STARDUST | ORIGINAL CHARACTER GEOMETRY":$"STARDUST | ORIGINAL CHARACTER | DETAIL {meshDetail} | {skeletalPreview.Surfaces} surfaces / {skeletalPreview.Vertices} vertices / {skeletalPreview.Triangles} triangles",Position=new(24,18)});
         var poseHint=new Label{Text=(originalAnimation?$"Original idle pose | frame {selectedFrame:0.##}":posed?"Neutral test arm pose":"Neutral bind pose")+" | drag to orbit | scroll to zoom | R to reset",Position=new(24,48)};header.AddChild(poseHint);
         header.AddChild(new Label{Text=vertexLitOnly?"Vertex-lit material | diagnostic lighting":specular?"Normal and specular preview | diagnostic lighting":normalDiffuse?"Normal mapped diffuse | diagnostic lighting":customized?"Selected skin and eye colors | generated face preview":albedoFactors?(generatedFace?"Authored skin and eye colors | generated face preview":"Authored skin and eye colors | face generation pending"):generatedFace?"Authored MAIN textures | generated face from explicit preview profile":materialDefaults?"Authored MAIN textures | palette shading and generated face pending":originalAnimation?"Neutral materials | textures and customization pending":"Character textures, customization and animation are pending",Position=new(24,76)});
         if(!originalAnimation)
@@ -159,19 +162,21 @@ public partial class Main
         }
         else
         {
-            var prepared=bundle.PreparedAnimation!;var clock=new AnimationPreviewClock(prepared.FrameRate,prepared.EndFrame,prepared.ProxyTimeScale);clock.Seek(selectedFrame);clock.SetPlaying(playAnimation);clock.SetFocused(GetWindow().HasFocus());
+            var prepared=bundle.PreparedAnimation!;var clock=new AnimationPreviewClock(prepared.FrameRate,prepared.EndFrame,prepared.ProxyTimeScale);clock.Seek(selectedFrame);clock.SetPlaying(playAnimation);clock.SetFocused(animationProof||GetWindow().HasFocus());playbackClock=clock;
             var play=new CheckBox{Text="Play idle",Position=new(760,45),ButtonPressed=playAnimation};header.AddChild(play);
             var scrub=new HSlider{Position=new(860,50),Size=new(360,24),MinValue=0,MaxValue=prepared.EndFrame,Step=.25,Value=selectedFrame};header.AddChild(scrub);
             play.Toggled+=clock.SetPlaying;
             scrub.ValueChanged+=frame=>{clock.Seek(frame);skeletalPreview.SetOriginalFrame(frame);poseHint.Text=$"Original idle | frame {frame:0.##} | drag to orbit | scroll to zoom | R to reset";};
-            skeletalAnimationFocus=clock.SetFocused;
+            skeletalAnimationFocus=focused=>clock.SetFocused(animationProof||focused);
             skeletalAnimationUpdate=elapsed=>
             {
                 if(!double.IsFinite(elapsed)||elapsed<0)throw new AssetPreviewException("Invalid preview frame elapsed time.");
                 // Discard excess wall-clock stall time; inspection resumes smoothly without catch-up.
                 if(!clock.Advance(Math.Min(elapsed,.25)))return;
                 skeletalPreview.SetOriginalFrame(clock.Frame);scrub.SetValueNoSignal(clock.Frame);
-                poseHint.Text=$"Original idle | frame {clock.Frame:0.##} | drag to orbit | scroll to zoom | R to reset";
+                renderedPoseUpdates++;
+                if(offlineCharacterEntry&&renderedPoseUpdates==60)GD.Print($"offline_character_animation=advancing pose_updates={renderedPoseUpdates} frame={clock.Frame:0.###}");
+                poseHint.Text=$"Original idle | frame {clock.Frame:0.##} | drag to orbit | scroll to zoom | R to reset"+(offlineCharacterEntry?" | Esc closes":"");
             };
             if(fixture)
             {
@@ -201,6 +206,23 @@ public partial class Main
         }
         if(shapeProfile is not null){var ui=InstallShapeControls(EditPanel("Shape"),bundle,skeletalPreview,fixture);if(fixture){VerifyShapeControls(skeletalPreview,bundle,ui);appearanceTabs!.CurrentTab=appearanceTabs.GetTabCount()-1;}}
         if(textureProfile is not null){var ui=InstallTextureChoiceControls(EditPanel("Details"),bundle,skeletalPreview,fixture);if(fixture){await VerifyTextureChoiceControls(skeletalPreview,bundle,ui);appearanceTabs!.CurrentTab=appearanceTabs.GetTabCount()-1;}}
+        if(animationProof)
+        {
+            string output=Read("--offline-animation-proof");
+            if(!Path.IsPathFullyQualified(output)||!Directory.Exists(output)||new[]{"pose-a.png","pose-b.png","animation.json"}.Any(name=>File.Exists(Path.Combine(output,name))))throw new IOException("Fresh existing animation evidence directory required.");
+            await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
+            double firstFrame=playbackClock!.Frame;int firstUpdates=renderedPoseUpdates;
+            using(var image=GetViewport().GetTexture().GetImage())if(image.SavePng(Path.Combine(output,"pose-a.png"))!=Error.Ok)throw new IOException("First animation capture failed.");
+            var elapsed=System.Diagnostics.Stopwatch.StartNew();
+            await ToSignal(GetTree().CreateTimer(1.5),Godot.Timer.SignalName.Timeout);
+            await ToSignal(RenderingServer.Singleton,RenderingServer.SignalName.FramePostDraw);
+            if(renderedPoseUpdates-firstUpdates<2||playbackClock.Frame==firstFrame)throw new AssetPreviewException("Wall-clock process frames did not advance original animation.");
+            skeletalPreview.VerifyBoundary(true);
+            using(var image=GetViewport().GetTexture().GetImage())if(image.SavePng(Path.Combine(output,"pose-b.png"))!=Error.Ok)throw new IOException("Second animation capture failed.");
+            using(var receipt=File.Open(Path.Combine(output,"animation.json"),FileMode.CreateNew))System.Text.Json.JsonSerializer.Serialize(receipt,new{Version=1,FirstFrame=firstFrame,LastFrame=playbackClock.Frame,PoseUpdates=renderedPoseUpdates-firstUpdates,WallSeconds=elapsed.Elapsed.TotalSeconds,OriginalClipSha256=selection!.ClipSha256,Driver=RenderingServer.GetCurrentRenderingDriverName(),ProcessArchitecture=System.Runtime.InteropServices.RuntimeInformation.ProcessArchitecture.ToString(),SyntheticFocusOverride=true});
+            GD.Print("PASS: wall-clock original animation process frames, two GPU captures and source clip identity");
+            GetTree().Quit();return;
+        }
         if(fixture)
         {
             await StaticMeshPreview.VerifyGpuUvBoundary(this);

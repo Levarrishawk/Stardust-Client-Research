@@ -10,9 +10,10 @@ public sealed record SharedObjectAppearanceProfile(string RootPath, string Appea
 public static class SharedObjectAppearanceProfileReader
 {
     public static SharedObjectAppearanceProfile Load(Func<string, TreLookupResult> resolve, string objectPath, string objectSha256,
-        int maximumDepth = 16, long maximumSourceBytes = 1048576)
+        int maximumDepth = 16, long maximumSourceBytes = 1048576,string fieldName="appearanceFilename")
     {
         ArgumentNullException.ThrowIfNull(resolve); ObjectTemplateCatalog.ValidatePin(objectSha256);
+        if(fieldName is not ("appearanceFilename" or "portalLayoutFilename"))throw new ArgumentException("Supported spatial resource field required.");
         if (maximumDepth is < 1 or > 16 || maximumSourceBytes is < 1 or > 16777216) throw new ArgumentOutOfRangeException(nameof(maximumDepth));
         objectPath = ObjectPath(objectPath);
         var cache = new OwnedAssetSourceCache(resolve, new(MaximumResources: maximumDepth, MaximumSourceBytes: maximumSourceBytes));
@@ -42,7 +43,7 @@ public static class SharedObjectAppearanceProfileReader
                         string raw = SharedObjectTemplateDecoder.Text(child.Children[0].Payload.Span, 1024);
                         if (raw.Length != 0) _ = ObjectPath(raw);
                     }
-                    else if (child.FormType is "SCOT" or "STOT" or "SHOT") Derivations(child);
+                    else if (child.FormType is "SCOT" or "STOT" or "SHOT" or "SBOT" or "STAT") Derivations(child);
                 }
             }
             Derivations(IffDocument.Parse(bytes, new(MaximumBytes: 1048576, MaximumNodes: 4096, MaximumDepth: 16)).Root);
@@ -53,7 +54,7 @@ public static class SharedObjectAppearanceProfileReader
         foreach (var item in chain)
         {
             var layer = item.Layers.Single(l => l.Family == "SHOT");
-            if (!layer.Parameters.TryGetValue("appearanceFilename", out var encoded)) continue;
+            if (!layer.Parameters.TryGetValue(fieldName, out var encoded)) continue;
             var bytes = encoded.Span;
             if (bytes.Length == 0) throw new InvalidDataException("Missing appearance string mode.");
             if (bytes[0] == 0)

@@ -16,7 +16,7 @@ public static class SharedObjectTemplateDecoder
         List<SharedTemplateLayer> layers=new();string? parent=null;bool first=true;
         void Visit(IffNode family)
         {
-            Require(family.FormType is "SCOT" or "STOT" or "SHOT","Unsupported shared template family.");
+            Require(family.FormType is "SCOT" or "STOT" or "SHOT" or "SBOT" or "STAT","Unsupported shared template family.");
             int cursor=0;string? inherited=null;
             if(family.Children.Count>0 && family.Children[0].IsForm("DERV"))
             {
@@ -25,7 +25,7 @@ public static class SharedObjectTemplateDecoder
             }
             if(first){parent=inherited;first=false;}else Require(inherited==parent,"Different nested derivation paths are outside this template slice.");
             Require(cursor<family.Children.Count,"Missing shared template version.");IffNode version=family.Children[cursor++];
-            bool supported=family.FormType switch{"SCOT"=>version.FormType is "0012" or "0013","STOT"=>version.FormType is "0007" or "0009","SHOT"=>version.FormType is "0007" or "0008" or "0009" or "0010",_=>false};
+            bool supported=family.FormType switch{"STAT"=>version.FormType=="0000","SBOT"=>version.FormType=="0001","SCOT"=>version.FormType is "0012" or "0013","STOT"=>version.FormType is "0007" or "0009","SHOT"=>version.FormType is "0007" or "0008" or "0009" or "0010",_=>false};
             Require(supported,"Unsupported shared template version.");
             var fields=version.Children;Require(fields.Count>0 && fields[0].Tag=="PCNT" && fields[0].Payload.Length==4,"Missing template parameter count.");
             uint count=BinaryPrimitives.ReadUInt32LittleEndian(fields[0].Payload.Span);Require(count<=512 && count==fields.Count-1,"Template parameter count/budget mismatch.");
@@ -37,7 +37,7 @@ public static class SharedObjectTemplateDecoder
                 string name=Text(bytes[..(end+1)],128);Require(parameters.TryAdd(name,bytes[(end+1)..].ToArray()),"Duplicate template parameter.");
             }
             layers.Add(new(family.FormType!,version.FormType!,inherited,new ReadOnlyDictionary<string,ReadOnlyMemory<byte>>(parameters)));
-            string? baseFamily=family.FormType switch{"SCOT"=>"STOT","STOT"=>"SHOT",_=>null};
+            string? baseFamily=family.FormType switch{"STAT"=>"SHOT","SBOT"=>"STOT","SCOT"=>"STOT","STOT"=>"SHOT",_=>null};
             if(baseFamily is null)Require(cursor==family.Children.Count,"Unexpected root object template data.");
             else
             {

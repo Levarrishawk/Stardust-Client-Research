@@ -1,5 +1,11 @@
 # Replacement client milestone plan
 
+October 12 Mos Taike increment: [bounded original district](DX12_OFFLINE_MOS_TAIKE_RUNBOOK.md) combines twelve applicable height-rule layers, five original buildings and 89 other original objects with animated movement and conservative modern obstacle/camera handling on x64/DX12. Exact original snapshot placement and five foundation targets are independently checked. This advances outdoor presentation; it does not close original numeric/material parity, interiors, full-town streaming or live gameplay gates. Next: unsupported terminal materials and original collision/interior traversal; wider terrain requires the family60 second curve and a new scope audit.
+
+October 12 delivered slices: [self-contained x64/DX12 offline original-character build](DX12_OFFLINE_CLIENT_RUNBOOK.md) and [partial Tatooine terrain roaming](DX12_OFFLINE_TERRAIN_RUNBOOK.md), with actual exported GPU/animation/movement verification and fallback rejection. Original base/detail terrain, sand texture, walk/run controls and displayed-triangle grounding are joined. Full generator traversal, representative performance and live session gates remain open. Next terrain work is the remaining ordered geographic layers and their preceding-height dependencies; controlled-server prerequisites remain separate.
+
+October 12 planning update: follow the [NGE source acceleration plan](NGE_SOURCE_ACCELERATION_PLAN.md) for the next implementation workstreams and x64/DX12 acceptance gates. Retain the accepted implementation below as the baseline. The user prefers the fastest delivery path, so Godot remains the recommended host unless measured blockers justify replacement. No new gate below is marked passed by this planning update.
+
 Current review: accepted Round93. The original Round82 oversight assessment below is preserved as historical context. The oversight findings are the findings in Levarris's prompt; there is no separate report. No live interoperability has been proved.
 
 ## Findings and corrections
