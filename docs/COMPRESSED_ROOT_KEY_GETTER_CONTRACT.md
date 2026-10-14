@@ -35,7 +35,7 @@ Caller must keep the containing object readable; getter returns its current fiel
 
 ## Validation and precise resume
 
-[Portable explicit-input runner](../poc/round80-tests/Assets/Invoke-SelectedRule.ps1) gates executable SHA E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150 before VAs. It checks independent RawPe/pefile body/slot/RTTI mappings, five exact instruction roles, no calls, one internal branch, two typed associations,19 deterministic admission negatives and eight synthetic pointer-word choices. Synthetic fixtures test zero/nonzero selection, not original CPU execution, buffer validity or lifetime. Cached getter decompilation is a lead/audited identity; original bytes establish the result. Raw witnesses stay private.
+[Portable explicit-input runner](../../SWG-Godot-Client/poc/round80-tests/Assets/Invoke-SelectedRule.ps1) gates executable SHA E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150 before VAs. It checks independent RawPe/pefile body/slot/RTTI mappings, five exact instruction roles, no calls, one internal branch, two typed associations,19 deterministic admission negatives and eight synthetic pointer-word choices. Synthetic fixtures test zero/nonzero selection, not original CPU execution, buffer validity or lifetime. Cached getter decompilation is a lead/audited identity; original bytes establish the result. Raw witnesses stay private.
 
 Only this13-byte body is expanded; no optional child, prior body, setter, allocator, lifetime/erase/actor/corpus work, production/name/registry/shared-ledger edit. Native production build is not applicable. [Checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-06_R80_ROOT_KEY_GETTER.md).
 

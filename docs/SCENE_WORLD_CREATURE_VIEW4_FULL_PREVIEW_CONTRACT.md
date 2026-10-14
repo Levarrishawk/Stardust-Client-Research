@@ -1,6 +1,6 @@
 # Complete CREO4 private-state preview boundary
 
-The optional `--creature4-full-peer` route in the [scene preview](../poc/Stardust.Godot/ScenePumpedWorldPreview.cs) connects the [complete world partition](SCENE_WORLD_CREATURE_VIEW4_FULL_CONTRACT.md) to the existing original-resource host. Its [helper](../poc/Stardust.Godot/ScenePumpedCreatureView4Full.cs) retains the original human publication and pose while checking private state; it adds no gameplay presentation or owner callbacks.
+The optional `--creature4-full-peer` route in the [scene preview](../../SWG-Godot-Client/poc/Stardust.Godot/ScenePumpedWorldPreview.cs) connects the [complete world partition](SCENE_WORLD_CREATURE_VIEW4_FULL_CONTRACT.md) to the existing original-resource host. Its [helper](../../SWG-Godot-Client/poc/Stardust.Godot/ScenePumpedCreatureView4Full.cs) retains the original human publication and pose while checking private state; it adds no gameplay presentation or owner callbacks.
 
 ## Bounded route
 
@@ -8,7 +8,7 @@ The supplied version-1 JSON must be explicitly synthetic, identify the existing 
 
 The full4 router wraps the existing full6/TANO6/customization/motion route. The full baseline is queued before the human end-baselines. After the existing full6 sequence, the host checks its canonical private seed and advances five updates individually. Every row independently verifies the complete re-encoded model, ordered event metadata, current recipient, variable journal bytes, acknowledgement exactly once, retained publication/pose and unchanged three archive loads/closes. Close requires zero private state/journal bytes. Failure and forced release dispose the router and fixture.
 
-The [independent peer](../poc/round43-tests/Integration/creature4_host_peer.py) builds literal wires and expected models from accepted complete-state Python semantics. The five updates cover all fourteen fields, collection growth, shrink/clear, encumbrance assignment overshoot, raw scalar bits and equal/counter-only work. Six models and29 ordered events agree in fresh headless and GPU runs. Existing full6 six models/45 events, TANO6 six models/eight events, fourteen terminal-clock states/all eight mip identities, names/customization and computed-terrain grounding remain verified in both runs. The fresh GPU capture was visually inspected: original human and terminal remain visible on diagnostic supplied terrain. Startup certificate/GPU diagnostics remain separately recorded.
+The [independent peer](../../SWG-Godot-Client/poc/round43-tests/Integration/creature4_host_peer.py) builds literal wires and expected models from accepted complete-state Python semantics. The five updates cover all fourteen fields, collection growth, shrink/clear, encumbrance assignment overshoot, raw scalar bits and equal/counter-only work. Six models and29 ordered events agree in fresh headless and GPU runs. Existing full6 six models/45 events, TANO6 six models/eight events, fourteen terminal-clock states/all eight mip identities, names/customization and computed-terrain grounding remain verified in both runs. The fresh GPU capture was visually inspected: original human and terminal remain visible on diagnostic supplied terrain. Startup certificate/GPU diagnostics remain separately recorded.
 
 ## Compatibility limit
 

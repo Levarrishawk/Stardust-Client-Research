@@ -195,7 +195,7 @@ case-folded file collisions and linked roots, ancestors or targets before
 copying. It reviews every destination and retains each source's exact hashed
 bytes before the first write; all copied files receive a hash postflight.
 Private synthetic file and real Windows junction checks are reproducible with
-[the guard runner](../poc/round40-tests/Integration/verify_workspace_guards.py).
+[the guard runner](../../SWG-Godot-Client/poc/round40-tests/Integration/verify_workspace_guards.py).
 These checks detect changes at their boundaries; they do not provide an atomic
 filesystem transaction against concurrent external replacement.
 

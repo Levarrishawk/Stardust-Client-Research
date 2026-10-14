@@ -30,7 +30,7 @@ No new build/test failure occurred. Exploratory constructor/loader window prefix
 
 Default Core smoke passes18 journal events/zero failures; build zero warnings/errors. Final workspace validator passes1539 Markdown files/zero broken or private links,2626 names/zero duplicates and345 packet rows. Link/UTF8/BOM/AST/JSON/new-file whitespace and git diff --check pass. Scope review leaves all3627 frozen files byte-identical with exactly five additions/public3632; HEAD/index preserved. All five prior reviewed scope hash pairs match. Fresh resource replay is identical, and final original record evidence agrees after the two endpoint-source anchors were added. Exact paths/sizes/hashes and retained logs are in the handoff.
 
-Reproduce [producer](../../tools/python/verify_creature_acceleration_template_getter.py) with explicit exe/packages/server-root/root/configuration and fresh private receipt; run [independent checks](../../poc/round52-tests/Runtime/research_checks.py) with same inputs plus private oracle/fresh private output-dir. All outputs require fresh ignored storage with lexical reparse/containment guard. Public fixtures contain synthetic values only.
+Reproduce [producer](../../../SWG-Godot-Client/tools/python/verify_creature_acceleration_template_getter.py) with explicit exe/packages/server-root/root/configuration and fresh private receipt; run [independent checks](../../../SWG-Godot-Client/poc/round52-tests/Runtime/research_checks.py) with same inputs plus private oracle/fresh private output-dir. All outputs require fresh ignored storage with lexical reparse/containment guard. Public fixtures contain synthetic values only.
 
 ## Resume point
 

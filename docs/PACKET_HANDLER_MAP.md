@@ -645,3 +645,16 @@ The [combined router](SCENE_WORLD_COMBINED_MOTION_INGRESS_CONTRACT.md) selects a
 ## Round71 peer-disconnect lifecycle proof
 
 [Disconnect ownership](SCENE_WORLD_PEER_DISCONNECT_CONTRACT.md) uses actual frozen codec/ingress/bridge/FIFO/pump. Matching ID closes transport without closing borrowed scene; caller drains pending scene/root owners and canceled resources.39 component checks and109-update joined closure/wrong-ID failure pass. Reason bytes remain uninterpreted; no schema or345-row matrix change, socket/send/live phase claim.
+
+October14 flytext refinement: the already registered S-to-C inner0x1BD codec is now directly confirmed as U64 emitter/StringId/F32 scale/RGB U8/U8 flags, without a literal Unicode field. See [emission/payload evidence](SERVER_OBJECT_CONTROLLER_EMISSIONS.md#flytext-payload-closure-october14). The source bridge and malformed-input guard add no packet inventory or coverage denominator change.
+
+
+October14 source-client character-sheet adapter: [bounded original-layout bridge](NGE_PRECU_CHARACTER_SHEET_CONTRACT.md) uses the already documented faction/guild/badge/detail messages, with native positive/truncated/malformed fixtures. It restores the omitted rank/reserved/faction distinctions and retains NGE decoders separately. This adds no wire family or345-row matrix entry; live UI acceptance is pending.
+
+
+October14 combat-spam refinement: [exact0x134 payload/color adapter](NGE_PRECU_COMBAT_SPAM_CONTRACT.md) resolves the new first-throw decoder identity and independently verifies original field order. It adds no packet family or inventory row. Native registered-controller and NGE regression tests pass; stationary live correction remains the next gate.
+
+
+## October14 spatial-chat implementation receipt
+
+[Spatial-chat contract](NGE_PRECU_SPATIAL_CHAT_CONTRACT.md) closes original0xF4 flags width/order against direct reader/writer probes and resolves a new172-byte application failure in the source NGE codec. The explicit Pre-CU adapter preserves owned OOB/text and bounds only the known eight-zero current-producer tail. Native11439/3538 plus five isolated cases pass; naturally received structured spatial chat is decoded in the rendered world. Nested presentation/outgoing acceptance remain open. The existing SpatialChat matrix row remains documented;345 source rows and all coverage denominators remain unchanged.

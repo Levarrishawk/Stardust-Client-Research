@@ -1,6 +1,6 @@
 # Localized object-name resolution contract
 
-The engine-neutral [resolver](../poc/Stardust.Core/Assets/LocalizedObjectNameResolver.cs) converts frozen [current name state](../poc/Stardust.Core/Protocol/CreatureView3NameState.cs) into an immutable `LocalizedObjectNameResult`. It borrows already-owned [STF variant 1 tables](LOCALIZED_STRING_TABLE_CONTRACT.md) through a caller-supplied callback. It performs no archive I/O, caching, locale discovery, background work or callback retention.
+The engine-neutral [resolver](../../SWG-Godot-Client/poc/Stardust.Core/Assets/LocalizedObjectNameResolver.cs) converts frozen [current name state](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/CreatureView3NameState.cs) into an immutable `LocalizedObjectNameResult`. It borrows already-owned [STF variant 1 tables](LOCALIZED_STRING_TABLE_CONTRACT.md) through a caller-supplied callback. It performs no archive I/O, caching, locale discovery, background work or callback retention.
 
 ```csharp
 LocalizedObjectNameResolver.Resolve(names, parsedTableResolver,
@@ -47,6 +47,6 @@ Same-thread recursive `Resolve` is rejected before nested argument validation, i
 
 ## Verification and next boundary
 
-The [native scenarios](../poc/Stardust.Core.SmokeTests/LocalizedObjectNameScenarios.cs) and [independent Python oracle](../poc/round25-tests/Assets/verify_names.py) verify 89 policy vectors, 14 controlled failure/ownership/baseline-bound checks and 32 independent concurrent calls. One selected key from each of two pinned original tables agrees with independently decoded bytes and display. Detailed original names stay private. See [Round25 evidence and commands](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R25_OBJECT_NAME_RESOLUTION.md).
+The [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/LocalizedObjectNameScenarios.cs) and [independent Python oracle](../../SWG-Godot-Client/poc/round25-tests/Assets/verify_names.py) verify 89 policy vectors, 14 controlled failure/ownership/baseline-bound checks and 32 independent concurrent calls. One selected key from each of two pinned original tables agrees with independently decoded bytes and display. Detailed original names stay private. See [Round25 evidence and commands](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R25_OBJECT_NAME_RESOLUTION.md).
 
 Next integrate current named replication with an optional presentation consumer and an explicitly supplied owned-table provider. Dynamic locale/config policy, cache ownership, original UI wording and variant 0 remain deferred.

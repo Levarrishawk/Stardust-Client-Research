@@ -1,6 +1,6 @@
 # Modern root-motion cadence outbox
 
-[SceneWorldRootMotionCadenceOutbox](../poc/Stardust.Core/Session/SceneWorldRootMotionCadenceOutbox.cs) schedules the existing [root FIFO](SCENE_WORLD_CLIENT_ROOT_MOTION_QUEUE_CONTRACT.md). It borrows world/store/queue and owns only cadence, modular counter and last successful pose/speed/flags values. No codec, byte history, socket or sender parity is introduced.
+[SceneWorldRootMotionCadenceOutbox](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldRootMotionCadenceOutbox.cs) schedules the existing [root FIFO](SCENE_WORLD_CLIENT_ROOT_MOTION_QUEUE_CONTRACT.md). It borrows world/store/queue and owns only cadence, modular counter and last successful pose/speed/flags values. No codec, byte history, socket or sender parity is introduced.
 
 ```csharp
 using var outbox = new SceneWorldRootMotionCadenceOutbox(world, store, queue,
@@ -21,7 +21,7 @@ An actual Enqueue exception after observation commit latches terminal IsFaulted.
 
 Dispose releases only borrowed references. History getters Samples,ElapsedMicroseconds,LastSuccessfulQueueMicroseconds,MovementCounter,QueuedCount,IsFaulted remain owner-readable afterward. Queue, store, driver, world and handed-out arrays survive. Caller closes/drains those actual owners separately.
 
-[Independent replay](../poc/round73-tests/Networking/replay.py) builds all expected statuses and bytes before native.1000 actual terrain-driver ticks move at native Z speed2 for ticks1..300/501..700, otherwise stationary. Binary32 addition predicts position; identity orientation maps native(X,Y,Z) to wire(X,Z,Y). Capacity2/124 retains ticks20..45, yielding six backpressure samples.54 exact62-byte frames and all1000 statuses match, including stop and heartbeat boundaries plus counter/timestamp wrap. First root passes actual queue-to-transport bridge, protected SOE datagram and independently packed ACK; no send occurs.
+[Independent replay](../../SWG-Godot-Client/poc/round73-tests/Networking/replay.py) builds all expected statuses and bytes before native.1000 actual terrain-driver ticks move at native Z speed2 for ticks1..300/501..700, otherwise stationary. Binary32 addition predicts position; identity orientation maps native(X,Y,Z) to wire(X,Z,Y). Capacity2/124 retains ticks20..45, yielding six backpressure samples.54 exact62-byte frames and all1000 statuses match, including stop and heartbeat boundaries plus counter/timestamp wrap. First root passes actual queue-to-transport bridge, protected SOE datagram and independently packed ACK; no send occurs.
 
 Final replay2033 native checks, zero build warnings/errors. Additional negatives cover sample cap, invalid constructor cap/step, wrong/duplicate clock, token/owner, stale/foreign/authoritative row, foreign bound store, closed world, actual enqueue failure; immediate stop backpressure/recovery and stationary initial+heartbeat behavior pass. Source invariant supplies finite issued rows; forged/private states and rare mid-call failures are not manufactured.
 

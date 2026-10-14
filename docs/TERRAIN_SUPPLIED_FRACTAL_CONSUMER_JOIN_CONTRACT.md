@@ -1,6 +1,6 @@
 # Conditional fractal consumer composition
 
-Date: 2026-10-04. The [actual Core runner](../poc/round46-tests/Integration/FractalJoin.csproj)
+Date: 2026-10-04. The [actual Core runner](../../SWG-Godot-Client/poc/round46-tests/Integration/FractalJoin.csproj)
 joins accepted AHFR/0003, FFRA/0005 and FHGT inputs in a synthetic single-cell
 sequence. It does not add an original sampler, family map, grid cache, normals
 or recursive terrain driver.
@@ -28,7 +28,7 @@ F32 APIs remain narrower. Original controls and noise are unresolved.
 
 ## Evidence and confidence
 
-The [Python peer](../poc/round46-tests/Integration/fractal_join_peer.py) generates
+The [Python peer](../../SWG-Godot-Client/poc/round46-tests/Integration/fractal_join_peer.py) generates
 the fixture using accepted independent Fraction/integer oracles and raw IFF
 encoding before native execution. It imports no native outputs. The actual
 Core reference build has zero warnings/errors; 903 native receipts match.

@@ -8,7 +8,7 @@ Date: 2026-10-04. Question: which receiver supplies run/walk at `00629F7E/00629F
 - Frozen round 50 source HEAD: `5493338d9cd4255cf58f25de6c4cd15f6507b818`; 3,548-file overlay preflight/postflight passed once. Manifest SHA-256 `4c041de82399f47d5968db6752dae245835f953e2d0b192e2aaf9690bb2f5627`; ZIP SHA-256 `d50c8328081477f21bc610001553b942dd997f9710ec87e67c05f907304be140`.
 - Worker HEAD: `65de8c88141071744dc75594be126b3bab3696a5`; index was empty. Accepted round 49 owned rows were independently checked before overlay.
 - Python, pefile, and Capstone performed static reads only. Curated provisional-name rows and the prior movement-reader/writer evidence supplied terminology; local Ghidra inventory supplied function extent correlation, not semantic proof.
-- [Producer](../../tools/python/verify_creature_controller_speed_inputs.py) and [independent checks](../../poc/round50-tests/Networking/research_checks.py). No original execution, live-server contact, asset mutation, or packet capture.
+- [Producer](../../../SWG-Godot-Client/tools/python/verify_creature_controller_speed_inputs.py) and [independent checks](../../../SWG-Godot-Client/poc/round50-tests/Networking/research_checks.py). No original execution, live-server contact, asset mutation, or packet capture.
 
 ## Evidence and findings
 

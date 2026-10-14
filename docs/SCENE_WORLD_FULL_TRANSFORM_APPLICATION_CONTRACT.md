@@ -25,7 +25,7 @@ Counter rules are the existing modern store policy: first accepts any U32; subse
 
 ## Reproduction and evidence
 
-[Independent replay](../poc/round65-tests/Networking/replay.py) first handpacks full frames and computes quaternion basis rotations through vector cross products with Python math.hypot. Native coefficient matrices are not used to seed the expected values. Frozen round15 independent lifecycle fixtures provide actual world staging, typed baseline/state, containment and reincarnation. All packet fixtures are synthetic. Profile JSON supplies the accepted catalog/options only; zero resource jobs or original assets are loaded.
+[Independent replay](../../SWG-Godot-Client/poc/round65-tests/Networking/replay.py) first handpacks full frames and computes quaternion basis rotations through vector cross products with Python math.hypot. Native coefficient matrices are not used to seed the expected values. Frozen round15 independent lifecycle fixtures provide actual world staging, typed baseline/state, containment and reincarnation. All packet fixtures are synthetic. Profile JSON supplies the accepted catalog/options only; zero resource jobs or original assets are loaded.
 
 ```powershell
 python poc/round65-tests/Networking/replay.py --output-dir local-private/round65-review-replay

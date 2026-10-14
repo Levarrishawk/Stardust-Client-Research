@@ -13,7 +13,7 @@ E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150;
 no original executable is run. The existing independent config/TRE/TGEN/family
 oracles gate original inputs before interpreting them.
 
-The [Version5 peer](../../poc/round53-tests/Integration/original_rule_height_host_peer.py)
+The [Version5 peer](../../../SWG-Godot-Client/poc/round53-tests/Integration/original_rule_height_host_peer.py)
 selects the first eligible original AHFR occurrence through the frozen raw frame
 walker. It stops at rule0, TGEN offset12346,114 bytes, root layer0/child2, SHA
 51735AECA9C172F0BD1E8194ACBCECD8CEF03041075CF307822E275D5E936B1E.
@@ -35,7 +35,7 @@ GPU allocations. Version4 remains the frozen reference route.
 
 ## Independent acceptance gates
 
-The [native join](../../poc/round53-tests/Integration/OriginalRulePatchJoinProgram.cs)
+The [native join](../../../SWG-Godot-Client/poc/round53-tests/Integration/OriginalRulePatchJoinProgram.cs)
 compares400 batched and reference retained noise values, cache projections,
 provenance and stored heights, then emits values for independent Fraction
 verification. Logical budgets and construction counts are inspected separately
@@ -43,7 +43,7 @@ from elapsed performance; no wall-clock speed claim is made.
 
 Headless/GPU peers compare all400 heights, exact16-patch geometry/readback,
 128 query triangles and nine grounded poses. The
-[late-negative peer](../../poc/round53-tests/Integration/original_rule_height_host_negative_peer.py)
+[late-negative peer](../../../SWG-Godot-Client/poc/round53-tests/Integration/original_rule_height_host_negative_peer.py)
 requires fourth-chunk NaN rejection after300 native samples, zero terrain visual
 allocations, no local motion publication and clean host drain. Prior Version4
 and Version3 previews, final Core/Godot builds and canonical scope/link checks

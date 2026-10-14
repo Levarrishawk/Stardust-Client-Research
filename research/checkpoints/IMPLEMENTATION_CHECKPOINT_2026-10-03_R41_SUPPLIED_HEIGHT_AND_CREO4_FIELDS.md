@@ -41,7 +41,7 @@ excluded or unknown. Full14-field composition/publication is still next.
 
 ## Lead integration and static findings
 
-The [native join](../../poc/round41-tests/Integration/Program.cs) uses the actual
+The [native join](../../../SWG-Godot-Client/poc/round41-tests/Integration/Program.cs) uses the actual
 Core executor and no Expected fields. Independent arithmetic/geometry oracles
 pass nine profiles,3600 samples,144 patches,576 queries and5508 ordered height
 operation visits. Debug normals/colors and filter query values are supplied.

@@ -1,6 +1,6 @@
 # Outer multipacket disconnect ordering
 
-Round72 closes bounded offline ordering through actual transport, ingress and scene pump. It adds [scenarios](../poc/Stardust.Core.SmokeTests/SceneWorldMultipacketDisconnectScenarios.cs), an [independent replay](../poc/round72-tests/Networking/replay.py), and one lead-approved exceptional cleanup line in SoeClientTransport.AcceptOuterMulti.
+Round72 closes bounded offline ordering through actual transport, ingress and scene pump. It adds [scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldMultipacketDisconnectScenarios.cs), an [independent replay](../../SWG-Godot-Client/poc/round72-tests/Networking/replay.py), and one lead-approved exceptional cleanup line in SoeClientTransport.AcceptOuterMulti.
 
 Outer decoded bytes use `00 03`, followed by one-byte length plus each decoded leaf. This is distinct from application `00 19` nesting. Frozen decoder flattens up to64 leaves/depth4. AcceptOuterMulti validates every leaf shape before dispatch, then processes leaves in order until PeerDisconnected. Validated suffix is ignored after matching disconnect. This prevalidation checks packet shape, not connection-ID semantics or full application codecs.
 

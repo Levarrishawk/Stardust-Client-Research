@@ -9,7 +9,7 @@ It adds no engine-neutral API or change to the existing one-actor inspector.
 
 ## Input and behavior
 
-[Generate-Fixture.py](../poc/round13-tests/Rendering/Generate-Fixture.py) authors
+[Generate-Fixture.py](../../SWG-Godot-Client/poc/round13-tests/Rendering/Generate-Fixture.py) authors
 synthetic real-layout application bytes for IDs `F122334455667788` and
 `E122334455667799`, human template CRC 2937962913, identity quaternions and wire
 positions (-1.5,0,0)/(1.5,0,0). There are six staged create/full18-field
@@ -55,7 +55,7 @@ unestablished.
 
 ## Invocation and lead integration
 
-The new [Main partial](../poc/Stardust.Godot/Main.TwoCreatureWorld.cs) supplies a
+The new [Main partial](../../SWG-Godot-Client/poc/Stardust.Godot/Main.TwoCreatureWorld.cs) supplies a
 method; Main.cs remains lead-owned. Proposed exact branch before the generic
 asset-root handler:
 
@@ -63,7 +63,7 @@ asset-root handler:
 if(args.Contains("--two-creature-world-preview")){await BuildTwoCreatureWorldPreview(args);return;}
 ```
 
-The [launcher](../poc/Stardust.Godot/Invoke-StardustTwoCreatureWorldPreview.ps1)
+The [launcher](../../SWG-Godot-Client/poc/Stardust.Godot/Invoke-StardustTwoCreatureWorldPreview.ps1)
 can verify independently of that registration: it writes a tiny ignored private
 scene referring to `res://TwoCreatureWorldPreview.cs` and launches that scene
 explicitly. Its arguments are `-GodotPath`, `-ArchiveRoot`, `-Configuration`,
@@ -92,16 +92,16 @@ mips remain owned after borrowed original resolver buffers are cleared.
 ## Export and oracle schemas
 
 All detailed logs/images remain ignored/private. The independently authored
-[world oracle](../poc/round13-tests/Rendering/Verify-World.py) takes eight paths:
+[world oracle](../../SWG-Godot-Client/poc/round13-tests/Rendering/Verify-World.py) takes eight paths:
 fixture, native log, GPU log, headless log, cancel log, initial PNG, updated PNG,
 recreated PNG. It hand-decodes layouts, independently models global registry/store
 revisions and pending-ID coalescing, checks actual disjoint actor regions below
 the fixed UI, and compares native/GPU/headless state. The
-[original oracle](../poc/round13-tests/Rendering/Verify-Original.py) takes root,
+[original oracle](../../SWG-Godot-Client/poc/round13-tests/Rendering/Verify-Original.py) takes root,
 configuration, catalog, native/GPU/headless logs. It independently checks effective
 source priority/SHA, inheritance, programs/factors, every mip and sampled hue
 algebra, including both actors' identical-content but separate closures.
-[Verify-Launch.ps1](../poc/round13-tests/Rendering/Verify-Launch.ps1) takes the common
+[Verify-Launch.ps1](../../SWG-Godot-Client/poc/round13-tests/Rendering/Verify-Launch.ps1) takes the common
 launcher arguments plus `-ExistingCapture` and rejects five mode/destination cases
 without new process logs/captures.
 

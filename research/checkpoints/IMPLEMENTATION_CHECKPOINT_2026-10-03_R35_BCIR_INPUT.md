@@ -57,7 +57,7 @@ Finite predicates inspect fields without imposing evaluation eligibility.
 
 ## Implementation
 
-[TerrainBoundaryCircleInput](../../poc/Stardust.Core/Assets/TerrainBoundaryCircleInput.cs)
+[TerrainBoundaryCircleInput](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainBoundaryCircleInput.cs)
 accepts a span or TerrainGeneratorSection, checks logical input caps before
 snapshot/section copy, retains all encoded bytes, and publishes immutable
 header/nullable fields plus independent encoded/word/header copies. Opaque

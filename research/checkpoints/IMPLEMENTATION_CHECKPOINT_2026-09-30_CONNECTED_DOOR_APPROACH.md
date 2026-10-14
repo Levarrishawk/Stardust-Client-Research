@@ -6,7 +6,7 @@ Can a modern fixture approach follow the selected paired floor sheet without a h
 
 Inputs: documented executable SHA-256 baseline unchanged; configuration `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`, 48 descending TREE mounts; candidate JSON `D80CB2CA9034EB33729078150F1DB32A5ADD09179C803B5F32B81FE233FA3423`, 782 authored selections. Black-sun POB `6CFDFE347FC94F38BC03D8FD440D2F4E8C63FF46532F33A9D730DF371658EA1F`, primary APT `AB41F2335A3F0CD65FDF28818AFA187CDEECFF3E9728358E85E3374113ABB2B7`, selected 2/0 ↔ 3/0. Table pin is documented in the [precise actor contract](../../docs/PRECISE_DOOR_ACTOR_CONTRACT.md).
 
-Tools: native core smoke, [screen producer](../../tools/python/probe_door_instance_capabilities.py), [independent approach reference](../../tools/python/connected_door_approach_reference.py), [persistent verifier](../../tools/python/verify_persistent_door_actor.py). Proprietary-derived records remain ignored/private.
+Tools: native core smoke, [screen producer](../../../SWG-Godot-Client/tools/python/probe_door_instance_capabilities.py), [independent approach reference](../../../SWG-Godot-Client/tools/python/connected_door_approach_reference.py), [persistent verifier](../../../SWG-Godot-Client/tools/python/verify_persistent_door_actor.py). Proprietary-derived records remain ignored/private.
 
 ## Observations and conclusions
 

@@ -2,7 +2,7 @@
 
 Round47, 2026-10-04. This engine-neutral consumer owns an immutable typed snapshot of the accepted [Round46 profile](SHARED_CREATURE_MOVEMENT_INPUT_PROFILE_CONTRACT.md). It selects explicitly requested authored literals under a caller-named modern policy. It does not establish final runtime movement values.
 
-Implementation: [SharedCreatureAuthoredMovementInputs.cs](../poc/Stardust.Core/Assets/SharedCreatureAuthoredMovementInputs.cs). Reproducible scenarios: [consumer scenarios](../poc/Stardust.Core.SmokeTests/SharedCreatureAuthoredMovementInputScenarios.cs), [runner](../poc/round47-tests/Networking/Program.cs), and [independent peer](../poc/round47-tests/Networking/peer.py). Evidence and validation are consolidated in the [Round47 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R47_AUTHORED_MOVEMENT_INPUTS.md).
+Implementation: [SharedCreatureAuthoredMovementInputs.cs](../../SWG-Godot-Client/poc/Stardust.Core/Assets/SharedCreatureAuthoredMovementInputs.cs). Reproducible scenarios: [consumer scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SharedCreatureAuthoredMovementInputScenarios.cs), [runner](../../SWG-Godot-Client/poc/round47-tests/Networking/Program.cs), and [independent peer](../../SWG-Godot-Client/poc/round47-tests/Networking/peer.py). Evidence and validation are consolidated in the [Round47 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R47_AUTHORED_MOVEMENT_INPUTS.md).
 
 ## Typed snapshot
 

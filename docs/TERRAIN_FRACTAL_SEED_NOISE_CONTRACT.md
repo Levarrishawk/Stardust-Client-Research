@@ -4,7 +4,7 @@ Date: 2026-10-04. This closes the seeded table construction at `013E64D0 -> 00B5
 
 The [sampler cache contract](TERRAIN_FRACTAL_SAMPLER_CONTRACT.md) supplies the caller-side stores and retained miss/F32-hit distinction. The [family-map contract](TERRAIN_FRACTAL_FAMILY_LOOKUP_CONTRACT.md) supplies ownership and lookup. The [existing RNG closure](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-21_STATIC_FLORA_RNG_CLOSURE.md) and canonical `legacy_shuffled_park_miller_next_VA_00B59EF0` name are reused; no registry rename follows.
 
-All VAs refer to EXE SHA256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. The [verifier](../tools/python/verify_terrain_fractal_seed_noise.py) gates EXE/config before decoder imports, checks289 selected instruction anchors,13 loader/writer words and exact constants, and compares independent Fraction results to the native research harness. The original executable is never run.
+All VAs refer to EXE SHA256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. The [verifier](../../SWG-Godot-Client/tools/python/verify_terrain_fractal_seed_noise.py) gates EXE/config before decoder imports, checks289 selected instruction anchors,13 loader/writer words and exact constants, and compares independent Fraction results to the native research harness. The original executable is never run.
 
 ## Selected family identity and MFRC/0001 schema
 

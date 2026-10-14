@@ -92,8 +92,8 @@ launcher itself does not consume those historical profiles.
 ## Consequences and exact next action
 
 See the [session acceptance](../sessions/PARALLEL_DEVELOPMENT_ROUND_84_2026-10-06.md),
-[reproduction command](../../poc/round84-tests/Integration/README.md) and
-[ordered gates](../../docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md).
+[reproduction command](../../../SWG-Godot-Client/poc/round84-tests/Integration/README.md) and
+[ordered gates](../../../SWG-Godot-Client/docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md).
 
 Next: exercise a complete server-shaped selected-player baseline/lifecycle set
 and nearby-object ingress through this session, defining admission/defer behavior

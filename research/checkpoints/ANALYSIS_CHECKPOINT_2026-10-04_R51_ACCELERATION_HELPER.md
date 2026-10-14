@@ -22,7 +22,7 @@ Executable `C:/Stardust-DEV/Stardust.exe` SHA256 `E782BF1C49B3DA730F66B54BC55894
 
 ## Verification and corrected probes
 
-[Producer](../../tools/python/verify_creature_acceleration_helper.py) passes63 anchors, complete196/16-byte bodies and frozen50 controller/frozen48 reader/writer prerequisite chain. [Independent runner](../../poc/round51-tests/Runtime/research_checks.py) passes26 byte witnesses,12 relative calls, two body digests,42 independently authored synthetic routing cases and11 deterministic negative checks. The routing fixtures establish conditional branches only, not original execution or template numerical values.
+[Producer](../../../SWG-Godot-Client/tools/python/verify_creature_acceleration_helper.py) passes63 anchors, complete196/16-byte bodies and frozen50 controller/frozen48 reader/writer prerequisite chain. [Independent runner](../../../SWG-Godot-Client/poc/round51-tests/Runtime/research_checks.py) passes26 byte witnesses,12 relative calls, two body digests,42 independently authored synthetic routing cases and11 deterministic negative checks. The routing fixtures establish conditional branches only, not original execution or template numerical values.
 
 One initial caller assertion used0062A002/0062A005. Complete decoding from confirmed controller entry00629750 establishes0062A001/0062A004; corrected producer and independent literal witnesses pass. An exploratory decode beginning0062A000 was misaligned and not promoted. Private probe/failure record and corrected receipts are retained. No expected route results or original bytes were changed.
 

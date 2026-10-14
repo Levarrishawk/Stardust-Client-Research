@@ -1,6 +1,6 @@
 # Owned static visual boundary
 
-R14-G, 2026-10-02. [SceneStaticVisual](../poc/Stardust.Godot/SceneStaticVisual.cs)
+R14-G, 2026-10-02. [SceneStaticVisual](../../SWG-Godot-Client/poc/Stardust.Godot/SceneStaticVisual.cs)
 wraps accepted [static resources](SCENE_STATIC_RESOURCE_CONTRACT.md) and
 [explicit SWTS selection](SWITCH_TEXTURE_STATIC_RESOURCE_CONTRACT.md) with owned
 Godot GPU/node lifetime. It uses the unchanged GeometryAppearancePreview. Core,
@@ -82,7 +82,7 @@ oracle checks all62 source mips, including auxiliary textures.
 
 ## Standalone proof and reproduction
 
-[SceneStaticVisualPreview](../poc/Stardust.Godot/SceneStaticVisualPreview.cs) loads
+[SceneStaticVisualPreview](../../SWG-Godot-Client/poc/Stardust.Godot/SceneStaticVisualPreview.cs) loads
 independent A/B closures off the owner thread in one read-only archive scope. B is
 hidden and retained while A is destroyed/recreated. Recreating A reuses its immutable
 prepared CPU closure under a new exact handle and creates new GPU resources; it
@@ -90,7 +90,7 @@ performs no archive reload. B keeps exact GPU IDs. Source evidence is identical
 before/after the full visual lifecycle. Registry close and injected false predicates
 retire visuals. Seven allocated positive/negative-control roots all dispose.
 
-Synthetic [fixture producer](../poc/round14-tests/Rendering/Generate-Fixture.py)
+Synthetic [fixture producer](../../SWG-Godot-Client/poc/round14-tests/Rendering/Generate-Fixture.py)
 authors distinct high-bit IDs, a nonunit quaternion (.2,-0,.3,1.7), wire positions
 (-2,7,4)/(8,7,4), and raw flag255. These are real-layout authored bytes, not captures.
 The fixed camera faces the authored screen using transformed normals. Fresh whole
@@ -129,14 +129,14 @@ nonfatal; no positive-run implementation exception or leak warning was observed.
 
 ## Export schemas and lead integration
 
-[Verify-Original.py](../poc/round14-tests/Rendering/Verify-Original.py) takes root,
+[Verify-Original.py](../../SWG-Godot-Client/poc/round14-tests/Rendering/Verify-Original.py) takes root,
 configuration, native/GPU/headless logs. It independently reconstructs original
 source union/priority/SHA, inheritance, all LOD geometry and all62 mip hashes.
-[Verify-Visual.py](../poc/round14-tests/Rendering/Verify-Visual.py) takes fixture,
+[Verify-Visual.py](../../SWG-Godot-Client/poc/round14-tests/Rendering/Verify-Visual.py) takes fixture,
 native/GPU/headless/cancel logs, first/recreated PNG. It independently hand-decodes
 raw create, derives rotation with quaternion cross products and SRS reflection,
 checks handle/incarnation metadata and actual whole-terminal pixels.
-[Verify-Launch.ps1](../poc/round14-tests/Rendering/Verify-Launch.ps1) takes common
+[Verify-Launch.ps1](../../SWG-Godot-Client/poc/round14-tests/Rendering/Verify-Launch.ps1) takes common
 launcher arguments plus ExistingCapture.
 
 - `switch_frame` reuses the accepted independently audited source/material/geometry/

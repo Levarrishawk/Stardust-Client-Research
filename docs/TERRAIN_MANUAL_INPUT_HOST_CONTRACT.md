@@ -1,6 +1,6 @@
 # Manual native-direction input host
 
-[TerrainManualInputHost](../poc/Stardust.Godot/TerrainManualInputHost.cs) is a Godot Node borrowing a caller clock reader and native-direction sink. It owns four held-key bits, configuration references, checked counters and one latest diagnostic. It does not normalize diagonals, apply speed, advance clocks, tick simulation, send messages or dispose a caller-owned object. This is modern replacement policy; original movement/input units, cadence and gameplay parity remain unknown.
+[TerrainManualInputHost](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainManualInputHost.cs) is a Godot Node borrowing a caller clock reader and native-direction sink. It owns four held-key bits, configuration references, checked counters and one latest diagnostic. It does not normalize diagonals, apply speed, advance clocks, tick simulation, send messages or dispose a caller-owned object. This is modern replacement policy; original movement/input units, cadence and gameplay parity remain unknown.
 
 ## API and key policy
 
@@ -34,6 +34,6 @@ Close is terminal, owner-thread guarded and idempotent. It drops clock/sink/pare
 
 ## Reproduction
 
-The [offline runner](../poc/round68-tests/Rendering/Invoke-Picker.ps1) stages only this host and its [verification node](../poc/Stardust.Godot/TerrainManualInputHostVerification.cs) with cached Godot packages. There is no Runtime/Core/project dependency. The [independent Python model](../poc/round68-tests/Rendering/verify_picker.py) generates42 authored actions and20 expected sink calls before native execution and compares exact held masks, binary32 axis bits, clocks, counters, enabled state, GUI consumption and event propagation.
+The [offline runner](../../SWG-Godot-Client/poc/round68-tests/Rendering/Invoke-Picker.ps1) stages only this host and its [verification node](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainManualInputHostVerification.cs) with cached Godot packages. There is no Runtime/Core/project dependency. The [independent Python model](../../SWG-Godot-Client/poc/round68-tests/Rendering/verify_picker.py) generates42 authored actions and20 expected sink calls before native execution and compares exact held masks, binary32 axis bits, clocks, counters, enabled state, GUI consumption and event propagation.
 
 Actual headless/GPU Viewport.PushInput, focused Control.AcceptEvent, native propagated window-focus notifications, callback-prefix, liveness/thread/token and ownership results are recorded in the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R68_MANUAL_INPUT_HOST.md). Focus notifications are injected through the native Godot notification path; no live user keyboard or operating-system focus transition is captured. The GPU panel proves bounded replacement UI execution, not original visual or movement fidelity.

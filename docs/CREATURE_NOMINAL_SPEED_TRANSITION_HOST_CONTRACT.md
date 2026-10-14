@@ -4,7 +4,7 @@ Round56,2026-10-04. This is an opt-in offline integration of the [pure nominal t
 
 ## Explicit boundary
 
-[Host](../poc/Stardust.Godot/ScenePumpedNominalSpeed.cs) uses `--nominal-speed-fixture` through the [bounded preview launcher](../poc/round16-tests/Integration/Launch.ps1). It requires the complete local-input/partial-view offline proof and excludes conflicting sourced-input, terrain, cancellation and input-loss modes. Existing modes are unaffected when the option is absent.
+[Host](../../SWG-Godot-Client/poc/Stardust.Godot/ScenePumpedNominalSpeed.cs) uses `--nominal-speed-fixture` through the [bounded preview launcher](../../SWG-Godot-Client/poc/round16-tests/Integration/Launch.ps1). It requires the complete local-input/partial-view offline proof and excludes conflicting sourced-input, terrain, cancellation and input-loss modes. Existing modes are unaffected when the option is absent.
 
 The owned JSON document is limited to262144 bytes/depth12 and1..128 steps. Version1 and policy `supplied_nominal_rate_modern_planar_trace` require initial positive-zero current speed,10000-microsecond ticks and the corresponding supplied binary32 seconds word. Precision and retained rate use the pure core API. Every resulting stored speed must be finite and within0..10, the existing driver's explicit velocity bound. The trace ends at stored positive zero. These are modern host restrictions, not inferred legacy acceptance rules.
 
@@ -20,7 +20,7 @@ Every step verifies that the actual original resource publication and visual fin
 
 ## Reproduction and evidence
 
-[Native join](../poc/round56-tests/Integration/NominalSpeedJoinProgram.cs) consumes the same synthetic trace. [Independent peer](../poc/round56-tests/Integration/nominal_speed_host_peer.py) provides `generate`, `native`, `host` and `negative` actions with fresh ignored-private fixture/receipt destinations. Native and host outputs are compared against regenerated Fraction expectations; position updates and reflected presentation are checked independently. The negative fixture changes only the last target to a synthetic NaN.
+[Native join](../../SWG-Godot-Client/poc/round56-tests/Integration/NominalSpeedJoinProgram.cs) consumes the same synthetic trace. [Independent peer](../../SWG-Godot-Client/poc/round56-tests/Integration/nominal_speed_host_peer.py) provides `generate`, `native`, `host` and `negative` actions with fresh ignored-private fixture/receipt destinations. Native and host outputs are compared against regenerated Fraction expectations; position updates and reflected presentation are checked independently. The negative fixture changes only the last target to a synthetic NaN.
 
 Original resource/configuration identities and original object-to-appearance/mesh/material loading are enforced by the existing accepted offline preview. No original executable execution, live connection, asset mutation or publication is involved. Generated traces/logs/screenshots stay private.
 

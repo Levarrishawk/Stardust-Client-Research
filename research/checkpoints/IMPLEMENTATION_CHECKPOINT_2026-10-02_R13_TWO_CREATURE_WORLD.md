@@ -30,7 +30,7 @@ code. Accepted APIs already support two bounded actors; no consumer defect was f
 
 ## Observation, interpretation and consequence
 
-[Fixture producer](../../poc/round13-tests/Rendering/Generate-Fixture.py) independently
+[Fixture producer](../../../SWG-Godot-Client/poc/round13-tests/Rendering/Generate-Fixture.py) independently
 packs two distinct high-bit IDs, identity rotations, positions ±1.5 on X and complete
 18-field baselines. The direct application world stages six lifecycle/state messages
 until the explicit barrier. Each finalized actor queues its own original initializer
@@ -40,7 +40,7 @@ each reads39 sources/4,686,371 bytes with matching original content. Confidence:
 actor identity does not imply shared mutable resource ownership; identical source
 content remains permissible.
 
-The [independent world oracle](../../poc/round13-tests/Rendering/Verify-World.py)
+The [independent world oracle](../../../SWG-Godot-Client/poc/round13-tests/Rendering/Verify-World.py)
 models global registry and store revisions and all seven exported latest batches.
 Initial mutation6 has A/B incarnations1/3, handles2/4, store revisions1/2. Two Height
 updates coalesce at mutation8, revisions3/4. Full hidden/shown B baselines produce
@@ -60,7 +60,7 @@ allocation. Destroying A leaves B current; recreating A loads only A, generates 
 GPU IDs and preserves B's exact IDs. A late truncated mixed packet retires both actors
 through whole-world failure. Confidence: **Confirmed** for these bounded cases.
 
-The [original oracle](../../poc/round13-tests/Rendering/Verify-Original.py) independently
+The [original oracle](../../../SWG-Godot-Client/poc/round13-tests/Rendering/Verify-Original.py) independently
 resolves overlay priority/SHA for all39 source records, five inherited templates,
 two original programs/four authored factors, ten textures/80 decoded mips and four
 sampled hue evaluations. Both actors' native/GPU/headless evidence agrees, and all

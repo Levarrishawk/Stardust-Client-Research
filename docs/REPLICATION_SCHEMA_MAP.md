@@ -861,3 +861,27 @@ The [combined router](SCENE_WORLD_COMBINED_MOTION_INGRESS_CONTRACT.md) selects a
 ## Round71 peer-disconnect lifecycle proof
 
 [Disconnect ownership](SCENE_WORLD_PEER_DISCONNECT_CONTRACT.md) uses actual frozen codec/ingress/bridge/FIFO/pump. Matching ID closes transport without closing borrowed scene; caller drains pending scene/root owners and canceled resources.39 component checks and109-update joined closure/wrong-ID failure pass. Reason bytes remain uninterpreted; no schema or345-row matrix change, socket/send/live phase claim.
+
+## NGE source bridge receipt, October14
+
+The sibling source client now selects the documented common/GILD6, Tangible3/6 and Creature3/4/6 registrations and original wearable width under an explicit Pre-CU profile. Production registration/codec fixtures and the subsequent live CREO3/6 progress are recorded in the [source-client checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-13_NGE_ZONE_ENTRY.md). These bounded implementation receipts add no new recovered schema or packet coverage. Collection mutation/callback fidelity, atomic publication and full runtime/gameplay compatibility are not established. The next later-object failure motivates the already documented inherited-only WeaponObject comparison; it does not alter the schema above.
+
+## October14 current source-client gate: rendered world reached
+
+The [zone-entry checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-13_NGE_ZONE_ENTRY.md) records the Pre-CU player view3/6/8/9 registration bridge, original quest-record width, directional full transforms and compact update tail conversion. Delivered build1D37C32AB052BE370BEDE72807D2FAB0A850E3E0053F466C227252193DF4AE49 reached the existing character's ground world through computer-use login: terrain, vegetation/weather and original HUD render while stationary. The character is black and HUD/toolbar content incomplete. Native suite8438 checks/1881 malformed-input rejections plus five isolated boundary cases passes. This is first scene-entry/initial-rendering acceptance, not full player gameplay, delta/callback, material/HUD/camera or logout/server-release parity. Ability/draft/quest model integration, original timed buffs and /who remain required. Next bounded probe is black-character material/shader diagnosis with unchanged assets, plus physical Alt/edge validation after stability. The same task is prepared for the user's Sol High switch; no new task or publication. Coverage denominators and separate replacement-client gates remain unchanged.
+
+### Current source-client correction: unstable scene, containment/loading probe
+
+The initial rendered world was followed by a flytext Unicode allocation fatal. The [zone-entry checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-13_NGE_ZONE_ENTRY.md) now records the executable-confirmed flytext layout correction and Unicode bounds guard. Latest build6543F6943AC8DFD59C0C1DBA2D050304DE9621DD37D020BBBD5E0C25B5B2715A passes8568 native checks/1990 malformed rejections plus five isolated failures, but the following entry fills loading and hangs with sampled Object::findPosition_w parent traversal from NebulaManagerClient. Initial rendering is verified; sustained/repeatable scene admission is not. A clean retry and redacted containment-cycle/admission probe are the current next actions before materials/HUD/camera work. No denominator/publication change.
+
+
+### October14 containment admission receipt
+
+The [containment checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-14_CONTAINMENT_ADMISSION.md) confirms a self-parent application update and records graph rejection, posted-key fixtures and normal Disconnect/re-entry. A later Unicode bounds exception still blocks sustained acceptance. Its message/field needs the next first-throw/opcode probe; baseline/delta side effects, late parent resolution and full presentation remain open. No schema denominator or packet-registry change.
+
+### October14 daytime source-client model/presentation adapters
+
+[Daytime checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-14_DAYTIME_COMPATIBILITY.md): [command availability projection](NGE_PRECU_COMMAND_AVAILABILITY_CONTRACT.md) publishes82 decoded/model ability entries to the attached owner; [attribute adapter](NGE_PRECU_ATTRIBUTE_INDEX_CONTRACT.md) maps existing six semantics to original nine-wire positions, correcting Action's observed length. Mind visibility remains a separate widget probe. [Pixel-register adapter](NGE_PRECU_PIXEL_REGISTER_CONTRACT.md) corrects the installed SHT/program producer contract and visibly textured selection/world character/radar. Native8781/2068 plus five isolated cases pass; historical late Unicode rejection remains unreproduced/unresolved. No new wire fields/schema rows or coverage counts are introduced, and no gameplay execution/full UI parity is claimed.
+
+
+October14 source presentation: [original character-sheet adapter](NGE_PRECU_CHARACTER_SHEET_CONTRACT.md) reads raw creature current/max/base/wounds/encumbrance vectors at original indices rather than the six-semantic enum remap. Missing vector entries stay unavailable. Stardust authored six visible rows omit Mind/focus/willpower; background replication is retained. No new schema fields, indexed positions or packet rows are introduced.

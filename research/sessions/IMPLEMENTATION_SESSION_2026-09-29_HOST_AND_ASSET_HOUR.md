@@ -76,9 +76,9 @@ and zone-state work separate from this asset milestone.
 
 ## Canonical handoff
 
-[Implementation acceptance](../../docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md),
+[Implementation acceptance](../../../SWG-Godot-Client/docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md),
 [asset specification](../../docs/ASSET_PIPELINE.md),
-[prototype README](../../poc/README.md),
+[prototype README](../../../SWG-Godot-Client/poc/README.md),
 [current status](../../ANALYSIS_STATUS.md) and
 [chronological ledger](../../COMPREHENSIVE_ANALYSIS_LEDGER.md) are reconciled.
 No new provisional semantic names or packet rows were necessary.

@@ -1,6 +1,6 @@
 # Independent configured playground transport generations
 
-[transport_fixtures.py](../poc/round81-tests/Networking/transport_fixtures.py) is an importable Python fixture producer and verifier for frozen configured Version13. It reuses the isolated [Round14 independent encoder](../poc/round14-tests/Networking/peer.py); it does not import production codecs, sibling Round81 work, or run a socket. These are authored synthetic identities, not live authentication or server session semantics.
+[transport_fixtures.py](../../SWG-Godot-Client/poc/round81-tests/Networking/transport_fixtures.py) is an importable Python fixture producer and verifier for frozen configured Version13. It reuses the isolated [Round14 independent encoder](../../SWG-Godot-Client/poc/round14-tests/Networking/peer.py); it does not import production codecs, sibling Round81 work, or run a socket. These are authored synthetic identities, not live authentication or server session semantics.
 
 ## Producer API
 
@@ -22,7 +22,7 @@ Runtime terrain failure remains distinct from root failure: a failure after N co
 
 ## Evidence and reproduction
 
-[replay.py](../poc/round81-tests/Networking/replay.py) passes35 positive checks/43 rejection cases before native comparisons. Three authored stationary generations have120/1/120 samples,2/0/2 roots, exact initial sequence0, heartbeat at sample110, and a strict completed1/attempted2 runtime-fault report with healthy roots. Source profile/application objects stay unchanged; round-trip regeneration recovers the source exactly. Distinct tested seeds reject old-seed correction ACK CRCs. Transport-only boundary tests also reject incorrect authored steps, Boolean steps and failed ACK release. CRC2 is finite integrity checking; rejection of these fixtures is not a universal mathematical uniqueness claim.
+[replay.py](../../SWG-Godot-Client/poc/round81-tests/Networking/replay.py) passes35 positive checks/43 rejection cases before native comparisons. Three authored stationary generations have120/1/120 samples,2/0/2 roots, exact initial sequence0, heartbeat at sample110, and a strict completed1/attempted2 runtime-fault report with healthy roots. Source profile/application objects stay unchanged; round-trip regeneration recovers the source exactly. Distinct tested seeds reject old-seed correction ACK CRCs. Transport-only boundary tests also reject incorrect authored steps, Boolean steps and failed ACK release. CRC2 is finite integrity checking; rejection of these fixtures is not a universal mathematical uniqueness claim.
 
 ```powershell
 python poc/round81-tests/Networking/replay.py --profile <accepted-private-Version13-profile.json> --output-dir local-private/round81-review

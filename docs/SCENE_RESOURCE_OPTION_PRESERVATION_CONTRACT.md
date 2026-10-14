@@ -1,6 +1,6 @@
 # Scene resource option preservation
 
-[Focused scenarios](../poc/Stardust.Core.SmokeTests/SceneResourceOptionPreservationScenarios.cs) exercise the public `SceneObjectResourceRequest` and actual `SceneObjectResourceInitializer` loader callback. This regression milestone changes no production API, world, renderer or source reader. Its own runner accepts root/config/catalog/literal-fixtures paths.
+[Focused scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneResourceOptionPreservationScenarios.cs) exercise the public `SceneObjectResourceRequest` and actual `SceneObjectResourceInitializer` loader callback. This regression milestone changes no production API, world, renderer or source reader. Its own runner accepts root/config/catalog/literal-fixtures paths.
 
 ## Preserved fields and ownership
 
@@ -24,6 +24,6 @@ The existing completion validator rejects missing-bundle/default/altered-policy 
 
 ## Evidence and boundary
 
-The [independent oracle](../poc/round30-tests/Assets/verify_options.py) checks10 fixtures/20 projected boundaries, seven completion outcomes and two closed drains. It reconstructs the original source union from installed template inheritance, APT/DTLA/MESH shader references and SSHT effect/texture bindings, then adds authored SWTS frames. All34 priority/size/SHA identities and64 Pillow-decoded frame mip hashes match. Header-derived appearance+bundle accounting remains126 mips and3,969,782 pending bytes. Detailed original receipts remain private.
+The [independent oracle](../../SWG-Godot-Client/poc/round30-tests/Assets/verify_options.py) checks10 fixtures/20 projected boundaries, seven completion outcomes and two closed drains. It reconstructs the original source union from installed template inheritance, APT/DTLA/MESH shader references and SSHT effect/texture bindings, then adds authored SWTS frames. All34 priority/size/SHA identities and64 Pillow-decoded frame mip hashes match. Header-derived appearance+bundle accounting remains126 mips and3,969,782 pending bytes. Detailed original receipts remain private.
 
 [Checkpoint and commands](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R30_RESOURCE_OPTION_PRESERVATION.md) record Confirmed implementation/byte observations, failures and exact scope. This proves the accepted request-copy fix and tested initializer transfer boundary; it adds no animation, clock, GPU, live interoperability or world publication behavior.

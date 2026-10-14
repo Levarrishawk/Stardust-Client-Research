@@ -16,7 +16,7 @@ Fallbacks remain separate: invalid CSHD palette index→first entry; invalid BTR
 
 ## Preview profiles and host
 
-The strict existing version1 profile schema is reused: `variableName`, `factoryFlag`, int32 `value`. The confirmed mapping makes factoryFlag the normalized private/shared-owner discriminator for both consumers. [Zero profile](../poc/preview-profiles/human-customization-zero.json) and [varied profile](../poc/preview-profiles/human-customization-varied.json) are independently authored inspection selections, not recovered character-creation defaults.
+The strict existing version1 profile schema is reused: `variableName`, `factoryFlag`, int32 `value`. The confirmed mapping makes factoryFlag the normalized private/shared-owner discriminator for both consumers. [Zero profile](../../SWG-Godot-Client/poc/preview-profiles/human-customization-zero.json) and [varied profile](../../SWG-Godot-Client/poc/preview-profiles/human-customization-varied.json) are independently authored inspection selections, not recovered character-creation defaults.
 
 The human chain requires eight exact keys. Shared-owner skin updates body/head and base face; private skin remains a distinct face highlight. Private eye/index_color_2 and white/index_color_3 feed mouth/body factor controls. Three styles and facial-hair color feed the generated face. Age/normal-map texture selection, shape morphs, lighting and specular remain unexecuted.
 

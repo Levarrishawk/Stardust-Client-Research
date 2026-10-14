@@ -1,1 +1,0 @@
-SkeletalLowerDetailShadingScenarios.Run(args);

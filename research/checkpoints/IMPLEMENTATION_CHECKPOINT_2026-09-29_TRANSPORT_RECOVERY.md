@@ -88,5 +88,5 @@ trailer defect was reproduced during the [TRE slice](IMPLEMENTATION_CHECKPOINT_2
 Next bounded question: what exact status request/response bytes, transform
 exceptions and connection-state effects must the adapter support? Use the
 existing static specification and source call chains before adding a socket.
-See the [acceptance record](../../docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md)
+See the [acceptance record](../../../SWG-Godot-Client/docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md)
 for caller ownership, policy limits and reproduction commands.

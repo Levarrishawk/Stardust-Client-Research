@@ -10,7 +10,7 @@ Can an actual Godot Node translate unhandled physical WASD press/release into ca
 
 Trusted sync verified4,191 accepted67 public files before edits. Incoming manifest SHA-256: `167817431f266e5f841c6d77ed288f8dc4aab79a234bde82d3f0db5ec9709fe4`; archive: `6fe55e2d17e2f280ad9b5a3370a4e6d1756f785a763673ac192f50dab153bc0c`. Original executable identity was checked against `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`; it was not executed. Tools: PowerShell, ripgrep, cached Python/.NET8/offline Godot4.7.2 and Git read-only checks. No Runtime68, Networking68, existing host amendment, Core/project edit, original asset or private proprietary corpus is consumed.
 
-The [host](../../poc/Stardust.Godot/TerrainManualInputHost.cs) borrows exactly `Func<long>` and `Action<System.Numerics.Vector2,long>`. The [model](../../poc/round68-tests/Rendering/verify_picker.py) independently authors actions, held masks, component axes, expected clocks and counters before native execution. Native code reads only Actions, not the saved expected rows. There is no native-output expectation seed.
+The [host](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainManualInputHost.cs) borrows exactly `Func<long>` and `Action<System.Numerics.Vector2,long>`. The [model](../../../SWG-Godot-Client/poc/round68-tests/Rendering/verify_picker.py) independently authors actions, held masks, component axes, expected clocks and counters before native execution. Native code reads only Actions, not the saved expected rows. There is no native-output expectation seed.
 
 ## Findings and evidence
 
@@ -28,7 +28,7 @@ Confirmed: Close clears local held/configuration references and processing but i
 
 ## Validation and reproduction
 
-Use the [runner](../../poc/round68-tests/Rendering/Invoke-Picker.ps1) with explicit cached Python/.NET, documented executable identity, cached Godot packages and a fresh ignored private RunRoot. Exact portable command and all ten final owned public hashes are in the final handoff. Build stages only the new host/verification; no sibling implementation source is linked.
+Use the [runner](../../../SWG-Godot-Client/poc/round68-tests/Rendering/Invoke-Picker.ps1) with explicit cached Python/.NET, documented executable identity, cached Godot packages and a fresh ignored private RunRoot. Exact portable command and all ten final owned public hashes are in the final handoff. Build stages only the new host/verification; no sibling implementation source is linked.
 
 Actual build: zero warnings/errors. Headless114 checks and GPU115 checks passed. Both modes compare all42 independent authored event/control actions and20 exact native sink calls, including exact binary32 axis bits and integer clocks, held masks, enabled state, accepted/handled/read/invocation counts and GUI capture count. Model generation precedes native execution; final audit records the saved expected artifact hash and verifies its content independently.
 

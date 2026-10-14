@@ -56,12 +56,12 @@ history is an honest prefix, with no rollback or no-motion-publication claim.
 
 ## Evidence and verification plan
 
-[Independent trajectory peer](../../poc/round68-tests/Integration/manual_point_peer.py)
+[Independent trajectory peer](../../../SWG-Godot-Client/poc/round68-tests/Integration/manual_point_peer.py)
 intersects actual camera rays against independently calculated Fraction geometry,
 casts targets to binary32, calculates authored point/manual poses, speeds, clocks
 and orientation, then checks raw root headers/XYZ/speed/quaternion basis and FIFO
 ordering. Expected values are not seeded from native hit/pose/quaternion output.
-[Failure peer](../../poc/round68-tests/Integration/manual_clock_failure_peer.py)
+[Failure peer](../../../SWG-Godot-Client/poc/round68-tests/Integration/manual_clock_failure_peer.py)
 checks the actual clock rejection and pending queue/controller/Node/visual drains.
 
 Lead replays: Assets24 anchors/102 guards/39 independent wrapper checks and35

@@ -22,7 +22,7 @@ Observation: accepted Godot adapter reflects Z and preserves indices. Interpreta
 
 Observation: fixed owned array/area charge is at most 328 logical bytes, single lookup tests at most eight triangles, and batch count is capped at 65536. Interpretation: Confirmed bounded data/work definition, excluding CLR overhead, scalar metadata, temporary copies and caller-held results. Consequence: do not treat LogicalOwnedBytes as total heap measurement.
 
-The [durable contract](../../docs/TERRAIN_PATCH_SURFACE_QUERY_CONTRACT.md) defines API, limits, arithmetic order, source identity, ownership and modern policy. [Source](../../poc/Stardust.Core/Geometry/TerrainPatchSurfaceQuery.cs); [scenarios](../../poc/Stardust.Core.SmokeTests/TerrainPatchSurfaceQueryScenarios.cs).
+The [durable contract](../../docs/TERRAIN_PATCH_SURFACE_QUERY_CONTRACT.md) defines API, limits, arithmetic order, source identity, ownership and modern policy. [Source](../../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainPatchSurfaceQuery.cs); [scenarios](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainPatchSurfaceQueryScenarios.cs).
 
 ## Reproduction and results
 

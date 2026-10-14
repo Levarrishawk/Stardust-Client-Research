@@ -18,10 +18,10 @@ headless/OpenGL compatibility GPU. Only accepted78 playground/limits HUDs are st
 as context dependencies; a frozen authored caption oracle supplies default comparison.
 
 [Durable contract](../../docs/TERRAIN_OFFLINE_OUTCOME_HUD_CONTRACT.md),
-[owner](../../poc/Stardust.Godot/TerrainOfflineOutcomeHud.cs),
-[verification](../../poc/Stardust.Godot/TerrainOfflineOutcomeHudVerification.cs),
-[runner](../../poc/round79-tests/Rendering/Invoke-Picker.ps1),
-[oracle](../../poc/round79-tests/Rendering/verify_picker.py).
+[owner](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineOutcomeHud.cs),
+[verification](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineOutcomeHudVerification.cs),
+[runner](../../../SWG-Godot-Client/poc/round79-tests/Rendering/Invoke-Picker.ps1),
+[oracle](../../../SWG-Godot-Client/poc/round79-tests/Rendering/verify_picker.py).
 
 The explicit-input runner takes Python/dotnet, original executable SHA input, offline
 package cache and a fresh ignored RunRoot. It pins the frozen manifest/archive and

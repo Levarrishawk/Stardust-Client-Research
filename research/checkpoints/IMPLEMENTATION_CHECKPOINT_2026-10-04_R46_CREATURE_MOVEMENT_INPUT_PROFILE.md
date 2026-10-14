@@ -12,7 +12,7 @@ Owned files are the new Core reader, new opt-in smoke scenarios, contract/checkp
 
 ## Implementation and compatibility consequence
 
-The [profile contract](../../docs/SHARED_CREATURE_MOVEMENT_INPUT_PROFILE_CONTRACT.md) specifies the [reader](../../poc/Stardust.Core/Assets/SharedCreatureMovementInputProfile.cs), operational/unresolved tags, exact limits, accounting and original-versus-modern policy.
+The [profile contract](../../docs/SHARED_CREATURE_MOVEMENT_INPUT_PROFILE_CONTRACT.md) specifies the [reader](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/SharedCreatureMovementInputProfile.cs), operational/unresolved tags, exact limits, accounting and original-versus-modern policy.
 
 **Observation:** raw encodings, mode/relative bytes and source/provenance survive independent native/Python comparison. **Interpretation:** five authored records can be retained without guessing later runtime state. **Confidence:** Confirmed for the pinned source chain and modern reader; runtime application remains Unknown. **Consequence:** consumers must check `Kind`/`Operational`; null unresolved values are not zero, and authored zero is a real literal.
 

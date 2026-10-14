@@ -28,4 +28,4 @@ The round70 frozen public baseline contains 4261 files, manifest SHA-256 `9abb3d
 
 The initial negative fixture used incorrect header field offsets; correcting the independently authored mutations made the intended malformed cases exercise the correct fields. Final replay passes 73 guards and 10 positive checks. No evidence claim depends on the failed fixture attempt.
 
-Canonical conclusion: [export boundary contract](../../docs/TERRAIN_SHADER_LOOKUP_EXPORT_BOUNDARY_CONTRACT.md). Reproduce with [portable replay](../../poc/round70-tests/Assets/Invoke-SelectedRule.ps1), supplying explicit Python/Exe/Packages; output is fresh ignored private evidence. Shared ledgers/status and registries are reserved for lead reconciliation, not modified by this specialist.
+Canonical conclusion: [export boundary contract](../../docs/TERRAIN_SHADER_LOOKUP_EXPORT_BOUNDARY_CONTRACT.md). Reproduce with [portable replay](../../../SWG-Godot-Client/poc/round70-tests/Assets/Invoke-SelectedRule.ps1), supplying explicit Python/Exe/Packages; output is fresh ignored private evidence. Shared ledgers/status and registries are reserved for lead reconciliation, not modified by this specialist.

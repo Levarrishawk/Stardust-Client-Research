@@ -22,7 +22,7 @@ The [durable contract](../../docs/SINGLE_LEAF_DOOR_CONTRACT.md) records observat
 
 Confirmed refinements: retention radius is 1.5 times authored radius; new-contact center is local `(0,1,0)` with authored radius; movement uses a power/cosine blend, not raw linear fraction. Exact legacy lookup case behavior, denied-contact secondary behavior, general actor collision dispatch and narrow-phase leaf extent choice remain Unknown. Server `MMOCoreORB/sql/datatables.sql:67` is vocabulary correlation only.
 
-Implementation is independently authored in [decoder](../../poc/Stardust.Core/Assets/DoorStyleTableDecoder.cs), [asset reader](../../poc/Stardust.Core/Assets/SingleLeafDoorAsset.cs), [runtime](../../poc/Stardust.Core/Assets/SingleLeafDoorRuntime.cs), [synthetic scenarios](../../poc/Stardust.Core.SmokeTests/DoorLeafScenarios.cs) and [Godot adapter](../../poc/Stardust.Godot/Main.Door.cs). The existing collider gains an unpadded explicit-box constructor. Original curve precision is interpreted with modern double intermediates and F32 pi; no x87 bit-equivalence claim. Frame/contact policy remains an explicit modern seam.
+Implementation is independently authored in [decoder](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/DoorStyleTableDecoder.cs), [asset reader](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/SingleLeafDoorAsset.cs), [runtime](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/SingleLeafDoorRuntime.cs), [synthetic scenarios](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/DoorLeafScenarios.cs) and [Godot adapter](../../../SWG-Godot-Client/poc/Stardust.Godot/Main.Door.cs). The existing collider gains an unpadded explicit-box constructor. Original curve precision is interpreted with modern double intermediates and F32 pi; no x87 bit-equivalence claim. Frame/contact policy remains an explicit modern seam.
 
 ## Reproduction and validation
 
@@ -34,7 +34,7 @@ dotnet build --no-restore poc/Stardust.Godot
 python tools/python/verify_single_leaf_door.py C:\Stardust-DEV C:\Stardust-DEV\swgemu_live.cfg local-private/generated-evidence/door-style-milestone poc/Stardust.Core.SmokeTests/bin/Debug/net8.0/Stardust.Core.SmokeTests.dll
 ```
 
-The [independent verifier](../../tools/python/verify_single_leaf_door.py) reads effective archives, pins the inputs, decodes all rows and the primary box independently, then checks native output against its controller/curve and axial box oracle. Result: **124 rows, 100 frames, 60 blocked and 40 clear, three source identities**, zero discrepancies. Detailed summary and native output remain private. The synthetic suite includes malformed inputs, contact cap/pruning, hysteresis, revoked permission, callback failure, transformed owner and deterministic cleanup. Full core smoke and Godot build pass.
+The [independent verifier](../../../SWG-Godot-Client/tools/python/verify_single_leaf_door.py) reads effective archives, pins the inputs, decodes all rows and the primary box independently, then checks native output against its controller/curve and axial box oracle. Result: **124 rows, 100 frames, 60 blocked and 40 clear, three source identities**, zero discrepancies. Detailed summary and native output remain private. The synthetic suite includes malformed inputs, contact cap/pruning, hysteresis, revoked permission, callback failure, transformed owner and deterministic cleanup. Full core smoke and Godot build pass.
 
 Bounded headless/GPU inspector command:
 

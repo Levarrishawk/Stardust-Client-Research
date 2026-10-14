@@ -1,6 +1,6 @@
 # Owned ACST asset customization directory
 
-[AssetCustomizationDirectory](../poc/Stardust.Core/Assets/AssetCustomizationDirectory.cs) implements the confirmed twelve-table `ACST/0000` boundary from the [September12 manager evidence](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-12_CUSTOMIZATION_MANAGER_TABLES.md). It uses the existing owned IFF reader: big-endian extents and back-to-back chunks without RIFF padding. Required exact chunk order is `NAME PNOF VNOF DEFV IRNG RTYP UCMP ULST UIDX LLST LIDX CIDX`.
+[AssetCustomizationDirectory](../../SWG-Godot-Client/poc/Stardust.Core/Assets/AssetCustomizationDirectory.cs) implements the confirmed twelve-table `ACST/0000` boundary from the [September12 manager evidence](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-12_CUSTOMIZATION_MANAGER_TABLES.md). It uses the existing owned IFF reader: big-endian extents and back-to-back chunks without RIFF padding. Required exact chunk order is `NAME PNOF VNOF DEFV IRNG RTYP UCMP ULST UIDX LLST LIDX CIDX`.
 
 ```csharp
 var directory = AssetCustomizationDirectory.Load(bytes, limits: null);
@@ -45,7 +45,7 @@ This directory does not load palettes, build a full seed, invoke local setters, 
 
 ## Bounded verification
 
-[Native scenarios](../poc/Stardust.Core.SmokeTests/AssetCustomizationDirectoryScenarios.cs) and [independent Python generator/oracle](../poc/round22-tests/Assets/verify_directory.py) pass 50 synthetic cases: five positive schema/precedence/empty/alias/signed-default variants and 45 malformed cases. Seven budget failures, two path/CRC failures, exact source/output bounds, immutable metadata/results, failure preservation and 32 concurrent synthetic queries pass. Cycle fixtures include an unreachable key. Signed Int32 extrema and an out-of-range authored default remain metadata verbatim.
+[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/AssetCustomizationDirectoryScenarios.cs) and [independent Python generator/oracle](../../SWG-Godot-Client/poc/round22-tests/Assets/verify_directory.py) pass 50 synthetic cases: five positive schema/precedence/empty/alias/signed-default variants and 45 malformed cases. Seven budget failures, two path/CRC failures, exact source/output bounds, immutable metadata/results, failure preservation and 32 concurrent synthetic queries pass. Cycle fixtures include an unreachable key. Signed Int32 extrema and an out-of-range authored default remain metadata verbatim.
 
 Readonly configured overlay selects `customization/asset_customization_manager.iff` from priority 53 `stardust_3_01.tre`: 458,340 bytes, SHA-256 `5A4F052E92B5E29CD3001CA1E0FE0438358CAA45E201E72E062BE65A6886DA20`. Schema aggregates match prior evidence and Python. Human `appearance/hum_m.sat` CRC `D700D576`, root 11821, returns 36 variables /8 suppressed. Appended `appearance/togruta_f.sat` CRC `E201EE84`, root 52048, returns 6 /1 suppressed. All typed rows/defaults/ranges/palette paths/order agree independently. The one CIDX inversion remains row 26079, `FFFD72EB -> E201EE84`. Detailed original results stay ignored/private; no bulk query corpus is published or expanded.
 

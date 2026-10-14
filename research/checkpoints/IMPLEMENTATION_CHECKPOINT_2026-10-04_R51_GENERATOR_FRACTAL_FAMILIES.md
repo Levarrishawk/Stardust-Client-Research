@@ -10,7 +10,7 @@ Frozen snapshot: 3,593 files; manifest SHA-256 `89dc98232914213f9116518ae81b4c19
 
 Original executable SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150` is gated before static addresses. Configuration SHA `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`; selected source SHA `6039D0C15F9CCB518D72AE01A1ABDF41FCFF2153B5CBF7EB3BA6E6C634A3A427`; TGEN SHA `B623B789E5F8486414C1D68CD341005E7E25FD97AF30567E64E7AC848DEB6C32`; group SHA `A221167452D8D67719BD72A3DB30CC10B7B652881B935D3571B9D55328B444A1`. No original executable execution or live contact occurred.
 
-Tools: bundled Python, installed .NET, offline cached NuGet and static-analysis packages; existing generator/family peers, new [bridge peer](../../poc/round51-tests/Assets/peer.py) and [runner](../../poc/round51-tests/Assets/Invoke-GeneratorFamilies.ps1). Only the already selected effective Tatooine source is read. Dynamic original names/raw words and generated output remain private.
+Tools: bundled Python, installed .NET, offline cached NuGet and static-analysis packages; existing generator/family peers, new [bridge peer](../../../SWG-Godot-Client/poc/round51-tests/Assets/peer.py) and [runner](../../../SWG-Godot-Client/poc/round51-tests/Assets/Invoke-GeneratorFamilies.ps1). Only the already selected effective Tatooine source is read. Dynamic original names/raw words and generated output remain private.
 
 ## Observation, interpretation and consequences
 

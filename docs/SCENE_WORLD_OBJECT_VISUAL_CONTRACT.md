@@ -2,8 +2,8 @@
 
 October 2, 2026. Modern offline Godot policy; no new executable or protocol claim.
 
-[SceneWorldObjectVisualFactory](../poc/Stardust.Godot/SceneWorldObjectVisualFactory.cs)
-accepts the frozen [presentation interface](../poc/Stardust.Core/Session/ISceneWorldObjectPresentation.cs).
+[SceneWorldObjectVisualFactory](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldObjectVisualFactory.cs)
+accepts the frozen [presentation interface](../../SWG-Godot-Client/poc/Stardust.Core/Session/ISceneWorldObjectPresentation.cs).
 Its constructor takes `SceneWorldCoordinator world`, `Node parent`, and optional
 `bool terminalFrame0Inspection=false`. `Create(publication,snapshot)` returns
 `ISceneWorldObjectPresentation?`; successful instances are publicly named
@@ -14,7 +14,7 @@ acknowledgment machinery, or same-round runtime dependency.
 
 ## Identity and ownership
 
-Observation: the [accepted coordinator](../poc/Stardust.Core/Session/SceneWorldCoordinator.cs)
+Observation: the [accepted coordinator](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldCoordinator.cs)
 owns generic publications and typed replication snapshots separately. Confidence:
 Confirmed by baseline source and independent native fixture checks. Consequence:
 resource attempts are not invalidated by scalar revision alone.
@@ -63,23 +63,23 @@ execution, general switch-texture rendering, or original render fidelity.
 
 ## Independent proof and integration
 
-[Standalone preview](../poc/Stardust.Godot/SceneWorldObjectVisualPreview.cs) uses one
+[Standalone preview](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldObjectVisualPreview.cs) uses one
 accepted world and the factory directly. Its loader exists only in the proof.
 No shared Main or project file changes are required: the
-[launcher](../poc/round15-tests/Rendering/Launch.ps1) creates an ignored private
+[launcher](../../SWG-Godot-Client/poc/round15-tests/Rendering/Launch.ps1) creates an ignored private
 scene referencing this script. Explicit arguments are installed Godot path,
 read-only archive root, pinned configuration, and generated peer path.
 Modes are headless, cancellation, or fresh private PNG capture; capture produces
 initial, updated and recreated images. The proof's fixed IDs are synthetic
 fixture identities, not factory requirements.
 
-The [peer producer](../poc/round15-tests/Rendering/Generate-Peer.py),
-[native runner](../poc/round15-tests/Rendering/Rendering.csproj), and
-[receipt verifier](../poc/round15-tests/Rendering/verify.py) preserve the accepted
+The [peer producer](../../SWG-Godot-Client/poc/round15-tests/Rendering/Generate-Peer.py),
+[native runner](../../SWG-Godot-Client/poc/round15-tests/Rendering/Rendering.csproj), and
+[receipt verifier](../../SWG-Godot-Client/poc/round15-tests/Rendering/verify.py) preserve the accepted
 independent Round14 fixture semantics. Synthetic TANO contents remain opaque.
-The [six-argument pixel/log oracle](../poc/round15-tests/Rendering/verify_preview.py)
+The [six-argument pixel/log oracle](../../SWG-Godot-Client/poc/round15-tests/Rendering/verify_preview.py)
 takes GPU log, headless log, cancellation log, and three PNGs.
-[Launcher negatives](../poc/round15-tests/Rendering/Verify-Launch.ps1) test five
+[Launcher negatives](../../SWG-Godot-Client/poc/round15-tests/Rendering/Verify-Launch.ps1) test five
 rejections before process creation. Detailed results and reproduction are in the
 [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R15_OBJECT_VISUAL.md).
 

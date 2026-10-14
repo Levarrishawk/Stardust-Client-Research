@@ -19,7 +19,7 @@ Confidence: Confirmed for the executed bounded gates above. The modern transacti
 
 ## Combined gate and resume
 
-The [independent producer](../../poc/round23-tests/Integration/Generate-Full.py) extends the accepted mixed fixture with literal component/wounds commands, legacy assignment loop counts and replay. The [receipt verifier](../../poc/round23-tests/Integration/verify_full.py) checks five container states/counters and selected context, then invokes the accepted mixed appearance/Height oracle. Main preview uses the original ACST context and existing owned palette resources.
+The [independent producer](../../../SWG-Godot-Client/poc/round23-tests/Integration/Generate-Full.py) extends the accepted mixed fixture with literal component/wounds commands, legacy assignment loop counts and replay. The [receipt verifier](../../../SWG-Godot-Client/poc/round23-tests/Integration/verify_full.py) checks five container states/counters and selected context, then invokes the accepted mixed appearance/Height oracle. Main preview uses the original ACST context and existing owned palette resources.
 
 Headless/GPU main joins, independent movement and held-container proofs pass. Workspace validator passes:1,225 Markdown files, no broken/private links,2602 canonical names/no duplicate addresses,345 packet rows and no public files25MiB or larger. Whitespace and exact scope checks pass; HEAD/index/unrelated files are preserved. See [assignments and results](../sessions/PARALLEL_DEVELOPMENT_ROUND_23_2026-10-03.md).
 

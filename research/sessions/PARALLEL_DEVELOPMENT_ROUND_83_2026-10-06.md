@@ -1,6 +1,6 @@
 # Round83: reusable login-to-zone handoff
 
-Date: October6,2026. One focused round authorized by Levarris. No separate oversight report exists; the findings in his prompt are the review record. The [milestone plan](../../docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md) was produced before dispatch, after source/durable/accepted82 orientation.
+Date: October6,2026. One focused round authorized by Levarris. No separate oversight report exists; the findings in his prompt are the review record. The [milestone plan](../../../SWG-Godot-Client/docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md) was produced before dispatch, after source/durable/accepted82 orientation.
 
 ## Assignments and gained capability
 

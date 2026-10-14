@@ -17,7 +17,7 @@ Executable SHA-256, checked before VAs:
 |Accessor00B692A0|84 bytes through00B692F3|30|9bc611f07cae269fe4656d82cdbc556288f3076896cff4eb3c2635c731936608|
 |Caller00B69B40|43 bytes through00B69B6A|18|58ad4d3736af830699184b9de4f8f991412c4f9c7f42b073f5a2eec9c6a5ddd4|
 
-The [verifier](../tools/python/verify_terrain_shader_family_entry_accessor.py)
+The [verifier](../../SWG-Godot-Client/tools/python/verify_terrain_shader_family_entry_accessor.py)
 checks complete body hashes, every decoded instruction's exact bytes/operands,
 all direct calls and absence of branches, independent bounded raw-PE and pefile
 mapping, plus complete raw E8 candidate inventory for the accessor. Its frozen
@@ -110,14 +110,14 @@ that the selected caller supplies no resource/conversion evidence.
 
 ## Reproduction and final verification
 
-Replay using the [portable runner](../poc/round66-tests/Assets/Invoke-SelectedRule.ps1):
+Replay using the [portable runner](../../SWG-Godot-Client/poc/round66-tests/Assets/Invoke-SelectedRule.ps1):
 
 ```powershell
 & ./poc/round66-tests/Assets/Invoke-SelectedRule.ps1 -Python $Python -Exe $Exe -Packages $CachedStaticPackages -AssetRoot $AssetRoot -Config $Config
 ```
 
 Explicit executable/cache/root/config inputs; automatic fresh ignored output.
-[Peer](../poc/round66-tests/Assets/peer.py) independently checks raw-word/pointer/
+[Peer](../../SWG-Godot-Client/poc/round66-tests/Assets/peer.py) independently checks raw-word/pointer/
 destination identity, 32-bit wrap and observable synthetic alias mutation. Original
 witnesses reuse exactly one accepted1977-byte SGRP0006 occurrence, SHA
 `C0F9043140DB936E3F3F2DD3EEC795F1BEE5424E6E904081C667CFC9E99A0628`,

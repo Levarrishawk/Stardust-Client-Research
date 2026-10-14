@@ -36,7 +36,7 @@ external mutation, downloads or publication.
 
 ## Observations and implementation consequences
 
-[Adapter](../../poc/Stardust.Godot/SceneStaticVisual.cs) requires a current finalized
+[Adapter](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneStaticVisual.cs) requires a current finalized
 exact registry handle with byte-identical raw create, or caller-derived Transform3D
 plus a borrowed serialized lifetime predicate. Registry placement uses accepted
 SceneCreatePlacementBuilder Reject policy and SRS reflection. Predicate checks
@@ -56,19 +56,19 @@ GPU IDs. Unsupported transforms and foreign creates leave placement unchanged.
 Confidence: **Confirmed**; consequence: source completeness and shader fidelity are
 separate, and this inspection exception must remain opt-in and labeled.
 
-[Standalone preview](../../poc/Stardust.Godot/SceneStaticVisualPreview.cs) loads two
+[Standalone preview](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneStaticVisualPreview.cs) loads two
 independent terminal closures off-owner in one read-only archive scope. Each has27
 source reads/1,401,794 bytes, four inherited templates/four LODs, five shaders/four
 effects, seven textures/all62 CPU mips. All source evidence remains unchanged after
 visual lifecycle. Native clearing54 borrowed resolver buffers preserves complete
-evidence. The [independent original oracle](../../poc/round14-tests/Rendering/Verify-Original.py)
+evidence. The [independent original oracle](../../../SWG-Godot-Client/poc/round14-tests/Rendering/Verify-Original.py)
 reconstructs source union/priority/SHA, inheritance, geometry and all62 original
 mip hashes; native/GPU/headless records agree. Confidence: **Confirmed**.
 
 A and B use independently authored high-bit IDs and nonunit quaternion
 (.2,-0,.3,1.7), with wire positions(-2,7,4)/(8,7,4). A's core origin is(-2,4,7),
 Godot origin(-2,4,-7), norm1.7378147687453016. The
-[independent visual oracle](../../poc/round14-tests/Rendering/Verify-Visual.py)
+[independent visual oracle](../../../SWG-Godot-Client/poc/round14-tests/Rendering/Verify-Visual.py)
 uses quaternion-vector cross products and SRS to verify all basis columns rather
 than copying the implementation's matrix equations. Raw signed zero remains in
 47-byte create evidence. A initial handle2/incarnation1 becomes handle6/incarnation5

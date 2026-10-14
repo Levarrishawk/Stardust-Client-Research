@@ -2,7 +2,7 @@
 
 October6,2026. Modern caller-supplied scheduling policy extending the
 [presentation host](SCENE_WORLD_PRESENTATION_HOST_CONTRACT.md).
-[SceneWorldPresentationHost](../poc/Stardust.Godot/SceneWorldPresentationHost.cs)
+[SceneWorldPresentationHost](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldPresentationHost.cs)
 retains its exact existing overload and adds a schedule overload:
 
 ```csharp
@@ -66,14 +66,14 @@ overflow and arbitrary pump behavior outside its interface contract remain unexe
 
 ## Reproducible bounded evidence
 
-[Invoke-Picker.ps1](../poc/round74-tests/Rendering/Invoke-Picker.ps1) builds a private
+[Invoke-Picker.ps1](../../SWG-Godot-Client/poc/round74-tests/Rendering/Invoke-Picker.ps1) builds a private
 standalone scene with the modified host, frozen Core and frozen default proof/profile
 inputs from the verified4404-file archive. The
-[independent producer/verifier](../poc/round74-tests/Rendering/verify_picker.py) writes
+[independent producer/verifier](../../SWG-Godot-Client/poc/round74-tests/Rendering/verify_picker.py) writes
 exact slot traces, counts and25 failure prefixes before native execution. No original
 assets, original executable execution or unfinished sibling source is involved.
 
-[New verification](../poc/Stardust.Godot/SceneWorldFixedStepHostVerification.cs) uses an
+[New verification](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldFixedStepHostVerification.cs) uses an
 instrumented wrapper over the actual frozen SceneWorldPresentationPump and a cold generic
 world with forbidden loader/factory. Four schedules0/1/2/8 produce11 separate actual
 pump calls. Endpoint gate permits2 of8, interval endpoints0.001/0.1 pass, and25 exact

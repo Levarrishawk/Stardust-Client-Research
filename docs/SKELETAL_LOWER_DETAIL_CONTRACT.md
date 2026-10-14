@@ -30,7 +30,7 @@ Independent effective archive bytes establish source priority/length/hash, inher
 
 ## Original movement samples with explicit level0 skeletons
 
-The existing pinned [human locomotion profile](../poc/preview-profiles/human-locomotion.json) selects `appearance/lat/all_m.lat` / `loop_standing`, with walk route[0,1] and run route[0,2]. Walk asset `appearance/animation/all_b_loc_walk_male.ans` has SHA-256 FF86567A4CDBFC1EB574C5C8FC399144A37DAD218AA49DE0070AC9F1F19F65A6; run `appearance/animation/all_b_loc_run.ans` has SHA-256 72D5842D2959D8438884B44F4220F3E323D221A745D849CB8726E905A8AAF2F4. Both use30fps; tested frames are walk0,0.5,16.5,33 and run0,0.5,11,22.
+The existing pinned [human locomotion profile](../../SWG-Godot-Client/poc/preview-profiles/human-locomotion.json) selects `appearance/lat/all_m.lat` / `loop_standing`, with walk route[0,1] and run route[0,2]. Walk asset `appearance/animation/all_b_loc_walk_male.ans` has SHA-256 FF86567A4CDBFC1EB574C5C8FC399144A37DAD218AA49DE0070AC9F1F19F65A6; run `appearance/animation/all_b_loc_run.ans` has SHA-256 72D5842D2959D8438884B44F4220F3E323D221A745D849CB8726E905A8AAF2F4. Both use30fps; tested frames are walk0,0.5,16.5,33 and run0,0.5,11,22.
 
 For each detail1..3 the animation-only closure has17 sources: respectively635,870 /480,572 /440,254 bytes. This closure adds LATs, pinned idle and walk/run clips; it omits material defaults. The verifier checks the exact union and read-once counts separately from the material closure above.
 
@@ -42,7 +42,7 @@ Independent raw CKAT sampling uses the hash-verified original executable's stati
 
 For details1..3, missing/masked selected mesh, skeleton, shader, effect or texture rejects; malformed selected MGN, unavailable singleton detail, invalid detail before lookup and exhausted aggregate budgets reject. Invalid sample frame, truncated palette, unresolved joint and missing/masked walk/run clip reject. Failed samples leave retained poses unchanged. Clearing all resolver byte arrays preserves prepared poses, geometry hashes and decoded texture mip hashes. Overlay handles use deterministic `using` disposal.
 
-[Round2 console](../poc/round2-tests/Assets/Assets.csproj) calls the new scenario; [independent lower-detail verifier](../tools/python/verify_skeletal_lower_details.py) extends the existing closure verifier through0..3. Round1 console/audit retain their default0/1 mode.
+[Round2 console](../../SWG-Godot-Client/poc/round2-tests/Assets/Assets.csproj) calls the new scenario; [independent lower-detail verifier](../../SWG-Godot-Client/tools/python/verify_skeletal_lower_details.py) extends the existing closure verifier through0..3. Round1 console/audit retain their default0/1 mode.
 
 ```powershell
 dotnet restore poc/round2-tests/Assets/Assets.csproj --configfile local-private/round2/NuGet.Config -p:NuGetAudit=false

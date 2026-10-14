@@ -4,7 +4,7 @@
 
 Does the optional closing sweep preserve occupied original-door clearance, deny entry and allow retreat in both native and rendered hosts? Close after independent guarded/default traces and original headless/GPU controls. The unchanged [scene pins](IMPLEMENTATION_CHECKPOINT_2026-09-30_ORIGINAL_INTERIOR_SCENE.md) select Mustafar 6/1 ↔ 7/0 with the same two-leaf scene specification SHA-256 `12BF5B21EC0D7BDA15CB322BB14FF5FC4C7C640B81E7C1DB38CA11F66D9349CA`.
 
-Tools: core original closing producer, [independent original closing verifier](../../tools/python/verify_original_closing_scene.py), Godot 4.7.2 .NET x64 and bounded preview launcher. Detailed original geometry/records and GPU capture remain private.
+Tools: core original closing producer, [independent original closing verifier](../../../SWG-Godot-Client/tools/python/verify_original_closing_scene.py), Godot 4.7.2 .NET x64 and bounded preview launcher. Detailed original geometry/records and GPU capture remain private.
 
 ## Confirmed observations
 

@@ -10,7 +10,7 @@ Can an actual Godot Node track independent left/right/unspecified Shift ownershi
 
 Trusted sync verified4,226 accepted68 public files before edits. Incoming manifest SHA-256: `069f8419cc82801ee88484f8e20f1d519f8e30044c4427a9cd653c972841bf9d`; archive: `5f3333ab06f047348a3aed85ee1ef824591801ee19c26d6954ba45074cefddee`. Original executable identity matched `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`; it was not executed. Tools: PowerShell, ripgrep, cached Python/.NET8/offline Godot4.7.2 and Git read-only checks. Actual KeyLocation API was inspected in cached GodotSharp documentation and exercised natively. No Runtime69 or other sibling implementation, Core/project edit, original asset or proprietary corpus is consumed.
 
-The [source](../../poc/Stardust.Godot/TerrainRunInputHost.cs) borrows generic `Func<long>` and `Action<bool,long>`. The [independent model](../../poc/round69-tests/Rendering/verify_picker.py) generates masks, booleans, clocks and callback/event counts before native execution. Native verification reads Actions only, not the saved expected rows, and produces no expectation seed.
+The [source](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainRunInputHost.cs) borrows generic `Func<long>` and `Action<bool,long>`. The [independent model](../../../SWG-Godot-Client/poc/round69-tests/Rendering/verify_picker.py) generates masks, booleans, clocks and callback/event counts before native execution. Native verification reads Actions only, not the saved expected rows, and produces no expectation seed.
 
 ## Observations and conclusions
 
@@ -26,7 +26,7 @@ Confirmed: Close sends no implicit sink value, drops borrowed references and cle
 
 ## Validation and reproduction
 
-Use the [runner](../../poc/round69-tests/Rendering/Invoke-Picker.ps1) with explicit cached Python/.NET, documented executable identity, cached Godot packages and a fresh ignored private RunRoot. Exact portable command, staged source identities, private receipts and ten final owned public hashes are in the handoff. There is no Runtime69 import; standalone build includes only two own Godot sources.
+Use the [runner](../../../SWG-Godot-Client/poc/round69-tests/Rendering/Invoke-Picker.ps1) with explicit cached Python/.NET, documented executable identity, cached Godot packages and a fresh ignored private RunRoot. Exact portable command, staged source identities, private receipts and ten final owned public hashes are in the handoff. There is no Runtime69 import; standalone build includes only two own Godot sources.
 
 Final actual build: zero warnings/errors. Headless146 checks and GPU147 checks pass. Both modes independently compare all46 authored action/control rows,23 committed mask transitions,19 handled keys and14 exact aggregate clock/sink calls. The nine successful mask-only key transitions explain the difference between mask and sink counts; four disable/focus stop transitions explain accepted versus handled counts. These denominators stay separate and are not research/implementation/protocol completion measures.
 

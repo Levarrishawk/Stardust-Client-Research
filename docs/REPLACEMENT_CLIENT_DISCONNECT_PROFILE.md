@@ -16,7 +16,7 @@ verify.py --transcript JSON --result JSON --output FRESH_PRIVATE_RECEIPT
 test.py --output FRESH_PRIVATE_DIR --native-dll DLL --dotnet EXE
 ```
 
-[Producer](../poc/round87-tests/Networking/produce.py) reuses accepted Round86's normal peer without changing any existing field/value. It adds `ExpectedDisconnectPlain`, `ExpectedDisconnectWire`, `DisconnectReasonBytes`, `GracefulDisconnectExpected`, test packets, null `DisconnectReliableSequence` and `DisconnectReplyRequired=false`. All fixtures are synthetic. This round's producer emits the complete normal movement/correction prefix; malformed-correction abort remains an accepted Round86 test, not a graceful-disconnect scenario.
+[Producer](../../SWG-Godot-Client/poc/round87-tests/Networking/produce.py) reuses accepted Round86's normal peer without changing any existing field/value. It adds `ExpectedDisconnectPlain`, `ExpectedDisconnectWire`, `DisconnectReasonBytes`, `GracefulDisconnectExpected`, test packets, null `DisconnectReliableSequence` and `DisconnectReplyRequired=false`. All fixtures are synthetic. This round's producer emits the complete normal movement/correction prefix; malformed-correction abort remains an accepted Round86 test, not a graceful-disconnect scenario.
 
 The exact decoded packet is `00 05 87 65 43 21 00 06`: big-endian U16 opcode5, admitted big-endian zone connection ID87654321, raw two-byte reason0006. Independent Round14 protection uses the unchanged zone seed0BADCAFE and seeded CRC2/selector4 framing. No reliable sequence or reply is required by this oracle. Movement outputs remain sequence3/4/5 following ready2; no extra movement or ready is expected during disconnect.
 
@@ -32,7 +32,7 @@ All modes require `Clean=true` and exactly one `ReadySubmissions`. Submitted sen
 
 ## Complete-prefix comparison policy
 
-[Verifier](../poc/round87-tests/Networking/verify.py) first validates the actual disconnect mode/flags/wire. It then compares a detached result copy through the accepted Round86 verifier, replacing only `FailureObserved` with false for that prefix comparison. A final disconnect I/O failure must not falsely mark the already completed movement prefix as failed. Every other prefix observation remains required and unchanged: no masking of wire, position, state, correction, remainder, ready-count or cleanup differences. The caller result is never mutated. Accepted binary32 comparison resolves JSON decimal representation differences without numerical tolerance.
+[Verifier](../../SWG-Godot-Client/poc/round87-tests/Networking/verify.py) first validates the actual disconnect mode/flags/wire. It then compares a detached result copy through the accepted Round86 verifier, replacing only `FailureObserved` with false for that prefix comparison. A final disconnect I/O failure must not falsely mark the already completed movement prefix as failed. Every other prefix observation remains required and unchanged: no masking of wire, position, state, correction, remainder, ready-count or cleanup differences. The caller result is never mutated. Accepted binary32 comparison resolves JSON decimal representation differences without numerical tolerance.
 
 The verifier loads the frozen Round86 producer dependency under its existing module name only during loading of the frozen verifier, restoring the caller's module binding immediately afterward. This makes its independent primitive comparator available without importing unpublished Runtime87 symbols or changing accepted sources.
 

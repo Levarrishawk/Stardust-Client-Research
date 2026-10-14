@@ -1,6 +1,6 @@
 # Supplied-pivot camera orbit host
 
-[TerrainCameraOrbitHost](../poc/Stardust.Godot/TerrainCameraOrbitHost.cs) is a modern Godot Node borrowing one actual Camera3D around a fixed supplied engine-world pivot. It owns configuration/scalars, checked counters and one primitive diagnostic. It creates no camera, terrain or picker; it changes no projection/FOV/clip setting, OS mouse capture or original input setting. It performs no simulation/network work. Original gameplay/camera/input parity remains unknown.
+[TerrainCameraOrbitHost](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainCameraOrbitHost.cs) is a modern Godot Node borrowing one actual Camera3D around a fixed supplied engine-world pivot. It owns configuration/scalars, checked counters and one primitive diagnostic. It creates no camera, terrain or picker; it changes no projection/FOV/clip setting, OS mouse capture or original input setting. It performs no simulation/network work. Original gameplay/camera/input parity remains unknown.
 
 ## API and numeric policy
 
@@ -34,7 +34,7 @@ Close is owner-thread guarded, terminal and idempotent. It drops borrowed camera
 
 ## Reproduction
 
-The [offline runner](../poc/round70-tests/Rendering/Invoke-Picker.ps1) stages only this host and its [verification node](../poc/Stardust.Godot/TerrainCameraOrbitHostVerification.cs) using cached Godot. It has no Core/sibling dependency. The [independent Python model](../poc/round70-tests/Rendering/verify_picker.py) generates angles/clamps, binary32 position and ideal LookAt basis before native execution, then derives perspective rays from that independent pose with actual viewport/pixel metadata. Explicit tolerances are2e-5 position/origin and3e-5 basis/direction; scalar angles/distance compare within1e-12.
+The [offline runner](../../SWG-Godot-Client/poc/round70-tests/Rendering/Invoke-Picker.ps1) stages only this host and its [verification node](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainCameraOrbitHostVerification.cs) using cached Godot. It has no Core/sibling dependency. The [independent Python model](../../SWG-Godot-Client/poc/round70-tests/Rendering/verify_picker.py) generates angles/clamps, binary32 position and ideal LookAt basis before native execution, then derives perspective rays from that independent pose with actual viewport/pixel metadata. Explicit tolerances are2e-5 position/origin and3e-5 basis/direction; scalar angles/distance compare within1e-12.
 
 Actual Viewport.PushInput, Control GUI consumption, native focus notification, ProjectRayOrigin/Normal, two real transform-notification prefix phases and borrower-lifetime checks are recorded in the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R70_CAMERA_ORBIT_HOST.md). Focus is injected through native Godot notification, not captured OS/user input. GPU cyan-target readback proves a supplied pivot is viewed in this synthetic scene; it does not establish original rendering/camera behavior.
 

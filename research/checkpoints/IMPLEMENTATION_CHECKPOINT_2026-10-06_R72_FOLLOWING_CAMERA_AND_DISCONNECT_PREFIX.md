@@ -4,7 +4,7 @@ Date October6,2026. Question: can a modern camera follow actual accepted grounde
 
 ## Inputs and method
 
-Accepted71 frozen4335 public files, manifest a42f6a8d17554a82c5eb07ad09693484febd48eadf30698458115f8d9cd96426 and archive e4f5fd7d111d4006ee09ace0db755353274dbf00bfa5ee848df66322672a79f5. Four existing workers Low, isolated scopes. Baseline EXE SHA E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150; configuration22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524. Cached offline .NET8/Godot4.7.2 x64/Python. Original assets remain unmodified/private; no original executable execution or live transport. Reproduction commands are in each component contract and the portable [joined oracle](../../poc/round72-tests/Integration/camera_follow_peer.py). Session retains timing and scope.
+Accepted71 frozen4335 public files, manifest a42f6a8d17554a82c5eb07ad09693484febd48eadf30698458115f8d9cd96426 and archive e4f5fd7d111d4006ee09ace0db755353274dbf00bfa5ee848df66322672a79f5. Four existing workers Low, isolated scopes. Baseline EXE SHA E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150; configuration22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524. Cached offline .NET8/Godot4.7.2 x64/Python. Original assets remain unmodified/private; no original executable execution or live transport. Reproduction commands are in each component contract and the portable [joined oracle](../../../SWG-Godot-Client/poc/round72-tests/Integration/camera_follow_peer.py). Session retains timing and scope.
 
 ## Component evidence and confidence
 

@@ -1,6 +1,6 @@
 # Bounded world presentation pump
 
-R16-R, October 2, 2026. [SceneWorldPresentationPump](../poc/Stardust.Core/Session/SceneWorldPresentationPump.cs) implements the lead-frozen [pump interface/policy/step](../poc/Stardust.Core/Session/ISceneWorldPresentationPump.cs) over the accepted [mixed world](SCENE_MIXED_WORLD_CONTRACT.md) and [object consumer](SCENE_WORLD_OBJECT_PRESENTATION_CONTRACT.md). It is modern scheduling policy, not recovered original frame timing, readiness or asynchronous scheduling.
+R16-R, October 2, 2026. [SceneWorldPresentationPump](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldPresentationPump.cs) implements the lead-frozen [pump interface/policy/step](../../SWG-Godot-Client/poc/Stardust.Core/Session/ISceneWorldPresentationPump.cs) over the accepted [mixed world](SCENE_MIXED_WORLD_CONTRACT.md) and [object consumer](SCENE_WORLD_OBJECT_PRESENTATION_CONTRACT.md). It is modern scheduling policy, not recovered original frame timing, readiness or asynchronous scheduling.
 
 ## Construction and ownership
 
@@ -39,7 +39,7 @@ World failure/closure, callback errors, latched pump reentry, current resource f
 
 Callbacks can change world state; freshness and generation are rechecked before further transfer. The underlying consumer retains its documented serialized/retryable application policy, without visual rollback. The pump cannot undo already applied engine side effects, recover a factory's unreturned allocations, or force blocking resolver cancellation. Caller must obey borrowed ownership. Hostile callbacks that violate the borrowed consumer/world API contracts are not isolated. World cleanup/drain inherits the accepted initializer contract; no new cancellation-handler exception guarantee is invented.
 
-[Native scenarios](../poc/Stardust.Core.SmokeTests/SceneWorldPresentationPumpScenarios.cs) cover copied queue/FIFO/budgets, explicit barriers, burst rejection without factory prefix, exact retry fairness/exhaustion, original sealed human/terminal results, stale/out-of-order/current completions, state/resource independence, callback resets/errors/reentrancy, owner-thread rejection and close/drain including disposal failure. No reflection-forged publication, original executable execution, live contact, new static field semantics or GPU proof. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R16_PRESENTATION_PUMP.md) records reproduction and lead integration.
+[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldPresentationPumpScenarios.cs) cover copied queue/FIFO/budgets, explicit barriers, burst rejection without factory prefix, exact retry fairness/exhaustion, original sealed human/terminal results, stale/out-of-order/current completions, state/resource independence, callback resets/errors/reentrancy, owner-thread rejection and close/drain including disposal failure. No reflection-forged publication, original executable execution, live contact, new static field semantics or GPU proof. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R16_PRESENTATION_PUMP.md) records reproduction and lead integration.
 
 Lead integration additionally checks coordinator owner affinity before constructor ownership transfer, using the existing guarded snapshot read. A mismatched owner rejects without closing the caller's world.
 

@@ -14,7 +14,7 @@ Tools: cached Python with UTF8, cached pefile/Capstone and .NET8.0.300. Cleared 
 
 ## Findings and consequences
 
-The [durable contract](../../docs/TERRAIN_SAMPLE_COORDINATE_GRID_CONTRACT.md) is canonical. [TerrainSampleCoordinateGrid](../../poc/Stardust.Core/Geometry/TerrainSampleCoordinateGrid.cs) takes an immutable raw request and four mandatory profiles: metadata loading, chunk building, layer coordinates and position coordinates. It records count, derived/step/margin/origin stores and unused scale FST. Layer and position axes/pairs are independent owned results. The reused internal Number implementation stays internal and unchanged; public tests reference the actual Core assembly.
+The [durable contract](../../docs/TERRAIN_SAMPLE_COORDINATE_GRID_CONTRACT.md) is canonical. [TerrainSampleCoordinateGrid](../../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainSampleCoordinateGrid.cs) takes an immutable raw request and four mandatory profiles: metadata loading, chunk building, layer coordinates and position coordinates. It records count, derived/step/margin/origin stores and unused scale FST. Layer and position axes/pairs are independent owned results. The reused internal Number implementation stays internal and unchanged; public tests reference the actual Core assembly.
 
 **Observation / Confirmed:** PTAT signed division and derived F32 store; builder scale exact integer, half multiply, stored margin and ordered origin graph; layer row F32 integer spill and exact column load; position row/column exact integer loads and final coordinate stores. Scale FST `0084A5A9` records a rounded inspection value but retains the exact stack integer for multiplication. Additional count anchors `0084A5AC/B0` and zero origin `0084A5C0` pin the supplied checked-modern count source and vertical value.
 
@@ -26,7 +26,7 @@ The [durable contract](../../docs/TERRAIN_SAMPLE_COORDINATE_GRID_CONTRACT.md) is
 
 ## Reproduction and exact results
 
-[Invoke-Grid.ps1](../../poc/round38-tests/Rendering/Invoke-Grid.ps1):
+[Invoke-Grid.ps1](../../../SWG-Godot-Client/poc/round38-tests/Rendering/Invoke-Grid.ps1):
 
 ```powershell
 .\poc\round38-tests\Rendering\Invoke-Grid.ps1 -Python <cached-python> -Exe C:\Stardust-DEV\Stardust.exe -StaticPackages <cached-pefile-capstone> -CachedPackages <existing-BCn-cache> -Dotnet <dotnet.exe> -RunRoot <fresh-private-root>
@@ -34,7 +34,7 @@ python .\tools\python\validate_organized_workspace.py .
 git diff --check
 ```
 
-The [Fraction/integer oracle](../../poc/round38-tests/Rendering/verify_grid.py) independently rounds division/multiply/add instructions and observed F32 stores, including integer FST without replacing the retained exact integer. It compares every raw request/profile, stored parameter, both complete axes, every row-major pair and strictness flag. All81 profile combinations and signed/large/subnormal/count/overflow/cap inputs are represented.
+The [Fraction/integer oracle](../../../SWG-Godot-Client/poc/round38-tests/Rendering/verify_grid.py) independently rounds division/multiply/add instructions and observed F32 stores, including integer FST without replacing the retained exact integer. It compares every raw request/profile, stored parameter, both complete axes, every row-major pair and strictness flag. All81 profile combinations and signed/large/subnormal/count/overflow/cap inputs are represented.
 
 Final replay:10743 cases,9802 accepted/941 rejected;42 ownership/budget/retention/rejection checks.6075 accepted cases retain duplicate axes;396 cases have differing layer/position arrays under supplied independent policies;50 distinct requests distinguish precision choices. Reused58 plus nine additional instruction anchors and literal half pass. No actual original generated coordinates were compared.
 

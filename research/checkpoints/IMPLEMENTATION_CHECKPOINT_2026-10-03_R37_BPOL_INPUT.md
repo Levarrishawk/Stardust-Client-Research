@@ -4,7 +4,7 @@
 
 Can an engine-neutral decoder preserve the exact ordered BPOL version `0000`–`0006` serialized input, with bounded ownership and malformed-input behavior, and reproduce all 57 previously pinned Tatooine polygons? Stop after factory/version/header/point/metadata/default/cache/teardown evidence, independent fixtures and that existing corpus agree. Polygon influence, coordinate semantics, layer/filter composition and new corpus discovery are excluded.
 
-The durable conclusion is [the BPOL input contract](../../docs/TERRAIN_BOUNDARY_POLYGON_INPUT_CONTRACT.md). Implementation is [TerrainBoundaryPolygonInput.cs](../../poc/Stardust.Core/Assets/TerrainBoundaryPolygonInput.cs), with [native scenarios](../../poc/Stardust.Core.SmokeTests/TerrainBoundaryPolygonInputScenarios.cs), an [isolated runner](../../poc/round37-tests/Assets/Assets.csproj) and [independent Python verifier](../../poc/round37-tests/Assets/verify_bpol_input.py). Shared canonical files remain frozen for lead reconciliation.
+The durable conclusion is [the BPOL input contract](../../docs/TERRAIN_BOUNDARY_POLYGON_INPUT_CONTRACT.md). Implementation is [TerrainBoundaryPolygonInput.cs](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainBoundaryPolygonInput.cs), with [native scenarios](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainBoundaryPolygonInputScenarios.cs), an [isolated runner](../../../SWG-Godot-Client/poc/round37-tests/Assets/Assets.csproj) and [independent Python verifier](../../../SWG-Godot-Client/poc/round37-tests/Assets/verify_bpol_input.py). Shared canonical files remain frozen for lead reconciliation.
 
 ## Input identity and tools
 

@@ -212,3 +212,5 @@ The [combined router](SCENE_WORLD_COMBINED_MOTION_INGRESS_CONTRACT.md) selects a
 ## Round71 peer-disconnect lifecycle proof
 
 [Disconnect ownership](SCENE_WORLD_PEER_DISCONNECT_CONTRACT.md) uses actual frozen codec/ingress/bridge/FIFO/pump. Matching ID closes transport without closing borrowed scene; caller drains pending scene/root owners and canceled resources.39 component checks and109-update joined closure/wrong-ID failure pass. Reason bytes remain uninterpreted; no schema or345-row matrix change, socket/send/live phase claim.
+
+October14 flytext refinement: the already registered S-to-C inner0x1BD codec is now directly confirmed as U64 emitter/StringId/F32 scale/RGB U8/U8 flags, without a literal Unicode field. See [emission/payload evidence](SERVER_OBJECT_CONTROLLER_EMISSIONS.md#flytext-payload-closure-october14). The source bridge and malformed-input guard add no packet inventory or coverage denominator change.

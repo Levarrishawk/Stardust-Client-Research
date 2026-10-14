@@ -4,7 +4,7 @@
 
 Can the original multi-door fixture load through one reusable engine-neutral asset boundary with explicit selections, stable identity and shared source lookup? Close after original trace regression and malformed/duplicate/identity gates.
 
-Input specification and original POB/table/leaf pins are unchanged from the [original scene checkpoint](IMPLEMENTATION_CHECKPOINT_2026-09-30_ORIGINAL_INTERIOR_SCENE.md). Tools: native bundle reader/core smoke and [independent original scene verifier](../../tools/python/verify_original_interior_scene.py).
+Input specification and original POB/table/leaf pins are unchanged from the [original scene checkpoint](IMPLEMENTATION_CHECKPOINT_2026-09-30_ORIGINAL_INTERIOR_SCENE.md). Tools: native bundle reader/core smoke and [independent original scene verifier](../../../SWG-Godot-Client/tools/python/verify_original_interior_scene.py).
 
 ## Confirmed results
 

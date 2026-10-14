@@ -6,7 +6,7 @@ The queue's concrete class/RTTI and internal layout/counts remain **Unknown**. T
 
 ## Input, scope refinement, and reproduction
 
-All VAs use executable SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. [Verifier](../tools/python/verify_object_controller_queue_storage.py): explicit `--exe`, `--packages`, fresh ignored `--receipt`. [Independent runner](../poc/round56-tests/Networking/research_checks.py): explicit `--exe`, `--packages`, fresh ignored `--output-dir`. SHA rejection precedes package imports and VA use. These tools do not execute original instructions or contact a server.
+All VAs use executable SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. [Verifier](../../SWG-Godot-Client/tools/python/verify_object_controller_queue_storage.py): explicit `--exe`, `--packages`, fresh ignored `--receipt`. [Independent runner](../../SWG-Godot-Client/poc/round56-tests/Networking/research_checks.py): explicit `--exe`, `--packages`, fresh ignored `--output-dir`. SHA rejection precedes package imports and VA use. These tools do not execute original instructions or contact a server.
 
 The initial two-primary-body allowance covered NetworkController's 28-byte constructor and 11-byte destruction wrapper. An explicit lead refinement authorized `00B3D0F0` and `00B3D190` as two additional substantive bodies: **four primary bodies total**, including the thin wrappers. Two directly necessary 33-byte deleting thunks and one known four-byte accessor are counted separately. No further initializer/cleanup body is expanded; the fresh candidate limit remains 20.
 

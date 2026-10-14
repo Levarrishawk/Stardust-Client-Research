@@ -1,4 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-<PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><TreatWarningsAsErrors>true</TreatWarningsAsErrors><EnableDefaultCompileItems>false</EnableDefaultCompileItems></PropertyGroup>
-<ItemGroup><Compile Include="NativeProgram.cs"/><Compile Include="../../Stardust.Core/Geometry/TerrainPatchTopology.cs" Link="TerrainPatchTopology.cs"/><Compile Include="../../Stardust.Core/Geometry/TerrainPatchGeometry.cs" Link="TerrainPatchGeometry.cs"/><Compile Include="../../Stardust.Core/Assets/PackedVertexColor.cs" Link="PackedVertexColor.cs"/><Compile Include="../../Stardust.Core.SmokeTests/TerrainPatchGeometryScenarios.cs" Link="TerrainPatchGeometryScenarios.cs"/></ItemGroup>
-</Project>

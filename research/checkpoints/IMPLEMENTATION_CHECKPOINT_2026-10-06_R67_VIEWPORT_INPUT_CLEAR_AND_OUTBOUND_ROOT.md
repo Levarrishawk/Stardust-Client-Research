@@ -76,14 +76,14 @@ changes follow.
 
 ## Reproduction, validation and next action
 
-[Trajectory/wire peer](../../poc/round67-tests/Integration/viewport_point_peer.py)
+[Trajectory/wire peer](../../../SWG-Godot-Client/poc/round67-tests/Integration/viewport_point_peer.py)
 independently intersects three captured camera rays with Fraction geometry, casts
 expected targets to binary32 and calculates movement, paused/idle ticks, grounding,
 speed, clock and orientation. It independently packs packet metadata and checks
 wire-native XYZ/speed and quaternion basis against that calculated trajectory,
 without using native pose/hit output as the expected seed. Component outbound
 fixtures separately pin exact frame bytes and sign-equivalent near180 rotation.
-[Clock failure peer](../../poc/round67-tests/Integration/hosted_clock_failure_peer.py)
+[Clock failure peer](../../../SWG-Godot-Client/poc/round67-tests/Integration/hosted_clock_failure_peer.py)
 checks actual event fault, zero query/target attempts and all inner/outer owner drains.
 The unchanged66 oracle remains a separate Version2 regression gate.
 

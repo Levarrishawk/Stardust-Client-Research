@@ -60,7 +60,7 @@ Clearing all resolver byte arrays preserves geometry hashes, decoded mip hashes,
 
 ## Reproduction and limits
 
-Use [the isolated console](../poc/round3-tests/Assets/Assets.csproj) and [independent audit](../tools/python/verify_skeletal_lower_detail_shading.py), with task-specific APPDATA, existing offline package cache and UTF8 Python:
+Use [the isolated console](../../SWG-Godot-Client/poc/round3-tests/Assets/Assets.csproj) and [independent audit](../../SWG-Godot-Client/tools/python/verify_skeletal_lower_detail_shading.py), with task-specific APPDATA, existing offline package cache and UTF8 Python:
 
 Prerequisites are the .NET8 SDK, cached BCnEncoder.Net2.3.0 and its locked dependencies (including CommunityToolkit.HighPerformance8.4.0), the pinned private original assets/configuration, and the existing Python audit dependencies. The commands below create the ignored task configuration; no pre-existing round3 configuration file is required.
 

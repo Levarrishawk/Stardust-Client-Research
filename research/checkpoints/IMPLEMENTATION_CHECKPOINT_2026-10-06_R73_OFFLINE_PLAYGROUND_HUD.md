@@ -15,10 +15,10 @@ to verify `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`;
 the replay executes only replacement scenes and reads no original assets. Cached Python,
 .NET8 and Godot4.7.2 .NET x64 use offline cached packages. No sibling73 API is imported.
 
-The [independent producer](../../poc/round73-tests/Rendering/verify_picker.py) writes eight
+The [independent producer](../../../SWG-Godot-Client/poc/round73-tests/Rendering/verify_picker.py) writes eight
 synthetic states and their expected captions before native execution and stages the
 unchanged accepted orbit host from the verified archive. The
-[verification scene](../../poc/Stardust.Godot/TerrainOfflinePlaygroundHudVerification.cs)
+[verification scene](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflinePlaygroundHudVerification.cs)
 constructs the actual CanvasLayer/Panel/Labels and reads their actual texts.
 
 ## Findings versus interpretation

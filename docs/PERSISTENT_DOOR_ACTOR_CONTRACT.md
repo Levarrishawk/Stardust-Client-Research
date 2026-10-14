@@ -2,7 +2,7 @@
 
 ## Owned modern boundary
 
-[PortalDoorActorSimulation](../poc/Stardust.Core/Assets/PortalDoorActorSimulation.cs) persists a single actor's floor locator, world position, frame, cumulative transfer count and current door state. Each tick takes finite elapsed seconds (0–1), world movement delta and nullable current entry permission. It automatically derives proximity contact from the actual actor position, advances one normal leaf, queries the [integrated walker](INTERIOR_DOOR_MOVEMENT_CONTRACT.md), and adopts its returned locator for the next tick.
+[PortalDoorActorSimulation](../../SWG-Godot-Client/poc/Stardust.Core/Assets/PortalDoorActorSimulation.cs) persists a single actor's floor locator, world position, frame, cumulative transfer count and current door state. Each tick takes finite elapsed seconds (0–1), world movement delta and nullable current entry permission. It automatically derives proximity contact from the actual actor position, advances one normal leaf, queries the [integrated walker](INTERIOR_DOOR_MOVEMENT_CONTRACT.md), and adopts its returned locator for the next tick.
 
 One physical leaf and one controller are explicitly shared by both incident references. This is a modern coordination choice, **not recovered legacy paired-controller synchronization**. The simulation requires uniquely paired target reference identity, matching nonempty style, eligible flags, explicit authored transform and exactly matching reverse pose. It supplies the same building owner pose to both cells. Arbitrary mismatched door placement, independent leaf controllers, force fields and multiple actors are outside this slice.
 
@@ -28,7 +28,7 @@ Persistent movement exposed a limitation of the old inspection query: a returned
 
 ## Verified original trace
 
-The original cantina/private-room inputs and six hashes are unchanged from the [instance checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_DOOR_MOVEMENT.md). [Independent trace verification](../tools/python/verify_persistent_door_actor.py) decodes the effective inputs and computes proximity/pulse/curve, swept contacts, source/target adoption and reset independently.
+The original cantina/private-room inputs and six hashes are unchanged from the [instance checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_DOOR_MOVEMENT.md). [Independent trace verification](../../SWG-Godot-Client/tools/python/verify_persistent_door_actor.py) decodes the effective inputs and computes proximity/pulse/curve, swept contacts, source/target adoption and reset independently.
 
 Two building owner poses × 474 ticks match **948 ticks, 44 transfers and 34 blocked ticks**. The trace includes ten round trips per pose, denied reset/approach, retreat, unknown permission, recovery/return and final reset. These counts describe deterministic fixtures, not full locomotion coverage. Synthetic tests additionally complete 124 repeated transfers, preserve one retained handle across owner changes, reject mismatched reverse pose/invalid actor inputs, distinguish separating touch from genuine overlap, and verify reset/dispose.
 

@@ -16,11 +16,11 @@ E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150.
 Identity reads only; no original execution, VAs or proprietary asset consumption.
 
 [Durable contract](../../docs/TERRAIN_BUDGETED_POINT_INPUT_CONTRACT.md),
-[adapter](../../poc/Stardust.Godot/TerrainPointTargetInputAdapter.cs),
-[host](../../poc/Stardust.Godot/TerrainPointTargetInputHost.cs),
-[verification](../../poc/Stardust.Godot/TerrainBudgetedPointInputVerification.cs),
-[runner](../../poc/round77-tests/Rendering/Invoke-Picker.ps1),
-[oracle](../../poc/round77-tests/Rendering/verify_picker.py).
+[adapter](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainPointTargetInputAdapter.cs),
+[host](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainPointTargetInputHost.cs),
+[verification](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainBudgetedPointInputVerification.cs),
+[runner](../../../SWG-Godot-Client/poc/round77-tests/Rendering/Invoke-Picker.ps1),
+[oracle](../../../SWG-Godot-Client/poc/round77-tests/Rendering/verify_picker.py).
 
 Cached Python/offline .NET8/Godot4.7.2 x64 SDK and packages. The portable explicit-input
 runner requires Python, dotnet, original executable identity input, cached packages

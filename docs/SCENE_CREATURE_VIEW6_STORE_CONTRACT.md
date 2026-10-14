@@ -2,7 +2,7 @@
 
 Round33, 2026-10-03. This independently authored modern component applies the accepted [CREO6 supported codec union](CREATURE_VIEW6_CODEC_CONTRACT.md) to immutable full current models and composes them with borrowed serialized scene-registry tokens. It does not implement gameplay, legacy callbacks, target resolution or world routing.
 
-Implementation: [state](../poc/Stardust.Core/Protocol/CreatureView6State.cs) and [store](../poc/Stardust.Core/Session/SceneCreatureView6ReplicationStore.cs). Verification: [native scenarios](../poc/Stardust.Core.SmokeTests/SceneCreatureView6StoreScenarios.cs), [isolated runner](../poc/round33-tests/Runtime/Program.cs), [synthetic fixtures](../poc/round33-tests/Runtime/ordered-fixtures.json), [independent peer](../poc/round33-tests/Runtime/peer.py).
+Implementation: [state](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/CreatureView6State.cs) and [store](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneCreatureView6ReplicationStore.cs). Verification: [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneCreatureView6StoreScenarios.cs), [isolated runner](../../SWG-Godot-Client/poc/round33-tests/Runtime/Program.cs), [synthetic fixtures](../../SWG-Godot-Client/poc/round33-tests/Runtime/ordered-fixtures.json), [independent peer](../../SWG-Godot-Client/poc/round33-tests/Runtime/peer.py).
 
 ## Immutable current model and event policy
 

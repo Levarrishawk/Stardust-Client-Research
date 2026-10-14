@@ -1,9 +1,9 @@
 # Offline preview focus owner
 
 October6,2026. Modern replacement policy for focus loss and return. No original
-client focus behavior is inferred. [Source](../poc/Stardust.Godot/TerrainOfflineFocusHost.cs),
-[native proof](../poc/Stardust.Godot/TerrainOfflineFocusHostVerification.cs),
-[independent model](../poc/round76-tests/Rendering/verify_picker.py).
+client focus behavior is inferred. [Source](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineFocusHost.cs),
+[native proof](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineFocusHostVerification.cs),
+[independent model](../../SWG-Godot-Client/poc/round76-tests/Rendering/verify_picker.py).
 
 ## API and exact ownership
 

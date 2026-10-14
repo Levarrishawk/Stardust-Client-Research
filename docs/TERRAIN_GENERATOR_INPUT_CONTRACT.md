@@ -1,6 +1,6 @@
 # Terrain generator input contract
 
-Round33 adds [TerrainGeneratorInput](../poc/Stardust.Core/Assets/TerrainGeneratorInput.cs),
+Round33 adds [TerrainGeneratorInput](../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainGeneratorInput.cs),
 a bounded engine-neutral decoder over the complete owned TGEN form from
 [ProceduralTerrainInput](PROCEDURAL_TERRAIN_INPUT_CONTRACT.md). It retains every
 accepted input byte, exposes group and layer structure, and decodes one rule
@@ -172,8 +172,8 @@ with15/11/5/17/43 immediate records (91 total). There are257 decoded layers,
 Decoded header/description strings consume5907 bytes including terminators.
 These are counts for one pinned input, not corpus or implementation coverage.
 
-[Native scenarios](../poc/Stardust.Core.SmokeTests/TerrainGeneratorInputScenarios.cs)
-and [independent oracle](../poc/round33-tests/Assets/verify_tgen_input.py) pass787
+[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainGeneratorInputScenarios.cs)
+and [independent oracle](../../SWG-Godot-Client/poc/round33-tests/Assets/verify_tgen_input.py) pass787
 synthetic fixtures (21 accepted,766 rejected) and ten ownership checks. They
 compare complete section hashes, group versions/counts, layer containment,
 ADTA words, header/name/legacy identities, rule order and AHCN raw fields for

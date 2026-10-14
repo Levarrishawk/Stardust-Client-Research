@@ -51,7 +51,7 @@ selected samples are read; unused data is not scanned or retained.
 
 ## Reproduction and gates
 
-[Runner](../../poc/round33-tests/Rendering/Invoke-Assembly.ps1):
+[Runner](../../../SWG-Godot-Client/poc/round33-tests/Rendering/Invoke-Assembly.ps1):
 
 ```powershell
 .\poc\round33-tests\Rendering\Invoke-Assembly.ps1 -Exe <baseline-exe> -Packages <cached-pefile-capstone> -Python <cached-python> -Dotnet <dotnet-exe>

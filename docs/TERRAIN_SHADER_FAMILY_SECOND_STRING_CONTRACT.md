@@ -13,7 +13,7 @@ remain separate; no first-string/predicate analysis is repeated.
 Executable SHA-256:
 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`.
 All addresses are baseline PE32 VAs. The
-[verifier](../tools/python/verify_terrain_shader_family_second_string.py) checks
+[verifier](../../SWG-Godot-Client/tools/python/verify_terrain_shader_family_second_string.py) checks
 complete ranges excluding alignment,42 raw-byte/register/operand anchors, four
 direct calls and two conditional branches. Independent raw-PE mapping and pefile
 mapping agree. Exactly one setter, one four-byte helper and one31-byte consumer
@@ -117,7 +117,7 @@ Repeated replays reuse this occurrence, not additional corpus samples.
 
 Thirteen synthetic local checks cover detached byte copies, empty/non-ASCII/
 separator/NUL preservation, null and supplied-selector return identity. The
-[independent peer](../poc/round64-tests/Assets/peer.py) checks12 copy/pointer
+[independent peer](../../SWG-Godot-Client/poc/round64-tests/Assets/peer.py) checks12 copy/pointer
 properties and111 negative guards:7 identity,3 sealed prerequisites,6 PE
 truncation,6 PE headers,7 mapped extents,43 byte/operand anchors,6 complete-body,
 6 control-edge,10 budget,8 output-path,5 finite synthetic witnesses,4 no-publication.
@@ -140,7 +140,7 @@ Replay with cached inputs and a fresh default private directory:
 & ./poc/round64-tests/Assets/Invoke-SelectedRule.ps1 -Python $Python -Exe $Exe -Packages $CachedStaticPackages -AssetRoot $AssetRoot -Config $Config
 ```
 
-[Runner](../poc/round64-tests/Assets/Invoke-SelectedRule.ps1) generates a fresh
+[Runner](../../SWG-Godot-Client/poc/round64-tests/Assets/Invoke-SelectedRule.ps1) generates a fresh
 UUID RunRoot when omitted and works in main after integration. Standalone flags:
 `--exe`, `--packages`, `--asset-root`, `--config`, `--output`, optional
 `--maximum-leads` (default12; this trace needs6). No native build outcome is

@@ -1,7 +1,7 @@
 # Explicit original-installation preflight
 
 Round83 provides an engine-neutral, read-only installation admission component in
-[OriginalInstallationInputs.cs](../poc/Stardust.Core/Configuration/OriginalInstallationInputs.cs).
+[OriginalInstallationInputs.cs](../../SWG-Godot-Client/poc/Stardust.Core/Configuration/OriginalInstallationInputs.cs).
 It accepts three explicit inputs: a local asset root, a local configuration file,
 and a bounded list of logical resources. It does not depend on preview profiles,
 historical command vectors, or test fixtures.
@@ -47,7 +47,7 @@ failure. Existing overlay/archive failure cleanup remains in effect.
   ASCII normalize through the existing legacy path normalizer. Duplicate normalized
   requests are rejected before archive I/O.
 
-The existing [ConfiguredTreOverlay](../poc/Stardust.Core/Assets/ConfiguredTreOverlay.cs)
+The existing [ConfiguredTreOverlay](../../SWG-Godot-Client/poc/Stardust.Core/Assets/ConfiguredTreOverlay.cs)
 is authoritative for `searchTree_00_` mount parsing, descending numeric priority,
 TREE 0005 lookup, and tombstones. A preliminary scan admits only local mount
 filenames and checks their reparse status; it does not implement priority or asset
@@ -76,7 +76,7 @@ receipts private.
 
 ## Reproduction and evidence
 
-The self-contained suite lives in [round83 Assets](../poc/round83-tests/Assets/Assets.csproj).
+The self-contained suite lives in [round83 Assets](../../SWG-Godot-Client/poc/round83-tests/Assets/Assets.csproj).
 Its independent Python writer constructs synthetic TREE records and computes CRCs,
 hashes, and expected metadata before native execution. It does not call the production
 writer or copy original assets into fixtures.

@@ -4,7 +4,7 @@
 
 Can one engine-neutral actor persist through three loaded cells and two owned physical leaves without duplicate controllers, stale retention or inconsistent permissions? Close after repeated ownership and failure/lifecycle gates and independent tick comparison.
 
-Inputs are explicitly synthetic: three flat rectangles, portal planes at X=0 and X=4, two normal leaves using the existing synthetic style, one actor with half bounds .25/.9/.25. No original executable or proprietary asset is required. Tools: native core smoke and [independent verifier](../../tools/python/verify_interior_door_scene.py); detailed generated records stay private.
+Inputs are explicitly synthetic: three flat rectangles, portal planes at X=0 and X=4, two normal leaves using the existing synthetic style, one actor with half bounds .25/.9/.25. No original executable or proprietary asset is required. Tools: native core smoke and [independent verifier](../../../SWG-Godot-Client/tools/python/verify_interior_door_scene.py); detailed generated records stay private.
 
 ## Confirmed results
 

@@ -14,7 +14,7 @@ PE32 executable SHA-256:
 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`.
 The selected464-byte body has156 decoded instructions, SHA
 `5466348f6df3dc7feb7b240b0c5adb698469854692655b7403c267038697ef5b`.
-The [verifier](../tools/python/verify_terrain_shader_family_second_string_caller.py)
+The [verifier](../../SWG-Godot-Client/tools/python/verify_terrain_shader_family_second_string_caller.py)
 gates identity before PE/address inspection, checks independent raw-PE/pefile
 mapping,74 exact byte/operand anchors, the full body hash and decoded control
 boundaries. The accepted four-byte getter is checked by its existing SHA, without
@@ -123,7 +123,7 @@ resource-open failure, byte-output or teardown guarantee is inferred.
 
 ## Reproduction and witnesses
 
-The [portable peer](../poc/round65-tests/Assets/peer.py) passes175 negative guards:
+The [portable peer](../../SWG-Godot-Client/poc/round65-tests/Assets/peer.py) passes175 negative guards:
 7 identity,3 sealed prerequisite,6 PE truncation,6 header,7 mapped extent,
 75 byte/operand,6 complete-body/getter,35 complete control-edge,
 18 amended lead/site budget,8 output path and4 no-publication guards.
@@ -148,7 +148,7 @@ Replay with explicit cached inputs and automatic fresh private output:
 & ./poc/round65-tests/Assets/Invoke-SelectedRule.ps1 -Python $Python -Exe $Exe -Packages $CachedStaticPackages -AssetRoot $AssetRoot -Config $Config
 ```
 
-[Runner](../poc/round65-tests/Assets/Invoke-SelectedRule.ps1) is portable to main.
+[Runner](../../SWG-Godot-Client/poc/round65-tests/Assets/Invoke-SelectedRule.ps1) is portable to main.
 Standalone flags are `--exe`, `--packages`, `--asset-root`, `--config`, `--output`,
 optional `--maximum-leads`/`--maximum-sites`; defaults are the approved18/29.
 No native/GPU source or build result changes. See the

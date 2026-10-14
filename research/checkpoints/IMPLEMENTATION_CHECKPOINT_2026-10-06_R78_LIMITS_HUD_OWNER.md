@@ -18,10 +18,10 @@ OpenGL compatibility GPU run. Frozen accepted playground HUD is the sole staged
 source dependency; its default expected caption comes from the accepted73 oracle.
 
 [Durable contract](../../docs/TERRAIN_OFFLINE_LIMITS_HUD_CONTRACT.md),
-[owner](../../poc/Stardust.Godot/TerrainOfflineLimitsHud.cs),
-[verification](../../poc/Stardust.Godot/TerrainOfflineLimitsHudVerification.cs),
-[runner](../../poc/round78-tests/Rendering/Invoke-Picker.ps1),
-[oracle](../../poc/round78-tests/Rendering/verify_picker.py).
+[owner](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineLimitsHud.cs),
+[verification](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineLimitsHudVerification.cs),
+[runner](../../../SWG-Godot-Client/poc/round78-tests/Rendering/Invoke-Picker.ps1),
+[oracle](../../../SWG-Godot-Client/poc/round78-tests/Rendering/verify_picker.py).
 
 Run the explicit-input runner with cached Python/dotnet, original executable identity
 input, offline package cache and fresh ignored RunRoot. It pins manifest/archive,

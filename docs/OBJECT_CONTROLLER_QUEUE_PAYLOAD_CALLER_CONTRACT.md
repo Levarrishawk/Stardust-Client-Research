@@ -6,7 +6,7 @@ This extends the [round-60 producer contract](OBJECT_CONTROLLER_QUEUE_ENTRY_PROD
 
 ## Inputs, bounded selection and reproducibility
 
-Executable SHA-256: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. All addresses are baseline VAs. The [verifier](../tools/python/verify_object_controller_queue_payload_caller.py) checks identity before package imports or VA interpretation, completely decodes the selected body, and repeats one exact call-target query in executable PE sections. The [independent runner](../poc/round61-tests/Networking/research_checks.py) separately maps raw PE sections and checks relative calls, stack/register/byte identities, branches and guards. No original code or pointer target is executed.
+Executable SHA-256: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. All addresses are baseline VAs. The [verifier](../../SWG-Godot-Client/tools/python/verify_object_controller_queue_payload_caller.py) checks identity before package imports or VA interpretation, completely decodes the selected body, and repeats one exact call-target query in executable PE sections. The [independent runner](../../SWG-Godot-Client/poc/round61-tests/Networking/research_checks.py) separately maps raw PE sections and checks relative calls, stack/register/byte identities, branches and guards. No original code or pointer target is executed.
 
 | Exact-target raw site | Nearest containing inventory candidate | Current inspection |
 | --- | --- | --- |

@@ -138,7 +138,7 @@ establish mesh/texture rendering or complete Phase 4.
 Current open Phase 1 gates: status/liveness and CRC exceptions, actual UDP
 ownership/endpoint filtering, clock and journal binding, outbound compression
 policy, and a separately authorized controlled-server run. See the
-[implementation acceptance record](CLIENT_IMPLEMENTATION_ACCEPTANCE.md) and
+[implementation acceptance record](../../SWG-Godot-Client/docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md) and
 [session handoff](../research/sessions/IMPLEMENTATION_SESSION_2026-09-29_ONE_HOUR.md).
 
 ### Inputs

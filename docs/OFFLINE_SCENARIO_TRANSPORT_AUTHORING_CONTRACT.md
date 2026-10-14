@@ -1,12 +1,12 @@
 # Explicit offline scenario authoring
 
-[scenario_author.py](../poc/round82-tests/Networking/scenario_author.py) exposes `create(base_argument_file, profile_file, runs, output) -> producer_receipt` and a CLI:
+[scenario_author.py](../../SWG-Godot-Client/poc/round82-tests/Networking/scenario_author.py) exposes `create(base_argument_file, profile_file, runs, output) -> producer_receipt` and a CLI:
 
 ```powershell
 python poc/round82-tests/Networking/scenario_author.py --base-arguments <base-arguments.json> --profile <configured-Version13.json> --runs 3 --output local-private/scenario-review
 ```
 
-This authors modern synthetic configuration. It does not recover protocol, extract assets, launch a scene, create a socket, or change source inputs. It imports only the frozen [Round81 reseeder](../poc/round81-tests/Networking/transport_fixtures.py), which reuses the independent SOE encoder and checks every inherited protected field. It does not import the new runtime scenario parser.
+This authors modern synthetic configuration. It does not recover protocol, extract assets, launch a scene, create a socket, or change source inputs. It imports only the frozen [Round81 reseeder](../../SWG-Godot-Client/poc/round81-tests/Networking/transport_fixtures.py), which reuses the independent SOE encoder and checks every inherited protected field. It does not import the new runtime scenario parser.
 
 ## Admission and path ownership
 
@@ -32,7 +32,7 @@ Every argument/path/source fixture, every authored profile, all output bytes/siz
 
 ## Verification
 
-[replay.py](../poc/round82-tests/Networking/replay.py) passes412 checks/44 rejection cases with authored synthetic admission inputs, runs1/3/32 and U32 wraparound. It independently checks schema/order/options/resolution, identities/handshakes/hash bytes, preserved application fields, reverse regeneration and stale-source ACK CRC rejection. Malformed/duplicate/unknown/missing/type/depth/byte-cap/path/profile cases reject before output exists; an injected late manifest-cap rejection also proves the pre-write boundary. Old base/profile/other explicit fixture hashes remain unchanged.
+[replay.py](../../SWG-Godot-Client/poc/round82-tests/Networking/replay.py) passes412 checks/44 rejection cases with authored synthetic admission inputs, runs1/3/32 and U32 wraparound. It independently checks schema/order/options/resolution, identities/handshakes/hash bytes, preserved application fields, reverse regeneration and stale-source ACK CRC rejection. Malformed/duplicate/unknown/missing/type/depth/byte-cap/path/profile cases reject before output exists; an injected late manifest-cap rejection also proves the pre-write boundary. Old base/profile/other explicit fixture hashes remain unchanged.
 
 ```powershell
 python poc/round82-tests/Networking/replay.py --profile <accepted-private-Version13-profile.json> --output local-private/scenario-tests

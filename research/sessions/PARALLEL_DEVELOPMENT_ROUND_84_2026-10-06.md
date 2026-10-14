@@ -49,8 +49,8 @@ compares actual protected ClientId/Select/ready bytes and original preparation,
 39 loaded source identities and terrain hash; the final GPU screenshot is inspected.
 Cancellation and minimum-resource failure emit no ready or player and drain cleanly.
 
-Reproduce using [the explicit joined command](../../poc/round84-tests/Integration/README.md)
-and [default regression runbook](../../docs/CLIENT_REGRESSION_RUNBOOK.md). Private
+Reproduce using [the explicit joined command](../../../SWG-Godot-Client/poc/round84-tests/Integration/README.md)
+and [default regression runbook](../../../SWG-Godot-Client/docs/CLIENT_REGRESSION_RUNBOOK.md). Private
 receipts preserve the failed peer sequence interpretation, opaque/typed composition
 mistake, corrected test helper, native-exit failure/repair and legacy-profile
 staging corrections. No failed attempt is counted as passing evidence.
@@ -65,7 +65,7 @@ orderly close/await/free and remove/await/free are the supported lifecycle paths
 Next milestone: complete server-shaped player baseline/lifecycle ingress plus
 explicit nearby-object admission/defer behavior in this session. Then implement
 authoritative movement and protocol disconnect before requesting bounded live
-validation. See [current gates](../../docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md) and
+validation. See [current gates](../../../SWG-Godot-Client/docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md) and
 [unexecuted controlled-server plan](../../docs/CONTROLLED_SERVER_VALIDATION_PLAN.md).
 No original executable execution, live contact, capture/fuzzing, staging, commit,
 push or publication occurred. No research percentage is promoted to a client

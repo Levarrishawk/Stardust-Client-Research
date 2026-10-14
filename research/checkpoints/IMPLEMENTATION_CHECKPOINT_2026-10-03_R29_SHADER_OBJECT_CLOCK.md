@@ -20,7 +20,7 @@ Modern policy, not parity: seconds input/quantization/accumulation is correlated
 
 ## Reproduction and validation
 
-Own [runner](../../poc/round29-tests/Runtime/Runtime.csproj) builds offline with cached packages and flags NuGetAudit=false, UseSharedCompilation=false, UseAppHost=false. Build passes zero warnings/errors.
+Own [runner](../../../SWG-Godot-Client/poc/round29-tests/Runtime/Runtime.csproj) builds offline with cached packages and flags NuGetAudit=false, UseSharedCompilation=false, UseAppHost=false. Build passes zero warnings/errors.
 
 ```text
 dotnet <Runtime.dll> poc/round29-tests/Runtime/ordered-fixtures.json <clock-receipt.json>

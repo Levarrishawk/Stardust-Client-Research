@@ -1,6 +1,6 @@
 # Complete CREO4 prepared storage
 
-[SceneCreatureView4FullReplicationStore](../poc/Stardust.Core/Session/SceneCreatureView4FullReplicationStore.cs)
+[SceneCreatureView4FullReplicationStore](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneCreatureView4FullReplicationStore.cs)
 owns [complete CREO4 state](CREATURE_VIEW4_FULL_CONTRACT.md) and variable-size
 historical journals over a borrowed serialized SceneObjectRegistry. No world,
 ingress, presentation, original subscriber or gameplay effects are introduced.
@@ -49,8 +49,8 @@ snapshots/batches remain immutable outside store retention.
 
 ## Verification
 
-[The native integration runner](../poc/round42-tests/Integration/StoreProgram.cs)
-uses the actual separate Core assembly. Its [independent peer](../poc/round42-tests/Integration/store_peer.py)
+[The native integration runner](../../SWG-Godot-Client/poc/round42-tests/Integration/StoreProgram.cs)
+uses the actual separate Core assembly. Its [independent peer](../../SWG-Godot-Client/poc/round42-tests/Integration/store_peer.py)
 reconstructs122 full initial/final models and2439 ordered events from literal
 wire fixtures. It checks exact variable journal/state accounting and outer store
 revision, aborted preparation, stale/foreign commit, owner thread, historical

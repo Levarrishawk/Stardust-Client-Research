@@ -1,6 +1,6 @@
 # Single-frame offline root drain
 
-[SceneWorldOfflineRootMotionDrain](../poc/Stardust.Core/Session/SceneWorldOfflineRootMotionDrain.cs) replaces repeated host orchestration of the frozen [root bridge](SCENE_WORLD_ROOT_MOTION_TRANSPORT_BRIDGE_CONTRACT.md). It borrows world, queue and transport, owns one bridge, and retains only immutable receipt strings/history. No handshake, socket, send, retry or codec change.
+[SceneWorldOfflineRootMotionDrain](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldOfflineRootMotionDrain.cs) replaces repeated host orchestration of the frozen [root bridge](SCENE_WORLD_ROOT_MOTION_TRANSPORT_BRIDGE_CONTRACT.md). It borrows world, queue and transport, owns one bridge, and retains only immutable receipt strings/history. No handshake, socket, send, retry or codec change.
 
 ```csharp
 using var drain = new SceneWorldOfflineRootMotionDrain(world, queue, transport,
@@ -23,7 +23,7 @@ Returned pump datagrams, decoded packet, canonical root and any returned ACK-res
 
 Dispose clears/disposes owned bridge and releases references only. It preserves world/store/FIFO/transport and handed-out data. Owner-readable AcceptedCount,BridgeAcceptedCount,NextSequence,LastNowMilliseconds,IsFaulted,LastReceipt remain historical afterward. Caller separately disposes queue and closes transport/pump. Receipts remain usable after that owner cleanup.
 
-[Independent replay](../poc/round74-tests/Networking/replay.py) handpacks eight identity-pose C2S roots before native: fractional positions, negative zero, native-to-wire(X,Z,Y), flags0/all-one/5, U32 counter/timestamp wrap. It independently protects sequences0..7 and exact ACKs with the frozen peer framing model, then uses actual issued LOCAL rows, FIFO, bridge, pump and ACK release. Eight historical FIFO frames survive later row publications and drain in order. Native output includes immutable receipts after context cleanup; Python compares every byte/string/count.
+[Independent replay](../../SWG-Godot-Client/poc/round74-tests/Networking/replay.py) handpacks eight identity-pose C2S roots before native: fractional positions, negative zero, native-to-wire(X,Z,Y), flags0/all-one/5, U32 counter/timestamp wrap. It independently protects sequences0..7 and exact ACKs with the frozen peer framing model, then uses actual issued LOCAL rows, FIFO, bridge, pump and ACK release. Eight historical FIFO frames survive later row publications and drain in order. Native output includes immutable receipts after context cleanup; Python compares every byte/string/count.
 
 Final replay67 checks, eight exact roots/protected frames/ACKs and three real post-transfer failures; offline build zero warnings/errors. Additional gates cover invalid ACK/preCanceled/owner/disposal/stale/negative/backward clocks, pending/retained other channel, empty/offline/closed/inactive owners, mismatched foreign-queue generation and invalid constructor size. U16 wrap expression is source-inspected, not exercised through65536 transfers. All fixtures synthetic; no original assets/EXE execution or live activity.
 

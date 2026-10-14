@@ -10,7 +10,7 @@ Frozen Round 52: 3,627 files, manifest SHA-256 `71ca0659a6063973aa58d5133d1648d0
 
 EXE SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150` is gated before static address interpretation. Configuration SHA `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`, selected source SHA `6039D0C15F9CCB518D72AE01A1ABDF41FCFF2153B5CBF7EB3BA6E6C634A3A427`, TGEN SHA `B623B789E5F8486414C1D68CD341005E7E25FD97AF30567E64E7AC848DEB6C32`, group SHA `A221167452D8D67719BD72A3DB30CC10B7B652881B935D3571B9D55328B444A1`. Only the existing selected Tatooine input is read; no additional corpus survey occurs.
 
-Tools: bundled Python, installed .NET, cached offline NuGet/static packages, existing raw generator/family peers, new [current identity peer](../../poc/round52-tests/Assets/peer.py) and [runner](../../poc/round52-tests/Assets/Invoke-GeneratorIdentity.ps1). Original names/raw words/generated corpora remain private. No original process execution, live contact, download, capture, staging, commit or publication occurs.
+Tools: bundled Python, installed .NET, cached offline NuGet/static packages, existing raw generator/family peers, new [current identity peer](../../../SWG-Godot-Client/poc/round52-tests/Assets/peer.py) and [runner](../../../SWG-Godot-Client/poc/round52-tests/Assets/Invoke-GeneratorIdentity.ps1). Original names/raw words/generated corpora remain private. No original process execution, live contact, download, capture, staging, commit or publication occurs.
 
 ## Evidence and conclusions
 

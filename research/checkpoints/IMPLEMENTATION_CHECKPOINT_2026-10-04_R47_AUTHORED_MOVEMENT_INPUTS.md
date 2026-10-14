@@ -14,7 +14,7 @@ Tools: cached .NET SDK 8.0.300; bundled Python; accepted `verify_creature_templa
 
 ## Findings and consequences
 
-Observation: [the new consumer](../../poc/Stardust.Core/Assets/SharedCreatureAuthoredMovementInputs.cs) copies the five frozen profile slots into immutable typed inputs with owned evidence encodings and nullable exact literal bits. Interpretation: callers can retain authored input independently of resolver buffers and diagnostic exports. Confidence: Confirmed by twenty copy-isolation cases and independent raw-byte comparison. Consequence: retain classification and source identity; do not substitute runtime defaults for absent or unsupported input.
+Observation: [the new consumer](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/SharedCreatureAuthoredMovementInputs.cs) copies the five frozen profile slots into immutable typed inputs with owned evidence encodings and nullable exact literal bits. Interpretation: callers can retain authored input independently of resolver buffers and diagnostic exports. Confidence: Confirmed by twenty copy-isolation cases and independent raw-byte comparison. Consequence: retain classification and source identity; do not substitute runtime defaults for absent or unsupported input.
 
 Observation: explicit distinct slot requests pass a named finite/nonnegative/absolute-bound policy as one operation; any ineligible slot returns false with null output. A nearer unresolved speed fixture shadows a farther literal. Interpretation: selection is an operational gate over authored values. Confidence: Confirmed for this implementation. Consequence: a caller may request an eligible subset, but cannot bypass the nearest unresolved record within a requested slot.
 
@@ -26,7 +26,7 @@ The durable [contract](../../docs/SHARED_CREATURE_AUTHORED_MOVEMENT_INPUT_CONTRA
 
 ## Reproduction and validation
 
-From repository root, generate private synthetic cases with `python poc/round47-tests/Networking/peer.py generate <fixtures.json>`. Build the [own runner project](../../poc/round47-tests/Networking/Networking.csproj) with cached locked restore. Run its DLL with four arguments: asset root, pinned configuration, fixture JSON, and private native receipt. Run the accepted static oracle on the pinned executable and configuration, saving its private receipt. Then invoke `python poc/round47-tests/Networking/peer.py verify <fixtures.json> <native.json> <oracle.json> <peer.json>`.
+From repository root, generate private synthetic cases with `python poc/round47-tests/Networking/peer.py generate <fixtures.json>`. Build the [own runner project](../../../SWG-Godot-Client/poc/round47-tests/Networking/Networking.csproj) with cached locked restore. Run its DLL with four arguments: asset root, pinned configuration, fixture JSON, and private native receipt. Run the accepted static oracle on the pinned executable and configuration, saving its private receipt. Then invoke `python poc/round47-tests/Networking/peer.py verify <fixtures.json> <native.json> <oracle.json> <peer.json>`.
 
 Results: 20 consumer fixtures; 659 independent checks; 20 ownership checks; 60 aggregate boundary checks; 220 deliberate rejection checks. One original five-source chain matches raw bits and provenance. Own runner and default smoke builds: zero warnings/errors. Default 64-bit smoke suite: exit zero. These results validate the modern consumer and accepted authored-input boundary, not final original runtime behavior.
 

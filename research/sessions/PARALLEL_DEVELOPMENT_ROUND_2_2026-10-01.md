@@ -29,7 +29,7 @@ Assets: eight scoped changes, no production reader defect. Lead original four-de
 
 Rendering: four scoped changes, production equations unchanged. Lead Godot build passes zero warnings/errors. Fresh full original interior GPU run passes216 mouth channel/pixel cases at max0.003438, tolerance2/255; wrong primary/diffuse-slot/specular-channel/emissive/fragment-stage discriminators pass. Existing route, normal/tangent/door/room/control assertions pass. Source union160/16,643,480 unchanged. Capture inspected. Worker original standalone/headless/first-lookup cancellation pass. Root-certificate-store startup error remains in otherwise passing offline logs; no certificate/network changes.
 
-Runtime/Networking: accepted outcomes above; lead original console/wire oracle and shared native suite pass. Shared runner now executes both new synthetic scenarios. Workspace validator:1,023 Markdown/zero broken or private links;2,602 names/zero duplicates;345 packets. Diff check passes; nothing staged/committed/pushed. [Baseline/scope helper](../../tools/python/parallel_round_workspace.py) captures public files and rejects unowned changes/conflicting integration before writes.
+Runtime/Networking: accepted outcomes above; lead original console/wire oracle and shared native suite pass. Shared runner now executes both new synthetic scenarios. Workspace validator:1,023 Markdown/zero broken or private links;2,602 names/zero duplicates;345 packets. Diff check passes; nothing staged/committed/pushed. [Baseline/scope helper](../../../SWG-Godot-Client/tools/python/parallel_round_workspace.py) captures public files and rejects unowned changes/conflicting integration before writes.
 
 ## Timing and resume
 

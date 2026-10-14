@@ -2,7 +2,7 @@
 
 ## Scope and API
 
-[CreatureView6Codec](../poc/Stardust.Core/Protocol/CreatureView6Codec.cs) provides `DecodeBaseline`, `DecodeDelta`, `EncodeBaseline`, `EncodeDelta`, `EncodeBaselineEnvelope` and `EncodeDeltaEnvelope`. Decode overloads accept whole application bytes or an owned `ReplicationEnvelope`. It accepts only CREO (`4352454F`), view6 and the matching generic Baselines/Deltas opcode.
+[CreatureView6Codec](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/CreatureView6Codec.cs) provides `DecodeBaseline`, `DecodeDelta`, `EncodeBaseline`, `EncodeDelta`, `EncodeBaselineEnvelope` and `EncodeDeltaEnvelope`. Decode overloads accept whole application bytes or an owned `ReplicationEnvelope`. It accepts only CREO (`4352454F`), view6 and the matching generic Baselines/Deltas opcode.
 
 `CreatureView6Baseline` owns the complete eighteen-field value. `CreatureView6Vector<T>` freezes bounded collections used for raw U64 defenders, S32 HAM/max-HAM and sealed `CreatureView6Wearable` entries. Strings use existing immutable `ReplicationByteString`: owned raw bytes, copied inspection access and retained `UsesExtendedLength`. Immutable string/vector/entry references may be shared safely between models. `CreatureView6Delta` freezes an ordered collection of sealed `CreatureView6Update` values, constructed with `Scalar`, `String` or `Pair`. Field12 exposes its signed `PerformanceType` interpretation while retaining the raw bits.
 
@@ -62,7 +62,7 @@ Decode validates the envelope and performs a complete field/element/string scan 
 
 ## Validation and next boundary
 
-The [independent Python peer](../poc/round32-tests/Networking/peer.py) constructs literal synthetic wires and independently parses every field, string spelling, nested counter and budget. The [native scenarios](../poc/Stardust.Core.SmokeTests/CreatureView6CodecScenarios.cs) compare exact models/bytes, wire/envelope overloads, exact/one-less budgets, adjusted complete delta prefixes, partial truncation, unsupported indices, malformed headers/counts, signed/full-bit values and ownership.
+The [independent Python peer](../../SWG-Godot-Client/poc/round32-tests/Networking/peer.py) constructs literal synthetic wires and independently parses every field, string spelling, nested counter and budget. The [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/CreatureView6CodecScenarios.cs) compare exact models/bytes, wire/envelope overloads, exact/one-less budgets, adjusted complete delta prefixes, partial truncation, unsupported indices, malformed headers/counts, signed/full-bit values and ownership.
 
 Passed23 exact wires,3870 negative checks,282 budget checks and122 ownership checks plus independent Python verification. Pinned static verification passed109 anchors/18 registrations/16RTTI. Accepted TANO6 state regression and shared Core smoke suite passed with zero build warnings/errors. All fixture bytes are synthetic; no proprietary data is promoted.
 

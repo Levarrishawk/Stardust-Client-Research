@@ -2,7 +2,7 @@
 
 The selected real Tatooine FHGT reads the shared current height after the root layer and earlier siblings have completed. It does **not** form a real FHGT/AHCN pair: its layer, ancestor and examined earlier-sibling prefix contain no AHCN. Actual prior height writes use AHFR. This closes the ordering and fresh-preparation prerequisite for the [supplied current-height contract](TERRAIN_SUPPLIED_HEIGHT_FILTERED_SEQUENCE_CONTRACT.md); original numeric terrain parity remains Unknown.
 
-The [identity-gated verifier](../tools/python/verify_terrain_height_layer_order.py), [offline runner](../poc/round44-tests/Rendering/Invoke-HeightLayerOrder.ps1) and [Round 44 checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-03_R44_HEIGHT_LAYER_ORDER.md) reproduce the bounded result. All production terrain APIs are frozen in this research round.
+The [identity-gated verifier](../../SWG-Godot-Client/tools/python/verify_terrain_height_layer_order.py), [offline runner](../../SWG-Godot-Client/poc/round44-tests/Rendering/Invoke-HeightLayerOrder.ps1) and [Round 44 checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-03_R44_HEIGHT_LAYER_ORDER.md) reproduce the bounded result. All production terrain APIs are frozen in this research round.
 
 ## Input identity and bounded occurrence
 
@@ -74,3 +74,11 @@ Follow-up: [AHFR conditional consumer](TERRAIN_HEIGHT_FRACTAL_CONTRACT.md) and [
 ## Round46 accepted compatibility increment
 
 The [family lookup](TERRAIN_FRACTAL_FAMILY_LOOKUP_CONTRACT.md) and [sampler](TERRAIN_FRACTAL_SAMPLER_CONTRACT.md) establish static prerequisites. A miss may retain wide ST0 after writing the F32 cache, whereas a hit reloads F32. Existing supplied-F32 APIs therefore do not establish original sampling parity. The [903-case supplied consumer join](TERRAIN_SUPPLIED_FRACTAL_CONSUMER_JOIN_CONTRACT.md) independently verifies mutable height, query timing and retained influence composition without generating noise. Exact seed/table/interpolation, optional postprocessing, effective controls and reload quiescence remain open.
+## October 13 derived-normal follow-up
+
+The [slope normal producer contract](TERRAIN_SLOPE_NORMAL_PRODUCER_CONTRACT.md)
+now closes the first derived-cache rebuild at 00B65730: current-height positions,
+triangle-normal accumulation, normalization and state+3C normal Y consumption.
+It also confirms rebuilding before the demanding layer's cell loop. This extends
+the earlier structural timing result; original arithmetic/control parity and
+the second cache rebuild remain outside that closure.

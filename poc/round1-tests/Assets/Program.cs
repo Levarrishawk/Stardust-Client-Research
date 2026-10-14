@@ -1,1 +1,0 @@
-SkeletalLodSelectionScenarios.Run(args);

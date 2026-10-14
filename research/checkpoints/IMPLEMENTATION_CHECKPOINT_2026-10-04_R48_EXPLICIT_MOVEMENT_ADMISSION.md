@@ -33,7 +33,7 @@ reconciliation. No staging, commit, push or publication occurred.
 
 ## Observation, interpretation and confidence
 
-Observation: the [implementation](../../poc/Stardust.Core/Session/SceneWorldExplicitMovementAdmission.cs)
+Observation: the [implementation](../../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldExplicitMovementAdmission.cs)
 requires a nonzero explicit source choice, creates an owned actual driver and
 preflights active/finalized/current typed CREO3, exact creation identity, root
 path CRC and supplied root SHA evidence. It captures selected raw bits and
@@ -42,7 +42,7 @@ and invokes the existing driver Submit once. Driver admission preserves its
 component, time, ordering and pending-capacity boundaries.
 
 Observation: 840 fixture cases execute real driver ticks; the
-[independent peer](../../poc/round48-tests/Runtime/peer.py) predicts selected-slot
+[independent peer](../../../SWG-Godot-Client/poc/round48-tests/Runtime/peer.py) predicts selected-slot
 eligibility and binary32 tick positions from literal fixture inputs. Additional
 native tests invalidate partial publications, recreate/reset/close the world,
 change registry context, exercise missing/foreign/disposed readers and stores,

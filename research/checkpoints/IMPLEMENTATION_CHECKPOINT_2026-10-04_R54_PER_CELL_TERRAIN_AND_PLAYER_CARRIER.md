@@ -10,8 +10,8 @@ the CreatureObject update carrier and GroundScene input-map queue assignment.
 EXE SHA-256 E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150;
 config SHA-256 22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524.
 Priority42 Tatooine source and TGEN/group identities remain pinned by the
-[original-rule peer](../../poc/round53-tests/Integration/original_rule_height_host_peer.py).
-New [field peer](../../poc/round54-tests/Integration/per_cell_height_peer.py)
+[original-rule peer](../../../SWG-Godot-Client/poc/round53-tests/Integration/original_rule_height_host_peer.py).
+New [field peer](../../../SWG-Godot-Client/poc/round54-tests/Integration/per_cell_height_peer.py)
 reads originals only after identity gates. Offline .NET8, Python Fraction/integer
 arithmetic, installed pefile/Capstone and Godot4.7.2 .NET are used. No original
 process or live server was executed. Original bytes/names/word arrays, fixtures,
@@ -33,7 +33,7 @@ Durable contracts: [filter selection](../../docs/TERRAIN_GENERATOR_FRACTAL_FILTE
 
 ## Lead composition and verification
 
-[Native join](../../poc/round54-tests/Integration/PerCellHeightJoinProgram.cs)
+[Native join](../../../SWG-Godot-Client/poc/round54-tests/Integration/PerCellHeightJoinProgram.cs)
 first computes the selected root AHFR under prior preview operands .25/.001;
 it samples the selected layer3 FFRA family, retains each actual wide sample into
 Query, then retains that query into the layer influence carrier. The scaled
@@ -51,7 +51,7 @@ heights and retained samples agree with the frozen single-cell route; the
 independent peer compares all400 prior heights/filter samples/influences/output
 heights plus mixed/zero receipts. Logical counters are not measured timing.
 
-[Version6 host](../../poc/Stardust.Godot/ScenePumpedHeightFieldTerrain.cs) validates
+[Version6 host](../../../SWG-Godot-Client/poc/Stardust.Godot/ScenePumpedHeightFieldTerrain.cs) validates
 pinned generator/group and both selected rule identities. All native field and
 mesh candidates precede the first visual allocation. Debug colors/UnitY normals
 and coordinate reflection remain explicit modern presentation policy.
@@ -60,7 +60,7 @@ nine grounded states and16/16 disposal. Capture was inspected.
 A synthetic NaN at the last prior cell of the fourth chunk rejects after three
 complete chunks/300 applied cells, with zero terrain visual allocation, no actor
 or ready publication and drained archives; the
-[negative peer](../../poc/round54-tests/Integration/per_cell_height_negative_peer.py)
+[negative peer](../../../SWG-Godot-Client/poc/round54-tests/Integration/per_cell_height_negative_peer.py)
 checks the actual log. Prior Version5 host passes400/16/128/nine/four samplers.
 Final Core smoke has18 journal events/zero failures; native/Godot builds have
 zero warnings/errors. All worker replays ran independently in the main checkout.

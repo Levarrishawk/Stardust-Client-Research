@@ -1,6 +1,6 @@
 # Terrain boundary circle serialized input
 
-Round35 adds [TerrainBoundaryCircleInput](../poc/Stardust.Core/Assets/TerrainBoundaryCircleInput.cs)
+Round35 adds [TerrainBoundaryCircleInput](../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainBoundaryCircleInput.cs)
 over the owned rule sections of [TerrainGeneratorInput](TERRAIN_GENERATOR_INPUT_CONTRACT.md).
 It decodes BCIR serialized fields, preserving every input byte and raw32 field.
 It does not compute influence, activate ancestors, compose boundary/filter
@@ -177,8 +177,8 @@ height computation was performed; only independently decoded raw records were
 compared in layer/child order, with offsets, full-section/header hashes and
 fullwidth fields. Detailed proprietary-derived receipts stay ignored privately.
 
-[Native scenarios](../poc/Stardust.Core.SmokeTests/TerrainBoundaryCircleInputScenarios.cs)
-and [independent oracle](../poc/round35-tests/Assets/verify_bcir_input.py) cover all
+[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainBoundaryCircleInputScenarios.cs)
+and [independent oracle](../../SWG-Godot-Client/poc/round35-tests/Assets/verify_bcir_input.py) cover all
 three versions, both header versions, arbitrary raw bits, malformed structures,
 opaque retention, exact/one-less budgets, source/inspection/section isolation
 and retained valid input after later failure. Static checks hash-gate the

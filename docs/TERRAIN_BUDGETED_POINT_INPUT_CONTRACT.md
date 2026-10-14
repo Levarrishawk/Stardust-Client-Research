@@ -1,10 +1,10 @@
 # Explicit budgeted point input
 
 October6,2026. Modern offline input policy over existing native picking and targeting.
-[Adapter](../poc/Stardust.Godot/TerrainPointTargetInputAdapter.cs),
-[host](../poc/Stardust.Godot/TerrainPointTargetInputHost.cs),
-[native proof](../poc/Stardust.Godot/TerrainBudgetedPointInputVerification.cs),
-[independent oracle](../poc/round77-tests/Rendering/verify_picker.py).
+[Adapter](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainPointTargetInputAdapter.cs),
+[host](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainPointTargetInputHost.cs),
+[native proof](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainBudgetedPointInputVerification.cs),
+[independent oracle](../../SWG-Godot-Client/poc/round77-tests/Rendering/verify_picker.py).
 
 ## Source-compatible admission
 

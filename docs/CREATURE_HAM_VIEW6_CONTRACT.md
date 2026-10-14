@@ -2,15 +2,15 @@
 
 ## Result and API
 
-[CreatureHamView6Codec](../poc/Stardust.Core/Protocol/CreatureHamView6Codec.cs) decodes/encodes a nonempty ordered CREO view6 delta containing only fields13 and14. `Decode` accepts application bytes or an owned envelope; `Encode` and `EncodeEnvelope` preserve raw declared-count metadata, repeated field order, counters, command extent and signed/full-bit values. Sealed command/update/plan models freeze their collections.
+[CreatureHamView6Codec](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/CreatureHamView6Codec.cs) decodes/encodes a nonempty ordered CREO view6 delta containing only fields13 and14. `Decode` accepts application bytes or an owned envelope; `Encode` and `EncodeEnvelope` preserve raw declared-count metadata, repeated field order, counters, command extent and signed/full-bit values. Sealed command/update/plan models freeze their collections.
 
-[CreatureHamView6State](../poc/Stardust.Core/Protocol/CreatureHamView6State.cs) exposes `FromBaseline`, `Reseed` and stateless immutable `Apply`. It owns only HAM and maximum-HAM vectors/counters, ObjectId and branch revision. The accepted [complete CREO6 baseline](CREATURE_VIEW6_CODEC_CONTRACT.md) remains separate and retains every other field and baseline metadata unchanged. No existing codec, world, registry or shared runner is modified.
+[CreatureHamView6State](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/CreatureHamView6State.cs) exposes `FromBaseline`, `Reseed` and stateless immutable `Apply`. It owns only HAM and maximum-HAM vectors/counters, ObjectId and branch revision. The accepted [complete CREO6 baseline](CREATURE_VIEW6_CODEC_CONTRACT.md) remains separate and retains every other field and baseline metadata unchanged. No existing codec, world, registry or shared runner is modified.
 
 The [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R33_CREO6_HAM.md) records reproduction. This is an engine-neutral raw-vector kernel with modern bounded atomic publication and mutation descriptions; it executes no callbacks or weak-target/world operations.
 
 ## Direct specialization and caller evidence
 
-Pinned SHA256 is `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. The [static verifier](../poc/round33-tests/Networking/static_audit.py) checks identity before PE imports/VAs,55 focused HAM instruction anchors plus the accepted109-anchor inheritance audit, exact command jump table and RTTI/vtable identity.
+Pinned SHA256 is `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. The [static verifier](../../SWG-Godot-Client/poc/round33-tests/Networking/static_audit.py) checks identity before PE imports/VAs,55 focused HAM instruction anchors plus the accepted109-anchor inheritance audit, exact command jump table and RTTI/vtable identity.
 
 Creature constructor builds fields at+404 and+43C with the same `Archive::AutoDeltaVector<int,CreatureObject>` vtable015DD07C (`0042EDDB/0042EE2E`), then registers them at `0042F9B7..0042F9CE` as indices13/14. Its snapshot and delta slots are0043B050/0043B1A0. This is exactly the specialization already closed in the [recovered integer-vector policy](CREATURE_WOUNDS_LEGACY_POLICY_CONTRACT.md), not an analogy to U64 defenders or a different wounds implementation. Round33 separately verifies the two view6 registrations, parser mutation/helper branches and concrete callback installation.
 
@@ -64,7 +64,7 @@ Work begins with old combined element count plus fields, actual commands and all
 
 ## Validation and resume boundary
 
-[Independent Python peer](../poc/round33-tests/Networking/peer.py) hand-packs S32 commands and independently computes both counters/vectors, ordered modern events, work and peak capacities. Its complete baseline wire constructor comes from the accepted32 independent peer. [Native scenarios](../poc/Stardust.Core.SmokeTests/CreatureHamView6Scenarios.cs) compare exact plans/wires/states/events and exercise exact/one-less codec/state caps, aliases, reseeding, revisions, mismatched recipients, partial bodies and later-failure preservation.
+[Independent Python peer](../../SWG-Godot-Client/poc/round33-tests/Networking/peer.py) hand-packs S32 commands and independently computes both counters/vectors, ordered modern events, work and peak capacities. Its complete baseline wire constructor comes from the accepted32 independent peer. [Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/CreatureHamView6Scenarios.cs) compare exact plans/wires/states/events and exercise exact/one-less codec/state caps, aliases, reseeding, revisions, mismatched recipients, partial bodies and later-failure preservation.
 
 Passed19 exact cases,1535 negatives,359 budget checks and114 ownership checks; independent oracle, static identity rejection, accepted32 complete CREO6 codec regression and shared Core smoke suite pass. Builds have zero warnings/errors. Fixtures are synthetic; no original execution/capture or proprietary fixture promotion occurred.
 

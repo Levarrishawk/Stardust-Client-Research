@@ -1,6 +1,6 @@
 # Standalone shader object clock
 
-Round29 Runtime, 2026-10-03. [ShaderObjectClock](../poc/Stardust.Core/Runtime/ShaderObjectClock.cs) implements an explicit modern safe shape correlated with the accepted [ordinary scheduler clock evidence](SWITCH_TEXTURE_CLOCK_CONTRACT.md): seconds input, truncating thousandths with minimum-one advancement, and per-object accumulated service time. Original PC24 multiplication/FISTP/overflow parity and first-registration policy are not claimed. There is no scene, world, cursor, Godot, wall clock, timer or callback integration.
+Round29 Runtime, 2026-10-03. [ShaderObjectClock](../../SWG-Godot-Client/poc/Stardust.Core/Runtime/ShaderObjectClock.cs) implements an explicit modern safe shape correlated with the accepted [ordinary scheduler clock evidence](SWITCH_TEXTURE_CLOCK_CONTRACT.md): seconds input, truncating thousandths with minimum-one advancement, and per-object accumulated service time. Original PC24 multiplication/FISTP/overflow parity and first-registration policy are not claimed. There is no scene, world, cursor, Godot, wall clock, timer or callback integration.
 
 ## API and state
 
@@ -57,7 +57,7 @@ Every operation requires the creating managed thread. There are no callbacks or 
 
 ## Evidence and boundaries
 
-[Native scenarios](../poc/Stardust.Core.SmokeTests/ShaderObjectClockScenarios.cs) pass390 checks /36 cases. The [independent Python integer/bit reference](../poc/round29-tests/Runtime/verify.py) verifies all157 operations from [synthetic fixtures](../poc/round29-tests/Runtime/ordered-fixtures.json), including zero/submillisecond/neighbor boundaries, divergent last-service times, repeated truncation, exclusive2^64 cast neighbors, cap/counter/token overflow, malformed constructor/input, reset/remove/recreation, closed/owner cleanup and immutable exact tokens. Twenty-two same-tick services are checked as no new delivery. Large legal cast-neighbor input yields18,446,742,802,399,232,000 ticks; the adjacent rounded threshold and above reject before cast.
+[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/ShaderObjectClockScenarios.cs) pass390 checks /36 cases. The [independent Python integer/bit reference](../../SWG-Godot-Client/poc/round29-tests/Runtime/verify.py) verifies all157 operations from [synthetic fixtures](../../SWG-Godot-Client/poc/round29-tests/Runtime/ordered-fixtures.json), including zero/submillisecond/neighbor boundaries, divergent last-service times, repeated truncation, exclusive2^64 cast neighbors, cap/counter/token overflow, malformed constructor/input, reset/remove/recreation, closed/owner cleanup and immutable exact tokens. Twenty-two same-tick services are checked as no new delivery. Large legal cast-neighbor input yields18,446,742,802,399,232,000 ticks; the adjacent rounded threshold and above reject before cast.
 
 Confirmed: modern implementation and fixture outcomes. Correlation: ordinary scheduler seconds/quantization/accumulation from accepted static research. Unknown: original first-registration last tick, malformed timing/wrap behavior and exact original numeric parity. No original execution, assets, clocks or live systems are used. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R29_SHADER_OBJECT_CLOCK.md).
 

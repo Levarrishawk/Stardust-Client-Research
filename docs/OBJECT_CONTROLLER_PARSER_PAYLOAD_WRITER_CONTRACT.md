@@ -6,7 +6,7 @@ This extends the [dispatch source contract](OBJECT_CONTROLLER_DISPATCH_PAYLOAD_S
 
 ## Inputs, complete body and amended budget
 
-Executable SHA-256: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. All addresses are baseline VAs. The [verifier](../tools/python/verify_object_controller_parser_payload_writer.py) checks identity before imports/VA reads and checks sealed accepted62 tool/document hashes before output. The [independent runner](../poc/round63-tests/Networking/research_checks.py) uses its own raw PE mapping, independently hashes the complete span, and checks semantic call/register/stack/write witnesses.
+Executable SHA-256: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. All addresses are baseline VAs. The [verifier](../../SWG-Godot-Client/tools/python/verify_object_controller_parser_payload_writer.py) checks identity before imports/VA reads and checks sealed accepted62 tool/document hashes before output. The [independent runner](../../SWG-Godot-Client/poc/round63-tests/Networking/research_checks.py) uses its own raw PE mapping, independently hashes the complete span, and checks semantic call/register/stack/write witnesses.
 
 | Inspected body | Bytes / instructions | Normal exit | SHA-256 |
 | --- | --- | --- | --- |

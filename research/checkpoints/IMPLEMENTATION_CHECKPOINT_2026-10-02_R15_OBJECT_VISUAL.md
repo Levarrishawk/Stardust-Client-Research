@@ -32,7 +32,7 @@ build. Nonfatal Godot certificate-store diagnostic persists.
 ## Findings, evidence and consequences
 
 Confirmed modern behavior in
-[factory/adapter](../../poc/Stardust.Godot/SceneWorldObjectVisualFactory.cs): exact
+[factory/adapter](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldObjectVisualFactory.cs): exact
 publication/current finalized metadata and independent typed scalar freshness;
 recipe selection without fixed IDs; public `SceneWorldObjectVisual` getters;
 main-thread/live-parent checks; terminal inspection opt-in before allocation;

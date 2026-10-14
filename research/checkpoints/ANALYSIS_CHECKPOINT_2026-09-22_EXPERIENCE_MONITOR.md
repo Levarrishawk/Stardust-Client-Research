@@ -37,3 +37,7 @@ render any number of monitors internally.
 
 Exact formatting punctuation and transition timing are visual fidelity only.
 Inputs, cap computation, completion state and event lifecycle are closed.
+
+## October 14 clarification
+
+The earlier use of "cap" above was too broad. A fresh instruction-level trace at `00EA0EA0` resolves the selected skill XP pair and uses its required XP cost as the monitor completion target, while player XP remains a replicated U32 value. The skill acquisition target and player XP storage cap are distinct. See the current [skills compatibility record](../../docs/NGE_PRECU_SKILLS_COMPATIBILITY.md#original-projection-evidence-recovered-october-14) for exact candidate/advancement predicates and tested implementation. Historical date and evidence are retained; formatting and changing real XP acceptance remain fidelity gates.

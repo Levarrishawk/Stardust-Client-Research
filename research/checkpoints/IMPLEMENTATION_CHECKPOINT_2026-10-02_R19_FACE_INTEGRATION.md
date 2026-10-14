@@ -91,11 +91,11 @@ made to address those tooling issues.
 
 ## Reproduction and exact next action
 
-[Continuous launcher](../../poc/round16-tests/Integration/Launch.ps1):
+[Continuous launcher](../../../SWG-Godot-Client/poc/round16-tests/Integration/Launch.ps1):
 the accepted -LocalInput/-MotionPeer inputs plus -FaceProfile
 poc/preview-profiles/human-face-zero.json. Separate headless(default), -Gpu with
 fresh private -CapturePath, -CancelLoad, and -InputLoss modes.
-[Face join oracle](../../poc/round19-tests/Integration/verify_face_join.py) takes
+[Face join oracle](../../../SWG-Godot-Client/poc/round19-tests/Integration/verify_face_join.py) takes
 joined log, Assets native log and face profile; prior Round18 verify_local.py and
 Round16 verify_preview.py verify clocks/queues. Worker contracts give native and
 standalone pixel commands. --round19-face-resources/--round19-face-validation run

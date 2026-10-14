@@ -8,7 +8,7 @@ Both new bodies forward the same receiver and object argument. Actual queue `con
 
 ## Input and reproduction
 
-All VAs use executable SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. [Verifier](../tools/python/verify_player_controller_queue_lifecycle.py): explicit `--exe`, `--packages`, and fresh ignored `--receipt`. [Independent runner](../poc/round55-tests/Networking/research_checks.py): explicit `--exe`, `--packages`, and fresh ignored `--output-dir`. SHA validation precedes package import and VA interpretation. These are static checks, not original execution or a runtime occurrence.
+All VAs use executable SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. [Verifier](../../SWG-Godot-Client/tools/python/verify_player_controller_queue_lifecycle.py): explicit `--exe`, `--packages`, and fresh ignored `--receipt`. [Independent runner](../../SWG-Godot-Client/poc/round55-tests/Networking/research_checks.py): explicit `--exe`, `--packages`, and fresh ignored `--output-dir`. SHA validation precedes package import and VA interpretation. These are static checks, not original execution or a runtime occurrence.
 
 ## Observations, interpretation, and consequence
 

@@ -1,6 +1,6 @@
 # Explicit supplied static terrain material
 
-[TerrainSuppliedStaticMaterial](../poc/Stardust.Core/Assets/TerrainSuppliedStaticMaterial.cs) is an engine-neutral, two-source closure over a caller-supplied normalized SSHT path, exact shader SHA-256 and borrowed resolver. It reuses frozen `StaticShaderReferences`, `StaticShaderParameterDecoder`, `StaticShaderFactors`, `StaticShaderMaterialDecoder` and `DdsDecoder`. It performs no terrain shader-family lookup, original effect execution, lighting, engine allocation, or resolver/archive disposal.
+[TerrainSuppliedStaticMaterial](../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainSuppliedStaticMaterial.cs) is an engine-neutral, two-source closure over a caller-supplied normalized SSHT path, exact shader SHA-256 and borrowed resolver. It reuses frozen `StaticShaderReferences`, `StaticShaderParameterDecoder`, `StaticShaderFactors`, `StaticShaderMaterialDecoder` and `DdsDecoder`. It performs no terrain shader-family lookup, original effect execution, lighting, engine allocation, or resolver/archive disposal.
 
 ## API and modern policy
 
@@ -38,6 +38,6 @@ Cancellation is checked before each resolve, after resolver return, after copied
 
 ## Evidence and replay
 
-The [native scenarios](../poc/Stardust.Core.SmokeTests/TerrainSuppliedStaticMaterialScenarios.cs), [deterministic authored fixture/reference producer](../poc/round64-tests/Rendering/verify_material.py) and [offline replay runner](../poc/round64-tests/Rendering/Invoke-Material.ps1) exercise actual Core APIs. Synthetic bytes and expected RGBA/scalar bits are authored independently before native execution. Original IFF/source extraction and Pillow mip hashes independently verify one pinned existing terminal-base shader diagnostic; it has **no established original terrain association**.
+The [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainSuppliedStaticMaterialScenarios.cs), [deterministic authored fixture/reference producer](../../SWG-Godot-Client/poc/round64-tests/Rendering/verify_material.py) and [offline replay runner](../../SWG-Godot-Client/poc/round64-tests/Rendering/Invoke-Material.ps1) exercise actual Core APIs. Synthetic bytes and expected RGBA/scalar bits are authored independently before native execution. Original IFF/source extraction and Pillow mip hashes independently verify one pinned existing terminal-base shader diagnostic; it has **no established original terrain association**.
 
 See the [round64 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R64_SUPPLIED_TERRAIN_MATERIAL.md) for identities, exact results, confidence, limits and next action. Original bytes and generated detailed fixtures remain private. `OriginalTerrainAssociation` and `OriginalShaderExecutionParity` stay false. No Assets64 sibling, Godot file or shared ledger/status artifact is consumed or changed by this worker.

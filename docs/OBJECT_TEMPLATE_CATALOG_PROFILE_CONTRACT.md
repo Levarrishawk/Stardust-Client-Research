@@ -1,6 +1,6 @@
 # Caller-authored object template catalog profile
 
-R9-ASSETS-01, October 2, 2026. [ObjectTemplateCatalogProfile](../poc/Stardust.Core/Assets/ObjectTemplateCatalogProfile.cs) adds a strict bounded JSON boundary around the accepted immutable [ObjectTemplateCatalog](../poc/Stardust.Core/Assets/ObjectTemplateCatalog.cs). It reads caller configuration and returns that existing catalog type. Existing creature/static readers and catalog semantics are unchanged. This schema is independently authored modern configuration, not a recovered original global template table.
+R9-ASSETS-01, October 2, 2026. [ObjectTemplateCatalogProfile](../../SWG-Godot-Client/poc/Stardust.Core/Assets/ObjectTemplateCatalogProfile.cs) adds a strict bounded JSON boundary around the accepted immutable [ObjectTemplateCatalog](../../SWG-Godot-Client/poc/Stardust.Core/Assets/ObjectTemplateCatalog.cs). It reads caller configuration and returns that existing catalog type. Existing creature/static readers and catalog semantics are unchanged. This schema is independently authored modern configuration, not a recovered original global template table.
 
 ## Version 1 schema
 
@@ -43,7 +43,7 @@ Invalid limit options throw `ArgumentOutOfRangeException` before parsing/writing
 
 ## Authored public profile and evidence
 
-[scene-object-catalog.json](../poc/preview-profiles/scene-object-catalog.json) contains exactly the two already pinned recipes. It contains metadata only, no original asset content.
+[scene-object-catalog.json](../../SWG-Godot-Client/poc/preview-profiles/scene-object-catalog.json) contains exactly the two already pinned recipes. It contains metadata only, no original asset content.
 
 | Recipe | Object path / CRC | Object SHA-256 | Appearance SHA-256 |
 | --- | --- | --- | --- |
@@ -54,11 +54,11 @@ Invalid limit options throw `ArgumentOutOfRangeException` before parsing/writing
 
 The authored file SHA-256 is `B945D2D4695FF37D54343F11A7DF3539A5AB36A2E5D13246969B04F92657492D`. Its canonical encoding is 598 bytes, SHA-256 `714A624F8BCE5FE9834E202C675C16314F5C329E4B98D6E99669B60073A0AACB`, with 96 normalized path characters. Canonical entry order is terminal, then human.
 
-[Native scenarios](../poc/Stardust.Core.SmokeTests/ObjectTemplateCatalogProfileScenarios.cs) pass 12 acceptance cases, 126 malformed/schema/entry/budget rejections, 16 invalid-option checks and four encoder-budget failures. Coverage includes decoded-name duplicates, aliases/conflicts, a fixed independently authored CRC-collision pair, UTF-8 and escaped surrogate errors, unsupported primitive/container/numeric forms, truncation, raw dot segments, trailing separators, path/pin limits, exact byte/entry/path/depth boundaries and printable ASCII JSON escaping. Input and output mutation, read-only dictionary mutation rejection, unknown lookup and reversed insertion order establish ownership/determinism. Fresh original reader composition succeeds after all failures.
+[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/ObjectTemplateCatalogProfileScenarios.cs) pass 12 acceptance cases, 126 malformed/schema/entry/budget rejections, 16 invalid-option checks and four encoder-budget failures. Coverage includes decoded-name duplicates, aliases/conflicts, a fixed independently authored CRC-collision pair, UTF-8 and escaped surrogate errors, unsupported primitive/container/numeric forms, truncation, raw dot segments, trailing separators, path/pin limits, exact byte/entry/path/depth boundaries and printable ASCII JSON escaping. Input and output mutation, read-only dictionary mutation rejection, unknown lookup and reversed insertion order establish ownership/determinism. Fresh original reader composition succeeds after all failures.
 
 The decoded profile is passed directly to each unchanged accepted reader once: the human reader retains 37 read-once sources / 4,683,848 bytes; the static reader with explicit [SWTS frame 0 selection](SWITCH_TEXTURE_STATIC_RESOURCE_CONTRACT.md) retains 27 read-once sources / 1,401,794 bytes and four complete terminal meshes. Original overlay configuration SHA-256 is `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`. Their closed geometry, mip, byte and animation audits are reused rather than duplicated or claimed as new research.
 
-[Independent Python oracle](../tools/python/verify_object_template_catalog_profile.py) checks UTF-8, duplicate decoded properties, exact types and lexical numbers, container depth, limits, raw path policy/normalization, pins and CRC using the existing independent polynomial-long-division checksum. It agrees on all 138 decoder cases and canonical bytes, checks the fixed collision independently and matches both reader summaries. It reads only the profile and private native/canonical outputs; it does not invoke C#, re-audit original archives or export assets. **Confidence:** Confirmed finite-fixture implementation agreement; no exhaustive JSON-parser or original global-table claim.
+[Independent Python oracle](../../SWG-Godot-Client/tools/python/verify_object_template_catalog_profile.py) checks UTF-8, duplicate decoded properties, exact types and lexical numbers, container depth, limits, raw path policy/normalization, pins and CRC using the existing independent polynomial-long-division checksum. It agrees on all 138 decoder cases and canonical bytes, checks the fixed collision independently and matches both reader summaries. It reads only the profile and private native/canonical outputs; it does not invoke C#, re-audit original archives or export assets. **Confidence:** Confirmed finite-fixture implementation agreement; no exhaustive JSON-parser or original global-table claim.
 
 ## Reproduction and next action
 
@@ -77,6 +77,6 @@ dotnet poc/round9-tests/Assets/bin/Debug/net8.0/Assets.dll C:/Stardust-DEV C:/St
 python tools/python/validate_organized_workspace.py .
 ```
 
-The own [runner](../poc/round9-tests/Assets/Assets.csproj) writes canonical evidence only under the calling checkout's private directory. It disposes overlay/configuration/animation-bank handles and catches failures without publishing a catalog/resource result. No original executable, GPU, socket, DNS, downloaded package or shared-runner edit is required.
+The own [runner](../../SWG-Godot-Client/poc/round9-tests/Assets/Assets.csproj) writes canonical evidence only under the calling checkout's private directory. It disposes overlay/configuration/animation-bank handles and catches failures without publishing a catalog/resource result. No original executable, GPU, socket, DNS, downloaded package or shared-runner edit is required.
 
 Lead acceptance/integration is next. Future consumer wiring must keep its choice to load this caller profile explicit; no automatic process-start file discovery is introduced. Original global template discovery, other recipes/families, appearance alternatives and trust/pin distribution remain separate questions. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R9_CATALOG_PROFILE.md) records scope and validation. Stop after this milestone pending the next lead dispatch.

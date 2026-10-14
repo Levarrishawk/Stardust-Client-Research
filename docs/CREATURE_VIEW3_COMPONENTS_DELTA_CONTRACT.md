@@ -4,7 +4,7 @@ This standalone codec supports only CREO:3 field5, the inherited tangible visibl
 
 ## Public API
 
-All types are in `Stardust.Core.Protocol`; the source is [CreatureView3ComponentsDeltaCodec](../poc/Stardust.Core/Protocol/CreatureView3ComponentsDeltaCodec.cs).
+All types are in `Stardust.Core.Protocol`; the source is [CreatureView3ComponentsDeltaCodec](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/CreatureView3ComponentsDeltaCodec.cs).
 
 - `CreatureView3ComponentsDeltaLimits(int MaximumPayloadBytes, int MaximumFields, int MaximumCommands, int MaximumKeys, int MaximumElements)` supplies all delta budgets.
 - `CreatureView3ComponentsSnapshot.FromBaseline(CreatureView3BaselineSnapshot baseline, int maximumRawKeys)` returns an owned raw snapshot of the accepted full baseline's Components field.

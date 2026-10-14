@@ -2,7 +2,7 @@
 
 ## Reproducible installed inventory
 
-[The capability producer/verifier](../tools/python/inventory_door_capabilities.py) independently decodes the effective table and POB references, then reconciles the native [bounded loader probe](../poc/Stardust.Core.SmokeTests/DoorCapabilityScenarios.cs). Input root is `C:\Stardust-DEV`; configuration `swgemu_live.cfg` SHA-256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`, 48 descending-priority mounts. Effective table SHA-256 `C4C572DEBD51DC9D77E57E7D5A8D6741A01A03CAF00BF31601180A05551536B7`, 124 rows. The POB inventory has 291 effective layouts and one masked layout; first winning archive entry controls each path.
+[The capability producer/verifier](../../SWG-Godot-Client/tools/python/inventory_door_capabilities.py) independently decodes the effective table and POB references, then reconciles the native [bounded loader probe](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/DoorCapabilityScenarios.cs). Input root is `C:\Stardust-DEV`; configuration `swgemu_live.cfg` SHA-256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`, 48 descending-priority mounts. Effective table SHA-256 `C4C572DEBD51DC9D77E57E7D5A8D6741A01A03CAF00BF31601180A05551536B7`, 124 rows. The POB inventory has 291 effective layouts and one masked layout; first winning archive entry controls each path.
 
 | Current leaf asset/controller result | Style rows | Named POB references |
 |---|---:|---:|
@@ -20,11 +20,11 @@ The former direct-mesh boundary accepted 53 rows / 713 named references. `--dire
 
 ## Rigid detail-leaf extension
 
-[SingleLeafDoorAssetReader](../poc/Stardust.Core/Assets/SingleLeafDoorAsset.cs) now accepts a validated direct MESH or a DTLA with direct static-mesh bands. The collider uses the root APPR primary EXBX, independent of visual LOD selection. It rejects missing/null/non-box bounds, incomplete graphs, graph/band diagnostics, transformed/nested bands and band geometry outside root bounds. Every band must fit the authored box within 1e-4 numeric tolerance; at most one million band vertices are inspected. This is an owned conservative envelope policy, not recovered original narrow phase.
+[SingleLeafDoorAssetReader](../../SWG-Godot-Client/poc/Stardust.Core/Assets/SingleLeafDoorAsset.cs) now accepts a validated direct MESH or a DTLA with direct static-mesh bands. The collider uses the root APPR primary EXBX, independent of visual LOD selection. It rejects missing/null/non-box bounds, incomplete graphs, graph/band diagnostics, transformed/nested bands and band geometry outside root bounds. Every band must fit the authored box within 1e-4 numeric tolerance; at most one million band vertices are inspected. This is an owned conservative envelope policy, not recovered original narrow phase.
 
 Observation: all 38 newly accepted installed DTLA rows have EXBX roots and 3,556 independently checked source vertices inside those envelopes. Confidence: Confirmed byte/geometry acceptance for this corpus. Consequence: visual band changes must not resize the physical door or change actor clearance. No extent is synthesized from the currently selected mesh.
 
-Godot's existing geometry adapter selects visual bands from current camera/leaf pose. Standalone, crossing and persistent door inspectors now invoke that selector. Physical runtime state retains the same root box. [Synthetic gates](../poc/Stardust.Core.SmokeTests/DetailDoorLeafScenarios.cs) cover stable bounds under changed band geometry, malformed/incomplete graphs, nonidentity band transforms, oversized geometry and missing dependencies.
+Godot's existing geometry adapter selects visual bands from current camera/leaf pose. Standalone, crossing and persistent door inspectors now invoke that selector. Physical runtime state retains the same root box. [Synthetic gates](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/DetailDoorLeafScenarios.cs) cover stable bounds under changed band geometry, malformed/incomplete graphs, nonidentity band transforms, oversized geometry and missing dependencies.
 
 ## Verified original detail leaf
 

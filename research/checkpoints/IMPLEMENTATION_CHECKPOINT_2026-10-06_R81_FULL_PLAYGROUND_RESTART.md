@@ -43,7 +43,7 @@ The independent transport boundary checks exact seed-specific protection/ACK byt
 
 The running GPU image shows original creature/terminal presentation, supplied terrain/material and controls. The fault image shows225/6000 updates,23 root frames, empty buffers and restart button after actors/terrain have been removed. Both inspected images are readable and unclipped at1280x720.
 
-Controlled active close through the actual [interactive launcher](../../poc/Stardust.Godot/PersistentOfflinePlaygroundLauncher.cs) passes after31 updates/three protected roots. It captures `Incomplete`, `WindowClosing=true`, equal completed/attempted counts and successful actor/publication/archive/input/root cleanup, exits0, and admits no successor. It does not invent a successful stop. Independent movement-prefix and wire checks pass. This calls the controlled close API; physical OS close-button notification routing remains unexecuted.
+Controlled active close through the actual [interactive launcher](../../../SWG-Godot-Client/poc/Stardust.Godot/PersistentOfflinePlaygroundLauncher.cs) passes after31 updates/three protected roots. It captures `Incomplete`, `WindowClosing=true`, equal completed/attempted counts and successful actor/publication/archive/input/root cleanup, exits0, and admits no successor. It does not invent a successful stop. Independent movement-prefix and wire checks pass. This calls the controlled close API; physical OS close-button notification routing remains unexecuted.
 
 The unchanged one-run Version13 normal fixture passes401/seven events/39 roots and the unchanged strict-fault fixture passes225/226/five events/23 roots, including its original outcome HUD checks. The default failure body is preserved separately from persistent cleanup. All full native builds report zero warnings/errors. Known certificate-store diagnostics persist; expected strict-terrain and intentional-close errors are retained in logs rather than hidden.
 
@@ -60,13 +60,13 @@ The initial lead Rendering replay correctly rejected a legitimate sibling-modifi
 
 ## Reproduction
 
-Use cached offline Python/Godot/.NET dependencies and original input roots/context. Generate full argument arrays matching the existing [single-run launcher](../../poc/round16-tests/Integration/Launch.ps1), including every original-resource/synthetic-peer partition. No input root is synthesized by this milestone.
+Use cached offline Python/Godot/.NET dependencies and original input roots/context. Generate full argument arrays matching the existing [single-run launcher](../../../SWG-Godot-Client/poc/round16-tests/Integration/Launch.ps1), including every original-resource/synthetic-peer partition. No input root is synthesized by this milestone.
 
 ```powershell
 & poc/round81-tests/Integration/Invoke-PlaygroundRestart.ps1 -Python $Python -GodotPath $Godot -CachedPackages $Packages -BaseArguments $BaseArgsJson -NormalProfile $ConfiguredReplay -FaultProfile $StrictFaultReplay -Terrain $TerrainContext -Clips $OriginalClipExpectations -RunRoot $FreshPrivateRun
 ```
 
-For GPU add `-Gpu` and supply the measured normal replay profile. [Independent joined verifier](../../poc/round81-tests/Integration/playground_restart_peer.py), [interactive argument producer](../../poc/round81-tests/Integration/create_restart_arguments.py), [active-close scene](../../poc/round81-tests/Integration/ActiveClose.tscn) and [active-close verifier](../../poc/round81-tests/Integration/verify_active_close.py) are public reproducible code; generated inputs/evidence remain private. The active-close policy is declared before native:Incomplete,30..37 completed updates, equal attempted count, controlled-close flag, zero actors/jobs/publications/buffers, three closed archive jobs and no successor.
+For GPU add `-Gpu` and supply the measured normal replay profile. [Independent joined verifier](../../../SWG-Godot-Client/poc/round81-tests/Integration/playground_restart_peer.py), [interactive argument producer](../../../SWG-Godot-Client/poc/round81-tests/Integration/create_restart_arguments.py), [active-close scene](../../../SWG-Godot-Client/poc/round81-tests/Integration/ActiveClose.tscn) and [active-close verifier](../../../SWG-Godot-Client/poc/round81-tests/Integration/verify_active_close.py) are public reproducible code; generated inputs/evidence remain private. The active-close policy is declared before native:Incomplete,30..37 completed updates, equal attempted count, controlled-close flag, zero actors/jobs/publications/buffers, three closed archive jobs and no successor.
 
 ## Confidence, limits and next action
 

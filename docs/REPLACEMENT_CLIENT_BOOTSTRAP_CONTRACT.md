@@ -1,6 +1,6 @@
 # Explicit replacement-client bootstrap
 
-The separate [bootstrap scene](../poc/Stardust.Godot/ReplacementClientBootstrap.tscn)
+The separate [bootstrap scene](../../SWG-Godot-Client/poc/Stardust.Godot/ReplacementClientBootstrap.tscn)
 composes the original-installation preparation, engine-neutral application and
 [Godot host](REPLACEMENT_GODOT_CLIENT_HOST_CONTRACT.md). The project main scene
 is unchanged. The accepted injected offline API remains available. Opening the
@@ -125,7 +125,7 @@ Receipts prove local observations only, never server-observed release or truth.
 
 ## Evidence and limits
 
-The [Round92 harness](../poc/round92-tests/Rendering/README.md) constructs this
+The [Round92 harness](../../SWG-Godot-Client/poc/round92-tests/Rendering/README.md) constructs this
 production composition against independently authored protected offline peers
 and the explicit installed human asset closure. It exercises a supported second
 human with the wrong ID, phase/overall stalls, cancellation, window close,
@@ -139,7 +139,7 @@ Headless verification does not establish GPU rendering or live compatibility.
 The separately requested offline GPU success case validates original publication
 and saves a native frame before actual drain/quit, with the same receipt/wire/
 resource assertions. It adds no live or physical-input evidence.
-The [Round93 harness](../poc/round93-tests/Rendering/README.md) uses the same opt-in
+The [Round93 harness](../../SWG-Godot-Client/poc/round93-tests/Rendering/README.md) uses the same opt-in
 admission/composition with explicit spy ports. It checks rejection before any
 acquisition, a supported wrong character, missing movement approval, budgets,
 delayed rollback, RunFault/cleanup distinction, an output collision and actual

@@ -3335,3 +3335,22 @@ No canonical address name is introduced or changed.
 ## 2026-10-06 Round82 initializer local effects
 
 [Initializer contract](docs/COMPRESSED_ROOT_INITIALIZER_CONTRACT.md) and [checkpoint](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-06_R82_ROOT_INITIALIZER.md).00AA2D70's18 bytes/five instructions return incoming receiver in EAX, read current32-bit global019446B8 into ECX, write receiver+4, then install015EA570 at receiver+0. No call/branch/explicit stack argument or local scalar+10 access. Global's four-byte span is virtual-only; runtime word and friendly meaning remain Unknown. Inherited PersistentCrcString/CrcLowerString context does not name the installed initial type. Aliases, lifetime/global writers and full source/earlier-zero preservation remain unproved. No canonical address names added. Next separately bounded193-byte00AA4250 setter delegate: local writes, discriminator0, buffer/reference forwarding and immediate failure boundary; allocator/erase/lifetime graph stays unopened.
+
+## October14 flytext codec observations
+
+Registered wrapper00B13280 delegates to callee00B1DE60; pack wrapper00B13260 delegates to00B1E0A0. Static reads/writes establish emitter/StringId/F32/RGB/U8 flags and no literal Unicode field. [Exact evidence and confidence](docs/SERVER_OBJECT_CONTROLLER_EMISSIONS.md#flytext-payload-closure-october14). No provisional-name row is added or repurposed and no function-coverage count changes; flag-bit product semantics remain outside this observation.
+
+
+### October14 containment source correlation
+
+The bounded probe rechecks canonical client_object_apply_containment_VA_00555020: lookup/load precedes property setter00B35910 and arrangement setter00B393E0. The observed00B35910 path compares the prior CachedNetworkId, assigns and notifies the owner; no self-parent rejection is observed within that function. This does not establish every caller. New source admission is modern policy. See the [containment checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-14_CONTAINMENT_ADMISSION.md); no new provisional name or count is introduced.
+
+### October14 ability notification observations
+
+Original player setup0065C3FB..0065C430 binds ability-vector callbacks0065D200/0065D4F0/0065D5F0/0065D6F0. Small probes show indexed string-vector iteration and notification/conversion paths. Complete old availability-cache/refcount semantics are not newly closed; no canonical function name or count changes. The independently authored modern availability union is specified in [the command contract](docs/NGE_PRECU_COMMAND_AVAILABILITY_CONTRACT.md) and [daytime checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-14_DAYTIME_COMPATIBILITY.md).
+
+
+October14 combat-spam observation: existing registered wrapper00AEED70 calls reader00B1B720; direct probes establish three NetworkIds/four damage bytes/StringId/U8 color and the invalid-StringId Unicode branch. Existing formatter008C94D0's jump table008C97D0 classifies colors0/1 by local attacker/defender and10/11 as range/posture, with other bytes generic. See [bounded contract](docs/NGE_PRECU_COMBAT_SPAM_CONTRACT.md). No new canonical name or count is assigned to the underlying reader/auxiliary probes.
+
+
+October14 spatial-chat codec observation: known wrapper00AEF2C0 delegates to00B1BA00; known writer00AEF2A0 delegates to00B1BC40. Direct read/write probes establish two IDs, Unicode, three U16 values, U8 flags/language and two Unicode tails. See [spatial contract](docs/NGE_PRECU_SPATIAL_CHAT_CONTRACT.md). No canonical semantic name is added or reassigned and no address count changes.

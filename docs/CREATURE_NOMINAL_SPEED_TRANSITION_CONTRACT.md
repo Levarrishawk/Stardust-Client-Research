@@ -14,7 +14,7 @@ Executable baseline: `C:/Stardust-DEV/Stardust.exe`, SHA-256 `E782BF1C49B3DA730F
 
 ## API and ownership
 
-[Implementation](../poc/Stardust.Core/Session/CreatureNominalSpeedTransition.cs):
+[Implementation](../../SWG-Godot-Client/poc/Stardust.Core/Session/CreatureNominalSpeedTransition.cs):
 
 ```csharp
 CreatureNominalSpeedTransition.Evaluate(
@@ -57,9 +57,9 @@ This conservative logical bit-work reservation covers operand alignment, product
 
 ## Validation and reproduction
 
-[Standalone scenarios](../poc/Stardust.Core.SmokeTests/CreatureNominalSpeedTransitionScenarios.cs) are invoked by [the dedicated runner](../poc/round56-tests/Runtime/Runtime.csproj), without editing the existing smoke or host entrypoint. [Independent Fraction oracle](../poc/round56-tests/Runtime/verify_transition.py) owns its dyadic nearest-even, F32 projection, signed-zero and retained comparison model; it does not call the C# arithmetic implementation.
+[Standalone scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/CreatureNominalSpeedTransitionScenarios.cs) are invoked by [the dedicated runner](../../SWG-Godot-Client/poc/round56-tests/Runtime/Runtime.csproj), without editing the existing smoke or host entrypoint. [Independent Fraction oracle](../../SWG-Godot-Client/poc/round56-tests/Runtime/verify_transition.py) owns its dyadic nearest-even, F32 projection, signed-zero and retained comparison model; it does not call the C# arithmetic implementation.
 
-Generate with `verify_transition.py generate --out FRESH_PRIVATE_CASES`, run the dedicated DLL with `CASES NATIVE_OUTPUT`, then verify with `verify_transition.py verify --cases CASES --native NATIVE_OUTPUT --receipt FRESH_PRIVATE_RECEIPT`. Generator and verifier outputs require fresh ignored private destinations. Build/restore uses installed offline .NET 8, existing cached packages, the runner's clear-source [NuGet configuration](../poc/round56-tests/Runtime/NuGet.Config), and isolated private APPDATA. No package download is required. Source projects and existing entrypoints remain unchanged apart from the two new allowlisted classes automatically compiled by their SDK projects.
+Generate with `verify_transition.py generate --out FRESH_PRIVATE_CASES`, run the dedicated DLL with `CASES NATIVE_OUTPUT`, then verify with `verify_transition.py verify --cases CASES --native NATIVE_OUTPUT --receipt FRESH_PRIVATE_RECEIPT`. Generator and verifier outputs require fresh ignored private destinations. Build/restore uses installed offline .NET 8, existing cached packages, the runner's clear-source [NuGet configuration](../../SWG-Godot-Client/poc/round56-tests/Runtime/NuGet.Config), and isolated private APPDATA. No package download is required. Source projects and existing entrypoints remain unchanged apart from the two new allowlisted classes automatically compiled by their SDK projects.
 
 2,041 synthetic cases match at three precisions: 1,896 positive, 144 input rejects, one cancellation. Thirteen retained-versus-F32 clamp witnesses pass, plus three exact/three one-below profile cases, signed zeros, negative rates/seconds, overshoot/undershoot, subnormal/overflow, U64 carry and missing/nonfinite/invalid options. Native checks cover 100 repetitions, 64 parallel calls, readonly result properties and preservation of a prior result across every success/failure/cancellation. The synthetic 60-step caller-rate32 route with seconds word `3C23D70A` is included without a physical getter or legacy movement-parity claim.
 

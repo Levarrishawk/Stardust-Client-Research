@@ -3,7 +3,7 @@
 October 6, 2026. Bounded modern replacement-client integration policy.
 This adds no recovered executable behavior or live compatibility claim.
 
-[ReplacementPlayerPresentationHost](../poc/Stardust.Godot/ReplacementPlayerPresentationHost.cs)
+[ReplacementPlayerPresentationHost](../../SWG-Godot-Client/poc/Stardust.Godot/ReplacementPlayerPresentationHost.cs)
 connects one selected creature to the existing concrete
 [presentation pump](SCENE_WORLD_PRESENTATION_PUMP_CONTRACT.md) and
 [process host](SCENE_WORLD_PRESENTATION_HOST_CONTRACT.md).
@@ -98,7 +98,7 @@ process kill can substitute for awaited drain.
 
 ## Reproducible component proof
 
-[replay.py](../poc/round84-tests/Rendering/replay.py) stages source, build products
+[replay.py](../../SWG-Godot-Client/poc/round84-tests/Rendering/replay.py) stages source, build products
 and package copies into a fresh ignored private output. It uses explicit local
 dotnet/Godot runtimes and six cached package families with package sources cleared.
 Each child has a 120-second external process deadline. No original executable,
@@ -111,7 +111,7 @@ python poc/round84-tests/Rendering/replay.py --dotnet ABS --godot ABS --packages
 The self-contained headless proof exercises 39 assertions with the real adapter,
 host, coordinator and pump: rejection/ownership, callback ordering, failure,
 reentry, generation mismatch, callback close, delayed job/native removal and fresh
-owner. Its independent [peer](../poc/round84-tests/Rendering/peer.py) authors the
+owner. Its independent [peer](../../SWG-Godot-Client/poc/round84-tests/Rendering/peer.py) authors the
 applications before native startup. These synthetic StartScene/create/typed
 CREO3/end/server-ready fixtures exercise the frozen codec, not transport/login
 compatibility or a captured complete legacy baseline.
@@ -119,7 +119,7 @@ compatibility or a captured complete legacy baseline.
 Optional explicit `--asset-root ABS --config ABS` prepares the installed shared
 human-male creature through the frozen resource pipeline and runs 59 headless
 assertions. `--gpu` adds a screenshot assertion (60 total); the independent
-[verifier](../poc/round84-tests/Rendering/verify.py) checks original root hash
+[verifier](../../SWG-Godot-Client/poc/round84-tests/Rendering/verify.py) checks original root hash
 before native startup, object 42, engine position `(1.5, 2, 3)`, publication,
 textures, visible pixels, root removal and job drain. `--native-exit` selects
 positive native removal; `--native-free` selects the explicitly faulted abort
@@ -142,7 +142,7 @@ join it to independently verified session/ports/original preparation, then run
 combined acceptance. Next action: execute that joined proof; this component
 alone establishes no live-server or total replacement-client coverage.
 
-Round86 [headless runner](../poc/round86-tests/Rendering/replay.py) uses the same
+Round86 [headless runner](../../SWG-Godot-Client/poc/round86-tests/Rendering/replay.py) uses the same
 explicit local runtime/cache/private-output arguments and requires
 `--asset-root ABS --config ABS`. GPU is reserved for lead acceptance. Its 104
 checks retain the 39 structural and 20 original-resource checks, then add actual

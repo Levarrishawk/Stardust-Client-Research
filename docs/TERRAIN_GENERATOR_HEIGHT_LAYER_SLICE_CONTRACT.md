@@ -1,8 +1,8 @@
 # Owned explicit BCIR/FFRA/AHFR layer slice
 
-Round 55, 2026-10-04. [TerrainGeneratorHeightLayerSlice](../poc/Stardust.Core/Assets/TerrainGeneratorHeightLayerSlice.cs) publishes one explicitly indexed, detached immediate layer. It does not traverse, prepare bounds, admit samples, compute influence/height, create a sampler or infer ancestor activation.
+Round 55, 2026-10-04. [TerrainGeneratorHeightLayerSlice](../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainGeneratorHeightLayerSlice.cs) publishes one explicitly indexed, detached immediate layer. It does not traverse, prepare bounds, admit samples, compute influence/height, create a sampler or infer ancestor activation.
 
-See [native scenarios](../poc/Stardust.Core.SmokeTests/TerrainGeneratorHeightLayerSliceScenarios.cs), [independent raw oracle](../poc/round55-tests/Assets/peer.py), [isolated replay](../poc/round55-tests/Assets/Invoke-SelectedRule.ps1), [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R55_ORIGINAL_HEIGHT_LAYER_SLICE.md), [original topology](TERRAIN_HEIGHT_LAYER_ORDER_CONTRACT.md), [ADTA mapping](TERRAIN_LAYER_ADTA_RUNTIME_CONTRACT.md), [BCIR input](TERRAIN_BOUNDARY_CIRCLE_INPUT_CONTRACT.md), [FFRA selector](TERRAIN_GENERATOR_FRACTAL_FILTER_RULE_CONTRACT.md) and [AHFR selector](TERRAIN_GENERATOR_HEIGHT_FRACTAL_RULE_CONTRACT.md).
+See [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainGeneratorHeightLayerSliceScenarios.cs), [independent raw oracle](../../SWG-Godot-Client/poc/round55-tests/Assets/peer.py), [isolated replay](../../SWG-Godot-Client/poc/round55-tests/Assets/Invoke-SelectedRule.ps1), [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R55_ORIGINAL_HEIGHT_LAYER_SLICE.md), [original topology](TERRAIN_HEIGHT_LAYER_ORDER_CONTRACT.md), [ADTA mapping](TERRAIN_LAYER_ADTA_RUNTIME_CONTRACT.md), [BCIR input](TERRAIN_BOUNDARY_CIRCLE_INPUT_CONTRACT.md), [FFRA selector](TERRAIN_GENERATOR_FRACTAL_FILTER_RULE_CONTRACT.md) and [AHFR selector](TERRAIN_GENERATOR_HEIGHT_FRACTAL_RULE_CONTRACT.md).
 
 ## Exact shape and provenance
 

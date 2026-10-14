@@ -26,20 +26,20 @@ no downloads. Godot's existing certificate-store diagnostic remains nonfatal.
 
 ## Evidence and confidence
 
-Observation: [host source](../../poc/Stardust.Godot/SceneWorldPresentationHost.cs)
+Observation: [host source](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldPresentationHost.cs)
 implements Configure success-only ownership; finite process delta; ordered ingress,
 Step and observation; bounded latest receipt; failure close; synchronous exit close
 and async owner-thread drain/disposal. Confidence: Confirmed modern policy through
 source and executed independent proof. Consequence: lead can wire the concrete
 pump without adding another loader, registry, consumer or timing denominator.
 
-Observation: [proof](../../poc/Stardust.Godot/SceneWorldPresentationHostPreview.cs)
+Observation: [proof](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldPresentationHostPreview.cs)
 implements only the frozen interface and owns real baseline cold world/consumer
 instances. Three real process frames run; scripted fault/cleanup cases account
 for seven Step calls, including one throwing Step. 102 assertions include repeated
 completion and cleanup checks, not 102 distinct scenarios. All 18 pump owners close
 and dispose exactly once. Confidence: Confirmed by independent
-[oracle](../../poc/round16-tests/Rendering/verify.py). Consequence: the host preserves
+[oracle](../../../SWG-Godot-Client/poc/round16-tests/Rendering/verify.py). Consequence: the host preserves
 ownership on rejection and awaits drain before disposal.
 
 Positive/negative evidence covers detached/null/missing-drain/second/thread

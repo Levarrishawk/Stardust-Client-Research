@@ -10,7 +10,7 @@ intervention. The existing heartbeat is active with this deadline.
 
 ## Priority and boundaries
 
-Continue the [replacement sequence](../../docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md).
+Continue the [replacement sequence](../../../SWG-Godot-Client/docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md).
 Round86 joins local outbound root movement and authoritative inbound corrections
 to the selected session and original actor. Protocol disconnect follows;
 owner/private state, scenario resource readiness and general-zone usability

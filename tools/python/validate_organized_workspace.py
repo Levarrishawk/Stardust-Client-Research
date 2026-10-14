@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import os
 import re
 import sys
 from collections import Counter
@@ -9,9 +10,20 @@ from urllib.parse import unquote
 
 ROOT = Path(sys.argv[1] if len(sys.argv) > 1 else Path(__file__).resolve().parents[2]).resolve()
 PRIVATE = ROOT / "local-private"
+GIT_METADATA = ROOT / ".git"
 LINK_RE = re.compile(r"!?(?:\[[^\]]*\])\(([^)\s]+)(?:\s+[^)]*)?\)")
 
-markdown_files = [p for p in ROOT.rglob("*.md") if PRIVATE not in p.parents]
+# Prune private evidence and Git metadata before traversal; these trees can be huge.
+def public_paths():
+    for directory, children, filenames in os.walk(ROOT):
+        base = Path(directory)
+        children[:] = [name for name in children if base / name not in (PRIVATE, GIT_METADATA)]
+        for name in filenames:
+            yield base / name
+
+
+workspace_files = list(public_paths())
+markdown_files = [p for p in workspace_files if p.suffix == ".md"]
 broken: list[tuple[str, str]] = []
 private_links: list[tuple[str, str]] = []
 for document in markdown_files:
@@ -39,7 +51,7 @@ packet_path = ROOT / "data" / "curated" / "server_packet_gap_matrix.csv"
 with packet_path.open(encoding="utf-8-sig", newline="") as handle:
     packet_rows = list(csv.DictReader(handle))
 
-public_files = [p for p in ROOT.rglob("*") if p.is_file() and PRIVATE not in p.parents]
+public_files = [p for p in workspace_files if p.is_file()]
 public_bytes = sum(p.stat().st_size for p in public_files)
 large_public = sorted(
     ((p.stat().st_size, p.relative_to(ROOT).as_posix()) for p in public_files if p.stat().st_size >= 25 * 1024 * 1024),

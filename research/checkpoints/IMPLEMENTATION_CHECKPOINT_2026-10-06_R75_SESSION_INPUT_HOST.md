@@ -21,10 +21,10 @@ and default-HUD proof sources are staged as dependencies. No unfinished sibling
 source or original asset is imported.
 
 [Durable contract](../../docs/TERRAIN_OFFLINE_SESSION_INPUT_HOST_CONTRACT.md),
-[host](../../poc/Stardust.Godot/TerrainOfflineSessionInputHost.cs),
-[verification](../../poc/Stardust.Godot/TerrainOfflineSessionInputHostVerification.cs),
-[runner](../../poc/round75-tests/Rendering/Invoke-Picker.ps1),
-[oracle](../../poc/round75-tests/Rendering/verify_picker.py).
+[host](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineSessionInputHost.cs),
+[verification](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineSessionInputHostVerification.cs),
+[runner](../../../SWG-Godot-Client/poc/round75-tests/Rendering/Invoke-Picker.ps1),
+[oracle](../../../SWG-Godot-Client/poc/round75-tests/Rendering/verify_picker.py).
 
 ## Observations, conclusions and consequences
 

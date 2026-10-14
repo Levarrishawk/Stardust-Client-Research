@@ -2,11 +2,11 @@
 
 October6,2026. Explicit modern presentation policy, confirmed by bounded replacement execution.
 
-[SceneWorldAcceptedLocomotionVisual](../poc/Stardust.Godot/SceneWorldAcceptedLocomotionVisual.cs)
+[SceneWorldAcceptedLocomotionVisual](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldAcceptedLocomotionVisual.cs)
 owns a caller-associated presentation chain containing the supplied frozen
 [motion visual](SCENE_WORLD_OBJECT_MOTION_VISUAL_CONTRACT.md). It borrows the world,
 a `Func<LocomotionPreviewState>` and an optional `Func<bool>` enable callback.
-It implements [ISceneWorldObjectPresentation](../poc/Stardust.Core/Session/ISceneWorldObjectPresentation.cs).
+It implements [ISceneWorldObjectPresentation](../../SWG-Godot-Client/poc/Stardust.Core/Session/ISceneWorldObjectPresentation.cs).
 
 ```csharp
 new SceneWorldAcceptedLocomotionVisual(world, inner, source,
@@ -33,7 +33,7 @@ The caller must guarantee that the chain contains the supplied motion visual exa
 once, and that the source belongs to the same actor, incarnation and publication with
 matching prepared clip metadata. Publication reference equality catches an obvious
 unrelated chain; it cannot inspect arbitrary private nesting. The public
-[LocomotionPreviewState](../poc/Stardust.Core/Assets/LocomotionPreviewClock.cs) has no
+[LocomotionPreviewState](../../SWG-Godot-Client/poc/Stardust.Core/Assets/LocomotionPreviewClock.cs) has no
 actor, generation, incarnation, publication or timestamp provenance. Consequently this
 wrapper cannot prove association, detect a stale but structurally valid source record,
 or infer it from fabricated fields. No monotonic-state constraint is imposed on caller
@@ -83,11 +83,11 @@ coverage, live server behavior and original gait/timing parity are unverified.
 
 ## Reproduction and evidence
 
-[Invoke-Visual.ps1](../poc/round71-tests/Rendering/Invoke-Visual.ps1) requires cached Python,
+[Invoke-Visual.ps1](../../SWG-Godot-Client/poc/round71-tests/Rendering/Invoke-Visual.ps1) requires cached Python,
 .NET/Godot packages and the pinned original executable/assets. It rejects wrong executable
 identity and unsafe/nonfresh output roots, verifies the Round71 incoming4297-file manifest
 and archive, and stages frozen Core/Godot inputs into an ignored output tree. It runs
-the [independent producer/verifier](../poc/round71-tests/Rendering/verify_visual.py) before
+the [independent producer/verifier](../../SWG-Godot-Client/poc/round71-tests/Rendering/verify_visual.py) before
 building and executing only the replacement standalone scene. No original executable
 execution or full texture/animation regression is involved.
 

@@ -2,7 +2,7 @@
 
 ## Screening boundary
 
-[Instance screening](../tools/python/probe_door_instance_capabilities.py) consumes the ignored capability inventory's 782 directed DTLA candidates. It pins the exact candidate JSON, independently decodes floor-edge pairing and checks 5,150 native source identities. The [native fixture](../poc/Stardust.Core.SmokeTests/DoorInstanceCapabilityScenarios.cs) waits 20 × 0.05 seconds, moves 20 × 0.08 metres forward, then 20 reverse steps. Passing requires one transfer each way, source ownership restored and return position within 1e-4. This is bounded fixture screening, not general locomotion or whole-instance coverage.
+[Instance screening](../../SWG-Godot-Client/tools/python/probe_door_instance_capabilities.py) consumes the ignored capability inventory's 782 directed DTLA candidates. It pins the exact candidate JSON, independently decodes floor-edge pairing and checks 5,150 native source identities. The [native fixture](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/DoorInstanceCapabilityScenarios.cs) waits 20 × 0.05 seconds, moves 20 × 0.08 metres forward, then 20 reverse steps. Passing requires one transfer each way, source ownership restored and return position within 1e-4. This is bounded fixture screening, not general locomotion or whole-instance coverage.
 
 | Screening result at this checkpoint | Directed candidates |
 |---|---:|
@@ -21,9 +21,9 @@ Selected member `appearance/thm_must_mining_outpost.pob`, SHA-256 `79085C909D585
 
 The style moves (0,3.75,0), opens/closes in 0.25 seconds, uses springiness 1 and smoothness 0.5, and trigger radius 3. This verifies an upward-moving primary with a different displacement blend and timing from the earlier lateral cantina door. Source and target floor hashes are `DD1ACA860D6F04A3A5D07C9D96FDDD640117EF968DB78714E5B06AAB204B0F54` and `42D9ADF10068796F6113D9371BBCDCF6DEF17B4027D96BF5063F61C39814EFEA`. The existing configuration/table pins remain in the [capability matrix](DOOR_STYLE_CAPABILITY_MATRIX.md).
 
-[Generic independent instance selection](../tools/python/doorway_reference.py) decodes the root extent, bands, reverse reference, paired floor edge, approach and horizontal portal plane. Initial inspection uses the nearest downward segment hit, avoiding a false lowest-triangle choice in stacked floors. Actor projection in this oracle is explicitly bounded to the selected level lane; it does not independently implement arbitrary adjacency, slopes or obstacle walking.
+[Generic independent instance selection](../../SWG-Godot-Client/tools/python/doorway_reference.py) decodes the root extent, bands, reverse reference, paired floor edge, approach and horizontal portal plane. Initial inspection uses the nearest downward segment hit, avoiding a false lowest-triangle choice in stacked floors. Actor projection in this oracle is explicitly bounded to the selected level lane; it does not independently implement arbitrary adjacency, slopes or obstacle walking.
 
-The [persistent verifier](../tools/python/verify_persistent_door_actor.py) now accepts all five explicit generic instance options. Each starting direction matches 948 ticks over two owner poses, 44 transfers and 28 blocked ticks. Combined: **1,896 ticks, 88 transfers, 56 blocked ticks**. Pin checks cover eight effective sources. Headless/GPU persistent controls, timed input, normalized diagonal round trips and reflected placement pass; private capture inspected. Visual LOD changes retain the same authored physical envelope.
+The [persistent verifier](../../SWG-Godot-Client/tools/python/verify_persistent_door_actor.py) now accepts all five explicit generic instance options. Each starting direction matches 948 ticks over two owner poses, 44 transfers and 28 blocked ticks. Combined: **1,896 ticks, 88 transfers, 56 blocked ticks**. Pin checks cover eight effective sources. Headless/GPU persistent controls, timed input, normalized diagonal round trips and reflected placement pass; private capture inspected. Visual LOD changes retain the same authored physical envelope.
 
 ## Resolved contact risk and next work
 

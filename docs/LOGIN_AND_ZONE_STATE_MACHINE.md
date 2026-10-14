@@ -51,7 +51,7 @@ The test client expects these in order and considers login complete after all fo
 
 `Unicode32` is a little-endian 32-bit UTF-16 code-unit count followed by that many little-endian UTF-16 units. The client record objects are not wire structs: their observed 0x14, 0x2C and 0x20 strides contain string/vector objects and must never be copied directly into an x64 implementation.
 
-For the current server, each `LoginEnumCluster` record ends with `0xFFFF8F80` and the message footer is 8. Each status record currently supplies population 100, capacity `0xCB2`, category/distance 8, status 2, auxiliary `0xFFFF8F80`, and trailing byte 0. Those values are confirmed; not all historical UI semantics are.
+For the current server, each `LoginEnumCluster` record ends with `0xFFFF8F80` and the message footer is 8. In wire order, each status record supplies five LE32 values: 100, `0xCB2`, 8, `0xFFFF8F80`, 2, followed by byte 0. Status is the fifth value. The fourth value is signed -28800 in the source time-zone slot. Other historical UI semantics remain qualified. October 13 correction: the earlier prose swapped the fourth/fifth values; the existing deterministic fixture and Core3 `LoginClusterStatus.h::addGalaxy` already had the correct order.
 
 ## Zone authentication
 
@@ -74,10 +74,10 @@ flowchart LR
 
 The exact endpoint handoff is resolved-address object + 16-bit zone port; the ping port is not used for the game connection. Opening a new zone connection first tears down any existing connection-server object, so login and zone transports are distinct lifecycles.
 
-After a fresh SOE transport connection, `ClientIdMsg` has operand count 3 and fields:
+After a fresh SOE transport connection, `ClientIdMsg` carries the following fields. The historical server convenience constructor uses operand count 3; the native source serializer uses 4. The current Core3 opcode dispatcher consumes but does not gate on this count. Original-client header parity remains qualified; payload/game-bit evidence below follows the later packet-map finding:
 
-1. `uint32 gameBits = 0xFE`
-2. `uint32 dataLen = sessionTokenLength + 4`
+1. `uint32 gameBits`, from `[ClientGame] gameBitsToClear`, default 0; `0xFE` belongs to the historical server convenience constructor
+2. `uint32 dataLen`, the exact retained opaque credential-blob length (already includes the embedded account ID)
 3. raw credential bytes retained from `LoginClientToken` (session token plus embedded `uint32 accountID`)
 4. ASCII client version; Stardust.exe defaults this field to `20260817-SD:01`, while the repository's convenience constructor still contains the historical `20050408-18:00`
 

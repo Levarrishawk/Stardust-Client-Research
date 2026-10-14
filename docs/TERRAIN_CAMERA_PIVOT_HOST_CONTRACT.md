@@ -9,7 +9,7 @@ public Vector3 Pivot { get; }
 public bool SetPivot(Vector3 pivot, CancellationToken cancellation = default);
 ```
 
-[TerrainCameraOrbitHost](../poc/Stardust.Godot/TerrainCameraOrbitHost.cs) accepts explicit
+[TerrainCameraOrbitHost](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainCameraOrbitHost.cs) accepts explicit
 pivot updates while input is disabled. The caller supplies an engine-world point; no
 native coordinate conversion, actor ownership or Runtime72 source is implied. Components
 must be finite and within+/-1e6. Creating managed thread and Godot main thread, configured
@@ -43,9 +43,9 @@ the last committed diagnostic value after Close; getters still require owner thr
 
 ## Bounded evidence
 
-[The standalone verification](../poc/Stardust.Godot/TerrainCameraPivotVerification.cs)
+[The standalone verification](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainCameraPivotVerification.cs)
 executes12 follow updates across three yaw/pitch/distance configurations and four pivots.
-An [independent Python oracle](../poc/round72-tests/Rendering/verify_picker.py) generates
+An [independent Python oracle](../../SWG-Godot-Client/poc/round72-tests/Rendering/verify_picker.py) generates
 position/look-basis/perspective-ray expectations before native execution, reusing the
 accepted orbit arithmetic oracle. Each update follows an accepted input and disabled
 input state, proving orbit/input counters are retained. Position tolerance2e-5;
@@ -59,7 +59,7 @@ binary32 collapse, equal pivot, off-thread calls, closed/faulted calls and borro
 survival. The unchanged frozen orbit verification also passes118 headless checks,
 47 independently compared input poses/rays and24 accepted inputs with the modified host.
 
-[Invoke-Picker.ps1](../poc/round72-tests/Rendering/Invoke-Picker.ps1) uses offline cached
+[Invoke-Picker.ps1](../../SWG-Godot-Client/poc/round72-tests/Rendering/Invoke-Picker.ps1) uses offline cached
 Python/.NET/Godot, verifies executable identity, verifies the frozen4335-file archive and
 manifest in its producer, stages the accepted regression source, produces expectations,
 builds and runs the new scene headless/GPU, then the old regression headless. Output must

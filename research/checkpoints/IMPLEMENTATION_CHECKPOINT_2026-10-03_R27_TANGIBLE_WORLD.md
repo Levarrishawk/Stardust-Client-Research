@@ -20,7 +20,7 @@ Unknown/deferred: Godot factory/Main registration, final exact-wire localization
 
 ## Verification and reproduction
 
-Own [runner](../../poc/round27-tests/Runtime/Runtime.csproj) uses cached .NET dependencies, isolated APPDATA and its no-source NuGet.Config. Build flags: NuGetAudit=false, UseSharedCompilation=false, UseAppHost=false. Build passes with zero warnings/errors. Native entry:
+Own [runner](../../../SWG-Godot-Client/poc/round27-tests/Runtime/Runtime.csproj) uses cached .NET dependencies, isolated APPDATA and its no-source NuGet.Config. Build flags: NuGetAudit=false, UseSharedCompilation=false, UseAppHost=false. Build passes with zero warnings/errors. Native entry:
 
 ```text
 dotnet <Runtime.dll> worldtangible <root> <config> <catalog> <animation-bank> <peer-json> poc/round27-tests/Runtime/ordered-fixtures.json <worldtangible-receipt.json>

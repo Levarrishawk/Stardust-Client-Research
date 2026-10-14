@@ -1,12 +1,12 @@
 # Decoded scene-create placement
 
-R6-ASSETS-01, October 2, 2026. [SceneCreatePlacementBuilder](../poc/Stardust.Core/Session/SceneCreatePlacement.cs) derives an engine-neutral presentation placement from `SceneCreateObjectByCrcMessage`, using the existing `AppearanceTransform` rows and column-vector convention. Quaternion normalization and zero handling here are **explicit modern presentation policy**, not recovered original client repair behavior.
+R6-ASSETS-01, October 2, 2026. [SceneCreatePlacementBuilder](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneCreatePlacement.cs) derives an engine-neutral presentation placement from `SceneCreateObjectByCrcMessage`, using the existing `AppearanceTransform` rows and column-vector convention. Quaternion normalization and zero handling here are **explicit modern presentation policy**, not recovered original client repair behavior.
 
 ## Evidence boundary
 
 The accepted [lifecycle codec](SCENE_OBJECT_LIFECYCLE_CODEC_CONTRACT.md) preserves U64 object identity, U32 template CRC, quaternion X/Y/Z/W, position wire order X/Z/Y, raw hyperspace byte, and finite binary32 bit patterns. It accepts zero and nonunit quaternions without repairing them. The documented server overload that emits a zero quaternion is server-only evidence; it does not establish original client behavior.
 
-The accepted [component transform contract](COMPONENT_APPEARANCE_CONTRACT.md) establishes row-stored 3x4 transforms acting on column-vector points and `parent.Compose(local)` applying local first. Its independent original corpus verification covers 165 templates / 779 parts / 9,348 transform floats. This milestone reuses that representation without reopening original asset parsing. The [coordinate adapter investigation](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_GODOT_COORDINATE_ADAPTER.md) and existing [adapter source](../poc/Stardust.Godot/GodotAppearanceTransform.cs) establish the chosen Z-reflection convention. No new executable-address, original-dynamic or GPU evidence is claimed.
+The accepted [component transform contract](COMPONENT_APPEARANCE_CONTRACT.md) establishes row-stored 3x4 transforms acting on column-vector points and `parent.Compose(local)` applying local first. Its independent original corpus verification covers 165 templates / 779 parts / 9,348 transform floats. This milestone reuses that representation without reopening original asset parsing. The [coordinate adapter investigation](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_GODOT_COORDINATE_ADAPTER.md) and existing [adapter source](../../SWG-Godot-Client/poc/Stardust.Godot/GodotAppearanceTransform.cs) establish the chosen Z-reflection convention. No new executable-address, original-dynamic or GPU evidence is claimed.
 
 ## API and policy
 
@@ -38,7 +38,7 @@ Finite input produces finite rows, translation, norm and normalized metadata at 
 
 ## Validation and confidence
 
-[Native scenarios](../poc/Stardust.Core.SmokeTests/SceneCreatePlacementScenarios.cs) cover 27 synthetic decoded creates, 105 basis/asymmetric point probes, 26 asymmetric parent compositions and 25 rejections. Cases include axes at 90/180/270 degrees, asymmetric `q/-q`, nonunit values, smallest subnormal and minimum-normal components, maximum finite components, highly unbalanced values, signed zeros, explicit zero identity, extreme/subnormal positions, invalid policy/null and each of seven fields with NaN/±infinity. Clearing encoded source buffers leaves owned raw scalar snapshots unchanged; rejected calls leave previously returned values usable and repeated derivation equal.
+[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneCreatePlacementScenarios.cs) cover 27 synthetic decoded creates, 105 basis/asymmetric point probes, 26 asymmetric parent compositions and 25 rejections. Cases include axes at 90/180/270 degrees, asymmetric `q/-q`, nonunit values, smallest subnormal and minimum-normal components, maximum finite components, highly unbalanced values, signed zeros, explicit zero identity, extreme/subnormal positions, invalid policy/null and each of seven fields with NaN/±infinity. Clearing encoded source buffers leaves owned raw scalar snapshots unchanged; rejected calls leave previously returned values usable and repeated derivation equal.
 
 [Independent Python oracle](../tools/python/verify_scene_create_placement.py) normalizes using `math.hypot` and obtains basis columns through vector cross-product quaternion rotation, separate from the native coefficient formula. It checks exact raw float bits, metadata, rows, directions, points, parent composition and reflected basis/points. Native binary32 shortest JSON decimals are rounded back to binary32 before numeric comparison; negative-zero integer-shaped JSON is parsed explicitly. Basis tolerance is 2e-7, quaternion tolerance 1e-7, point/composition tolerance is 3e-6 times max(1, expected magnitude); no tolerance was loosened.
 
@@ -61,6 +61,6 @@ python tools/python/verify_scene_create_placement.py local-private/round6/native
 python tools/python/validate_organized_workspace.py .
 ```
 
-Use the configured Python executable when `python` is absent from PATH. The own [console project](../poc/round6-tests/Assets/Assets.csproj) calls only this scenario. All packet bytes are synthetic and there are no original asset/toolchain/GPU/network inputs. The [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R6_CREATE_PLACEMENT.md) records baseline, ownership and final gates.
+Use the configured Python executable when `python` is absent from PATH. The own [console project](../../SWG-Godot-Client/poc/round6-tests/Assets/Assets.csproj) calls only this scenario. All packet bytes are synthetic and there are no original asset/toolchain/GPU/network inputs. The [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R6_CREATE_PLACEMENT.md) records baseline, ownership and final gates.
 
 Lead review/integration is next. Shared runner registration and living document reconciliation belong to the lead. A later consumer may bind the owned [creature resources](SCENE_CREATURE_RESOURCE_CONTRACT.md) to this derived placement with an explicitly chosen zero policy and parent. That integration and original zero/normalization semantics remain open; do not begin another round automatically.

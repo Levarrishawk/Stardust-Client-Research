@@ -1,1 +1,0 @@
-try { if(args[0]=="accounting")SceneObjectResourceAccountingScenarios.Run(args[1..]); else if(args[0]=="validation")SceneObjectResourceValidationScenarios.Run(args[1..]); else SceneCreatureFaceValidationScenarios.Run(args); } catch(Exception e){Console.Error.WriteLine(e);Environment.ExitCode=1;}

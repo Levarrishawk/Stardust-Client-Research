@@ -4,7 +4,7 @@ Date: 2026-10-04. This pure engine-neutral Session slice constructs a target F32
 
 ## Confirmed operation graph
 
-The executable baseline is `C:/Stardust-DEV/Stardust.exe`, SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. The SHA-gated [closed speed-input verifier](../tools/python/verify_creature_controller_speed_inputs.py) was rerun as input evidence. Only its already closed player `00629750` target window `00629FAE..00629FF2` was read for exact arithmetic order. No new full function, helper body or caller inventory is introduced.
+The executable baseline is `C:/Stardust-DEV/Stardust.exe`, SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. The SHA-gated [closed speed-input verifier](../../SWG-Godot-Client/tools/python/verify_creature_controller_speed_inputs.py) was rerun as input evidence. Only its already closed player `00629750` target window `00629FAE..00629FF2` was read for exact arithmetic order. No new full function, helper body or caller inventory is introduced.
 
 | Observation | Interpretation and confidence | Compatibility consequence |
 | --- | --- | --- |
@@ -17,7 +17,7 @@ The [historical speed-input contract](CREATURE_CONTROLLER_SPEED_INPUT_CONTRACT.m
 
 ## API and owned values
 
-[Implementation](../poc/Stardust.Core/Session/CreatureNominalTargetSpeed.cs):
+[Implementation](../../SWG-Godot-Client/poc/Stardust.Core/Session/CreatureNominalTargetSpeed.cs):
 
 ```csharp
 CreatureNominalTargetSpeed.Evaluate(
@@ -59,9 +59,9 @@ This conservative logical bit-work profile bounds alignment/carry, square-root p
 
 ## Independent verification and reproduction
 
-[Native scenarios](../poc/Stardust.Core.SmokeTests/CreatureNominalTargetSpeedScenarios.cs) run through the new [standalone runner](../poc/round57-tests/Runtime/Runtime.csproj); existing smoke/project/host entrypoints remain unchanged. [Fraction/isqrt oracle](../poc/round57-tests/Runtime/verify_target.py) reuses frozen independent dyadic arithmetic from56 and adds an independent square-root midpoint oracle: scale the exact radicand, integer-square-root its floor, then compare the exact squared half-step and break ties to even. It calls no C# arithmetic.
+[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/CreatureNominalTargetSpeedScenarios.cs) run through the new [standalone runner](../../SWG-Godot-Client/poc/round57-tests/Runtime/Runtime.csproj); existing smoke/project/host entrypoints remain unchanged. [Fraction/isqrt oracle](../../SWG-Godot-Client/poc/round57-tests/Runtime/verify_target.py) reuses frozen independent dyadic arithmetic from56 and adds an independent square-root midpoint oracle: scale the exact radicand, integer-square-root its floor, then compare the exact squared half-step and break ties to even. It calls no C# arithmetic.
 
-Generate: `verify_target.py generate --out FRESH_PRIVATE_CASES`. Native: `dotnet Runtime.dll CASES NATIVE_OUTPUT`. Verify: `verify_target.py verify --cases CASES --native NATIVE_OUTPUT --receipt FRESH_PRIVATE_RECEIPT`. Generator/verifier outputs require fresh ignored private paths. Restore/build uses installed offline .NET 8, cached packages, clear-source [NuGet configuration](../poc/round57-tests/Runtime/NuGet.Config) and private APPDATA. No download is needed.
+Generate: `verify_target.py generate --out FRESH_PRIVATE_CASES`. Native: `dotnet Runtime.dll CASES NATIVE_OUTPUT`. Verify: `verify_target.py verify --cases CASES --native NATIVE_OUTPUT --receipt FRESH_PRIVATE_RECEIPT`. Generator/verifier outputs require fresh ignored private paths. Restore/build uses installed offline .NET 8, cached packages, clear-source [NuGet configuration](../../SWG-Godot-Client/poc/round57-tests/Runtime/NuGet.Config) and private APPDATA. No download is needed.
 
 All **1,032 synthetic cases** agree at precisions24/53/64:742 positive,289 input rejects,one cancellation. Eighty-seven cases distinguish retained factor multiplication from a `+154` reload; twenty-two distinguish the recovered squared-sum grouping. These include finite underflow snapshots whose retained value is later amplified by a factor, without claiming such a factor occurs originally. Three exact/three one-below work/magnitude/exponent cap cases pass. Coverage includes flags0/1/255, positive/nonpositive run selection, finite negative getters/factors, zero directions, signed zeros, subnormal/large directions, intermediate/target overflow, U64 factors, nonfinite unselected inputs and unsupported test-fixture flag/vector shapes.
 

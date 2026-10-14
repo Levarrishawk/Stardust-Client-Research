@@ -43,7 +43,7 @@ localTranslation = authoredMovement * displacementFraction
 leafPose = doorPose composed with localTranslation
 ```
 
-The existing [normal controller](../poc/Stardust.Core/Assets/PortalDoorController.cs) supplies frame pulses, duration updates and first-matching transition indices 0–3. Effects are returned as authored reference strings; playback is deferred. The caller consumes transition metadata once per advance. New contacts require known allowed entry in this prototype. Original denied-contact secondary/candidate branches and callback +7A semantics remain Unknown here. Revoking permission stops pulse refresh; an existing current/next-frame pulse can expire before closing begins.
+The existing [normal controller](../../SWG-Godot-Client/poc/Stardust.Core/Assets/PortalDoorController.cs) supplies frame pulses, duration updates and first-matching transition indices 0–3. Effects are returned as authored reference strings; playback is deferred. The caller consumes transition metadata once per advance. New contacts require known allowed entry in this prototype. Original denied-contact secondary/candidate branches and callback +7A semantics remain Unknown here. Revoking permission stops pulse refresh; an existing current/next-frame pulse can expire before closing begins.
 
 ## Owned physical envelope and lifecycle
 

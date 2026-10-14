@@ -1,6 +1,6 @@
 # Installed creature preparation
 
-[InstalledCreaturePreparation](../poc/Stardust.Core/Assets/InstalledCreaturePreparation.cs)
+[InstalledCreaturePreparation](../../SWG-Godot-Client/poc/Stardust.Core/Assets/InstalledCreaturePreparation.cs)
 derives one creature catalog entry and idle/walk/run options from an explicitly
 opened [original installation](ORIGINAL_INSTALLATION_PREFLIGHT_CONTRACT.md).
 No caller-provided SHA pins, preview profile, or historical argument vector is
@@ -99,7 +99,7 @@ original animation bytes are consumed through explicit modern selections.
 
 ## Reproduction and evidence
 
-The self-contained [test project](../poc/round84-tests/Assets/Assets.csproj) runs
+The self-contained [test project](../../SWG-Godot-Client/poc/round84-tests/Assets/Assets.csproj) runs
 synthetic preparation by default. Its Python producer independently authors
 TREE/SCOT/STOT/SHOT/SMAT/LATT/counted-proxy records and metadata. Synthetic clip
 payloads are deliberately opaque hash fixtures, not claimed playable animations.

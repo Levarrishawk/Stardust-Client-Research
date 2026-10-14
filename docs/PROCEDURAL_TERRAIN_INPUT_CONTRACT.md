@@ -1,7 +1,7 @@
 # Procedural terrain input contract
 
 Round32 implements an engine-neutral, immutable PTAT input envelope in
-[ProceduralTerrainInput.cs](../poc/Stardust.Core/Assets/ProceduralTerrainInput.cs).
+[ProceduralTerrainInput.cs](../../SWG-Godot-Client/poc/Stardust.Core/Assets/ProceduralTerrainInput.cs).
 It owns DATA, the complete encoded TGEN form, and the accepted
 [terrain map masks](TERRAIN_MAP_MASKS_CONTRACT.md). It does not evaluate rules,
 generate heights, place flora, convert world coordinates, or render terrain.
@@ -109,8 +109,8 @@ trailer.
 
 ## Reproduction and original sample
 
-[Scenarios](../poc/Stardust.Core.SmokeTests/ProceduralTerrainInputScenarios.cs) and
-[independent oracle](../poc/round32-tests/Assets/verify_ptat_input.py) cover both
+[Scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/ProceduralTerrainInputScenarios.cs) and
+[independent oracle](../../SWG-Godot-Client/poc/round32-tests/Assets/verify_ptat_input.py) cover both
 versions, exact budgets, every synthetic truncation, order/tag/version/extent,
 active-water eligibility, opaque nonfinite bits, raw byte strings, unknown tail,
 composed masks, and owned copies. All fixture bytes are declared synthetic.

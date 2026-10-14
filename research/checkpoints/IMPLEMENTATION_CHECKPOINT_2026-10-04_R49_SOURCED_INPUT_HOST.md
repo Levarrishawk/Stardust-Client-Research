@@ -37,16 +37,16 @@ resource/presentation wiring. No stage, commit, push or publication occurs.
 
 ## Evidence, interpretation and compatibility impact
 
-Observation: [SubmitStop](../../poc/Stardust.Core/Session/SceneWorldExplicitMovementAdmission.cs)
+Observation: [SubmitStop](../../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldExplicitMovementAdmission.cs)
 checks current active/finalized typed creation before submitting zero to the real
 driver. It does not sample source values or publish source-provenance receipts.
 The fixed source is readable. Existing time/order/horizon/capacity remain the
-sealed driver's atomic admission. [Native tests](../../poc/Stardust.Core.SmokeTests/SceneWorldExplicitStopScenarios.cs)
+sealed driver's atomic admission. [Native tests](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldExplicitStopScenarios.cs)
 execute stop ticks over four source choices, three directions, eight timestamps
 and three render partitions, including a stop that becomes effective only at a
 later tick start. Missing authored and disposed received inputs can still stop.
 
-Observation: the [sourced host](../../poc/Stardust.Godot/SceneWorldSourcedInputHost.cs)
+Observation: the [sourced host](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldSourcedInputHost.cs)
 uses physical/logical WASD, explicit unit direction, a fixed source and exact
 current received receipt. No keys or unavailable source use zero stop. Unavailable
 source additionally advances inactive to prevent stale catch-up. Focus/pause
@@ -54,7 +54,7 @@ clear held keys and resume without replay. Clock guards detect reentry, changed
 parent and admission state; teardown never calls the clock again and still disposes
 when the native Node has already been freed.
 
-Observation: the [actual Godot proof](../../poc/round49-tests/Runtime/Godot/SourcedHostProof.cs)
+Observation: the [actual Godot proof](../../../SWG-Godot-Client/poc/round49-tests/Runtime/Godot/SourcedHostProof.cs)
 dispatches native key events, focus notifications and real tree pause/unpause,
 then exercises missing and changed received inputs, owner/thread, reentry,
 backward clock, state mutation, parent detach/free, generation/recreation,
@@ -108,14 +108,14 @@ changing frozen APIs.
 
 ## Reproduction and handoff
 
-Run the [native producer](../../poc/round49-tests/Runtime/peer.py) generate command,
+Run the [native producer](../../../SWG-Godot-Client/poc/round49-tests/Runtime/peer.py) generate command,
 restore/build own Runtime.csproj with cleared NuGet sources and run its DLL with
 fixture and private output arguments; use peer verify on that output. For Godot,
-[Launch.ps1](../../poc/round49-tests/Runtime/Launch.ps1) takes the installed console
+[Launch.ps1](../../../SWG-Godot-Client/poc/round49-tests/Runtime/Launch.ps1) takes the installed console
 executable, an existing writable offline package cache and own private output
 directory, restores/builds against installed nupkgs, launches hidden/headless with
 45-second deadline and fresh output/marker checks. Use
-[verify_godot.py](../../poc/round49-tests/Runtime/verify_godot.py) on its fresh receipt.
+[verify_godot.py](../../../SWG-Godot-Client/poc/round49-tests/Runtime/verify_godot.py) on its fresh receipt.
 Do not infer actual execution from a build or an older receipt.
 
 Final audit passes: 3,498 frozen files unchanged, exactly one existing source with

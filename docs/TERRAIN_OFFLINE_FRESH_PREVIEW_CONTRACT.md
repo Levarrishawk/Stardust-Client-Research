@@ -4,7 +4,7 @@
 
 Round81 adds `RecordOfflineFreshPreviewState()` to the configured Version13 host. The single call is at the end of `BeginPointTarget`, after prepared input/camera/frame/root helpers and before its first update. Other versions return without a report. This is replacement-host evidence, not recovered legacy client behavior or a protocol coverage metric.
 
-The partial [implementation](../poc/Stardust.Godot/ScenePumpedOfflineFreshState.cs) checks actual borrowed and owned objects before serializing a primitive-only `offline_fresh_preview_state` JSON record. It does not retain nodes or sessions in the record. `ReferenceEquals` establishes the point/controller and root/transport ownership relationships. Godot instance identifiers support same-process child distinction; identifiers from separate processes may repeat.
+The partial [implementation](../../SWG-Godot-Client/poc/Stardust.Godot/ScenePumpedOfflineFreshState.cs) checks actual borrowed and owned objects before serializing a primitive-only `offline_fresh_preview_state` JSON record. It does not retain nodes or sessions in the record. `ReferenceEquals` establishes the point/controller and root/transport ownership relationships. Godot instance identifiers support same-process child distinction; identifiers from separate processes may repeat.
 
 ## SchemaVersion 1
 
@@ -33,7 +33,7 @@ Configured Version13 admission reads both SoeConnectionId and SoeSeed through Ge
 
 ## Independent verifier and runner
 
-[verify_fresh.py](../poc/round81-tests/Runtime/verify_fresh.py) exports:
+[verify_fresh.py](../../SWG-Godot-Client/poc/round81-tests/Runtime/verify_fresh.py) exports:
 
 - `expected(profile)` returns independently calculated initialization expectations for frozen Version13 policy `SuppliedConfiguredOfflinePlayground`.
 - `records(log)` extracts newline `key=JSON` records.

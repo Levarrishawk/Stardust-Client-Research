@@ -2,7 +2,7 @@
 
 The Round47 join extends the [supplied-F32 composition](TERRAIN_SUPPLIED_FRACTAL_CONSUMER_JOIN_CONTRACT.md) to the bounded [retained sample API](TERRAIN_RETAINED_FRACTAL_SAMPLE_CONTRACT.md). It supplies exact signed binary significands/exponents and separately reloads their F32 cache projections. It generates neither noise nor original work requests and does not execute an original cache.
 
-The independent [peer](../poc/round47-tests/Integration/retained_fractal_join_peer.py) composes root AHFR, scaled FFRA query, retained layer shape/minimum, F32 local/product storage and child AHFR. It uses Fraction arithmetic, literal synthetic IFF inputs and explicit24/53/64 profiles. The same sample travels through the native supplied-wide and cache-reloaded paths. Old F32 callers remain a separate regression gate.
+The independent [peer](../../SWG-Godot-Client/poc/round47-tests/Integration/retained_fractal_join_peer.py) composes root AHFR, scaled FFRA query, retained layer shape/minimum, F32 local/product storage and child AHFR. It uses Fraction arithmetic, literal synthetic IFF inputs and explicit24/53/64 profiles. The same sample travels through the native supplied-wide and cache-reloaded paths. Old F32 callers remain a separate regression gate.
 
 786 fixtures include768 cases derived from at-most48-bit products and18 wider midpoint cases. The first set alone cannot show unit-scale FFRA double rounding at binary53. The added midpoint cases can: multiplying a wider supplied value by1 at53 bits can first round to an F32 tie, while a direct cache F32 projection can resolve the other way. This is a conditional supplied-input witness, not an observed original family sample. General-scale and AHFR height/result differences are also compared.
 

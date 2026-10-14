@@ -2,14 +2,14 @@
 
 ## Scope
 
-[TerrainPatchGeometry](../poc/Stardust.Core/Geometry/TerrainPatchGeometry.cs)
+[TerrainPatchGeometry](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainPatchGeometry.cs)
 owns a supplied nine-vertex CPU cell: positions, normals, raw ARGB words,
 scaled base UVs, up to three selected auxiliary UV sets, and an explicit
 [accepted topology pattern](TERRAIN_PATCH_TOPOLOGY_CONTRACT.md).
 It performs no PTAT/TGEN evaluation, height sampling, neighbor/seam selection,
 material lookup, ALP texture binding, or original terrain rendering.
 
-[TerrainPatchVisual](../poc/Stardust.Godot/TerrainPatchVisual.cs) is a separate
+[TerrainPatchVisual](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainPatchVisual.cs) is a separate
 owned Godot inspection adapter. The proof renders synthetic heights with exact
 topology and an explicit UV/COLOR diagnostic shader. It does not claim original
 appearance, lighting, blending, or material parity.
@@ -89,7 +89,7 @@ shaders are not implemented.
 
 ## Verification and remaining seam
 
-The [independent oracle](../poc/round32-tests/Rendering/verify_geometry.py)
+The [independent oracle](../../SWG-Godot-Client/poc/round32-tests/Rendering/verify_geometry.py)
 SHA-gates the original before PE/VA use, checks nine base points, four auxiliary
 sets and 30 instruction sites across four ranges. Native fixtures use declared
 synthetic heights, 27 pattern/scale/selector cases, and raw color words spanning

@@ -19,7 +19,7 @@ These are static route/gate/receiver conditions, not observed runtime events. Th
 
 Executable: `C:/Stardust-DEV/Stardust.exe`, SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. All addresses are baseline VAs. Installed offline Python/pefile/Capstone x86-32 perform static validation. No toolchain download, original execution, live contact, capture, fuzzing, or external mutation is used.
 
-[Producer](../tools/python/verify_tangible_controller_update_carrier.py): `--exe EXE --packages STATIC_PACKAGES --server-root SERVER_ROOT --receipt FRESH_PRIVATE_RECEIPT`. [Independent runner](../poc/round55-tests/Runtime/research_checks.py): same explicit inputs with `--output-dir FRESH_PRIVATE_DIRECTORY`. Receipts must use fresh ignored private destinations under the checkout. SHA validation precedes VA interpretation. The frozen prerequisite's server input is correlation evidence only; the carrier claims derive from executable bytes.
+[Producer](../../SWG-Godot-Client/tools/python/verify_tangible_controller_update_carrier.py): `--exe EXE --packages STATIC_PACKAGES --server-root SERVER_ROOT --receipt FRESH_PRIVATE_RECEIPT`. [Independent runner](../../SWG-Godot-Client/poc/round55-tests/Runtime/research_checks.py): same explicit inputs with `--output-dir FRESH_PRIVATE_DIRECTORY`. Receipts must use fresh ignored private destinations under the checkout. SHA validation precedes VA interpretation. The frozen prerequisite's server input is correlation evidence only; the carrier claims derive from executable bytes.
 
 ## New body and direct evidence
 
@@ -42,7 +42,7 @@ The accepted [CreatureObject carrier](CREATURE_CONTROLLER_UPDATE_CARRIER_CONTRAC
 
 The new producer verifies 23 carrier anchors, 13 reused attachment anchors, the complete 130-byte body, return forms, branch boundaries, call uniqueness, EBX writes, and two RTTI/dispatch chains. Independent raw PE mapping verifies 25 literal byte windows, eight relative calls, five short-branch destinations, five new/reused body digests, and two RTTI/dispatch chains.
 
-[Opaque fixtures](../poc/round55-tests/Runtime/carrier-fixtures.json) are synthetic. Their 288 word/object/flag/current-controller combinations yield 36 player-dispatch cases, including a replacement player and suppression after clearing or replacement by another type. Four conditional seconds representations, twelve verifier negatives, and three output-guard cleanup assertions pass. These examples test the copying/gate model; unusual F32 patterns do not establish original-client acceptance. They execute no recovered instructions. Producer/independent fresh receipts agree.
+[Opaque fixtures](../../SWG-Godot-Client/poc/round55-tests/Runtime/carrier-fixtures.json) are synthetic. Their 288 word/object/flag/current-controller combinations yield 36 player-dispatch cases, including a replacement player and suppression after clearing or replacement by another type. Four conditional seconds representations, twelve verifier negatives, and three output-guard cleanup assertions pass. These examples test the copying/gate model; unusual F32 patterns do not establish original-client acceptance. They execute no recovered instructions. Producer/independent fresh receipts agree.
 
 ## Remaining uncertainty and next probe
 

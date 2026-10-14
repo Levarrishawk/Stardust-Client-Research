@@ -1,6 +1,6 @@
 # Explicit mixed creature/static world
 
-R14-R,2026-10-02. [SceneWorldCoordinator](../poc/Stardust.Core/Session/SceneWorldCoordinator.cs) now has an explicit generic resource constructor and separate publication API, using the accepted [router/options](SCENE_OBJECT_RESOURCE_ROUTER_CONTRACT.md) and new [initializer](SCENE_OBJECT_RESOURCE_INITIALIZER_CONTRACT.md). One coordinator owns registry, ready barrier, replication, lifecycle, resource queues and acknowledged changes for both recipes. No duplicate world/state implementation, parent transform graph, engine consumer or original readiness policy is added.
+R14-R,2026-10-02. [SceneWorldCoordinator](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldCoordinator.cs) now has an explicit generic resource constructor and separate publication API, using the accepted [router/options](SCENE_OBJECT_RESOURCE_ROUTER_CONTRACT.md) and new [initializer](SCENE_OBJECT_RESOURCE_INITIALIZER_CONTRACT.md). One coordinator owns registry, ready barrier, replication, lifecycle, resource queues and acknowledged changes for both recipes. No duplicate world/state implementation, parent transform graph, engine consumer or original readiness policy is added.
 
 ## Old and generic entry points
 

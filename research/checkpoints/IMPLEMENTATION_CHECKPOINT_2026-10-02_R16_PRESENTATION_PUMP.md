@@ -10,7 +10,7 @@ Read AGENTS, START_HERE/[accepted Round15](../sessions/PARALLEL_DEVELOPMENT_ROUN
 
 ## Evidence and implementation consequences
 
-Observation: [pump](../../poc/Stardust.Core/Session/SceneWorldPresentationPump.cs) owns copied generation-tagged FIFO bytes, retained publication/weight/attempt bookkeeping and one newly constructed accepted consumer. Entire completion bursts are preflighted before any factory in that burst; SourceBytes default and independent injected nonnegative logical weights are checked. Interpretation: bounded modern scheduling over the existing world, not an extra registry/loader or recovered timing. Confidence: Confirmed native queue/count/byte/size/per-step, burst count/weight/overflow/negative/callback and ownership tests. Consequence: host keeps explicit selection/barrier responsibilities; logical weights are not total memory accounting.
+Observation: [pump](../../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldPresentationPump.cs) owns copied generation-tagged FIFO bytes, retained publication/weight/attempt bookkeeping and one newly constructed accepted consumer. Entire completion bursts are preflighted before any factory in that burst; SourceBytes default and independent injected nonnegative logical weights are checked. Interpretation: bounded modern scheduling over the existing world, not an extra registry/loader or recovered timing. Confidence: Confirmed native queue/count/byte/size/per-step, burst count/weight/overflow/negative/callback and ownership tests. Consequence: host keeps explicit selection/barrier responsibilities; logical weights are not total memory accounting.
 
 Observation: false publication acceptance retains and rotates current attempts, at most once per step and under per-step/total retry bounds; stale attempts retire without exhausting retries. State batches retain exact consumer acknowledgment semantics and bounded frame retries, preserving unapplied changes for later steps; idle/pre-ready Tick false is normal. External reset clears stale retained publications/actors while queued stale entries remain charged to normal per-step FIFO processing; it returns to host-controlled initialization. Interpretation: continuous bounded scheduling with separate resource/state lifetime and retryable adapter application. Confidence: Confirmed FIFO/false-then-success/exhaustion, retained-weight restart/reset, normal stale budget, delayed latest state and callback reset tests. Consequence: no ready policy or opaque static semantics is inferred; no completion is silently discarded by a per-step publication limit.
 
@@ -20,7 +20,7 @@ Tests reuse accepted synthetic Round14 wire layouts and baseline original sealed
 
 ## Reproduction and results
 
-Scenario entry: `SceneWorldPresentationPumpScenarios.Run(string[] inputs, IReadOnlyDictionary<string,string> peer, string exportPath)`, inputs root/config/catalog/bank. [Own runner](../../poc/round16-tests/Runtime/Runtime.csproj) takes six arguments and links the scenario; shared entry point is lead-owned.
+Scenario entry: `SceneWorldPresentationPumpScenarios.Run(string[] inputs, IReadOnlyDictionary<string,string> peer, string exportPath)`, inputs root/config/catalog/bank. [Own runner](../../../SWG-Godot-Client/poc/round16-tests/Runtime/Runtime.csproj) takes six arguments and links the scenario; shared entry point is lead-owned.
 
 ```powershell
 $env:PYTHONUTF8='1'

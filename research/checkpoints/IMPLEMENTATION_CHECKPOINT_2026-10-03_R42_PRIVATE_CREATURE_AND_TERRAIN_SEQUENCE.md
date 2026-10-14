@@ -38,8 +38,8 @@ It uses frozen41 state; no unfinished sibling dependency was consumed.
 
 ## Lead joins and implementation consequences
 
-The [two-layer native join](../../poc/round42-tests/Integration/Program.cs) calls
-the actual sequence API without reading Expected fields. The [independent peer](../../poc/round42-tests/Integration/sequence_peer.py)
+The [two-layer native join](../../../SWG-Godot-Client/poc/round42-tests/Integration/Program.cs) calls
+the actual sequence API without reading Expected fields. The [independent peer](../../../SWG-Godot-Client/poc/round42-tests/Integration/sequence_peer.py)
 passes nine profiles,3600 samples,144 patches,576 queries and13230 ordered rule
 visits.2574 sample heights change in the second layer. Exact intermediate/final
 words, visits, patch coordinates/indices and independent barycentric queries

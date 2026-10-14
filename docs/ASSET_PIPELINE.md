@@ -498,7 +498,7 @@ verified against independent Python byte digests. This establishes extraction,
 not IFF interpretation or rendering. TREE 0004/0006, TOC, loose nodes,
 equal-priority ties, non-ASCII names, MD5 and the complete configured overlay
 remain open. See the [implementation checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_TRE_READER.md)
-and [acceptance record](CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
+and [acceptance record](../../SWG-Godot-Client/docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
 
 ## Owned textured mesh increment (2026-09-29)
 

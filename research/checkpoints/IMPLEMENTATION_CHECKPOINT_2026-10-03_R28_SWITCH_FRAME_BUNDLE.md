@@ -42,7 +42,7 @@ Ten sources /89,350 bytes, eight ordered MAIN frames, DTST words8/`0x3DCCCCCD`. 
 
 Each row is computed from its independently decoded mip records, rather than inferred from the aggregate. Each chain is 128x64, 64x32, 32x16, 16x8, 8x4, 4x2, 2x1, 1x1; byte counts are 32,768 + 8,192 + 2,048 + 512 + 128 + 32 + 8 + 4 = 43,692. No terminal bytes are retained. The unchanged source identities and current native/independent per-mip agreement establish these sizes.
 
-Seven additions: [bundle](../../poc/Stardust.Core/Assets/SwitchTextureFrameBundle.cs), [scenario](../../poc/Stardust.Core.SmokeTests/SwitchTextureFrameBundleScenarios.cs), [contract](../../docs/SWITCH_TEXTURE_FRAME_BUNDLE_CONTRACT.md), this checkpoint, [project](../../poc/round28-tests/Assets/Assets.csproj), [entry point](../../poc/round28-tests/Assets/Program.cs), [oracle](../../poc/round28-tests/Assets/verify_frame_bundle.py). No existing decoder/loader/world/Godot/frozen/shared Program/ledger edits; lead owns stage integration.
+Seven additions: [bundle](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/SwitchTextureFrameBundle.cs), [scenario](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SwitchTextureFrameBundleScenarios.cs), [contract](../../docs/SWITCH_TEXTURE_FRAME_BUNDLE_CONTRACT.md), this checkpoint, [project](../../../SWG-Godot-Client/poc/round28-tests/Assets/Assets.csproj), [entry point](../../../SWG-Godot-Client/poc/round28-tests/Assets/Program.cs), [oracle](../../../SWG-Godot-Client/poc/round28-tests/Assets/verify_frame_bundle.py). No existing decoder/loader/world/Godot/frozen/shared Program/ledger edits; lead owns stage integration.
 
 ## Observations, policy and compatibility consequence
 

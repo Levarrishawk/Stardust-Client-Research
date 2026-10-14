@@ -17,7 +17,7 @@ Tools: .NET SDK8.0.300, cached packages, cached Python workspace validator; all 
 - Confirmed: the output order is sixteen input pairs, selected point profile pair, then true flags. Every array is a fresh defensive copy; mutating bytes or a prior array does not alter the manifest.
 - Confirmed: metadata admission does not pin files or parse actual Version13 semantics. Consequence: existing child admission remains authoritative, and launch-time missing/changed files remain possible.
 
-See [durable schema/API contract](../../docs/OFFLINE_SCENARIO_MANIFEST_CONTRACT.md) and [test source](../../poc/round82-tests/Runtime/Program.cs). Confidence applies to this authored modern parser, not legacy parity, protocol coverage or function labels.
+See [durable schema/API contract](../../docs/OFFLINE_SCENARIO_MANIFEST_CONTRACT.md) and [test source](../../../SWG-Godot-Client/poc/round82-tests/Runtime/Program.cs). Confidence applies to this authored modern parser, not legacy parity, protocol coverage or function labels.
 
 ## Verification and limits
 

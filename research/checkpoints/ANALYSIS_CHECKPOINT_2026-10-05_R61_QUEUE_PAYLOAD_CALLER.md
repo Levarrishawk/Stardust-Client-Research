@@ -6,7 +6,7 @@ Question and stopping condition: exact-call query for `00AA6480`, select one act
 
 ## Evidence, confidence and compatibility consequence
 
-The [durable contract](../../docs/OBJECT_CONTROLLER_QUEUE_PAYLOAD_CALLER_CONTRACT.md) records baseline identity, complete body hash/exits/ABI, exact stack/register/field/call/branch witnesses, interpretation/confidence and lifecycle limits. The [verifier](../../tools/python/verify_object_controller_queue_payload_caller.py) and [independent runner](../../poc/round61-tests/Networking/research_checks.py) supply reproducible gates.
+The [durable contract](../../docs/OBJECT_CONTROLLER_QUEUE_PAYLOAD_CALLER_CONTRACT.md) records baseline identity, complete body hash/exits/ABI, exact stack/register/field/call/branch witnesses, interpretation/confidence and lifecycle limits. The [verifier](../../../SWG-Godot-Client/tools/python/verify_object_controller_queue_payload_caller.py) and [independent runner](../../../SWG-Godot-Client/poc/round61-tests/Networking/research_checks.py) supply reproducible gates.
 
 Exact target query finds three raw sites. Selected `00B3D250` is a completely decoded 59-byte/27-instruction caller with one `ret 16` exit and three internal call sites (one direct, two indirect). Zero tiny wrappers are expanded. Six conservative combined leads fit cap 12. Other candidate bodies and indirect targets remain unexpanded. No class/corpus/vtable sweep occurs.
 

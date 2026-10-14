@@ -36,7 +36,7 @@ states/all8 selected mip identities. A fresh GPU capture was visually inspected.
 Late malformed initial-height data rejects and drains12 partial visuals.
 The prior version1 headless mode is replayed separately.
 
-The independent [host peer](../poc/round41-tests/Integration/layer_host_peer.py)
+The independent [host peer](../../SWG-Godot-Client/poc/round41-tests/Integration/layer_host_peer.py)
 regenerates its fixture before verification. The [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R41_SUPPLIED_HEIGHT_AND_CREO4_FIELDS.md)
 records failures and acceptance. No original executable or live server runs.
 

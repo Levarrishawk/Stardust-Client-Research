@@ -82,13 +82,13 @@ its cancellation proof.
 
 ## Reproduce and resume
 
-Use [continuous launcher](../../poc/round16-tests/Integration/Launch.ps1) with
+Use [continuous launcher](../../../SWG-Godot-Client/poc/round16-tests/Integration/Launch.ps1) with
 -GodotPath cached Godot, -ArchiveRoot original root, -Configuration pinned config,
 -FixturePath output of Round16 Integration/Generate-Peer.py, -CatalogProfile
 poc/preview-profiles/scene-object-catalog.json, -MotionPeer output of Round17
 Integration/Generate-Motion.py and -LocalInput. Default is headless; add -Gpu and
 fresh private -CapturePath for GPU; separate -CancelLoad for pending-load cleanup.
-Run [independent oracle](../../poc/round18-tests/Integration/verify_local.py) on
+Run [independent oracle](../../../SWG-Godot-Client/poc/round18-tests/Integration/verify_local.py) on
 normal log and prior Round16 verify_preview.py on normal/cancel logs.
 Worker contracts give native producer/verifier commands.
 

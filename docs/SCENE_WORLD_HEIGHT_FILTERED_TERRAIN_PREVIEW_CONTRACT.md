@@ -7,7 +7,7 @@ slice, not an implementation of the original recursive terrain generator.
 
 ## Boundary and publication
 
-[ScenePumpedHeightFilteredTerrain](../poc/Stardust.Godot/ScenePumpedHeightFilteredTerrain.cs)
+[ScenePumpedHeightFilteredTerrain](../../SWG-Godot-Client/poc/Stardust.Godot/ScenePumpedHeightFilteredTerrain.cs)
 decodes bounded supplied BCIR/BREC, two FHGT and six AHCN envelopes. Four chunks
 each supply 100 initial height words. The first layer stores its result before
 the second FHGT queries that mutable height. Query precisions are explicitly
@@ -29,7 +29,7 @@ synthetic hill; resource retention is established independently of visibility.
 
 ## Independent execution evidence
 
-The [Python peer](../poc/round45-tests/Integration/height_filtered_host_peer.py)
+The [Python peer](../../SWG-Godot-Client/poc/round45-tests/Integration/height_filtered_host_peer.py)
 uses independently authored Fraction arithmetic and generates inputs before
 the host runs. Actual native/Godot headless and GPU receipts match 400 samples,
 16 patches, 128 triangles and nine timed motion states. Ninety samples witness

@@ -51,6 +51,6 @@ Replacement implementations should preserve seconds, scheduler accumulation/quan
 
 ## Reproduction and remaining probe
 
-The [static verifier](../poc/round28-tests/Rendering/Verify-SwitchClock.py) checks input SHA before VAs, the Clock export/imports, seven RTTI slots, tick constants, 26 instruction ranges, and frame call-site order. It writes range hashes only to an explicitly supplied private receipt. It neither runs the client nor proves runtime reachability of every branch.
+The [static verifier](../../SWG-Godot-Client/poc/round28-tests/Rendering/Verify-SwitchClock.py) checks input SHA before VAs, the Clock export/imports, seven RTTI slots, tick constants, 26 instruction ranges, and frame call-site order. It writes range hashes only to an explicitly supplied private receipt. It neither runs the client nor proves runtime reachability of every branch.
 
 Next bounded probe: trace one newly created SWTS mesh object's constructor → appearance assignment → world registration/initial last-tick assignment → first due update → first render enqueue. Stop when first-visible ordering is established or the exact deferred-load/event gate remains identified. Separately audit control-word-changing callbacks only if exact numerical parity is required. Full pause/culling policy and alternate appearance families remain open.

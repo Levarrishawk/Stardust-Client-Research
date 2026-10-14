@@ -10,7 +10,7 @@ Orientation covered START/latest accepted27, status/ledger/unknown functions and
 
 ## Observation, interpretation and confidence
 
-Confirmed implementation: [cursor](../../poc/Stardust.Core/Runtime/DeltaTimeTextureCursor.cs) retains float32 residual and uses explicit double addition/repeated subtraction, frame wrap, bounded work, checked counters and prebuilt immutable candidate receipts. All failures preserve the exact prior reference and issued snapshots. Reset preserves monotonic cumulative advances; close preserves final values while invalidating freshness. These ownership/validation/receipt policies are modern, not recovered legacy memory layout.
+Confirmed implementation: [cursor](../../../SWG-Godot-Client/poc/Stardust.Core/Runtime/DeltaTimeTextureCursor.cs) retains float32 residual and uses explicit double addition/repeated subtraction, frame wrap, bounded work, checked counters and prebuilt immutable candidate receipts. All failures preserve the exact prior reference and issued snapshots. Reset preserves monotonic cumulative advances; close preserves final values while invalidating freshness. These ownership/validation/receipt policies are modern, not recovered legacy memory layout.
 
 Confirmed numerical fixture: original documented interval bits3DCCCCCD, initial delta32700000, then3E4CCCCC yield persistent residual equal to interval after one step. Zero delta advances again and clears residual. No clamp was used. Ten0.0125 inputs versus one0.125 input produce distinct float32 residuals (3CCCCCD0/3CCCCCCC); arbitrary partition bit identity is not claimed.
 
@@ -20,7 +20,7 @@ Compatibility consequence: engine-neutral local frame state is ready for a separ
 
 ## Validation and reproduction
 
-Build own [runner](../../poc/round28-tests/Runtime/Runtime.csproj) with cached packages and `NuGetAudit=false`, `UseSharedCompilation=false`, `UseAppHost=false`. Native:
+Build own [runner](../../../SWG-Godot-Client/poc/round28-tests/Runtime/Runtime.csproj) with cached packages and `NuGetAudit=false`, `UseSharedCompilation=false`, `UseAppHost=false`. Native:
 
 ```text
 dotnet <Runtime.dll> poc/round28-tests/Runtime/ordered-fixtures.json <cursor-receipt.json>

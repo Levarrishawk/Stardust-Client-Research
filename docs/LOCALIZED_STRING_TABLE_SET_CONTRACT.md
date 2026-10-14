@@ -1,6 +1,6 @@
 # Explicit localized string-table preload contract
 
-[LocalizedStringTableSet](../poc/Stardust.Core/Assets/LocalizedStringTableSet.cs) preloads a finite explicit list of safe STF VFS paths into immutable owned [variant 1 tables](LOCALIZED_STRING_TABLE_CONTRACT.md). It provides a pure provider for the [object-name resolver](LOCALIZED_OBJECT_NAME_CONTRACT.md). This is a modern preload policy; automatic locale selection, lazy reads, cache expiry and variant 0 remain deferred.
+[LocalizedStringTableSet](../../SWG-Godot-Client/poc/Stardust.Core/Assets/LocalizedStringTableSet.cs) preloads a finite explicit list of safe STF VFS paths into immutable owned [variant 1 tables](LOCALIZED_STRING_TABLE_CONTRACT.md). It provides a pure provider for the [object-name resolver](LOCALIZED_OBJECT_NAME_CONTRACT.md). This is a modern preload policy; automatic locale selection, lazy reads, cache expiry and variant 0 remain deferred.
 
 ```csharp
 var set = LocalizedStringTableSet.Build(paths, resourceResolver,
@@ -45,6 +45,6 @@ Same-thread recursive Build poisons the active build even if the callback or enu
 
 ## Verification and resume boundary
 
-[Native scenarios](../poc/Stardust.Core.SmokeTests/LocalizedStringTableSetScenarios.cs) and the [independent byte oracle](../poc/round26-tests/Assets/verify_preload.py) cover 110 fixtures (seven positive, 103 rejected), all five aggregate and six individual one-less budgets, late malformed tables, full prefix truncation, 21 controlled ownership/cancellation/reentry/enumeration checks and 32 concurrent builds. Exactly two pinned original tables agree for all 97 raw records, IDs, CRCs, UTF-16 units, keys, pass order and aggregate counters. Original text remains private. Prior resolver and STF regressions/oracles pass; [checkpoint and commands](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R26_LOCALIZED_TABLE_PRELOAD.md).
+[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/LocalizedStringTableSetScenarios.cs) and the [independent byte oracle](../../SWG-Godot-Client/poc/round26-tests/Assets/verify_preload.py) cover 110 fixtures (seven positive, 103 rejected), all five aggregate and six individual one-less budgets, late malformed tables, full prefix truncation, 21 controlled ownership/cancellation/reentry/enumeration checks and 32 concurrent builds. Exactly two pinned original tables agree for all 97 raw records, IDs, CRCs, UTF-16 units, keys, pass order and aggregate counters. Original text remains private. Prior resolver and STF regressions/oracles pass; [checkpoint and commands](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R26_LOCALIZED_TABLE_PRELOAD.md).
 
 Next supply an explicit preloaded set to optional name presentation, outside frame callbacks. Locale/config policy, reload/expiry/shared cache ownership and variant 0 need separate specifications.

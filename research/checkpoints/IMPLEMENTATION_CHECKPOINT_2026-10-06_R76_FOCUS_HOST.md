@@ -18,10 +18,10 @@ execution are used. Tools are cached Python, offline .NET8/Godot4.7.2 SDK/packag
 and Godot .NET x64 headless/OpenGL compatibility GPU. No unfinished76 sibling imports.
 
 [Contract](../../docs/TERRAIN_OFFLINE_FOCUS_HOST_CONTRACT.md),
-[host](../../poc/Stardust.Godot/TerrainOfflineFocusHost.cs),
-[Godot verification](../../poc/Stardust.Godot/TerrainOfflineFocusHostVerification.cs),
-[runner](../../poc/round76-tests/Rendering/Invoke-Picker.ps1),
-[oracle](../../poc/round76-tests/Rendering/verify_picker.py).
+[host](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineFocusHost.cs),
+[Godot verification](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineFocusHostVerification.cs),
+[runner](../../../SWG-Godot-Client/poc/round76-tests/Rendering/Invoke-Picker.ps1),
+[oracle](../../../SWG-Godot-Client/poc/round76-tests/Rendering/verify_picker.py).
 
 Invoke the runner with cached Python/dotnet, original executable identity input,
 accepted offline package cache and a fresh ignored RunRoot. It validates the frozen

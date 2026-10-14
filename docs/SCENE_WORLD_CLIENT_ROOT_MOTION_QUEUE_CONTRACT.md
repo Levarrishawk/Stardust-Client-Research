@@ -33,7 +33,7 @@ Dispose is owner-thread/idempotent. It clears retained arrays, drains metadata/c
 
 ## Verification and evidence limits
 
-[Own replay](../poc/round68-tests/Networking/replay.py) computes three fixed identity/half-turn/cyclic native bases through independent Python cross products, then packs expected full62-byte frames with struct before native execution. These representative cases reuse the accepted conversion boundary rather than repeating the prior full quaternion census. They include arbitrary U32 flags/counter/timestamp words, NaN-looking raw timestamp bits and signed-zero native position/speed. Exact complete FIFO arrays are compared independently.
+[Own replay](../../SWG-Godot-Client/poc/round68-tests/Networking/replay.py) computes three fixed identity/half-turn/cyclic native bases through independent Python cross products, then packs expected full62-byte frames with struct before native execution. These representative cases reuse the accepted conversion boundary rather than repeating the prior full quaternion census. They include arbitrary U32 flags/counter/timestamp words, NaN-looking raw timestamp bits and signed-zero native position/speed. Exact complete FIFO arrays are compared independently.
 
 ```powershell
 python poc/round68-tests/Networking/replay.py --output-dir local-private/round68-review-replay

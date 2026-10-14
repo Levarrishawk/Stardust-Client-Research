@@ -2,9 +2,9 @@
 
 October6,2026. Modern caller policy for the offline preview. This is replacement
 Godot behavior, with no claim about original client keys or session semantics.
-[Host source](../poc/Stardust.Godot/TerrainOfflineSessionInputHost.cs),
-[native verification](../poc/Stardust.Godot/TerrainOfflineSessionInputHostVerification.cs),
-[independent model](../poc/round75-tests/Rendering/verify_picker.py).
+[Host source](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineSessionInputHost.cs),
+[native verification](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineSessionInputHostVerification.cs),
+[independent model](../../SWG-Godot-Client/poc/round75-tests/Rendering/verify_picker.py).
 
 ## Admission and actions
 
@@ -64,7 +64,7 @@ owner is created, disposed or advanced by this host.
 
 ## Optional visible controls
 
-[HUD source](../poc/Stardust.Godot/TerrainOfflinePlaygroundHud.cs) retains the exact
+[HUD source](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflinePlaygroundHud.cs) retains the exact
 legacy Configure(Node, Func<State>, CancellationToken = default) signature and
 captions. A new overload requires the first three arguments explicitly:
 

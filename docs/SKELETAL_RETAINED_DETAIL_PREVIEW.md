@@ -2,7 +2,7 @@
 
 ## Bounded behavior
 
-The separate [launcher](../tools/powershell/Invoke-StardustRetainedDetailPreview.ps1) opens a manual retained detail-2/3 inspector. Both original bundles prepare once in one background-owned load. The [Core reader](../poc/Stardust.Core/Assets/RetainedSkeletalDetailBundle.cs) calls existing accepted creature/material/animation readers through a shared source-byte cache. No existing parser, material equation, mesh adapter or asset launcher is changed. The only existing entry-point edit is one `--retained-detail-preview` branch before `--asset-creature`.
+The separate [launcher](../../SWG-Godot-Client/tools/powershell/Invoke-StardustRetainedDetailPreview.ps1) opens a manual retained detail-2/3 inspector. Both original bundles prepare once in one background-owned load. The [Core reader](../../SWG-Godot-Client/poc/Stardust.Core/Assets/RetainedSkeletalDetailBundle.cs) calls existing accepted creature/material/animation readers through a shared source-byte cache. No existing parser, material equation, mesh adapter or asset launcher is changed. The only existing entry-point edit is one `--retained-detail-preview` branch before `--asset-creature`.
 
 Both Godot meshes construct on the main thread after the archives close. Selection samples the destination at the current shared idle-clock frame and toggles visibility. It keeps mesh/material/shader/texture resources and the clock instance; it performs no archive lookup or bundle preparation. Only the visible detail samples during ordinary ticks; activation catches up a hidden detail before making it visible. The two skin bindings explicitly select skeleton level 0 through the existing adapter. Manual selection is a modern diagnostic policy, not recovered automatic LOD scheduling.
 
@@ -26,7 +26,7 @@ Both details use the accepted single-color nodot3 family, palette/albedo factors
 
 ## Validation
 
-The [native runner](../poc/round4-tests/Rendering/Program.cs) directly calls the new Core reader. Original geometry/source/mip counts and external read-once assertions pass. Clearing every resolver payload preserves geometry, sampled idle matrices and decoded mip fingerprints. Twenty negative cases cover source/byte/invalid budgets, pre-cancel without lookup, missing/masked/truncated selected inputs including authored palette, and cancellation during the second detail. Three-byte malformed inputs are synthetic negative fixtures.
+The [native runner](../../SWG-Godot-Client/poc/round4-tests/Rendering/Program.cs) directly calls the new Core reader. Original geometry/source/mip counts and external read-once assertions pass. Clearing every resolver payload preserves geometry, sampled idle matrices and decoded mip fingerprints. Twenty negative cases cover source/byte/invalid budgets, pre-cancel without lookup, missing/masked/truncated selected inputs including authored palette, and cancellation during the second detail. Three-byte malformed inputs are synthetic negative fixtures.
 
 The deterministic Godot fixture advances 480 ticks/two shared idle loops, performs 132 selections, and checks current-frame activation, visibility, direct same-frame pose agreement, pause/focus/resume/scrub/reset signals and teardown. Mesh/material/shader/texture instance IDs, static geometry and (GPU only) mip bytes remain identical before/after each switch. Existing `VerifyBoundary(true)` reads actual surface arrays, material uniforms and full uploaded mip bytes for both details. Headless checks do not claim GPU readback.
 

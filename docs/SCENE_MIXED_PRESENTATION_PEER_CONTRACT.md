@@ -1,6 +1,6 @@
 # Independent mixed presentation observation peer
 
-Round15-N drives the accepted generic `SceneWorldCoordinator` directly and predicts its observations with an independently written Python model. It does not implement or require a presentation consumer, adapter, codec, transport or registry change. The frozen [presentation interface](../poc/Stardust.Core/Session/ISceneWorldObjectPresentation.cs) remains read-only. These observations can later drive a consumer test without conflating resource-attempt freshness and state-incarnation freshness.
+Round15-N drives the accepted generic `SceneWorldCoordinator` directly and predicts its observations with an independently written Python model. It does not implement or require a presentation consumer, adapter, codec, transport or registry change. The frozen [presentation interface](../../SWG-Godot-Client/poc/Stardust.Core/Session/ISceneWorldObjectPresentation.cs) remains read-only. These observations can later drive a consumer test without conflating resource-attempt freshness and state-incarnation freshness.
 
 ## API, inputs and peer shape
 
@@ -10,7 +10,7 @@ SceneMixedPresentationPeerScenarios.Run(
     string bankPath, string peerPath, string exportPath);
 ```
 
-The public entry point is in `Stardust.Core.SmokeTests`; the [standalone runner](../poc/round15-tests/Networking/Networking.csproj) takes those exact six arguments. The [producer/oracle](../poc/round15-tests/Networking/peer_model.py) handpacks application bytes without production encoders and reuses the previously independent [Round14 wire helper](../poc/round14-tests/Networking/peer.py) for a small lifecycle-order framing trace. It does not read C# source or import production codecs. The native fixture is capped at 1 MiB, version 1, seven initial messages and at most 64 scripted actions.
+The public entry point is in `Stardust.Core.SmokeTests`; the [standalone runner](../../SWG-Godot-Client/poc/round15-tests/Networking/Networking.csproj) takes those exact six arguments. The [producer/oracle](../../SWG-Godot-Client/poc/round15-tests/Networking/peer_model.py) handpacks application bytes without production encoders and reuses the previously independent [Round14 wire helper](../../SWG-Godot-Client/poc/round14-tests/Networking/peer.py) for a small lifecycle-order framing trace. It does not read C# source or import production codecs. The native fixture is capped at 1 MiB, version 1, seven initial messages and at most 64 scripted actions.
 
 Peer JSON keys are Version, Label, Applications (key to whole APPLICATION hex), Initial (ordered keys), SessionResponse, Transcript (wire hex deliveries), and Actions (Name, Op, nullable Key/Job). Supported actions are stage, barrier, accept, hold, ack, foreign, complete, poll, fail and close. Held batches and resource completions are local test metadata, not wire fields. Generated peer SHA-256 is `F3923E71D61A5F386E50FBC023D8FB00E9C42BDCC42A7CCFC0BC5B332BD734AB` with deterministic UTF-8/LF output.
 

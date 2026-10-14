@@ -4,7 +4,7 @@ The GroundScene normalized event caller and selected family-1 end-binding edge a
 
 ## Input identity and reproduction
 
-All addresses are VAs in the executable with SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Use [the static verifier](../tools/python/verify_player_controller_input_queue_binding.py) with explicit `--exe`, `--packages`, and a fresh ignored `--receipt`. Run [the independent checks](../poc/round53-tests/Networking/research_checks.py) with explicit `--exe`, `--packages`, and a fresh ignored `--output-dir`. Both hash the executable before relying on VAs; neither executes it or contacts a server.
+All addresses are VAs in the executable with SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Use [the static verifier](../../SWG-Godot-Client/tools/python/verify_player_controller_input_queue_binding.py) with explicit `--exe`, `--packages`, and a fresh ignored `--receipt`. Run [the independent checks](../../SWG-Godot-Client/poc/round53-tests/Networking/research_checks.py) with explicit `--exe`, `--packages`, and a fresh ignored `--output-dir`. Both hash the executable before relying on VAs; neither executes it or contacts a server.
 
 ## Observations and confidence
 

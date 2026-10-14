@@ -1,9 +1,9 @@
 # Offline outcome display owner
 
 October6,2026. Modern noninteractive display over primitive caller-supplied outcome
-state. [Source](../poc/Stardust.Godot/TerrainOfflineOutcomeHud.cs),
-[native verification](../poc/Stardust.Godot/TerrainOfflineOutcomeHudVerification.cs),
-[independent oracle](../poc/round79-tests/Rendering/verify_picker.py).
+state. [Source](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineOutcomeHud.cs),
+[native verification](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineOutcomeHudVerification.cs),
+[independent oracle](../../SWG-Godot-Client/poc/round79-tests/Rendering/verify_picker.py).
 
 ```csharp
 public sealed record TerrainOfflineOutcomeHudState(string Reason,

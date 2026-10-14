@@ -1,6 +1,6 @@
 # Terrain constant-height operation contract
 
-[TerrainHeightConstantOperation](../poc/Stardust.Core/Geometry/TerrainHeightConstantOperation.cs)
+[TerrainHeightConstantOperation](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainHeightConstantOperation.cs)
 applies one immutable [AHCN input](TERRAIN_GENERATOR_INPUT_CONTRACT.md) to explicit
 raw F32 input-height and supplied-influence bits. It implements the recovered
 arithmetic graph and local rule gate with an **explicit** nearest-even software
@@ -151,8 +151,8 @@ was not evaluated to produce original heights. No new corpus sweep occurred.
 
 ## Reproduction and verification
 
-[Native scenarios](../poc/Stardust.Core.SmokeTests/TerrainHeightConstantOperationScenarios.cs)
-and [independent oracle](../poc/round34-tests/Assets/verify_ahcn_operation.py)
+[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainHeightConstantOperationScenarios.cs)
+and [independent oracle](../../SWG-Godot-Client/poc/round34-tests/Assets/verify_ahcn_operation.py)
 pass2763 vectors (2528 accepted/235 rejected), ten batch/ownership/cap/failure
 checks,21 process anchors, five caller anchors, exact jump/constants/error
 string and same original distribution. Build has zero warnings/errors.

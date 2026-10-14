@@ -1,6 +1,6 @@
 # Original human and terminal mixed-world preview
 
-Round14 lead integration, October2,2026. [SceneMixedWorldPreview](../poc/Stardust.Godot/SceneMixedWorldPreview.cs) is a bounded diagnostic over the accepted [generic coordinator](SCENE_MIXED_WORLD_CONTRACT.md), [pure completion gate](SCENE_OBJECT_RESOURCE_VALIDATION_CONTRACT.md), [creature visual](SCENE_CREATURE_VISUAL_CONTRACT.md) and [static visual](SCENE_STATIC_VISUAL_CONTRACT.md).
+Round14 lead integration, October2,2026. [SceneMixedWorldPreview](../../SWG-Godot-Client/poc/Stardust.Godot/SceneMixedWorldPreview.cs) is a bounded diagnostic over the accepted [generic coordinator](SCENE_MIXED_WORLD_CONTRACT.md), [pure completion gate](SCENE_OBJECT_RESOURCE_VALIDATION_CONTRACT.md), [creature visual](SCENE_CREATURE_VISUAL_CONTRACT.md) and [static visual](SCENE_STATIC_VISUAL_CONTRACT.md).
 
 ## Delivery and ownership
 
@@ -28,11 +28,11 @@ Normal close awaits shutdown before quitting. Forced tree/process termination ca
 
 ## Reproduction
 
-Use installed cached .NET8/Python/Godot4.7.2; no downloads. Generate the independent fixture with [Generate-Peer.py](../poc/round14-tests/Integration/Generate-Peer.py) into ignored storage. Run the [native Integration project](../poc/round14-tests/Integration/Integration.csproj) with root, configuration, catalog, locomotion bank, peer JSON and export JSON; run [verify.py](../poc/round14-tests/Integration/verify.py) with peer/export.
+Use installed cached .NET8/Python/Godot4.7.2; no downloads. Generate the independent fixture with [Generate-Peer.py](../../SWG-Godot-Client/poc/round14-tests/Integration/Generate-Peer.py) into ignored storage. Run the [native Integration project](../../SWG-Godot-Client/poc/round14-tests/Integration/Integration.csproj) with root, configuration, catalog, locomotion bank, peer JSON and export JSON; run [verify.py](../../SWG-Godot-Client/poc/round14-tests/Integration/verify.py) with peer/export.
 
-Build the Godot host using its existing SDK cache. [Invoke-StardustMixedWorldPreview.ps1](../poc/Stardust.Godot/Invoke-StardustMixedWorldPreview.ps1) accepts GodotPath, ArchiveRoot, Configuration, FixturePath and CatalogProfile. Default/-Headless runs the bounded lifecycle; -CancelLoad runs real cancellation; -CapturePath requires a fresh private PNG in an existing directory and produces first, -updated and -recreated siblings. Automated windows are hidden with45-second deadlines.
+Build the Godot host using its existing SDK cache. [Invoke-StardustMixedWorldPreview.ps1](../../SWG-Godot-Client/poc/Stardust.Godot/Invoke-StardustMixedWorldPreview.ps1) accepts GodotPath, ArchiveRoot, Configuration, FixturePath and CatalogProfile. Default/-Headless runs the bounded lifecycle; -CancelLoad runs real cancellation; -CapturePath requires a fresh private PNG in an existing directory and produces first, -updated and -recreated siblings. Automated windows are hidden with45-second deadlines.
 
-Run [verify_preview.py](../poc/round14-tests/Integration/verify_preview.py) with GPU log, headless log, cancellation log, first/updated/recreated PNGs. This independently checks state/incarnation/pose/currentness receipts and actor pixels, excluding labels. Primary Main flags are --mixed-world-preview and --scene-static-visual-preview; both were freshly executed headlessly.
+Run [verify_preview.py](../../SWG-Godot-Client/poc/round14-tests/Integration/verify_preview.py) with GPU log, headless log, cancellation log, first/updated/recreated PNGs. This independently checks state/incarnation/pose/currentness receipts and actor pixels, excluding labels. Primary Main flags are --mixed-world-preview and --scene-static-visual-preview; both were freshly executed headlessly.
 
 Shared native flags: --round14-peer PEER EXPORT; --round14-validation ROOT CFG CATALOG BANK; --round14-world ROOT CFG CATALOG BANK PEER EXPORT. Generated peers/logs/captures/source-derived detail stay ignored and are never linked into curated documents. [Integration checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R14_MIXED_WORLD_INTEGRATION.md) records findings/confidence and the resume point.
 
@@ -45,10 +45,10 @@ consumer mode, one factory.Create delegate supplies the bounded core consumer;
 publication transfer, state application, retirement/recreation and acknowledgment
 use that interface. The original read-only archive jobs and camera remain shared.
 
-[Round15 producer](../poc/round15-tests/Integration/Generate-Peer.py) authors a peer
-with different64-bit IDs. The [native join](../poc/round15-tests/Integration/Integration.csproj)
-takes root/config/catalog/bank/peer/export; [native oracle](../poc/round15-tests/Integration/verify.py)
-takes peer/export. The [six-input image/log oracle](../poc/round15-tests/Integration/verify_preview.py)
+[Round15 producer](../../SWG-Godot-Client/poc/round15-tests/Integration/Generate-Peer.py) authors a peer
+with different64-bit IDs. The [native join](../../SWG-Godot-Client/poc/round15-tests/Integration/Integration.csproj)
+takes root/config/catalog/bank/peer/export; [native oracle](../../SWG-Godot-Client/poc/round15-tests/Integration/verify.py)
+takes peer/export. The [six-input image/log oracle](../../SWG-Godot-Client/poc/round15-tests/Integration/verify_preview.py)
 adds generic-consumer markers to the accepted image/state checks. Fresh GPU,
 headless and real archive cancellation pass;14,333 human pixels change while the
 terminal region stays identical and recreation preserves the human. Legacy
@@ -140,15 +140,15 @@ Owned direct-version terrain masks and all nine exact terrain patch patterns pas
 
 ## Round32 accepted world and terrain inputs
 
-The optional `-TangibleView6Peer` / `--tangible6-peer` mode requires normal typed terminal-clock mode and a bounded explicitly synthetic fixture. It seeds TANO6 before both static end barriers and routes its deltas above TANO3/CREO ingress. Six current states, eight guarded events, once-only ownership acknowledgment and post-ack logical accounting pass headless/GPU while retained original resource/geometry/caption/clock checks pass. Supplied IDs have no gameplay target resolution. [Independent joined verifier](../poc/round32-tests/Integration/verify_world.py).
+The optional `-TangibleView6Peer` / `--tangible6-peer` mode requires normal typed terminal-clock mode and a bounded explicitly synthetic fixture. It seeds TANO6 before both static end barriers and routes its deltas above TANO3/CREO ingress. Six current states, eight guarded events, once-only ownership acknowledgment and post-ack logical accounting pass headless/GPU while retained original resource/geometry/caption/clock checks pass. Supplied IDs have no gameplay target resolution. [Independent joined verifier](../../SWG-Godot-Client/poc/round32-tests/Integration/verify_world.py).
 
 ## Round34 creature world and terrain arithmetic
 
-Optional `-CreatureView6Peer` / `--creature6-peer` requires the accepted joined TANO6 clock mode. A bounded synthetic complete human CREO6 seed is queued after CREO3/before end; five ordered scalar/string/pair plans pass six full-model comparisons, twelve assignment events, current-recipient guards, exact ack and post-ack accounting while original publications/transform and prior gates remain retained. [Independent generator/verifier](../poc/round34-tests/Integration/verify_world.py). [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R34_CREATURE_AND_TERRAIN_KERNELS.md).
+Optional `-CreatureView6Peer` / `--creature6-peer` requires the accepted joined TANO6 clock mode. A bounded synthetic complete human CREO6 seed is queued after CREO3/before end; five ordered scalar/string/pair plans pass six full-model comparisons, twelve assignment events, current-recipient guards, exact ack and post-ack accounting while original publications/transform and prior gates remain retained. [Independent generator/verifier](../../SWG-Godot-Client/poc/round34-tests/Integration/verify_world.py). [Combined evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R34_CREATURE_AND_TERRAIN_KERNELS.md).
 
 ## Round36 composite world and terrain boundaries
 
-Optional `-CreatureView6CompositePeer` / `--creature6-composite-peer` requires joined TANO6 mode and rejects simultaneous scalar peer selection. Five mixed scalar/HAM plans pass six full raw models, eleven ordered events, exact current guards/once-only acknowledgment,24-byte pending journal charges and retained original visual/transform/resources in actual headless/GPU. [Independent generator/verifier](../poc/round36-tests/Integration/verify_world.py). Prior scalar mode also passes after the coordinator/host extension. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R36_COMPOSITE_WORLD_AND_TERRAIN_BOUNDARIES.md).
+Optional `-CreatureView6CompositePeer` / `--creature6-composite-peer` requires joined TANO6 mode and rejects simultaneous scalar peer selection. Five mixed scalar/HAM plans pass six full raw models, eleven ordered events, exact current guards/once-only acknowledgment,24-byte pending journal charges and retained original visual/transform/resources in actual headless/GPU. [Independent generator/verifier](../../SWG-Godot-Client/poc/round36-tests/Integration/verify_world.py). Prior scalar mode also passes after the coordinator/host extension. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R36_COMPOSITE_WORLD_AND_TERRAIN_BOUNDARIES.md).
 
 ## Round37 complete creature kernel and supplied terrain
 

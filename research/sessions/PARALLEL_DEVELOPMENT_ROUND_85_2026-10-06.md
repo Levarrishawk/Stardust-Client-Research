@@ -62,7 +62,7 @@ Next bounded slice: join local outbound root movement and authoritative inbound
 corrections to this session and the same selected actor; then protocol disconnect.
 Reuse existing motion stores/codecs/builders, and resolve sender timestamp/cadence
 only through a named blocking decision. Keep CREO1/PLAY and general-zone state as
-explicit remaining gates. [Milestone plan](../../docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md),
-[joined reproduction](../../poc/round85-tests/Integration/README.md) and
+explicit remaining gates. [Milestone plan](../../../SWG-Godot-Client/docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md),
+[joined reproduction](../../../SWG-Godot-Client/poc/round85-tests/Integration/README.md) and
 [controlled-server plan](../../docs/CONTROLLED_SERVER_VALIDATION_PLAN.md).
 Stop here until Levarris authorizes another round.

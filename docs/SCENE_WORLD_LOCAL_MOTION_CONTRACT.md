@@ -1,6 +1,6 @@
 # World local motion driver
 
-R18-R, October 2, 2026. [Driver](../poc/Stardust.Core/Session/SceneWorldLocalMotionDriver.cs) implements the frozen [local driver/state interface](../poc/Stardust.Core/Session/ISceneWorldLocalMotionDriver.cs), reusing [FixedStepActorHost](../poc/Stardust.Core/Assets/FixedStepActorHost.cs) and [PortalActorInputTimeline](../poc/Stardust.Core/Assets/PortalActorInputTimeline.Generic.cs). It is modern planar free movement; no floor, collision, portal permission, original prediction/smoothing, interpolation, protocol codec or engine conversion is claimed.
+R18-R, October 2, 2026. [Driver](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldLocalMotionDriver.cs) implements the frozen [local driver/state interface](../../SWG-Godot-Client/poc/Stardust.Core/Session/ISceneWorldLocalMotionDriver.cs), reusing [FixedStepActorHost](../../SWG-Godot-Client/poc/Stardust.Core/Assets/FixedStepActorHost.cs) and [PortalActorInputTimeline](../../SWG-Godot-Client/poc/Stardust.Core/Assets/PortalActorInputTimeline.Generic.cs). It is modern planar free movement; no floor, collision, portal permission, original prediction/smoothing, interpolation, protocol codec or engine conversion is claimed.
 
 ## Construction and borrowed lifetime
 
@@ -42,7 +42,7 @@ Operational/publication failure latches FaultType and disables local movement. C
 
 Reset validates nonnegative time and the same still-current incarnation, publishes the immutable initial native pose/speed zero, then resets shared clock/input history and clears the driver fault. It never calls motions.Clear: source global revision remains monotonic and unrelated rows/counter history survive. Failed reset cannot revive an old incarnation. Dispose releases private clock/timeline/dependency/publication references, makes State inactive and never closes world or clears any borrowed motion rows. Repeated disposal is harmless; further Submit/Advance/Reset throws ObjectDisposedException.
 
-[Native scenarios](../poc/Stardust.Core.SmokeTests/SceneWorldLocalMotionScenarios.cs) compare three partitions against an independently indexed tick trajectory and common-boundary correction trajectories, test fractional/equal-time keys, pause/stall/history, input bounds/capacity/time atomicity, correction during suspension, Height/resource separation, fault/reset, old/recreated/generation/failed/closed incarnations, owner affinity and borrowed disposal. No asset/resource loading is required. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R18_LOCAL_MOTION.md) records identity/reproduction and the host join.
+[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldLocalMotionScenarios.cs) compare three partitions against an independently indexed tick trajectory and common-boundary correction trajectories, test fractional/equal-time keys, pause/stall/history, input bounds/capacity/time atomicity, correction during suspension, Height/resource separation, fault/reset, old/recreated/generation/failed/closed incarnations, owner affinity and borrowed disposal. No asset/resource loading is required. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R18_LOCAL_MOTION.md) records identity/reproduction and the host join.
 
 ## Round48 compatibility increment
 

@@ -5,9 +5,9 @@ authority resolution or original animation-graph behavior.
 
 ## Timestamped input host
 
-[SceneWorldLocalInputHost](../poc/Stardust.Godot/SceneWorldLocalInputHost.cs) is a
+[SceneWorldLocalInputHost](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldLocalInputHost.cs) is a
 Node against the frozen
-[local driver interface](../poc/Stardust.Core/Session/ISceneWorldLocalMotionDriver.cs).
+[local driver interface](../../SWG-Godot-Client/poc/Stardust.Core/Session/ISceneWorldLocalMotionDriver.cs).
 Construct normally for monotonic `Time.GetTicksUsec`, or inject `Func<long>`.
 Add it to a live parent before `Configure(driver)`. Successful Configure takes
 exclusive driver ownership; invalid null/thread/parent/second configuration
@@ -44,7 +44,7 @@ to the driver; fake-driver proof does not establish those unfinished internals.
 
 ## Creature locomotion wrapper
 
-[SceneWorldLocomotionVisual](../poc/Stardust.Godot/SceneWorldLocomotionVisual.cs)
+[SceneWorldLocomotionVisual](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldLocomotionVisual.cs)
 implements the frozen presentation interface with constructor
 `(SceneWorldCoordinator world, SceneWorldObjectMotionVisual inner,
 ISceneWorldObjectMotionSource motionSource, float runThreshold=4)`.
@@ -83,7 +83,7 @@ remain lead work.
 
 ## Independent proof
 
-[Standalone preview](../poc/Stardust.Godot/SceneWorldLocalInputPreview.cs) dispatches
+[Standalone preview](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldLocalInputPreview.cs) dispatches
 real Godot key events, native focus notifications and tree pause/unpause against
 an injected clock/fake frozen driver. It then uses original human/terminal closures
 and a fake frozen motion source for loaded clip selection. Core clock and separate
@@ -94,9 +94,9 @@ identity and recreation checks from the accepted proof remain exercised.
 Confidence: Confirmed modern host/visual behavior; no actual driver/store/router
 or protocol implementation is inferred.
 
-[Launcher](../poc/round18-tests/Rendering/Launch.ps1) creates a private scene with
+[Launcher](../../SWG-Godot-Client/poc/round18-tests/Rendering/Launch.ps1) creates a private scene with
 headless, fresh GPU capture or real archive cancellation modes. The
-[seven-argument oracle](../poc/round18-tests/Rendering/verify_preview.py) takes three
+[seven-argument oracle](../../SWG-Godot-Client/poc/round18-tests/Rendering/verify_preview.py) takes three
 logs and initial/updated/recreated/motion PNGs; it verifies input/clip receipts,
 independent frame arithmetic, pose coordinates, GPU identity, pixels and cleanup.
 Five roots allocate/dispose; cancellation closes both archive jobs and publishes

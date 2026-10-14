@@ -14,7 +14,7 @@ The actual adapter/picker/Core are frozen accepted66 sources. The final runner e
 
 ## Observations and findings
 
-Confirmed from [actual host source](../../poc/Stardust.Godot/TerrainPointTargetInputHost.cs) and actual execution: Configure is accepted once on constructing/Godot main thread, requires a live exact same-viewport host parent and finite maximumT0..1e9, retains caller references and performs no clock read/query/target admission. The host's parent/viewport are validated by the host; the caller selects the adapter for that viewport, and actual child camera/marker/controller admission occurs on dispatch.
+Confirmed from [actual host source](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainPointTargetInputHost.cs) and actual execution: Configure is accepted once on constructing/Godot main thread, requires a live exact same-viewport host parent and finite maximumT0..1e9, retains caller references and performs no clock read/query/target admission. The host's parent/viewport are validated by the host; the caller selects the adapter for that viewport, and actual child camera/marker/controller admission occurs on dispatch.
 
 Confirmed by Viewport.PushInput: real pressed-left events hit, retarget, miss while retaining the prior target, and use the caller's10000-microsecond clock after one actual controller/driver tick. Released-left, right and motion events reach a later actual unhandled-input observer without clock/attempt/query/selection changes. Successfully admitted events call actual SetInputAsHandled and suppress that observer. Main scenario counts: five accepted/handled events, four hits and one miss.
 
@@ -28,7 +28,7 @@ Confirmed: actual event errors produce a bounded LastFailure and disable further
 
 ## Validation and reproduction
 
-Use the [standalone runner](../../poc/round67-tests/Rendering/Invoke-Picker.ps1) with explicit cached Python/.NET, documented executable and Godot packages plus a fresh ignored private RunRoot. Exact portable command, all ten owned public source hashes and private receipt paths are in the final handoff. The runner pins both accepted baseline artifacts before output/build and stages actual accepted Core separately from the current checkout, so later sibling integration cannot substitute a different controller.
+Use the [standalone runner](../../../SWG-Godot-Client/poc/round67-tests/Rendering/Invoke-Picker.ps1) with explicit cached Python/.NET, documented executable and Godot packages plus a fresh ignored private RunRoot. Exact portable command, all ten owned public source hashes and private receipt paths are in the final handoff. The runner pins both accepted baseline artifacts before output/build and stages actual accepted Core separately from the current checkout, so later sibling integration cannot substitute a different controller.
 
 Final actual build: zero warnings/errors. Headless73 checks and GPU74 checks pass, including20 real viewport events in each mode. Independent oracle compares five actual camera projection/reflection/triangle samples, four hit records, one miss, four exact binary32 target X/Z conversions and fixed scenario-clock expectations. Native assertions separately prove actual issued references and counters. No native hit/target values seed expected geometry or cast coordinates. The original full65 picker corpus was not repeated; its existing behavior is inherited from accepted66.
 

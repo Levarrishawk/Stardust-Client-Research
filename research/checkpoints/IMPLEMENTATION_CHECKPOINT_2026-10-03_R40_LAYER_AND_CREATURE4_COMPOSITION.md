@@ -61,8 +61,8 @@ They are not evidence of complete client, gameplay or live interoperability.
 
 ## Lead join and source-state research
 
-[The public native join](../../poc/round40-tests/Integration/Program.cs) calls the
-actual separate Core API. [Its independent peer](../../poc/round40-tests/Integration/layer_peer.py)
+[The public native join](../../../SWG-Godot-Client/poc/round40-tests/Integration/Program.cs) calls the
+actual separate Core API. [Its independent peer](../../../SWG-Godot-Client/poc/round40-tests/Integration/layer_peer.py)
 reconstructs unspilled circle/rectangle query arithmetic with Fraction/integer
 operations, then derives local/product/height bits, patch indices and barycentric
 queries independently. Native code does not consume Expected fixture fields.
@@ -85,10 +85,10 @@ No guessed runtime descriptor, cache activation or ancestor policy is added.
 
 ## Integration guard reproduction
 
-The existing [workspace helper](../../tools/python/parallel_round_workspace.py)
+The existing [workspace helper](../../../SWG-Godot-Client/tools/python/parallel_round_workspace.py)
 now checks canonical paths/casefold collisions and lexical root/ancestor/target
 links, retains exact reviewed source bytes after complete destination preflight,
-and verifies every copied file afterward. [The private synthetic guard runner](../../poc/round40-tests/Integration/verify_workspace_guards.py)
+and verifies every copied file afterward. [The private synthetic guard runner](../../../SWG-Godot-Client/poc/round40-tests/Integration/verify_workspace_guards.py)
 passes20 checks including a real NTFS junction, linked root, late destination
 conflict and source-byte change before copying; earlier19-check receipt is
 retained privately. This is boundary checking, not an atomic filesystem

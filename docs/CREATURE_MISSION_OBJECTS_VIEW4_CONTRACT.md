@@ -1,10 +1,10 @@
 # CREO4 field13 mission-object set contract
 
-Round41,2026-10-03. [CreatureMissionObjectsView4Codec](../poc/Stardust.Core/Protocol/CreatureMissionObjectsView4Codec.cs) owns ordered field13-only CREO4 deltas for remove0, insert1 and clear2. [CreatureMissionObjectsView4Kernel](../poc/Stardust.Core/Protocol/CreatureMissionObjectsView4Kernel.cs) projects the accepted [complete baseline](CREATURE_VIEW4_BASELINE_AND_SCALARS_CONTRACT.md)'s raw pairs into an immutable set with exact client comparison and counter behavior. Existing [field2](CREATURE_ENCUMBRANCES_VIEW4_CONTRACT.md), [field3](CREATURE_SKILL_MODS_VIEW4_CONTRACT.md) and restricted composition remain frozen; full CREO4 publication is a later milestone.
+Round41,2026-10-03. [CreatureMissionObjectsView4Codec](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/CreatureMissionObjectsView4Codec.cs) owns ordered field13-only CREO4 deltas for remove0, insert1 and clear2. [CreatureMissionObjectsView4Kernel](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/CreatureMissionObjectsView4Kernel.cs) projects the accepted [complete baseline](CREATURE_VIEW4_BASELINE_AND_SCALARS_CONTRACT.md)'s raw pairs into an immutable set with exact client comparison and counter behavior. Existing [field2](CREATURE_ENCUMBRANCES_VIEW4_CONTRACT.md), [field3](CREATURE_SKILL_MODS_VIEW4_CONTRACT.md) and restricted composition remain frozen; full CREO4 publication is a later milestone.
 
 ## Input identity and direct evidence
 
-All VAs refer to SHA256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Identity was checked before static PE/Capstone reads; the original executable was never run. [Static audit](../poc/round41-tests/Networking/static_audit.py) verifies135 exact new instruction anchors plus accepted38's107 prerequisite anchors, fourteen registrations, exact vtable and RTTI. Wrong/truncated images reject before imports/VA use.
+All VAs refer to SHA256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Identity was checked before static PE/Capstone reads; the original executable was never run. [Static audit](../../SWG-Godot-Client/poc/round41-tests/Networking/static_audit.py) verifies135 exact new instruction anchors plus accepted38's107 prerequisite anchors, fourteen registrations, exact vtable and RTTI. Wrong/truncated images reject before imports/VA use.
 
 | Observation | Interpretation / confidence | Compatibility consequence |
 |---|---|---|
@@ -60,7 +60,7 @@ Modern sorted-list lookup charges1 for the first signed-ID comparison and anothe
 
 ## Verification and resume
 
-[Independent Python peer](../poc/round41-tests/Networking/peer.py) constructs literal synthetic wires and independently computes signed full-pair order, duplicate collapse, counters, summaries, work and intermediate capacities. [Native scenarios](../poc/Stardust.Core.SmokeTests/CreatureMissionObjectsView4Scenarios.cs) run an actual separate Core assembly and source-linked standalone. Both pass122 cases,21568 negatives,1976 budget checks and807 ownership/retention checks; identical exports match the independent oracle.
+[Independent Python peer](../../SWG-Godot-Client/poc/round41-tests/Networking/peer.py) constructs literal synthetic wires and independently computes signed full-pair order, duplicate collapse, counters, summaries, work and intermediate capacities. [Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/CreatureMissionObjectsView4Scenarios.cs) run an actual separate Core assembly and source-linked standalone. Both pass122 cases,21568 negatives,1976 budget checks and807 ownership/retention checks; identical exports match the independent oracle.
 
 Coverage includes all commands, clear/duplicate/missing no-ops, both identity parts,100 high/low-bit combinations, signed-order boundaries, raw duplicate snapshots,65536 duplicate seed records,65536 command records, future/stale/partial/wrapped counters, skipped clear, final counter repair, repeated records, intermediate growth/clear, aliases/readonly collections, wrong recipient/revision and late rollback. Small messages test every truncation cut; large records use deterministic sampled cuts. Unknown opcodes3..255 all reject. Exact/one-less aggregate and intermediate message/kernel/seed limits are tested.
 

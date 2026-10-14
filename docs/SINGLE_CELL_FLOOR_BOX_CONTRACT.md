@@ -2,7 +2,7 @@
 
 ## Owned boundary
 
-[SingleCellFloorBoxWalker](../poc/Stardust.Core/Assets/SingleCellFloorBoxWalker.cs) combines the [piecewise trace](FLOOR_PATH_TRACE_CONTRACT.md) and [box sweep](FLOOR_PATH_BOX_SWEEP_CONTRACT.md). It owns a copied floor and collider list, accepts at most 64 immutable boxes, and uses one shared coordinate space for floor, fixed actor axes and collider poses. This is engine-neutral single-cell movement; it does not transfer cells or advance door controllers.
+[SingleCellFloorBoxWalker](../../SWG-Godot-Client/poc/Stardust.Core/Assets/SingleCellFloorBoxWalker.cs) combines the [piecewise trace](FLOOR_PATH_TRACE_CONTRACT.md) and [box sweep](FLOOR_PATH_BOX_SWEEP_CONTRACT.md). It owns a copied floor and collider list, accepts at most 64 immutable boxes, and uses one shared coordinate space for floor, fixed actor axes and collider poses. This is engine-neutral single-cell movement; it does not transfer cells or advance door controllers.
 
 One query captures each collider's permission once, compares earliest global request parameters and preserves input order on exact ties. Invalid starts have no movement and invoke no permission callback. The query retains no mutable actor state, so a callback exception leaves no partial adopted state.
 
@@ -16,7 +16,7 @@ At an initial contact (global parameter zero), the validated source is retained 
 
 ## Verification
 
-[Native tests](../poc/Stardust.Core.SmokeTests/FloorBoxWalkScenarios.cs) verify earliest/tied collision, copied list ownership, once-only policy, repeat stops, inward/outward movement, ramp landing/reverse retreat, traversal limits, invalid starts, callback failure and collider budget. A fixture at coordinates 1,000,000 proves an unrepresentable box landing holds its validated source.
+[Native tests](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/FloorBoxWalkScenarios.cs) verify earliest/tied collision, copied list ownership, once-only policy, repeat stops, inward/outward movement, ramp landing/reverse retreat, traversal limits, invalid starts, callback failure and collider budget. A fixture at coordinates 1,000,000 proves an unrepresentable box landing holds its validated source.
 
 The [independent synthetic verifier](../tools/python/verify_floor_path_boxes.py), with `--with-landings`, checks all 6,000 geometric results plus independently projected float locators, selected triangles, global parameters and fresh-start reuse: **3,102 BoxStopped / 2,898 Accepted**, no unsupported landing in this small-coordinate sample. Synthetic fixture identity remains `1FBCDCC8424605536BCB63EC74BF1482300B0C8410F1D4FA0300C8B0E525E7B7`.
 
@@ -27,7 +27,7 @@ python tools/python/verify_floor_path_boxes.py <private-output-directory> poc/St
 
 ## Original sloped-floor verification — 2026-09-30
 
-[Original-floor verifier](../tools/python/verify_original_floor_boxes.py) selects 600 original floors with accepted multi-triangle sloped requests from the independently audited trace corpus. Obstacles are explicitly synthetic boxes, not recovered floor collision objects. Native trace triangle identities/parameters are inputs from the prior plane/adjacency verification; the collision oracle independently reconstructs plane points, box intervals and float landing constraints. This is not an independent navigator implementation.
+[Original-floor verifier](../../SWG-Godot-Client/tools/python/verify_original_floor_boxes.py) selects 600 original floors with accepted multi-triangle sloped requests from the independently audited trace corpus. Obstacles are explicitly synthetic boxes, not recovered floor collision objects. Native trace triangle identities/parameters are inputs from the prior plane/adjacency verification; the collision oracle independently reconstructs plane points, box intervals and float landing constraints. This is not an independent navigator implementation.
 
 Final results: **480 BoxStopped / 120 Accepted**, all 600 locators reusable. Twenty repeated attempts per fixture (**12,000 queries**) have **zero position drift**. Retreat returns all 530 initially clear/non-overlapping fixtures to their source; 70 genuine InitialOverlap fixtures remain BoxStopped. Twenty-eight contacts require bounded approach-side correction, independently checked against triangle planes, strict barycentric membership, contact-distance and stopping-face budgets. The initial implementation held these 28; an intermediate correction showed tangential creep, resolved by the explicit contact-reuse rule. Large-coordinate precision holds remain tested.
 

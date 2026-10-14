@@ -1,8 +1,8 @@
 # Explicit modern first-curve height consumer
 
-Round 58, 2026-10-04. [TerrainHeightLayerFirstCurveConsumer](../poc/Stardust.Core/Geometry/TerrainHeightLayerFirstCurveConsumer.cs) applies the frozen retained AHFR consumer to an actual supplied [first-curve batch](TERRAIN_FIRST_CURVE_FRACTAL_BATCH_CONTRACT.md) using actual [filtered influence](TERRAIN_HEIGHT_LAYER_FILTERED_INFLUENCE_CONTRACT.md) products. This is an explicitly modern approximation route, with `ModernBinary64LogPowApproximation` and `OriginalNumericParity=false` retained on the result and borrowed approximation samples.
+Round 58, 2026-10-04. [TerrainHeightLayerFirstCurveConsumer](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainHeightLayerFirstCurveConsumer.cs) applies the frozen retained AHFR consumer to an actual supplied [first-curve batch](TERRAIN_FIRST_CURVE_FRACTAL_BATCH_CONTRACT.md) using actual [filtered influence](TERRAIN_HEIGHT_LAYER_FILTERED_INFLUENCE_CONTRACT.md) products. This is an explicitly modern approximation route, with `ModernBinary64LogPowApproximation` and `OriginalNumericParity=false` retained on the result and borrowed approximation samples.
 
-[Native scenarios](../poc/Stardust.Core.SmokeTests/TerrainHeightLayerFirstCurveConsumerScenarios.cs), [independent verifier](../poc/round58-tests/Assets/peer.py), [isolated replay](../poc/round58-tests/Assets/Invoke-SelectedRule.ps1) and [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R58_HEIGHT_LAYER_FIRST_CURVE_CONSUMER.md) document the bounded behavior. Existing strict operational selectors/samplers remain unchanged.
+[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainHeightLayerFirstCurveConsumerScenarios.cs), [independent verifier](../../SWG-Godot-Client/poc/round58-tests/Assets/peer.py), [isolated replay](../../SWG-Godot-Client/poc/round58-tests/Assets/Invoke-SelectedRule.ps1) and [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R58_HEIGHT_LAYER_FIRST_CURVE_CONSUMER.md) document the bounded behavior. Existing strict operational selectors/samplers remain unchanged.
 
 ## API and actual input identity
 

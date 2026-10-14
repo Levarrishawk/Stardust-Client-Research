@@ -31,7 +31,7 @@ Only the existing codec performs wire packing: U16 count5/U32 hash80CE5E46/flags
 
 ## Validation and limits
 
-[Own replay](../poc/round67-tests/Networking/replay.py) independently generates binary32 rows/positions and expected frames before native execution. A symmetric4x4 Jacobi eigenvector quaternion oracle differs from the native trace/max-diagonal algorithm; basis is obtained via vector cross products. Eight stable authored axis/asymmetric/driver frames are whole-byte pinned. Near180 uses exact expected header/position/speed bytes and independent basis equivalence at2e-7, rather than imposing a quaternion-bit/sign claim on two conversions of rounded matrices. Native corroboration tolerance is2e-6 and was not relaxed.
+[Own replay](../../SWG-Godot-Client/poc/round67-tests/Networking/replay.py) independently generates binary32 rows/positions and expected frames before native execution. A symmetric4x4 Jacobi eigenvector quaternion oracle differs from the native trace/max-diagonal algorithm; basis is obtained via vector cross products. Eight stable authored axis/asymmetric/driver frames are whole-byte pinned. Near180 uses exact expected header/position/speed bytes and independent basis equivalence at2e-7, rather than imposing a quaternion-bit/sign claim on two conversions of rounded matrices. Native corroboration tolerance is2e-6 and was not relaxed.
 
 ```powershell
 python poc/round67-tests/Networking/replay.py --output-dir local-private/round67-review-replay

@@ -79,12 +79,12 @@ idle frame zero and retained GPU resource IDs. Capture, cancellation, headless a
 interactive combinations are validated before launch. Interactive controls apply
 the height delta, reset the baseline, or hide the actor.
 
-The independent [state verifier](../poc/round10-tests/Rendering/Verify-State.py)
+The independent [state verifier](../../SWG-Godot-Client/poc/round10-tests/Rendering/Verify-State.py)
 accepts fixture JSON, native log, GPU log, headless log, cancellation log, baseline
 PNG and delta PNG in that order. It verifies the 47-byte create and signed zero,
 delta bytes, scalar raw bits, quaternion cross-product rotation and SRS reflection,
 source identity equality, and foreground pixel/extent growth below UI row 180.
-The [original-source verifier](../poc/round10-tests/Rendering/Verify-Original.py)
+The [original-source verifier](../../SWG-Godot-Client/poc/round10-tests/Rendering/Verify-Original.py)
 independently reads archive bytes and effective priorities for all 37 logged rows.
 Neither verifier executes the original client.
 

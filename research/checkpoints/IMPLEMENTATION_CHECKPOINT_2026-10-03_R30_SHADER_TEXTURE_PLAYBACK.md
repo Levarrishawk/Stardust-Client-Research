@@ -10,7 +10,7 @@ Orientation read START/latest accepted29, status/ledger/unknown terminology, rel
 
 ## Findings and confidence
 
-Confirmed implementation: [contract](../../docs/SHADER_TEXTURE_PLAYBACK_CONTRACT.md) and [adapter](../../poc/Stardust.Core/Runtime/ShaderTexturePlayback.cs) define owned bounded clock/cursors, modern seconds/registration binding, checked adapter revisions, immutable/current publication, explicit global Advance and per-object Service. Same-tick service returns exact existing publication and never redelivers historical nonzero elapsed. Advance preserves last-service/cursor facts while invalidating freshness; divergent objects accumulate independently. Remove/reset/close deterministically retire owned registrations/cursors.
+Confirmed implementation: [contract](../../docs/SHADER_TEXTURE_PLAYBACK_CONTRACT.md) and [adapter](../../../SWG-Godot-Client/poc/Stardust.Core/Runtime/ShaderTexturePlayback.cs) define owned bounded clock/cursors, modern seconds/registration binding, checked adapter revisions, immutable/current publication, explicit global Advance and per-object Service. Same-tick service returns exact existing publication and never redelivers historical nonzero elapsed. Advance preserves last-service/cursor facts while invalidating freshness; divergent objects accumulate independently. Remove/reset/close deterministically retire owned registrations/cursors.
 
 Confirmed failure boundary: accepted clock/cursor APIs remain unchanged. Lead accepted explicit terminal fault after successful underlying registration/service consumption. Cursor catch-up and cursor revision failures close/drain the clock and every cursor, invalidate all publications and make the adapter terminal. Clock diagnostic retains consumed revision/tick; adapter revision stays last success. Pre-consumption clock/adapter/construction failures retain exact state. This is a modern retirement policy, not atomic rollback, original behavior, or a claim that allocation exhaustion is dynamically tested.
 
@@ -20,7 +20,7 @@ Unknown/deferred: original PC24/FISTP parity/first-visible behavior and combined
 
 ## Reproduction and validation
 
-Own [runner](../../poc/round30-tests/Runtime/Runtime.csproj) uses cached packages and NuGetAudit=false, UseSharedCompilation=false, UseAppHost=false. Exact commands from repository root:
+Own [runner](../../../SWG-Godot-Client/poc/round30-tests/Runtime/Runtime.csproj) uses cached packages and NuGetAudit=false, UseSharedCompilation=false, UseAppHost=false. Exact commands from repository root:
 
 ```text
 dotnet restore poc/round30-tests/Runtime/Runtime.csproj --configfile poc/round30-tests/Runtime/NuGet.Config --packages <cached-package-directory> -p:NuGetAudit=false

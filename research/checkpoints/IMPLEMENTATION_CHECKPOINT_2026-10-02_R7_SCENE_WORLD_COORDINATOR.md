@@ -21,7 +21,7 @@ Original configuration SHA-256 22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A
 
 ## Validation and handoff
 
-The [durable contract](../../docs/SCENE_WORLD_COORDINATOR_CONTRACT.md) gives API behavior, boundaries, and reproduction. The isolated [Runtime runner](../../poc/round7-tests/Runtime/Program.cs) takes generated peer JSON; optional original arguments add root/configuration/profile/export. Shared registration requires generating the fixture then passing its parsed dictionary to SceneWorldCoordinatorScenarios.Run(peer); no shared runner edit is included.
+The [durable contract](../../docs/SCENE_WORLD_COORDINATOR_CONTRACT.md) gives API behavior, boundaries, and reproduction. The isolated [Runtime runner](../../../SWG-Godot-Client/poc/round7-tests/Runtime/Program.cs) takes generated peer JSON; optional original arguments add root/configuration/profile/export. Shared registration requires generating the fixture then passing its parsed dictionary to SceneWorldCoordinatorScenarios.Run(peer); no shared runner edit is included.
 
 Passed: isolated build with zero warnings/errors; deterministic native synthetic scenarios including mixed completion failure; original full offline transport/resource slice; independent transcript audit; independent 37-source effective-overlay audit; shared native smoke build and execution. Passed final handoff gates: workspace validator (zero broken links and zero private links), whitespace checks, and snapshot review (exactly 11 assigned additions; no changed accepted public file). HEAD unchanged and index empty. Public documentation contains no private evidence links or bulk output.
 

@@ -1,8 +1,10 @@
 # Stardust Client Research
 
+Godot client implementation, tests and build tooling live in [SWG-Godot-Client](../SWG-Godot-Client/README.md). This repository contains research and its supporting evidence tools. See [the research-only boundary](docs/RESEARCH_ONLY_SCOPE.md).
+
 This repository is the curated, resumable research record for understanding the legacy `Stardust.exe` client well enough to build a clean, native 64-bit replacement that remains compatible with the Stardust/Core3 server and the original client data formats.
 
-It is primarily a research repository, not yet a replacement-client implementation. It contains executable-backed findings, protocol and asset specifications, evidence checkpoints, machine-readable registries, reproducibility tools, and a bounded Godot feasibility proof. Reconstructed behavior is not claimed to be original source code.
+This is a research-only repository. It contains executable-backed findings, protocol and asset specifications, evidence checkpoints, machine-readable registries, and reproducibility tools. Reconstructed behavior is not claimed to be original source code.
 
 > Start with [START_HERE.md](START_HERE.md) for the current status, authoritative metrics, recommended reading order, and latest resume point. Agents must also read [AGENTS.md](AGENTS.md) before changing research artifacts.
 
@@ -32,7 +34,6 @@ Unless a task explicitly expands the scope, this work is static-analysis-only. D
 | [`research/archive/`](research/README.md) | Superseded reports preserved for provenance | Historical record |
 | [`data/curated/`](data/README.md) | Canonical provisional-name and server-packet CSV registries | Machine-readable truth |
 | [`tools/`](tools/README.md) | Python, PowerShell, and Ghidra helpers for reproducible analysis | Verification tooling |
-| [`poc/`](poc/README.md) | Engine-neutral .NET core plus a bounded Godot host proof | Feasibility evidence |
 | `local-private/` | Ghidra state, raw extracts, toolchains, generated corpora, and sensitive inputs | Ignored; never publish |
 
 [WORKSPACE_MANIFEST.md](WORKSPACE_MANIFEST.md) records how the workspace was organized. [WORKSPACE_HYGIENE.md](WORKSPACE_HYGIENE.md) defines retention and maintenance rules. Read [PUBLICATION_GUIDE.md](PUBLICATION_GUIDE.md) before staging a broad change, creating a remote, or publishing anything.
@@ -86,7 +87,7 @@ python .\tools\python\validate_organized_workspace.py .
 
 The validator checks relative links, accidental links into `local-private/`, duplicate provisional addresses, packet-matrix counts, and curated-tree size. Run narrower producer or verification scripts for any generated data you change and report their exact commands and results.
 
-The Godot proof has separate instructions and explicit non-claims in [poc/README.md](poc/README.md) and [poc/POC_RESULTS.md](poc/POC_RESULTS.md). Its synthetic message envelope is not a recovered Stardust protocol implementation.
+The Godot proof has separate instructions and explicit non-claims in [../SWG-Godot-Client/poc/README.md](../SWG-Godot-Client/poc/README.md) and [../SWG-Godot-Client/poc/POC_RESULTS.md](../SWG-Godot-Client/poc/POC_RESULTS.md). Its synthetic message envelope is not a recovered Stardust protocol implementation.
 
 ## Contribution and publication safety
 

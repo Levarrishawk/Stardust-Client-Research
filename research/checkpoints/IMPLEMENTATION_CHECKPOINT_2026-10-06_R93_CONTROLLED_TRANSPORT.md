@@ -16,4 +16,4 @@ Round93 adds an explicit controlled-transport entry over the reusable installati
 
 Next: obtain operator-approved deployment/account access, explicit advertised hostname-to-IPv4 mappings/ports and client version, one existing supported outdoor human with measured CREO3/4/6 limits and original resource identity, and a bounded minimum-readiness scenario. Keep movement disabled unless fresh stamp/ready state, matching validated position and passable floor are established. Then request specific authorization for one bounded controlled attempt. No original executable, real socket, DNS/server contact or live interoperability has been verified. General avatar/customization, nearby actors, full terrain and server-observed authority/release remain open.
 
-[Session](../sessions/PARALLEL_DEVELOPMENT_ROUND_93_2026-10-06.md) and [reproduction](../../docs/CLIENT_REGRESSION_RUNBOOK.md). No packet/address registry changes or restricted activity.
+[Session](../sessions/PARALLEL_DEVELOPMENT_ROUND_93_2026-10-06.md) and [reproduction](../../../SWG-Godot-Client/docs/CLIENT_REGRESSION_RUNBOOK.md). No packet/address registry changes or restricted activity.

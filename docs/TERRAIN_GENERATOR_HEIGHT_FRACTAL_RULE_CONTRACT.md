@@ -2,7 +2,7 @@
 
 Round 53, 2026-10-04. This engine-neutral boundary selects exactly one caller-supplied index in an immutable generator's `Rules` list and binds its typed AHFR/0003 to an exact signed family ID. It does not traverse or activate layers, construct a sampler, read assets, mutate caches, or supply a fallback.
 
-Implementation: [TerrainGeneratorHeightFractalRule](../poc/Stardust.Core/Assets/TerrainGeneratorHeightFractalRule.cs). Reproduction: [isolated runner](../poc/round53-tests/Assets/Invoke-SelectedRule.ps1), [independent oracle](../poc/round53-tests/Assets/peer.py), and [native scenarios](../poc/Stardust.Core.SmokeTests/TerrainGeneratorHeightFractalRuleScenarios.cs). See the [bounded investigation](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R53_ORIGINAL_HEIGHT_FRACTAL_RULE.md), [owned generator](TERRAIN_GENERATOR_INPUT_CONTRACT.md), [family binding](TERRAIN_GENERATOR_FRACTAL_FAMILY_CONTRACT.md), and [AHFR evidence](TERRAIN_HEIGHT_FRACTAL_CONTRACT.md).
+Implementation: [TerrainGeneratorHeightFractalRule](../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainGeneratorHeightFractalRule.cs). Reproduction: [isolated runner](../../SWG-Godot-Client/poc/round53-tests/Assets/Invoke-SelectedRule.ps1), [independent oracle](../../SWG-Godot-Client/poc/round53-tests/Assets/peer.py), and [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainGeneratorHeightFractalRuleScenarios.cs). See the [bounded investigation](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R53_ORIGINAL_HEIGHT_FRACTAL_RULE.md), [owned generator](TERRAIN_GENERATOR_INPUT_CONTRACT.md), [family binding](TERRAIN_GENERATOR_FRACTAL_FAMILY_CONTRACT.md), and [AHFR evidence](TERRAIN_HEIGHT_FRACTAL_CONTRACT.md).
 
 ## Selection and identity
 

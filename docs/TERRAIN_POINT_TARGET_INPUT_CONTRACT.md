@@ -1,6 +1,6 @@
 # Terrain point-target input adapter
 
-[TerrainPointTargetInputAdapter](../poc/Stardust.Godot/TerrainPointTargetInputAdapter.cs) borrows an actual [camera picker](TERRAIN_CAMERA_PICKER_CONTRACT.md) and actual [point-target controller](SCENE_WORLD_TERRAIN_POINT_TARGET_CONTRACT.md) retaining the exact same ray-query reference. It owns managed bounded diagnostics and borrower references only. It creates no terrain, world, motion store, marker, controller or resource job and never disposes a borrower. This is modern replacement behavior; original picking and movement parity remain unproved.
+[TerrainPointTargetInputAdapter](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainPointTargetInputAdapter.cs) borrows an actual [camera picker](TERRAIN_CAMERA_PICKER_CONTRACT.md) and actual [point-target controller](SCENE_WORLD_TERRAIN_POINT_TARGET_CONTRACT.md) retaining the exact same ray-query reference. It owns managed bounded diagnostics and borrower references only. It creates no terrain, world, motion store, marker, controller or resource job and never disposes a borrower. This is modern replacement behavior; original picking and movement parity remain unproved.
 
 ## Admission and API
 
@@ -28,6 +28,6 @@ Dispose is owner-thread guarded, idempotent and drops only adapter borrower refe
 
 ## Reproduction
 
-The [standalone runner](../poc/round66-tests/Rendering/Invoke-Picker.ps1) stages an offline Godot project under a fresh ignored private output root. It pins the documented original executable as input identity only; it never executes it. It uses accepted frozen65/62 synthetic terrain generation, the pinned accepted65 synthetic typed baseline fixture, real camera projection and pressed/released/right/motion events. The [oracle](../poc/round66-tests/Rendering/verify_picker.py) reuses frozen Fraction triangle/projection models and explicitly casts independently expected target X/Z to binary32. Native hit or target values do not seed expectations.
+The [standalone runner](../../SWG-Godot-Client/poc/round66-tests/Rendering/Invoke-Picker.ps1) stages an offline Godot project under a fresh ignored private output root. It pins the documented original executable as input identity only; it never executes it. It uses accepted frozen65/62 synthetic terrain generation, the pinned accepted65 synthetic typed baseline fixture, real camera projection and pressed/released/right/motion events. The [oracle](../../SWG-Godot-Client/poc/round66-tests/Rendering/verify_picker.py) reuses frozen Fraction triangle/projection models and explicitly casts independently expected target X/Z to binary32. Native hit or target values do not seed expectations.
 
 Headless and GPU receipt results, exact tested source hashes and the approved Runtime dependency amendment are recorded in the [Round66 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R66_POINT_TARGET_INPUT.md). GPU marker readback proves a bounded diagnostic marker on synthetic geometry, not original visual or interaction fidelity.

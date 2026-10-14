@@ -24,4 +24,4 @@ Lead approved exact70 METADATA-ONLY amendment: 79 distinct address leads (wrappe
 
 ## Reproduction
 
-Use [the verifier](../tools/python/verify_terrain_shader_lookup_export_boundary.py) and [portable replay](../poc/round70-tests/Assets/Invoke-SelectedRule.ps1) with explicit Python, baseline executable and private static-package paths. Output must be a fresh ignored `local-private/` descendant. Raw export names and detailed metadata remain private. See [round70 checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-06_R70_LOOKUP_EXPORT_BOUNDARY.md).
+Use [the verifier](../../SWG-Godot-Client/tools/python/verify_terrain_shader_lookup_export_boundary.py) and [portable replay](../../SWG-Godot-Client/poc/round70-tests/Assets/Invoke-SelectedRule.ps1) with explicit Python, baseline executable and private static-package paths. Output must be a fresh ignored `local-private/` descendant. Raw export names and detailed metadata remain private. See [round70 checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-06_R70_LOOKUP_EXPORT_BOUNDARY.md).

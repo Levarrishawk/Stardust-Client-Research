@@ -1,6 +1,6 @@
 # Lifecycle-bound creature scalar store
 
-R8-RUNTIME-01, 2026-10-02. [SceneCreatureScalarStore](../poc/Stardust.Core/Session/SceneCreatureScalarStore.cs) binds the accepted [six-scalar delta plan](CREATURE_VIEW3_SCALAR_DELTA_CONTRACT.md) to an accepted [scene registry](SCENE_OBJECT_REGISTRY_CONTRACT.md). It has no baseline decoder, resource loader, engine object, presentation callback, or placement conversion.
+R8-RUNTIME-01, 2026-10-02. [SceneCreatureScalarStore](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneCreatureScalarStore.cs) binds the accepted [six-scalar delta plan](CREATURE_VIEW3_SCALAR_DELTA_CONTRACT.md) to an accepted [scene registry](SCENE_OBJECT_REGISTRY_CONTRACT.md). It has no baseline decoder, resource loader, engine object, presentation callback, or placement conversion.
 
 ## Evidence and policy
 
@@ -30,7 +30,7 @@ The store retains only immutable snapshot/state records, never the input message
 
 ## Validation and reproduction
 
-[Native scenarios](../poc/Stardust.Core.SmokeTests/SceneCreatureScalarStoreScenarios.cs) use independently hand-packed synthetic create/contain/end/destroy APPLICATION messages and an eight-update six-field delta. They test exact bits/order after actual create and after end-baselines/reseed, foreign registry/store, wrong object, absent seed, unsupported/malformed decode-before-apply, immutable snapshots, containment/end/replace/destroy/reset/close retirement, same-ID recreation, capacity reuse/rollback, finite extreme height, nonfinite rejection, checked seed/apply overflow, and a dedicated foreign thread. Synthetic fixtures are not captures or original assets.
+[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneCreatureScalarStoreScenarios.cs) use independently hand-packed synthetic create/contain/end/destroy APPLICATION messages and an eight-update six-field delta. They test exact bits/order after actual create and after end-baselines/reseed, foreign registry/store, wrong object, absent seed, unsupported/malformed decode-before-apply, immutable snapshots, containment/end/replace/destroy/reset/close retirement, same-ID recreation, capacity reuse/rollback, finite extreme height, nonfinite rejection, checked seed/apply overflow, and a dedicated foreign thread. Synthetic fixtures are not captures or original assets.
 
 From the repository, using Python, dotnet 8, a writable temporary APPDATA, and the existing offline package cache:
 

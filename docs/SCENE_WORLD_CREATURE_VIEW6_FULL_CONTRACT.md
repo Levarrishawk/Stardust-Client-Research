@@ -8,7 +8,7 @@ callbacks or establish live interoperability.
 
 ## Policy and public boundary
 
-[SceneWorldCoordinator](../poc/Stardust.Core/Session/SceneWorldCoordinator.cs)
+[SceneWorldCoordinator](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldCoordinator.cs)
 appends optional `SceneWorldCreatureView6FullPolicy` to both public constructors.
 Baseline, full-delta, full-state and full-store limits are explicit copied
 policies. Scalar, scalar/HAM and full CREO6 policies are mutually exclusive;
@@ -43,7 +43,7 @@ Historical journals may acknowledge once while old recipients fail delivery.
 World owner/generation and exact issued batch checks augment store identity;
 immediate delivery additionally requires a current finalized incarnation.
 
-[Full application router](../poc/Stardust.Core/Session/SceneWorldCreatureView6FullApplicationRouter.cs)
+[Full application router](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldCreatureView6FullApplicationRouter.cs)
 owns a bounded ingress copy and borrows world/downstream. It parses exact grammar
 before an optional decoder, captures world attempt/journal stamps, and rejects
 callback mutation, drain/ack attempts, reentry, closure or generation changes
@@ -56,8 +56,8 @@ atomic policy.
 
 ## Original-resource host and verification
 
-[Preview](../poc/Stardust.Godot/ScenePumpedWorldPreview.cs) accepts exclusive
-`--creature6-full-peer`; [launcher](../poc/round16-tests/Integration/Launch.ps1)
+[Preview](../../SWG-Godot-Client/poc/Stardust.Godot/ScenePumpedWorldPreview.cs) accepts exclusive
+`--creature6-full-peer`; [launcher](../../SWG-Godot-Client/poc/round16-tests/Integration/Launch.ps1)
 adds `-CreatureView6FullPeer`. This is a bounded synthetic application peer over
 original loaded human/terminal resources. The complete baseline precedes
 end-baselines. Five plans cover every field, wrap, sparse growth, shrink,
@@ -68,11 +68,11 @@ transforms, names, customization, motion and terminal clock remain retained.
 No update archive reads occur. Headless and GPU builds/runs/readback/resource
 cleanup pass; the private GPU capture was inspected.
 
-[Public world scenarios](../poc/Stardust.Core.SmokeTests/SceneWorldCreatureView6FullScenarios.cs)
-use the actual separate Core assembly. [Independent world peer](../poc/round38-tests/Integration/world_peer.py)
+[Public world scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldCreatureView6FullScenarios.cs)
+use the actual separate Core assembly. [Independent world peer](../../SWG-Godot-Client/poc/round38-tests/Integration/world_peer.py)
 compares97 full sequences and494 events, models/counters/work/peaks, with40
 lifecycle/failure groups, including global other-actor/journal budgets and late
-failure. [Host verifier](../poc/round38-tests/Integration/verify_host.py) derives
+failure. [Host verifier](../../SWG-Godot-Client/poc/round38-tests/Integration/verify_host.py) derives
 expectations from authored synthetic inputs, then invokes the accepted TANO6,
 clock, names and customization gates. No native output generates expectations.
 

@@ -2,7 +2,7 @@
 
 Date: 2026-10-04. This research closes the cell key, finite hit predicate, observed invalidation, and cache-store versus returned-value distinction at `013E7C00`. It does not implement a production noise sampler. The existing [AHFR supplied consumer](TERRAIN_HEIGHT_FRACTAL_CONTRACT.md) and [FFRA supplied consumer](TERRAIN_FILTER_FRACTAL_CONTRACT.md) remain explicitly narrower F32-input APIs.
 
-All addresses are VAs for executable SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. The [verifier](../tools/python/verify_terrain_fractal_sampler.py) checks 230 selected instruction anchors, the six mode targets, four cache-value stores, and exact F32/F64 constants after validating executable identity. The original executable is never run.
+All addresses are VAs for executable SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. The [verifier](../../SWG-Godot-Client/tools/python/verify_terrain_fractal_sampler.py) checks 230 selected instruction anchors, the six mode targets, four cache-value stores, and exact F32/F64 constants after validating executable identity. The original executable is never run.
 
 ## Cell selection and finite hit predicate
 

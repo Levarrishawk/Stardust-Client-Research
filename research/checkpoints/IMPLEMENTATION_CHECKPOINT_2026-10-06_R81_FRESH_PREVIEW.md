@@ -8,7 +8,7 @@ Does each configured Version13 preview expose actual fresh owners, reset state a
 
 Accepted80 public baseline: 4,646 files; sync manifest SHA-256 `b0a66693ebdf2e61fae7eb8c314c671f6393bb37c0b014a90b8ab62a61f1bf4d`, archive SHA-256 `b864d128336891a981c4d254e4637f872db71f3058a95683d41b52e0154099fd`. Frozen round79 full Version13 short and terrain-gap host recipes used explicit original archive/config resources. The archive configuration SHA-256 is `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`. No executable VA claim or original executable execution is involved.
 
-Tools: cached Python, .NET SDK 8.0.300, cached Godot 4.7.2 mono console in headless mode; isolated private project, artifacts and offline package cache. Expected initialization records were generated before each native replay from source-derived policy. The single existing-source edit calls the new partial method at the end of `BeginPointTarget`. See the [durable contract](../../docs/TERRAIN_OFFLINE_FRESH_PREVIEW_CONTRACT.md) and [verifier](../../poc/round81-tests/Runtime/verify_fresh.py).
+Tools: cached Python, .NET SDK 8.0.300, cached Godot 4.7.2 mono console in headless mode; isolated private project, artifacts and offline package cache. Expected initialization records were generated before each native replay from source-derived policy. The single existing-source edit calls the new partial method at the end of `BeginPointTarget`. See the [durable contract](../../docs/TERRAIN_OFFLINE_FRESH_PREVIEW_CONTRACT.md) and [verifier](../../../SWG-Godot-Client/poc/round81-tests/Runtime/verify_fresh.py).
 
 ## Observations and interpretation
 

@@ -4,7 +4,7 @@ This API implements the finite general per-sample combination graph documented i
 
 ## Evidence and supported arithmetic
 
-The executable baseline is SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. The independent [static checker](../poc/round40-tests/Rendering/static_layer.py) checks identity before consuming addresses, rechecks the 58 coordinate prerequisites and 60 layer anchors, adds 41 exact graph anchors and two enabled-getter instructions, and checks both selector tables, three constants and twelve status outcomes. No original execution or original generated-influence comparison occurred.
+The executable baseline is SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. The independent [static checker](../../SWG-Godot-Client/poc/round40-tests/Rendering/static_layer.py) checks identity before consuming addresses, rechecks the 58 coordinate prerequisites and 60 layer anchors, adds 41 exact graph anchors and two enabled-getter instructions, and checks both selector tables, three constants and twelve status outcomes. No original execution or original generated-influence comparison occurred.
 
 **Confirmed observations:** `00B63F44` loads the signed boundary gate at +40; `00B63F78` reads count +18 and `00B63F88` loads the array +14. `00B62F20` reads the local enabled byte +8. `00B63FAF` queries vtable +24. The filter gate at +44 is loaded at `00B64054`, count +24 at `00B6405F`, array +20 at `00B64070`, and query vtable +14 at `00B640B8`. Selector words come from object +14. The general path has special filter-type-five setup at `00B64083..00B6408D`; this is not modeled as a real filter query by the supplied-value API.
 
@@ -22,7 +22,7 @@ Each arithmetic operation uses the explicit caller combination precision and nea
 
 ## Public immutable inputs
 
-[TerrainLayerInfluenceQuery](../poc/Stardust.Core/Geometry/TerrainLayerInfluenceQuery.cs) provides:
+[TerrainLayerInfluenceQuery](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainLayerInfluenceQuery.cs) provides:
 
 ```csharp
 FromRawBits(uint bits, TerrainHeightArithmeticPrecision precision)
@@ -37,7 +37,7 @@ ShapeProjectionBits(uint selectorBits, TerrainHeightArithmeticPrecision combineP
 
 `TerrainLayerInfluenceSample.Create` takes the incoming raw F32 word, boundary/filter spans, signed gates, boundary/filter inversion flags, combination/product precisions and `maximumQueries` (default 256, hard ceiling 4,096). It snapshots both ordered entry collections. Counts derive from their complete lengths and remain distinct from gate positivity and entry enabled state. Gates are retained signed values; inversion flags are normalized booleans. All query references point to immutable retained carriers.
 
-[TerrainLayerInfluence](../poc/Stardust.Core/Geometry/TerrainLayerInfluence.cs) exposes:
+[TerrainLayerInfluence](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainLayerInfluence.cs) exposes:
 
 ```csharp
 TerrainLayerInfluenceReceipt Evaluate(
@@ -91,7 +91,7 @@ A failed create/evaluation/batch call publishes no new result. Earlier results a
 
 ## Verification and remaining work
 
-The independent [Fraction/integer oracle](../poc/round40-tests/Rendering/verify_layer.py) generates synthetic inputs and checks exact receipts through a runner referencing the actual separate Core assembly. It checks all three query/cache/caller/product precisions, all selectors, gate/count/enabled cases, inversions, ordering, exact exits, signed zeros, subnormals, finite overshoot/overflow, budgets, ownership and late failures. The [replay entry point](../poc/round40-tests/Rendering/Invoke-LayerInfluence.ps1) also builds actual Core/SmokeTests and rejects changed/truncated executable identities before decoding or creating fixtures.
+The independent [Fraction/integer oracle](../../SWG-Godot-Client/poc/round40-tests/Rendering/verify_layer.py) generates synthetic inputs and checks exact receipts through a runner referencing the actual separate Core assembly. It checks all three query/cache/caller/product precisions, all selectors, gate/count/enabled cases, inversions, ordering, exact exits, signed zeros, subnormals, finite overshoot/overflow, budgets, ownership and late failures. The [replay entry point](../../SWG-Godot-Client/poc/round40-tests/Rendering/Invoke-LayerInfluence.ps1) also builds actual Core/SmokeTests and rejects changed/truncated executable identities before decoding or creating fixtures.
 
 The [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R40_LAYER_INFLUENCE.md) records final counts, commands and confidence. This scope establishes a conditional combine/product boundary. Real filter queries, transformed boundary runtime state, recursive/cache activation, affector traversal and original generated heights remain open. Next probe: trace one exact original filter query and its inputs/state dependencies before introducing a full layer evaluator.
 

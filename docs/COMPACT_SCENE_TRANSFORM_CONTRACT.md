@@ -56,7 +56,7 @@ The plain header's coordinate-only static parse helper uses `/4` expressions and
 
 Native and independently handpacked Python fixtures match exact complete bytes and DTO values for522 cases: signed coordinate extrema/fractions, endian-sensitive high/zero IDs and counters, parent0, both branch scales and every possible speed/direction byte value in both branches. All19,324 malformed probes reject: every truncated prefix, appended byte, all six count/opcode-byte mutations and two wrong-branch length cases. Caller/output clearing, null encode and parent-zero distinction pass. Tests allocate no external resources or runtime world state.
 
-`CompactSceneTransformScenarios.Run(string peerPath, string exportPath)` is the public smoke entry point. [Runner](../poc/round17-tests/Networking/Networking.csproj) takes those two paths. [Producer/oracle](../poc/round17-tests/Networking/peer.py) has no production-code imports or original inputs. Generated peer SHA-256 is `2FC85EDF2CE45148096E11F0099463D2D36F6CBA59E04B7521D630F94F83ABCA` (UTF-8/LF).
+`CompactSceneTransformScenarios.Run(string peerPath, string exportPath)` is the public smoke entry point. [Runner](../../SWG-Godot-Client/poc/round17-tests/Networking/Networking.csproj) takes those two paths. [Producer/oracle](../../SWG-Godot-Client/poc/round17-tests/Networking/peer.py) has no production-code imports or original inputs. Generated peer SHA-256 is `2FC85EDF2CE45148096E11F0099463D2D36F6CBA59E04B7521D630F94F83ABCA` (UTF-8/LF).
 
 ```powershell
 $python = 'C:/Users/ancie/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe'

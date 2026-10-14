@@ -20,4 +20,4 @@ Initial native passed but peer exact JSON scalar equality rejected original LOCT
 
 ## Resume
 
-[Portable runner](../../poc/round72-tests/Assets/Invoke-SelectedRule.ps1) uses explicit cached/original paths, fresh ignored private evidence and expectations before native. Next question: which external actor basis and application contract consumes the recovered root delta? Define one bounded call-site/evidence slice before gameplay integration. Shared living ledgers/status are reserved for lead reconciliation. Worker is idle after final sealed handoff.
+[Portable runner](../../../SWG-Godot-Client/poc/round72-tests/Assets/Invoke-SelectedRule.ps1) uses explicit cached/original paths, fresh ignored private evidence and expectations before native. Next question: which external actor basis and application contract consumes the recovered root delta? Define one bounded call-site/evidence slice before gameplay integration. Shared living ledgers/status are reserved for lead reconciliation. Worker is idle after final sealed handoff.

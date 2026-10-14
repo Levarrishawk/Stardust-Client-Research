@@ -45,14 +45,14 @@ contact is introduced by evaluating the borrowed owned families.
 
 ## Verification and confidence
 
-[Independent peer](../poc/round52-tests/Integration/family_height_host_peer.py)
+[Independent peer](../../SWG-Godot-Client/poc/round52-tests/Integration/family_height_host_peer.py)
 regenerates one original input with SHA-gated EXE/config/source evidence and
 independent Fraction noise/AHFR arithmetic. It checks400 complete heights
 (196 distinct), exact native positions/indices,16 readback patches and nine
 grounded native/Godot poses in headless and GPU runs, with exact16/16 visual
 cleanup. Expected values are not injected into native height evaluation.
 
-[Negative peer](../poc/round52-tests/Integration/family_height_host_negative_peer.py)
+[Negative peer](../../SWG-Godot-Client/poc/round52-tests/Integration/family_height_host_negative_peer.py)
 checks a synthetic fourth-chunk NaN initial operand after300 successful samples:
 zero terrain-visual allocations, no terrain or movement publication, zero actors
 and drained host state. The original input remains unchanged. The default Core
@@ -78,7 +78,7 @@ queries every unique cell once and disposes one sampler before returning each
 complete immutable patch. Version4 remains the reference route; Versions1–3
 retain their earlier cap and behavior. Version5 shares the524288-byte fixture cap.
 
-The [independent peer](../poc/round53-tests/Integration/original_rule_height_host_peer.py)
+The [independent peer](../../SWG-Godot-Client/poc/round53-tests/Integration/original_rule_height_host_peer.py)
 checks400 actual original-rule heights/retained samples against Fraction and
 reference calculations, four sampler constructions versus400, and logical
 work3412896 versus11473016. Those are deterministic accounting values, not

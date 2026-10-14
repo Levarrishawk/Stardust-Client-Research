@@ -1,6 +1,6 @@
 # Switch-texture frame input bundle
 
-[SwitchTextureFrameBundle](../poc/Stardust.Core/Assets/SwitchTextureFrameBundle.cs) owns every authored SWTS frame DDS input. It is independent of world, engine and cursor state. It reuses the accepted SWTS decoder, `StaticShaderReferences`, DDS decoder and owned source cache; no existing loader policy changes.
+[SwitchTextureFrameBundle](../../SWG-Godot-Client/poc/Stardust.Core/Assets/SwitchTextureFrameBundle.cs) owns every authored SWTS frame DDS input. It is independent of world, engine and cursor state. It reuses the accepted SWTS decoder, `StaticShaderReferences`, DDS decoder and owned source cache; no existing loader policy changes.
 
 ```csharp
 var bundle = SwitchTextureFrameBundle.Load(resolve, shaderPath, shaderSha256,
@@ -63,6 +63,6 @@ The original mission SWTS/base/eight DDS union is10 sources,89,350 bytes. Every 
 
 Each row is computed from its independently decoded mip records, rather than inferred from the aggregate. Each chain is 128x64, 64x32, 32x16, 16x8, 8x4, 4x2, 2x1, 1x1; byte counts are 32,768 + 8,192 + 2,048 + 512 + 128 + 32 + 8 + 4 = 43,692. No terminal bytes are retained. The unchanged source identities and current native/independent per-mip agreement establish these sizes.
 
-[Native scenarios](../poc/Stardust.Core.SmokeTests/SwitchTextureFrameBundleScenarios.cs) and [independent fixtures/oracle](../poc/round28-tests/Assets/verify_frame_bundle.py) pass210 fixtures (eight positive/202 rejected),14 controlled checks and32 concurrent loads. Exact/one-less budgets, aliases/equal-byte distinct paths, count/interval/string/whole-path failures, late missing/masked/malformed data, retained-tail charge, clone immutability, cancellation and reentry are covered. Existing DDS and selected-switch material regressions/oracle pass.
+[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SwitchTextureFrameBundleScenarios.cs) and [independent fixtures/oracle](../../SWG-Godot-Client/poc/round28-tests/Assets/verify_frame_bundle.py) pass210 fixtures (eight positive/202 rejected),14 controlled checks and32 concurrent loads. Exact/one-less budgets, aliases/equal-byte distinct paths, count/interval/string/whole-path failures, late missing/masked/malformed data, retained-tail charge, clone immutability, cancellation and reentry are covered. Existing DDS and selected-switch material regressions/oracle pass.
 
 Next join reviewed frame inputs with an independently validated cursor and a bounded engine adapter. This bundle itself introduces no animation or world-ready transition; original outer clock/x87/rendering parity remains a separate evidence boundary.

@@ -9,9 +9,9 @@ presentation consumer. Success means one bounded consumer can maintain actors
 from generic world publications and change batches, without hardcoded object IDs.
 
 Observation: the [Round 14 report](PARALLEL_DEVELOPMENT_ROUND_14_2026-10-02.md)
-and [mixed preview](../../poc/Stardust.Godot/SceneMixedWorldPreview.cs) show
+and [mixed preview](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneMixedWorldPreview.cs) show
 explicit publication, state application, retirement and recreation for two actors.
-The existing [creature consumer](../../poc/Stardust.Godot/SceneWorldCreatureStatePresentation.cs)
+The existing [creature consumer](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldCreatureStatePresentation.cs)
 remains creature-specific. Confidence: Confirmed by source inspection and the
 accepted Round 14 tests. Consequence: reuse the established coordinator and visual
 adapters; do not introduce another registry or resource scheduler.
@@ -55,7 +55,7 @@ Use deterministic native/fake-adapter cases first. Run the combined original
 human/terminal GPU, headless and real cancellation proof after integration.
 The existing pixel/log oracle takes six arguments: GPU log, headless log,
 cancellation log, and initial/updated/recreated PNGs. This is established by
-[its argument unpacking](../../poc/round14-tests/Integration/verify_preview.py);
+[its argument unpacking](../../../SWG-Godot-Client/poc/round14-tests/Integration/verify_preview.py);
 the earlier session's phrase "seven-input" is an editorial error.
 
 ## Resume procedure

@@ -22,7 +22,7 @@ that before writing, and the lead corrected all assignments against the current
 snapshot. Worker Git HEADs remain their earlier checkout identities; verified
 snapshot bytes are authoritative. No Git mutation was performed by this round.
 
-Lead introduced the frozen [interface](../../poc/Stardust.Core/Session/ISceneWorldObjectPresentation.cs)
+Lead introduced the frozen [interface](../../../SWG-Godot-Client/poc/Stardust.Core/Session/ISceneWorldObjectPresentation.cs)
 before taking that snapshot. This is one explicit preparation addition, not an
 inherited Round14 implementation. Four existing specialists then implemented
 independent scopes at Low reasoning. Their contracts consolidate the evidence:
@@ -111,16 +111,16 @@ mutation occurred. Detailed logs/exports/captures remain ignored/private.
 
 ## Reproduction and remaining scope
 
-[Integration producer](../../poc/round15-tests/Integration/Generate-Peer.py) takes
-one private peer-output path. [Native project](../../poc/round15-tests/Integration/Integration.csproj)
-takes root/config/catalog/bank/peer/export; [native oracle](../../poc/round15-tests/Integration/verify.py)
+[Integration producer](../../../SWG-Godot-Client/poc/round15-tests/Integration/Generate-Peer.py) takes
+one private peer-output path. [Native project](../../../SWG-Godot-Client/poc/round15-tests/Integration/Integration.csproj)
+takes root/config/catalog/bank/peer/export; [native oracle](../../../SWG-Godot-Client/poc/round15-tests/Integration/verify.py)
 takes peer/export. Worker checkpoints specify their producers/runners/oracles.
 
 Build Godot with the existing offline cache and no restore. Use the
-[mixed launcher](../../poc/Stardust.Godot/Invoke-StardustMixedWorldPreview.ps1)
+[mixed launcher](../../../SWG-Godot-Client/poc/Stardust.Godot/Invoke-StardustMixedWorldPreview.ps1)
 with ObjectConsumer plus the existing installed-engine/root/config/fixture/catalog
 arguments. Run separate CapturePath, Headless and CancelLoad modes. The
-[combined oracle](../../poc/round15-tests/Integration/verify_preview.py) takes GPU
+[combined oracle](../../../SWG-Godot-Client/poc/round15-tests/Integration/verify_preview.py) takes GPU
 log, headless log, cancellation log, initial/updated/recreated PNGs. Shared native
 flags are --round15-retention (four inputs), --round15-presentation (four inputs,
 peer/export), and --round15-peer (root/config/catalog/bank/peer/export).

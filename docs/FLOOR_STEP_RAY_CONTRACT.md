@@ -6,7 +6,7 @@
 
 The native query derives a line/triangle interval from three-dimensional barycentric inequalities and a bounded plane-distance condition. Plane distance is at most the smaller of configured strip width and **10 micrometres**; vertical coverage gaps above **one micrometre** reject. Height, reciprocal passable edges, solid membership, no portals, triangle count, supported target containment and canonical landing budgets remain unchanged. No global floor start tolerance changes.
 
-The [independent verifier](../tools/python/verify_floor_step_proposals.py) uses constant-horizontal-coordinate triangle-edge chord cuts in a vertical projection, rather than the native Gram-matrix calculation. It independently checks source edge intersection, target plane/containment, strip connectivity and coverage union. This is modern step policy, not proof of original traversal tolerances.
+The [independent verifier](../../SWG-Godot-Client/tools/python/verify_floor_step_proposals.py) uses constant-horizontal-coordinate triangle-edge chord cuts in a vertical projection, rather than the native Gram-matrix calculation. It independently checks source edge intersection, target plane/containment, strip connectivity and coverage union. This is modern step policy, not proof of original traversal tolerances.
 
 ## Bounded results
 

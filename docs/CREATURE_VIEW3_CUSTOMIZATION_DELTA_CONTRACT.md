@@ -1,6 +1,6 @@
 # CREO view3 customization deltas
 
-Round21 Networking, October3,2026. [Field4 codec](../poc/Stardust.Core/Protocol/CreatureView3CustomizationDeltaCodec.cs) parses an owned ordered field4-only plan using frozen [plan](../poc/Stardust.Core/Protocol/CreatureView3CustomizationDeltaPlan.cs), existing ReplicationEnvelope and ReplicationByteString.Create. It does not decode [inner packed records](PACKED_CUSTOMIZATION_CONTRACT.md), resolve CIDM, apply world state, project appearance or notify a journal. Those boundaries remain separate.
+Round21 Networking, October3,2026. [Field4 codec](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/CreatureView3CustomizationDeltaCodec.cs) parses an owned ordered field4-only plan using frozen [plan](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/CreatureView3CustomizationDeltaPlan.cs), existing ReplicationEnvelope and ReplicationByteString.Create. It does not decode [inner packed records](PACKED_CUSTOMIZATION_CONTRACT.md), resolve CIDM, apply world state, project appearance or notify a journal. Those boundaries remain separate.
 
 ## API
 
@@ -58,7 +58,7 @@ The referenced server char-pointer path can truncate raw embedded NUL; preservat
 
 ## Verification and resume
 
-[Scenario](../poc/Stardust.Core.SmokeTests/CreatureView3CustomizationDeltaScenarios.cs) exposes CreatureView3CustomizationDeltaScenarios.Run(peerPath,exportPath). [Runner](../poc/round21-tests/Networking/Networking.csproj) and [independent producer/oracle](../poc/round21-tests/Networking/peer.py) use synthetic bytes only, with no production-code imports, original assets or live contact.21 exact fixtures cover all-octet/embedded bytes, repeated/empty updates, raw count mismatches, length1/2/254/255/256/65534/65535/65536 and4096 fields.2,098 negative probes cover exhaustive small truncations, boundary/final large prefixes, wrong header/family/view/kind/index, late mixed index, short/extended extents, zero updates, tail bytes and each independent budget/invalid option.8,376 checks verify input/raw/list/output/envelope ownership and inclusive exact caps. Python independently reads bytes and verifies positive receipts and malformed producer fixtures.
+[Scenario](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/CreatureView3CustomizationDeltaScenarios.cs) exposes CreatureView3CustomizationDeltaScenarios.Run(peerPath,exportPath). [Runner](../../SWG-Godot-Client/poc/round21-tests/Networking/Networking.csproj) and [independent producer/oracle](../../SWG-Godot-Client/poc/round21-tests/Networking/peer.py) use synthetic bytes only, with no production-code imports, original assets or live contact.21 exact fixtures cover all-octet/embedded bytes, repeated/empty updates, raw count mismatches, length1/2/254/255/256/65534/65535/65536 and4096 fields.2,098 negative probes cover exhaustive small truncations, boundary/final large prefixes, wrong header/family/view/kind/index, late mixed index, short/extended extents, zero updates, tail bytes and each independent budget/invalid option.8,376 checks verify input/raw/list/output/envelope ownership and inclusive exact caps. Python independently reads bytes and verifies positive receipts and malformed producer fixtures.
 
 ```powershell
 $python = 'C:/Users/ancie/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe'

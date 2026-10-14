@@ -1,6 +1,6 @@
 # Conditional owned seeded noise element
 
-Date: 2026-10-04. The engine-neutral [kernel](../poc/Stardust.Core/Geometry/TerrainSeededNoiseKernel.cs) implements only the immediate two-coordinate element established by the [Round47 seed/noise evidence](TERRAIN_FRACTAL_SEED_NOISE_CONTRACT.md). It does not implement a complete fractal sampler, octaves, coordinate scaling, modes, cache hits, family loading or terrain generation. Original arithmetic-control parity remains Unknown.
+Date: 2026-10-04. The engine-neutral [kernel](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainSeededNoiseKernel.cs) implements only the immediate two-coordinate element established by the [Round47 seed/noise evidence](TERRAIN_FRACTAL_SEED_NOISE_CONTRACT.md). It does not implement a complete fractal sampler, octaves, coordinate scaling, modes, cache hits, family loading or terrain generation. Original arithmetic-control parity remains Unknown.
 
 ## Evidence and controls
 
@@ -32,7 +32,7 @@ Batch output is published only after every query and the final cancellation chec
 
 ## Verification and limits
 
-The [scenarios](../poc/Stardust.Core.SmokeTests/TerrainSeededNoiseKernelScenarios.cs) and [runner](../poc/round48-tests/Rendering/Invoke-Kernel.ps1) compare1155 native cases to the frozen Round47 Fraction/modular-integer oracle;186 deliberately reject. Full table hashes and exact retained rationals/projections compare across independent table/query profiles. Synthetic additions cover negative/zero seeds, signed minimum, large positive seeds, subnormals, signed zero, negative lattice boundaries, invalid domains, modulus rejection and a bounded discovered synthetic zero-gradient seed.24 API negative checks cover precision, seed, budget, cancellation, late failure, foreign-thread use, immutable copy mutation and disposal. Snapshot survival, optional inspection and owner recovery pass.
+The [scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainSeededNoiseKernelScenarios.cs) and [runner](../../SWG-Godot-Client/poc/round48-tests/Rendering/Invoke-Kernel.ps1) compare1155 native cases to the frozen Round47 Fraction/modular-integer oracle;186 deliberately reject. Full table hashes and exact retained rationals/projections compare across independent table/query profiles. Synthetic additions cover negative/zero seeds, signed minimum, large positive seeds, subnormals, signed zero, negative lattice boundaries, invalid domains, modulus rejection and a bounded discovered synthetic zero-gradient seed.24 API negative checks cover precision, seed, budget, cancellation, late failure, foreign-thread use, immutable copy mutation and disposal. Snapshot survival, optional inspection and owner recovery pass.
 
 The actual Core/reference build, default smoke, frozen Round47 seed1004/index/recurrence/static/identity gates, sampler2466, AHFR151 raw/8836 consumers, FFRA152 raw/2326 queries, carrier6354 and filtered1141 regressions pass. Original executable execution count remains zero. Selected original parameters are SHA-gated and derived dynamically into private fixtures only; public sources retain no original seed/payload/table corpus.
 

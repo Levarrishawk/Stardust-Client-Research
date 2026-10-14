@@ -2,7 +2,7 @@
 
 ## Result and scope
 
-[TerrainPatchAssembly](../poc/Stardust.Core/Geometry/TerrainPatchAssembly.cs)
+[TerrainPatchAssembly](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainPatchAssembly.cs)
 closes the integer sample-to-vertex and boundary-to-pattern seam left by
 [accepted topology](TERRAIN_PATCH_TOPOLOGY_CONTRACT.md) and
 [supplied geometry](TERRAIN_PATCH_GEOMETRY_CONTRACT.md). It produces an owned
@@ -111,7 +111,7 @@ All inspection arrays are copies; no engine or mutable global state is retained.
 
 ## Evidence and verification
 
-The [static/native oracle](../poc/round33-tests/Rendering/verify_assembly.py)
+The [static/native oracle](../../SWG-Godot-Client/poc/round33-tests/Rendering/verify_assembly.py)
 SHA-gates before PE/VA use, checks nine table records and 27 instruction sites
 in five ranges. A bounded interpreter evaluates only decoded equality/test
 branches with synthetic integers; it never executes the original client.

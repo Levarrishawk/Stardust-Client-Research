@@ -1,6 +1,6 @@
 # Bounded delta-time texture cursor
 
-Round28 Runtime, 2026-10-03. [DeltaTimeTextureCursor](../poc/Stardust.Core/Runtime/DeltaTimeTextureCursor.cs) implements the local selector shape established by the accepted [SWTS runtime contract](SWITCH_TEXTURE_RUNTIME_CONTRACT.md): zero initial index/accumulator, advance on an exact boundary, repeated subtraction and modulo wrap, retained residual. Numeric safety, counters, ownership and work limits below are modern implementation policy. Original x87 precision/control-word parity and outer clock units remain unverified.
+Round28 Runtime, 2026-10-03. [DeltaTimeTextureCursor](../../SWG-Godot-Client/poc/Stardust.Core/Runtime/DeltaTimeTextureCursor.cs) implements the local selector shape established by the accepted [SWTS runtime contract](SWITCH_TEXTURE_RUNTIME_CONTRACT.md): zero initial index/accumulator, advance on an exact boundary, repeated subtraction and modulo wrap, retained residual. Numeric safety, counters, ownership and work limits below are modern implementation policy. Original x87 precision/control-word parity and outer clock units remain unverified.
 
 ## API and receipts
 
@@ -40,7 +40,7 @@ Invalid delta, exhausted work, checked revision/cumulative overflow and reset ov
 
 ## Evidence and integration limits
 
-[Native scenarios](../poc/Stardust.Core.SmokeTests/DeltaTimeTextureCursorScenarios.cs) pass 870 checks across 36 cases. The [independent Python reference](../poc/round28-tests/Runtime/verify.py) checks 180 operations over [synthetic bit fixtures](../poc/round28-tests/Runtime/ordered-fixtures.json), with exact neighbor/boundary results, count1/8, multiple wraps, extreme/subnormal/maximum floats, full-work acceptance/rejection, rounded residual equality followed by zero, repeated drift/partition differences, invalid constructor/delta inputs, overflow, reset, owner, closed and immutable receipts. Four updates use their entire work budget, including 1,048,576 steps. The oracle performs a bounded reference loop and does not reuse the production admission formula.
+[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/DeltaTimeTextureCursorScenarios.cs) pass 870 checks across 36 cases. The [independent Python reference](../../SWG-Godot-Client/poc/round28-tests/Runtime/verify.py) checks 180 operations over [synthetic bit fixtures](../../SWG-Godot-Client/poc/round28-tests/Runtime/ordered-fixtures.json), with exact neighbor/boundary results, count1/8, multiple wraps, extreme/subnormal/maximum floats, full-work acceptance/rejection, rounded residual equality followed by zero, repeated drift/partition differences, invalid constructor/delta inputs, overflow, reset, owner, closed and immutable receipts. Four updates use their entire work budget, including 1,048,576 steps. The oracle performs a bounded reference loop and does not reuse the production admission formula.
 
 Confirmed: modern implementation and deterministic fixture outputs. Correlation only: terminal frame count8/interval bits from accepted static research. Unknown: outer scheduler units, pause/culling/thread and first-visible-frame behavior, original floating-point control word and original numerical parity. No original executable or assets run/load. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R28_DELTA_TIME_TEXTURE_CURSOR.md).
 

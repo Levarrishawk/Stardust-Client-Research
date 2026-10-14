@@ -20,7 +20,7 @@ Native route:2,880 ticks,24 transfers,182 blocked contacts; every recorded locat
 
 ## Reproduction and validation
 
-Native command: `dotnet run --no-restore --project poc/Stardust.Core.SmokeTests -- --original-interior-generated-character <archive-root> --configuration <cfg> --scene-spec <spec> --expected-sha256 <spec-pin>`. Run from repository root; explicit authored values come from [human face profile](../../poc/preview-profiles/human-face-zero.json).
+Native command: `dotnet run --no-restore --project poc/Stardust.Core.SmokeTests -- --original-interior-generated-character <archive-root> --configuration <cfg> --scene-spec <spec> --expected-sha256 <spec-pin>`. Run from repository root; explicit authored values come from [human face profile](../../../SWG-Godot-Client/poc/preview-profiles/human-face-zero.json).
 
 Independent command: `python tools/python/verify_original_interior_sphere.py <archive-root> <cfg> <native-output> --configuration-sha256 <configuration-pin>`. It reuses the raw face resource/preparation/program/composition/binding and albedo auditors, checks all source identities/counts and single external reads, and retains the room/character/floor audits.
 

@@ -1,6 +1,6 @@
 # Supplied current-height FHGT layer sequence
 
-[TerrainSuppliedHeightFilteredSequence](../poc/Stardust.Core/Geometry/TerrainSuppliedHeightFilteredSequence.cs) provides a bounded, engine-neutral **modern supplied flat sequence**. Each layer queries its enabled FHGT filters against the height left by earlier layers, then delegates combination and AHCN mutation to the accepted frozen evaluators. It accepts explicit nearest-even 24/53/64 query, combination, incoming-product and affector precisions. Original active controls remain Unknown. The [Round 43 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R43_HEIGHT_FILTERED_SEQUENCE.md) records reproduction and acceptance evidence.
+[TerrainSuppliedHeightFilteredSequence](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainSuppliedHeightFilteredSequence.cs) provides a bounded, engine-neutral **modern supplied flat sequence**. Each layer queries its enabled FHGT filters against the height left by earlier layers, then delegates combination and AHCN mutation to the accepted frozen evaluators. It accepts explicit nearest-even 24/53/64 query, combination, incoming-product and affector precisions. Original active controls remain Unknown. The [Round 43 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R43_HEIGHT_FILTERED_SEQUENCE.md) records reproduction and acceptance evidence.
 
 ## Evidence and interpretation
 
@@ -49,7 +49,7 @@ Configuration validation reuses the frozen empty-batch validator and may allocat
 
 ## Verification and remaining scope
 
-The [offline runner](../poc/round43-tests/Rendering/Invoke-HeightFilteredSequence.ps1) builds the actual Core project reference and [native scenarios](../poc/Stardust.Core.SmokeTests/TerrainSuppliedHeightFilteredSequenceScenarios.cs), then compares complete results with the [independent Fraction verifier](../poc/round43-tests/Rendering/verify_filtered.py). Final replay: 1141 new cases, 1088 accepted and 53 rejected, 50 ownership/cap/atomicity checks; all 6354 frozen carrier cases and 53 ownership checks still pass. There are 407 stale-initial-height receipt witnesses (326 change final height) and 87 premature-projection receipt witnesses (22 change final height). All four profiles are crossed independently. Fixtures are explicitly synthetic; they cover old FHGT versions, selectors, gates/inversions, unused nonfinite inputs, early zero, exact/one-less reservations, batch aggregates, aliases, empty plans and late failure.
+The [offline runner](../../SWG-Godot-Client/poc/round43-tests/Rendering/Invoke-HeightFilteredSequence.ps1) builds the actual Core project reference and [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainSuppliedHeightFilteredSequenceScenarios.cs), then compares complete results with the [independent Fraction verifier](../../SWG-Godot-Client/poc/round43-tests/Rendering/verify_filtered.py). Final replay: 1141 new cases, 1088 accepted and 53 rejected, 50 ownership/cap/atomicity checks; all 6354 frozen carrier cases and 53 ownership checks still pass. There are 407 stale-initial-height receipt witnesses (326 change final height) and 87 premature-projection receipt witnesses (22 change final height). All four profiles are crossed independently. Fixtures are explicitly synthetic; they cover old FHGT versions, selectors, gates/inversions, unused nonfinite inputs, early zero, exact/one-less reservations, batch aggregates, aliases, empty plans and late failure.
 
 Static checks reverify the accepted layer graph, 90 FHGT instruction anchors plus five current-height/caller anchors and 18 finite-status cases, and AHCN's process/caller/store graph. Actual separate Core/SmokeTests also builds with zero warnings/errors. Mutated and truncated executable identities reject before decoder loading or fixture/receipt creation. No original executable, server, network, GPU or generated terrain evaluation runs.
 
@@ -57,7 +57,7 @@ Unknown: original active floating controls, original complete generator traversa
 
 ## Round43 integration
 
-The lead [native geometry join](../poc/round43-tests/Integration/Program.cs) independently passes nine profiles/3600 samples/144 patches/576 queries, including758 stale-initial influence witnesses. This join is synthetic and native-only; the GPU host still uses the accepted41 supplied three-rule terrain.
+The lead [native geometry join](../../SWG-Godot-Client/poc/round43-tests/Integration/Program.cs) independently passes nine profiles/3600 samples/144 patches/576 queries, including758 stale-initial influence witnesses. This join is synthetic and native-only; the GPU host still uses the accepted41 supplied three-rule terrain.
 
 ## Round45 accepted compatibility increment
 

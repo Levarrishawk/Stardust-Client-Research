@@ -1,7 +1,7 @@
 # Replacement launch profile and preparation
 
-The engine-neutral [profile codec](../poc/Stardust.Core/Configuration/ReplacementLaunchProfile.cs)
-and [preparation owner](../poc/Stardust.Core/Configuration/ReplacementLaunchPreparation.cs)
+The engine-neutral [profile codec](../../SWG-Godot-Client/poc/Stardust.Core/Configuration/ReplacementLaunchProfile.cs)
+and [preparation owner](../../SWG-Godot-Client/poc/Stardust.Core/Configuration/ReplacementLaunchPreparation.cs)
 assemble explicit installation inputs and the accepted
 [installed creature preparation](INSTALLED_CREATURE_PREPARATION_CONTRACT.md).
 They require no historical argument vector or manually supplied hashes. This is
@@ -101,7 +101,7 @@ Profiles contain physical paths and should be persisted privately by the caller.
 
 ## Reproduction and verification
 
-The [self-contained test project](../poc/round88-tests/Assets/Assets.csproj) uses the
+The [self-contained test project](../../SWG-Godot-Client/poc/round88-tests/Assets/Assets.csproj) uses the
 sealed Round84 authored fixture producer and original hash oracle. Default tests
 need no original inputs. The required CLI is:
 

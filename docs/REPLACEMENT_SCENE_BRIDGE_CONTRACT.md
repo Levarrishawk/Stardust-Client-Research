@@ -4,7 +4,7 @@ Round86 adds optional borrowed `ReplacementPlayerMotionSession? playerMotion = n
 
 ## Question, scope and evidence
 
-Can accepted login/zone application delivery bind one selected world generation, preserve staged lifecycle order, and emit one ready only after an explicit asynchronous minimum-resource provider succeeds? The bounded [ReplacementSceneBridge](../poc/Stardust.Core/Session/ReplacementSceneBridge.cs) does that using the existing SceneWorldCoordinator. It borrows session/world and owns only its minimum-resource job/cancellation. No Godot, terrain decoding, port or world implementation is added.
+Can accepted login/zone application delivery bind one selected world generation, preserve staged lifecycle order, and emit one ready only after an explicit asynchronous minimum-resource provider succeeds? The bounded [ReplacementSceneBridge](../../SWG-Godot-Client/poc/Stardust.Core/Session/ReplacementSceneBridge.cs) does that using the existing SceneWorldCoordinator. It borrows session/world and owns only its minimum-resource job/cancellation. No Godot, terrain decoding, port or world implementation is added.
 
 Confirmed on 2026-10-06: an independently authored in-memory login/zone transcript reaches a matching valid CmdStartScene, stages create/opaque CREO/end-baselines while resources are delayed, then replays those messages and produces one exact protected header-only CmdSceneReady at sequence2. The baseline fixture establishes an opaque envelope, not typed CREO field semantics or a complete player baseline. No visual resource loader is called by these tests. Original-resource publication and live compatibility remain unverified by this component task.
 
@@ -47,7 +47,7 @@ Normal Dispose is idempotent: cancel the owned job and expose DrainCompletion, w
 
 ## Independent tests and reproduction
 
-The [test project](../poc/round84-tests/Runtime/Runtime.csproj) references actual Core directly. [Fixture author](../poc/round84-tests/Runtime/fixtures.py) reuses the accepted83 login author and independent Python SOE peer, then independently packs valid world lifecycle bytes. It writes fresh private JSON and a separate accepted83 base fixture. [Verifier](../poc/round84-tests/Runtime/verify.py) compares the one ready wire against independent seeded CRC/selector framing and sequence2. No unpublished sibling component is imported.
+The [test project](../../SWG-Godot-Client/poc/round84-tests/Runtime/Runtime.csproj) references actual Core directly. [Fixture author](../../SWG-Godot-Client/poc/round84-tests/Runtime/fixtures.py) reuses the accepted83 login author and independent Python SOE peer, then independently packs valid world lifecycle bytes. It writes fresh private JSON and a separate accepted83 base fixture. [Verifier](../../SWG-Godot-Client/poc/round84-tests/Runtime/verify.py) compares the one ready wire against independent seeded CRC/selector framing and sequence2. No unpublished sibling component is imported.
 
 ```powershell
 python poc/round84-tests/Runtime/fixtures.py --out <fresh-private-fixture.json>

@@ -1,6 +1,6 @@
 # Creature appearance customization ingress
 
-Round19 Networking, October2,2026. The exact replication envelope and field4 byte storage are already established in the [schema map](REPLICATION_SCHEMA_MAP.md), [tangible checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-15_TANGIBLE_VIEW3_REPLICATION.md) and [CREO baseline codec](../poc/Stardust.Core/Protocol/CreatureView3BaselineCodec.cs). This investigation connects those boundaries to the original packed-data reader and identifies the remaining typed-value bridge. It adds no production decoder or original player values.
+Round19 Networking, October2,2026. The exact replication envelope and field4 byte storage are already established in the [schema map](REPLICATION_SCHEMA_MAP.md), [tangible checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-15_TANGIBLE_VIEW3_REPLICATION.md) and [CREO baseline codec](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/CreatureView3BaselineCodec.cs). This investigation connects those boundaries to the original packed-data reader and identifies the remaining typed-value bridge. It adds no production decoder or original player values.
 
 ## Outer wire and current storage
 
@@ -63,7 +63,7 @@ Source hashes and baseline/tool identities are recorded in the [checkpoint](../r
 
 ## Verification and next probe
 
-[Owned synthetic runner](../poc/round19-tests/Networking/Networking.csproj) and [independent producer/oracle](../poc/round19-tests/Networking/peer.py) exercise the existing production outer codecs, with no duplicated inner parser. Six cases cover empty, escaped inspection bytes, embedded zero/high/invalid-escape bytes, all256 octets, extended-small and extended-empty. Exact CREO baseline round trips, copied input/output clearing, opaque delta/TANO round trips and947 truncation/tail/string-budget/unsupported-field probes pass. These tests prove outer preservation, not original inner execution or a typed TANO parser.
+[Owned synthetic runner](../../SWG-Godot-Client/poc/round19-tests/Networking/Networking.csproj) and [independent producer/oracle](../../SWG-Godot-Client/poc/round19-tests/Networking/peer.py) exercise the existing production outer codecs, with no duplicated inner parser. Six cases cover empty, escaped inspection bytes, embedded zero/high/invalid-escape bytes, all256 octets, extended-small and extended-empty. Exact CREO baseline round trips, copied input/output clearing, opaque delta/TANO round trips and947 truncation/tail/string-budget/unsupported-field probes pass. These tests prove outer preservation, not original inner execution or a typed TANO parser.
 
 ```powershell
 $python = 'C:/Users/ancie/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe'

@@ -2,7 +2,7 @@
 
 ## Bounded behavior
 
-[PortalDoorBoxFloorWalker](../poc/Stardust.Core/Assets/PortalDoorBoxFloorWalker.cs) adapts the [precise portal box query](PORTAL_FLOOR_BOX_CONTRACT.md) to directional permission barriers and borrowed physical leaf controllers. `PortalDoorActorSimulation(usePreciseMovement: true)` selects it; the existing level adapter remains the default.
+[PortalDoorBoxFloorWalker](../../SWG-Godot-Client/poc/Stardust.Core/Assets/PortalDoorBoxFloorWalker.cs) adapts the [precise portal box query](PORTAL_FLOOR_BOX_CONTRACT.md) to directional permission barriers and borrowed physical leaf controllers. `PortalDoorActorSimulation(usePreciseMovement: true)` selects it; the existing level adapter remains the default.
 
 Observation: source and target triangle-plane paths determine actor height before collision. Interpretation: conservative actor boxes can now traverse a connected sloped doorway without replacing the path by its endpoint chord. Confidence: Confirmed deterministic fixtures and original geometry comparison. Consequence: retain physical collision and floor ownership on both sides of a seam. This remains one transfer per request, with no sliding, gravity or general world obstacles.
 
@@ -18,7 +18,7 @@ The selected YT-2400 floor corridor is cell 1/portal 0 ↔ cell 2/portal 0. Inpu
 | `appearance/yt2400_door.apt` | `1AA816E4162BC5C39B5D929794BAE30290441171CD09499C485A14FA10F7B84C` |
 | Door table | `C4C572DEBD51DC9D77E57E7D5A8D6741A01A03CAF00BF31601180A05551536B7` |
 
-The forward 1.6 m lane gains approximately 0.124684 m in height. [Independent verification](../tools/python/verify_persistent_door_actor.py) with `--precise` uses [original triangle-edge/plane geometry](../tools/python/precise_door_actor_reference.py), float ABI portal handoff, rotated box intervals and bounded contact output checks. It consumes neither native traces nor native parsers. The selected continuous floor sheet is a prerequisite; nearest-height selection is not proof of navigation across arbitrary stacked floors.
+The forward 1.6 m lane gains approximately 0.124684 m in height. [Independent verification](../../SWG-Godot-Client/tools/python/verify_persistent_door_actor.py) with `--precise` uses [original triangle-edge/plane geometry](../../SWG-Godot-Client/tools/python/precise_door_actor_reference.py), float ABI portal handoff, rotated box intervals and bounded contact output checks. It consumes neither native traces nor native parsers. The selected continuous floor sheet is a prerequisite; nearest-height selection is not proof of navigation across arbitrary stacked floors.
 
 Two owner poses per starting direction yield **1,896 ticks, 88 transfers and 53 blocked ticks**: 948/44/27 starting in cell 1 and 948/44/26 starting in cell 2. Exact status, contact kind, owner and transfer counts match; positions and parameters retain the prior small numerical comparison budgets. Denied/unknown entry, retreat, recovery, repeated round trips and reset are included. The unchanged level cantina reference passes 948/44/34.
 

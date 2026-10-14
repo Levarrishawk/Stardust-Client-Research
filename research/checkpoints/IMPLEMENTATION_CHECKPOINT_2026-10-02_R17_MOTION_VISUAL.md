@@ -30,7 +30,7 @@ Existing certificate-store startup diagnostic remains nonfatal.
 
 ## Findings and compatibility consequences
 
-Observation: [wrapper](../../poc/Stardust.Godot/SceneWorldObjectMotionVisual.cs)
+Observation: [wrapper](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldObjectMotionVisual.cs)
 checks initial identity/motion/Height before owning inner, borrows world/source,
 uses current resource/incarnation/state, converts native pose using accepted
 Z reflection, and derives Height once from the unscaled pose. Null/stale/foreign
@@ -105,18 +105,18 @@ files, zero broken/private links,2,602 provisional rows with zero duplicates,
 and sizes remain unchanged; exactly12 allowed additions, index empty and checkout
 HEAD unchanged. Detailed receipts/logs/captures and scope receipt remain ignored.
 
-Exact additions: [wrapper](../../poc/Stardust.Godot/SceneWorldObjectMotionVisual.cs),
-[preview](../../poc/Stardust.Godot/SceneWorldObjectMotionVisualPreview.cs),
+Exact additions: [wrapper](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldObjectMotionVisual.cs),
+[preview](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldObjectMotionVisualPreview.cs),
 [contract](../../docs/SCENE_WORLD_OBJECT_MOTION_VISUAL_CONTRACT.md), this checkpoint,
 and own Rendering files:
-[Generate-Peer.py](../../poc/round17-tests/Rendering/Generate-Peer.py),
-[Launch.ps1](../../poc/round17-tests/Rendering/Launch.ps1),
-[NuGet.Config](../../poc/round17-tests/Rendering/NuGet.Config),
-[Program.cs](../../poc/round17-tests/Rendering/Program.cs),
-[Rendering.csproj](../../poc/round17-tests/Rendering/Rendering.csproj),
-[Verify-Launch.ps1](../../poc/round17-tests/Rendering/Verify-Launch.ps1),
-[verify.py](../../poc/round17-tests/Rendering/verify.py),
-[verify_preview.py](../../poc/round17-tests/Rendering/verify_preview.py).
+[Generate-Peer.py](../../../SWG-Godot-Client/poc/round17-tests/Rendering/Generate-Peer.py),
+[Launch.ps1](../../../SWG-Godot-Client/poc/round17-tests/Rendering/Launch.ps1),
+[NuGet.Config](../../../SWG-Godot-Client/poc/round17-tests/Rendering/NuGet.Config),
+[Program.cs](../../../SWG-Godot-Client/poc/round17-tests/Rendering/Program.cs),
+[Rendering.csproj](../../../SWG-Godot-Client/poc/round17-tests/Rendering/Rendering.csproj),
+[Verify-Launch.ps1](../../../SWG-Godot-Client/poc/round17-tests/Rendering/Verify-Launch.ps1),
+[verify.py](../../../SWG-Godot-Client/poc/round17-tests/Rendering/verify.py),
+[verify_preview.py](../../../SWG-Godot-Client/poc/round17-tests/Rendering/verify_preview.py).
 
 ## Limits and next action
 

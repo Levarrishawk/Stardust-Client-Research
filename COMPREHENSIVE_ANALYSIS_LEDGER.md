@@ -1,5 +1,9 @@
 # Comprehensive Client Analysis Ledger
 
+2026-10-14 research-only cleanup: removed the duplicate Core/Godot prototype, its tests, launch/build tooling and prototype-dependent verifier copies. Research specifications, registries and dated evidence remain. Implementation and dependent verification now run from [SWG-Godot-Client](../SWG-Godot-Client/README.md). Historical development status below is retained for provenance, not current authorization. [Scope and reproduction](docs/RESEARCH_ONLY_SCOPE.md). Coverage metrics are unchanged.
+
+2026-10-14 repository separation: [SWG-Godot-Client](../SWG-Godot-Client/README.md) is the active Core/Godot implementation home. Imported the current working tree, including uncommitted ordered-slope work, while retaining this research repository and separate NGE changes. All40 default offline suites, the Godot/Core build and five relocated-export checks pass; frozen package hashes remain unchanged. No fresh GPU acceptance, original execution, live contact, commit or push. [Reproducible handoff](../SWG-Godot-Client/docs/HANDOFF.md). Research/function/protocol counts unchanged.
+
 Current development position (2026-10-07): [Round93](research/sessions/PARALLEL_DEVELOPMENT_ROUND_93_2026-10-06.md). Round93 adds an explicit controlled-transport entry over the reusable installation/application/Godot host and a bounded redacted attempt receipt written after actual local drain or startup rollback. Default startup still refuses contact. Offline native headless/GPU replay verifies the same strict admission/composition with mandatory synthetic spy ports, protected exchanges, one approved original human, bounded movement, deadlines and disconnect. Run, cleanup, rollback and diagnostic failures remain distinct; standalone quit follows ownership completion. The real UDP constructor branch is compiled and source-reviewed, never executed. Next: obtain operator-approved deployment/account access, explicit advertised hostname-to-IPv4 mappings/ports and client version, one existing supported outdoor human with measured CREO3/4/6 limits and original resource identity, and a bounded minimum-readiness scenario. Keep movement disabled unless fresh stamp/ready state, matching validated position and passable floor are established. Then request specific authorization for one bounded controlled attempt. No original executable, real socket, DNS/server contact or live interoperability has been verified. General avatar/customization, nearby actors, full terrain and server-observed authority/release remain open. Research/registry/packet scores unchanged; dated history below preserved.
 
 Updated: 2026-09-25 measurement note; historical entries below retained unchanged
@@ -1579,7 +1583,7 @@ zlib-trailer acceptance defect led to shared header/Adler validation. This is
 implementation progress; no research rescore, executable naming, packet matrix,
 or curated registry change is claimed. No live server or original executable
 was run. See the [session](research/sessions/IMPLEMENTATION_SESSION_2026-09-29_ONE_HOUR.md)
-and [acceptance gates](docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
+and [acceptance gates](../SWG-Godot-Client/docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
 
 ### Status observation boundary (2026-09-29)
 
@@ -2884,12 +2888,202 @@ The [acceleration plan](docs/NGE_SOURCE_ACCELERATION_PLAN.md) sets Windows x64/D
 
 ## 2026-10-12: Runnable x64 DirectX 12 original character
 
-One explicitly requested Sol 6.1 High implementation worker delivered the [self-contained offline character build](docs/DX12_OFFLINE_CLIENT_RUNBOOK.md), with no-argument resource preparation, actual x64/D3D12 admission, original idle animation and a reproducible private export. Lead independently ran all22 existing default offline suites (after retaining the sandbox working-directory failure and rerunning with necessary process access), replayed the final exported animation, inspected the image and compared character-only pixel changes, verified explicit headless DX12 rejection, and hash-checked all193 delivery files. Eight exported positive/negative cases pass. The delivered process loads its bundled coreclr/hostfxr and DX12 modules. Initial missing-solution export failure and official-package hash reconciliation are retained in the [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_CLIENT.md). No legacy executable or live server was run; no research/address/packet counts changed. Generated facial texture, equipment, terrain and live gameplay remain open. Next: source-guided terrain numerical implementation, independently of controlled-server prerequisites.
+One explicitly requested Sol 6.1 High implementation worker delivered the [self-contained offline character build](../SWG-Godot-Client/docs/DX12_OFFLINE_CLIENT_RUNBOOK.md), with no-argument resource preparation, actual x64/D3D12 admission, original idle animation and a reproducible private export. Lead independently ran all22 existing default offline suites (after retaining the sandbox working-directory failure and rerunning with necessary process access), replayed the final exported animation, inspected the image and compared character-only pixel changes, verified explicit headless DX12 rejection, and hash-checked all193 delivery files. Eight exported positive/negative cases pass. The delivered process loads its bundled coreclr/hostfxr and DX12 modules. Initial missing-solution export failure and official-package hash reconciliation are retained in the [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_CLIENT.md). No legacy executable or live server was run; no research/address/packet counts changed. Generated facial texture, equipment, terrain and live gameplay remain open. Next: source-guided terrain numerical implementation, independently of controlled-server prerequisites.
 
 ## 2026-10-12: Runnable partial Tatooine terrain movement
 
-The user-requested Sol 6.1 High worker joined original Tatooine root height and verified layer3 detail, original sand texture, human idle/walk/run, camera-relative controls and displayed-triangle grounding in a separate self-contained x64/DX12 export. NGE height traversal and constant-shader family source clarified bounded integration choices against existing Pre-CU evidence. Eight exported checks pass, including actual DX12 movement, independent barycentric grounding, speed-distance integration and expected rejection/cleanup. Lead independently replayed 538 process updates, reviewed the corrected sand/HUD capture, verified all 193 delivered files and opened the responsive normal client with its bundled runtime. Initial automation-exit, animation-delta and overexposure failures were corrected before delivery. [Runbook](docs/DX12_OFFLINE_TERRAIN_RUNBOOK.md) and [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_TERRAIN.md) record reproduction and boundaries. The 256 x 256 m surface is explicitly a partial generator; omitted layers change final geographic elevations. No live contact, original executable execution, publication or research/registry score change. Next: admit remaining ordered height layers, starting with sibling4 preceding-height dependencies.
+The user-requested Sol 6.1 High worker joined original Tatooine root height and verified layer3 detail, original sand texture, human idle/walk/run, camera-relative controls and displayed-triangle grounding in a separate self-contained x64/DX12 export. NGE height traversal and constant-shader family source clarified bounded integration choices against existing Pre-CU evidence. Eight exported checks pass, including actual DX12 movement, independent barycentric grounding, speed-distance integration and expected rejection/cleanup. Lead independently replayed 538 process updates, reviewed the corrected sand/HUD capture, verified all 193 delivered files and opened the responsive normal client with its bundled runtime. Initial automation-exit, animation-delta and overexposure failures were corrected before delivery. [Runbook](../SWG-Godot-Client/docs/DX12_OFFLINE_TERRAIN_RUNBOOK.md) and [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_TERRAIN.md) record reproduction and boundaries. The 256 x 256 m surface is explicitly a partial generator; omitted layers change final geographic elevations. No live contact, original executable execution, publication or research/registry score change. Next: admit remaining ordered height layers, starting with sibling4 preceding-height dependencies.
 
 ## 2026-10-12: Recognizable original Mos Taike district
 
-The user-selected 160 × 160 m west/central district joins all twelve potentially applicable height-owning layers, 94 original snapshot objects including five buildings, original human idle/walk/run, triangle grounding and conservative modern swept obstacles/camera handling. The requested Sol 6.1 High worker used NGE snapshot, template and terrain source as correlation leads against original bytes and durable Pre-CU contracts. Lead independently audited 122 height-owning layers (110 spatially excluded), decoded all16,511 snapshot nodes, checked exact selected XYZ/WXYZ/portal fields and nine omissions, and reproduced five authored foundation targets from displayed triangles. All22 existing offline regressions pass; their Core sources remain hash-identical to the final candidate. Lead's fresh final export replay passes507 process updates on actual D3D12, with maximum stored grounding error9.54e-7m and193 frozen package files. Final captures show original facades, stalls, streets and the animated human. Material admission and zero-normal upload failures were diagnosed and corrected under explicit town-only modern policies, without relaxing position/UV checks. [Runbook](docs/DX12_OFFLINE_MOS_TAIKE_RUNBOOK.md) and [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_MOS_TAIKE.md) retain reproduction and failed candidates. Full numeric/material parity, interiors, wider terrain, server-spawned actors and live authority remain open. No original executable, live contact, publication or research-score/registry changes. Next: terminal appearance envelopes and original collision/interior traversal; widening the region requires family60 second-curve support and a new scope audit.
+The user-selected 160 × 160 m west/central district joins all twelve potentially applicable height-owning layers, 94 original snapshot objects including five buildings, original human idle/walk/run, triangle grounding and conservative modern swept obstacles/camera handling. The requested Sol 6.1 High worker used NGE snapshot, template and terrain source as correlation leads against original bytes and durable Pre-CU contracts. Lead independently audited 122 height-owning layers (110 spatially excluded), decoded all16,511 snapshot nodes, checked exact selected XYZ/WXYZ/portal fields and nine omissions, and reproduced five authored foundation targets from displayed triangles. All22 existing offline regressions pass; their Core sources remain hash-identical to the final candidate. Lead's fresh final export replay passes507 process updates on actual D3D12, with maximum stored grounding error9.54e-7m and193 frozen package files. Final captures show original facades, stalls, streets and the animated human. Material admission and zero-normal upload failures were diagnosed and corrected under explicit town-only modern policies, without relaxing position/UV checks. [Runbook](../SWG-Godot-Client/docs/DX12_OFFLINE_MOS_TAIKE_RUNBOOK.md) and [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_MOS_TAIKE.md) retain reproduction and failed candidates. Full numeric/material parity, interiors, wider terrain, server-spawned actors and live authority remain open. No original executable, live contact, publication or research-score/registry changes. Next: terminal appearance envelopes and original collision/interior traversal; widening the region requires family60 second-curve support and a new scope audit.
+
+## 2026-10-13: General terrain regions and second fractal curve
+
+A reusable bounded region source replaces the fixed Mos Taike loop. Target-backed second-curve branch/storage semantics, under an explicit modern numerical policy, unlock original family60 rolling hills and admit all five original second-enabled families. Parent replayed the independent Decimal oracle (719 assertions,85 samples, maximum error1.11e-16), twelve geographic CPU regions, deterministic overlap, five foundation targets, and actual DX12 presentation on RTX4070 SUPER. A new every-update independent trace check verifies725 published positions against input integration and displayed triangles. This is developer-host acceptance, not a new self-contained package or full planet/material compatibility. [Contract and reproduction](../SWG-Godot-Client/docs/TATOOINE_REGION_DEVELOPMENT.md); [current development handoff](research/sessions/TERRAIN_DEVELOPMENT_2026-10-13.md). NGE source remains supporting reference. No original executable execution, server contact, publication or metric changes. Next: bounded residency/async replacement, remaining applicable height rules and target-backed material evaluation.
+
+
+## October13,2026: terrain breadth and offline streamed export
+
+[General terrain development](../SWG-Godot-Client/docs/TATOOINE_REGION_DEVELOPMENT.md) now includes
+second-curve families, enabled terrace admission, coherent modern normals,
+conservative road exclusion and bounded baked road heights. All441 sparse
+survey samples generate; this remains sampling, not world-coverage evidence.
+Partial ASCN0/78/93 labels drive three original texture families under explicit
+modern patch-center/first-entry policy, independently checked against original
+bytes and displayed geometry. Full ordered shader traversal remains open.
+
+The self-contained x64/DX12 streaming export passes13 checks, including3078
+motion updates over100.6507m/five windows,1536 original family associations,
+backend/malformed refusals, rollback, cancellation and reset after spawn eviction.
+A separate road-region exported proof passes706 motion updates. All resources
+are disposed and workers drained in the accepted cases. NGE is corroboration;
+compatibility claims remain grounded in Pre-CU bytes/research and Core3 boundary
+requirements. No research/function/protocol metric change. Frame-budgeted upload,
+view distance, full materials and live interoperability remain open.
+
+
+## 2026-10-13: five partial surface families and accepted320m streaming
+
+Eight known ASCN layers now label five original texture families under the explicit
+modern first-entry/patch-center policy. Independent original-byte replays and a
+Tusken boundary GPU proof pass. Explicit64-chunk capacity retains5m sampling;
+initial residency adoption and shared materials remove duplicate initial uploads.
+Hidden successor staging/retirement uses bounded per-frame operation admission.
+The self-contained320m export passes15 acceptance checks,3178 motion updates over
+101.490m, four successors and5120 family labels. All1536 visuals and one shared
+binding are disposed. Independent rollback/cancel/staged-cancel/reset ownership
+checks pass. All29 pre-blend default regression suites pass. Wall-clock evidence
+retains startup/capture stalls; no full pacing or original appearance claim.
+[Current session](research/sessions/TERRAIN_DEVELOPMENT_2026-10-13.md) records the
+next bounded modern vertex-blending increment. Research metrics stay unchanged.
+
+
+## 2026-10-13: modern five-family vertex blend accepted
+
+Separate engine-neutral weights and GPU CUSTOM0 interpolation preserve original
+geometry, diffuse COLOR and UVs. Native3394assertions/165Fraction samples, actual
+GPU14pixel probes with PNG binding/six mutation rejections, original Tusken
+vertex-label/seam replays, and the self-contained320m export all pass. Tusken
+streaming contains780 mixed patches across five windows. All30 default offline
+regressions pass; the export passes15 cases with3181 independently grounded
+positions over101.493m. Cleanup balances1536 visuals and one shared blend binding.
+Original ALP, complete surface traversal, frame pacing and live compatibility
+remain open. [Evidence](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-13_STREAMED_TERRAIN_MATERIALS.md).
+
+
+## October 13, 2026 — original local-water display and streaming acceptance
+
+Added the bounded [local-water implementation](docs/TERRAIN_LOCAL_WATER_CONTRACT.md):
+direct Pre-CU consumer evidence, four authored BPOL0005 ponds, convex window
+clipping and original MAIN texture with modern opacity. Native270/311 assertions,
+independent24 original CPU clips, actual GPU14-pixel checks and six mutations,
+five original streamed water windows and water-specific rollback pass. Frozen
+x64/DX12 export passes17 checks; all31 default suites pass. No original process,
+network, publication or research/function/protocol metric change.
+
+
+## October 13, 2026 — stitched640m view and visible-pond correction
+
+The [joined checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-13_FAR_TERRAIN_AND_WATER.md)
+records an original-data640m outer mesh with exact5m fine-edge attributes,
+1920 vertices/1728 triangles and307200m² coverage. Current320m grounding stays
+unchanged. Shared coarse reuse repairs a failed publication gate; canceled
+same-target retry and fine-only water clipping defects have dedicated regressions.
+The corrected self-contained x64/DX12 package passes20 checks,3412 positions,
+three successors and exact cleanup including106 aborted fine visuals. Four
+geographic probes pass. Full32 regression suites and the four separately added
+Python verifier suites pass; current metadata contains36 defaults. Original
+slope cache semantics, LOD parity and full frame pacing remain open. No original
+execution/network/publication or research/function/protocol score change.
+
+## October 13 bounded slope endpoint graph
+
+[Checkpoint](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-13_SLOPE_ENDPOINT_GRAPH.md):
+verified serialized endpoint conversion, initialized clamp, retained complementary
+sine and F32 cache stores against the pinned Pre-CU executable. Static slope and
+startup verifiers pass. Original transcendental/control-state parity and the
+normal-cache producer were open at this endpoint probe; no runtime influence implementation or score
+change follows. The mathematical one-ULP cosine substitution witness is reference
+evidence, not target execution.
+
+## October 13 slope normal producer closure
+
+[Checkpoint](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-13_SLOPE_NORMAL_PRODUCER.md):
+direct target evidence closes current-height positions and the exact normal Y
+grid consumed by FSLP, row-major triangle accumulation, normalization, borrowed
+descriptors and pre-layer dirty rebuild timing. Parent replay passes 13 body
+identities, 71 anchors and six rejection checks. Original numeric/control parity
+and ultimate buffer ownership remain unknown. No accepted runtime or metrics
+change; next bounded implementation is a modern query-time cache primitive.
+## October 13 bounded modern slope normal primitive
+
+[Contract](docs/TERRAIN_MODERN_SLOPE_NORMAL_GRID_CONTRACT.md): immutable supplied
+current-height positions/normals with bounded work, cancellation and required
+F32 stores under explicit binary64 arithmetic. Debug/Release and parent Release
+pass 2440 checks/39 rejections, including independent incidence and rounding
+fixtures. Registered as the 37th default suite. No shader/traversal/Godot
+integration or original normal parity is claimed; the accepted export is unchanged.
+
+### October 13 — separate NGE source conversion milestone
+
+The [offline login startup receipt](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-13_NGE_OFFLINE_LOGIN_STARTUP.md) records the source client rendering the copied Stardust login screen with explicit unsupported-extension gates and two missing-data negative cases. Buff-builder and collections are user-deferred until after the main conversion and x64/DX12. No live authentication, gameplay acceptance, original function/packet registry changes or research coverage rescore. Next: login/version codec reconciliation against the working-client research and deployed Core3 configuration.
+
+### October 13 — NGE login conversion continuation
+
+[Login codec/UI checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-13_NGE_LOGIN_CODECS.md): restored version and three-string login, removed machine GUID collection, corrected status record boundary and token narrowing; native tests pass 193 checks /153 malformed-input rejections. User-submitted login reached character-list transition but UI adaptation/stable roster/disconnect acceptance remains open. Source-only conversion progress; no original registry/coverage denominator changes.
+
+October 13 accepted NGE login retry: operator confirms the corrected client displays the Core3 character list. The [login checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-13_NGE_LOGIN_CODECS.md) now records the delivered hash and precise scope. No world-entry, disconnect/server-release or full-gameplay acceptance; research metrics remain unchanged.
+
+## 2026-10-13 - NGE source Pre-CU zone bridge
+
+[Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-13_NGE_ZONE_ENTRY.md): repaired permission and scene-start field mismatches, retained server authentication/selection/readiness checks, and passed469 native checks/267 malformed-input rejections. Blank account default now follows operator request. First authorized stationary-entry attempt failed on SpaceLoading's absent optional NGE Escape binding; original overlay evidence supports focused source guards. World entry and session release are unaccepted. No target packet registry or coverage score changes/publication.
+## October 13 accepted ordered slope and seven-family rendering
+
+[Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-13_ORDERED_SLOPE_TEXTURING.md):
+ordered current-height normal caches and explicit modern complementary-sine
+endpoints admit slope branches79/80/81/88/89/133, including FHGT89. Independent
+Pre-CU input/graph replay checks all six branches and final94080 labels/normals,
+480 snapshots and76833 changed labels. Seven-family fine/far GPU channels and
+seven original shader/MAIN bindings pass. The corrected self-contained DX12
+package passes21 frozen checks with unchanged hashes and balanced resources.
+Full40 suites/104 commands pass; later bounds/accounting verifier changes have
+focused9/16 tests and original replays. The failed two-publication proof,
+rollback priming assumption, long-path copy attempt and stale cleanup-count
+assumption are retained and corrected with explicit regression evidence.
+Original numeric/LOD/blend parity,40 deferred ASCN layers, frame pacing and live
+authority remain open. No publication, protocol/registry or score changes.
+
+
+## October13 NGE source compatibility continuation
+
+Latest source-client continuation: the [zone-entry checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-13_NGE_ZONE_ENTRY.md) records confirmed zone admission/scene-start labels, original camera/cursor/toolbar adaptations and the ACST UCMP U8-versus-U16 mismatch. The source loader now uses the explicit Pre-CU layout, validates indices and repairs the known unsorted CRC lookup. Offline native checks total4017/378 malformed rejections plus five isolated boundary failures. The next live fault is the original flat button-bar layout; its source adaptation is built for retry. World rendering, replication, physical camera/cursor and server release remain open. No research/readiness/function/protocol score changes.
+
+
+The subsequent original HUD retries are documented in the same checkpoint: chat now respects disabled NGE LFG; the required Pre-CU /who bridge remains open. The original five-row XP monitor and radar bindings are adapted, with engine-neutral bounded progress; native tests pass 4033 checks / 378 malformed rejections plus five isolated failures. Optional NGE display templates are checked before activation, and missing required workspace templates diagnose before null dereference. Latest radar-type build BE434028AF02100E7504DAA9EF9DC185DF2C5BEA3CCAB3E16F79A66C727D745B awaits stationary retry. World/HUD/input/replication/server-release acceptance remains open; all broader research scores and registries are unchanged.
+
+## October 14 source-client baseline continuation
+
+The [zone-entry checkpoint](./research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-13_NGE_ZONE_ENTRY.md) records the original radar/group/three-pool HUD adaptations, bounded Archive reads, common/GILD view6 fixes and explicit Pre-CU Tangible/Creature/Wearable registration bridge. Native suite4973 checks/1121 malformed rejections plus five isolated boundary failures. Delivered source buildDBAAE3E2D4294F14BF1BD0422823D22775F3BE41FA7DE399B873CC3950F44E27 passes the live CREO3/CREO6 handlers, then fails a later view3 float read. A documented inherited-only weapon bridge is being built with more precise bounded family labels. Next action: finish its fixtures/build and repeat the authorized existing-character stationary UI login; identify the first subsequent baseline. No world/HUD/camera/gameplay/server-release acceptance or research/readiness/function/protocol denominator change follows. Player/other derived registrations, original timed buffs and /who remain open; collections/buff-builder remain post-DX12 activation work.
+
+## October14 current source-client gate: rendered world reached
+
+The [zone-entry checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-13_NGE_ZONE_ENTRY.md) records the Pre-CU player view3/6/8/9 registration bridge, original quest-record width, directional full transforms and compact update tail conversion. Delivered build1D37C32AB052BE370BEDE72807D2FAB0A850E3E0053F466C227252193DF4AE49 reached the existing character's ground world through computer-use login: terrain, vegetation/weather and original HUD render while stationary. The character is black and HUD/toolbar content incomplete. Native suite8438 checks/1881 malformed-input rejections plus five isolated boundary cases passes. This is first scene-entry/initial-rendering acceptance, not full player gameplay, delta/callback, material/HUD/camera or logout/server-release parity. Ability/draft/quest model integration, original timed buffs and /who remain required. Next bounded probe is black-character material/shader diagnosis with unchanged assets, plus physical Alt/edge validation after stability. The same task is prepared for the user's Sol High switch; no new task or publication. Coverage denominators and separate replacement-client gates remain unchanged.
+
+### Current source-client correction: unstable scene, containment/loading probe
+
+The initial rendered world was followed by a flytext Unicode allocation fatal. The [zone-entry checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-13_NGE_ZONE_ENTRY.md) now records the executable-confirmed flytext layout correction and Unicode bounds guard. Latest build6543F6943AC8DFD59C0C1DBA2D050304DE9621DD37D020BBBD5E0C25B5B2715A passes8568 native checks/1990 malformed rejections plus five isolated failures, but the following entry fills loading and hangs with sampled Object::findPosition_w parent traversal from NebulaManagerClient. Initial rendering is verified; sustained/repeatable scene admission is not. A clean retry and redacted containment-cycle/admission probe are the current next actions before materials/HUD/camera work. No denominator/publication change.
+
+
+### October14 — source containment and posted-key input
+
+The [bounded checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-14_CONTAINMENT_ADMISSION.md) confirms and rejects an incoming self-parent edge, records repeated rendered entry and a normal UI Disconnect/re-entry after an opt-in posted-key bridge. A later Unicode bounds rejection remains; its first decoder is unknown. Final build/native suite passes8712 checks/2068 malformed rejections plus five isolated cases. A failed private dump reader leaves a system-owned error dialog whose computer-use approval times out; user dismissal is pending at the07:00 Eastern stop. No canonical names, packet rows, metrics, staging or publication change.
+
+## October14 daytime source-client continuation
+
+The [daytime checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-14_DAYTIME_COMPATIBILITY.md) records renewed authorization through noon Eastern, repeated stationary rendering/normal exit, and the [installed pixel-register bridge](docs/NGE_PRECU_PIXEL_REGISTER_CONTRACT.md). The opt-in source-built raster correction changes black selection/world characters to textured materials and restores radar imagery, with unchanged TREs. The [command projection](docs/NGE_PRECU_COMMAND_AVAILABILITY_CONTRACT.md) joins82 decoded abilities to82 model entries with owner attachment confirmed; browser completeness and ability execution are not accepted. The [attribute index adapter](docs/NGE_PRECU_ATTRIBUTE_INDEX_CONTRACT.md) corrects the six-semantic/nine-wire mismatch; Action's live bar length improves, while Mind remains intentionally hidden by the Stardust profile, with its background data retained. Latest build9E15E99103A73EFA05D44C7D34785D851D71FFB02C96FAFD62A6BCBD9E796121 passes8781 native checks/2068 malformed rejections plus five isolated failures. Successive daytime probes do not reproduce the historical late Unicode crash; its exact opcode/decoder remains Unknown, not fixed. Original skills UI, wounds/cap arithmetic, remaining HUD/toolbar/crafting/gameplay and full material/input parity remain open. No coverage denominator, packet registry, staging or publication change follows.
+
+
+October14 subsequent source-client receipt: [original Character-sheet bridge](docs/NGE_PRECU_CHARACTER_SHEET_CONTRACT.md) opens its three original tabs after replacing the NGE expertise-only route. Its first live increment shows the raw-vector shape and force-placeholder limits. A new first-throw stack identifies the late crash in MessageQueueCombatSpamArchive::get inside an80-byte object-controller message. [Exact original combat-spam profile](docs/NGE_PRECU_COMBAT_SPAM_CONTRACT.md) is now implemented with the original color/grammar path; native10841/2997 plus five isolated cases pass. Build3D472FD3606C3FDBF63AAEF8E5B91FD54EF77C47BEF2562D0D0F4B077DBED992 is deployed for live observation, which remains pending. Earlier unreproduced-fault notes are historical; current codec identity is confirmed, older dump attribution strongly inferred. No function/protocol coverage denominator, registry row or publication change.
+
+
+October14 user HUD correction: the [attribute contract](docs/NGE_PRECU_ATTRIBUTE_INDEX_CONTRACT.md) separates correct nine-wire Action indexing from incorrect shared-maximum bar scaling. Each Pre-CU HUD bar now fills its own authored constrained frame using its own maximum; Mind stays hidden. HUD library compilation and10847 native checks/2997 malformed rejections plus five isolated cases pass. Executable deployment/live verification remain pending after computer use again reports the earlier Escape stop despite user permission to resume. Radar/minimap resizing is a user-reported deferred gate, not fixed. Earlier live length-improvement claims are superseded, not original width-parity evidence. No metrics, registry or publication change.
+
+
+October14 resumed live receipt: [spatial-chat adapter](docs/NGE_PRECU_SPATIAL_CHAT_CONTRACT.md) resolves a newly identified172-byte decoder failure with11439 native checks/3538 malformed rejections plus five isolated cases. BuildB78D8649F02B17AB05DBB0F421008B8D40F5053D284F406CF228E87E5C7444D1 renders naturally received structured chat, independent full Health/Action widths and hidden Mind. User-directed [NGE loose options override](docs/NGE_OPTIONS_LOOSE_OVERRIDE.md) preserves settings; all12 source-supported tabs, original Character sheet and normal Disconnect/re-entry render. Voice backend was already deprecated; individual setters, keymap preset localization, natural combat-spam receipt, endurance and radar resizing remain open. No coverage/registry/publication change.
+
+
+October14 further source UI increment: [original queue view](docs/NGE_PRECU_COMBAT_QUEUE_CONTRACT.md) passes owned/race fixtures and live idle integration with no sample rows; no combat/cancel action is exercised. [Original radar resize](docs/NGE_PRECU_RADAR_RESIZE_CONTRACT.md) is implemented from direct executable parent-square packing evidence and passes11,515 native checks/3,538 malformed rejections plus five isolated cases. DAC5873C0E4A5D142BF02C8A1C538C159DAF5934EAC75196A50B02284480E013 is deployed for the live resize gate, pending. Earlier missing-Mind and Action-length interpretations are superseded by hidden Mind and independent authored-width acceptance. No new coverage counts/publication.
+
+
+October14 final pre-noon receipt: CC87635865A96F1552015947F3BD3F24F9313191FF7D934E3268D25E0ED642A7 renders; browser counts show82 model names/10 matched-visible Other grants/10 successful labels/0 combat matches. Radar responds to transient parent changes but retained resize/input/persistence remains unaccepted. User reports Ctrl-V planet-map crash and defers its diagnosis. Physical Escape stops computer use at11:51 Eastern; no further UI input or new crash-cause claim. [Final checkpoint and exact resume](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-14_DAYTIME_COMPATIBILITY.md#final-receipt-before-computer-use-stop-october14-1151-eastern). Validation passes; no coverage/registry/staging/publication change.
+
+
+October14 afternoon receipt: renewed scoped conversion/testing through21:00 Eastern. [Skills catalog foundation](docs/NGE_PRECU_SKILLS_COMPATIBILITY.md) passes11,623 native checks/3,538 malformed rejections plus five isolated cases, including all1,089 original rows/55 professions; original Skills2 UI/events remain next. README now describes the source-derived conversion and Experimental-only artifacts. Diagnostic FB472F4E build renders, then one intermittent Archive string read failure occurs in network dispatch; repeat bounded observation/normal Exit does not reproduce it. Radar resize remains unaccepted and planet-map work stays deferred. [Afternoon resume](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-14_AFTERNOON_COMPATIBILITY.md). No coverage-denominator, packet-registry, staged-file or publication change.
+
+
+October14 Skills UI increment: [durable skills contract](docs/NGE_PRECU_SKILLS_COMPATIBILITY.md) now records executable evidence for original profession/Jedi/graph rules, the 250-point budget, eligible independent XP selectors and cert_ filtering. Native suite passes11,850 checks/3,541 malformed rejections plus five isolated cases. Full CC1C55A6 build renders original Skills My/All lists, owned/unowned graphs, modifiers and certifications; XP selector opens. Direct tab refresh/sample-label corrections are deployed in92104E53, pending live acceptance. First-read-error code-only diagnostics produce no new fault receipt; intermittent decoder remains open. Reopen/disconnect, varied monitor persistence, XP updates and remaining skill presentation are gates. Radar resize remains unaccepted and planet-map work deferred; no coverage/registry/staging/publication change. [Exact afternoon resume](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-14_AFTERNOON_COMPATIBILITY.md#skills-ui-and-monitor-increment-afternoon).
+
+October14 corrected Skills receipt: 92104E53 passes immediate My/All filters, owned/unowned graph/details, no sample labels, Close/reopen, normal Disconnect/reentry and reconstruction. XP map is empty; only Novice Musician is eligible, so changing XP and distinct-slot persistence remain open. User-reported generic ability icons are traced to the new adapters passing gameplay text in the UI-action field; correction is building. No new Archive failure or sustained-stability claim, no metrics denominator change. See the [afternoon checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-14_AFTERNOON_COMPATIBILITY.md#corrected-skills-live-acceptance-and-icon-follow-up) and [skills contract](docs/NGE_PRECU_SKILLS_COMPATIBILITY.md).
+
+October14 Skills display acceptance and inventory stop: DC9D0CBA verifies localized original ability names/icons/tooltips and private detail filtering. Read-only inventory opening identifies an unrelated paperdoll/list-viewer mismatch; corrected F18F0C2F builds/deploys but physical Escape stops computer use before retry login. A separate XP-character loading report names a missing vertex program; exact NGE file is privately supplied in Experimental, with existing Stardust includes retained, but character retry/render remain unverified. See the [inventory contract](docs/NGE_PRECU_INVENTORY_VIEWER_CONTRACT.md) and [afternoon checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-14_AFTERNOON_COMPATIBILITY.md#physical-escape-stop-at-inventory-retry). No denominator change or staging/publication. Renewed computer-use authorization is the next live gate.

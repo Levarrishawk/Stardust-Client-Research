@@ -31,7 +31,7 @@ The first is rotation-only, the second also contains LOCT. Selection comes from 
 
 Final native242 checks and22 malformed fixtures pass. Independent comparison covers56 quaternion samples, including16 queries across the two originals, max component error5.651946144435982e-8 at tolerance2e-6, comparing quaternion signs equivalently. Targeted and default .NET builds have zero warnings/errors; default smoke has18 events/zero failures. No original executable execution or Godot rendering occurred.
 
-[Portable runner](../poc/round71-tests/Assets/Invoke-SelectedRule.ps1) requires explicit Python, cached NuGet packages, original EXE, asset root and config paths. It generates expected fixtures before offline native build and verification, retains outputs only in a fresh ignored local-private descendant and runs default core smoke. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R71_ROOT_ROTATION.md).
+[Portable runner](../../SWG-Godot-Client/poc/round71-tests/Assets/Invoke-SelectedRule.ps1) requires explicit Python, cached NuGet packages, original EXE, asset root and config paths. It generates expected fixtures before offline native build and verification, retains outputs only in a fresh ignored local-private descendant and runs default core smoke. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R71_ROOT_ROTATION.md).
 
 Next action: implement and evaluate an explicitly scoped relative-rotation/combined-track evaluator against the durable recovered formula q_relative=q1*conj(q0), the q1-derived matrix and scalar translation write order, using independent fixtures. External actor basis and application remain Unknown; absolute sampling alone does not implement that boundary.
 

@@ -29,7 +29,7 @@ Frozen67 verifier SHA
 gated before mapping/path/one-occurrence/model reuse; older source chain stays gated.
 No lookup/accessor/predicate/setter/serialization body or normalization suite repeats.
 
-Owned new [verifier](../../tools/python/verify_terrain_shader_family_lookup_consumer.py),
+Owned new [verifier](../../../SWG-Godot-Client/tools/python/verify_terrain_shader_family_lookup_consumer.py),
 [contract](../../docs/TERRAIN_SHADER_FAMILY_LOOKUP_CONSUMER_CONTRACT.md), this
 checkpoint andtwo own68Assets runners only. All4191 baseline/shared/registry/ledger
 bytes stay frozen. Lead owns canonical integration; no unfinished68 sibling import,
@@ -79,7 +79,7 @@ contains exact VA/stack argument ordering and ABI/ownership distinctions.
 
 ## Deterministic replay and one existing occurrence
 
-[Portable runner](../../poc/round68-tests/Assets/Invoke-SelectedRule.ps1):
+[Portable runner](../../../SWG-Godot-Client/poc/round68-tests/Assets/Invoke-SelectedRule.ps1):
 
 ```powershell
 & ./poc/round68-tests/Assets/Invoke-SelectedRule.ps1 -Python $Python -Exe $Exe -Packages $CachedStaticPackages -AssetRoot $AssetRoot -Config $Config

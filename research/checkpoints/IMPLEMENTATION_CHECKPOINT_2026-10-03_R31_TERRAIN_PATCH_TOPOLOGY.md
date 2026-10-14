@@ -53,7 +53,7 @@ or new name is needed.
 
 ## Required gates and reproduction
 
-[Runner](../../poc/round31-tests/Rendering/Invoke-Topology.ps1) uses cleared
+[Runner](../../../SWG-Godot-Client/poc/round31-tests/Rendering/Invoke-Topology.ps1) uses cleared
 package sources, private APPDATA/CLI home, and private build output. It builds
 only the owned helper and scenarios; it does not run the shared smoke-test entry
 point or install dependencies.

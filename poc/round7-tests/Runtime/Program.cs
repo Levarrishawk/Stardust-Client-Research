@@ -1,2 +1,0 @@
-using System.Text.Json;
-try { if(args.Length is not (1 or 5))throw new ArgumentException("peer-json [root config bank-profile export-json]"); var peer=JsonSerializer.Deserialize<Dictionary<string,string>>(File.ReadAllText(args[0]))!; SceneWorldCoordinatorScenarios.Run(peer); if(args.Length==5)SceneWorldCoordinatorScenarios.Original(peer,args[1],args[2],args[3],args[4]); } catch(Exception e) { Console.Error.WriteLine(e);Environment.ExitCode=1; }

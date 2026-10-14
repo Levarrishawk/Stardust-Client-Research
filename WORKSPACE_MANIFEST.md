@@ -25,3 +25,7 @@ Organized: 2026-09-22
 All moves occurred within `D:\Development\Experimental-Client`. Relative Markdown links were rewritten against the relocation map. The exact pre-move inventory is retained in `local-private/manifests/` and intentionally ignored by Git.
 
 On 2026-09-22, the complete organized workspace was moved to `C:\Users\ancie\Documents\GitHub\Stardust-Client`. The existing destination `.git` directory was preserved; no commit or push was performed. The source directory was verified empty after matching 9,834 files and 3,453,849,918 bytes at the destination.
+
+## October 14, 2026 research-only cleanup
+
+The inventory above describes the historical organization. The duplicate `poc/` tree and implementation-dependent tooling have now been removed after verifying their copies in SWG-Godot-Client. See the [cleanup handoff](research/sessions/RESEARCH_ONLY_CLEANUP_2026-10-14.md).

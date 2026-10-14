@@ -52,7 +52,7 @@ sampling. No shared Main/project/launchers or global registries were edited.
 
 ## Reproduction and required gates
 
-[Owned runner](../../poc/round32-tests/Rendering/Invoke-TerrainGeometry.ps1):
+[Owned runner](../../../SWG-Godot-Client/poc/round32-tests/Rendering/Invoke-TerrainGeometry.ps1):
 
 ```powershell
 .\poc\round32-tests\Rendering\Invoke-TerrainGeometry.ps1 -Build -GodotPath <cached-godot-console-exe> -Python <cached-python> -Exe <baseline-exe> -Packages <cached-pefile-capstone> -CachedGodotPackages <existing-godot-nuget-cache> -Dotnet <dotnet-exe>

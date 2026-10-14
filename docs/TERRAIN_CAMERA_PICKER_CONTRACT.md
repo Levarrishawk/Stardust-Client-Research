@@ -1,6 +1,6 @@
 # Owned terrain camera picker
 
-[TerrainCameraPicker](../poc/Stardust.Godot/TerrainCameraPicker.cs) adapts an actual live active Godot Camera3D to an actual frozen [retained terrain ray query](TERRAIN_MODERN_PATCH_SET_RAY_QUERY_CONTRACT.md). It borrows the exact camera, same-viewport live Node3D parent and query. It builds no terrain/query geometry and owns only one lazy diagnostic marker. This is modern replacement picking, with `OriginalPickingParity == false`.
+[TerrainCameraPicker](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainCameraPicker.cs) adapts an actual live active Godot Camera3D to an actual frozen [retained terrain ray query](TERRAIN_MODERN_PATCH_SET_RAY_QUERY_CONTRACT.md). It borrows the exact camera, same-viewport live Node3D parent and query. It builds no terrain/query geometry and owns only one lazy diagnostic marker. This is modern replacement picking, with `OriginalPickingParity == false`.
 
 ## Stable API
 
@@ -41,7 +41,7 @@ Cancellation is checked before projection/query, by the frozen query between tri
 
 ## Evidence and portable replay
 
-The [standalone verification node](../poc/Stardust.Godot/TerrainCameraPickerVerification.cs) and [own runner](../poc/round65-tests/Rendering/Invoke-Picker.ps1) stage/build a private project with frozen Core/terrain-visual dependencies and cached Godot4.7.2 packages. No shared project or host source is edited. [Independent verification](../poc/round65-tests/Rendering/verify_picker.py) constructs synthetic geometry/normals before execution, then uses exact Fraction plane/3D Gram barycentric intersection on captured actual camera rays. Separate mathematical projection and viewport/Z-reflection checks use captured camera basis/FOV/size/near values; native hits never seed expectations.
+The [standalone verification node](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainCameraPickerVerification.cs) and [own runner](../../SWG-Godot-Client/poc/round65-tests/Rendering/Invoke-Picker.ps1) stage/build a private project with frozen Core/terrain-visual dependencies and cached Godot4.7.2 packages. No shared project or host source is edited. [Independent verification](../../SWG-Godot-Client/poc/round65-tests/Rendering/verify_picker.py) constructs synthetic geometry/normals before execution, then uses exact Fraction plane/3D Gram barycentric intersection on captured actual camera rays. Separate mathematical projection and viewport/Z-reflection checks use captured camera basis/FOV/size/near values; native hits never seed expectations.
 
 Both headless and actual GPU tests cover perspective/orthographic center/corners, oblique/sloped hits, explicit miss, exact shared-edge earlier-chunk selection, repeat/reuse, real Godot mouse event objects, invalid input, caps/revision overflow, main-thread rejection, active-camera switching/restoration, freed camera/parent, precancellation, timed charged late cancellation and borrowed survival/cleanup. GPU readback verifies a magenta marker at the selected center and saves a private inspected capture. Full results and exact next probe are in the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R65_TERRAIN_CAMERA_PICKER.md). Timed cancellation establishes observed state preservation after charge, not a deterministic exact cancellation instruction. No original executable is run.
 

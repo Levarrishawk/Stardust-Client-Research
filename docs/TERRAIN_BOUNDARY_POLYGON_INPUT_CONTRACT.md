@@ -1,6 +1,6 @@
 # Terrain boundary polygon serialized input
 
-This contract describes owned, engine-neutral `BPOL` input decoding in [TerrainBoundaryPolygonInput.cs](../poc/Stardust.Core/Assets/TerrainBoundaryPolygonInput.cs). It establishes serialized structure, ownership and bounded rejection policy. It does not implement polygon influence, geometry editing, coordinate conversion, cached bounds or layer composition. Evidence and reproduction are recorded in the [Round 37 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R37_BPOL_INPUT.md).
+This contract describes owned, engine-neutral `BPOL` input decoding in [TerrainBoundaryPolygonInput.cs](../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainBoundaryPolygonInput.cs). It establishes serialized structure, ownership and bounded rejection policy. It does not implement polygon influence, geometry editing, coordinate conversion, cached bounds or layer composition. Evidence and reproduction are recorded in the [Round 37 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R37_BPOL_INPUT.md).
 
 ## Evidence and confidence
 
@@ -54,7 +54,18 @@ A replacement must preserve recognized layouts, raw bits and point order at this
 
 ## Verification
 
-[Independent Python oracle](../poc/round37-tests/Assets/verify_bpol_input.py) and [native scenarios](../poc/Stardust.Core.SmokeTests/TerrainBoundaryPolygonInputScenarios.cs) agree on 670 fixtures (146 accepted, 524 rejected), 19 ownership checks and all 57 pinned original records. Static verification checks 71 instruction anchors, exact read widths, version dispatch, raw stores, header reads, callbacks and teardown. Original polygons contain 406 points (4–18 each), all `0005` with IHDR `0001`; 54 are locally enabled. Selector distributions 0/1/2/3 are 19/3/2/33, and four extension flags are nonzero. All original points and amounts are finite. These are corpus observations, not wider format coverage or extension semantics.
+[Independent Python oracle](../../SWG-Godot-Client/poc/round37-tests/Assets/verify_bpol_input.py) and [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainBoundaryPolygonInputScenarios.cs) agree on 670 fixtures (146 accepted, 524 rejected), 19 ownership checks and all 57 pinned original records. Static verification checks 71 instruction anchors, exact read widths, version dispatch, raw stores, header reads, callbacks and teardown. Original polygons contain 406 points (4–18 each), all `0005` with IHDR `0001`; 54 are locally enabled. Selector distributions 0/1/2/3 are 19/3/2/33, and four extension flags are nonzero. All original points and amounts are finite. These are corpus observations, not wider format coverage or extension semantics.
 ## Round40 layer and CREO4 composition
 
 [Fresh polygon influence](TERRAIN_BOUNDARY_POLYGON_INFLUENCE_CONTRACT.md) now evaluates the independently verified finite ordered-point graph. Raw decoding remains unchanged; original query profiles/exception controls and edited runtime state remain unknown.
+
+
+## Narrow downstream semantic closure (October 13, 2026)
+
+The raw decoder above deliberately retains neutral extension names. Direct
+Pre-CU consumer evidence now establishes local-water use of flag+38,
+height+3C, shader size+40 and shader name+44, with ordered point components
+mapped to worldX/Z, for the admitted original Tatooine BPOL0005 pond records.
+See the [local-water contract](TERRAIN_LOCAL_WATER_CONTRACT.md) for exact
+addresses, input identity, confidence and modern implementation limits. This
+does not retroactively assign every unknown BPOL version or consumer semantics.

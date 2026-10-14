@@ -2,7 +2,7 @@
 
 ## Result and evidence
 
-[TangibleView6State](../poc/Stardust.Core/Protocol/TangibleView6State.cs) implements an immutable, bounded TANO view6 state over the [accepted codec](TANGIBLE_VIEW6_CODEC_CONTRACT.md) and [specialized executable policy](TANGIBLE_VIEW6_STATE_POLICY.md). The executable observations and their confidence remain in that policy. This contract describes tested replacement behavior; whole-message atomicity, resource budgets, revisions and event receipts are explicit modern implementation choices.
+[TangibleView6State](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/TangibleView6State.cs) implements an immutable, bounded TANO view6 state over the [accepted codec](TANGIBLE_VIEW6_CODEC_CONTRACT.md) and [specialized executable policy](TANGIBLE_VIEW6_STATE_POLICY.md). The executable observations and their confidence remain in that policy. This contract describes tested replacement behavior; whole-message atomicity, resource budgets, revisions and event receipts are explicit modern implementation choices.
 
 The state owns raw U64 IDs, preserving all bits, duplicates and order. It retains the object ID, baseline declared-count metadata, passive U32, raw U32 counter and a checked U64 branch revision. It does not resolve IDs into objects or reproduce legacy Watcher ownership.
 
@@ -32,7 +32,7 @@ Work starts with old ID count plus field count, actual command count and every m
 
 ## Validation and remaining boundary
 
-The [independent Python peer](../poc/round30-tests/Networking/peer.py) constructs literal wire fixtures and independently computes states, event order, work and peak budgets. The [native scenarios](../poc/Stardust.Core.SmokeTests/SceneTangibleView6StateScenarios.cs) compare exact baseline/delta bytes, transitions and receipts, exercise exact and one-less limits, and verify input preservation, reseeding, revision overflow and branching ownership.
+The [independent Python peer](../../SWG-Godot-Client/poc/round30-tests/Networking/peer.py) constructs literal wire fixtures and independently computes states, event order, work and peak budgets. The [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneTangibleView6StateScenarios.cs) compare exact baseline/delta bytes, transitions and receipts, exercise exact and one-less limits, and verify input preservation, reseeding, revision overflow and branching ownership.
 
 Round 30 passed 21 sequences / 23 transitions, 700 negative checks, 315 budget checks and 114 ownership checks. Accepted round-28 codec regression and the shared Core smoke suite also passed. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R30_TANGIBLE_VIEW6_STATE.md) for reproducibility.
 

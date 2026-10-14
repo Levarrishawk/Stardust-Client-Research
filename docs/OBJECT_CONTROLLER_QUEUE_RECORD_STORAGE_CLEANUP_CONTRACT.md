@@ -4,7 +4,7 @@ Round 59, 2026-10-04. Bounded question: which record fields does `00AA6710` read
 
 ## Evidence identity and method
 
-Baseline executable SHA-256: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`; addresses are VAs for this baseline. The [static verifier](../tools/python/verify_object_controller_queue_record_storage_cleanup.py) checks identity before importing pefile/Capstone or using addresses. The [independent runner](../poc/round59-tests/Networking/research_checks.py) uses its own raw PE section mapping, selected bytes, branch displacements, caller edges, field/register witnesses and integer arithmetic fixtures.
+Baseline executable SHA-256: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`; addresses are VAs for this baseline. The [static verifier](../../SWG-Godot-Client/tools/python/verify_object_controller_queue_record_storage_cleanup.py) checks identity before importing pefile/Capstone or using addresses. The [independent runner](../../SWG-Godot-Client/poc/round59-tests/Networking/research_checks.py) uses its own raw PE section mapping, selected bytes, branch displacements, caller edges, field/register witnesses and integer arithmetic fixtures.
 
 | Body | Extent | Instructions | SHA-256 |
 | --- | --- | --- | --- |

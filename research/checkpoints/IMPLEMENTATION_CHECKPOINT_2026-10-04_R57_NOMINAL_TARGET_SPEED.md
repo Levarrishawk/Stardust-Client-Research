@@ -18,7 +18,7 @@ Orientation covered AGENTS, post-overlay START_HERE, accepted56 session/daytime,
 
 ## Validation and ownership
 
-[Scenarios](../../poc/Stardust.Core.SmokeTests/CreatureNominalTargetSpeedScenarios.cs) use the new [standalone project](../../poc/round57-tests/Runtime/Runtime.csproj). [Independent oracle](../../poc/round57-tests/Runtime/verify_target.py) uses exact Fraction operations and integer-square-root midpoint/ties-to-even rounding; it calls no native arithmetic implementation.
+[Scenarios](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/CreatureNominalTargetSpeedScenarios.cs) use the new [standalone project](../../../SWG-Godot-Client/poc/round57-tests/Runtime/Runtime.csproj). [Independent oracle](../../../SWG-Godot-Client/poc/round57-tests/Runtime/verify_target.py) uses exact Fraction operations and integer-square-root midpoint/ties-to-even rounding; it calls no native arithmetic implementation.
 
 1,032 synthetic cases pass across24/53/64:742 positive/289 input rejects/one cancellation,87 retained-versus-+154 reload target witnesses and22 squared-sum regrouping witnesses. Three exact/three one-below profile cases, nonfinite/unsupported/overflow gates, signedzero/negative/zero/subnormal/large cases pass.742 post-call source/value mutation checks,100 repeats,64 parallel calls, readonly result properties and prior-result preservation across every case pass. Fixtures remain synthetic and ignored/private; no original raw numeric corpus is promoted.
 

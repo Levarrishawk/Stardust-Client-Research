@@ -1,1 +1,0 @@
-try{if(args[0]=="store")SceneTangibleView6StoreScenarios.Run(args[1],args[2]);else SceneWorldTangibleView6Scenarios.Run(args[1],args[2]);}catch(Exception e){Console.Error.WriteLine(e);Environment.ExitCode=1;}

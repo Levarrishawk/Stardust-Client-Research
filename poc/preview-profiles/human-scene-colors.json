@@ -1,8 +1,0 @@
-{
-  "version": 1,
-  "values": [
-    { "variableName": "index_color_skin", "factoryFlag": false, "value": 75 },
-    { "variableName": "index_color_2", "factoryFlag": true, "value": 5 },
-    { "variableName": "index_color_3", "factoryFlag": true, "value": 1 }
-  ]
-}

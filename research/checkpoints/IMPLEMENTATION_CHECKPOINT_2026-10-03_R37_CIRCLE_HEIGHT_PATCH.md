@@ -14,7 +14,7 @@ Tools: cached Python, .NET8.0.300, cached pefile/Capstone and bundled Godot4.7.2
 
 ## Findings, interpretation and compatibility consequences
 
-The [durable contract](../../docs/TERRAIN_CIRCLE_HEIGHT_PATCH_CONTRACT.md) is canonical. [Builder](../../poc/Stardust.Core/Geometry/TerrainCircleHeightPatch.cs) evaluates supplied row-major axes/base heights, invokes accepted circle then optional AHCN APIs, and constructs all accepted assemblies before publishing. Three precisions are mandatory: loading/cache, circle query/shaping, height arithmetic. No selected profile is an original runtime default.
+The [durable contract](../../docs/TERRAIN_CIRCLE_HEIGHT_PATCH_CONTRACT.md) is canonical. [Builder](../../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainCircleHeightPatch.cs) evaluates supplied row-major axes/base heights, invokes accepted circle then optional AHCN APIs, and constructs all accepted assemblies before publishing. Three precisions are mandatory: loading/cache, circle query/shaping, height arithmetic. No selected profile is an original runtime default.
 
 **Observation / Confirmed:** reused circle46 static anchors include query `00B72430`, caller `00B63D20` and radius-cache stores. Reused AHCN21 process/five caller anchors include `00B76540` and final supplied/result F32 stores. Accepted33 assembly selects the nine source indices with the exact seam priority and accepted32 topology. These establish the conditional component behavior; they do not establish the original layer's missing influence producers/products.
 
@@ -24,7 +24,7 @@ The [durable contract](../../docs/TERRAIN_CIRCLE_HEIGHT_PATCH_CONTRACT.md) is ca
 
 ## Verification
 
-The [Fraction/isqrt oracle](../../poc/round37-tests/Rendering/verify_patch.py) uses accepted independent arithmetic models, an independent seam specification and literal topology rings. It compares exact final height/influence bits, disabled/operation outcomes, every source index, topology index, position/normal bit and color word. Results:1199 cases,1192 accepted/7 rejected;29928 accepted grid samples,4800 exact patches; all27 policy triples, all seam masks, selector/operation/version/local gates and numeric boundaries. Additional35 checks cover exact default and hard maxima, smaller caps, bad shape/axes/configuration, null/opaque input, aliasing, late failure, retention and copied/read-only outputs.
+The [Fraction/isqrt oracle](../../../SWG-Godot-Client/poc/round37-tests/Rendering/verify_patch.py) uses accepted independent arithmetic models, an independent seam specification and literal topology rings. It compares exact final height/influence bits, disabled/operation outcomes, every source index, topology index, position/normal bit and color word. Results:1199 cases,1192 accepted/7 rejected;29928 accepted grid samples,4800 exact patches; all27 policy triples, all seam masks, selector/operation/version/local gates and numeric boundaries. Additional35 checks cover exact default and hard maxima, smaller caps, bad shape/axes/configuration, null/opaque input, aliasing, late failure, retention and copied/read-only outputs.
 
 Standalone CPU runner references the actual Core project, and the actual Core/SmokeTests project-reference build succeeds separately. Both and the standalone Godot build have zero warnings/errors. No internal arithmetic aliases are used across the assembly boundary.
 

@@ -1,16 +1,16 @@
 # Held appearance work versus current containers
 
-The standalone [preview](../poc/Stardust.Godot/SceneWorldCreatureCustomizationPreview.cs) adds `--customization-container-race`, mutually exclusive with the accepted Height race mode. It selects `CreatureView3MixedComponents` and explicitly selects `StrictInterval` wounds with bounded composite decoding. Components retain their recovered set rules. Both generation headless and destroy GPU proofs pass using the existing composite codec/world; there is no dependency on same-round full customization codecs/runtime/assets.
+The standalone [preview](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldCreatureCustomizationPreview.cs) adds `--customization-container-race`, mutually exclusive with the accepted Height race mode. It selects `CreatureView3MixedComponents` and explicitly selects `StrictInterval` wounds with bounded composite decoding. Components retain their recovered set rules. Both generation headless and destroy GPU proofs pass using the existing composite codec/world; there is no dependency on same-round full customization codecs/runtime/assets.
 
 ## Typed presentation eligibility
 
-The initial host attempt exposed a scalar-only predicate in [SceneWorldObjectVisual.Matches](../poc/Stardust.Godot/SceneWorldObjectVisualFactory.cs). The approved scope extension changes only that mode predicate: scalars accept typed state; mixed requires wounds; mixed-components requires wounds and components; opaque/default modes reject. Every publication/resource/create/envelope/current-state/generation/incarnation check remains intact. No production customization wrapper change was needed.
+The initial host attempt exposed a scalar-only predicate in [SceneWorldObjectVisual.Matches](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldObjectVisualFactory.cs). The approved scope extension changes only that mode predicate: scalars accept typed state; mixed requires wounds; mixed-components requires wounds and components; opaque/default modes reject. Every publication/resource/create/envelope/current-state/generation/incarnation check remains intact. No production customization wrapper change was needed.
 
 Host guard cases use current publications in all three typed modes and opaque mode, borrowing the immutable managed resource descriptors without extra archive/GPU allocations. They verify typed acceptance and opaque rejection, missing typed state, foreign publication, a stale snapshot after a body delta, and old generation/publication rejection. This fixes eligibility for typed creature presentation; it assigns no graphical meaning to components or wounds.
 
 ## Independent compound sequence
 
-The [producer](../poc/round23-tests/Rendering/Generate-Peer.py) extends Rendering22 input with independently packed little-endian CREO:3 application packets. Inputs are synthetic, with no player/default/gameplay claim. Baseline components are empty at counter7 and wounds empty at counter9.
+The [producer](../../SWG-Godot-Client/poc/round23-tests/Rendering/Generate-Peer.py) extends Rendering22 input with independently packed little-endian CREO:3 application packets. Inputs are synthetic, with no player/default/gameplay claim. Baseline components are empty at counter7 and wounds empty at counter9.
 
 | Packet | Received field order | Container result |
 |---|---|---|
@@ -26,9 +26,9 @@ Appearance revision4 commits after release, retaining scalar/container values an
 
 ## Executed evidence and limits
 
-The [native scenario](../poc/Stardust.Core.SmokeTests/SceneWorldCustomizationContainerRaceScenarios.cs) passes226 assertions for baseline seed, exact compound encoding, ordered results, clear/reassign, legal replay, every truncation, malformed command, strict-gap rejection and immutable initial state. The own runner also passes prior scalar134/source97 assertions and CPU queue regression. Godot builds with zero warnings/errors.
+The [native scenario](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldCustomizationContainerRaceScenarios.cs) passes226 assertions for baseline seed, exact compound encoding, ordered results, clear/reassign, legal replay, every truncation, malformed command, strict-gap rejection and immutable initial state. The own runner also passes prior scalar134/source97 assertions and CPU queue regression. Godot builds with zero warnings/errors.
 
-The [audit](../poc/round23-tests/Rendering/Verify.py) independently parses packet order/bytes, models set mutation counters and strict vector intervals, compares all held/committed/reset receipts, and verifies original-byte face preparation and five-layer composition for both supplied profiles. Original resource closure is76 reads/5,940,390 bytes. GPU MAIN readback SHA-256 equals the oracle: zero `A41EE8925C695A8BC2DA0CAC1FA17864D471270507DF3900472F0655A5A42808`; varied `60C109DF85346F25B814E303B6D022D7D2D94459234790B6337ABB1877E7B8F5`.
+The [audit](../../SWG-Godot-Client/poc/round23-tests/Rendering/Verify.py) independently parses packet order/bytes, models set mutation counters and strict vector intervals, compares all held/committed/reset receipts, and verifies original-byte face preparation and five-layer composition for both supplied profiles. Original resource closure is76 reads/5,940,390 bytes. GPU MAIN readback SHA-256 equals the oracle: zero `A41EE8925C695A8BC2DA0CAC1FA17864D471270507DF3900472F0655A5A42808`; varied `60C109DF85346F25B814E303B6D022D7D2D94459234790B6337ABB1877E7B8F5`.
 
 Held/committed PNGs at fixed Height/pose/clock differ at36,972 appearance pixels, with identical silhouette and background. Idle/Height reset changes30,005 silhouette-mask pixels. The committed capture was visually inspected. Accepted R22 scalar-race headless host and independent oracle pass; R20 normal headless/GPU hosts and GPU oracle pass (48,398 changed pixels; face3,090/body44,861; retained silhouette/background). These results establish the bounded replacement transaction, not live protocol or legacy renderer parity, component-driven attachments, wound-driven graphics, or posture-driven pose.
 
@@ -43,6 +43,6 @@ dotnet run --project poc/round23-tests/Rendering/Rendering.csproj --no-restore -
 dotnet build poc/Stardust.Godot/Stardust.Godot.csproj --no-restore -p:UseSharedCompilation=false
 ```
 
-The [launcher](../poc/round23-tests/Rendering/Launch.ps1) takes GodotPath, ArchiveRoot, Configuration, FixturePath, Retirement generation|destroy and optional fresh private CapturePath. Run generation headless, then destroy with CapturePath. It prints private log/export paths. Audit with `Verify.py EXPORT PEER LOG [CAPTURE_STEM]`; the optional stem adds PNG checks. All generated evidence stays ignored. Native restore uses the existing package cache; Godot build uses its cached SDK.
+The [launcher](../../SWG-Godot-Client/poc/round23-tests/Rendering/Launch.ps1) takes GodotPath, ArchiveRoot, Configuration, FixturePath, Retirement generation|destroy and optional fresh private CapturePath. Run generation headless, then destroy with CapturePath. It prints private log/export paths. Audit with `Verify.py EXPORT PEER LOG [CAPTURE_STEM]`; the optional stem adds PNG checks. All generated evidence stays ignored. Native restore uses the existing package cache; Godot build uses its cached SDK.
 
 The [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R23_CUSTOMIZATION_CONTAINER_RACE.md) records identities and scope. Lead's next action is integrate these two presentation files and own tests/docs, then join the separately reviewed full customization/container runtime. Actual component/wound presentation callbacks remain a separate question; no extra rendering semantics are introduced here.

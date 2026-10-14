@@ -36,7 +36,7 @@ publication. Workers remain Low. Lead owns shared integration and acceptance.
   False publication/current-state retry, stale completion/recreation, queue
   admission, burst rejection without factory prefix, family failure and delayed
   close/drain are verified.
-- [Original continuous preview](../../poc/Stardust.Godot/ScenePumpedWorldPreview.cs)
+- [Original continuous preview](../../../SWG-Godot-Client/poc/Stardust.Godot/ScenePumpedWorldPreview.cs)
   joins actual pump, logical accounting, Godot host and accepted recipe factory.
   Fresh headless/GPU receipts pass per-frame max2 ingress/max1 publications.
   Real original human39-source and terminal27-source closures transfer after

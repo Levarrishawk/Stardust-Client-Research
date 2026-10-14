@@ -2,9 +2,9 @@
 
 October 2, 2026. Modern process/ownership policy, not recovered legacy timing.
 
-[SceneWorldPresentationHost](../poc/Stardust.Godot/SceneWorldPresentationHost.cs)
+[SceneWorldPresentationHost](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldPresentationHost.cs)
 is a reusable `Node` against the frozen
-[ISceneWorldPresentationPump](../poc/Stardust.Core/Session/ISceneWorldPresentationPump.cs).
+[ISceneWorldPresentationPump](../../SWG-Godot-Client/poc/Stardust.Core/Session/ISceneWorldPresentationPump.cs).
 It references no concrete Round16 pump and owns no network, ingress protocol,
 resource loader, world registry, visual factory, camera or application quit.
 The accepted [consumer contract](SCENE_WORLD_OBJECT_PRESENTATION_CONTRACT.md)
@@ -95,11 +95,11 @@ historical fake-pump proof or its counts below.
 
 ## Evidence and next integration
 
-Observation: [standalone preview](../poc/Stardust.Godot/SceneWorldPresentationHostPreview.cs)
+Observation: [standalone preview](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldPresentationHostPreview.cs)
 uses a fake frozen-interface pump and genuine baseline Core world/consumer without
 selection, resource loading or visual creation. Confidence: Confirmed for modern
 host mechanics by executed headless proof and independent
-[receipt oracle](../poc/round16-tests/Rendering/verify.py). Consequence: this scope
+[receipt oracle](../../SWG-Godot-Client/poc/round16-tests/Rendering/verify.py). Consequence: this scope
 is reviewable independently of the concrete pump under development.
 
 The proof passes 102 assertions (including repeated completion/cleanup checks),
@@ -108,7 +108,7 @@ Step fault, and three genuine Godot process frames. It covers success-only
 ownership, invalid configuration/thread/delta, ingress/event/Step faults, callback
 and frame reentry, close suppression, close-then-throw, delayed drain, exit-tree
 handoff, aggregate failure and complete release. The
-[launcher](../poc/round16-tests/Rendering/Launch.ps1) creates a private scene and
+[launcher](../../SWG-Godot-Client/poc/round16-tests/Rendering/Launch.ps1) creates a private scene and
 runs headless with a 45-second deadline. No shared Main/project edits are needed.
 
 Lead next wires the concrete pump and original-resource ingress state machine

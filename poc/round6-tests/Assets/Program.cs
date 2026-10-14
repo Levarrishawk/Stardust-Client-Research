@@ -1,1 +1,0 @@
-SceneCreatePlacementScenarios.Run();

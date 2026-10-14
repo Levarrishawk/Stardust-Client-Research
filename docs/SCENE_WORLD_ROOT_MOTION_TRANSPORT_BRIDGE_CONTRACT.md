@@ -30,7 +30,7 @@ Private bridge/queue/transport retained arrays are not exposed normally, so zero
 
 ## Reproduction and independent evidence
 
-[Own replay](../poc/round69-tests/Networking/replay.py) handpacks three fixed full-root frames with arbitrary flags/U32 counter/timestamp words and representative rigid poses. Before native execution it uses the frozen independent round14 peer's selector4/seeded CRC/uncompressed framing to produce five exact datagrams and five exact ACKs, including an unrelated channel3 packet and a replacement-incarnation packet. This reuses accepted primitive evidence rather than repeating a CRC/channel/reliability census.
+[Own replay](../../SWG-Godot-Client/poc/round69-tests/Networking/replay.py) handpacks three fixed full-root frames with arbitrary flags/U32 counter/timestamp words and representative rigid poses. Before native execution it uses the frozen independent round14 peer's selector4/seeded CRC/uncompressed framing to produce five exact datagrams and five exact ACKs, including an unrelated channel3 packet and a replacement-incarnation packet. This reuses accepted primitive evidence rather than repeating a CRC/channel/reliability census.
 
 The frozen SoeSessionCodec has EncodeRequest/DecodeResponse but no EncodeResponse. The verifier independently handpacks a synthetic17-byte response and passes it to actual BeginSession/AcceptSessionResponse. It then executes QueueReliableMessage/PumpQueuedDatagrams, a second in-memory transport's AcceptDatagram and actual sender ACK release. No response-encoder or wire expected value is inferred from native output.
 

@@ -27,7 +27,7 @@ certificate-store diagnostic remains nonfatal.
 
 ## Observations, confidence and consequence
 
-Observation: [input host](../../poc/Stardust.Godot/SceneWorldLocalInputHost.cs)
+Observation: [input host](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldLocalInputHost.cs)
 owns accepted driver once; real dispatched W/D/Shift map normalized native walking2
 and run6. Echo/unsupported keys ignored, focus loss and tree pause release, resume
 does not replay, heading maps through accepted orientation, reset clears keys,
@@ -37,7 +37,7 @@ Confidence: Confirmed against injected-clock fake-driver receipts in actual Godo
 dispatch. Consequence: lead can call Advance before pump Step without another loop.
 Actual fixed-step/drop/suspension internals remain delegated to the real driver.
 
-Observation: [locomotion wrapper](../../poc/Stardust.Godot/SceneWorldLocomotionVisual.cs)
+Observation: [locomotion wrapper](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldLocomotionVisual.cs)
 owns a current creature motion wrapper after threshold/clip/source checks; Speed
 chooses idle/walk/run with threshold4. Original loaded clock parameters produce
 walk/run frame3 after0.1 seconds at rate30/proxy1/end33/22, confirmed independently
@@ -92,18 +92,18 @@ source/status inspection, `git diff --check` and new-file whitespace checks pass
 All2,310 baseline hashes/sizes unchanged; exactly13 allowed additions; preserved
 checkout HEAD and empty index. Detailed outputs and scope receipt stay ignored/private.
 
-Exact additions: [host](../../poc/Stardust.Godot/SceneWorldLocalInputHost.cs),
-[locomotion](../../poc/Stardust.Godot/SceneWorldLocomotionVisual.cs),
-[preview](../../poc/Stardust.Godot/SceneWorldLocalInputPreview.cs),
+Exact additions: [host](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldLocalInputHost.cs),
+[locomotion](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldLocomotionVisual.cs),
+[preview](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldLocalInputPreview.cs),
 [contract](../../docs/SCENE_WORLD_LOCAL_INPUT_CONTRACT.md), this checkpoint;
-own Rendering [Generate-Peer.py](../../poc/round18-tests/Rendering/Generate-Peer.py),
-[Launch.ps1](../../poc/round18-tests/Rendering/Launch.ps1),
-[NuGet.Config](../../poc/round18-tests/Rendering/NuGet.Config),
-[Program.cs](../../poc/round18-tests/Rendering/Program.cs),
-[Rendering.csproj](../../poc/round18-tests/Rendering/Rendering.csproj),
-[Verify-Launch.ps1](../../poc/round18-tests/Rendering/Verify-Launch.ps1),
-[verify.py](../../poc/round18-tests/Rendering/verify.py),
-[verify_preview.py](../../poc/round18-tests/Rendering/verify_preview.py).
+own Rendering [Generate-Peer.py](../../../SWG-Godot-Client/poc/round18-tests/Rendering/Generate-Peer.py),
+[Launch.ps1](../../../SWG-Godot-Client/poc/round18-tests/Rendering/Launch.ps1),
+[NuGet.Config](../../../SWG-Godot-Client/poc/round18-tests/Rendering/NuGet.Config),
+[Program.cs](../../../SWG-Godot-Client/poc/round18-tests/Rendering/Program.cs),
+[Rendering.csproj](../../../SWG-Godot-Client/poc/round18-tests/Rendering/Rendering.csproj),
+[Verify-Launch.ps1](../../../SWG-Godot-Client/poc/round18-tests/Rendering/Verify-Launch.ps1),
+[verify.py](../../../SWG-Godot-Client/poc/round18-tests/Rendering/verify.py),
+[verify_preview.py](../../../SWG-Godot-Client/poc/round18-tests/Rendering/verify_preview.py).
 
 ## Limits and next action
 

@@ -49,7 +49,7 @@ winding.
 
 ## API and modern bounds
 
-[Production helper](../poc/Stardust.Core/Geometry/TerrainPatchTopology.cs):
+[Production helper](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainPatchTopology.cs):
 
 - `GetIndexCount(patternIndex)` returns the active count.
 - `CopyIndices(patternIndex)` returns a new owned ushort array.
@@ -79,8 +79,8 @@ call cannot change topology or a caller's previous result.
 
 ## Verification and limits
 
-[Native scenarios](../poc/Stardust.Core.SmokeTests/TerrainPatchTopologyScenarios.cs)
-and the [independent static/ring oracle](../poc/round31-tests/Rendering/verify_topology.py)
+[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainPatchTopologyScenarios.cs)
+and the [independent static/ring oracle](../../SWG-Godot-Client/poc/round31-tests/Rendering/verify_topology.py)
 pass 362 native checks: 45 rebasing cases, 66 rejection cases, and 60 synthetic
 triangles. The oracle compares every active original index, all counts and
 padding, twelve instruction sites in two ranges, and all native output against

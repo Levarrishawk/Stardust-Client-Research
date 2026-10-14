@@ -32,7 +32,7 @@ Closeout: 20:09 EDT after the requested hour and final verification.
   includes source identities, independent peer method, cleanup, limits and next probe.
 - [TRE checkpoint](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_TRE_READER.md)
   includes archive/member SHA-256, source identities, synthetic negatives and reproduction.
-- [Acceptance record](../../docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md)
+- [Acceptance record](../../../SWG-Godot-Client/docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md)
   is the durable implementation/caller contract and open-gate register.
 - The core suite and original-entry probe pass. The independent peer covers
   32 seeded data/ACK-loss, corruption, duplicate and reorder traces.

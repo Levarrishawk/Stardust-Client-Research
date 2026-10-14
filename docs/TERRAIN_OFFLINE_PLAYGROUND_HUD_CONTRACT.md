@@ -1,7 +1,7 @@
 # Offline playground controls and status
 
 October6,2026. Opt-in modern display over a supplied immutable status record.
-[TerrainOfflinePlaygroundHud](../poc/Stardust.Godot/TerrainOfflinePlaygroundHud.cs)
+[TerrainOfflinePlaygroundHud](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflinePlaygroundHud.cs)
 borrows its owner Node and state callback; it owns one CanvasLayer, Panel, three Labels
 and the panel style resource. It owns no world, camera, simulation, socket or input route.
 
@@ -68,10 +68,10 @@ API contract. Counter overflow is checked but not executed in fixtures.
 
 ## Reproduction and confidence
 
-[Invoke-Picker.ps1](../poc/round73-tests/Rendering/Invoke-Picker.ps1) verifies executable
+[Invoke-Picker.ps1](../../SWG-Godot-Client/poc/round73-tests/Rendering/Invoke-Picker.ps1) verifies executable
 identity, uses cached offline Python/.NET/Godot, generates independent expectations,
 builds and executes the replacement scene headless/GPU. The
-[producer/verifier](../poc/round73-tests/Rendering/verify_picker.py) validates the incoming
+[producer/verifier](../../SWG-Godot-Client/poc/round73-tests/Rendering/verify_picker.py) validates the incoming
 4371-file manifest/archive and privately stages the frozen orbit host for input proof.
 No Runtime73/Networking73 dependency or original asset read is involved.
 

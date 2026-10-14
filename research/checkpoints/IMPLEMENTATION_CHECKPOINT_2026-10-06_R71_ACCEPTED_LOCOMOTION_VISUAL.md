@@ -15,7 +15,7 @@ and negative replay, focused scope audit, then handoff for the lead's main-scene
   `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`, verified
   before executable-table reads. Configuration SHA-256
   `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`.
-- Idle/walk/run clip pins are retained in the [independent producer](../../poc/round71-tests/Rendering/verify_visual.py).
+- Idle/walk/run clip pins are retained in the [independent producer](../../../SWG-Godot-Client/poc/round71-tests/Rendering/verify_visual.py).
   All three resolve at overlay priority30. Body mesh priority53:
   `93378D74AA75B1C6673C9008914FFB51CF7DC380FF18459DBBFC26EF016A59B0`;
   body skeleton priority53:
@@ -26,7 +26,7 @@ and negative replay, focused scope audit, then handoff for the lead's main-scene
 
 ## Findings and confidence
 
-Observation: [the new wrapper](../../poc/Stardust.Godot/SceneWorldAcceptedLocomotionVisual.cs)
+Observation: [the new wrapper](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldAcceptedLocomotionVisual.cs)
 reads the supplied immutable state once per enabled presentation, maps its exact enum
 and frame to existing prepared pose APIs, and contains no animation clock/Advance call.
 Interpretation: accepted-displacement phase can be displayed without elapsed-frame drift.
@@ -54,7 +54,7 @@ Observation: disabled Tick forwards elapsed time and reads no state; enabled Tic
 zero seconds; Apply forwards exactly once and rejects an obsolete snapshot without state
 read. Actual current Height is applied after a legitimate revision. Callback-induced
 revision loss retires the chain instead of presenting over stale Height. Confidence:
-Confirmed by [standalone verification](../../poc/Stardust.Godot/SceneWorldAcceptedLocomotionVisualVerification.cs).
+Confirmed by [standalone verification](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldAcceptedLocomotionVisualVerification.cs).
 Implementation consequence: the lead can retain legacy prepoint acceptance gates and
 enable the wrapper when the supplied observer becomes active.
 

@@ -19,7 +19,7 @@ are staged privately from the verified archive. No original assets are read.
 
 ## Findings versus interpretation
 
-Observation: [the scheduled branch](../../poc/Stardust.Godot/SceneWorldPresentationHost.cs)
+Observation: [the scheduled branch](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldPresentationHost.cs)
 reads schedule once, bounds0..8, tests optional continue before each slot and executes
 fixed BeforeStep, actual Step and completion independently. Four supplied0/1/2/8 counts
 agree with pre-native exact traces and yield11 real frozen concrete pump calls. Confidence:
@@ -52,9 +52,9 @@ and planner lifetime with callers; no Runtime74 source or CancellationToken API 
 
 ## Validation
 
-[Independent producer/verifier](../../poc/round74-tests/Rendering/verify_picker.py)
+[Independent producer/verifier](../../../SWG-Godot-Client/poc/round74-tests/Rendering/verify_picker.py)
 generates counts, call trace and25 exact failure prefixes before each native run.
-[Standalone verification](../../poc/Stardust.Godot/SceneWorldFixedStepHostVerification.cs)
+[Standalone verification](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldFixedStepHostVerification.cs)
 uses a counting/fault-injection wrapper around actual frozen SceneWorldPresentationPump,
 with a cold generic world and loader/factory that reject if reached. A wrapper fault
 before its inner call is explicitly distinguished from an actual concrete pump call.

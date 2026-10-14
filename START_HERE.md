@@ -1,27 +1,8 @@
 # Stardust client research: start here
 
-This is the canonical entry point for reviewing the `Stardust.exe` research before designing or implementing a replacement client.
+This repository contains executable-backed research, compatibility specifications, curated registries and reproducibility tools. Godot implementation lives in [SWG-Godot-Client](../SWG-Godot-Client/README.md).
 
-Latest district milestone (October 12, 2026): [offline Mos Taike on x64/DX12](docs/DX12_OFFLINE_MOS_TAIKE_RUNBOOK.md). A 160 × 160 m west/central district joins all applicable bounded height rules, 94 original snapshot objects including five buildings, original animated human movement, conservative obstacle boxes and an orbit camera. Nine omissions and modern rendering/numeric policies are explicit. This remains offline, with interiors and full-town/world breadth open. [Evidence and limits](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_MOS_TAIKE.md).
-
-Latest terrain delivery (October 12, 2026): [x64/DX12 offline terrain roaming](docs/DX12_OFFLINE_TERRAIN_RUNBOOK.md). Original human idle/walk/run now joins a 256 × 256 m original-resource Tatooine base/detail surface, camera-relative movement and rendered-triangle grounding. This is explicitly a partial generator: omitted geographic layers change final elevations. Eight exported checks pass, including actual DX12 movement and independent grounding. [Evidence and limits](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_TERRAIN.md).
-
-Latest runnable milestone (October 12, 2026): [Windows x64 DirectX 12 offline character build](docs/DX12_OFFLINE_CLIENT_RUNBOOK.md). The exported self-contained application opens the original animated human with no editor/SDK and rejects non-DX12 fallback. Actual GPU/animation and negative cases pass; [acceptance evidence](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_CLIENT.md). This is an offline character entry, not live gameplay or completed terrain/appearance parity.
-
-Current planning direction (October 12, 2026): [NGE source implementation acceleration plan](docs/NGE_SOURCE_ACCELERATION_PLAN.md). Target Windows x64/Direct3D 12 through the fastest delivery path; retain the existing core and Godot host subject to explicit DX12 verification. Source-guided terrain, populated actors and gameplay integration follow bounded acceptance gates. This plan does not restart expired live/overnight authorization or change Round93's accepted scope.
-
-Latest development session: [Round93 controlled entry and receipts](research/sessions/PARALLEL_DEVELOPMENT_ROUND_93_2026-10-06.md).
-Current authorization: successive rounds until October7 at05:00 Eastern; see [active overnight record](research/sessions/OVERNIGHT_DEVELOPMENT_2026-10-06_TO_07.md). Rounds86–93 accepted. All four Low workers idle; development stopped early for operator prerequisites. No full new round after04:00; acceptance/report by05:00, or stop for necessary user intervention. Existing live/executable/publication boundaries remain. The heartbeat is paused pending operator input and renewed authorization.
-Completed continuation: [October5 to6 overnight development and final handoff](research/sessions/OVERNIGHT_DEVELOPMENT_2026-10-05_TO_06.md). Rounds64 through79 accepted. Authorization ended October6 at07:00 Eastern; heartbeat paused and all four Low workers idle. Further development requires renewed authorization.
-Latest accepted parallel round: [Round93 assignments and acceptance](research/sessions/PARALLEL_DEVELOPMENT_ROUND_93_2026-10-06.md). Current overnight authorization continues until October7 at05:00 Eastern. See the [daytime record](research/sessions/DAYTIME_DEVELOPMENT_2026-10-04.md) and [overnight handoff](research/sessions/OVERNIGHT_DEVELOPMENT_2026-10-03_TO_04.md).
-Earlier accepted parallel round: [Round 3 results and integration record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_3_2026-10-01.md); [Round 2 accepted results](research/sessions/PARALLEL_DEVELOPMENT_ROUND_2_2026-10-01.md).
-Current executable acceptance gates: [implementation record](docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
-Latest research checkpoint: [fresh-character baseline admission](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-06_R90_FRESH_CHARACTER_BASELINES.md).
-Latest follow-up: [direct status CRC receive rule](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-29_STATUS_CRC_RECEIVE.md).
-Latest implementation checkpoint: [controlled entry and receipts](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R93_CONTROLLED_TRANSPORT.md).
-Latest collision research: [creature fallback dimensions](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-01_CREATURE_COLLISION_FALLBACK.md).
-
-Current replacement-client path: [ordered gates](docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md), [single validation command](docs/CLIENT_REGRESSION_RUNBOOK.md), [original-resource reproduction](poc/round93-tests/Rendering/README.md), and [controlled-server plan](docs/CONTROLLED_SERVER_VALIDATION_PLAN.md). Explicit launch profiles and the prepared application owner execute the bounded offline login → selection → zone → original human → movement/corrections → disconnect/local drain sequence. Original headless/GPU verification passes. Explicit opt-in composition and redacted receipts are verified through synthetic factories; real UDP remains unexecuted. Next: operator scenario prerequisites and specific live authorization. General gameplay/avatar/terrain and live interoperability remain open.
+Latest workspace handoff: [research-only cleanup, October 14, 2026](research/sessions/RESEARCH_ONLY_CLEANUP_2026-10-14.md). Latest terrain research: [slope normal producer](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-13_SLOPE_NORMAL_PRODUCER.md) and [slope endpoint graph](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-13_SLOPE_ENDPOINT_GRAPH.md). Historical development reports remain evidence, not active work instructions.
 
 ## Scope and current position
 
@@ -34,13 +15,7 @@ Current replacement-client path: [ordered gates](docs/REPLACEMENT_CLIENT_MILESTO
 - Server packet-source matrix: **345 documented / 0 reachable gaps**
 - Stable provisional-name registry: **2,626 distinct addresses / 0 duplicate rows** (current canonical registry)
 
-The user has selected Godot 4.7.2 .NET x64 as the host after the bounded
-feasibility proof passed. Work is now development-led: implement the smallest
-fixture-backed compatibility slice, and return to targeted executable/server
-analysis only when a concrete implementation uncertainty blocks or risks it.
 Function-level accounting remains separate from behavioral readiness.
-
-Parallel development: [adopted operating rules](docs/PARALLEL_DEVELOPMENT_RULES.md). Rounds4 through93 are accepted. [Latest four-round assessment](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_9_12_ASSESSMENT_2026-10-02.md). [Five-round outcomes and next milestone](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_4_8_ASSESSMENT_2026-10-02.md). Overnight development stopped October4 at05:00 Eastern; see [outcomes and prepared next assignments](research/sessions/OVERNIGHT_DEVELOPMENT_2026-10-03_TO_04.md). [Prior organizational assessment](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_2_3_ASSESSMENT_2026-10-01.md).
 
 ## Recommended review order
 
@@ -68,7 +43,6 @@ Parallel development: [adopted operating rules](docs/PARALLEL_DEVELOPMENT_RULES.
 | `research/archive/` | Superseded historical reports retained for provenance | Yes |
 | `data/curated/` | Canonical machine-readable registries | Yes |
 | `tools/` | Reproducible analysis and verification scripts | Yes, after license/path review |
-| `poc/` | Existing bounded Godot feasibility proof | Yes, after dependency review |
 | `local-private/` | Ghidra projects, toolchains, decompilation, raw extracts, generated corpora, manifests | **No** |
 
 See [WORKSPACE_HYGIENE.md](WORKSPACE_HYGIENE.md) for maintenance rules and [PUBLICATION_GUIDE.md](PUBLICATION_GUIDE.md) before initializing or pushing a repository.
@@ -79,31 +53,3 @@ See [WORKSPACE_HYGIENE.md](WORKSPACE_HYGIENE.md) for maintenance rules and [PUBL
 - **Strongly inferred**: multiple consistent evidence sources, but one boundary remains indirect.
 - **Tentative**: plausible interpretation requiring more evidence.
 - **Unknown**: no semantic claim should be made yet.
-
-## Current implementation milestone
-
-The engine-neutral .NET 8 core now completes an offline SOE session-to-login
-transcript through cluster and character enumeration, hosted by Godot in
-headless mode. It includes fixture-backed session codecs, seeded CRC,
-selector-4, bounded zlib receive, four reliable channels, ACK/reorder/retry,
-multipayload, and fragmentation. See [prototype status](poc/README.md) and the
-[Phase 1 status](docs/64BIT_PORT_PLAN.md#implementation-status-2026-09-27).
-
-The 2026-09-29 increment hardens corruption/failure recovery, adds queued
-fragmentation and independent peer scenarios, outer multipacket dispatch,
-strict configuration loading and redacted diagnostics. An engine-neutral TRE
-0005 reader also reproduces an original entry's Python-verified bytes.
-
-The injected socket/clock/journal adapter is implemented. Live networking still
-requires status/liveness policy and a separately authorized controlled-server
-run. One original textured static mesh now renders in an explicit Godot preview.
-Parent appearances and all-four skeletal details are implemented in bounded original previews. Stable-incarnation state, typed baseline/scalar and atomic mixed/components transactions, acknowledged two-actor presentation and generic creature/static world delivery are accepted. A mixed original human/terminal preview now passes guarded lifecycle/GPU/headless/cancel checks. Reusable acknowledged heterogeneous presentation is implemented and its combined original/native/GPU/headless/cancel checks pass. Continuous bounded scene pumping is implemented and its joined original/native/GPU/headless/cancel checks pass. Native pose/wire/body joins also pass. Input locomotion, unified ingress and interior hosting are next; modern DDS completion extensions remain separately scoped.
-See the acceptance record and latest session for verified scope and limits.
-
-Latest material milestone: [original skeletal texture defaults](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_MATERIAL_DEFAULTS.md).
-
-Latest scene milestone: [textured animated interior character](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_CHARACTER_MATERIALS.md).
-
-Latest bounded implementation: [original blueprint face description](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_BLUEPRINT_FACE_DESCRIPTION.md); [completed run report](research/sessions/IMPLEMENTATION_SESSION_2026-10-01_UNTIL_0700.md) gives the next shader/face execution probe.
-
-Offline playground setup and controls: [runbook](docs/OFFLINE_PLAYGROUND_RUNBOOK.md).

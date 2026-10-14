@@ -1,1 +1,0 @@
-SceneCreatureResourceScenarios.Run(args);

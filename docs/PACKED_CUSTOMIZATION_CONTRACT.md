@@ -1,6 +1,6 @@
 # Packed appearance customization codec
 
-Round20 Networking, October3,2026. [Codec](../poc/Stardust.Core/Protocol/PackedCustomizationCodec.cs) owns raw packed version1 records, without CIDM lookup, variable construction, world state, face composition or live replication. [Prior ingress evidence](CREATURE_APPEARANCE_CUSTOMIZATION_INGRESS.md) supplies the outer field4 and callback boundary; this increment closes the concrete ranged/palette byte-reader question and implements a strict bounded replacement grammar.
+Round20 Networking, October3,2026. [Codec](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/PackedCustomizationCodec.cs) owns raw packed version1 records, without CIDM lookup, variable construction, world state, face composition or live replication. [Prior ingress evidence](CREATURE_APPEARANCE_CUSTOMIZATION_INGRESS.md) supplies the outer field4 and callback boundary; this increment closes the concrete ranged/palette byte-reader question and implements a strict bounded replacement grammar.
 
 ## API and ownership
 
@@ -63,7 +63,7 @@ Interpretation/confidence: **Confirmed** concrete one-byte U8/two-byte S16 conve
 
 ## Verification and handoff
 
-[Public smoke entry point](../poc/Stardust.Core.SmokeTests/PackedCustomizationScenarios.cs): PackedCustomizationScenarios.Run(peerPath, exportPath). [Runner](../poc/round20-tests/Networking/Networking.csproj) and [independent Python producer/oracle](../poc/round20-tests/Networking/peer.py) use only synthetic bytes, without production imports or original assets.773 exact cases cover all256 one-byte values, every high byte for a two-byte value, all127 IDs at both widths, signed boundaries, ordered duplicates, count255, outer-empty/version1-count0 and permitted raw zeros.11,995 malformed/budget/constructor probes and6,699 ownership checks pass. Every nonempty proper prefix rejects; zero prefix is the valid outer-empty alternative. Exact decoded-wire and separately constructed canonical outputs match the independent oracle.
+[Public smoke entry point](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/PackedCustomizationScenarios.cs): PackedCustomizationScenarios.Run(peerPath, exportPath). [Runner](../../SWG-Godot-Client/poc/round20-tests/Networking/Networking.csproj) and [independent Python producer/oracle](../../SWG-Godot-Client/poc/round20-tests/Networking/peer.py) use only synthetic bytes, without production imports or original assets.773 exact cases cover all256 one-byte values, every high byte for a two-byte value, all127 IDs at both widths, signed boundaries, ordered duplicates, count255, outer-empty/version1-count0 and permitted raw zeros.11,995 malformed/budget/constructor probes and6,699 ownership checks pass. Every nonempty proper prefix rejects; zero prefix is the valid outer-empty alternative. Exact decoded-wire and separately constructed canonical outputs match the independent oracle.
 
 ```powershell
 $python = 'C:/Users/ancie/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe'

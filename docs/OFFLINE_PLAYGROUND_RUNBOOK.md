@@ -4,7 +4,7 @@ This is a bounded offline preview using the original supplied resource chain, mo
 
 ## Prepare the profile
 
-Use the accepted Version12 profile and original-resource/peer context already used by the [launcher](../poc/round16-tests/Integration/Launch.ps1). The [producer](../poc/round77-tests/Integration/create_configured_profile.py) writes a fresh Version13 profile into an ignored output directory. It does not extract assets or contact a server.
+Use the accepted Version12 profile and original-resource/peer context already used by the [launcher](../../SWG-Godot-Client/poc/round16-tests/Integration/Launch.ps1). The [producer](../../SWG-Godot-Client/poc/round77-tests/Integration/create_configured_profile.py) writes a fresh Version13 profile into an ignored output directory. It does not extract assets or contact a server.
 
 ```powershell
 python poc/round77-tests/Integration/create_configured_profile.py --source $SourceProfile --output $OutputProfile
@@ -12,7 +12,7 @@ $HostArguments.TerrainPointTargetProfile = $OutputProfile
 & poc/round16-tests/Integration/Launch.ps1 @HostArguments
 ```
 
-Here `$SourceProfile` is the accepted Version12 profile, `$OutputProfile` is a new ignored path, and `$HostArguments` is the existing accepted host argument dictionary, including Godot path, original archive/configuration, catalog, synthetic peer partitions and customization context. Those inputs must be supplied; the profile does not replace them. Use the existing cached Godot/.NET build setup described in the [PoC README](../poc/README.md).
+Here `$SourceProfile` is the accepted Version12 profile, `$OutputProfile` is a new ignored path, and `$HostArguments` is the existing accepted host argument dictionary, including Godot path, original archive/configuration, catalog, synthetic peer partitions and customization context. Those inputs must be supplied; the profile does not replace them. Use the existing cached Godot/.NET build setup described in the [PoC README](../../SWG-Godot-Client/poc/README.md).
 
 Default settings are below. Supply their UTF8 JSON with `--settings $SettingsJson` to change the bounded modern policy. All eight names are mandatory; duplicates, unknown names, malformed UTF8, coercion, nesting and oversized input are rejected. See the [settings contract](TERRAIN_OFFLINE_PLAYGROUND_SETTINGS_CONTRACT.md).
 
@@ -55,7 +55,7 @@ The Round80 small standalone Godot proof passes two completed runs, a terrain fa
 
 ## Persistent full preview: Round81
 
-The [interactive launcher](../poc/Stardust.Godot/PersistentOfflinePlaygroundLauncher.cs) creates one fresh full preview at a time. Completed or faulted previews drain their input, camera, clocks, root transport, actors, terrain and resource jobs before exposing the persistent outcome. Click **Restart offline preview** to load the next explicit run. The prior outcome remains visible until new resources/input owners are ready. Existing one-run launches still exit normally.
+The [interactive launcher](../../SWG-Godot-Client/poc/Stardust.Godot/PersistentOfflinePlaygroundLauncher.cs) creates one fresh full preview at a time. Completed or faulted previews drain their input, camera, clocks, root transport, actors, terrain and resource jobs before exposing the persistent outcome. Click **Restart offline preview** to load the next explicit run. The prior outcome remains visible until new resources/input owners are ready. Existing one-run launches still exit normally.
 
 Prepare a default idle Version13 profile above, with `InteractiveReplay=false`. Supply `$BaseArgumentsJson` as the complete accepted native argument vector, including original asset/configuration/catalog and every existing synthetic replication/customization partition. It contains one `--terrain-point-target-profile` argument; the producer substitutes a private profile per run and reseeds inherited synthetic protected fixtures. It does not build missing input context or contact a server.
 
@@ -66,13 +66,13 @@ python poc/round81-tests/Integration/create_restart_arguments.py --base-argument
 
 Build the current Godot project with the existing cached offline SDK/packages before launching. The argument file is a UTF8 JSON array of1..32 full string argument arrays, at most262144 bytes; each run has2..256 arguments of at most4096 characters. The per-session simulation/click/settings limits remain explicit. At the successful run cap, additional restart requests decline; start another launcher to begin a new bounded group. Failed cleanup is terminal and retains its incomplete prefix.
 
-[Joined verification](../poc/round81-tests/Integration/Invoke-PlaygroundRestart.ps1) passes four actual original-resource previews in headless/GPU:401,401,225 completed/226 attempted terrain fault, then401 healthy updates;140 protected roots and26 original footstep occurrences. Actual viewport W/Shift/orbit/wheel retirement stress resets on the successor. Genuine SubViewport button events reject/retry one factory and admit three replacements; physical OS pointer routing is unexecuted. Controlled active close through this launcher passes31 updates/three roots, reports Incomplete, drains and exits without a successor. Physical OS close notification remains unexecuted. Full reproduction, independent oracles and uncertainty are in the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R81_FULL_PLAYGROUND_RESTART.md).
+[Joined verification](../../SWG-Godot-Client/poc/round81-tests/Integration/Invoke-PlaygroundRestart.ps1) passes four actual original-resource previews in headless/GPU:401,401,225 completed/226 attempted terrain fault, then401 healthy updates;140 protected roots and26 original footstep occurrences. Actual viewport W/Shift/orbit/wheel retirement stress resets on the successor. Genuine SubViewport button events reject/retry one factory and admit three replacements; physical OS pointer routing is unexecuted. Controlled active close through this launcher passes31 updates/three roots, reports Incomplete, drains and exits without a successor. Physical OS close notification remains unexecuted. Full reproduction, independent oracles and uncertainty are in the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R81_FULL_PLAYGROUND_RESTART.md).
 
 ## Named scenario entry: Round82
 
 The [scenario manifest](OFFLINE_SCENARIO_MANIFEST_CONTRACT.md) stores named input
 paths, eight explicit Boolean options and one private Version13 profile per run.
-The [producer](../poc/round82-tests/Networking/scenario_author.py) accepts the same
+The [producer](../../SWG-Godot-Client/poc/round82-tests/Networking/scenario_author.py) accepts the same
 complete `$BaseArgumentsJson` context above and a supplied `$OutputProfile`.
 Use an idle profile with `InteractiveReplay=false` for human-operated inspection.
 The producer reseeds every run and writes a fresh ignored scenario directory.

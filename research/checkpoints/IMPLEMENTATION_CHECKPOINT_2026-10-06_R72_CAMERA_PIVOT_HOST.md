@@ -18,7 +18,7 @@ cached packages execute only the replacement scenes. No original asset reads are
 
 ## Findings versus interpretation
 
-Observation: [SetPivot](../../poc/Stardust.Godot/TerrainCameraOrbitHost.cs) accepts a
+Observation: [SetPivot](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainCameraOrbitHost.cs) accepts a
 bounded candidate, calculates position before effects, performs actual GlobalPosition
 and LookAt with guards, and commits Pivot after both return. Interpretation: it supports
 an explicit modern following adapter without owning an actor or simulation clock.
@@ -54,7 +54,7 @@ and preflight-versus-mutation failure behavior.
 
 ## Validation and retained limits
 
-[Independent producer/verifier](../../poc/round72-tests/Rendering/verify_picker.py)
+[Independent producer/verifier](../../../SWG-Godot-Client/poc/round72-tests/Rendering/verify_picker.py)
 creates both new and existing-orbit expectations before native execution. The frozen
 regression source is verified against the incoming archive and staged privately. Final
 standalone build has zero warnings/errors. New scene:98 headless/100 GPU checks,

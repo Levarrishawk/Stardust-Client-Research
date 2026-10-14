@@ -1,6 +1,6 @@
 # Modern retained-set finite ray query
 
-The [ray wrapper](../poc/Stardust.Core/Geometry/TerrainModernPatchSetRayQuery.cs) consumes an actual [round62 surface query](TERRAIN_MODERN_PATCH_SET_SURFACE_QUERY_CONTRACT.md). It copies retained geometry positions, supplied normals, and active indices once. It never rebuilds surface queries, normals, geometry, or set admission. This is explicit modern native-space policy; `OriginalCollisionParity` is false.
+The [ray wrapper](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainModernPatchSetRayQuery.cs) consumes an actual [round62 surface query](TERRAIN_MODERN_PATCH_SET_SURFACE_QUERY_CONTRACT.md). It copies retained geometry positions, supplied normals, and active indices once. It never rebuilds surface queries, normals, geometry, or set admission. This is explicit modern native-space policy; `OriginalCollisionParity` is false.
 
 ## API and identities
 
@@ -41,7 +41,7 @@ Batch preflight computes checked QT and all costs before request capture/results
 
 ## Reproducible evidence
 
-The [own replay runner](../poc/round63-tests/Rendering/Invoke-Ray.ps1), [native scenarios](../poc/Stardust.Core.SmokeTests/TerrainModernPatchSetRayQueryScenarios.cs), and [independent verifier](../poc/round63-tests/Rendering/verify_ray.py) build actual frozen Core APIs offline. The verifier uses exact Fraction face-plane intersections and a three-dimensional Gram barycentric solve, independently of the native largest-component projection. Expected results are produced before native execution. Supplied normal inputs use the frozen independent Decimal/F32 model, with absolute normal tolerance 3e-6; T, position, and weights use absolute 1e-9 / relative 2e-11.
+The [own replay runner](../../SWG-Godot-Client/poc/round63-tests/Rendering/Invoke-Ray.ps1), [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainModernPatchSetRayQueryScenarios.cs), and [independent verifier](../../SWG-Godot-Client/poc/round63-tests/Rendering/verify_ray.py) build actual frozen Core APIs offline. The verifier uses exact Fraction face-plane intersections and a three-dimensional Gram barycentric solve, independently of the native largest-component projection. Expected results are produced before native execution. Supplied normal inputs use the frozen independent Decimal/F32 model, with absolute normal tolerance 3e-6; T, position, and weights use absolute 1e-9 / relative 2e-11.
 
 The sealed original-layer modern fixture SHA-256 is `d1adcbb5de1759386c3ece620d1a8cd2d04ba30f35f9515cf21efa1eb99fbaa0`. The executable is identity-checked at SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150` and never executed. Actual frozen source reconstruction checks 400 stored height/normal values before ray querying. The fixture uses an original generator layer with synthetic warm priors and modern arithmetic; no original collision, terrain, normal, material, or control parity is implied.
 

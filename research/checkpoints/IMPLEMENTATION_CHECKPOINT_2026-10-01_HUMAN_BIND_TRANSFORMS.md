@@ -14,7 +14,7 @@ Used prior SKTM bind-route/backend specifications; rechecked baseline SHA in the
 
 Full native smoke passes noncommuting parent/child pose (child forward origin2,1,0 rather than3,0,0), three-family quaternion order, external-root attachment, zero joints and invalid topology/translation/scale gates. Original ten-source human bundle produces four body levels and face level0 attached independently to each body's Head:176 matrices. Independent double affine oracle, reading unchanged original skeleton bytes and rechecking source priority/size/hash/configuration pin, agrees at maximum component error4.1409738826825304e-7 with2e-5 tolerance. Godot build passes zero errors/warnings. No original executable execution or rendered character occurs.
 
-Reproduce `--skeletal-bind-pose` with the same pinned object/SAT options as preceding milestone. [verify_skeleton_bind_pose.py](../../tools/python/verify_skeleton_bind_pose.py) ROOT CONFIG NATIVE_OUTPUT `--configuration-sha256 CONFIG_PIN` audits matrices; descriptor verifier independently audits the ten-source chain and named arrays. Detailed output remains ignored/private.
+Reproduce `--skeletal-bind-pose` with the same pinned object/SAT options as preceding milestone. [verify_skeleton_bind_pose.py](../../../SWG-Godot-Client/tools/python/verify_skeleton_bind_pose.py) ROOT CONFIG NATIVE_OUTPUT `--configuration-sha256 CONFIG_PIN` audits matrices; descriptor verifier independently audits the ten-source chain and named arrays. Detailed output remains ignored/private.
 
 ## Confidence and next probe
 

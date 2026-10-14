@@ -8,7 +8,7 @@ The canonical research workspace is `C:\Users\ancie\Documents\GitHub\Stardust-Cl
 
 ## Publication boundary
 
-The curated research record consists of the root control documents plus `docs/`, `research/`, `data/curated/`, `tools/`, and `poc/`. The `local-private/` directory contains heavyweight, generated, licensed, proprietary, or redistribution-sensitive material and must never be committed.
+The curated research record consists of the root control documents plus `docs/`, `research/`, `data/curated/`, and `tools/`. The `local-private/` directory contains heavyweight, generated, licensed, proprietary, or redistribution-sensitive material and must never be committed.
 
 The root `.gitignore` enforces that boundary. Before any first commit or push, follow `PUBLICATION_GUIDE.md` and inspect the staged file list—not merely the working tree.
 

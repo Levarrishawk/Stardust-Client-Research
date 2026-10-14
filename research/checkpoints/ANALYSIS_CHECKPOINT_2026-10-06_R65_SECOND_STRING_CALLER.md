@@ -27,7 +27,7 @@ Original SHA confirmed before VAs:
 Frozen64 verifier source is SHA-gated before mapping/path/original-field reuse;
 its actual hash is recorded in new tool/receipt. No old investigations are rerun.
 
-Three assigned new paths: [verifier](../../tools/python/verify_terrain_shader_family_second_string_caller.py),
+Three assigned new paths: [verifier](../../../SWG-Godot-Client/tools/python/verify_terrain_shader_family_second_string_caller.py),
 [durable contract](../../docs/TERRAIN_SHADER_FAMILY_SECOND_STRING_CALLER_CONTRACT.md),
 this checkpoint; two own65Assets runners. All4087 existing files/shared hosts/
 registries/ledgers stay frozen. No unfinished65 sibling input. Lead reconciles

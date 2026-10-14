@@ -2,10 +2,10 @@
 
 October 2, 2026. Modern presentation policy; no recovered interpolation/timing claim.
 
-[SceneWorldObjectMotionVisual](../poc/Stardust.Godot/SceneWorldObjectMotionVisual.cs)
-implements [ISceneWorldObjectPresentation](../poc/Stardust.Core/Session/ISceneWorldObjectPresentation.cs)
+[SceneWorldObjectMotionVisual](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldObjectMotionVisual.cs)
+implements [ISceneWorldObjectPresentation](../../SWG-Godot-Client/poc/Stardust.Core/Session/ISceneWorldObjectPresentation.cs)
 over an accepted [recipe visual](SCENE_WORLD_OBJECT_VISUAL_CONTRACT.md) and the frozen
-[motion source](../poc/Stardust.Core/Session/ISceneWorldObjectMotionSource.cs).
+[motion source](../../SWG-Godot-Client/poc/Stardust.Core/Session/ISceneWorldObjectMotionSource.cs).
 There is no concrete motion-store dependency, loader, registry, network handler,
 locomotion selection, interpolation or animation replacement.
 
@@ -76,7 +76,7 @@ allocation. Missing motion reset is a modern policy, not an original client clai
 
 ## Independent evidence
 
-[Standalone original-data proof](../poc/Stardust.Godot/SceneWorldObjectMotionVisualPreview.cs)
+[Standalone original-data proof](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldObjectMotionVisualPreview.cs)
 uses an authored fake frozen source and accepted human/terminal closures. It proves
 rotated/translated/reflected native poses, repeated Height1.4 without accumulating
 scale, rigid static pose, missing/stale/foreign reset, newer pose after null reset,
@@ -90,8 +90,8 @@ Native independent receipts retain human39 reads/4,686,371 bytes and terminal27
 reads/1,401,794 bytes, with one static reload on recreation. Real archive cancellation
 closes both jobs with zero publication. Five invalid launcher cases produce no
 process logs or captures. The
-[launcher](../poc/round17-tests/Rendering/Launch.ps1) creates a private standalone
-scene; [seven-argument oracle](../poc/round17-tests/Rendering/verify_preview.py) takes
+[launcher](../../SWG-Godot-Client/poc/round17-tests/Rendering/Launch.ps1) creates a private standalone
+scene; [seven-argument oracle](../../SWG-Godot-Client/poc/round17-tests/Rendering/verify_preview.py) takes
 GPU/headless/cancel logs plus initial/updated/recreated/motion PNGs. Original
 render fidelity, actual motion-store implementation, protocol updates, live
 networking, locomotion switching and interpolation remain outside this proof.

@@ -1,9 +1,9 @@
 # Offline limits display owner
 
 October6,2026. A modern noninteractive Godot display over supplied immutable state.
-[Source](../poc/Stardust.Godot/TerrainOfflineLimitsHud.cs),
-[actual native proof](../poc/Stardust.Godot/TerrainOfflineLimitsHudVerification.cs),
-[independent oracle](../poc/round78-tests/Rendering/verify_picker.py).
+[Source](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineLimitsHud.cs),
+[actual native proof](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineLimitsHudVerification.cs),
+[independent oracle](../../SWG-Godot-Client/poc/round78-tests/Rendering/verify_picker.py).
 
 ```csharp
 public sealed record TerrainOfflineLimitsHudState(int MaximumUpdates,

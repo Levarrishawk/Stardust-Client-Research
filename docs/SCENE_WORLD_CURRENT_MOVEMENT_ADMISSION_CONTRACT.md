@@ -7,7 +7,7 @@ angle conversion or final runtime speed.
 
 ## API and exact binding
 
-[SceneWorldExplicitMovementAdmission](../poc/Stardust.Core/Session/SceneWorldExplicitMovementAdmission.cs)
+[SceneWorldExplicitMovementAdmission](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldExplicitMovementAdmission.cs)
 extends its fixed enum with `CurrentField7 = 5` and `CurrentField11 = 6`; Invalid0
 and old sources1..4 retain their values and behavior. A trailing optional
 `SceneWorldCreatureMovementCurrentInputs? currentInputs` constructor argument is
@@ -71,7 +71,7 @@ and clears borrowed references, but never disposes the current reader or world.
 
 ## Unchanged Godot caller and integration
 
-The [frozen sourced Node](../poc/Stardust.Godot/SceneWorldSourcedInputHost.cs) is
+The [frozen sourced Node](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldSourcedInputHost.cs) is
 byte-identical. Configure recognizes new choices as non-direct-received modes:
 construct admission with its current reader, then call `host.Configure(admission)`
 without passing a direct received reader or generation to the Node. Its existing
@@ -90,9 +90,9 @@ No pending round50 Assets API, shared preview or project edit is needed here.
 
 ## Evidence and limits
 
-[Native scenarios](../poc/Stardust.Core.SmokeTests/SceneWorldCurrentMovementAdmissionScenarios.cs)
+[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldCurrentMovementAdmissionScenarios.cs)
 pass126 sequences/1134 states/5471 checks; the
-[independent synthetic peer](../poc/round50-tests/Runtime/peer.py) passes8112
+[independent synthetic peer](../../SWG-Godot-Client/poc/round50-tests/Runtime/peer.py) passes8112
 comparisons across seven authored profiles, both choices, three directions and
 three render partitions. Presence transitions include bootstrap, first listen,
 valid received, zero, signed zero, nonfinite, negative, component overflow,
@@ -102,12 +102,12 @@ owner, disposal and source-free stop.
 
 Fresh SHA-gated static/original-asset oracle passes50 loader anchors and the
 necessary five-source8290-byte chain. Six original-authored/synthetic-received
-native sequences cover54 states; [independent original raw checks](../poc/round50-tests/Runtime/verify_original.py)
+native sequences cover54 states; [independent original raw checks](../../SWG-Godot-Client/poc/round50-tests/Runtime/verify_original.py)
 pass275 comparisons including all five source identities. Detailed original
 words, paths and chain output stay private; new public fixtures are synthetic.
 
-[Actual Godot proof](../poc/round50-tests/Runtime/Godot/CurrentHostProof.cs) passes
-10 cases/54 checks; [independent trajectory checks](../poc/round50-tests/Runtime/verify_godot.py)
+[Actual Godot proof](../../SWG-Godot-Client/poc/round50-tests/Runtime/Godot/CurrentHostProof.cs) passes
+10 cases/54 checks; [independent trajectory checks](../../SWG-Godot-Client/poc/round50-tests/Runtime/verify_godot.py)
 pass20 comparisons. It drives both choices through native key dispatch and proves
 late received, nonfinite stop/no fallback, restoration, zero provenance,
 focus/pause, foreign owner, closed reader/world, generation and reentry cleanup.

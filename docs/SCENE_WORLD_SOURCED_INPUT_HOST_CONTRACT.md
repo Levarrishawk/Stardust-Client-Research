@@ -6,7 +6,7 @@ camera behavior and controller mapping are not recovered by this slice.
 
 ## Explicit stop in the admission
 
-The [admission](../poc/Stardust.Core/Session/SceneWorldExplicitMovementAdmission.cs)
+The [admission](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldExplicitMovementAdmission.cs)
 now exposes its fixed `SpeedSource` and `bool SubmitStop(long timestampMicroseconds)`.
 Stop checks owner/reentry/open state and the current active finalized typed CREO3
 creation incarnation, then submits exactly `(0,0,0)` with null entry permission
@@ -19,7 +19,7 @@ All frozen48 source-admission behavior remains unchanged.
 
 ## Node ownership and configuration
 
-[SceneWorldSourcedInputHost](../poc/Stardust.Godot/SceneWorldSourcedInputHost.cs) is
+[SceneWorldSourcedInputHost](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldSourcedInputHost.cs) is
 an owner/main-thread Node. Inject `Func<long>` or use monotonic Godot microseconds.
 Add it to a live parent, then call:
 
@@ -130,13 +130,13 @@ resource publication may supply the already specified authored snapshot later.
 
 ## Evidence and validation
 
-Confirmed modern behavior: the [native scenarios](../poc/Stardust.Core.SmokeTests/SceneWorldExplicitStopScenarios.cs)
+Confirmed modern behavior: the [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldExplicitStopScenarios.cs)
 execute real zero-input ticks and reject stale/order/time/capacity/thread/reentry
-cases. [Independent schedules](../poc/round49-tests/Runtime/peer.py) cover 288 cases,
+cases. [Independent schedules](../../SWG-Godot-Client/poc/round49-tests/Runtime/peer.py) cover 288 cases,
 3,955 native checks and 1,152 comparisons. The
-[standalone Godot proof](../poc/round49-tests/Runtime/Godot/SourcedHostProof.cs)
+[standalone Godot proof](../../SWG-Godot-Client/poc/round49-tests/Runtime/Godot/SourcedHostProof.cs)
 dispatches actual InputEventKey events, focus notifications and tree pause; 16
-cases/144 checks and [43 independent comparisons](../poc/round49-tests/Runtime/verify_godot.py)
+cases/144 checks and [43 independent comparisons](../../SWG-Godot-Client/poc/round49-tests/Runtime/verify_godot.py)
 pass over synthetic pinned source inputs and actual sealed admission/drivers.
 The launcher checks every existing lexical output ancestor for ReparsePoint
 before directory creation and requires a fresh output directory. A private

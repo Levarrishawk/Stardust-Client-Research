@@ -20,7 +20,7 @@ Reset and dispose clear every controller and retained contact. They reject calls
 
 ## Verification
 
-[Synthetic scene gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_DOOR_SCENE.md) covers three cells/two leaves, repeated forward/reverse ownership, transformed owner, closed-leaf denial, open-leaf directional denial/unknown permission, retreat, stale retention, callback failure/reentrancy and reset/dispose. An [independent Python reference](../tools/python/verify_interior_door_scene.py) matches 1,440 ticks / 24 transfers / 128 blocked ticks. No original corpus or general obstacle coverage is claimed by this synthetic gate.
+[Synthetic scene gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_DOOR_SCENE.md) covers three cells/two leaves, repeated forward/reverse ownership, transformed owner, closed-leaf denial, open-leaf directional denial/unknown permission, retreat, stale retention, callback failure/reentrancy and reset/dispose. An [independent Python reference](../../SWG-Godot-Client/tools/python/verify_interior_door_scene.py) matches 1,440 ticks / 24 transfers / 128 blocked ticks. No original corpus or general obstacle coverage is claimed by this synthetic gate.
 
 [Original Mustafar route](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_ORIGINAL_INTERIOR_SCENE.md) composes 5→6→7 using two pinned leaves. Independent comparison matches 2,880 ticks / 24 transfers / 172 blocked ticks / zero steps over two owner poses, including denial/unknown/retreat/recovery and controller retention. The other physical leaf is independently clear on every offered short path. This establishes one representative original composition, not arbitrary world navigation.
 

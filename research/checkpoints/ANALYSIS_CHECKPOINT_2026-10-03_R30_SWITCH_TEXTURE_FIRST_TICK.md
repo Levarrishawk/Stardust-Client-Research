@@ -18,7 +18,7 @@ gap is precisely identified. Static analysis only.
   `ba8f50e9b3c9fb5b378e5136bbbbfc0bcd14c2a9088cc401cef04d1ad90ded48`.
 - Python, cached pefile/Capstone, repository range disassembler, prior Round
   27/28 static exports/call maps, and curated name registry. No downloaded tools.
-- [Own static verifier](../../poc/round30-tests/Rendering/Verify-SwitchFirstTick.py)
+- [Own static verifier](../../../SWG-Godot-Client/poc/round30-tests/Rendering/Verify-SwitchFirstTick.py)
   rejects executable identity mismatch before PE loading or VA use. Detailed
   range receipts and exploratory output remain private and are not linked here.
 

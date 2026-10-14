@@ -24,9 +24,9 @@ The independent static recheck passes 58 inherited coordinate anchors, 60 existi
 
 ## Implementation consequence and API
 
-New [query carrier](../../poc/Stardust.Core/Geometry/TerrainLayerInfluenceQuery.cs) factories `FromRawBits`, `FromCircle` and `FromRectangle` retain source/query precision and the unspilled internal Number. F32 projections are inspection only. Geometric source receipts are immutable retained references; no helper was made public. The raw factory explicitly marks supplied/synthetic query data.
+New [query carrier](../../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainLayerInfluenceQuery.cs) factories `FromRawBits`, `FromCircle` and `FromRectangle` retain source/query precision and the unspilled internal Number. F32 projections are inspection only. Geometric source receipts are immutable retained references; no helper was made public. The raw factory explicitly marks supplied/synthetic query data.
 
-New [sample/combine API](../../poc/Stardust.Core/Geometry/TerrainLayerInfluence.cs) snapshots ordered entries with distinct gates, counts and enabled predicates. `TerrainLayerInfluenceSample.Create` takes incoming bits, boundary/filter spans, signed gates, inversion flags, separate caller/product precisions and a complete-query cap. `Evaluate` and `EvaluateBatch` publish immutable receipts for local/product bits, visits, replacement/early-stop decisions, fallback and separate local/product eligibility. Disabled visits represent entries checked rather than queries executed.
+New [sample/combine API](../../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainLayerInfluence.cs) snapshots ordered entries with distinct gates, counts and enabled predicates. `TerrainLayerInfluenceSample.Create` takes incoming bits, boundary/filter spans, signed gates, inversion flags, separate caller/product precisions and a complete-query cap. `Evaluate` and `EvaluateBatch` publish immutable receipts for local/product bits, visits, replacement/early-stop decisions, fallback and separate local/product eligibility. Disabled visits represent entries checked rather than queries executed.
 
 Modern support requires finite input/projection/visited stores and finite product; a visited negative square root rejects. Skipped queries are not shaped. Enabled entries require carriers even when unvisited. Sample and batch complete-work budgets precede typed snapshots/results and combination. Defaults are 256 samples, 256 queries per sample and 65,536 total queries; hard ceilings are 65,536/4,096/1,048,576. Complete disabled, unvisited and aliased references are charged. Failed calls publish no partial result and retain prior results.
 
@@ -34,7 +34,7 @@ The receipt always requests a product; original conditional cache/affector activ
 
 ## Reproduction and validation
 
-Run the [isolated replay](../../poc/round40-tests/Rendering/Invoke-LayerInfluence.ps1) with explicit installed Python, pinned executable, cached static packages, cached NuGet packages, installed dotnet and a fresh ignored private output root:
+Run the [isolated replay](../../../SWG-Godot-Client/poc/round40-tests/Rendering/Invoke-LayerInfluence.ps1) with explicit installed Python, pinned executable, cached static packages, cached NuGet packages, installed dotnet and a fresh ignored private output root:
 
 ```powershell
 & .\poc\round40-tests\Rendering\Invoke-LayerInfluence.ps1 `
@@ -44,9 +44,9 @@ Run the [isolated replay](../../poc/round40-tests/Rendering/Invoke-LayerInfluenc
 
 The private handoff records exact local argument paths, file hashes and receipts. Runner builds use isolated artifacts, APPDATA/CLI_HOME, cleared sources, locked restore, disabled shared compilation and no app host. The final successful replay is named `final-replay-2` under the private Round 40 evidence root.
 
-Results: **6,354 cases; 5,674 accepted, 680 rejected; 53 ownership/budget checks**. All exact native receipts match the independent [Fraction/integer oracle](../../poc/round40-tests/Rendering/verify_layer.py). It covers all three precisions independently across query/cache/caller/product phases, all selectors, signed zeros, subnormals, overshoot, finite overflow, exact source-order exits, gates/count/enabled states, inversion and zero/negative incoming products. There are **216 premature-query-projection witnesses** and **272 spilled-comparison witnesses**. Circle/rectangle fixtures are synthetic inputs decoded through frozen public APIs, not new original corpus samples.
+Results: **6,354 cases; 5,674 accepted, 680 rejected; 53 ownership/budget checks**. All exact native receipts match the independent [Fraction/integer oracle](../../../SWG-Godot-Client/poc/round40-tests/Rendering/verify_layer.py). It covers all three precisions independently across query/cache/caller/product phases, all selectors, signed zeros, subnormals, overshoot, finite overflow, exact source-order exits, gates/count/enabled states, inversion and zero/negative incoming products. There are **216 premature-query-projection witnesses** and **272 spilled-comparison witnesses**. Circle/rectangle fixtures are synthetic inputs decoded through frozen public APIs, not new original corpus samples.
 
-The runner references the actual separate Core assembly and executes the new public [scenario](../../poc/Stardust.Core.SmokeTests/TerrainLayerInfluenceScenarios.cs). Both this build and actual Core/SmokeTests build pass with zero warnings/errors. The latter verifies compilation without modifying shared scenario registration. Wrong-identity and truncated executable tests reject before decoder use or fixture/receipt creation.
+The runner references the actual separate Core assembly and executes the new public [scenario](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainLayerInfluenceScenarios.cs). Both this build and actual Core/SmokeTests build pass with zero warnings/errors. The latter verifies compilation without modifying shared scenario registration. Wrong-identity and truncated executable tests reject before decoder use or fixture/receipt creation.
 
 The first full replay passed. A subsequent runner environment edit accidentally interpolated PowerShell variable names and produced an invalid `=1` assignment before fixture generation. Literal quoting corrected it; a fresh-output final replay passed. This failed attempt and its output directory were preserved privately. No original execution-based verification is claimed.
 

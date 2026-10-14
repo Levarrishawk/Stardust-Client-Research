@@ -10,7 +10,7 @@ Can an owner/main-thread Godot Node mutate an actual borrowed active perspective
 
 Trusted sync verified4,261 accepted69 public files before substantive edits. Manifest SHA-256: `9abb3d6f79d4e1e910399db06eb62d6713b966338c7fe4c8bdfdfff8f4a6f722`; archive: `dacae463495e3cb15506e0bff08817336a1ed62c374b9ed5d97990105cd639de`. Original executable identity matched `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`; it was not executed. Tools: PowerShell, ripgrep, cached Python/.NET8/offline Godot4.7.2 and Git read-only checks. No Core70/sibling implementation, existing orbit/picker edit or original/private corpus is consumed.
 
-The [host](../../poc/Stardust.Godot/TerrainCameraOrbitHost.cs) implements its own bounded supplied policy and engine-world pivot. Existing preview orbit code was inspected as orientation only; projection/clip mutation, left-drag/reset policy and dynamic inspection-radius behavior were not copied into this boundary. The [independent model](../../poc/round70-tests/Rendering/verify_picker.py) generates authored events, clamp/angle state, binary32 position and normalized LookAt basis before native execution. Native reads Actions, not expected rows; no native pose/basis/ray seeds expectations.
+The [host](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainCameraOrbitHost.cs) implements its own bounded supplied policy and engine-world pivot. Existing preview orbit code was inspected as orientation only; projection/clip mutation, left-drag/reset policy and dynamic inspection-radius behavior were not copied into this boundary. The [independent model](../../../SWG-Godot-Client/poc/round70-tests/Rendering/verify_picker.py) generates authored events, clamp/angle state, binary32 position and normalized LookAt basis before native execution. Native reads Actions, not expected rows; no native pose/basis/ray seeds expectations.
 
 ## Findings and evidence
 
@@ -28,7 +28,7 @@ Confirmed: Close is terminal/idempotent, drops borrowed reference without resett
 
 ## Reproduction and validation
 
-Use the [runner](../../poc/round70-tests/Rendering/Invoke-Picker.ps1) with cached explicit Python/.NET, documented executable identity, cached Godot packages and a fresh ignored private RunRoot. Exact portable command and all ten final owned public hashes are in the handoff. Only own two Godot sources are compiled, without sibling dependencies.
+Use the [runner](../../../SWG-Godot-Client/poc/round70-tests/Rendering/Invoke-Picker.ps1) with cached explicit Python/.NET, documented executable identity, cached Godot packages and a fresh ignored private RunRoot. Exact portable command and all ten final owned public hashes are in the handoff. Only own two Godot sources are compiled, without sibling dependencies.
 
 Final actual build: zero warnings/errors. Headless118 checks and GPU119 checks pass. Independent fixture generation precedes native execution and comparison covers all47 pose/ray samples,24 accepted changes and exact routing/counter/enabled/GUI states. Two actual mutation-prefix assertions and targeted numeric/ownership/token/thread negatives pass. Old input/picker/full terrain corpus suites were not repeated.
 

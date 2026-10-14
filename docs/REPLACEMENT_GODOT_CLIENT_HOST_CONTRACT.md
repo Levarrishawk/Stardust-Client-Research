@@ -2,8 +2,8 @@
 
 October 6, 2026 Eastern. Bounded modern adapter; no new recovered executable claim.
 
-[ReplacementClientHost](../poc/Stardust.Godot/ReplacementClientHost.cs) and its
-[scene](../poc/Stardust.Godot/ReplacementClientHost.tscn) provide actual login,
+[ReplacementClientHost](../../SWG-Godot-Client/poc/Stardust.Godot/ReplacementClientHost.cs) and its
+[scene](../../SWG-Godot-Client/poc/Stardust.Godot/ReplacementClientHost.tscn) provide actual login,
 character selection, controlled movement and close controls over the accepted
 [application owner](REPLACEMENT_CLIENT_APPLICATION_CONTRACT.md). The scene starts
 unconfigured with disabled controls. It performs no automatic login, DNS, socket
@@ -115,7 +115,7 @@ close Completion before freeing a live hierarchy.
 
 ## Reproducible evidence and remaining limits
 
-The [explicit native harness](../poc/round90-tests/Rendering/README.md) authors
+The [explicit native harness](../../SWG-Godot-Client/poc/round90-tests/Rendering/README.md) authors
 accepted login/zone/world peers independently before native startup. Actual
 buttons/fields and Godot injected key events traverse this production host.
 Its two-character list proves unsupported selection retention; a withheld

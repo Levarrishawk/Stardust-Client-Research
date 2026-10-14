@@ -79,11 +79,11 @@ ownership, typed state and one protected ready; Networking163 checks plus
 author/observer boundary. Rendering's seven real-process orchestration tests
 pass; they are explicitly surrogates, separate from native Core evidence.
 
-The [default regression command](../../docs/CLIENT_REGRESSION_RUNBOOK.md)
+The [default regression command](../../../SWG-Godot-Client/docs/CLIENT_REGRESSION_RUNBOOK.md)
 passes all thirteen required suites with no omitted defaults, including actual
 Runtime85 author → build → native → verifier. Optional native/original-input
 branches remain unverified by that command. Lead separately executes the
-[original-resource joined command](../../poc/round85-tests/Integration/README.md).
+[original-resource joined command](../../../SWG-Godot-Client/poc/round85-tests/Integration/README.md).
 The joined source build has zero warnings/errors; harmless sandbox certificate
 store diagnostics are retained without an interoperability claim.
 

@@ -8,7 +8,7 @@ The right-hand controller queue field is exactly what `0062A9B0` returns. The bi
 
 ## Identity and reproduction
 
-Addresses are VAs for executable SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. [Static verifier](../tools/python/verify_ground_scene_input_map_queue_assignment.py): explicit `--exe`, `--packages`, and fresh ignored `--receipt`. [Independent runner](../poc/round54-tests/Networking/research_checks.py): explicit `--exe`, `--packages`, and fresh ignored `--output-dir`. SHA validation precedes imports and VA interpretation. Original execution and live contact are not used.
+Addresses are VAs for executable SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. [Static verifier](../../SWG-Godot-Client/tools/python/verify_ground_scene_input_map_queue_assignment.py): explicit `--exe`, `--packages`, and fresh ignored `--receipt`. [Independent runner](../../SWG-Godot-Client/poc/round54-tests/Networking/research_checks.py): explicit `--exe`, `--packages`, and fresh ignored `--output-dir`. SHA validation precedes imports and VA interpretation. Original execution and live contact are not used.
 
 ## Selected evidence chain
 

@@ -1,6 +1,6 @@
 # Held Shift run-input host
 
-[TerrainRunInputHost](../poc/Stardust.Godot/TerrainRunInputHost.cs) is an actual Godot Node over caller-owned `Func<long>` clock and `Action<bool,long>` run-intent sink. It owns a three-bit held mask, callback/configuration references, checked counters and one latest primitive diagnostic. It performs no speed, direction normalization, simulation tick, clock advance, network send or borrower disposal. Original Shift/gait/speed/input cadence and parity remain unknown.
+[TerrainRunInputHost](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainRunInputHost.cs) is an actual Godot Node over caller-owned `Func<long>` clock and `Action<bool,long>` run-intent sink. It owns a three-bit held mask, callback/configuration references, checked counters and one latest primitive diagnostic. It performs no speed, direction normalization, simulation tick, clock advance, network send or borrower disposal. Original Shift/gait/speed/input cadence and parity remain unknown.
 
 ## Configuration and key ownership
 
@@ -34,6 +34,6 @@ Close is owner-thread guarded, terminal and idempotent. It drops callback/parent
 
 ## Reproduction
 
-The [offline standalone runner](../poc/round69-tests/Rendering/Invoke-Picker.ps1) stages only this host and its [verification node](../poc/Stardust.Godot/TerrainRunInputHostVerification.cs), using cached Godot packages. It has no Core/Runtime/sibling dependency. The [independent model](../poc/round69-tests/Rendering/verify_picker.py) authors46 action/control events before native execution. Its successful timeline has23 committed masks,19 handled keys and14 exact clock/sink calls; these are separate denominators, not coverage scores.
+The [offline standalone runner](../../SWG-Godot-Client/poc/round69-tests/Rendering/Invoke-Picker.ps1) stages only this host and its [verification node](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainRunInputHostVerification.cs), using cached Godot packages. It has no Core/Runtime/sibling dependency. The [independent model](../../SWG-Godot-Client/poc/round69-tests/Rendering/verify_picker.py) authors46 action/control events before native execution. Its successful timeline has23 committed masks,19 handled keys and14 exact clock/sink calls; these are separate denominators, not coverage scores.
 
 Actual Viewport.PushInput, focused Control.AcceptEvent and native propagated window-focus notification tests compare masks, booleans, clocks, counters, callback phases, ignored/consumed events, mask-only token/liveness guards and cleanup. Results and input identities are in the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R69_RUN_INPUT_HOST.md). Focus notifications are injected through Godot's native notification path; no live user keyboard or operating-system focus transition is captured. GPU diagnostic panel proof does not establish original input, movement or visual parity.

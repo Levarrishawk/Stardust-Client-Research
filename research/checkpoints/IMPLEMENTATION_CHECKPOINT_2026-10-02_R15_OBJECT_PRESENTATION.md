@@ -10,7 +10,7 @@ Read AGENTS, START_HERE/[latest Round14 report](../sessions/PARALLEL_DEVELOPMENT
 
 ## Evidence, interpretation and consequences
 
-Observation: [new consumer](../../poc/Stardust.Core/Session/SceneWorldObjectPresentationConsumer.cs) stores one adapter/exact publication/creation incarnation per object, checks coordinator resource and typed state freshness separately, reads latest snapshots at resource acceptance and tracks the exact applied batch reference. Missing adapters are acknowledged and later accept current state. Interpretation: engine-neutral modern presentation ownership without duplicating world/state/loading. Confidence: Confirmed source/native tests. Consequence: adapters own engine roots and expose the frozen publication; typed state and opaque static behavior remain separate.
+Observation: [new consumer](../../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldObjectPresentationConsumer.cs) stores one adapter/exact publication/creation incarnation per object, checks coordinator resource and typed state freshness separately, reads latest snapshots at resource acceptance and tracks the exact applied batch reference. Missing adapters are acknowledged and later accept current state. Interpretation: engine-neutral modern presentation ownership without duplicating world/state/loading. Confidence: Confirmed source/native tests. Consequence: adapters own engine roots and expose the frozen publication; typed state and opaque static behavior remain separate.
 
 Observation: candidate callbacks run under thread/reentrancy guards and local rollback ownership; exact idempotent acceptance performs no new Apply. Replacement validates/prepares candidate before retiring owned old adapter. Foreign/stale batches, same-revision different batch references and callback-staled batches never acknowledge. Later-adapter false/error/staleness tests preserve earlier application and pending observations, then retry successfully. Interpretation: serialized retryable application, not GPU/visual rollback transaction. Confidence: Confirmed deterministic fake-adapter tests. Consequence: integration must tolerate reapplication; state advancement uses batches rather than repeated idempotent acceptance.
 
@@ -20,7 +20,7 @@ Original human/terminal completions use baseline sealed router/options: dedicate
 
 ## Reproduction and validation
 
-Scenario entry: `SceneWorldObjectPresentationScenarios.Run(string[] inputs, IReadOnlyDictionary<string,string> peer, string exportPath)`, inputs exactly root/config/catalog/bank. Own [runner](../../poc/round15-tests/Runtime/Runtime.csproj) takes six command arguments and links the new scenario; shared harness remains lead-owned.
+Scenario entry: `SceneWorldObjectPresentationScenarios.Run(string[] inputs, IReadOnlyDictionary<string,string> peer, string exportPath)`, inputs exactly root/config/catalog/bank. Own [runner](../../../SWG-Godot-Client/poc/round15-tests/Runtime/Runtime.csproj) takes six command arguments and links the new scenario; shared harness remains lead-owned.
 
 ```powershell
 $env:PYTHONUTF8='1'
