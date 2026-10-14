@@ -11,7 +11,7 @@ paths, all affected fixtures pass, and the remaining operational gaps are explic
 
 - Client starting commit: `6e75e9e` (`Offline transport milestone1`), initially clean.
 - Server source repository HEAD: `9a8529ef8291efc5ca1b41d9927f0e88d64b79bb`.
-- .NET SDK 8.0.300; existing Python transport/application vectors; Godot 4.7.2 .NET.
+- .NET SDK 8.0.300; existing Python transport/application vectors; prototype host 4.7.2 .NET.
 - Existing durable [SOE specification](../../docs/SOE_TRANSPORT_PROTOCOL.md) and
   [wire vectors](../../docs/SOE_TRANSPORT_TEST_VECTORS.md) supply the recovered
   contracts. No new executable analysis, address names, or packet rows were added.
@@ -74,7 +74,7 @@ Exact source-file SHA-256 identities:
   fragment cancellation buffer and fatal-token buffer are zeroed.
 - Strict configuration rejection and diagnostic redaction/sink isolation pass.
 - Existing Python scripts: all 22 transport assertions and login/zone assertions pass.
-- Godot: build succeeds and headless offline transcript exits 0; sandbox root
+- prototype host: build succeeds and headless offline transcript exits 0; sandbox root
   certificate-store diagnostic remains visible and is not claimed resolved.
 
 ## Limits and next probe
@@ -88,5 +88,5 @@ trailer defect was reproduced during the [TRE slice](IMPLEMENTATION_CHECKPOINT_2
 Next bounded question: what exact status request/response bytes, transform
 exceptions and connection-state effects must the adapter support? Use the
 existing static specification and source call chains before adding a socket.
-See the [acceptance record](../../../SWG-Godot-Client/docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md)
+See the acceptance record (external historical reference)
 for caller ownership, policy limits and reproduction commands.

@@ -46,7 +46,7 @@ partial store64 cases/439 steps/3985 events/22604 checks; movement50 anchors/
 40 research checks/five sources8290 bytes. Static executable/config identities
 pass, no original execution occurred. Default smoke and clean native builds pass.
 
-The lead joined accepted FHGT/AHCN APIs to the actual Godot preview:400 samples,
+The lead joined accepted FHGT/AHCN APIs to the actual prototype host preview:400 samples,
 16 patches/128 triangles/nine motion states/90 preceding-height witnesses, exact
 cleanup, original human/terminal retention and existing full4/full6/TANO6/material/
 clock oracles. Last-chunk NaN rejects before terrain publication. The new

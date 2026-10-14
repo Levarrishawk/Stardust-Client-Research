@@ -24,9 +24,9 @@ Compatibility consequence: the selected ordinary update-argument unit edge is cl
 
 ## Validation and handoff
 
-[Producer](../../../SWG-Godot-Client/tools/python/verify_tangible_controller_update_carrier.py): 23 new carrier anchors, 13 reused attachment anchors, one complete new body, five branch boundaries, return/call/input-register checks, two RTTI/dispatch chains and four accepted attachment body hashes. Prior clock/FPU/caller inventory is reused, not reopened.
+Producer (external historical reference): 23 new carrier anchors, 13 reused attachment anchors, one complete new body, five branch boundaries, return/call/input-register checks, two RTTI/dispatch chains and four accepted attachment body hashes. Prior clock/FPU/caller inventory is reused, not reopened.
 
-[Independent runner](../../../SWG-Godot-Client/poc/round55-tests/Runtime/research_checks.py): raw PE mapping, 25 literal byte windows, eight calls, five branch targets, five body digests, two RTTI/dispatch chains, 288 synthetic forwarding/gate cases including 36 selected player callbacks, four conditional seconds cases, twelve negatives and three cleanup assertions. Synthetic fixtures do not show original-client acceptance. Fresh producer and independent receipts agree; no corrected research failure was required.
+Independent runner (external historical reference): raw PE mapping, 25 literal byte windows, eight calls, five branch targets, five body digests, two RTTI/dispatch chains, 288 synthetic forwarding/gate cases including 36 selected player callbacks, four conditional seconds cases, twelve negatives and three cleanup assertions. Synthetic fixtures do not show original-client acceptance. Fresh producer and independent receipts agree; no corrected research failure was required.
 
 Proportional Core.SmokeTests build/run, workspace link/text/registry checks, focused diff whitespace/scope inspection, final five source hashes, unchanged frozen55 files and HEAD/index are recorded in the private worker handoff. No stage/commit/push/publication, live contact/capture/fuzzing/external mutation or generated proprietary corpus promotion occurred.
 

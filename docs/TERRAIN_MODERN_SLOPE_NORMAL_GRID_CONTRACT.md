@@ -1,6 +1,6 @@
 # Modern query-time slope normal grid
 
-[TerrainModernSlopeNormalGrid](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainModernSlopeNormalGrid.cs) supplies immutable triangle normals under the named policy `ModernBinary64QueryTimeTriangleNormals`. Its geometry, stores and finite edge handling follow the [target producer contract](TERRAIN_SLOPE_NORMAL_PRODUCER_CONTRACT.md), whose [static reproducer](../tools/python/verify_terrain_slope_normal_producer.py) closes descriptor/axes/timing evidence. The primitive declares `OriginalNormalParity=false`: binary64 arithmetic and `Math.Sqrt` are explicit modern choices, not recovered effective x87 controls or original output bits. The opt-in ordered slope adapter consumes this primitive; the primitive owns no traversal, surface classification or Godot state.
+TerrainModernSlopeNormalGrid (external historical reference) supplies immutable triangle normals under the named policy `ModernBinary64QueryTimeTriangleNormals`. Its geometry, stores and finite edge handling follow the [target producer contract](TERRAIN_SLOPE_NORMAL_PRODUCER_CONTRACT.md), whose [static reproducer](../tools/python/verify_terrain_slope_normal_producer.py) closes descriptor/axes/timing evidence. The primitive declares `OriginalNormalParity=false`: binary64 arithmetic and `Math.Sqrt` are explicit modern choices, not recovered effective x87 controls or original output bits. The opt-in ordered slope adapter consumes this primitive; the primitive owns no traversal, surface classification or prototype host state.
 
 ## Supplied inputs and ownership
 
@@ -33,7 +33,7 @@ Cancellation is checked before allocation, during height validation, for every p
 
 ## Focused verification and next adapter
 
-The [offline console harness](../../SWG-Godot-Client/poc/terrain-slope-normal-tests/Program.cs) covers a hand-derived asymmetric 2×2 witness, eight independent integer-incidence grids, flat edges/corners, N=1, finite underflow and short-vector preservation, negative coordinates, exact representable translation, source/copy ownership, coordinate-policy acceptance/rejection, exact and one-less resource budgets, cancellation, malformed shapes, nonfinite values and position/difference/cross/accumulation F32 overflow.
+The offline console harness (external historical reference) covers a hand-derived asymmetric 2×2 witness, eight independent integer-incidence grids, flat edges/corners, N=1, finite underflow and short-vector preservation, negative coordinates, exact representable translation, source/copy ownership, coordinate-policy acceptance/rejection, exact and one-less resource budgets, cancellation, malformed shapes, nonfinite values and position/difference/cross/accumulation F32 overflow.
 
 A fractional fixture uses spacing word `3F800001` and Q11 height `3F9E064B`. Independently computed upper cross words are `(BF9E064C,3F800002,BF9E064C)`. Stored upper normal Y is `3EFE77CA`; omitting the cross F32 spill gives `3EFE77C9`. This is a modern numerical fixture and not an original capture.
 

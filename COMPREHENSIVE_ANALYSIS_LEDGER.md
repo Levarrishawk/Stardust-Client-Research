@@ -1,10 +1,21 @@
 # Comprehensive Client Analysis Ledger
 
-2026-10-14 research-only cleanup: removed the duplicate Core/Godot prototype, its tests, launch/build tooling and prototype-dependent verifier copies. Research specifications, registries and dated evidence remain. Implementation and dependent verification now run from [SWG-Godot-Client](../SWG-Godot-Client/README.md). Historical development status below is retained for provenance, not current authorization. [Scope and reproduction](docs/RESEARCH_ONLY_SCOPE.md). Coverage metrics are unchanged.
+2026-10-14 research documentation update: public Markdown now uses engine-neutral
+terminology and the README/status entry points describe research only. Previous
+status text is retained in a [historical snapshot](research/archive/ANALYSIS_STATUS_BEFORE_RESEARCH_ONLY_2026-10-14.md).
+The last formal behavioral estimate remains **89% (judgment range 86–91%)**, with
+**94% research readiness** assessed separately. Current CSV recount: **2,626 unique
+addresses**, **345 documented packet-source rows**, and **217 UI register entries**
+(3 closed, 163 requiring workflow exit tests, 48 untriaged, 3 architecture-only).
+No executable-function completion percentage is supported. No new executable
+analysis or coverage rescore was performed. [Current status](ANALYSIS_STATUS.md).
 
-2026-10-14 repository separation: [SWG-Godot-Client](../SWG-Godot-Client/README.md) is the active Core/Godot implementation home. Imported the current working tree, including uncommitted ordered-slope work, while retaining this research repository and separate NGE changes. All40 default offline suites, the Godot/Core build and five relocated-export checks pass; frozen package hashes remain unchanged. No fresh GPU acceptance, original execution, live contact, commit or push. [Reproducible handoff](../SWG-Godot-Client/docs/HANDOFF.md). Research/function/protocol counts unchanged.
 
-Current development position (2026-10-07): [Round93](research/sessions/PARALLEL_DEVELOPMENT_ROUND_93_2026-10-06.md). Round93 adds an explicit controlled-transport entry over the reusable installation/application/Godot host and a bounded redacted attempt receipt written after actual local drain or startup rollback. Default startup still refuses contact. Offline native headless/GPU replay verifies the same strict admission/composition with mandatory synthetic spy ports, protected exchanges, one approved original human, bounded movement, deadlines and disconnect. Run, cleanup, rollback and diagnostic failures remain distinct; standalone quit follows ownership completion. The real UDP constructor branch is compiled and source-reviewed, never executed. Next: obtain operator-approved deployment/account access, explicit advertised hostname-to-IPv4 mappings/ports and client version, one existing supported outdoor human with measured CREO3/4/6 limits and original resource identity, and a bounded minimum-readiness scenario. Keep movement disabled unless fresh stamp/ready state, matching validated position and passable floor are established. Then request specific authorization for one bounded controlled attempt. No original executable, real socket, DNS/server contact or live interoperability has been verified. General avatar/customization, nearby actors, full terrain and server-observed authority/release remain open. Research/registry/packet scores unchanged; dated history below preserved.
+2026-10-14 research-only cleanup: removed the duplicate historical implementation path (omitted) prototype, its tests, launch/build tooling and prototype-dependent verifier copies. Research specifications, registries and dated evidence remain. Implementation and dependent verification now run from the separate implementation record. Historical development status below is retained for provenance, not current authorization. [Scope and reproduction](docs/RESEARCH_ONLY_SCOPE.md). Coverage metrics are unchanged.
+
+2026-10-14 repository separation: the separate implementation record is the active historical implementation path (omitted) implementation home. Imported the current working tree, including uncommitted ordered-slope work, while retaining this research repository and separate NGE changes. All40 default offline suites, the prototype host/Core build and five relocated-export checks pass; frozen package hashes remain unchanged. No fresh GPU acceptance, original execution, live contact, commit or push. Reproducible handoff (external historical reference). Research/function/protocol counts unchanged.
+
+Current development position (2026-10-07): [Round93](research/sessions/PARALLEL_DEVELOPMENT_ROUND_93_2026-10-06.md). Round93 adds an explicit controlled-transport entry over the reusable historical implementation path (omitted) host and a bounded redacted attempt receipt written after actual local drain or startup rollback. Default startup still refuses contact. Offline native headless/GPU replay verifies the same strict admission/composition with mandatory synthetic spy ports, protected exchanges, one approved original human, bounded movement, deadlines and disconnect. Run, cleanup, rollback and diagnostic failures remain distinct; standalone quit follows ownership completion. The real UDP constructor branch is compiled and source-reviewed, never executed. Next: obtain operator-approved deployment/account access, explicit advertised hostname-to-IPv4 mappings/ports and client version, one existing supported outdoor human with measured CREO3/4/6 limits and original resource identity, and a bounded minimum-readiness scenario. Keep movement disabled unless fresh stamp/ready state, matching validated position and passable floor are established. Then request specific authorization for one bounded controlled attempt. No original executable, real socket, DNS/server contact or live interoperability has been verified. General avatar/customization, nearby actors, full terrain and server-observed authority/release remain open. Research/registry/packet scores unchanged; dated history below preserved.
 
 Updated: 2026-09-25 measurement note; historical entries below retained unchanged
 
@@ -1379,16 +1390,16 @@ factor operations, framebuffer clear and indexed-list drawing. CVTP is an
 accepted always-true legacy alias in this executable. See
 `ANALYSIS_CHECKPOINT_2026-09-22_BLUEPRINT_TEXTURE_RENDERER_DORMANT_PATHS.md`.
 
-### Skeletal update, Godot coordinates and nameplate cache (2026-09-22)
+### Skeletal update, prototype host coordinates and nameplate cache (2026-09-22)
 
 The skeletal appearance-local frame contract is closed through cache
 invalidation, ordered controller advancement, per-substep root motion,
 synchronous animation-message fan-out before replacement, readiness/fade and
-inactive-detail eviction. The Godot coordinate adapter now has passing pose
-fixtures: position reflects Z and SWG `[w,x,y,z]` maps to Godot
+inactive-detail eviction. The prototype host coordinate adapter now has passing pose
+fixtures: position reflects Z and SWG `[w,x,y,z]` maps to prototype host
 `[-x,-y,z,w]`. Finally, the two object-text integer histories are identified
 as current/previous layout displacement and projected screen-Y. See the
-skeletal-alter, Godot-coordinate and nameplate-frame-cache checkpoints.
+skeletal-alter, prototype host-coordinate and nameplate-frame-cache checkpoints.
 
 ### SUNT runtime closure (2026-09-22)
 
@@ -1421,13 +1432,13 @@ replacement is installed. Readiness/fade progression and periodic inactive-LOD
 eviction follow controller advancement. See
 `ANALYSIS_CHECKPOINT_2026-09-22_SKELETAL_APPEARANCE_ALTER_ORDER.md`.
 
-### Godot coordinate adapter fixtures (2026-09-22)
+### Prototype host coordinate adapter fixtures (2026-09-22)
 
 The executable-confirmed SWG Y-up/+Z-forward basis and `[w,x,y,z]` quaternion
-order are now joined to an explicit Godot adapter. Position/direction reflects
-Z; quaternion maps to Godot `[-x,-y,z,w]`; winding and tangent handedness flip
+order are now joined to an explicit prototype host adapter. Position/direction reflects
+Z; quaternion maps to prototype host `[-x,-y,z,w]`; winding and tangent handedness flip
 once at import. Identity, three axis rotations and a mixed-pose matrix fixture
-all pass. See `ANALYSIS_CHECKPOINT_2026-09-22_GODOT_COORDINATE_ADAPTER.md`.
+all pass. See `ANALYSIS_CHECKPOINT_2026-09-22_PROTOTYPE_COORDINATE_ADAPTER.md`.
 
 ### BTRT DEST output-format contract (2026-09-22)
 
@@ -1583,7 +1594,7 @@ zlib-trailer acceptance defect led to shared header/Adler validation. This is
 implementation progress; no research rescore, executable naming, packet matrix,
 or curated registry change is claimed. No live server or original executable
 was run. See the [session](research/sessions/IMPLEMENTATION_SESSION_2026-09-29_ONE_HOUR.md)
-and [acceptance gates](../SWG-Godot-Client/docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
+and acceptance gates (external historical reference).
 
 ### Status observation boundary (2026-09-29)
 
@@ -1626,7 +1637,7 @@ See the [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_S
 Five bounded checkpoints add monotonic clock/I/O accounting, cancellable injected
 login hosting, bounded persisted allowlisted JSONL, independently matched original
 CPU mesh geometry and configured shader dependencies. The UDP adapter compiles
-but was not instantiated. Godot's async offline host exits 0; its existing root
+but was not instantiated. Prototype host's async offline host exits 0; its existing root
 certificate diagnostic remains. One original mesh has 9 batches, 190 vertices,
 159 triangles and a Python-matched geometry hash; all 48 configured archives
 open and resolve its 9 shaders, 9 DDS envelopes and 1 effect. A raw mixed-case
@@ -1638,7 +1649,7 @@ See the [five-checkpoint handoff](research/sessions/IMPLEMENTATION_SESSION_2026-
 
 ## 2026-09-29 — textured preview implementation hour
 
-Closed four bounded implementation checkpoints: [DDS pixels](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_DDS_PIXELS.md), [modern DDS](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_MODERN_DDS.md), [owned material graph](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_MATERIAL_GRAPH.md), and [original GPU preview](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_ORIGINAL_GODOT_PREVIEW.md). Eight BC1 textures and one BC3 texture provide 80 independently verified mips; all upload bytes and asymmetric UV/front-face GPU checks pass. STAG/0000 offsets 18/22 were corrected after a strict binding gate rejected the initial parser. No new stable address names or research score changes. See the [session](research/sessions/IMPLEMENTATION_SESSION_2026-09-29_TEXTURED_PREVIEW_HOUR.md) for reproduction and remaining scope.
+Closed four bounded implementation checkpoints: [DDS pixels](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_DDS_PIXELS.md), [modern DDS](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_MODERN_DDS.md), [owned material graph](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_MATERIAL_GRAPH.md), and [original GPU preview](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_ORIGINAL_PROTOTYPE_PREVIEW.md). Eight BC1 textures and one BC3 texture provide 80 independently verified mips; all upload bytes and asymmetric UV/front-face GPU checks pass. STAG/0000 offsets 18/22 were corrected after a strict binding gate rejected the initial parser. No new stable address names or research score changes. See the [session](research/sessions/IMPLEMENTATION_SESSION_2026-09-29_TEXTURED_PREVIEW_HOUR.md) for reproduction and remaining scope.
 
 ## 2026-09-29 — overnight DTLA implementation checkpoint
 
@@ -1646,7 +1657,7 @@ Closed four bounded implementation checkpoints: [DDS pixels](research/checkpoint
 
 ## 2026-09-29 — selector/material graph and original LOD inspector
 
-Two bounded milestones close the [distance selector and repeated PTXM graph](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_DETAIL_SELECTOR_AND_MATERIALS.md) and [original four-child Godot inspector](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_GODOT_LOD_INSPECTOR.md). Native ordinary-distance/availability/negative tests pass; L0/L1 each have 134 reference-matching mip levels. All four original child uploads and midpoint switches pass headless and GPU gates. Preview is explicitly unlit MAIN fallback, not original material lighting or PIVT-derived runtime distance. No score/denominator or address-name change.
+Two bounded milestones close the [distance selector and repeated PTXM graph](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_DETAIL_SELECTOR_AND_MATERIALS.md) and [original four-child prototype host inspector](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_PROTOTYPE_LOD_INSPECTOR.md). Native ordinary-distance/availability/negative tests pass; L0/L1 each have 134 reference-matching mip levels. All four original child uploads and midpoint switches pass headless and GPU gates. Preview is explicitly unlit MAIN fallback, not original material lighting or PIVT-derived runtime distance. No score/denominator or address-name change.
 
 ## 2026-09-29 — APT exterior entry point checkpoint
 
@@ -1654,7 +1665,7 @@ Two bounded milestones close the [distance selector and repeated PTXM graph](res
 
 ## 2026-09-29 — verified modern BC7 checkpoint
 
-[BC7 DDS extension](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_BC7_DECODER.md) adds bounded typed 2D RGBA decoding through pinned licensed managed dependencies. All eight modes/partition/rotation/mip cases pass 147 valid Pillow comparisons; one reserved case follows normative zero RGBA and records Pillow's opaque-black result. Godot nine-mip upload/readback passes. Original-client BC7 acceptance is not inferred, and HDR BC6H remains open. No score or function-registry changes.
+[BC7 DDS extension](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_BC7_DECODER.md) adds bounded typed 2D RGBA decoding through pinned licensed managed dependencies. All eight modes/partition/rotation/mip cases pass 147 valid Pillow comparisons; one reserved case follows normative zero RGBA and records Pillow's opaque-black result. Prototype host nine-mip upload/readback passes. Original-client BC7 acceptance is not inferred, and HDR BC6H remains open. No score or function-registry changes.
 
 ## 2026-09-30 — component geometry checkpoint
 
@@ -1676,7 +1687,7 @@ The [camera LOD checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-
 
 ## BC6H HDR extension — 2026-09-30
 
-The [HDR checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BC6H_HDR.md) adds a separate owned RGB half output for typed signed/unsigned BC6H. Forty standards-only fixtures/264 mips match independent Godot bcdec bit for bit and pass real GPU half upload/readback. Native endpoint, truncation, surface and budget gates pass. Static material integration and HDR presentation remain separate; this is not original executable acceptance evidence. Existing pinned dependencies, research metrics and registry counts are unchanged.
+The [HDR checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BC6H_HDR.md) adds a separate owned RGB half output for typed signed/unsigned BC6H. Forty standards-only fixtures/264 mips match independent prototype host bcdec bit for bit and pass real GPU half upload/readback. Native endpoint, truncation, surface and budget gates pass. Static material integration and HDR presentation remain separate; this is not original executable acceptance evidence. Existing pinned dependencies, research metrics and registry counts are unchanged.
 
 
 ## APPR hardpoints — 2026-09-30
@@ -1691,7 +1702,7 @@ The [portal reader checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_20
 
 ## Portal cell scene increment — 2026-09-30
 
-The [cell scene checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_CELL_SCENE.md) closes shared bounded cell appearance loading and named-cell offline inspection. The pinned original YT-1300 matches independently across eight cells, 14 sources, 11 meshes, 66,617 vertices, 55,916 triangles and 310 sorted variants. VTXA `0x110D` preserves its packed word and correct UV offset. Native ownership/budget/identity tests and Godot headless/GPU gates pass. Manual visibility is distinct from unimplemented portal culling, floors, doors and lighting. Research scores, packet rows and address counts are unchanged.
+The [cell scene checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_CELL_SCENE.md) closes shared bounded cell appearance loading and named-cell offline inspection. The pinned original YT-1300 matches independently across eight cells, 14 sources, 11 meshes, 66,617 vertices, 55,916 triangles and 310 sorted variants. VTXA `0x110D` preserves its packed word and correct UV offset. Native ownership/budget/identity tests and prototype host headless/GPU gates pass. Manual visibility is distinct from unimplemented portal culling, floors, doors and lighting. Research scores, packet rows and address counts are unchanged.
 
 
 ## Owned floor reader — 2026-09-30
@@ -1711,7 +1722,7 @@ The [PGRF checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_
 
 ## Directed route inspection — 2026-09-30
 
-The [route checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_DIRECTED_ROUTE_INSPECTOR.md) closes modern owned Euclidean/Dijkstra inspection against 25,847 independent Bellman–Ford probes, with exact edge-chain validation. Eight original floor/layout graphs upload and route-display in Godot; hidden GPU capture passes. Original client cost, cross-cell association and dynamic permission remain distinct. Metrics and registry counts are unchanged.
+The [route checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_DIRECTED_ROUTE_INSPECTOR.md) closes modern owned Euclidean/Dijkstra inspection against 25,847 independent Bellman–Ford probes, with exact edge-chain validation. Eight original floor/layout graphs upload and route-display in prototype host; hidden GPU capture passes. Original client cost, cross-cell association and dynamic permission remain distinct. Metrics and registry counts are unchanged.
 
 
 ## Portal/floor association audit — 2026-09-30
@@ -1736,7 +1747,7 @@ The [authored texture checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT
 
 ## BC6H material integration — 2026-09-30
 
-The [HDR material checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BC6H_MATERIAL_BUNDLES.md) preserves typed BC6H RGB-half data through shared core material caches and actual Godot MAIN samplers. Independent40-fixture/264-mip agreement and 80 template bindings pass on GPU and separately headless. Mixed RGBA/HDR aggregate budgets pass exact/fatal gates. Original87-source/321-mip scene agreement remains intact. HDR tone mapping/full lighting remain separate; metrics and registry counts are unchanged.
+The [HDR material checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BC6H_MATERIAL_BUNDLES.md) preserves typed BC6H RGB-half data through shared core material caches and actual prototype host MAIN samplers. Independent40-fixture/264-mip agreement and 80 template bindings pass on GPU and separately headless. Mixed RGBA/HDR aggregate budgets pass exact/fatal gates. Original87-source/321-mip scene agreement remains intact. HDR tone mapping/full lighting remain separate; metrics and registry counts are unchanged.
 
 
 ## Owned palette reader — 2026-09-30
@@ -1756,7 +1767,7 @@ The [swatch checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-3
 
 ## Hardpoint instance inspection — 2026-09-30
 
-The [placement checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_HARDPOINT_INSTANCE_INSPECTION.md) verifies owned per-instance hardpoint composition against two original graphs: 26 placements/312 fields. Exact name ambiguity, occurrence paths, cycles and limits pass native gates. Godot reflected marker transforms and cell/LOD visibility pass headless/GPU inspection with readable selected labels. Original runtime attachment lookup remains separate; metrics and registry counts are unchanged.
+The [placement checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_HARDPOINT_INSTANCE_INSPECTION.md) verifies owned per-instance hardpoint composition against two original graphs: 26 placements/312 fields. Exact name ambiguity, occurrence paths, cycles and limits pass native gates. Prototype host reflected marker transforms and cell/LOD visibility pass headless/GPU inspection with readable selected labels. Original runtime attachment lookup remains separate; metrics and registry counts are unchanged.
 
 
 ## Same-cell surface route selection — 2026-09-30
@@ -1766,11 +1777,11 @@ The [connection checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-
 
 ## Single-cell floor movement — 2026-09-30
 
-The [movement checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SINGLE_CELL_FLOOR_MOVEMENT.md) closes an owned horizontal single-cell walker and two-pick Godot inspector. Static edge/caller evidence, 500 seeded grid walks, 17,658 independent probes across 4,441 eligible installed floors, and seven reflected cell adapters pass. Portals override raw flags; missing-neighbor transitions, special collision edges and nearly vertical surfaces stop explicitly. Cross-cell permission/owner continuation remains next. Research scores, packet rows and stable-name counts are unchanged.
+The [movement checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SINGLE_CELL_FLOOR_MOVEMENT.md) closes an owned horizontal single-cell walker and two-pick prototype host inspector. Static edge/caller evidence, 500 seeded grid walks, 17,658 independent probes across 4,441 eligible installed floors, and seven reflected cell adapters pass. Portals override raw flags; missing-neighbor transitions, special collision edges and nearly vertical surfaces stop explicitly. Cross-cell permission/owner continuation remains next. Research scores, packet rows and stable-name counts are unchanged.
 
 ## 2026-09-30 — Portal floor transfer milestone
 
-Completed engine-neutral bounded owner transfer, remaining motion and current permission seam; 14 original links / 56 independent probes and 28 Godot adapter probes pass. Static analysis confirms local floor portal-reference ordinals and entry callback ownership; corrects 0126AA80 as same-floor projection rather than cell transfer. Three names bring the canonical registry to 2,593; research scores and packet coverage unchanged. See [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_FLOOR_TRANSFER.md). Next: portal barrier lifecycle and actor contact ordering.
+Completed engine-neutral bounded owner transfer, remaining motion and current permission seam; 14 original links / 56 independent probes and 28 prototype host adapter probes pass. Static analysis confirms local floor portal-reference ordinals and entry callback ownership; corrects 0126AA80 as same-floor projection rather than cell transfer. Three names bring the canonical registry to 2,593; research scores and packet coverage unchanged. See [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_FLOOR_TRANSFER.md). Next: portal barrier lifecycle and actor contact ordering.
 
 ## 2026-09-30 — Portal barrier collision milestone
 
@@ -1789,7 +1800,7 @@ The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTER
 
 ## 2026-09-30 — Persistent doorway actor
 
-The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PERSISTENT_DOOR_ACTOR.md) adopts actual movement locators per tick and shares one modern normal leaf across matching incident references. Contact survives owner changes; explicit separating-face policy permits blocked retreat while genuine overlap remains unresolved. Original independent trace passes 948 ticks / 44 transfers; synthetic and Godot repeated-owner controls pass. No new original semantic names or coverage rescore.
+The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PERSISTENT_DOOR_ACTOR.md) adopts actual movement locators per tick and shares one modern normal leaf across matching incident references. Contact survives owner changes; explicit separating-face policy permits blocked retreat while genuine overlap remains unresolved. Original independent trace passes 948 ticks / 44 transfers; synthetic and prototype host repeated-owner controls pass. No new original semantic names or coverage rescore.
 
 ## 2026-09-30 — Fixed-step actor and keyboard adapter
 
@@ -1797,7 +1808,7 @@ The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_FIXED
 
 ## 2026-09-30 — Timestamped actor inputs
 
-The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_ACTOR_INPUT_TIMELINE.md) closes six between-boundary transitions across three render partitions and two original owner poses. Independent replay passes 1,488 updates / 1,320 ticks / 18 transfers; bounded queue, skipped/pause history and Godot event routing pass. No new VA names or rescore.
+The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_ACTOR_INPUT_TIMELINE.md) closes six between-boundary transitions across three render partitions and two original owner poses. Independent replay passes 1,488 updates / 1,320 ticks / 18 transfers; bounded queue, skipped/pause history and prototype host event routing pass. No new VA names or rescore.
 
 ## 2026-09-30 — Planar doorway movement
 
@@ -1836,7 +1847,7 @@ The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_ORIGI
 
 ## 2026-09-30 — Complete portal level-path guard
 
-The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LEVEL_PATH_GUARD.md) rejects hidden source/target ridges through exact transfer traces. Native counterexamples, cantina/Mustafar independent actors and Godot host checks pass. Candidate screening counts remain unchanged. Full portal slope collision remains next.
+The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LEVEL_PATH_GUARD.md) rejects hidden source/target ridges through exact transfer traces. Native counterexamples, cantina/Mustafar independent actors and prototype host host checks pass. Candidate screening counts remain unchanged. Full portal slope collision remains next.
 
 ## 2026-09-30 — Precise source/target floor-box query
 
@@ -1846,9 +1857,9 @@ The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PRECI
 
 [Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PRECISE_DOOR_ACTOR.md): engine-neutral directional barrier/leaf adapter captures snapshots before callbacks. Original YT-2400 both starting directions/two poses match 1,896 independent ticks / 88 transfers / 53 blocked. Same screen improves 131 historical level round trips to 495 precise round trips; remaining 37 Accepted and one LandingFailed stay open. Bounded rounded-XZ height reprojection fixes a thin-triangle returned locator; 1,000 synthetic steep-plane gates and 17,658 original floor probes pass. No new original semantic labels, research score or protocol coverage claims.
 
-## 2026-09-30 — precise sloped doorway Godot adapter
+## 2026-09-30 — precise sloped doorway prototype host adapter
 
-[Host checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PRECISE_DOOR_GODOT.md): explicit launcher option, zero-warning build, pinned forward-start headless and reverse-start GPU controls pass. Scheduling, input, repeated transfers and reflected placement verified; private capture inspected. No research metrics or original fidelity claims changed.
+[Host checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PRECISE_DOOR_PROTOTYPE.md): explicit launcher option, zero-warning build, pinned forward-start headless and reverse-start GPU controls pass. Scheduling, input, repeated transfers and reflected placement verified; private capture inspected. No research metrics or original fidelity claims changed.
 
 ## 2026-09-30 — thin portal target landing
 
@@ -1870,9 +1881,9 @@ The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PRECI
 
 [Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_FLOOR_STEP.md): one step/one transfer, world snapshots and floor-owned vertical rollback. Pinned small-house independent trace 1,896/88 transfers/88 steps/58 blocked; same screen 504 short round trips. Defaults unchanged, modern policy explicit, host step gate next.
 
-## 2026-09-30 — step doorway Godot adapter
+## 2026-09-30 — step doorway prototype host adapter
 
-[Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_STEP_DOOR_GODOT.md): explicit bounded-step launcher option, zero-warning build, pinned forward headless/reverse GPU controls and scheduling/input gates pass. 20 repeated manual transfers / 23 step events; private capture inspected. Defaults unchanged.
+[Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_STEP_DOOR_PROTOTYPE.md): explicit bounded-step launcher option, zero-warning build, pinned forward headless/reverse GPU controls and scheduling/input gates pass. 20 repeated manual transfers / 23 step events; private capture inspected. Defaults unchanged.
 
 ## 2026-09-30 — local vertical step coverage
 
@@ -1882,9 +1893,9 @@ The [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PRECI
 
 [Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_RAY_STEP_DOOR_ACTOR.md): original black-sun 1/1 ↔ 2/1 passes 1,896 independent ticks, 88 transfers, 90 steps and 56 blocked. Same local screen 509 short round trips; previous modes remain separate. Small-house whole-strip regression unchanged; host local-option gate next.
 
-## 2026-09-30 local-step Godot integration
+## 2026-09-30 local-step prototype host integration
 
-[Host checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_RAY_STEP_DOOR_GODOT.md): explicit local policy flag with prerequisite checks; forward headless/reverse GPU original black-sun controls, scheduling/input and placement pass. Build zero warnings/errors. No new VA names or protocol rows.
+[Host checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_RAY_STEP_DOOR_PROTOTYPE.md): explicit local policy flag with prerequisite checks; forward headless/reverse GPU original black-sun controls, scheduling/input and placement pass. Build zero warnings/errors. No new VA names or protocol rows.
 
 ## 2026-09-30 connected approach
 
@@ -1892,7 +1903,7 @@ Optional selected-edge approach construction, stacked-floor and obstructed-route
 
 ## 2026-09-30 connected host gate
 
-[Lower-floor host](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_CONNECTED_DOOR_GODOT.md) passes forward headless/reverse GPU controls, scheduling/input and reflected placement; 20 manual transfers each, 48/50 manual step events. Explicit `-ConnectedDoorApproach` requires local, step and precise movement.
+[Lower-floor host](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_CONNECTED_DOOR_PROTOTYPE.md) passes forward headless/reverse GPU controls, scheduling/input and reflected placement; 20 manual transfers each, 48/50 manual step events. Explicit `-ConnectedDoorApproach` requires local, step and precise movement.
 
 ## 2026-09-30 multi-door scene
 
@@ -1912,7 +1923,7 @@ Optional selected-edge approach construction, stacked-floor and obstructed-route
 
 ## 2026-09-30 original scene host
 
-[Godot multi-door scene](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_SCENE_GODOT.md) passes headless/GPU: 16 manual transfers / two poses, second denial/retreat/reset, physical timestamped keys and diagonal round trips, typed four-transfer route, stall/pause/focus and both-leaf reflected placement. Private capture inspected.
+[prototype host multi-door scene](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_SCENE_PROTOTYPE.md) passes headless/GPU: 16 manual transfers / two poses, second denial/retreat/reset, physical timestamped keys and diagonal round trips, typed four-transfer route, stall/pause/focus and both-leaf reflected placement. Private capture inspected.
 
 ## 2026-09-30 explicit closing safety
 
@@ -2002,7 +2013,7 @@ Optional selected-edge approach construction, stacked-floor and obstructed-route
 
 ## 2026-10-01 authored secondary extent slice
 
-[Bounded decoder](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_AUTHORED_COLLISION_EXTENTS.md) separates primary bounds and secondary APPR collision extents. Six pinned original room/door appearances agree independently on primary F32 values and NULL secondaries. Native gates and Godot build pass; runtime fallback/actor selection remain open. Metrics unchanged.
+[Bounded decoder](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_AUTHORED_COLLISION_EXTENTS.md) separates primary bounds and secondary APPR collision extents. Six pinned original room/door appearances agree independently on primary F32 values and NULL secondaries. Native gates and prototype host build pass; runtime fallback/actor selection remain open. Metrics unchanged.
 
 
 ## 2026-10-01 creature fallback dimensions
@@ -2012,7 +2023,7 @@ Optional selected-edge approach construction, stacked-floor and obstructed-route
 
 ## 2026-10-01 original creature template profile
 
-[Object-root slice](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_ORIGINAL_CREATURE_TEMPLATE_PROFILE.md) resolves five unchanged inherited IFF sources and eight deterministic fields with independent value/provenance agreement. Human fallback sphere is center(0,1,0), radius0.5; lowest point0.5 above origin. Native negative gates and Godot build pass. Preview actor volume and controller equivalence remain separate; metrics unchanged.
+[Object-root slice](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_ORIGINAL_CREATURE_TEMPLATE_PROFILE.md) resolves five unchanged inherited IFF sources and eight deterministic fields with independent value/provenance agreement. Human fallback sphere is center(0,1,0), radius0.5; lowest point0.5 above origin. Native negative gates and prototype host build pass. Preview actor volume and controller equivalence remain separate; metrics unchanged.
 
 
 ## 2026-10-01 continuous sphere contact
@@ -2037,7 +2048,7 @@ Optional selected-edge approach construction, stacked-floor and obstructed-route
 
 ## 2026-10-01 sphere-box floor transfer
 
-[Captured-box floor adapter](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SPHERE_BOX_FLOOR_TRANSFER.md) passes native ownership/snapshot/negative gates,512 independent slope/seam/rotated-box cases and Godot build.36 accepted/281 obstacle stops/195 floor stops; physical door composition follows. Metrics unchanged.
+[Captured-box floor adapter](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SPHERE_BOX_FLOOR_TRANSFER.md) passes native ownership/snapshot/negative gates,512 independent slope/seam/rotated-box cases and prototype host build.36 accepted/281 obstacle stops/195 floor stops; physical door composition follows. Metrics unchanged.
 
 
 ## 2026-10-01 persistent sphere doors
@@ -2067,7 +2078,7 @@ Optional selected-edge approach construction, stacked-floor and obstructed-route
 
 ## 2026-10-01 human bind transforms
 
-[Engine-neutral bind builder](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_HUMAN_BIND_TRANSFORMS.md) passes noncommuting known poses and independently agrees on176 original body/face matrices (max4.141e-7). Original ten-source descriptors and Godot build pass. MGN geometry/rendering follows; metrics unchanged.
+[Engine-neutral bind builder](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_HUMAN_BIND_TRANSFORMS.md) passes noncommuting known poses and independently agrees on176 original body/face matrices (max4.141e-7). Original ten-source descriptors and prototype host build pass. MGN geometry/rendering follows; metrics unchanged.
 
 
 ## 2026-10-01 human skin sources
@@ -2192,27 +2203,27 @@ Optional selected-edge approach construction, stacked-floor and obstructed-route
 
 ## 2026-10-01 inline original face effects
 
-[Inline face shader compatibility](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INLINE_FACE_EFFECTS.md) adds explicit owned inline effects and validated IMPL0003/PASS0007/PTXM0000. Both pinned original shader candidates and independent25-field/raw-metadata audits pass; malformed/truncated/ownership gates and Godot build pass. Cached blend/write state correlation is recorded; target-alpha mode and combiner remain next. Metrics unchanged.
+[Inline face shader compatibility](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INLINE_FACE_EFFECTS.md) adds explicit owned inline effects and validated IMPL0003/PASS0007/PTXM0000. Both pinned original shader candidates and independent25-field/raw-metadata audits pass; malformed/truncated/ownership gates and prototype host build pass. Cached blend/write state correlation is recorded; target-alpha mode and combiner remain next. Metrics unchanged.
 
 
 ## 2026-10-01 original face resource closure
 
-[Owned face dependency closure](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_FACE_RESOURCE_CLOSURE.md) validates50-source/2,283,397-byte original chain, two shaders,32 textures/251 declared mips and three palettes. Seven bounded legacy DDS terminal blocks are retained via explicit opt-in; declared mip output unchanged. Independent pixel/palette/union, missing/masked, budget and ownership gates pass; Godot build passes. Generated face remains pending; metrics unchanged.
+[Owned face dependency closure](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_FACE_RESOURCE_CLOSURE.md) validates50-source/2,283,397-byte original chain, two shaders,32 textures/251 declared mips and three palettes. Seven bounded legacy DDS terminal blocks are retained via explicit opt-in; declared mip output unchanged. Independent pixel/palette/union, missing/masked, budget and ownership gates pass; prototype host build passes. Generated face remains pending; metrics unchanged.
 
 
 ## 2026-10-01 explicit original face preparation
 
-[Original face preparation](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_EXPLICIT_FACE_PREPARATION.md) confirms SST1 factory flagtrue and distinct texture endpoint clamp/STFP invalid-to-last palette rules. Six explicit keys prepare five separate slots/nine operations. Independent0/INT_MIN/INT_MAX original audits, omitted-key and portable ownership/failure gates pass; Godot build passes. Original programmable RGB×factor/copied-alpha behavior recorded. Rendering remains pending; metrics unchanged.
+[Original face preparation](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_EXPLICIT_FACE_PREPARATION.md) confirms SST1 factory flagtrue and distinct texture endpoint clamp/STFP invalid-to-last palette rules. Six explicit keys prepare five separate slots/nine operations. Independent0/INT_MIN/INT_MAX original audits, omitted-key and portable ownership/failure gates pass; prototype host build passes. Original programmable RGB×factor/copied-alpha behavior recorded. Rendering remains pending; metrics unchanged.
 
 
 ## 2026-10-01 Face execution boundary
 
-[Face execution boundary](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_FACE_EXECUTION_BOUNDARY.md) traces PCAM0086C380/00768620/00767700, sampler inheritance62A0E570, managed destination00869CD0/ARGB8 scratch62A0AF40 and original shared pixel-program output. Corrected selected DEST remap;51-source/2,283,555-byte original dependency/instruction audit and negative/ownership gates pass. Godot build passes. Global opacity and exact raster parity remain open; coverage metrics/canonical names unchanged.
+[Face execution boundary](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_FACE_EXECUTION_BOUNDARY.md) traces PCAM0086C380/00768620/00767700, sampler inheritance62A0E570, managed destination00869CD0/ARGB8 scratch62A0AF40 and original shared pixel-program output. Corrected selected DEST remap;51-source/2,283,555-byte original dependency/instruction audit and negative/ownership gates pass. Prototype host build passes. Global opacity and exact raster parity remain open; coverage metrics/canonical names unchanged.
 
 
 ## 2026-10-01 CPU original face composition
 
-[CPU face compositor](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_CPU_FACE_COMPOSITION.md) passes hand-calculated raster/blend/sampler/LOD and negative/ownership/cancellation gates. Independent original0/min/max profiles agree on15 layer digests and final256×256 RGBA output over51 original sources. Explicit modern policy preserves unknown legacy-driver rounding/format/global-opacity boundary. Godot build passes; GPU TRTS MAIN binding next. Research metrics unchanged.
+[CPU face compositor](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_CPU_FACE_COMPOSITION.md) passes hand-calculated raster/blend/sampler/LOD and negative/ownership/cancellation gates. Independent original0/min/max profiles agree on15 layer digests and final256×256 RGBA output over51 original sources. Explicit modern policy preserves unknown legacy-driver rounding/format/global-opacity boundary. Prototype host build passes; GPU TRTS MAIN binding next. Research metrics unchanged.
 
 
 ## 2026-10-01 generated face preview
@@ -2227,7 +2238,7 @@ Optional selected-edge approach construction, stacked-floor and obstructed-route
 
 ## 2026-10-01 interior generated character
 
-[Interior face/albedo integration](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_GENERATED_CHARACTER.md) independently verifies139 original sources/15,541,123 bytes, face pixels/binding, four albedo materials,2,810 character/42,986 guard triangles and2,880 route ticks/24 transfers/182 contacts. Offline Godot GPU/animation/control checks pass; capture inspected. Shared customization next; research metrics unchanged.
+[Interior face/albedo integration](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_GENERATED_CHARACTER.md) independently verifies139 original sources/15,541,123 bytes, face pixels/binding, four albedo materials,2,810 character/42,986 guard triangles and2,880 route ticks/24 transfers/182 contacts. Offline prototype host GPU/animation/control checks pass; capture inspected. Shared customization next; research metrics unchanged.
 
 
 ## 2026-10-01 shared face/material customization
@@ -2242,7 +2253,7 @@ Optional selected-edge approach construction, stacked-floor and obstructed-route
 
 ## Original skeletal blend descriptions —2026-10-01
 
-[Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_BLEND_DESCRIPTIONS.md):30 targets/27 variables and all ordered sparse-record hashes independently agree over unchanged twelve-source closure. Native negative/ownership gates and Godot build pass. Shape application/HPTS remain open; research metrics unchanged.
+[Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_BLEND_DESCRIPTIONS.md):30 targets/27 variables and all ordered sparse-record hashes independently agree over unchanged twelve-source closure. Native negative/ownership gates and prototype host build pass. Shape application/HPTS remain open; research metrics unchanged.
 
 
 ## Explicit skeletal shape application —2026-10-01
@@ -2413,70 +2424,70 @@ Resolution: synthetic light direction occupied a row while the accessor reads a 
 
 ## Parallel development Round 1 — 2026-10-01
 
-Four bounded Low-reasoning milestones accepted: original human explicit detail1 resource/geometry/material audit; mouth EFCT/PVSH/include identity and 64 independently checked modern CPU vertex-color cases; modern bounded animation-event cursor with independent partitioning/ordering and original walk/run checks; offline SelectCharacter/CmdStartScene codecs with independent wire fixtures. Lead reconciled shared source producers/auditors and fixed a nullable test reference exposed by the shared warnings-as-errors build. Full interior now 160 sources / 16,643,480 bytes, all read once; original native/independent route/source/math, Godot build, fresh GPU and first-lookup cancellation pass. Original compiled LIT, original event scheduling, automatic LOD and zone scene lifecycle remain open. Metrics unchanged. [Round report](research/sessions/PARALLEL_DEVELOPMENT_ROUND_1_2026-10-01.md).
+Four bounded Low-reasoning milestones accepted: original human explicit detail1 resource/geometry/material audit; mouth EFCT/PVSH/include identity and 64 independently checked modern CPU vertex-color cases; modern bounded animation-event cursor with independent partitioning/ordering and original walk/run checks; offline SelectCharacter/CmdStartScene codecs with independent wire fixtures. Lead reconciled shared source producers/auditors and fixed a nullable test reference exposed by the shared warnings-as-errors build. Full interior now 160 sources / 16,643,480 bytes, all read once; original native/independent route/source/math, prototype host build, fresh GPU and first-lookup cancellation pass. Original compiled LIT, original event scheduling, automatic LOD and zone scene lifecycle remain open. Metrics unchanged. [Round report](research/sessions/PARALLEL_DEVELOPMENT_ROUND_1_2026-10-01.md).
 
 ## Parallel development Round 2 — 2026-10-01
 
-Four Low-reasoning milestones accepted: original details2/3 closure (15 sources each,756/190 triangles) and independent sampled deformation;216 mouth GPU channel/pixel comparisons max0.003438 with five wrong-policy discriminators;elapsed-seconds event playback with1,120 independent partition cases and original walk/run;offline current-generation scene barrier with ordered owned staging and exact header-only ready codec. Lead scope/conflict review, own console/oracles/shared native suite, Godot build and fresh original GPU integration pass. No production shader equations changed; original LIT/event scheduling, automatic LOD and zone terrain/replication remain open. Metrics unchanged. [Report](research/sessions/PARALLEL_DEVELOPMENT_ROUND_2_2026-10-01.md).
+Four Low-reasoning milestones accepted: original details2/3 closure (15 sources each,756/190 triangles) and independent sampled deformation;216 mouth GPU channel/pixel comparisons max0.003438 with five wrong-policy discriminators;elapsed-seconds event playback with1,120 independent partition cases and original walk/run;offline current-generation scene barrier with ordered owned staging and exact header-only ready codec. Lead scope/conflict review, own console/oracles/shared native suite, prototype host build and fresh original GPU integration pass. No production shader equations changed; original LIT/event scheduling, automatic LOD and zone terrain/replication remain open. Metrics unchanged. [Report](research/sessions/PARALLEL_DEVELOPMENT_ROUND_2_2026-10-01.md).
 
 ## 2026-10-01 — accepted parallel development Round 3
 
-Four Low-reasoning milestones integrated after Round2 acceptance: original lower-detail nodot3 shading closure (22 sources per detail,64 independently executed original point-texel cases); explicit detail1–3 Godot adapter with smaller vertex-only family; bounded generation-aware diagnostic event sink and authored-texture walk/run preview; offline SOE-to-scene readiness transcript with independent peer bytes. Lead retained default0 interior and verified fresh lower-detail/event captures, shared native tests, original source/pixel and wire audits, headless/cancellation and owned teardown. Camera framing adjusted after visual review. [Round record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_3_2026-10-01.md) separates worker evidence, lead verification and remaining uncertainty. No new VA/name/packet research claims, scores or registry changes; no staging, commit, publication, original execution or live contact. Workers stop; [organizational reassessment](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_2_3_ASSESSMENT_2026-10-01.md) precedes any further user-authorized round.
+Four Low-reasoning milestones integrated after Round2 acceptance: original lower-detail nodot3 shading closure (22 sources per detail,64 independently executed original point-texel cases); explicit detail1–3 prototype host adapter with smaller vertex-only family; bounded generation-aware diagnostic event sink and authored-texture walk/run preview; offline SOE-to-scene readiness transcript with independent peer bytes. Lead retained default0 interior and verified fresh lower-detail/event captures, shared native tests, original source/pixel and wire audits, headless/cancellation and owned teardown. Camera framing adjusted after visual review. [Round record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_3_2026-10-01.md) separates worker evidence, lead verification and remaining uncertainty. No new VA/name/packet research claims, scores or registry changes; no staging, commit, publication, original execution or live contact. Workers stop; [organizational reassessment](research/sessions/PARALLEL_DEVELOPMENT_ROUNDS_2_3_ASSESSMENT_2026-10-01.md) precedes any further user-authorized round.
 
 ## Accepted parallel development Round4 —2026-10-02
 
-Accepted [modern skeletal selection](docs/SKELETAL_DETAIL_SELECTION_POLICY.md), [owned retained original details](docs/SKELETAL_RETAINED_DETAIL_PREVIEW.md), [accepted-distance events](docs/LOCOMOTION_EVENT_PREVIEW_CONTRACT.md) and [scene-object lifecycle codecs](docs/SCENE_OBJECT_LIFECYCLE_CODEC_CONTRACT.md). Lead own native/oracles, shared suite, clean Godot build and fresh retained GPU captures pass; worker default0/headless/cancel checks pass. Original thresholds/scheduler/compiled vertex precision and actual replication/live scenes remain open. Research/registries unchanged. Rounds5–8 remain authorized and will follow accepted snapshots.
+Accepted [modern skeletal selection](docs/SKELETAL_DETAIL_SELECTION_POLICY.md), [owned retained original details](docs/SKELETAL_RETAINED_DETAIL_PREVIEW.md), [accepted-distance events](docs/LOCOMOTION_EVENT_PREVIEW_CONTRACT.md) and [scene-object lifecycle codecs](docs/SCENE_OBJECT_LIFECYCLE_CODEC_CONTRACT.md). Lead own native/oracles, shared suite, clean prototype host build and fresh retained GPU captures pass; worker default0/headless/cancel checks pass. Original thresholds/scheduler/compiled vertex precision and actual replication/live scenes remain open. Research/registries unchanged. Rounds5–8 remain authorized and will follow accepted snapshots.
 
 
 ## Accepted parallel development Round5 —2026-10-02
 
-Accepted explicit create-CRC to original creature resources, all-four retained automatic detail preview, opt-in original-interior accepted-movement event diagnostics, and immutable-snapshot object lifecycle registry. Lead native/independent audits, combined suite, clean Godot build and fresh retained/interior GPU checks pass. Original resource proof37 sources/4,683,848 bytes; retained union58/6,111,276; full customized interior160/16,643,480. Catalog, selection and recovery rules are modern explicit policy; original scheduler/global catalog/field replication/async world/live work remains open. [Round report](research/sessions/PARALLEL_DEVELOPMENT_ROUND_5_2026-10-02.md) separates worker and lead gates. Research89%/94%,2,602 names and345 packet rows unchanged. Rounds6–8 remain authorized.
+Accepted explicit create-CRC to original creature resources, all-four retained automatic detail preview, opt-in original-interior accepted-movement event diagnostics, and immutable-snapshot object lifecycle registry. Lead native/independent audits, combined suite, clean prototype host build and fresh retained/interior GPU checks pass. Original resource proof37 sources/4,683,848 bytes; retained union58/6,111,276; full customized interior160/16,643,480. Catalog, selection and recovery rules are modern explicit policy; original scheduler/global catalog/field replication/async world/live work remains open. [Round report](research/sessions/PARALLEL_DEVELOPMENT_ROUND_5_2026-10-02.md) separates worker and lead gates. Research89%/94%,2,602 names and345 packet rows unchanged. Rounds6–8 remain authorized.
 
 
 ## Accepted parallel development Round6 —2026-10-02
 
-Accepted robust raw-create placement, owned revision-guarded Godot creature visuals, bounded asynchronous resource initialization with current-attempt checks, and strict baseline/delta application envelopes. Lead native/independent/original-source audits, combined suite, clean build and fresh GPU/headless/cancel/cleanup pass. [Round record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_6_2026-10-02.md) separates modern policy, synthetic bytes and original assets. Application envelope23 bytes versus server-framed27 is now explicit in protocol documents. Full schema/world/live and original readiness/repair remain open. Research89%/94%,2,602 names/345 rows unchanged; Rounds7–8 remain authorized.
+Accepted robust raw-create placement, owned revision-guarded prototype host creature visuals, bounded asynchronous resource initialization with current-attempt checks, and strict baseline/delta application envelopes. Lead native/independent/original-source audits, combined suite, clean build and fresh GPU/headless/cancel/cleanup pass. [Round record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_6_2026-10-02.md) separates modern policy, synthetic bytes and original assets. Application envelope23 bytes versus server-framed27 is now explicit in protocol documents. Full schema/world/live and original readiness/repair remain open. Research89%/94%,2,602 names/345 rows unchanged; Rounds7–8 remain authorized.
 
 
 ## Accepted parallel development Round7 —2026-10-02
 
-Accepted original static-object resource preparation with explicit SWTS material gaps, placed asynchronous creature visual, offline SOE/world lifecycle coordination, and six ordered typed CREO3 scalar delta fields. Lead independent original-source/wire/placement audits, combined native suite, clean Godot build and fresh GPU/headless/cancellation/cleanup pass. [Round record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_7_2026-10-02.md) records ownership, strict failure policy, scope and corrections. Full baseline/state binding, static animated textures, terrain/live and original readiness remain open. Research89%/94%,2,602 names/345 rows unchanged; Round8 remains authorized.
+Accepted original static-object resource preparation with explicit SWTS material gaps, placed asynchronous creature visual, offline SOE/world lifecycle coordination, and six ordered typed CREO3 scalar delta fields. Lead independent original-source/wire/placement audits, combined native suite, clean prototype host build and fresh GPU/headless/cancellation/cleanup pass. [Round record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_7_2026-10-02.md) records ownership, strict failure policy, scope and corrections. Full baseline/state binding, static animated textures, terrain/live and original readiness remain open. Research89%/94%,2,602 names/345 rows unchanged; Round8 remains authorized.
 
 
 ## Accepted parallel development Round8 —2026-10-02
 
-Accepted explicit original SWTS frame materials, world-owned offline Godot creature publication, exact-revision scalar state and complete eighteen-field CREO3 baselines. Lead native/independent/original-source audits, baseline-to-store integration, clean Godot build, fresh world GPU/headless/cancel and full customized160-source interior regression pass. [Round8 report](research/sessions/PARALLEL_DEVELOPMENT_ROUND_8_2026-10-02.md) records limits and reproduction. World fields remain opaque until a stable-incarnation/state-binding milestone; no full terrain/live or SWTS timing claim. Research89%/94%,2,602 names/345 rows unchanged. Workers idle; authorization ends after Round8.
+Accepted explicit original SWTS frame materials, world-owned offline prototype host creature publication, exact-revision scalar state and complete eighteen-field CREO3 baselines. Lead native/independent/original-source audits, baseline-to-store integration, clean prototype host build, fresh world GPU/headless/cancel and full customized160-source interior regression pass. [Round8 report](research/sessions/PARALLEL_DEVELOPMENT_ROUND_8_2026-10-02.md) records limits and reproduction. World fields remain opaque until a stable-incarnation/state-binding milestone; no full terrain/live or SWTS timing claim. Research89%/94%,2,602 names/345 rows unchanged. Workers idle; authorization ends after Round8.
 
 ## Parallel development Round9 —2026-10-02
 
-Four Low-reasoning milestones integrated: strict portable catalog metadata, retained original terminal frames/details, stable-incarnation complete-baseline/six-scalar state, and bounded wounds vector plans. Lead independent JSON/wire/raw-bit/source/pixel audits, exact-versus-incarnation combined proof, prior lifecycle regressions, clean Godot build and fresh terminal GPU/headless/cancel pass. Screen effect uses a labeled modern unshaded MAIN override; original scheduling/emissive fidelity and vector arithmetic remain open. [Round9](research/sessions/PARALLEL_DEVELOPMENT_ROUND_9_2026-10-02.md). No staging/publication/live/original execution; metrics unchanged. Rounds10–12 remain authorized.
+Four Low-reasoning milestones integrated: strict portable catalog metadata, retained original terminal frames/details, stable-incarnation complete-baseline/six-scalar state, and bounded wounds vector plans. Lead independent JSON/wire/raw-bit/source/pixel audits, exact-versus-incarnation combined proof, prior lifecycle regressions, clean prototype host build and fresh terminal GPU/headless/cancel pass. Screen effect uses a labeled modern unshaded MAIN override; original scheduling/emissive fidelity and vector arithmetic remain open. [Round9](research/sessions/PARALLEL_DEVELOPMENT_ROUND_9_2026-10-02.md). No staging/publication/live/original execution; metrics unchanged. Rounds10–12 remain authorized.
 
 ## Parallel development Round10 —2026-10-02
 
-Four Low-reasoning milestones accepted: optional albedo resources, state-driven presentation, typed scalar world and exact bounded vector kernel. Direct pinned instructions establish clamped unsigned skip, assignment k+1 cursor/counter and mutation-dependent increments; old generalized forced-counter prose corrected. Lead29 anchors/73 oracle cases,39-source original typed-world proof, unchanged strict/opaque/default gates, clean Godot build and fresh state GPU/headless/cancel pass. [Round10](research/sessions/PARALLEL_DEVELOPMENT_ROUND_10_2026-10-02.md) records limits. No original execution/live/publication/new semantic names or score change.
+Four Low-reasoning milestones accepted: optional albedo resources, state-driven presentation, typed scalar world and exact bounded vector kernel. Direct pinned instructions establish clamped unsigned skip, assignment k+1 cursor/counter and mutation-dependent increments; old generalized forced-counter prose corrected. Lead29 anchors/73 oracle cases,39-source original typed-world proof, unchanged strict/opaque/default gates, clean prototype host build and fresh state GPU/headless/cancel pass. [Round10](research/sessions/PARALLEL_DEVELOPMENT_ROUND_10_2026-10-02.md) records limits. No original execution/live/publication/new semantic names or score change.
 
 ## Accepted parallel development Round11 —2026-10-02
 
-Accepted palette-only owned scene colors, world-owned original albedo presentation, bounded acknowledged world changes and ordered atomic mixed scalar/wounds plans. Lead shared/native/independent source/wire/state/pixel oracles, clean Godot build and fresh GPU/headless/cancellation/cleanup pass. Modern observer/Height/strict customization policies are explicit; wire customization/full lighting/other views/live remain open. Research89%/94%,2,602 names and345 packet rows unchanged. [Round11 record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_11_2026-10-02.md). Round12 remains authorized.
+Accepted palette-only owned scene colors, world-owned original albedo presentation, bounded acknowledged world changes and ordered atomic mixed scalar/wounds plans. Lead shared/native/independent source/wire/state/pixel oracles, clean prototype host build and fresh GPU/headless/cancellation/cleanup pass. Modern observer/Height/strict customization policies are explicit; wire customization/full lighting/other views/live remain open. Research89%/94%,2,602 names and345 packet rows unchanged. [Round11 record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_11_2026-10-02.md). Round12 remains authorized.
 
 ## Accepted parallel development Round12 —2026-10-02
 
-Accepted opaque DDS colors, acknowledged observer/palette rendering, atomic mixed scalar/wounds world/store mode and standalone recovered components-set codec. Lead independent native/source/wire/state/pixel audits, shared suite, clean Godot build and fresh GPU/headless/cancel gates pass. Combined original39-source palette resources and mixed state reach current presentation without resource reload; late failure retires the whole generation. Components-world, other views/fields, original callback/Height semantics and full rendering/live remain open. Research89%/94%,2,602 names and345 packets unchanged. All workers idle; authorization ends after12. [Round12 record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_12_2026-10-02.md).
+Accepted opaque DDS colors, acknowledged observer/palette rendering, atomic mixed scalar/wounds world/store mode and standalone recovered components-set codec. Lead independent native/source/wire/state/pixel audits, shared suite, clean prototype host build and fresh GPU/headless/cancel gates pass. Combined original39-source palette resources and mixed state reach current presentation without resource reload; late failure retires the whole generation. Components-world, other views/fields, original callback/Height semantics and full rendering/live remain open. Research89%/94%,2,602 names and345 packets unchanged. All workers idle; authorization ends after12. [Round12 record](research/sessions/PARALLEL_DEVELOPMENT_ROUND_12_2026-10-02.md).
 
 
 ## Accepted parallel development Round13 - 2026-10-02
 
-Four independent Low-reasoning milestones accepted with serialized lead integration: owned two-recipe resource router, ordered composite codec retaining exact distinct set/vector kernels, optional incarnation-bound components overlay joined into one atomic world commit, and acknowledged two-creature original-resource presentation. Raw baseline order/duplicates remain distinct from normalized current membership. Lead original39-source palette route/framed composite oracle, budget/revision/policy/ownership/late-generation failure, shared/old Mode2/native/source/pixel, clean Godot build and fresh GPU/headless/cancel/primary-Main pass. A updates/recreates while B's region/resources remain identical. [Round13 report](research/sessions/PARALLEL_DEVELOPMENT_ROUND_13_2026-10-02.md) records corrections and precise static-world next action. No new names/packets/research-score changes, original execution/live contact or publication; all workers idle after13.
+Four independent Low-reasoning milestones accepted with serialized lead integration: owned two-recipe resource router, ordered composite codec retaining exact distinct set/vector kernels, optional incarnation-bound components overlay joined into one atomic world commit, and acknowledged two-creature original-resource presentation. Raw baseline order/duplicates remain distinct from normalized current membership. Lead original39-source palette route/framed composite oracle, budget/revision/policy/ownership/late-generation failure, shared/old Mode2/native/source/pixel, clean prototype host build and fresh GPU/headless/cancel/primary-Main pass. A updates/recreates while B's region/resources remain identical. [Round13 report](research/sessions/PARALLEL_DEVELOPMENT_ROUND_13_2026-10-02.md) records corrections and precise static-world next action. No new names/packets/research-score changes, original execution/live contact or publication; all workers idle after13.
 
 ## Parallel development Round14 — October2,2026
 
-Accepted worker implementation scopes and lead combined execution: pure creature/static completion validation, bounded generic async coordinator with exact handle/attempt publications and opaque static TANO, independent fragmented/reordered human/terminal peer, and guarded original static visual. Lead replaces temporary validation wrapper with the accepted pure gate, preserves legacy APIs, and runs original39/27-source mixed delivery. Creature Height updates, terminal destroy/recreate and late family failure preserve unaffected resources or retire globally as required. Fresh native/independent/original/mip/pixel/shared/Godot build/GPU/headless/cancel/primary-Main gates pass; front view14,333 human pixels change and terminal0, recreation identical. [Round14](research/sessions/PARALLEL_DEVELOPMENT_ROUND_14_2026-10-02.md) records scope/limits/resume. No new names, packet rows or research-score changes; no original execution/live/network publication/Git mutation. All workers idle; next prompt required.
+Accepted worker implementation scopes and lead combined execution: pure creature/static completion validation, bounded generic async coordinator with exact handle/attempt publications and opaque static TANO, independent fragmented/reordered human/terminal peer, and guarded original static visual. Lead replaces temporary validation wrapper with the accepted pure gate, preserves legacy APIs, and runs original39/27-source mixed delivery. Creature Height updates, terminal destroy/recreate and late family failure preserve unaffected resources or retire globally as required. Fresh historical implementation path (omitted) build/GPU/headless/cancel/primary-Main gates pass; front view14,333 human pixels change and terminal0, recreation identical. [Round14](research/sessions/PARALLEL_DEVELOPMENT_ROUND_14_2026-10-02.md) records scope/limits/resume. No new names, packet rows or research-score changes; no original execution/live/network publication/Git mutation. All workers idle; next prompt required.
 
 ## Parallel development Round15 - October2,2026
 
 Integrated original-resource retention fixtures, bounded engine-neutral generic
 presentation, recipe visual adapters and an independent40-event lifecycle model.
-Lead shared/native160/changed-ID/state/disposal/source-receipt/Godot GPU/headless/
+Lead historical implementation path (omitted) GPU/headless/
 cancellation/legacy gates pass. Exact applied-batch acknowledgment, separate
 resource/state lifetime, terminal-only recreation, stale rollback and global
 retirement are verified modern policy. Review fixes test tally accounting and
@@ -2487,9 +2498,9 @@ packets remain unchanged. All workers idle; continuous bounded scene pumping is
 next, subject to Levarris's next prompt.
 ## Round16 continuous scene hosting - October2,2026
 
-The bounded engine-neutral scene pump, reusable Godot process host, pure logical
+The bounded engine-neutral scene pump, reusable prototype host process host, pure logical
 resource accounting and independent eight-frame scheduling peer are integrated.
-Native171/host102/15-accounting-negative/independent/shared/Godot build and
+historical implementation path (omitted) build and
 original headless/GPU/real-cancellation checks pass. The human persists through
 Height updates and terminal-only recreation; close clears retained work and
 drains jobs. Logical budgets exclude geometry/animation/CLR/GPU overhead.
@@ -2501,7 +2512,7 @@ the overnight authorization; no live-server contact or publication is authorized
 ## Round17 native motion - October2,2026
 
 Exact compact transform codecs, bounded incarnation-aware native pose storage,
-original local body envelopes and Godot pose adapters are integrated.
+original local body envelopes and prototype host pose adapters are integrated.
 280 native motion checks,522 independent codec fixtures, eight body samples/
 36 negatives and original/native/GPU/headless/cancel/independent/shared gates pass.
 Continuous motion preserves raw create and resource identity; Height composes once,
@@ -2513,7 +2524,7 @@ readiness94%,2,602 names and345 packet rows unchanged.
 
 ## Round18 — 2026-10-02
 
-Accepted fixed-step local driver, timestamped Godot input/idle-walk-run adapter,
+Accepted fixed-step local driver, timestamped prototype host input/idle-walk-run adapter,
 synchronous motion router through the bounded pump and exact head-material gap
 diagnosis. Joined originals prove correction while suspended, no elapsed replay,
 Height once, terminal-only reload, retained human resources and cancellation/
@@ -2654,14 +2665,14 @@ consumer milestones. Combined acceptance passed at2026-10-04 00:30:47UTC.
 The [Round45 report](research/sessions/PARALLEL_DEVELOPMENT_ROUND_45_2026-10-04.md) records independently reviewed/replayed supplied
 AHFR/FFRA consumers, an incarnation-bound received-only partial CREO4 store,
 one human movement-template input chain and the actual current-height FHGT/AHCN
-Godot preview. The store accepts pending/finalized objects without default seeds
+Prototype host preview. The store accepts pending/finalized objects without default seeds
 but has no world/router admission yet. Original fractal generation/cache lifetime,
 floating controls, complete terrain and later creature writers remain unknown.
 Research scores and canonical name/packet denominators remain unchanged.
 
 ## Round46 accepted compatibility increment
 
-2026-10-04: Round46 independently reviews/replays four Low specialist milestones and joins partial observer state to the actual original-resource Godot host. Runtime65 cases/441 steps/3989 events/22155 checks; Networking352 cases/573 independent checks plus five original sources/8290 bytes; Assets180 anchors/28 boundaries/40 identity failures/29 branches/13 signed lookup cases; Rendering230 anchors/2466 synthetic checks/66 rejects/12 identity failures. Lead903 supplied consumer joins include411 stale-height receipt and40 early-projection witnesses. Fresh partial headless/GPU and previous full4 headless host gates pass. Original noise/defaults/live gameplay remain open; canonical research and registry denominators unchanged. See [Round46](research/sessions/PARALLEL_DEVELOPMENT_ROUND_46_2026-10-04.md).
+2026-10-04: Round46 independently reviews/replays four Low specialist milestones and joins partial observer state to the actual original-resource prototype host host. Runtime65 cases/441 steps/3989 events/22155 checks; Networking352 cases/573 independent checks plus five original sources/8290 bytes; Assets180 anchors/28 boundaries/40 identity failures/29 branches/13 signed lookup cases; Rendering230 anchors/2466 synthetic checks/66 rejects/12 identity failures. Lead903 supplied consumer joins include411 stale-height receipt and40 early-projection witnesses. Fresh partial headless/GPU and previous full4 headless host gates pass. Original noise/defaults/live gameplay remain open; canonical research and registry denominators unchanged. See [Round46](research/sessions/PARALLEL_DEVELOPMENT_ROUND_46_2026-10-04.md).
 
 ## Round47 compatibility increment
 
@@ -2685,7 +2696,7 @@ The owned generator now publishes exact fractal families into a fresh family-rou
 
 ## 2026-10-04 Round52 development increment
 
-Four reviewed Low milestones add actual generator budgets, immutable computed patches, complete indexed acceleration getter/endpoint evidence and an original deactivation-slot run producer. Lead400-height headless/GPU/grounding joins and zero-allocation late rejection pass; final Core/Godot and old terrain regressions pass. [Evidence](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R52_FAMILY_PATCH_AND_INPUT_PRODUCER.md). No research rescore, registry changes, original execution, live contact or publication.
+Four reviewed Low milestones add actual generator budgets, immutable computed patches, complete indexed acceleration getter/endpoint evidence and an original deactivation-slot run producer. Lead400-height headless/GPU/grounding joins and zero-allocation late rejection pass; final historical implementation path (omitted) and old terrain regressions pass. [Evidence](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R52_FAMILY_PATCH_AND_INPUT_PRODUCER.md). No research rescore, registry changes, original execution, live contact or publication.
 
 ## 2026-10-04 — Round53 original rule and shared sampler
 
@@ -2694,7 +2705,7 @@ selection59 cases/37 rejects; opt-in height patch156 cases/2238 heights; two
 complete controller carrier bodies with precise override-unit gap; GroundScene
 normalized deactivation caller with precise queue-identity gap. Lead400 original-rule
 retained values/heights agree with reference/Fraction oracles and use4 samplers
-versus400. Headless/GPU/negative/prior previews and final Core/Godot gates pass.
+versus400. Headless/GPU/negative/prior previews and final historical implementation path (omitted) gates pass.
 [Evidence](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R53_ORIGINAL_RULE_AND_BATCHED_PATCH.md).
 No original execution, registry rescore, live contact or publication.
 
@@ -2751,7 +2762,7 @@ No original execution, registry rescore, live contact or publication.
 
 ## Round65 camera target and direct authoritative correction
 
-[Round65 evidence](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R65_CAMERA_TARGET_AND_FULL_CORRECTION.md) adds actual live-camera ray picking, a bounded grounded point-target driver and full-root application into the current typed motion store. Independent native/headless/GPU and malformed/admission/lifecycle/cleanup checks pass; joined89-step traces cross two patches/two chunks, correct off-axis on the first subsequent movement step and stop. Godot callback reentry was found during lead review and fixed/tested before acceptance. The complete second-string caller proves pointer forwarding and only strongly inferred serialization, with no resource meaning. Research/readiness/function/protocol denominators and publication boundaries remain unchanged.
+[Round65 evidence](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R65_CAMERA_TARGET_AND_FULL_CORRECTION.md) adds actual live-camera ray picking, a bounded grounded point-target driver and full-root application into the current typed motion store. Independent native/headless/GPU and malformed/admission/lifecycle/cleanup checks pass; joined89-step traces cross two patches/two chunks, correct off-axis on the first subsequent movement step and stop. Prototype host callback reentry was found during lead review and fixed/tested before acceptance. The complete second-string caller proves pointer forwarding and only strongly inferred serialization, with no resource meaning. Research/readiness/function/protocol denominators and publication boundaries remain unchanged.
 
 ## Round66 point input, active pause and queued correction
 
@@ -2827,7 +2838,7 @@ Reviewed Levarris's summarized oversight findings against accepted82 and source 
 
 ## 2026-10-06 Round84: selected-player session composition
 
-[Session](research/sessions/PARALLEL_DEVELOPMENT_ROUND_84_2026-10-06.md), [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R84_SELECTED_PLAYER_SESSION.md). Four Low workers add installation-derived creature preparation, world/session readiness bridge, pinned injected-port driver and selected-player Godot adapter. Lead independently replays all sealed components and joins login through original human publication headlessly/GPU; protected auth/select/ready and original preparation/39 loaded sources/terrain hashes are independently compared. Three lifecycle messages stage before readiness; cancellation/minimum failure emit no ready/actor and drain. Native removal exposes and repairs existing host Free ordering via explicitly scoped deferred exit; direct active Free remains a faulted abort. Twelve default regression suites and legacy host102 pass. Peer/typed CREO3 are authored, one-creature presentation and PTAT minimum are bounded modern policies. Full server baseline set/nearby objects/avatar/terrain, authoritative movement, protocol disconnect/server release and live interoperability remain open. Failed lead peer/typed composition and missing legacy fixture staging are retained with corrections. No RE probe, original execution, live contact, capture/fuzzing, staging/commit/push/publication. Research89/readiness94/function uncalibrated/2626 names/345 packet rows unchanged. Four workers idle; heartbeat paused; one round completed.
+[Session](research/sessions/PARALLEL_DEVELOPMENT_ROUND_84_2026-10-06.md), [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R84_SELECTED_PLAYER_SESSION.md). Four Low workers add installation-derived creature preparation, world/session readiness bridge, pinned injected-port driver and selected-player prototype host adapter. Lead independently replays all sealed components and joins login through original human publication headlessly/GPU; protected auth/select/ready and original preparation/39 loaded sources/terrain hashes are independently compared. Three lifecycle messages stage before readiness; cancellation/minimum failure emit no ready/actor and drain. Native removal exposes and repairs existing host Free ordering via explicitly scoped deferred exit; direct active Free remains a faulted abort. Twelve default regression suites and legacy host102 pass. Peer/typed CREO3 are authored, one-creature presentation and PTAT minimum are bounded modern policies. Full server baseline set/nearby objects/avatar/terrain, authoritative movement, protocol disconnect/server release and live interoperability remain open. Failed lead peer/typed composition and missing legacy fixture staging are retained with corrections. No RE probe, original execution, live contact, capture/fuzzing, staging/commit/push/publication. Research89/readiness94/function uncalibrated/2626 names/345 packet rows unchanged. Four workers idle; heartbeat paused; one round completed.
 
 ## 2026-10-06 Round85: selected-player ingress composition
 
@@ -2835,7 +2846,7 @@ Reviewed Levarris's summarized oversight findings against accepted82 and source 
 
 ## 2026-10-06 Round86: selected-player movement composition
 
-[Session](research/sessions/PARALLEL_DEVELOPMENT_ROUND_86_2026-10-06.md), [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R86_PLAYER_MOVEMENT.md). Three Low workers join existing engine-neutral root builder/router to actual session/bridge, optional selected Godot motion wrapping and independently authored protected movement/correction profile; Assets idle. Lead independently replays sealed components and actual original-resource headless/GPU composition: three modern local steps emit exact protected sequences3/4/5, two newer corrections update the same actor, duplicate/older retain pose, counter wraps FFFFFFFF→0, three unsupported movement forms return exact owned copies. Cancellation/provider failure emit no ready/actor; malformed correction after publication/movement emits no correction and drains. Original preparation/39 loaded sources/terrain identity agree; fourteen default suites pass. Retained lead helper-name compiler warning is corrected with fresh warning-as-error builds; worker JSON decimal difference is resolved by exact binary32 comparison. Modern timing/collision limits and synthetic authority remain explicit. No new RE/address/registry changes, original execution, live contact, capture/fuzzing or Git/publication action. Next: protocol disconnect/send/drain, then required scenario/live prerequisites. Successive authorization until October7 at05:00 Eastern; heartbeat active, workers Low.
+[Session](research/sessions/PARALLEL_DEVELOPMENT_ROUND_86_2026-10-06.md), [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R86_PLAYER_MOVEMENT.md). Three Low workers join existing engine-neutral root builder/router to actual session/bridge, optional selected prototype host motion wrapping and independently authored protected movement/correction profile; Assets idle. Lead independently replays sealed components and actual original-resource headless/GPU composition: three modern local steps emit exact protected sequences3/4/5, two newer corrections update the same actor, duplicate/older retain pose, counter wraps FFFFFFFF→0, three unsupported movement forms return exact owned copies. Cancellation/provider failure emit no ready/actor; malformed correction after publication/movement emits no correction and drains. Original preparation/39 loaded sources/terrain identity agree; fourteen default suites pass. Retained lead helper-name compiler warning is corrected with fresh warning-as-error builds; worker JSON decimal difference is resolved by exact binary32 comparison. Modern timing/collision limits and synthetic authority remain explicit. No new RE/address/registry changes, original execution, live contact, capture/fuzzing or Git/publication action. Next: protocol disconnect/send/drain, then required scenario/live prerequisites. Successive authorization until October7 at05:00 Eastern; heartbeat active, workers Low.
 
 ## 2026-10-06 Round87: outbound protocol disconnect
 
@@ -2853,15 +2864,15 @@ Round89 adds the engine-neutral `ReplacementClientApplication`, owning original 
 
 ## 2026-10-06: Round90 normal host and controlled movement
 
-Round90 joins normal Godot login, credential entry, received character selection, controlled input and close through the accepted application owner. The engine-neutral pacer requires received server-ready and explicit fresh-state assertions, queues at most three roots at least400 ms apart on the caller clock, and stops on corrections, changed selection, unsupported placement or close. Independent original-resource native controls/input/close and GPU replay pass; all nineteen required defaults pass through the consolidated command. Signals and injected keys are offline test inputs, not physical OS input or live interoperability proof.
+Round90 joins normal prototype host login, credential entry, received character selection, controlled input and close through the accepted application owner. The engine-neutral pacer requires received server-ready and explicit fresh-state assertions, queues at most three roots at least400 ms apart on the caller clock, and stops on corrections, changed selection, unsupported placement or close. Independent original-resource native controls/input/close and GPU replay pass; all nineteen required defaults pass through the consolidated command. Signals and injected keys are offline test inputs, not physical OS input or live interoperability proof.
 
-Three existing Low specialists supplied controlled movement, the Godot host and the named baseline comparison; Assets idle. Lead independently reviewed frozen components, replayed exact protected roots, inspected fourteen server inputs including inherited tangible/envelope serializers, and ran the original host and consolidated gate. Source correlation establishes no additional field-order blocker for a bounded outdoor human within limits. The prepared1,024-byte CREO3/4/6 cap remains a conditional rejection boundary; no chosen real character was measured. Deferred CREO1/PLAY supply no minimum local readiness mask, while gameplay/appearance parity remains unproved.
+Three existing Low specialists supplied controlled movement, the prototype host host and the named baseline comparison; Assets idle. Lead independently reviewed frozen components, replayed exact protected roots, inspected fourteen server inputs including inherited tangible/envelope serializers, and ran the original host and consolidated gate. Source correlation establishes no additional field-order blocker for a bounded outdoor human within limits. The prepared1,024-byte CREO3/4/6 cap remains a conditional rejection boundary; no chosen real character was measured. Deferred CREO1/PLAY supply no minimum local readiness mask, while gameplay/appearance parity remains unproved.
 
 [Accepted session](research/sessions/PARALLEL_DEVELOPMENT_ROUND_90_2026-10-06.md).
 
 ## 2026-10-06: Round91 approved endpoint handoff
 
-Round91 binds received selected galaxy and advertised zone hostname/zone port to an explicit operator-approved pinned IPv4 mapping before acquiring the zone port. Login mapping is checked before installation preparation or factory acquisition. Rejected selection preflight preserves login credentials, character-list state, clocks and submission counts. Independent protected-peer adversarial cases and the policy-enabled original-resource Godot host pass; the consolidated command runs all twenty-one defaults and nine native host cases including GPU. Mappings and peers are authored offline inputs; no DNS, socket or live interoperability proof is claimed.
+Round91 binds received selected galaxy and advertised zone hostname/zone port to an explicit operator-approved pinned IPv4 mapping before acquiring the zone port. Login mapping is checked before installation preparation or factory acquisition. Rejected selection preflight preserves login credentials, character-list state, clocks and submission counts. Independent protected-peer adversarial cases and the policy-enabled original-resource prototype host host pass; the consolidated command runs all twenty-one defaults and nine native host cases including GPU. Mappings and peers are authored offline inputs; no DNS, socket or live interoperability proof is claimed.
 
 Two existing Low specialists supplied the engine-neutral endpoint policy/selection preflight and independently authored adversarial protected handoffs; Rendering and Assets stayed idle. Lead reviewed the production diff, replayed each frozen component, replaced Networking's development dependency with the exact final Runtime seal before replay, integrated sixteen sealed worker files, and ran original policy-enabled native controls and consolidated regressions. Exact authentication/selection/ready/movement/disconnect wires, original resource identities, actor positions and cleanup remain independently verified. Seven tampered Networking receipts must reject. Policy presence is an operator assertion, not endpoint ownership, authorization or DNS evidence. Legacy injected callers may omit the optional policy; a future controlled bootstrap must require it.
 
@@ -2869,7 +2880,7 @@ Two existing Low specialists supplied the engine-neutral endpoint policy/selecti
 
 ## 2026-10-06: Round92 controlled launch and native attempt
 
-Round92 supplies strict explicit controlled-launch JSON, one approved character bound before zone acquisition, an engine-neutral one-start attempt guard, and an injectable native Godot bootstrap over original preparation/application/host. Actual login starts the monotonic budget; credentials, selection, zone readiness and player publication cannot reset the overall deadline. Phase/overall timeouts request legal disconnect or retirement and retain actual cleanup tasks. Independent protected-wire/resource checks and original native headless/GPU replay pass through the consolidated command. Run failure after clean local teardown is distinguished from failed cleanup. Direct bootstrap input validation refuses contact; standalone UDP composition is still absent.
+Round92 supplies strict explicit controlled-launch JSON, one approved character bound before zone acquisition, an engine-neutral one-start attempt guard, and an injectable native prototype host bootstrap over original preparation/application/host. Actual login starts the monotonic budget; credentials, selection, zone readiness and player publication cannot reset the overall deadline. Phase/overall timeouts request legal disconnect or retirement and retain actual cleanup tasks. Independent protected-wire/resource checks and original native headless/GPU replay pass through the consolidated command. Run failure after clean local teardown is distinguished from failed cleanup. Direct bootstrap input validation refuses contact; standalone UDP composition is still absent.
 
 Two existing Low specialists supplied strict Core configuration/approved-character/budget behavior and the native bootstrap/host adapter; Networking and Assets stayed idle. Lead reviewed source and exact frozen scopes, independently produced/built/replayed Runtime, and integrated final sealed files. Lead identified that faulted operation completion was incorrectly labeled failed cleanup; Rendering corrected it to RunFault and proved the distinction in the existing send-error case. The final integrated original replay independently checks protected wire digests, float32 actor positions/cadence, installation preparation/resource/terrain identities, a second supported human rejected solely by approved identity, phase/overall stalls, startup rollback, observed cleanup failures and legacy host behavior. Direct valid input refuses transport; malformed direct startup also rejects. Native controls and fake clocks are synthetic inputs, not physical OS, real elapsed-server pacing, server identity or interoperability evidence.
 
@@ -2878,34 +2889,34 @@ Two existing Low specialists supplied strict Core configuration/approved-charact
 
 ## 2026-10-07: Round93 controlled entry and redacted receipts
 
-Round93 adds an explicit controlled-transport entry over the reusable installation/application/Godot host and a bounded redacted attempt receipt written after actual local drain or startup rollback. Default startup still refuses contact. Offline native headless/GPU replay verifies the same strict admission/composition with mandatory synthetic spy ports, protected exchanges, one approved original human, bounded movement, deadlines and disconnect. Run, cleanup, rollback and diagnostic failures remain distinct; standalone quit follows ownership completion. The real UDP constructor branch is compiled and source-reviewed, never executed.
+Round93 adds an explicit controlled-transport entry over the reusable historical implementation path (omitted) host and a bounded redacted attempt receipt written after actual local drain or startup rollback. Default startup still refuses contact. Offline native headless/GPU replay verifies the same strict admission/composition with mandatory synthetic spy ports, protected exchanges, one approved original human, bounded movement, deadlines and disconnect. Run, cleanup, rollback and diagnostic failures remain distinct; standalone quit follows ownership completion. The real UDP constructor branch is compiled and source-reviewed, never executed.
 
 Independent integrated original replay and consolidated regressions pass. One existing Low Rendering worker supplied the bounded adapter; others idle. No new reverse-engineering probe or registry change. Next: obtain operator-approved deployment/account access, explicit advertised hostname-to-IPv4 mappings/ports and client version, one existing supported outdoor human with measured CREO3/4/6 limits and original resource identity, and a bounded minimum-readiness scenario. Keep movement disabled unless fresh stamp/ready state, matching validated position and passable floor are established. Then request specific authorization for one bounded controlled attempt. No original executable, real socket, DNS/server contact or live interoperability has been verified. General avatar/customization, nearby actors, full terrain and server-observed authority/release remain open.
 
 ## 2026-10-12: NGE source implementation acceleration plan
 
-The [acceleration plan](docs/NGE_SOURCE_ACCELERATION_PLAN.md) sets Windows x64/Direct3D 12 as the delivery target and retains the existing core/Godot path under the user's fastest-completion preference. Static source inspection identifies terrain, skeletal appearance, collision and material entry points for bounded comparison. The checked-in Godot project selects OpenGL compatibility; explicit packaged DX12 verification is the first rendering gate. The plan separates live interoperability, terrain, populated actors, traversal, playable Pre-CU interactions and release breadth, with dependencies and acceptance evidence. No implementation, executable comparison, live run or source transplant occurred. Round93 acceptance, research metrics and curated registries remain unchanged. Next: workstation baseline reproduction and the bounded x64/DX12 scene spike, followed by the MultiFractal comparison ticket.
+The [acceleration plan](docs/NGE_SOURCE_ACCELERATION_PLAN.md) sets Windows x64/Direct3D 12 as the delivery target and retains the existing historical implementation path (omitted) path under the user's fastest-completion preference. Static source inspection identifies terrain, skeletal appearance, collision and material entry points for bounded comparison. The checked-in prototype host project selects OpenGL compatibility; explicit packaged DX12 verification is the first rendering gate. The plan separates live interoperability, terrain, populated actors, traversal, playable Pre-CU interactions and release breadth, with dependencies and acceptance evidence. No implementation, executable comparison, live run or source transplant occurred. Round93 acceptance, research metrics and curated registries remain unchanged. Next: workstation baseline reproduction and the bounded x64/DX12 scene spike, followed by the MultiFractal comparison ticket.
 
 ## 2026-10-12: Runnable x64 DirectX 12 original character
 
-One explicitly requested Sol 6.1 High implementation worker delivered the [self-contained offline character build](../SWG-Godot-Client/docs/DX12_OFFLINE_CLIENT_RUNBOOK.md), with no-argument resource preparation, actual x64/D3D12 admission, original idle animation and a reproducible private export. Lead independently ran all22 existing default offline suites (after retaining the sandbox working-directory failure and rerunning with necessary process access), replayed the final exported animation, inspected the image and compared character-only pixel changes, verified explicit headless DX12 rejection, and hash-checked all193 delivery files. Eight exported positive/negative cases pass. The delivered process loads its bundled coreclr/hostfxr and DX12 modules. Initial missing-solution export failure and official-package hash reconciliation are retained in the [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_CLIENT.md). No legacy executable or live server was run; no research/address/packet counts changed. Generated facial texture, equipment, terrain and live gameplay remain open. Next: source-guided terrain numerical implementation, independently of controlled-server prerequisites.
+One explicitly requested Sol 6.1 High implementation worker delivered the self-contained offline character build (external historical reference), with no-argument resource preparation, actual x64/D3D12 admission, original idle animation and a reproducible private export. Lead independently ran all22 existing default offline suites (after retaining the sandbox working-directory failure and rerunning with necessary process access), replayed the final exported animation, inspected the image and compared character-only pixel changes, verified explicit headless DX12 rejection, and hash-checked all193 delivery files. Eight exported positive/negative cases pass. The delivered process loads its bundled coreclr/hostfxr and DX12 modules. Initial missing-solution export failure and official-package hash reconciliation are retained in the [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_CLIENT.md). No legacy executable or live server was run; no research/address/packet counts changed. Generated facial texture, equipment, terrain and live gameplay remain open. Next: source-guided terrain numerical implementation, independently of controlled-server prerequisites.
 
 ## 2026-10-12: Runnable partial Tatooine terrain movement
 
-The user-requested Sol 6.1 High worker joined original Tatooine root height and verified layer3 detail, original sand texture, human idle/walk/run, camera-relative controls and displayed-triangle grounding in a separate self-contained x64/DX12 export. NGE height traversal and constant-shader family source clarified bounded integration choices against existing Pre-CU evidence. Eight exported checks pass, including actual DX12 movement, independent barycentric grounding, speed-distance integration and expected rejection/cleanup. Lead independently replayed 538 process updates, reviewed the corrected sand/HUD capture, verified all 193 delivered files and opened the responsive normal client with its bundled runtime. Initial automation-exit, animation-delta and overexposure failures were corrected before delivery. [Runbook](../SWG-Godot-Client/docs/DX12_OFFLINE_TERRAIN_RUNBOOK.md) and [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_TERRAIN.md) record reproduction and boundaries. The 256 x 256 m surface is explicitly a partial generator; omitted layers change final geographic elevations. No live contact, original executable execution, publication or research/registry score change. Next: admit remaining ordered height layers, starting with sibling4 preceding-height dependencies.
+The user-requested Sol 6.1 High worker joined original Tatooine root height and verified layer3 detail, original sand texture, human idle/walk/run, camera-relative controls and displayed-triangle grounding in a separate self-contained x64/DX12 export. NGE height traversal and constant-shader family source clarified bounded integration choices against existing Pre-CU evidence. Eight exported checks pass, including actual DX12 movement, independent barycentric grounding, speed-distance integration and expected rejection/cleanup. Lead independently replayed 538 process updates, reviewed the corrected sand/HUD capture, verified all 193 delivered files and opened the responsive normal client with its bundled runtime. Initial automation-exit, animation-delta and overexposure failures were corrected before delivery. Runbook (external historical reference) and [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_TERRAIN.md) record reproduction and boundaries. The 256 x 256 m surface is explicitly a partial generator; omitted layers change final geographic elevations. No live contact, original executable execution, publication or research/registry score change. Next: admit remaining ordered height layers, starting with sibling4 preceding-height dependencies.
 
 ## 2026-10-12: Recognizable original Mos Taike district
 
-The user-selected 160 × 160 m west/central district joins all twelve potentially applicable height-owning layers, 94 original snapshot objects including five buildings, original human idle/walk/run, triangle grounding and conservative modern swept obstacles/camera handling. The requested Sol 6.1 High worker used NGE snapshot, template and terrain source as correlation leads against original bytes and durable Pre-CU contracts. Lead independently audited 122 height-owning layers (110 spatially excluded), decoded all16,511 snapshot nodes, checked exact selected XYZ/WXYZ/portal fields and nine omissions, and reproduced five authored foundation targets from displayed triangles. All22 existing offline regressions pass; their Core sources remain hash-identical to the final candidate. Lead's fresh final export replay passes507 process updates on actual D3D12, with maximum stored grounding error9.54e-7m and193 frozen package files. Final captures show original facades, stalls, streets and the animated human. Material admission and zero-normal upload failures were diagnosed and corrected under explicit town-only modern policies, without relaxing position/UV checks. [Runbook](../SWG-Godot-Client/docs/DX12_OFFLINE_MOS_TAIKE_RUNBOOK.md) and [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_MOS_TAIKE.md) retain reproduction and failed candidates. Full numeric/material parity, interiors, wider terrain, server-spawned actors and live authority remain open. No original executable, live contact, publication or research-score/registry changes. Next: terminal appearance envelopes and original collision/interior traversal; widening the region requires family60 second-curve support and a new scope audit.
+The user-selected 160 × 160 m west/central district joins all twelve potentially applicable height-owning layers, 94 original snapshot objects including five buildings, original human idle/walk/run, triangle grounding and conservative modern swept obstacles/camera handling. The requested Sol 6.1 High worker used NGE snapshot, template and terrain source as correlation leads against original bytes and durable Pre-CU contracts. Lead independently audited 122 height-owning layers (110 spatially excluded), decoded all16,511 snapshot nodes, checked exact selected XYZ/WXYZ/portal fields and nine omissions, and reproduced five authored foundation targets from displayed triangles. All22 existing offline regressions pass; their Core sources remain hash-identical to the final candidate. Lead's fresh final export replay passes507 process updates on actual D3D12, with maximum stored grounding error9.54e-7m and193 frozen package files. Final captures show original facades, stalls, streets and the animated human. Material admission and zero-normal upload failures were diagnosed and corrected under explicit town-only modern policies, without relaxing position/UV checks. Runbook (external historical reference) and [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-12_DX12_OFFLINE_MOS_TAIKE.md) retain reproduction and failed candidates. Full numeric/material parity, interiors, wider terrain, server-spawned actors and live authority remain open. No original executable, live contact, publication or research-score/registry changes. Next: terminal appearance envelopes and original collision/interior traversal; widening the region requires family60 second-curve support and a new scope audit.
 
 ## 2026-10-13: General terrain regions and second fractal curve
 
-A reusable bounded region source replaces the fixed Mos Taike loop. Target-backed second-curve branch/storage semantics, under an explicit modern numerical policy, unlock original family60 rolling hills and admit all five original second-enabled families. Parent replayed the independent Decimal oracle (719 assertions,85 samples, maximum error1.11e-16), twelve geographic CPU regions, deterministic overlap, five foundation targets, and actual DX12 presentation on RTX4070 SUPER. A new every-update independent trace check verifies725 published positions against input integration and displayed triangles. This is developer-host acceptance, not a new self-contained package or full planet/material compatibility. [Contract and reproduction](../SWG-Godot-Client/docs/TATOOINE_REGION_DEVELOPMENT.md); [current development handoff](research/sessions/TERRAIN_DEVELOPMENT_2026-10-13.md). NGE source remains supporting reference. No original executable execution, server contact, publication or metric changes. Next: bounded residency/async replacement, remaining applicable height rules and target-backed material evaluation.
+A reusable bounded region source replaces the fixed Mos Taike loop. Target-backed second-curve branch/storage semantics, under an explicit modern numerical policy, unlock original family60 rolling hills and admit all five original second-enabled families. Parent replayed the independent Decimal oracle (719 assertions,85 samples, maximum error1.11e-16), twelve geographic CPU regions, deterministic overlap, five foundation targets, and actual DX12 presentation on RTX4070 SUPER. A new every-update independent trace check verifies725 published positions against input integration and displayed triangles. This is developer-host acceptance, not a new self-contained package or full planet/material compatibility. Contract and reproduction (external historical reference); [current development handoff](research/sessions/TERRAIN_DEVELOPMENT_2026-10-13.md). NGE source remains supporting reference. No original executable execution, server contact, publication or metric changes. Next: bounded residency/async replacement, remaining applicable height rules and target-backed material evaluation.
 
 
 ## October13,2026: terrain breadth and offline streamed export
 
-[General terrain development](../SWG-Godot-Client/docs/TATOOINE_REGION_DEVELOPMENT.md) now includes
+General terrain development (external historical reference) now includes
 second-curve families, enabled terrace admission, coherent modern normals,
 conservative road exclusion and bounded baked road heights. All441 sparse
 survey samples generate; this remains sampling, not world-coverage evidence.
@@ -3002,7 +3013,7 @@ change; next bounded implementation is a modern query-time cache primitive.
 current-height positions/normals with bounded work, cancellation and required
 F32 stores under explicit binary64 arithmetic. Debug/Release and parent Release
 pass 2440 checks/39 rejections, including independent incidence and rounding
-fixtures. Registered as the 37th default suite. No shader/traversal/Godot
+fixtures. Registered as the 37th default suite. No historical implementation path (omitted)
 integration or original normal parity is claimed; the accepted export is unchanged.
 
 ### October 13 — separate NGE source conversion milestone
@@ -3087,3 +3098,6 @@ October14 Skills UI increment: [durable skills contract](docs/NGE_PRECU_SKILLS_C
 October14 corrected Skills receipt: 92104E53 passes immediate My/All filters, owned/unowned graph/details, no sample labels, Close/reopen, normal Disconnect/reentry and reconstruction. XP map is empty; only Novice Musician is eligible, so changing XP and distinct-slot persistence remain open. User-reported generic ability icons are traced to the new adapters passing gameplay text in the UI-action field; correction is building. No new Archive failure or sustained-stability claim, no metrics denominator change. See the [afternoon checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-14_AFTERNOON_COMPATIBILITY.md#corrected-skills-live-acceptance-and-icon-follow-up) and [skills contract](docs/NGE_PRECU_SKILLS_COMPATIBILITY.md).
 
 October14 Skills display acceptance and inventory stop: DC9D0CBA verifies localized original ability names/icons/tooltips and private detail filtering. Read-only inventory opening identifies an unrelated paperdoll/list-viewer mismatch; corrected F18F0C2F builds/deploys but physical Escape stops computer use before retry login. A separate XP-character loading report names a missing vertex program; exact NGE file is privately supplied in Experimental, with existing Stardust includes retained, but character retry/render remain unverified. See the [inventory contract](docs/NGE_PRECU_INVENTORY_VIEWER_CONTRACT.md) and [afternoon checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-14_AFTERNOON_COMPATIBILITY.md#physical-escape-stop-at-inventory-retry). No denominator change or staging/publication. Renewed computer-use authorization is the next live gate.
+
+
+October14 evening attribute-boundary probe: first-throw trace identifies the source-client AttributeListMessage decoder. Original two-variable registration and local Core3 ID-only request/ordered pair response expose NGE static-item/revision incompatibilities. The [durable contract](docs/NGE_PRECU_OBJECT_ATTRIBUTE_CONTRACT.md) and [bounded checkpoint](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-14_OBJECT_ATTRIBUTE_COMPATIBILITY.md) distinguish direct evidence, server correlation, stricter rejection policy and remaining uncertainty. Native12,088/3,751 plus five isolated cases passes; read-only original inventory/item-information/Close/reopen/Disconnect/reentry succeeds. No full endurance claim, coverage denominator/alias/packet count change, staging or publication; implementation remains outside this research-only workspace.

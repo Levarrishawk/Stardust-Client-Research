@@ -1,6 +1,6 @@
 # Terrain boundary polygon serialized input
 
-This contract describes owned, engine-neutral `BPOL` input decoding in [TerrainBoundaryPolygonInput.cs](../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainBoundaryPolygonInput.cs). It establishes serialized structure, ownership and bounded rejection policy. It does not implement polygon influence, geometry editing, coordinate conversion, cached bounds or layer composition. Evidence and reproduction are recorded in the [Round 37 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R37_BPOL_INPUT.md).
+This contract describes owned, engine-neutral `BPOL` input decoding in TerrainBoundaryPolygonInput.cs (external historical reference). It establishes serialized structure, ownership and bounded rejection policy. It does not implement polygon influence, geometry editing, coordinate conversion, cached bounds or layer composition. Evidence and reproduction are recorded in the [Round 37 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R37_BPOL_INPUT.md).
 
 ## Evidence and confidence
 
@@ -54,7 +54,7 @@ A replacement must preserve recognized layouts, raw bits and point order at this
 
 ## Verification
 
-[Independent Python oracle](../../SWG-Godot-Client/poc/round37-tests/Assets/verify_bpol_input.py) and [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainBoundaryPolygonInputScenarios.cs) agree on 670 fixtures (146 accepted, 524 rejected), 19 ownership checks and all 57 pinned original records. Static verification checks 71 instruction anchors, exact read widths, version dispatch, raw stores, header reads, callbacks and teardown. Original polygons contain 406 points (4–18 each), all `0005` with IHDR `0001`; 54 are locally enabled. Selector distributions 0/1/2/3 are 19/3/2/33, and four extension flags are nonzero. All original points and amounts are finite. These are corpus observations, not wider format coverage or extension semantics.
+Independent Python oracle (external historical reference) and native scenarios (external historical reference) agree on 670 fixtures (146 accepted, 524 rejected), 19 ownership checks and all 57 pinned original records. Static verification checks 71 instruction anchors, exact read widths, version dispatch, raw stores, header reads, callbacks and teardown. Original polygons contain 406 points (4–18 each), all `0005` with IHDR `0001`; 54 are locally enabled. Selector distributions 0/1/2/3 are 19/3/2/33, and four extension flags are nonzero. All original points and amounts are finite. These are corpus observations, not wider format coverage or extension semantics.
 ## Round40 layer and CREO4 composition
 
 [Fresh polygon influence](TERRAIN_BOUNDARY_POLYGON_INFLUENCE_CONTRACT.md) now evaluates the independently verified finite ordered-point graph. Raw decoding remains unchanged; original query profiles/exception controls and edited runtime state remain unknown.

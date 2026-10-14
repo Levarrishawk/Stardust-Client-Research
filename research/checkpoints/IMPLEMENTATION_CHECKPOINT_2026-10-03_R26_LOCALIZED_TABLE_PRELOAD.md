@@ -19,7 +19,7 @@ Readonly original root `C:/Stardust-DEV`, configuration `swgemu_live.cfg` SHA-25
 
 Original aggregate exact limits: two paths, 7,137 source bytes, 97 records, 1,724 units and 1,723 key bytes. No broader corpus query or discovery. Detailed original rows/text/keys are ignored private output.
 
-Seven additions: [set](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/LocalizedStringTableSet.cs), [scenario](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/LocalizedStringTableSetScenarios.cs), [contract](../../docs/LOCALIZED_STRING_TABLE_SET_CONTRACT.md), this checkpoint, [project](../../../SWG-Godot-Client/poc/round26-tests/Assets/Assets.csproj), [entry point](../../../SWG-Godot-Client/poc/round26-tests/Assets/Program.cs), [independent oracle](../../../SWG-Godot-Client/poc/round26-tests/Assets/verify_preload.py). All baseline/frozen/shared files, main preview and canonical ledgers remain unchanged; lead owns registration/consolidation and the subsequent world join.
+Seven additions: set (external historical reference), scenario (external historical reference), [contract](../../docs/LOCALIZED_STRING_TABLE_SET_CONTRACT.md), this checkpoint, project (external historical reference), entry point (external historical reference), independent oracle (external historical reference). All baseline/frozen/shared files, main preview and canonical ledgers remain unchanged; lead owns registration/consolidation and the subsequent world join.
 
 ## Evidence and implementation consequences
 

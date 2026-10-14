@@ -440,7 +440,7 @@ multipayload and loss/corruption/reorder traces. They do not close status/livene
 CRC-disabled status framing, optional leaves, adaptive timing, historical zlib,
 or live-server validation. The fixed response deadline and storage limits are
 replacement policies. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_TRANSPORT_RECOVERY.md)
-and [acceptance register](../../SWG-Godot-Client/docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
+and acceptance register (external historical reference).
 
 ## Round71 peer-disconnect lifecycle proof
 

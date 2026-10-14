@@ -22,7 +22,7 @@ Observation: the fixture applies all six fields in noncanonical order with postu
 
 ## Validation
 
-The [contract](../../docs/SCENE_CREATURE_SCALAR_STORE_CONTRACT.md) gives API policies and exact reproduction commands. New native scenarios run through the isolated [Runtime runner](../../../SWG-Godot-Client/poc/round8-tests/Runtime/Program.cs), taking independently generated fixture JSON and an ignored export destination. Shared lead registration can call SceneCreatureScalarStoreScenarios.Run(peer, optionalExportPath).
+The [contract](../../docs/SCENE_CREATURE_SCALAR_STORE_CONTRACT.md) gives API policies and exact reproduction commands. New native scenarios run through the isolated Runtime runner (external historical reference), taking independently generated fixture JSON and an ignored export destination. Shared lead registration can call SceneCreatureScalarStoreScenarios.Run(peer, optionalExportPath).
 
 Passed focused restore/build (zero warnings/errors), positive and negative native tests, and independent Verify-Store.py audit. Tests cover actual create/contain/end/destroy bytes; explicit replacement/reset; wrong object/foreign registry/store; absent/duplicate seeds; unsupported and malformed decode-before-apply; input/snapshot ownership; same-ID recreation and old generations; capacity rollback/reuse; finite extreme height/no clamp; nonfinite seeds; checked seed/apply overflow; registry/store close; and dedicated foreign-thread rejection. Reentrancy guard has no callback surface and is verified by inspection rather than a fabricated callback test. Shared native smoke build/execution passed. No original asset or GPU proof was needed for a scalar state component.
 

@@ -30,7 +30,7 @@ reproduce original persistent cache behavior.
 All four native height/geometry candidates are completed before the first terrain
 visual allocation. The adapter supplies modern up normals, inspection color,
 seam mask0 and UV scale1; original normal/material generation is not claimed.
-The accepted nine-sample assembly yields16 patches/128 triangles. Existing Godot
+The accepted nine-sample assembly yields16 patches/128 triangles. Existing prototype host
 reflection/index conversion, GPU readback, surface queries and modern local
 grounding consume those actual computed heights.
 
@@ -45,14 +45,14 @@ contact is introduced by evaluating the borrowed owned families.
 
 ## Verification and confidence
 
-[Independent peer](../../SWG-Godot-Client/poc/round52-tests/Integration/family_height_host_peer.py)
+Independent peer (external historical reference)
 regenerates one original input with SHA-gated EXE/config/source evidence and
 independent Fraction noise/AHFR arithmetic. It checks400 complete heights
 (196 distinct), exact native positions/indices,16 readback patches and nine
-grounded native/Godot poses in headless and GPU runs, with exact16/16 visual
+grounded historical implementation path (omitted) poses in headless and GPU runs, with exact16/16 visual
 cleanup. Expected values are not injected into native height evaluation.
 
-[Negative peer](../../SWG-Godot-Client/poc/round52-tests/Integration/family_height_host_negative_peer.py)
+Negative peer (external historical reference)
 checks a synthetic fourth-chunk NaN initial operand after300 successful samples:
 zero terrain-visual allocations, no terrain or movement publication, zero actors
 and drained host state. The original input remains unchanged. The default Core
@@ -78,7 +78,7 @@ queries every unique cell once and disposes one sampler before returning each
 complete immutable patch. Version4 remains the reference route; Versions1–3
 retain their earlier cap and behavior. Version5 shares the524288-byte fixture cap.
 
-The [independent peer](../../SWG-Godot-Client/poc/round53-tests/Integration/original_rule_height_host_peer.py)
+The independent peer (external historical reference)
 checks400 actual original-rule heights/retained samples against Fraction and
 reference calculations, four sampler constructions versus400, and logical
 work3412896 versus11473016. Those are deterministic accounting values, not
@@ -86,6 +86,6 @@ elapsed-time or managed-heap measurements. Headless/GPU passes16 patches,
 128 triangles/nine grounded poses and exact16/16 cleanup; the GPU capture was
 inspected. The late fourth-chunk NaN rejects after300 samples/three disposed
 samplers with zero terrain visual allocation and drained host state. Prior
-Version4 and Version3 independent previews and final Core/Godot gates pass.
+Version4 and Version3 independent previews and final historical implementation path (omitted) gates pass.
 [Lead checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R53_ORIGINAL_RULE_AND_BATCHED_PATCH.md).
 Full original terrain/material/control/cache parity remains Unknown.

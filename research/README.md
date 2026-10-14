@@ -4,4 +4,4 @@
 - `sessions/` contains consolidated multi-block reports and explicit resume points.
 - `archive/` contains superseded progress reports retained for provenance.
 
-Start with the [latest consolidated session](sessions/ANALYSIS_SESSION_2026-09-22_TO_1300.md). Current conclusions and counts belong in the root `ANALYSIS_STATUS.md` and `COMPREHENSIVE_ANALYSIS_LEDGER.md`; historical counts in dated reports must not be rewritten to look current.
+Start with [current research status](../ANALYSIS_STATUS.md) and [START_HERE](../START_HERE.md). Current counts belong in the living status and curated registries; dated counts must not be rewritten to look current. Historical implementation reports are evidence, not current development instructions. See the [documentation scope policy](../docs/RESEARCH_ONLY_SCOPE.md).

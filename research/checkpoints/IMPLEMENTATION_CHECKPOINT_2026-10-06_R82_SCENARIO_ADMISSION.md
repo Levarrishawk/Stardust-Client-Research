@@ -8,7 +8,7 @@ Can one engine-neutral immutable parser reject malformed configuration before pr
 
 Accepted81 frozen input has 4687 public files, manifest SHA256 `e142a5e7e1c2846a9f7727a1fe05c82a0aab7735b47aff0167ccc7604ac01ddf`, archive SHA256 `a4a13af44ae9b35c42eb87f7f1a361f11c7e810fc63ce2f65147e7cc84e29990`. Trusted sync verified prior81 seals and preserved HEAD/index/private state. Orientation included START_HERE/latest81 session, status/ledger/unknown, configured and persistent contracts/checkpoints, curated registry header and existing strict settings parser. No EXE/VA or original asset bytes are inputs.
 
-Tools: .NET SDK8.0.300, cached packages, cached Python workspace validator; all build artifacts and authored fixture files remain private. Standalone tests compile the actual new parser source without external packages or Godot. Full Core integration uses its exact cached BCnEncoder dependency. No shared host, launcher, point target or canonical registry changed.
+Tools: .NET SDK8.0.300, cached packages, cached Python workspace validator; all build artifacts and authored fixture files remain private. Standalone tests compile the actual new parser source without external packages or prototype host. Full Core integration uses its exact cached BCnEncoder dependency. No shared host, launcher, point target or canonical registry changed.
 
 ## Findings and implementation consequences
 
@@ -17,7 +17,7 @@ Tools: .NET SDK8.0.300, cached packages, cached Python workspace validator; all 
 - Confirmed: the output order is sixteen input pairs, selected point profile pair, then true flags. Every array is a fresh defensive copy; mutating bytes or a prior array does not alter the manifest.
 - Confirmed: metadata admission does not pin files or parse actual Version13 semantics. Consequence: existing child admission remains authoritative, and launch-time missing/changed files remain possible.
 
-See [durable schema/API contract](../../docs/OFFLINE_SCENARIO_MANIFEST_CONTRACT.md) and [test source](../../../SWG-Godot-Client/poc/round82-tests/Runtime/Program.cs). Confidence applies to this authored modern parser, not legacy parity, protocol coverage or function labels.
+See [durable schema/API contract](../../docs/OFFLINE_SCENARIO_MANIFEST_CONTRACT.md) and test source (external historical reference). Confidence applies to this authored modern parser, not legacy parity, protocol coverage or function labels.
 
 ## Verification and limits
 

@@ -18,7 +18,7 @@ Full native smoke passes synthetic source/target earliest contacts, exact tie po
 
 A nine-segment original request exceeding262,144 segment-triangle work rejects before state/controller mutation. Timing the complete original scene tick in this local run gives mean0.702 ms, p951.155 ms, maximum12.133 ms across2,880 ticks. This is one local sample, not a universal performance guarantee; the existing linear conservative sphere bounds filter remains adequate for this gate.
 
-Godot build passes with zero errors/warnings. Combined-guard original headless host passes resource delivery, both-owner manual/key/diagonal/timestamped routes, denial/retreat/reset, clock stall/pause/focus, mouse events, reflected placement and occupied closing hold/denial/retreat/release. GPU and cancellation gates were run for the immediately preceding profile preview, not rerun for this optional guard. Known nonfatal certificate-store diagnostic remains unchanged.
+Prototype host build passes with zero errors/warnings. Combined-guard original headless host passes resource delivery, both-owner manual/key/diagonal/timestamped routes, denial/retreat/reset, clock stall/pause/focus, mouse events, reflected placement and occupied closing hold/denial/retreat/release. GPU and cancellation gates were run for the immediately preceding profile preview, not rerun for this optional guard. Known nonfatal certificate-store diagnostic remains unchanged.
 
 ## Confidence, reproduction and next action
 

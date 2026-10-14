@@ -4,7 +4,7 @@
 
 What cache, query and selector graph does a freshly decoded BREC execute, and can an immutable engine-neutral evaluator reproduce that graph conditionally under separate nearest-even 24/53/64 cache/query profiles? Stop after direct transform/default/load/setter/cache/query/shaping proof, independent arithmetic fixtures, one existing raw corpus occurrence and scope/validation checks. Transformed or edited runtime state, full layer/filter composition, axes, original precision policy and GPU are excluded.
 
-Durable contract: [fresh rectangle influence](../../docs/TERRAIN_BOUNDARY_RECTANGLE_INFLUENCE_CONTRACT.md). New implementation: [TerrainBoundaryRectangleInfluence.cs](../../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainBoundaryRectangleInfluence.cs); [public smoke scenarios](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainBoundaryRectangleInfluenceScenarios.cs); [independent Fraction verifier](../../../SWG-Godot-Client/poc/round39-tests/Assets/verify_rectangle.py); [runner project](../../../SWG-Godot-Client/poc/round39-tests/Assets/Assets.csproj) and [entry](../../../SWG-Godot-Client/poc/round39-tests/Assets/Program.cs). All existing public production/shared docs remain frozen for lead reconciliation.
+Durable contract: [fresh rectangle influence](../../docs/TERRAIN_BOUNDARY_RECTANGLE_INFLUENCE_CONTRACT.md). New implementation: TerrainBoundaryRectangleInfluence.cs (external historical reference); public smoke scenarios (external historical reference); independent Fraction verifier (external historical reference); runner project (external historical reference) and entry (external historical reference). All existing public production/shared docs remain frozen for lead reconciliation.
 
 ## Orientation and identity
 

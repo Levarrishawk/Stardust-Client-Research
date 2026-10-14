@@ -1,8 +1,8 @@
 # Optional CREO6 world publication
 
-Round34, 2026-10-03. The [coordinator](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldCoordinator.cs) optionally composes the accepted [supported CREO6 codec](CREATURE_VIEW6_CODEC_CONTRACT.md) and [full current model/store](SCENE_CREATURE_VIEW6_STORE_CONTRACT.md) with serialized world publication. No store or codec changes were required. Unsupported vector deltas and live/gameplay semantics remain excluded.
+Round34, 2026-10-03. The coordinator (external historical reference) optionally composes the accepted [supported CREO6 codec](CREATURE_VIEW6_CODEC_CONTRACT.md) and [full current model/store](SCENE_CREATURE_VIEW6_STORE_CONTRACT.md) with serialized world publication. No store or codec changes were required. Unsupported vector deltas and live/gameplay semantics remain excluded.
 
-Types and ingress: [SceneWorldCreatureView6ApplicationRouter](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldCreatureView6ApplicationRouter.cs). Verification: [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldCreatureView6Scenarios.cs), [isolated runner](../../SWG-Godot-Client/poc/round34-tests/Runtime/Program.cs), [synthetic fixtures](../../SWG-Godot-Client/poc/round34-tests/Runtime/ordered-fixtures.json), [independent full-model peer](../../SWG-Godot-Client/poc/round34-tests/Runtime/peer.py).
+Types and ingress: SceneWorldCreatureView6ApplicationRouter (external historical reference). Verification: native scenarios (external historical reference), isolated runner (external historical reference), synthetic fixtures (external historical reference), independent full-model peer (external historical reference).
 
 ## Frozen API
 

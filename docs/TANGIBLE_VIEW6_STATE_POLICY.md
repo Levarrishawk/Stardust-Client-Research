@@ -8,7 +8,7 @@ conditional callback order and watcher ownership. This is static evidence for
 the pinned executable, not a new state implementation or an executed client
 trace. [Accepted consume codec](TANGIBLE_VIEW6_CODEC_CONTRACT.md) remains unchanged.
 
-The reproducible [verifier](../../SWG-Godot-Client/poc/round29-tests/Networking/static_audit.py) rejects
+The reproducible verifier (external historical reference) rejects
 an incorrect executable hash before PE/package imports, then verifies109
 instruction anchors, vector/Watcher RTTI and vtable identity. Sixteen small
 synthetic reference examples illustrate established rules only. Bulk original

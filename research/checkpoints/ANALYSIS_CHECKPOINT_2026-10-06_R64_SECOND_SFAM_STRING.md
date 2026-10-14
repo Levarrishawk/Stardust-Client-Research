@@ -28,7 +28,7 @@ Original SHA confirmed before VAs:
 Prior raw-PE/path tools are SHA-gated before reuse, without running their
 first-string/predicate investigations. No unfinished sibling input is consumed.
 
-Exactly three assigned new paths: [verifier](../../../SWG-Godot-Client/tools/python/verify_terrain_shader_family_second_string.py),
+Exactly three assigned new paths: verifier (external historical reference),
 [durable contract](../../docs/TERRAIN_SHADER_FAMILY_SECOND_STRING_CONTRACT.md),
 this checkpoint; two new own64Assets runners. Existing4049 files, ledgers/status,
 registries and engine/native production source remain frozen. Lead owns shared

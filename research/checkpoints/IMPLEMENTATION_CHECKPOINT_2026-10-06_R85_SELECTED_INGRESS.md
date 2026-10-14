@@ -24,7 +24,7 @@ configuration SHA-256
 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`.
 InstalledCreaturePreparation derives the inherited human appearance and declared
 animation choices; no historical launch vector or hand-built private catalog is
-consumed. Bundled Python, .NET8, Godot4.7.2 .NET and an existing offline package
+consumed. Bundled Python, .NET8, prototype host4.7.2 .NET and an existing offline package
 cache are explicit tool inputs. All builds, transcripts, commands, source
 manifests, receipts and the inspected GPU screenshot remain ignored.
 
@@ -48,7 +48,7 @@ or neighbor registry is retained. Unrelated objects and unsupported selected
 views return explicit caller-owned copies through the bridge; input buffers are
 cleared. Normal bridge disposal does not dispose the borrowed policy.
 
-The selected-human resource catalog and one-actor Godot adapter therefore receive
+The selected-human resource catalog and one-actor prototype host adapter therefore receive
 only the selected lifecycle and supported state. Unknown nearby CRC behavior is
 executed in Runtime's structural tests; the joined transcript uses authored
 unselected creates and proves identity-based routing before world allocation.
@@ -79,11 +79,11 @@ ownership, typed state and one protected ready; Networking163 checks plus
 author/observer boundary. Rendering's seven real-process orchestration tests
 pass; they are explicitly surrogates, separate from native Core evidence.
 
-The [default regression command](../../../SWG-Godot-Client/docs/CLIENT_REGRESSION_RUNBOOK.md)
+The default regression command (external historical reference)
 passes all thirteen required suites with no omitted defaults, including actual
 Runtime85 author → build → native → verifier. Optional native/original-input
 branches remain unverified by that command. Lead separately executes the
-[original-resource joined command](../../../SWG-Godot-Client/poc/round85-tests/Integration/README.md).
+original-resource joined command (external historical reference).
 The joined source build has zero warnings/errors; harmless sandbox certificate
 store diagnostics are retained without an interoperability claim.
 

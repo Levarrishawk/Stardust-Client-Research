@@ -80,7 +80,7 @@ Implement secure trade as an explicit session state machine:
 Preserve all wire widths and opcodes exactly. Represent object IDs internally as
 an explicit protocol `uint64`, not as native pointers. Any offer mutation must
 clear or invalidate the local accepted/verified presentation state even if the
-server remains the authority. Keep offer-model state outside Godot/UI nodes so
+server remains the authority. Keep offer-model state outside prototype host/UI nodes so
 UI recreation cannot create or lose a protocol session.
 
 ## Confidence

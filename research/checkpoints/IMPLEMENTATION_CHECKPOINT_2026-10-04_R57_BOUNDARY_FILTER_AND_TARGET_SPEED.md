@@ -4,7 +4,7 @@ Date:2026-10-04. Question: can owned boundary admission drive only admitted FFRA
 
 ## Inputs, identity and tools
 
-The [round assignment](../sessions/PARALLEL_DEVELOPMENT_ROUND_57_2026-10-04.md) records the3795-file frozen manifest/ZIP and HEAD. Original static inputs are SHA-gated before virtual addresses. Native .NET8 and the installed Godot4.7.2 .NET x64 host run replacement code only; deterministic Python Fraction/isqrt and high-precision Decimal fixtures provide independent checks. Proprietary input bytes, detailed extracts and generated receipts remain ignored.
+The [round assignment](../sessions/PARALLEL_DEVELOPMENT_ROUND_57_2026-10-04.md) records the3795-file frozen manifest/ZIP and HEAD. Original static inputs are SHA-gated before virtual addresses. Native .NET8 and the installed prototype host4.7.2 .NET x64 host run replacement code only; deterministic Python Fraction/isqrt and high-precision Decimal fixtures provide independent checks. Proprietary input bytes, detailed extracts and generated receipts remain ignored.
 
 The lead independently rechecked the closed50 instruction window00629FCD..00629FF1 against the documented executable. It loads locals -8 and -C, squares/adds them, then squares/adds local -4, executes FSQRT and multiplies selected speed. FST at00629FE7 stores the binary32 +154 snapshot without popping/reloading;00629FED multiplies the retained intermediate by the retained supplied factor and00629FEF stores target binary32. Observation confidence: Confirmed for the pinned bytes. Direction semantics, factor/getter ownership, physical units and effective original controls remain Unknown.
 
@@ -41,4 +41,4 @@ Confidence: Confirmed for the bounded implementation/fixture agreement and pinne
 
 ## Final acceptance
 
-Accepted2026-10-04 15:29:00 UTC.52 scoped changes/37 additions/15 existing/3832 public files/1600 Markdown files/zero broken or private links;30 actual final worker hashes. HEAD/index preserved. Final Core/Godot zero warnings/errors, default18 events/zero failures. Prior400-cell Version7 terrain/16 patches/128 triangles/nine grounded poses also passes after final integration. All four Low workers idle. Next58: approximate first-curve height consumer, sparse curve batch, atomic nominal speed plan and next queue record pair. Continue through20:00 Eastern; no full round after19:00.
+Accepted2026-10-04 15:29:00 UTC.52 scoped changes/37 additions/15 existing/3832 public files/1600 Markdown files/zero broken or private links;30 actual final worker hashes. HEAD/index preserved. Final historical implementation path (omitted) zero warnings/errors, default18 events/zero failures. Prior400-cell Version7 terrain/16 patches/128 triangles/nine grounded poses also passes after final integration. All four Low workers idle. Next58: approximate first-curve height consumer, sparse curve batch, atomic nominal speed plan and next queue record pair. Continue through20:00 Eastern; no full round after19:00.

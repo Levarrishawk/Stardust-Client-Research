@@ -1,8 +1,8 @@
 # Bounded original baked road height
 
 Exact AROA0005 with HDTA0001 now supports a strict baked road height profile.
-The [input binding](../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainRoadHeightInput.cs) and
-[height operation](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainRoadHeightOperation.cs)
+The input binding (external historical reference) and
+height operation (external historical reference)
 implement target observations under declared modern binary64 arithmetic and
 recovered F32 storage points. Conservative
 [nonintersection admission](TERRAIN_ROAD_NONINTERSECTION_CONTRACT.md) remains
@@ -128,7 +128,7 @@ are stale relative to its current polyline; disabled handling avoids reading it.
 
 ## Verification and continuation
 
-[Standalone tests](../../SWG-Godot-Client/poc/terrain-road-height-tests/Program.cs) cover all four
+Standalone tests (external historical reference) cover all four
 axis/direction branches, equal dominant-axis selection, vertex/segment ties,
 negative heights/coordinates, core edges, strict corridor tangent, amount
 gate/extrapolation independence, global disable, loader clamp and malformed

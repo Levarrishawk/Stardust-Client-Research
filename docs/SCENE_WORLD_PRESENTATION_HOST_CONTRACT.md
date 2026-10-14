@@ -1,10 +1,10 @@
-# Godot world presentation host
+# Prototype host world presentation host
 
 October 2, 2026. Modern process/ownership policy, not recovered legacy timing.
 
-[SceneWorldPresentationHost](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldPresentationHost.cs)
+SceneWorldPresentationHost (external historical reference)
 is a reusable `Node` against the frozen
-[ISceneWorldPresentationPump](../../SWG-Godot-Client/poc/Stardust.Core/Session/ISceneWorldPresentationPump.cs).
+ISceneWorldPresentationPump (external historical reference).
 It references no concrete Round16 pump and owns no network, ingress protocol,
 resource loader, world registry, visual factory, camera or application quit.
 The accepted [consumer contract](SCENE_WORLD_OBJECT_PRESENTATION_CONTRACT.md)
@@ -66,7 +66,7 @@ after close. A missing/throwing drain getter after ownership is a pump contract
 failure; the host reports it and still attempts disposal.
 
 `_ExitTree` synchronously requests close and starts the same drain handoff. Removing
-the node does not imply drain has finished. The application must keep Godot alive
+the node does not imply drain has finished. The application must keep prototype host alive
 and await Completion/CloseAsync before quitting; the library never calls
 `GetTree().Quit`. Process termination cannot force an awaited drain. The host does
 not prematurely dispose a pump while its valid drain task is pending, nor impose
@@ -76,17 +76,17 @@ launcher and proof have external deadlines.
 October 6, 2026 extension: `DeferNativeExitClose` defaults to false, preserving
 the synchronous exit behavior above. Set it on the owner thread before Configure
 to opt into cleanup after native removal unwinds. Configuration captures the
-current Godot synchronization context and rejects a missing context before
+current prototype host synchronization context and rejects a missing context before
 ownership transfer. The policy cannot change after admission. On `_ExitTree`,
 the opted-in host immediately marks closing, disables processing and clears
 callbacks/parent/viewport references, then posts actual owned-pump close/drain/
 disposal to that context. World close and actor destruction occur in that posted
 callback; they are not promised inside the native removal callback. Completion
-still means actual cleanup, and the application must keep Godot running until it
+still means actual cleanup, and the application must keep prototype host running until it
 finishes. Ordinary CloseAsync retains its immediate close path.
 
 The [selected player adapter](REPLACEMENT_PLAYER_PRESENTATION_CONTRACT.md) opts
-in because freeing its concrete creature while Godot is removing the parent
+in because freeing its concrete creature while prototype host is removing the parent
 produced a native parent-busy failure. Its real-original removal proof checks
 eventual root absence, empty consumer and drained jobs. Direct native Free is an
 explicit faulted abort rather than successful managed visual disposal; callers
@@ -95,20 +95,20 @@ historical fake-pump proof or its counts below.
 
 ## Evidence and next integration
 
-Observation: [standalone preview](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldPresentationHostPreview.cs)
+Observation: standalone preview (external historical reference)
 uses a fake frozen-interface pump and genuine baseline Core world/consumer without
 selection, resource loading or visual creation. Confidence: Confirmed for modern
 host mechanics by executed headless proof and independent
-[receipt oracle](../../SWG-Godot-Client/poc/round16-tests/Rendering/verify.py). Consequence: this scope
+receipt oracle (external historical reference). Consequence: this scope
 is reviewable independently of the concrete pump under development.
 
 The proof passes 102 assertions (including repeated completion/cleanup checks),
 18 pumps with one close/disposal each, seven Step calls including one injected
-Step fault, and three genuine Godot process frames. It covers success-only
+Step fault, and three genuine prototype host process frames. It covers success-only
 ownership, invalid configuration/thread/delta, ingress/event/Step faults, callback
 and frame reentry, close suppression, close-then-throw, delayed drain, exit-tree
 handoff, aggregate failure and complete release. The
-[launcher](../../SWG-Godot-Client/poc/round16-tests/Rendering/Launch.ps1) creates a private scene and
+launcher (external historical reference) creates a private scene and
 runs headless with a 45-second deadline. No shared Main/project edits are needed.
 
 Lead next wires the concrete pump and original-resource ingress state machine

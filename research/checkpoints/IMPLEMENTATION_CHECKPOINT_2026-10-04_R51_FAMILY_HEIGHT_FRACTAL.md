@@ -10,7 +10,7 @@ Frozen 51 manifest SHA-256 `89dc98232914213f9116518ae81b4c19acec314caf28cc966201
 
 Original EXE input is `C:/Stardust-DEV/Stardust.exe`, verified SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Effective asset/config roots are `C:/Stardust-DEV` and `C:/Stardust-DEV/swgemu_live.cfg`. The accepted extractor pins the original first MGRP family from the effective terrain overlay. Private fixtures retain original bytes; public source includes only authored structure, controls and schemas. Python and offline .NET8 execute modern code; the original executable is read statically only.
 
-Run [Invoke-Route.ps1](../../../SWG-Godot-Client/poc/round51-tests/Rendering/Invoke-Route.ps1) with explicit Python, Exe, AssetRoot, Config, CachedPackages and Dotnet arguments and a fresh private RunRoot. The producer/verifier reconstructs expected complete routes independently. The durable [contract](../../docs/TERRAIN_FAMILY_HEIGHT_FRACTAL_CONTRACT.md) defines eligibility, budget formulas and compatibility consequences.
+Run Invoke-Route.ps1 (external historical reference) with explicit Python, Exe, AssetRoot, Config, CachedPackages and Dotnet arguments and a fresh private RunRoot. The producer/verifier reconstructs expected complete routes independently. The durable [contract](../../docs/TERRAIN_FAMILY_HEIGHT_FRACTAL_CONTRACT.md) defines eligibility, budget formulas and compatibility consequences.
 
 ## Observation, interpretation and implementation
 

@@ -22,6 +22,6 @@ Twelve explicit candidates: body plus nine distinct callees and tiny forwarder's
 
 ## Validation and precise resume
 
-[Portable verifier](../../../SWG-Godot-Client/poc/round77-tests/Assets/Invoke-SelectedRule.ps1) uses explicit cached inputs and fresh ignored output. Independent raw/pefile mapping,625+16 instruction coverage,32+7 anchors,48 calls/60 aligned branches/17 returns and18 synthetic rejection guards pass. Guards validate witness admission rather than malformed legacy CPU behavior. No native production build applies; no original executable execution, live contact, assets or external mutation.
+Portable verifier (external historical reference) uses explicit cached inputs and fresh ignored output. Independent raw/pefile mapping,625+16 instruction coverage,32+7 anchors,48 calls/60 aligned branches/17 returns and18 synthetic rejection guards pass. Guards validate witness admission rather than malformed legacy CPU behavior. No native production build applies; no original executable execution, live contact, assets or external mutation.
 
 Next separate bounded probe:77-byte007D64B0 value-construction body, prove or disprove unchanged source+10-to-destination+10 scalar copy and identify immediate key-construction/failure boundary. Keep allocator/tree/erase graph unopened; lifetime is a later separate question. Seal scope/hashes and IDLE; no self-dispatch.

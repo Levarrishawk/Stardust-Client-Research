@@ -3,8 +3,8 @@
 The original Tatooine sparse-survey road rejection at chunk(-140,-160) does
 not require a road-height evaluator: every padded sample misses each enabled
 road. Target executable instructions independently establish the required
-geometric no-hit gate. [TerrainRoadInput](../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainRoadInput.cs)
-decodes exact AROA0005 geometry; [TerrainRoadExclusion](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainRoadExclusion.cs)
+geometric no-hit gate. TerrainRoadInput (external historical reference)
+decodes exact AROA0005 geometry; TerrainRoadExclusion (external historical reference)
 admits only conservatively separated samples. Possible road influence passes
 to the separate [strict baked height profile](TERRAIN_BAKED_ROAD_HEIGHT_CONTRACT.md);
 unsupported hit profiles still reject the chunk.
@@ -92,7 +92,7 @@ sample/segment pairs. No sampled terrain height or HDTA value is read.
 
 ## Verification and next action
 
-[Standalone tests](../../SWG-Godot-Client/poc/terrain-road-exclusion-tests/Program.cs) cover center,
+Standalone tests (external historical reference) cover center,
 actual/cushion tangencies, near cases, endpoints, negative coordinates, one
 hit among misses, degenerate/nonfinite/out-of-envelope inputs and every cut
 of a synthetic record. Ownership tests retain opaque snapshots. The optional

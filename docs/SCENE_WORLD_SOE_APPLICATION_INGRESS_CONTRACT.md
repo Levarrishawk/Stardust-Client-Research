@@ -37,7 +37,7 @@ Dispose is owner-thread/idempotent and only releases borrowed refs. It never cle
 
 ## Independent validation
 
-[Own replay](../../SWG-Godot-Client/poc/round70-tests/Networking/replay.py) packs a representative62-byte ServerToClient root/duplicate before native, with distinct reliable sequences0/1 and exact control bytes from the frozen independent round14 peer framing/CRC model. It uses a handpacked synthetic response because frozen SoeSessionCodec has no EncodeResponse, then actual BeginSession/AcceptSessionResponse. Multi-application and malformed61-byte fixtures are independently framed; no expected root/ACK/trajectory is seeded from native output.
+Own replay (external historical reference) packs a representative62-byte ServerToClient root/duplicate before native, with distinct reliable sequences0/1 and exact control bytes from the frozen independent round14 peer framing/CRC model. It uses a handpacked synthetic response because frozen SoeSessionCodec has no EncodeResponse, then actual BeginSession/AcceptSessionResponse. Multi-application and malformed61-byte fixtures are independently framed; no expected root/ACK/trajectory is seeded from native output.
 
 ```powershell
 python poc/round70-tests/Networking/replay.py --output-dir local-private/round70-review-replay

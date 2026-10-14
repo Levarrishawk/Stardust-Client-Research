@@ -2,7 +2,7 @@
 
 ## Scope and API
 
-[Implementation](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/TangibleView6Codec.cs) defines
+Implementation (external historical reference) defines
 `TangibleView6Codec.DecodeBaseline/EncodeBaseline` and `DecodeDelta/EncodeDelta`.
 Decode overloads accept a whole application span or an owned replication
 envelope. DTOs are `TangibleView6Baseline`, `TangibleView6Delta`,
@@ -57,7 +57,7 @@ policy; the original applied switch falls through for unknown values.
 
 Baseline SHA-256 is
 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`.
-The reproducible [static audit](../../SWG-Godot-Client/poc/round28-tests/Networking/static_audit.py)
+The reproducible static audit (external historical reference)
 verifies40 instruction anchors, RTTI and vtable slots before reporting facts:
 
 - `015E0614` RTTI is `Archive::AutoDeltaVector<CachedNetworkId,Archive::DefaultObjectType>`.
@@ -134,8 +134,8 @@ assignment values,1048576 IDs and16MiB decoded charge.
 
 ## Reproduction and next boundary
 
-[Python producer/oracle](../../SWG-Godot-Client/poc/round28-tests/Networking/peer.py) hand-packs17
-positive fixtures and6 malformed bodies. [Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TangibleView6CodecScenarios.cs)
+the separate implementation record hand-packs17
+positive fixtures and6 malformed bodies. Native scenarios (external historical reference)
 check exact owning round trips, DTO rows, metadata, envelope overloads,
 selected malformed headers/prefixes, source-array freeze and exact/one-less
 budgets. No exhaustive million-prefix matrix is added.

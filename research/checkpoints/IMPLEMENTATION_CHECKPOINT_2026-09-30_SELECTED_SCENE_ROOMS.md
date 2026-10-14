@@ -4,7 +4,7 @@
 
 Can the established room appearance loader render only the current three-cell route, preserve authored ordinals and apply the shared owner pose alongside persistent doors and floor ownership? Stop after native selection negatives, independent geometry hashes and original headless/GPU placement and view controls.
 
-Reuse the [Mustafar scene pins](IMPLEMENTATION_CHECKPOINT_2026-09-30_ORIGINAL_INTERIOR_SCENE.md) and two-door specification SHA-256 `12BF5B21EC0D7BDA15CB322BB14FF5FC4C7C640B81E7C1DB38CA11F66D9349CA`. Selected CELS indices: 5, 6, 7. No new executable addresses or behavior claims. Tools: .NET smoke suite, `verify_portal_scene.py --appearance-cells 5,6,7`, Godot 4.7.2 .NET and bounded preview launcher.
+Reuse the [Mustafar scene pins](IMPLEMENTATION_CHECKPOINT_2026-09-30_ORIGINAL_INTERIOR_SCENE.md) and two-door specification SHA-256 `12BF5B21EC0D7BDA15CB322BB14FF5FC4C7C640B81E7C1DB38CA11F66D9349CA`. Selected CELS indices: 5, 6, 7. No new executable addresses or behavior claims. Tools: .NET smoke suite, `verify_portal_scene.py --appearance-cells 5,6,7`, prototype host 4.7.2 .NET and bounded preview launcher.
 
 ## Evidence and interpretation
 
@@ -16,4 +16,4 @@ Confidence: Confirmed selected geometry composition and bounded host behavior. C
 
 ## Compatibility consequence and next probe
 
-The reusable loader can select rooms without renumbering CELS or loading every appearance. Engine-neutral decoded geometry remains separate from Godot placement. Next: connect the established MAIN texture/material pipeline to this selected scene, with explicit diagnostics and resource limits.
+The reusable loader can select rooms without renumbering CELS or loading every appearance. Engine-neutral decoded geometry remains separate from prototype host placement. Next: connect the established MAIN texture/material pipeline to this selected scene, with explicit diagnostics and resource limits.

@@ -30,7 +30,7 @@ Limits: 1 MiB per decoded IFF, 4,096 nodes, depth16, at most512 parameters per l
 
 Pinned `object/creature/player/shared_human_male.iff` resolves through five original sources totaling8,290 bytes. Configuration has48 descending mounts. Original root supplies `appearance/hum_m.sat`; base player supplies step height0.5; base creature supplies collision height1.8 (authored F32), radius0.5, offsets0, length1.5 and warp tolerance17. At scale1, ordinary fallback center is `(0,1,0)`, radius0.5 and lowest point0.5 above local origin. Those values are confirmed independently from original bytes; active runtime participation remains Unknown.
 
-Native gates exercise inheritance override/provenance, ownership, scale/special geometry, cycles, root identity, masked parents, depth limit, truncation, duplicate fields and unsupported/nonfinite parameter encodings. `verify_creature_template_profile.py` independently parses the configured original chain and compares values, provenance, appearance and source identities. Godot builds with zero warnings/errors. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_ORIGINAL_CREATURE_TEMPLATE_PROFILE.md).
+Native gates exercise inheritance override/provenance, ownership, scale/special geometry, cycles, root identity, masked parents, depth limit, truncation, duplicate fields and unsupported/nonfinite parameter encodings. `verify_creature_template_profile.py` independently parses the configured original chain and compares values, provenance, appearance and source identities. Prototype host builds with zero warnings/errors. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_ORIGINAL_CREATURE_TEMPLATE_PROFILE.md).
 
 ## Next action
 

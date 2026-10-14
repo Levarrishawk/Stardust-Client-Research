@@ -1,7 +1,7 @@
 # Round84: selected-player session composition
 
 October 6, 2026. Question: can the reusable login/zone session, pinned injected
-I/O, world barrier, installation resource preparation and Godot presentation form
+I/O, world barrier, installation resource preparation and prototype host presentation form
 one reproducible offline path without historical launch vectors?
 
 ## Inputs and evidence
@@ -24,7 +24,7 @@ against the original overlay. Original terrain PTAT is 1,188,446 bytes, SHA-256
 `6039D0C15F9CCB518D72AE01A1ABDF41FCFF2153B5CBF7EB3BA6E6C634A3A427`.
 No executable VA claim or new reverse-engineering probe is made.
 
-Native builds use explicit cached packages, .NET8 and Godot4.7.2 .NET x64 in
+Native builds use explicit cached packages, .NET8 and prototype host4.7.2 .NET x64 in
 source-only private workspaces, with local package sources and no NuGet audit.
 The final joined build reports zero warnings/errors. Source manifests, commands,
 synthetic wire bytes, resource metadata, receipts and screenshots remain ignored.
@@ -36,7 +36,7 @@ an independently authored peer. Its matching CmdStartScene, create, typed CREO3,
 end-baselines and nonworld notice cross the new session bridge into the world.
 Create/baseline/end remain staged while minimum work waits. One ready is emitted
 only after success, independently byte-compared along with ClientId and Select.
-Server ready arrives in response to that emitted ready. The concrete Godot factory
+Server ready arrives in response to that emitted ready. The concrete prototype host factory
 publishes the selected original human at `[1.25, 2.5, 3.75]`, reflecting the
 received create's Z coordinate. Actual mesh/upload verification and visual
 inspection pass. The default original model has no server-selected clothing or
@@ -66,7 +66,7 @@ server baseline set. These limits are explicit in receipts and the launcher.
   GPU60 and direct-free abort59. Lead replays the legacy host102 oracle against
   the final joined assembly; the default host policy is preserved.
 - The default consolidated command passes all twelve required suites, including
-  Round84 Core tests. It runs synthetic component inputs; original/Godot evidence
+  Round84 Core tests. It runs synthetic component inputs; historical implementation path (omitted) evidence
   is supplied by the separate explicit joined command.
 - Final joined headless success109 frames and GPU success112 frames each observe
   three staged messages, one ready, one explicitly returned notice, original
@@ -81,7 +81,7 @@ and exhausted publication retries; the corrected joined policy uses typed state.
 Networking's alias rejection helper initially missed InvalidDataException; bounded
 drain waits and the corrected helper pass without weakening production ownership.
 Native actor removal exposed a real existing host bug: Root.Free occurred while
-Godot was busy removing children. An explicitly scoped host/contract extension
+Prototype host was busy removing children. An explicitly scoped host/contract extension
 adds opt-in deferred native-exit cleanup; callbacks stop immediately, actual
 cleanup follows tree removal, and completion waits for drain. Direct active
 Free remains a faulted abort, not successful disposal. Use RequestClose, await
@@ -92,8 +92,8 @@ launcher itself does not consume those historical profiles.
 ## Consequences and exact next action
 
 See the [session acceptance](../sessions/PARALLEL_DEVELOPMENT_ROUND_84_2026-10-06.md),
-[reproduction command](../../../SWG-Godot-Client/poc/round84-tests/Integration/README.md) and
-[ordered gates](../../../SWG-Godot-Client/docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md).
+reproduction command (external historical reference) and
+ordered gates (external historical reference).
 
 Next: exercise a complete server-shaped selected-player baseline/lifecycle set
 and nearby-object ingress through this session, defining admission/defer behavior

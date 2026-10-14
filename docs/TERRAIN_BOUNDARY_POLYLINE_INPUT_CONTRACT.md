@@ -1,6 +1,6 @@
 # Terrain boundary polyline serialized input
 
-[TerrainBoundaryPolylineInput.cs](../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainBoundaryPolylineInput.cs) decodes owned, bounded `BPLN` serialized records independently of an engine. Direct client evidence establishes two layouts, `0000` and `0001`. The decoder preserves input identity, raw point order and raw metadata; it performs no influence evaluation or cached-bounds computation. See the [Round 38 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R38_BPLN_INPUT.md) for input pins and reproduction.
+TerrainBoundaryPolylineInput.cs (external historical reference) decodes owned, bounded `BPLN` serialized records independently of an engine. Direct client evidence establishes two layouts, `0000` and `0001`. The decoder preserves input identity, raw point order and raw metadata; it performs no influence evaluation or cached-bounds computation. See the [Round 38 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R38_BPLN_INPUT.md) for input pins and reproduction.
 
 ## Evidence and confidence
 
@@ -51,6 +51,6 @@ Legacy destructor `00B74A70` tail-calls shared vector destructor `00B73740`, whi
 
 ## Verification and compatibility consequences
 
-[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainBoundaryPolylineInputScenarios.cs) and the [independent Python oracle](../../SWG-Godot-Client/poc/round38-tests/Assets/verify_bpln_input.py) agree on 325 fixtures (55 accepted, 270 rejected), 18 ownership checks, 47 static anchors and all 34 original records from the previously pinned Tatooine TGEN. The actual separate Core/default smoke-test build and execution pass. Original observations: all BPLN/IHDR versions `0001`; 163 points total, 2–15 each; all locally enabled and finite; selector 0 appears 15 times and selector 3 appears 19 times; maximum logical decoded-copy charge 152 bytes. This is one ordered identity/raw-field comparison, not a broader corpus survey.
+Native scenarios (external historical reference) and the independent Python oracle (external historical reference) agree on 325 fixtures (55 accepted, 270 rejected), 18 ownership checks, 47 static anchors and all 34 original records from the previously pinned Tatooine TGEN. The actual separate Core/default smoke-test build and execution pass. Original observations: all BPLN/IHDR versions `0001`; 163 points total, 2–15 each; all locally enabled and finite; selector 0 appears 15 times and selector 3 appears 19 times; maximum logical decoded-copy charge 152 bytes. This is one ordered identity/raw-field comparison, not a broader corpus survey.
 
 A replacement must preserve these serialized boundaries and raw values; internal storage and bounded failure policy may differ. Client coordinate units, width interpretation, query arithmetic and runtime precision remain unresolved. Server `MMOCoreORB/src/terrain/layer/boundaries/BoundaryPolyline.h::parseFromIffStream(Version<'0001'>)` corroborates the version-1 order but is only correlation evidence and supplies no client proof for axes or influence.

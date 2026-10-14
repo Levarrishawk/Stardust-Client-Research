@@ -100,7 +100,7 @@ flowchart LR
 - SUI is a protocol interpreter layered over a client widget tree; it should not be hard-coded as one handler per dialog.
 - Preserve page IDs as U32, object IDs as U64, command tags as U8, string length encodings, and command ordering exactly.
 - Keep a page registry keyed by server page ID and remove pages before invoking terminal callbacks, matching server lifecycle expectations.
-- Separate widget adapters from the protocol interpreter. A future Godot UI adapter can implement clear/create/set/subscribe operations without leaking Godot node types into the network layer.
+- Separate widget adapters from the protocol interpreter. A future prototype host UI adapter can implement clear/create/set/subscribe operations without leaking prototype host node types into the network layer.
 - Treat `rootPage` as a lookup key into the original UI asset/template namespace. This is another direct original-asset dependency.
 - Implement idempotent update semantics: do not reinstall subscriptions on `SuiUpdatePageMessage`.
 - Unknown command types must be logged with page ID/type and rejected without corrupting the stream or widget registry.

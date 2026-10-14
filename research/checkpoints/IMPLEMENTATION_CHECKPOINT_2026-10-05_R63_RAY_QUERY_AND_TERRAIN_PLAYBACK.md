@@ -4,7 +4,7 @@ Date: October5,2026 Eastern; validation runs October6 UTC. Question: can the ret
 
 ## Inputs and method
 
-4017 frozen public files; main HEAD `49378e7eb5372e32be940239867ae66ceeb3f88c` and empty index preserved. Exact disjoint scopes, archive/path/ancestor/hash preflight and postflight precede worker changes. Static executable SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150` is confirmed before VA use. Cached Python, static-analysis packages, .NET8 and Godot4.7.2 .NET are used offline; original executable is never launched.
+4017 frozen public files; main HEAD `49378e7eb5372e32be940239867ae66ceeb3f88c` and empty index preserved. Exact disjoint scopes, archive/path/ancestor/hash preflight and postflight precede worker changes. Static executable SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150` is confirmed before VA use. Cached Python, static-analysis packages, .NET8 and prototype host4.7.2 .NET are used offline; original executable is never launched.
 
 The six accepted62 host fixtures are byte-identical copies with verified hashes. The new Version4 joined fixture changes explicit synthetic mode metadata while retaining accepted current-plan inputs; its late-direction variant remains synthetic. Original resources come from the unchanged installed overlay/configuration, with original human root SHA `E0B61445E8A85CCF0AC5937F0F9CBCA8711718AFEE63384F30970D5AEE120243` and generator SHA `B623B789E5F8486414C1D68CD341005E7E25FD97AF30567E64E7AC848DEB6C32`. Terrain still uses supplied warm priors and modern arithmetic; received message fixtures are authored offline bytes, not captured traffic. Original/proprietary-derived fixture contents and detailed static witnesses stay ignored.
 
@@ -23,9 +23,9 @@ Durable boundaries: [conditional shader predicate](../../docs/TERRAIN_SHADER_FAM
 
 One approved internal read-only `SceneWorldObjectMotionStore.IsBoundTo` method rejects foreign/closed stores without pruning or publication; the exact existing-file diff is reviewed. The wrapper additionally checks actual finalized typed world/Object/Placement/replication identity. Initial driver publication is a documented prefix effect; post-publication failure/cancellation is not rollback. Immutable terrain has no retirement signal, so hosts must explicitly retire the owned wrapper when replacing terrain.
 
-The Godot host accepts an explicit Version4 joined current/terrain route. It consumes the actual owned binding, retained source/plan steps and driver results, while the host performs the final inactive stop. Disposal verifies owned driver/playback state, preserves borrowed source/terrain until their own close, then drains actors/resources. Prior Version3 planar current and Version2 target modes remain distinct accepted routes.
+The prototype host host accepts an explicit Version4 joined current/terrain route. It consumes the actual owned binding, retained source/plan steps and driver results, while the host performs the final inactive stop. Disposal verifies owned driver/playback state, preserves borrowed source/terrain until their own close, then drains actors/resources. Prior Version3 planar current and Version2 target modes remain distinct accepted routes.
 
-The [ray host adapter](../../../SWG-Godot-Client/poc/Stardust.Godot/ScenePumpedTerrainRayQuery.cs) snapshots once, inspects104 fixed rays and projects one actual camera-center ray. Engine/native Z reflection occurs once at that boundary. This is camera-ray inspection, not an interactive mouse-picking UI. [Independent ray reference](../../../SWG-Godot-Client/poc/round63-tests/Integration/ray_peer.py) uses rational plane and Gram-system barycentric calculations over sealed stored geometry. [Joined playback reference](../../../SWG-Godot-Client/poc/round63-tests/Integration/terrain_playback_peer.py) checks independent target/transition bits, F32 displacement/speed, timestamps, terrain heights and source/step/result markers.
+The ray host adapter (external historical reference) snapshots once, inspects104 fixed rays and projects one actual camera-center ray. Engine/native Z reflection occurs once at that boundary. This is camera-ray inspection, not an interactive mouse-picking UI. Independent ray reference (external historical reference) uses rational plane and Gram-system barycentric calculations over sealed stored geometry. Joined playback reference (external historical reference) checks independent target/transition bits, F32 displacement/speed, timestamps, terrain heights and source/step/result markers.
 
 ## Executed validation
 
@@ -41,7 +41,7 @@ The [ray host adapter](../../../SWG-Godot-Client/poc/Stardust.Godot/ScenePumpedT
 | Joined received-NaN rejection | No pair/plan/owned binding/new playback motion; three archives,16 terrain visuals,one light and actors drain |
 | Joined late-direction rejection | Pair accepted, no plan/owned binding/new playback motion; same complete resource drain |
 | Prior modes | Version3 planar current independent60-step comparison; Version2 target and Version8 first-curve headless hosts pass |
-| Builds/smoke | Runtime, ray and Godot builds zero warnings/errors; default smoke18 events/zero failures |
+| Builds/smoke | Runtime, ray and prototype host builds zero warnings/errors; default smoke18 events/zero failures |
 
 The joined GPU capture was inspected: original human/terminal and supplied green terrain are visible. It does not demonstrate original terrain material or broad visual fidelity. The60 playback observations stay within one patch after starting on a chunk boundary; native worker traces separately cross multiple patches/chunks. Do not merge those test denominators.
 

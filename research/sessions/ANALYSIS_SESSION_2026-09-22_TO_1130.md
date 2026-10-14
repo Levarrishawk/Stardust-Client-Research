@@ -13,7 +13,7 @@ or issue a shutdown command.
 
 Implementation-grade research remains conservatively **96%**. The comprehensive
 whole-client estimate advances from **89% to 90%**: the gain comes from closing
-appearance-local animation order, the Godot transform boundary and several
+appearance-local animation order, the prototype host transform boundary and several
 specialized but observable presentation paths, not from pretending that every
 compiler helper or historical source name has been recovered.
 
@@ -27,7 +27,7 @@ gaps**.
 |---|---|---|
 | Dormant BTRT graph | recursive TRUE/FALS/OR/AND/CVTP conditions, SST2/STF/STFA/NOP and CFBC/RTLI behavior mapped | Confirmed; CVTP historical intent unknown |
 | Skeletal appearance alter order | cache invalidation -> ordered controllers -> physical substeps/root motion -> synchronous messages -> replacement -> readiness/LOD maintenance | Confirmed locally |
-| Godot coordinate adapter | SWG position reflects Z; `[w,x,y,z]` becomes Godot `[-x,-y,z,w]`; pose fixtures pass | Confirmed mathematically and numerically |
+| prototype host coordinate adapter | SWG position reflects Z; `[w,x,y,z]historical prototype identifier (omitted)[-x,-y,z,w]`; pose fixtures pass | Confirmed mathematically and numerically |
 | Nameplate frame cache | integer pairs are current/previous layout displacement and projected screen-Y; visibility query is separate | Confirmed/Strong labels |
 | SUNT runtime | first/fourth scalars are yaw/pitch slew rates; middle limit pair is retained but dormant | Confirmed rates/non-use; Strong limit labels |
 | STFP Boolean | factory identity discriminator keyed with customization name, not render state | Confirmed behavior; historic domain label unknown |
@@ -44,10 +44,10 @@ extracts and accumulates root motion, and synchronously fans out messages before
 installing any returned or queued replacement. This ordering is a compatibility
 contract for gameplay effects and sound triggered by animation messages.
 
-### Godot can consume the original transform data through one adapter
+### Prototype host can consume the original transform data through one adapter
 
 The executable uses Y-up, +Z/K-forward SWG space and stores quaternions as
-`[w,x,y,z]`. Godot's Y-up/-Z-forward space is reached by one Z reflection.
+`[w,x,y,z]`. Prototype host's Y-up/-Z-forward space is reached by one Z reflection.
 Geometry winding and tangent handedness must flip once at import. Network x/z/y
 is only serialization order: decode it into logical SWG `(x,y,z)` before the
 scene adapter. This removes a major risk from the original-asset requirement.
@@ -84,7 +84,7 @@ limits but does not enforce them; enforcing them would be an opt-in correction.
 
 - `ANALYSIS_CHECKPOINT_2026-09-22_BLUEPRINT_TEXTURE_RENDERER_DORMANT_PATHS.md`
 - `ANALYSIS_CHECKPOINT_2026-09-22_SKELETAL_APPEARANCE_ALTER_ORDER.md`
-- `ANALYSIS_CHECKPOINT_2026-09-22_GODOT_COORDINATE_ADAPTER.md`
+- `ANALYSIS_CHECKPOINT_2026-09-22_PROTOTYPE_COORDINATE_ADAPTER.md`
 - `ANALYSIS_CHECKPOINT_2026-09-22_NAMEPLATE_FRAME_CACHE.md`
 - `ANALYSIS_CHECKPOINT_2026-09-22_SUN_TRACKER_RUNTIME.md`
 - `ANALYSIS_CHECKPOINT_2026-09-22_STFP_FACTORY_FLAG.md`

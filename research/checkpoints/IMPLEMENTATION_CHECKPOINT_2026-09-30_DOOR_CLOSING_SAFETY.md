@@ -4,7 +4,7 @@
 
 Can an explicit optional closing policy prevent a translating leaf sweeping into a stationary incident actor without granting entry or changing the default? Close after independent geometric/controller comparison, failure/event gates and scene denial/retreat.
 
-Inputs: explicitly synthetic normal leaf with a fixed rigid orientation, authored movement and finite box, stationary actor and cleared actor position; identity and rotated/translated owner. Tools: native smoke and [independent slab/controller verifier](../../../SWG-Godot-Client/tools/python/verify_door_closing_safety.py). Original default regression uses the unchanged [Mustafar input pins](IMPLEMENTATION_CHECKPOINT_2026-09-30_ORIGINAL_INTERIOR_SCENE.md).
+Inputs: explicitly synthetic normal leaf with a fixed rigid orientation, authored movement and finite box, stationary actor and cleared actor position; identity and rotated/translated owner. Tools: native smoke and the separate implementation record. Original default regression uses the unchanged [Mustafar input pins](IMPLEMENTATION_CHECKPOINT_2026-09-30_ORIGINAL_INTERIOR_SCENE.md).
 
 ## Confirmed results
 

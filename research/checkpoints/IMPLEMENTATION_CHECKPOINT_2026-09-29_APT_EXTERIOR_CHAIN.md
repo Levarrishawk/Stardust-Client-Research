@@ -32,7 +32,7 @@ The exterior has a material without the default inspector's authored single-MAIN
 
 `verify_detail_appearance.py` independently parses APT/DTLA and matches root/target identities, all authored bands, child counts/geometry and indexed visibility metadata. `verify_textured_mesh_bundle.py` matches the L0 exterior's 11 textures / 99 mip levels against Pillow, including legacy BGRA normal textures. The reference verifier initially rejected that raw format and was extended with mask-checked BGRA identification and proper per-mip pitch; all 99 now match.
 
-Godot Debug builds without warnings/errors. Hidden GPU inspector checks all three child uploads/switches and the asymmetric UV/front-face fixture, exits 0, and saves a private 1280×720 capture inspected visually. Existing certificate-store diagnostic remains. Run the launcher with the APT member/hash above, `-Detail -MainTextureOnly`, explicit archive/config/runtime paths and a fresh private capture path. Original captures remain ignored.
+Prototype host Debug builds without warnings/errors. Hidden GPU inspector checks all three child uploads/switches and the asymmetric UV/front-face fixture, exits 0, and saves a private 1280×720 capture inspected visually. Existing certificate-store diagnostic remains. Run the launcher with the APT member/hash above, `-Detail -MainTextureOnly`, explicit archive/config/runtime paths and a fresh private capture path. Original captures remain ignored.
 
 ## Next action
 

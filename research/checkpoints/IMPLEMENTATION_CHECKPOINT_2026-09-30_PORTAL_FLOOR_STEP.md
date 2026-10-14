@@ -19,4 +19,4 @@ Confidence: Confirmed bounded modern policy and original geometry compatibility.
 
 ## Next action
 
-Expose an explicit Godot step flag requiring the precise actor mode. Verify pinned small-house headless and private GPU controls, including timing/input, both owner poses, reverse transfers and reflected floor/leaf/actor placement. Keep broader strip rejection explicit and revisit route-local vertical coverage only after this gate.
+Expose an explicit prototype host step flag requiring the precise actor mode. Verify pinned small-house headless and private GPU controls, including timing/input, both owner poses, reverse transfers and reflected floor/leaf/actor placement. Keep broader strip rejection explicit and revisit route-local vertical coverage only after this gate.

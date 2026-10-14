@@ -2,7 +2,7 @@
 
 The standalone creature inspector can select one original logical animation table/name and clip SHA-256, plus an explicit frame. Original object/SAT pins remain required. The shared source cache resolves all dependencies; only the selected clip is prepared. `PreparedSkeletalAnimation` maps the selected LATX relationship to exactly one owned skeleton, copies the selected L0 joints and prepares channels on the background worker. Missing/ambiguous mapping or unsupported event/root suffixes reject. Preparation is explicit; it retains unused/missing names and declares BindPose fallback. No animation graph, priority execution or gameplay root motion is enabled.
 
-Worker archive/configuration scopes close before transfer. Frame validation completes before GPU publication; cancellation at the first lookup transfers no geometry. Main thread applies the prepared local pose through the existing53-joint hierarchy and complete weighted shader deformation. CPU arrays validate before surfaces mutate; existing meshes/materials/UVs/triangles remain. Normals are normalized only at Godot's packed-normal boundary. Tangents remain core-verified and are not uploaded by the neutral adapter.
+Worker archive/configuration scopes close before transfer. Frame validation completes before GPU publication; cancellation at the first lookup transfers no geometry. Main thread applies the prepared local pose through the existing53-joint hierarchy and complete weighted shader deformation. CPU arrays validate before surfaces mutate; existing meshes/materials/UVs/triangles remain. Normals are normalized only at prototype host's packed-normal boundary. Tangents remain core-verified and are not uploaded by the neutral adapter.
 
 ## Verified sample
 

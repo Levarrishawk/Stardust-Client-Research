@@ -20,7 +20,7 @@ preserved. Scope is against this accepted manifest, not the intentionally dirty 
 Read-only originals: `C:/Stardust-DEV`; `swgemu_live.cfg` SHA-256
 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`.
 Accepted catalog `scene-object-catalog.json`, CRC2937962913, and accepted
-`human-locomotion.json`. Existing .NET8.0.300/Godot4.7.2 Mono/Python/Pillow/offline
+`human-locomotion.json`. Existing historical implementation path (omitted) Mono/Python/Pillow/offline
 NuGet cache were used. No executable addresses, original execution, live networking,
 download, staging/commit/publication or same-round worker dependency.
 
@@ -30,17 +30,17 @@ code. Accepted APIs already support two bounded actors; no consumer defect was f
 
 ## Observation, interpretation and consequence
 
-[Fixture producer](../../../SWG-Godot-Client/poc/round13-tests/Rendering/Generate-Fixture.py) independently
+Fixture producer (external historical reference) independently
 packs two distinct high-bit IDs, identity rotations, positions ±1.5 on X and complete
 18-field baselines. The direct application world stages six lifecycle/state messages
 until the explicit barrier. Each finalized actor queues its own original initializer
 job, off the owner thread. Two initial immutable closures are separate object graphs;
 each reads39 sources/4,686,371 bytes with matching original content. Confidence:
-**Confirmed** by positive native/Godot checks and the original-byte oracle. Consequence:
+**Confirmed** by positive historical implementation path (omitted) checks and the original-byte oracle. Consequence:
 actor identity does not imply shared mutable resource ownership; identical source
 content remains permissible.
 
-The [independent world oracle](../../../SWG-Godot-Client/poc/round13-tests/Rendering/Verify-World.py)
+The independent world oracle (external historical reference)
 models global registry and store revisions and all seven exported latest batches.
 Initial mutation6 has A/B incarnations1/3, handles2/4, store revisions1/2. Two Height
 updates coalesce at mutation8, revisions3/4. Full hidden/shown B baselines produce
@@ -60,7 +60,7 @@ allocation. Destroying A leaves B current; recreating A loads only A, generates 
 GPU IDs and preserves B's exact IDs. A late truncated mixed packet retires both actors
 through whole-world failure. Confidence: **Confirmed** for these bounded cases.
 
-The [original oracle](../../../SWG-Godot-Client/poc/round13-tests/Rendering/Verify-Original.py) independently
+The original oracle (external historical reference) independently
 resolves overlay priority/SHA for all39 source records, five inherited templates,
 two original programs/four authored factors, ten textures/80 decoded mips and four
 sampled hue evaluations. Both actors' native/GPU/headless evidence agrees, and all
@@ -86,16 +86,16 @@ mixed payloads, foreign/thread/stale lifetime, pending capacity rollback, late f
 and closed ownership. Fresh GPU/headless/cancel runs, both independent oracles and
 five prelaunch negatives pass. Cancellation waits for both open overlays, publishes0,
 closes2 and drains; positive teardown disposes all allocated roots and outstanding0.
-The known Godot root-certificate-store startup diagnostic is nonfatal. A strengthened
+The known prototype host root-certificate-store startup diagnostic is nonfatal. A strengthened
 independent closure-hash assertion caught culture-sensitive path ordering in the
 audit export; ordinal sorting corrected it and the independent hash check now passes.
 This changed only audit serialization, not original bytes or presentation.
 
 Changed paths are exactly twelve new files:
 
-- `poc/Stardust.Godot/TwoCreatureWorldPreview.cs`
-- `poc/Stardust.Godot/Main.TwoCreatureWorld.cs`
-- `poc/Stardust.Godot/Invoke-StardustTwoCreatureWorldPreview.ps1`
+- historical prototype identifier (omitted)
+- historical prototype identifier (omitted)
+- historical prototype identifier (omitted)
 - `docs/TWO_CREATURE_WORLD_PREVIEW_CONTRACT.md`
 - this checkpoint
 - `poc/round13-tests/Rendering/Generate-Fixture.py`

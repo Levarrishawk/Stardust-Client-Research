@@ -3,7 +3,7 @@
 Date: 2026-09-29. Question: can one owner complete login with injected async I/O,
 while rejecting unrelated senders, keeping deadlines live during a pending
 receive, and cleaning up all owned buffers on completion/failure/cancellation?
-Stop at deterministic host scenarios, a compiled concrete adapter and a Godot
+Stop at deterministic host scenarios, a compiled concrete adapter and a prototype host
 headless offline run. Actual socket execution is outside this checkpoint.
 
 ## Inputs and policy
@@ -13,7 +13,7 @@ Use the existing [login specification](../../docs/LOGIN_AND_ZONE_STATE_MACHINE.m
 and [clock/accounting component](IMPLEMENTATION_CHECKPOINT_2026-09-29_HOST_ACCOUNTING.md).
 No new original-executable address claim is made. Fixed login bodies and peer
 addresses are synthetic. Original peer fixtures supply independent CRC/XOR
-encoding; the Godot proof is integration evidence, not an independent wire oracle.
+encoding; the prototype host proof is integration evidence, not an independent wire oracle.
 
 Replacement host policy: one run, one outstanding receive, serial protocol
 mutation, exact immutable IPv4 address/port pinning, configurable local deadlines
@@ -45,8 +45,8 @@ This is implementation policy, not recovered thread/scheduling identity.
   No DNS, endpoint discovery or connection is implicit. **Compiled only**: no
   UDP instance was constructed or executed in this session.
 - `OfflineHostedLoginScenario` drives the same host using an async fixture port;
-  Godot `_Ready` awaits it and catches startup exceptions with type-only output.
-  Godot still runs offline by default and creates no socket.
+  Prototype host `_Ready` awaits it and catches startup exceptions with type-only output.
+  Prototype host still runs offline by default and creates no socket.
 
 ## Validation and limitations
 
@@ -63,17 +63,13 @@ dispose failure with the primary typed outcome preserved; unused/idempotent
 disposal; invalid ASCII credentials before I/O; concurrent second-run rejection;
 and a protected matching peer disconnect. Cleanup failures are counted separately.
 
-Core and Godot build with zero warnings/errors. The complete smoke suite passes.
-Godot headless exits 0 with six sends, seven peer receives, one foreign drop and
+Core and prototype host build with zero warnings/errors. The complete smoke suite passes.
+Prototype host headless exits 0 with six sends, seven peer receives, one foreign drop and
 18 safe journal events. Its pre-existing sandbox root-certificate-store error
 still prints; this does not establish an error-free startup.
 
-```powershell
-dotnet run --no-restore --project poc/Stardust.Core.SmokeTests/Stardust.Core.SmokeTests.csproj
-dotnet build --no-restore poc/Stardust.Godot/Stardust.Godot.csproj
-# Use the documented local Godot console executable:
-& $godot --headless --path poc/Stardust.Godot -- --self-test
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 Full end-to-end socket behavior remains unverified. No server contact, capture,
 original execution, commits or publication. Research scores and registries are

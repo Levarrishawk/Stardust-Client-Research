@@ -1,9 +1,9 @@
 # World object recipe visuals
 
-October 2, 2026. Modern offline Godot policy; no new executable or protocol claim.
+October 2, 2026. Modern offline prototype host policy; no new executable or protocol claim.
 
-[SceneWorldObjectVisualFactory](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldObjectVisualFactory.cs)
-accepts the frozen [presentation interface](../../SWG-Godot-Client/poc/Stardust.Core/Session/ISceneWorldObjectPresentation.cs).
+SceneWorldObjectVisualFactory (external historical reference)
+accepts the frozen presentation interface (external historical reference).
 Its constructor takes `SceneWorldCoordinator world`, `Node parent`, and optional
 `bool terminalFrame0Inspection=false`. `Create(publication,snapshot)` returns
 `ISceneWorldObjectPresentation?`; successful instances are publicly named
@@ -14,7 +14,7 @@ acknowledgment machinery, or same-round runtime dependency.
 
 ## Identity and ownership
 
-Observation: the [accepted coordinator](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldCoordinator.cs)
+Observation: the accepted coordinator (external historical reference)
 owns generic publications and typed replication snapshots separately. Confidence:
 Confirmed by baseline source and independent native fixture checks. Consequence:
 resource attempts are not invalidated by scalar revision alone.
@@ -49,7 +49,7 @@ current opaque observation. It assigns no meaning to TANO bytes.
 `Dispose()` is idempotent and releases owned GPU roots/resources and the world
 reference. Required public publication/visual getters remain available for
 identity inspection; the publication CPU closure is borrowed, never mutated or
-disposed by the adapter. All methods belong to the creating Godot main thread.
+disposed by the adapter. All methods belong to the creating prototype host main thread.
 The caller owns actor capacity, acknowledgment/retry, polling and final disposal.
 
 ## Static inspection policy
@@ -63,23 +63,23 @@ execution, general switch-texture rendering, or original render fidelity.
 
 ## Independent proof and integration
 
-[Standalone preview](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldObjectVisualPreview.cs) uses one
+Standalone preview (external historical reference) uses one
 accepted world and the factory directly. Its loader exists only in the proof.
 No shared Main or project file changes are required: the
-[launcher](../../SWG-Godot-Client/poc/round15-tests/Rendering/Launch.ps1) creates an ignored private
-scene referencing this script. Explicit arguments are installed Godot path,
+launcher (external historical reference) creates an ignored private
+scene referencing this script. Explicit arguments are installed prototype host path,
 read-only archive root, pinned configuration, and generated peer path.
 Modes are headless, cancellation, or fresh private PNG capture; capture produces
 initial, updated and recreated images. The proof's fixed IDs are synthetic
 fixture identities, not factory requirements.
 
-The [peer producer](../../SWG-Godot-Client/poc/round15-tests/Rendering/Generate-Peer.py),
-[native runner](../../SWG-Godot-Client/poc/round15-tests/Rendering/Rendering.csproj), and
-[receipt verifier](../../SWG-Godot-Client/poc/round15-tests/Rendering/verify.py) preserve the accepted
+The peer producer (external historical reference),
+native runner (external historical reference), and
+receipt verifier (external historical reference) preserve the accepted
 independent Round14 fixture semantics. Synthetic TANO contents remain opaque.
-The [six-argument pixel/log oracle](../../SWG-Godot-Client/poc/round15-tests/Rendering/verify_preview.py)
+The the separate implementation record
 takes GPU log, headless log, cancellation log, and three PNGs.
-[Launcher negatives](../../SWG-Godot-Client/poc/round15-tests/Rendering/Verify-Launch.ps1) test five
+Launcher negatives (external historical reference) test five
 rejections before process creation. Detailed results and reproduction are in the
 [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R15_OBJECT_VISUAL.md).
 

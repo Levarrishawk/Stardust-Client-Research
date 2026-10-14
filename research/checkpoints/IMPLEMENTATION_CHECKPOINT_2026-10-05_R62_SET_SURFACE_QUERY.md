@@ -18,7 +18,7 @@ Observation: each frozen child copies nine positions, nine normals, and active i
 
 Observation: frozen child calls are synchronous without cancellation hooks. Wrapper checks before/after calls and between requests provide bounded containment. Confidence: Confirmed limitation; precancel and late selected-normal failure executed. Consequence: no cancellation inside a child loop is claimed, and no partial batch/wrapper is published on failure.
 
-The [durable contract](../../docs/TERRAIN_MODERN_PATCH_SET_SURFACE_QUERY_CONTRACT.md) defines APIs, identities, order, caps, formulas, copied-coordinate validation, failure semantics, and replay. Only four assigned new files plus five own runners change. Existing Core/Godot/shared status/ledger/registries remain frozen; consumer integration is reserved for lead.
+The [durable contract](../../docs/TERRAIN_MODERN_PATCH_SET_SURFACE_QUERY_CONTRACT.md) defines APIs, identities, order, caps, formulas, copied-coordinate validation, failure semantics, and replay. Only four assigned new files plus five own runners change. Existing historical implementation path (omitted) status/ledger/registries remain frozen; consumer integration is reserved for lead.
 
 ## Verification
 
@@ -34,4 +34,4 @@ First build attempt: a test used an extra `.Query` member on the hit's actual ch
 
 `OriginalCollisionParity` is false. Frozen computed binary64 predicates do not establish exact arbitrary internal-edge real geometry or original collision rules. Returned normals are interpolated shading directions. Typed upstream truncation tests do not introduce a byte parser here. Captured coordinates are revalidated before results, but capture is not atomic against arbitrary caller mutation. Later token checkpoints are source-reviewed; actual child loops remain noninterruptible.
 
-Lead may independently replay and route actual grounding through this aggregate Query, preserving retained identities and native/Godot transforms. No engine/GPU/host edits or tests were performed by this worker. No original execution/live contact/capture/fuzz/download/external mutation/stage/commit/push/publication occurred. Worker completes one ROUND62 handoff and idles; no63 or lead acceptance is claimed.
+Lead may independently replay and route actual grounding through this aggregate Query, preserving retained identities and historical implementation path (omitted) transforms. No engine/GPU/host edits or tests were performed by this worker. No original execution/live contact/capture/fuzz/download/external mutation/stage/commit/push/publication occurred. Worker completes one ROUND62 handoff and idles; no63 or lead acceptance is claimed.

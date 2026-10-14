@@ -5,7 +5,7 @@
 Can exact compact movement bytes drive current native poses through the continuous
 original scene without reloading assets, compounding Height or retaining stale
 incarnations? Stop after independent scoped review and joined wire/native/body/
-Godot/cleanup gates. [Round17](../sessions/PARALLEL_DEVELOPMENT_ROUND_17_2026-10-02.md)
+Prototype host/cleanup gates. [Round17](../sessions/PARALLEL_DEVELOPMENT_ROUND_17_2026-10-02.md)
 records the2,272-file baseline, identities, assignments and acceptance.
 
 Original root/config and explicit human/terminal recipes are unchanged from16.
@@ -44,7 +44,7 @@ yaw, speed units, interpolation or physical participation.
   alone reloads, and the body receipt matches the loaded profile. Headless/GPU
   receipts and real archive cancellation pass. A fresh private GPU capture was
   inspected; known face/material limitations persist.
-- Godot build has zero warnings/errors; shared baseline suite passes. Prelaunch
+- prototype host build has zero warnings/errors; shared baseline suite passes. Prelaunch
   negative verifier rejects five modes/destinations without process/capture.
 
 Observation: deterministic native/engine/body receipts and original resource

@@ -1,6 +1,6 @@
 # Explicit synthetic offline session bootstrap
 
-[OfflineSoeSessionBootstrap.Create(connectionId, seed)](../../SWG-Godot-Client/poc/Stardust.Core/Session/OfflineSoeSessionBootstrap.cs) constructs an established socket-independent transport for explicitly synthetic offline profiles. Receipt has caller-owned SoeClientTransport Transport and immutable RequestHex/ResponseHex strings. Neither string represents a sent request or received server response.
+OfflineSoeSessionBootstrap.Create(connectionId, seed) (external historical reference) constructs an established socket-independent transport for explicitly synthetic offline profiles. Receipt has caller-owned SoeClientTransport Transport and immutable RequestHex/ResponseHex strings. Neither string represents a sent request or received server response.
 
 ```csharp
 var bootstrap = OfflineSoeSessionBootstrap.Create(connectionId, seed);
@@ -21,7 +21,7 @@ Successful transport is Established with zero pending/retained packets. Helper r
 
 Caller owns transport lifetime and serialization. Receipt has no automatic Dispose/Close wrapper. Close clears actual pending/reliability/session state according to existing transport policy; immutable strings survive. Using returned transport for a composed root session does not transfer ownership: RootSession.Dispose closes only its own children. Caller subsequently closes bootstrap transport and actual scene owners.
 
-[Independent replay](../../SWG-Godot-Client/poc/round77-tests/Networking/replay.py) packs exact14/17-byte expectations before native over three connection IDs0/FFFFFFFF/F00D00DB × three seeds0/FFFFFFFF/A1B2C3D4. Nine actual bootstrap receipts match every byte. Native codec decode verifies supplied fields/fixed configuration. Caller creates one retained packet plus a pending message, closes twice, verifies cleared counts/Closed state and preserved strings; decoded caller scratch arrays are independently cleared.
+Independent replay (external historical reference) packs exact14/17-byte expectations before native over three connection IDs0/FFFFFFFF/F00D00DB × three seeds0/FFFFFFFF/A1B2C3D4. Nine actual bootstrap receipts match every byte. Native codec decode verifies supplied fields/fixed configuration. Caller creates one retained packet plus a pending message, closes twice, verifies cleared counts/Closed state and preserved strings; decoded caller scratch arrays are independently cleared.
 
 Brief integration creates actual frozen76 point driver, issued LOCAL rows, frozen RootSession and ACK factory with returned bootstrap transport. Three ordinary updates move native Z at speed2 twice, then stop. Immediate-stop cadence yields one independently predicted root/protected datagram/ACK at30ms; all three combined receipts match. Precanceled session Observe preserves zero sample/FIFO progress and established bootstrap owner. Session disposal preserves transport until caller finally Close; string history survives. No full cadence/reliability resurvey, sibling77 settings import, original asset load or resource completion.
 

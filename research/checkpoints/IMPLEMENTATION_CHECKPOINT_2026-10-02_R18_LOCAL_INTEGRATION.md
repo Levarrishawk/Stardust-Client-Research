@@ -3,7 +3,7 @@
 ## Bounded question and inputs
 
 Can the accepted original-resource world host one native fixed-step local driver,
-timestamped Godot input, idle/walk/run presentation and queued authoritative
+timestamped prototype host input, idle/walk/run presentation and queued authoritative
 motion without replaying suspension, undoing corrections or reloading resources?
 Stop after original headless/GPU/cancellation and independent clock/queue receipts
 agree. No original prediction, interpolation, floor collision or parent-world
@@ -43,7 +43,7 @@ speed projection; this is not recovered original direction/speed semantics.
 The original join starts with human39 sources/terminal27, queues Height and
 motion, destroys/recreates only the terminal, then performs nine observed stages:
 walk, run, pause, correction while paused, resumed run, idle, focus loss,
-focus resume and reset. Native Z is reflected once into Godot; Height1.4 composes
+focus resume and reset. Native Z is reflected once into prototype host; Height1.4 composes
 once; human resource/GPU identities remain unchanged; total loads/closed archives
 stay3/3. Correction is consumed by ingress after a driver update, observed on
 the next update, and subsequent local motion starts there. Pause/focus time adds
@@ -70,7 +70,7 @@ complexion remain Unknown. This round diagnoses the gap; it does not fix it.
   headless/GPU/cancel, blend/reset and owner/disposal gates pass.
 - Combined original headless/GPU nine-stage clock/pose/clip/resource oracle,
   continuous frame-budget/lifecycle oracle, cancellation/drain and inspected
-  fresh GPU capture pass. Godot build has zero warnings/errors.
+  fresh GPU capture pass. Prototype host build has zero warnings/errors.
 - Main native suite runs before registered --round18-local/--round18-ingress
   probes; both pass. Repository gate and exact scope are in the session report.
 
@@ -82,13 +82,13 @@ its cancellation proof.
 
 ## Reproduce and resume
 
-Use [continuous launcher](../../../SWG-Godot-Client/poc/round16-tests/Integration/Launch.ps1) with
--GodotPath cached Godot, -ArchiveRoot original root, -Configuration pinned config,
+Use continuous launcher (external historical reference) with
+-prototype hostPath cached prototype host, -ArchiveRoot original root, -Configuration pinned config,
 -FixturePath output of Round16 Integration/Generate-Peer.py, -CatalogProfile
 poc/preview-profiles/scene-object-catalog.json, -MotionPeer output of Round17
 Integration/Generate-Motion.py and -LocalInput. Default is headless; add -Gpu and
 fresh private -CapturePath for GPU; separate -CancelLoad for pending-load cleanup.
-Run [independent oracle](../../../SWG-Godot-Client/poc/round18-tests/Integration/verify_local.py) on
+Run independent oracle (external historical reference) on
 normal log and prior Round16 verify_preview.py on normal/cancel logs.
 Worker contracts give native producer/verifier commands.
 

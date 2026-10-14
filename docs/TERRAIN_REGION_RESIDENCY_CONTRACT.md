@@ -1,6 +1,6 @@
 # Modern bounded terrain region residency
 
-[TerrainRegionResidency](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainRegionResidency.cs)
+TerrainRegionResidency (external historical reference)
 prepares and atomically publishes bounded terrain windows. This is an explicit
 modern scheduling policy, not recovered original terrain LOD, cache eviction,
 thread affinity or worker parity. The geometry and height evaluation retain
@@ -53,7 +53,7 @@ its owned drain.
 
 ## Original source composition
 
-[OriginalTerrainRegionSource](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/OriginalTerrainRegionSource.cs)
+OriginalTerrainRegionSource (external historical reference)
 adds immutable `OriginalTerrainRegionChunk` receipts and complete sampling
 keys: signed X/Z indices plus exact chunk-width bits. `BuildChunk` produces
 the existing four-cell, three-margin, scale-one coordinate/height/normal/mesh
@@ -84,7 +84,7 @@ on a later retry. Different widths do not share a key.
 
 ## Validation and limits
 
-The [focused tests](../../SWG-Godot-Client/poc/terrain-residency-tests/Program.cs) use deterministic
+The focused tests (external historical reference) use deterministic
 injected generators, gates and authored exceptions. They cover initial commit,
 overlap reuse, partial-candidate invisibility, a cancellation-ignoring stale
 generation, latest-request collapse, repeated requests, explicit retry,
@@ -186,7 +186,7 @@ host GPU upload/disposal verification belongs to the adapter gate.
 
 ## Explicit full-resolution capacity and startup adoption
 
-[TerrainRegionCapacity](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainRegionCapacity.cs)
+TerrainRegionCapacity (external historical reference)
 defines `Default16` and the opt-in `FullResolution64` profile. Existing request,
 source build/compose, coordinator and patch-set/surface-query calls retain their
 sixteen-chunk defaults and original hard ceilings. Passing explicit enlarged
@@ -260,7 +260,7 @@ with the pinned original terrain input. Maximum simultaneous builders is one.
 
 ## Roaming surface replacement
 
-[OfflineTerrainRoaming](../../SWG-Godot-Client/poc/Stardust.Core/Session/OfflineTerrainRoaming.cs)
+OfflineTerrainRoaming (external historical reference)
 adds `ReplaceSurface(next)` for an owner-controlled window handoff. It queries
 the current published float32 X/Z on the candidate surface, then requires the
 queried height cast to float32 to match `Position.Y` bit for bit. A missing

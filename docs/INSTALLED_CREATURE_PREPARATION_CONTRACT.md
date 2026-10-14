@@ -1,6 +1,6 @@
 # Installed creature preparation
 
-[InstalledCreaturePreparation](../../SWG-Godot-Client/poc/Stardust.Core/Assets/InstalledCreaturePreparation.cs)
+InstalledCreaturePreparation (external historical reference)
 derives one creature catalog entry and idle/walk/run options from an explicitly
 opened [original installation](ORIGINAL_INSTALLATION_PREFLIGHT_CONTRACT.md).
 No caller-provided SHA pins, preview profile, or historical argument vector is
@@ -99,7 +99,7 @@ original animation bytes are consumed through explicit modern selections.
 
 ## Reproduction and evidence
 
-The self-contained [test project](../../SWG-Godot-Client/poc/round84-tests/Assets/Assets.csproj) runs
+The self-contained test project (external historical reference) runs
 synthetic preparation by default. Its Python producer independently authors
 TREE/SCOT/STOT/SHOT/SMAT/LATT/counted-proxy records and metadata. Synthetic clip
 payloads are deliberately opaque hash fixtures, not claimed playable animations.
@@ -147,7 +147,7 @@ compile error was corrected before the passing run; no failed attempt counts as
 acceptance. These are **Confirmed component/fixture observations**.
 
 Arbitrary avatars, customization variants, terrain, complete lighting, movement
-authority, server state, and visible Godot publication remain **Unverified** here.
+authority, server state, and visible prototype host publication remain **Unverified** here.
 The next action is launch composition to use these catalog/options with the selected
 create message and borrowed overlay, then publish the owned router result under
 its separate scene/presentation lifetime contract. No new executable analysis or

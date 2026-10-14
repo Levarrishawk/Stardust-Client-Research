@@ -19,25 +19,25 @@ Read AGENTS, START/latest accepted17, status/ledger/unknown-function terminology
 motion/placement/view-input/movement contracts, prior checkpoints and accepted
 mapping, orientation, clock, visual/transition and fixture/launcher tools.
 Frozen local driver/motion source/pump receiver contracts remain read-only. No VA
-or original executable claim. Installed .NET8/Python/Godot4.7.2 Mono and offline
+or original executable claim. Installed historical implementation path (omitted) Mono and offline
 caches/private APPDATA only. Original root `C:/Stardust-DEV` read-only; configuration
 SHA256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`.
-Existing public catalog/bank and pinned original human/terminal. Existing Godot
+Existing public catalog/bank and pinned original human/terminal. Existing prototype host
 certificate-store diagnostic remains nonfatal.
 
 ## Observations, confidence and consequence
 
-Observation: [input host](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldLocalInputHost.cs)
+Observation: input host (external historical reference)
 owns accepted driver once; real dispatched W/D/Shift map normalized native walking2
 and run6. Echo/unsupported keys ignored, focus loss and tree pause release, resume
 does not replay, heading maps through accepted orientation, reset clears keys,
 duplicate inactive transitions are suppressed, wrong-thread/IDisposable/backward
 time and detached configuration preserve/close ownership as appropriate.
-Confidence: Confirmed against injected-clock fake-driver receipts in actual Godot
+Confidence: Confirmed against injected-clock fake-driver receipts in actual prototype host
 dispatch. Consequence: lead can call Advance before pump Step without another loop.
 Actual fixed-step/drop/suspension internals remain delegated to the real driver.
 
-Observation: [locomotion wrapper](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldLocomotionVisual.cs)
+Observation: locomotion wrapper (external historical reference)
 owns a current creature motion wrapper after threshold/clip/source checks; Speed
 chooses idle/walk/run with threshold4. Original loaded clock parameters produce
 walk/run frame3 after0.1 seconds at rate30/proxy1/end33/22, confirmed independently
@@ -69,20 +69,8 @@ rendering, not original fidelity, original root-motion transfer or server behavi
 
 ## Reproduction
 
-```powershell
-python poc/round18-tests/Rendering/Generate-Peer.py <private-peer.json>
-$env:APPDATA=(Resolve-Path local-private/round2/appdata).Path
-dotnet build poc/Stardust.Godot/Stardust.Godot.csproj --no-restore -v minimal
-dotnet run --project poc/round18-tests/Rendering/Rendering.csproj -- <root> <cfg> poc/preview-profiles/scene-object-catalog.json poc/preview-profiles/human-locomotion.json <peer> <native-private.json>
-python poc/round18-tests/Rendering/verify.py <peer> <native-receipt>
-& poc/round18-tests/Rendering/Launch.ps1 -GodotPath <installed-Godot> -ArchiveRoot <root> -Configuration <cfg> -FixturePath <peer> -Headless
-& poc/round18-tests/Rendering/Launch.ps1 -GodotPath <installed-Godot> -ArchiveRoot <root> -Configuration <cfg> -FixturePath <peer> -CancelLoad
-& poc/round18-tests/Rendering/Launch.ps1 -GodotPath <installed-Godot> -ArchiveRoot <root> -Configuration <cfg> -FixturePath <peer> -CapturePath <fresh-private.png>
-python poc/round18-tests/Rendering/verify_preview.py <gpu-log> <headless-log> <cancel-log> <initial.png> <updated.png> <recreated.png> <motion.png>
-& poc/round18-tests/Rendering/Verify-Launch.ps1 -GodotPath <installed-Godot> -ArchiveRoot <root> -Configuration <cfg> -FixturePath <peer> -ExistingCapture <initial.png>
-python tools/python/validate_organized_workspace.py .
-git -c core.safecrlf=false diff --check
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 Build zero warnings/errors; native independent receipts, real event headless/GPU,
 archive cancellation, numeric/pixel/log oracle and launcher negatives pass.
@@ -92,25 +80,25 @@ source/status inspection, `git diff --check` and new-file whitespace checks pass
 All2,310 baseline hashes/sizes unchanged; exactly13 allowed additions; preserved
 checkout HEAD and empty index. Detailed outputs and scope receipt stay ignored/private.
 
-Exact additions: [host](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldLocalInputHost.cs),
-[locomotion](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldLocomotionVisual.cs),
-[preview](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldLocalInputPreview.cs),
+Exact additions: host (external historical reference),
+locomotion (external historical reference),
+preview (external historical reference),
 [contract](../../docs/SCENE_WORLD_LOCAL_INPUT_CONTRACT.md), this checkpoint;
-own Rendering [Generate-Peer.py](../../../SWG-Godot-Client/poc/round18-tests/Rendering/Generate-Peer.py),
-[Launch.ps1](../../../SWG-Godot-Client/poc/round18-tests/Rendering/Launch.ps1),
-[NuGet.Config](../../../SWG-Godot-Client/poc/round18-tests/Rendering/NuGet.Config),
-[Program.cs](../../../SWG-Godot-Client/poc/round18-tests/Rendering/Program.cs),
-[Rendering.csproj](../../../SWG-Godot-Client/poc/round18-tests/Rendering/Rendering.csproj),
-[Verify-Launch.ps1](../../../SWG-Godot-Client/poc/round18-tests/Rendering/Verify-Launch.ps1),
-[verify.py](../../../SWG-Godot-Client/poc/round18-tests/Rendering/verify.py),
-[verify_preview.py](../../../SWG-Godot-Client/poc/round18-tests/Rendering/verify_preview.py).
+own Rendering Generate-Peer.py (external historical reference),
+Launch.ps1 (external historical reference),
+NuGet.Config (external historical reference),
+Program.cs (external historical reference),
+Rendering.csproj (external historical reference),
+Verify-Launch.ps1 (external historical reference),
+verify.py (external historical reference),
+verify_preview.py (external historical reference).
 
 ## Limits and next action
 
 No actual unfinished driver/store/router, shared source/project/Main/pump/frozen
 interface/navigation/ledger/status/registry edits. No original EXE, live contact,
 server packet capture/fuzzing, downloads, staging/commit/push/publication or score
-changes. Keyboard/focus/pause injection is real Godot dispatch; physical OS input
+changes. Keyboard/focus/pause injection is real prototype host dispatch; physical OS input
 or mouse capture is not manually tested. Known material gaps are unchanged.
 
 Canonical [contract](../../docs/SCENE_WORLD_LOCAL_INPUT_CONTRACT.md) specifies

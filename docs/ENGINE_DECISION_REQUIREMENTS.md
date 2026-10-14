@@ -1,8 +1,11 @@
 # Pre-Build Engine Decision Requirements
 
+Current scope — October 14, 2026: this is research documentation. Any implementation choices or acceptance results below are historical evidence. Use [current status](../ANALYSIS_STATUS.md) for coverage and open questions; no engine choice or client development is prescribed here.
+
+
 ## Decision rule
 
-Do not choose an engine from feature lists. Score each candidate using the same four bounded spikes and require evidence artifacts, profiler captures, code-size/complexity notes and identified escape hatches. Candidates are: Godot host engine, custom native DX12, and custom native Vulkan. Other engines may be added only if they can be evaluated with the same tests.
+Do not choose an engine from feature lists. Score each candidate using the same four bounded spikes and require evidence artifacts, profiler captures, code-size/complexity notes and identified escape hatches. The historical comparison considered an existing host engine, custom native DX12, and custom native Vulkan. Other engines may be added only if they can be evaluated with the same tests.
 
 ## Non-negotiable architecture
 
@@ -57,11 +60,11 @@ Any candidate fails regardless of score if it cannot satisfy fixed-width wire co
 
 | Candidate | Likely advantage | Principal risk | Status |
 |---|---|---|---|
-| Godot | Rendering, windowing, UI, input, audio, editor and cross-platform facilities reduce commodity work | SWG resource graph, skeletal customization, terrain/cell streaming and deterministic lifecycle may fight scene/resource assumptions | Must be spiked after this analysis |
+| prototype host | Rendering, windowing, UI, input, audio, editor and cross-platform facilities reduce commodity work | SWG resource graph, skeletal customization, terrain/cell streaming and deterministic lifecycle may fight scene/resource assumptions | Must be spiked after this analysis |
 | Custom DX12 | Maximum lifecycle/data ownership; best fit for Windows-first HLSL/DXC and debugging; clean semantic renderer boundary | Highest implementation burden for UI, animation, terrain, audio and tools | Leading custom-backend candidate |
 | Custom Vulkan | Explicit control plus portable backend potential | More platform/extension/tooling complexity without immediate portability requirement | Choose only if non-Windows becomes concrete |
 
-The analysis does not preselect Godot or custom DX12. The expected decision hinges on spikes C and D: if Godot hosts the recovered character/world model without a deep fork or parallel scene graph, it is likely the lower-risk product choice. If those spikes require bypassing core engine systems, retain engine-neutral libraries and use a narrow custom DX12 renderer first.
+The analysis does not preselect prototype host or custom DX12. The expected decision hinges on spikes C and D: if prototype host hosts the recovered character/world model without a deep fork or parallel scene graph, it is likely the lower-risk product choice. If those spikes require bypassing core engine systems, retain engine-neutral libraries and use a narrow custom DX12 renderer first.
 
 ## Deliverable after spikes
 

@@ -1,6 +1,6 @@
 # Slope-filter current-height normal producer
 
-The Pre-CU producer `00B65730` writes the exact three-component grid consumed by `FSLP` query `00B78A90`. It constructs current-height positions, accumulates two unnormalized triangle normals per square, then normalizes each accumulated vector. Descriptor identity, axes, triangle split, finite-grid edges and dirty timing are **Confirmed** from the target. Effective x87 controls and bit-exact original numeric results remain **Unknown**. No Core or Godot behavior changes accompany this closure.
+The Pre-CU producer `00B65730` writes the exact three-component grid consumed by `FSLP` query `00B78A90`. It constructs current-height positions, accumulates two unnormalized triangle normals per square, then normalizes each accumulated vector. Descriptor identity, axes, triangle split, finite-grid edges and dirty timing are **Confirmed** from the target. Effective x87 controls and bit-exact original numeric results remain **Unknown**. No Core or prototype host behavior changes accompany this closure.
 
 This extends the [slope filter endpoint/query contract](TERRAIN_FILTER_SLOPE_CONTRACT.md), the [coordinate producer contract](TERRAIN_SAMPLE_COORDINATE_PRODUCER_CONTRACT.md), and the [current-height filter contract](TERRAIN_FILTER_HEIGHT_CONTRACT.md). The [bounded checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-13_SLOPE_NORMAL_PRODUCER.md) records reproduction and scope.
 

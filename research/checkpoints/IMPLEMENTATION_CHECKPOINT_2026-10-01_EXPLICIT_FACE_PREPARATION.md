@@ -20,7 +20,7 @@ BlueprintFacePreparer requires explicit BlueprintCustomizationKey(exact variable
 
 ## Validation
 
-Full portable suite passes distinct factory keys, negative/high texture/palette rules, omitted/wrong-domain values, missing dependency/target and cleared-value ownership. Original probe prepares requested0/INT_MIN/INT_MAX for six keys; all27 selected operations and15 slot binding sets independently match raw blueprint operands, TFNS defaults and RIFF palette bytes. Omission of each key rejects. Prior50-source/251-mip/palette audits remain green. Godot build succeeds zero warnings/errors; workspace/link/diff gates run for checkpoint. Proprietary program/source/evidence stays ignored. Counts and research scores unchanged.
+Full portable suite passes distinct factory keys, negative/high texture/palette rules, omitted/wrong-domain values, missing dependency/target and cleared-value ownership. Original probe prepares requested0/INT_MIN/INT_MAX for six keys; all27 selected operations and15 slot binding sets independently match raw blueprint operands, TFNS defaults and RIFF palette bytes. Omission of each key rejects. Prior50-source/251-mip/palette audits remain green. Prototype host build succeeds zero warnings/errors; workspace/link/diff gates run for checkpoint. Proprietary program/source/evidence stays ignored. Counts and research scores unchanged.
 
 ## Next probe
 

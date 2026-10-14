@@ -77,7 +77,7 @@ The replacement should preserve boundary behavior while redesigning internals. F
 3. **What depends heavily on original assets?** Terrain, buildings/cells, collision/navigation, object templates, skeletal appearance/customization, animation graphs, materials/shaders, effects, UI layout/localization and sound events. The networking POC does not.
 4. **Reuse conceptually versus redesign?** Preserve wire formats, network IDs, session sequencing, CRC/template identity, baseline views/deltas, containment/cells, virtual paths and semantic material/animation behavior. Redesign platform, renderer, jobs, allocation, ownership, UI implementation, audio backend and GPU resources.
 5. **Major unknowns/blockers?** Exhaustive baseline schemas and gameplay handlers; exact animation evaluation/attachment lifecycle; remaining asset versions (notably installed FLOR/0004); full raster API/resource-state contract; DPVS replacement policy; scene-job cancellation; legal redistribution/provenance of legacy assets and middleware; and controlled live-server validation.
-6. **DX12 or Vulkan?** For a custom Windows-first renderer, DX12 remains the leading option because tooling, deployment and HLSL/DXC fit the target. Vulkan only becomes the better initial custom backend if native non-Windows delivery becomes a near-term requirement. This is provisional until the required Godot/custom-engine spike after analysis.
+6. **DX12 or Vulkan?** For a custom Windows-first renderer, DX12 remains the leading option because tooling, deployment and HLSL/DXC fit the target. Vulkan only becomes the better initial custom backend if native non-Windows delivery becomes a near-term requirement. This is provisional until the required prototype host/custom-engine spike after analysis.
 7. **Smallest viable x64 POC?** A headless-capable native x64 executable/library that loads redacted config/logging, establishes the SOE UDP session, sends exact `LoginClientId`, validates/decompresses one reply (preferably `LoginClientToken`), logs typed non-secret results, closes sockets/threads and exits deterministically. No engine, assets, UI or renderer.
 
 ## Major risks
@@ -98,7 +98,7 @@ The replacement should preserve boundary behavior while redesigning internals. F
 4. Complete representative SHT/EFT render-state/constant binding and raster API resource/device/reset mapping.
 5. Expand terrain chunk/LOD/water/flora and DPVS cell/portal runtime tracing; decode FLOR/0004.
 6. Decode `.snd` descriptors and input binding-table formats; finish UI mediator/event lifecycle mapping.
-7. Produce the final pre-build engine matrix and run narrow Godot versus custom DX12/Vulkan feasibility spikes. No wholesale client build before that decision.
+7. Produce the final pre-build engine matrix and run narrow prototype host versus custom DX12/Vulkan feasibility spikes. No wholesale client build before that decision.
 
 ## Phase recommendation
 

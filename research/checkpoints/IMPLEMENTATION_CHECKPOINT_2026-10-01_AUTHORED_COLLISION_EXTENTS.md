@@ -14,7 +14,7 @@ Reuse three Mustafar room meshes, door DTLA root and both leaf meshes. Configura
 
 All six original appearances have primary EXBX/0001 and NULL secondary extents. Independent `verify_authored_collision_extents.py` matches native primary coordinates/radius after F32 normalization and every secondary NULL. Prior pinned POB raw-byte inspection also observes NULL CELL bounds for cells 5/6/7. These are sample statements, not corpus distributions or proof of absent physical collision.
 
-Native synthetic gates cover separate primary/secondary values, NULL versus missing, sphere/box decode, unsupported CMSH and malformed NULL/radius. Full native smoke passes. Godot builds with zero warnings/errors. Link/diff validation follows promotion.
+Native synthetic gates cover separate primary/secondary values, NULL versus missing, sphere/box decode, unsupported CMSH and malformed NULL/radius. Full native smoke passes. Prototype host builds with zero warnings/errors. Link/diff validation follows promotion.
 
 ## Consequence and next probe
 

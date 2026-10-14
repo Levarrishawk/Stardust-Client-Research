@@ -1,6 +1,6 @@
 # Animation event cursor contract
 
-R1-RUNTIME-01 implements an engine-neutral **MODERN playback policy**, not recovered original animation scheduling. It consumes owned `CompressedLocomotion.Messages`; no new MSGS grammar, effects/audio delivery, root translation, animation graph or Godot adapter is added. See [existing grammar and pinned inputs](COMPRESSED_LOCOMOTION_CONTRACT.md) and [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_R1_ANIMATION_EVENTS.md).
+R1-RUNTIME-01 implements an engine-neutral **MODERN playback policy**, not recovered original animation scheduling. It consumes owned `CompressedLocomotion.Messages`; no new MSGS grammar, effects/audio delivery, root translation, animation graph or prototype host adapter is added. See [existing grammar and pinned inputs](COMPRESSED_LOCOMOTION_CONTRACT.md) and [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_R1_ANIMATION_EVENTS.md).
 
 ## API and ownership
 

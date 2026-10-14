@@ -1,6 +1,6 @@
 # Modern terrain GPU upload staging
 
-This is a modern Godot adapter policy, not recovered original client scheduling or LOD. The CPU ownership contract remains [terrain residency](TERRAIN_REGION_RESIDENCY_CONTRACT.md); sampling and movement remain engine-neutral.
+This is a modern prototype host adapter policy, not recovered original client scheduling or LOD. The CPU ownership contract remains [terrain residency](TERRAIN_REGION_RESIDENCY_CONTRACT.md); sampling and movement remain engine-neutral.
 
 ## Publication and ownership
 

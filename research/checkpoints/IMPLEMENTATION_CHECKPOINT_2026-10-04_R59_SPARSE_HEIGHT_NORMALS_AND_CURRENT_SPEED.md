@@ -4,7 +4,7 @@ Date2026-10-04. Question: can positive-cell-only approximate original-layer heig
 
 ## Input identity and tools
 
-Frozen3872-file manifest a21d1d531c1cbd5d34d6acd9abed367b1b0d669153d2cbc6df24a1b86fe2c070; ZIP1c235f4e30ec369056db120e6adc6eaf0eef9b83a66cd7dbaaa17e7a8ba913c6. Executable SHA E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150, read statically only. Original generator and human pins are unchanged from [Round58](IMPLEMENTATION_CHECKPOINT_2026-10-04_R58_APPROXIMATE_LAYER_HEIGHT_AND_SPEED_PLAN.md). Installed .NET8/Godot4.7.2 and Python Fraction/100-digit Decimal; ignored private fixtures/receipts/logs/captures. No download, original execution, live contact or publication.
+Frozen3872-file manifest a21d1d531c1cbd5d34d6acd9abed367b1b0d669153d2cbc6df24a1b86fe2c070; ZIP1c235f4e30ec369056db120e6adc6eaf0eef9b83a66cd7dbaaa17e7a8ba913c6. Executable SHA E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150, read statically only. Original generator and human pins are unchanged from [Round58](IMPLEMENTATION_CHECKPOINT_2026-10-04_R58_APPROXIMATE_LAYER_HEIGHT_AND_SPEED_PLAN.md). Installed historical implementation path (omitted) and Python Fraction/100-digit Decimal; ignored private fixtures/receipts/logs/captures. No download, original execution, live contact or publication.
 
 ## Evidence and findings
 

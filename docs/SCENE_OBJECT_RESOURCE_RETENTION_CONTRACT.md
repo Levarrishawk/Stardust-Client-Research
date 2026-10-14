@@ -4,7 +4,7 @@
 
 The accepted modern generic `SceneWorldCoordinator` retains an exact resource publication across state-only CREO:3 Height and opaque TANO updates. Destroy/recreate of the terminal requires a distinct publication ticket, even when its raw create and encoded source assets are identical. The human publication remains current and retains the exact resource reference. These are **Confirmed modern fixture observations**, not claims about legacy executable runtime or rendering.
 
-Evidence: [R15 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R15_RESOURCE_RETENTION.md), [native fixture](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneObjectResourceRetentionScenarios.cs), [independent oracle](../../SWG-Godot-Client/poc/round15-tests/Assets/verify_retention.py). Existing boundaries remain in [mixed world](SCENE_MIXED_WORLD_CONTRACT.md) and [pure resource validation](SCENE_OBJECT_RESOURCE_VALIDATION_CONTRACT.md).
+Evidence: [R15 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R15_RESOURCE_RETENTION.md), native fixture (external historical reference), independent oracle (external historical reference). Existing boundaries remain in [mixed world](SCENE_MIXED_WORLD_CONTRACT.md) and [pure resource validation](SCENE_OBJECT_RESOURCE_VALIDATION_CONTRACT.md).
 
 ## Sequence and observations
 

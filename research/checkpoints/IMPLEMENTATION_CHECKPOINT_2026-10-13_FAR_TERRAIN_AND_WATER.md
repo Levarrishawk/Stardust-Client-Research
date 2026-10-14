@@ -14,10 +14,10 @@ This is a modern visual policy, not recovered original quadtree/LOD behavior.
   `6039D0C15F9CCB518D72AE01A1ABDF41FCFF2153B5CBF7EB3BA6E6C634A3A427`.
 - TGEN SHA-256
   `B623B789E5F8486414C1D68CD341005E7E25FD97AF30567E64E7AC848DEB6C32`.
-- Existing [height/material slice](../../../SWG-Godot-Client/docs/TATOOINE_REGION_DEVELOPMENT.md),
+- Existing the separate implementation record,
   [water input and consumer evidence](../../docs/TERRAIN_LOCAL_WATER_CONTRACT.md)
   and [residency contract](../../docs/TERRAIN_REGION_RESIDENCY_CONTRACT.md).
-- .NET SDK8.0.300; Godot4.7.2.stable.mono.official.ed1daf0bf; actual Windows
+- .NET SDK8.0.300; prototype host4.7.2.stable.mono.official.ed1daf0bf; actual Windows
   AMD64/D3D12API12_0 Forward+ on NVIDIA RTX4070SUPER.
 - Original installed assets remain private. No original executable execution,
   server connection, commit, push or publication occurred.
@@ -37,7 +37,7 @@ have missed reversed texture phase between them.
 shared heights but different coarse/fine normals and up to 7.5395m interpolation
 gaps at intermediate fine samples. The implementation therefore stitches actual
 fine samples; it does not overlay two surfaces or conceal cracks with skirts.
-The [Core helper](../../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainModernFarTerrainView.cs)
+The Core helper (external historical reference)
 starts no worker and does not alter the fine grounding surface.
 
 **Confirmed scheduler behavior:** the host builds on the existing single CPU
@@ -93,21 +93,21 @@ using mathematical floor, not copied output bounds. Fine-only water retains
   water correction passes 19 methods (13 synthetic/six original). Current default
   inventory is36 suites, with45 synthetic methods in the four added suites and
   14 optional original methods. No monolithic36-suite replay is claimed.
-- Godot builds with zero warnings/errors. The original console export wrapper
+- prototype host builds with zero warnings/errors. The original console export wrapper
   stalled after pack creation; its failed output is retained. Re-export through
   the engine executable completed and is the accepted package.
 
 ## Reproduction and remaining uncertainty
 
-Use the [builder](../../../SWG-Godot-Client/tools/python/build_offline_dx12_client.py) with
+Use the builder (external historical reference) with
 `--stream-region -135 65 --window-chunks 8 --modern-blend --local-water --far-view`
 and explicit local toolchain, package cache, original installation, configuration
 and fresh private output arguments. Run the
-[export verifier](../../../SWG-Godot-Client/tools/python/verify_offline_terrain_client.py) with
+export verifier (external historical reference) with
 `--build BUILD --output FRESH_OUTPUT --original-terrain ORIGINAL_TRN --gpu`.
 Native and independent fixture commands are in the
 [far contract](../../docs/TERRAIN_MODERN_FAR_RING_CONTRACT.md),
-[GPU gate](../../../SWG-Godot-Client/poc/terrain-far-gpu-tests/README.md) and
+GPU gate (external historical reference) and
 [water contract](../../docs/TERRAIN_LOCAL_WATER_CONTRACT.md).
 
 Post-publication wall intervals were31.67..62.05ms in the accepted proof;

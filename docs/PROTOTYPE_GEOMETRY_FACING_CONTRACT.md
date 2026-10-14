@@ -1,6 +1,6 @@
-# Godot geometry-facing boundary
+# Prototype host geometry-facing boundary
 
-Positions and normals reflect Z once: S=diag(1,1,-1). A reflection reverses the sign of cross(B-A,C-A) dot the transformed normal without changing indices. Godot's front triangles are clockwise, as stated in the [Godot4.7 ArrayMesh documentation](https://docs.godotengine.org/en/4.7/classes/class_arraymesh.html). Original tested meshes predominantly have positive cross/normal products, so preserving their indices after reflection produces the correct Godot front face. An additional index reversal was a defect.
+Positions and normals reflect Z once: S=diag(1,1,-1). A reflection reverses the sign of cross(B-A,C-A) dot the transformed normal without changing indices. Prototype host's front triangles are clockwise, as stated in the the separate implementation record. Original tested meshes predominantly have positive cross/normal products, so preserving their indices after reflection produces the correct prototype host front face. An additional index reversal was a defect.
 
 ## Original observations and confidence
 

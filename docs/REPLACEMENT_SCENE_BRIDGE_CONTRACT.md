@@ -4,7 +4,7 @@ Round86 adds optional borrowed `ReplacementPlayerMotionSession? playerMotion = n
 
 ## Question, scope and evidence
 
-Can accepted login/zone application delivery bind one selected world generation, preserve staged lifecycle order, and emit one ready only after an explicit asynchronous minimum-resource provider succeeds? The bounded [ReplacementSceneBridge](../../SWG-Godot-Client/poc/Stardust.Core/Session/ReplacementSceneBridge.cs) does that using the existing SceneWorldCoordinator. It borrows session/world and owns only its minimum-resource job/cancellation. No Godot, terrain decoding, port or world implementation is added.
+Can accepted login/zone application delivery bind one selected world generation, preserve staged lifecycle order, and emit one ready only after an explicit asynchronous minimum-resource provider succeeds? The bounded ReplacementSceneBridge (external historical reference) does that using the existing SceneWorldCoordinator. It borrows session/world and owns only its minimum-resource job/cancellation. No prototype host, terrain decoding, port or world implementation is added.
 
 Confirmed on 2026-10-06: an independently authored in-memory login/zone transcript reaches a matching valid CmdStartScene, stages create/opaque CREO/end-baselines while resources are delayed, then replays those messages and produces one exact protected header-only CmdSceneReady at sequence2. The baseline fixture establishes an opaque envelope, not typed CREO field semantics or a complete player baseline. No visual resource loader is called by these tests. Original-resource publication and live compatibility remain unverified by this component task.
 
@@ -47,7 +47,7 @@ Normal Dispose is idempotent: cancel the owned job and expose DrainCompletion, w
 
 ## Independent tests and reproduction
 
-The [test project](../../SWG-Godot-Client/poc/round84-tests/Runtime/Runtime.csproj) references actual Core directly. [Fixture author](../../SWG-Godot-Client/poc/round84-tests/Runtime/fixtures.py) reuses the accepted83 login author and independent Python SOE peer, then independently packs valid world lifecycle bytes. It writes fresh private JSON and a separate accepted83 base fixture. [Verifier](../../SWG-Godot-Client/poc/round84-tests/Runtime/verify.py) compares the one ready wire against independent seeded CRC/selector framing and sequence2. No unpublished sibling component is imported.
+The test project (external historical reference) references actual Core directly. Fixture author (external historical reference) reuses the accepted83 login author and independent Python SOE peer, then independently packs valid world lifecycle bytes. It writes fresh private JSON and a separate accepted83 base fixture. Verifier (external historical reference) compares the one ready wire against independent seeded CRC/selector framing and sequence2. No unpublished sibling component is imported.
 
 ```powershell
 python poc/round84-tests/Runtime/fixtures.py --out <fresh-private-fixture.json>
@@ -58,7 +58,7 @@ python poc/round84-tests/Runtime/verify.py --fixtures <private-fixture.json> --r
 
 Set private APPDATA/NuGet.Config, DOTNET_CLI_HOME, existing exact offline NUGET_PACKAGES and DOTNET_GENERATE_ASPNET_CERTIFICATE=false. Capture Program stdout to the explicit result log. All artifacts/receipts remain ignored. No native/GPU command is required for this engine-neutral component.
 
-Observed result: zero-warning/error Core and test build;70 checks/18 rejection cases. Tests cover delayed readiness, exact wire, selected identity, ordered opaque staging, unhandled ownership, synchronous/faulted/canceled/ignoring-cancel jobs, duplicate start, wrong ID, early server ready, malformed baseline, failed barrier replay, stale generation, bind/phase errors, foreign thread/reentry, input budget and normal borrowed-owner preservation. QueueZoneApplication also exercises fragmented submission and rejects invalid short headers. Confidence Confirmed for these tested transitions and bytes; actual installed resource minimum policy, Godot actor publication and live server scene readiness remain separate.
+Observed result: zero-warning/error Core and test build;70 checks/18 rejection cases. Tests cover delayed readiness, exact wire, selected identity, ordered opaque staging, unhandled ownership, synchronous/faulted/canceled/ignoring-cancel jobs, duplicate start, wrong ID, early server ready, malformed baseline, failed barrier replay, stale generation, bind/phase errors, foreign thread/reentry, input budget and normal borrowed-owner preservation. QueueZoneApplication also exercises fragmented submission and rejects invalid short headers. Confidence Confirmed for these tested transitions and bytes; actual installed resource minimum policy, prototype host actor publication and live server scene readiness remain separate.
 
 Exact next action: lead joins reviewed injected ports, installed selected-creature resources and presentation adapter, supplies a delayed explicit minimum-resource policy, and independently verifies one ready and full cleanup on the native selected-player path. Keep full terrain/surface parity, arbitrary customization, authority/movement and server-observed disconnect as separate gates.
 

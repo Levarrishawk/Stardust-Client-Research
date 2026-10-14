@@ -2,7 +2,7 @@
 
 ## Scope and public API
 
-[OfflineScenarioManifest](../../SWG-Godot-Client/poc/Stardust.Core/Offline/OfflineScenarioManifest.cs) is an engine-neutral immutable compiler for a modern synthetic configuration. It does not recover legacy configuration or protocol behavior and does not implement transport, factories, asset loading, or a launcher.
+OfflineScenarioManifest (external historical reference) is an engine-neutral immutable compiler for a modern synthetic configuration. It does not recover legacy configuration or protocol behavior and does not implement transport, factories, asset loading, or a launcher.
 
 ```csharp
 using Stardust.Core.Offline;
@@ -52,7 +52,7 @@ Resolved full paths must also remain at most 4096 characters, preserving the lau
 
 ## Validation and reproduction
 
-Confirmed on 2026-10-06: the standalone [test project](../../SWG-Godot-Client/poc/round82-tests/Runtime/Runtime.csproj) passes 28 positive checks and 90 rejection cases; full Core and standalone test builds pass with zero warnings/errors. Tests use authored empty files and a directory, not proprietary assets. They cover order, mixed/all flags, run32, defensive copies, absolute and relative paths, cwd independence, inclusive byte cap, missing keys/files, unknown/case/duplicate keys, recursive duplicates, malformed UTF8/JSON/depth, invalid scalar types, paths and indices.
+Confirmed on 2026-10-06: the standalone test project (external historical reference) passes 28 positive checks and 90 rejection cases; full Core and standalone test builds pass with zero warnings/errors. Tests use authored empty files and a directory, not proprietary assets. They cover order, mixed/all flags, run32, defensive copies, absolute and relative paths, cwd independence, inclusive byte cap, missing keys/files, unknown/case/duplicate keys, recursive duplicates, malformed UTF8/JSON/depth, invalid scalar types, paths and indices.
 
 Example explicit offline commands, using isolated private outputs and existing exact cached packages:
 

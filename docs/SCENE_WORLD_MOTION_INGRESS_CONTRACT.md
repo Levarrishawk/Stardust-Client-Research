@@ -1,6 +1,6 @@
 # Unified world motion ingress
 
-Round18 Networking, October2,2026. The [router](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldMotionApplicationRouter.cs) joins the accepted [compact codec](COMPACT_SCENE_TRANSFORM_CONTRACT.md), [motion store](SCENE_WORLD_OBJECT_MOTION_CONTRACT.md) and [presentation pump](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldPresentationPump.cs). This is a modern replacement policy backed by offline fixtures, not a recovered legacy dispatch or interpolation policy.
+Round18 Networking, October2,2026. The router (external historical reference) joins the accepted [compact codec](COMPACT_SCENE_TRANSFORM_CONTRACT.md), [motion store](SCENE_WORLD_OBJECT_MOTION_CONTRACT.md) and presentation pump (external historical reference). This is a modern replacement policy backed by offline fixtures, not a recovered legacy dispatch or interpolation policy.
 
 ```csharp
 new SceneWorldMotionApplicationRouter(world, motions, worldProjection);
@@ -30,7 +30,7 @@ Observation: independently handpacked root bytes encode high object ID, signed e
 
 Confidence: Confirmed implemented offline behavior; inherited raw grammar is described in the compact contract. Barrier/finalization/parent-drop/serial/freshness choices are explicit modern policy. Original yaw conversion, prediction, interpolation and parent-world resolution remain Unknown/outside this slice. Existing packet/name registries and research/readiness denominators are unchanged.
 
-[Scenario entry point](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldMotionIngressScenarios.cs): Run(string[] originalInputs, string peerPath, string exportPath), with root/config/catalog/bank inputs. [Runner](../../SWG-Godot-Client/poc/round18-tests/Networking/Networking.csproj) and [independent byte/state oracle](../../SWG-Godot-Client/poc/round18-tests/Networking/peer.py) produce and verify synthetic receipts without importing production code. The byte producer reuses prior independent ordinary-packet fixtures.
+Scenario entry point (external historical reference): Run(string[] originalInputs, string peerPath, string exportPath), with root/config/catalog/bank inputs. Runner (external historical reference) and the separate implementation record produce and verify synthetic receipts without importing production code. The byte producer reuses prior independent ordinary-packet fixtures.
 
 ```powershell
 $python = 'C:/Users/ancie/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe'

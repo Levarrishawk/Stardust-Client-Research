@@ -30,7 +30,7 @@ flush failure, empty-stream requirement, persisted temporary-file round trip,
 existing-file no-overwrite and host I/O failure classification without original
 exception/endpoint/username/password strings. The temporary file is deleted.
 Every emitted record's keys are checked against the exact allowlist. Core smoke
-suite passes; Godot's offline host proof writes 18 safe events to an injected
+suite passes; prototype host's offline host proof writes 18 safe events to an injected
 memory journal with zero failures.
 
 ```powershell

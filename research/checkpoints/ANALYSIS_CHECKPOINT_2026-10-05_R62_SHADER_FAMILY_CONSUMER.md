@@ -29,7 +29,7 @@ Prior61 manifest SHA
 `e2616419cdb99eabee437e166e2be6e7446d5f7dc6a6a80efc05301b0b7f451a`.
 All3984 incoming files were postverified. No HEAD/index/private/unrelated mutation.
 
-Exactly three assigned additions: [verifier](../../../SWG-Godot-Client/tools/python/verify_terrain_shader_family_consumer.py),
+Exactly three assigned additions: verifier (external historical reference),
 [durable contract](../../docs/TERRAIN_SHADER_FAMILY_CONSUMER_CONTRACT.md), and this
 checkpoint; two new own62Assets runner files. No existing public file edits,
 canonical row additions, shared status/ledger edits or unfinished sibling input.

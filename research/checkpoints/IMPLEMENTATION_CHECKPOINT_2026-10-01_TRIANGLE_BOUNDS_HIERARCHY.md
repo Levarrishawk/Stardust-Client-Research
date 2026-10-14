@@ -14,7 +14,7 @@ Can static triangle queries scale beyond the2,048 default without changing conta
 
 512 deterministic native varied queries against128 arbitrary triangles match exhaustive contact records exactly, including status, time, ID and normal;284 produce contact. Broad phase passes8,445 candidates versus65,536 exhaustive triangle tests. A3,072-triangle grid (explicitly beyond default capacity) admits one candidate/19 node visits for its selected sweep and matches exhaustive contact. Ownership mutation, equal-time ordering, distant near-boundary, default/maximum resource and invalid capacity cases pass. These are work counts, not a performance benchmark.
 
-Full native smoke and Godot build pass. Original hall extraction/16 requests/1,600 stable holds/16 retreats plus independent raw mesh/floor/LP comparison remain passing after the hierarchy change. Source pins and canonical geometry hash are unchanged; see the [original hall checkpoint](IMPLEMENTATION_CHECKPOINT_2026-10-01_ORIGINAL_HALL_COLLISION.md).
+Full native smoke and prototype host build pass. Original hall extraction/16 requests/1,600 stable holds/16 retreats plus independent raw mesh/floor/LP comparison remain passing after the hierarchy change. Source pins and canonical geometry hash are unchanged; see the [original hall checkpoint](IMPLEMENTATION_CHECKPOINT_2026-10-01_ORIGINAL_HALL_COLLISION.md).
 
 ## Confidence and consequence
 

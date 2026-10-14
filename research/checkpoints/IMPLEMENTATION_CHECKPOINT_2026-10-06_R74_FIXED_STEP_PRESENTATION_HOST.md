@@ -13,13 +13,13 @@ Accepted73 frozen input:4404 files. Manifest SHA-256
 Trusted sync preserves HEAD/index/private/unrelated work before edits. Original executable
 is hashed only against
 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`.
-Cached Python/.NET8/Godot4.7.2 .NET x64 and offline packages execute only replacement
+Cached historical implementation path (omitted) .NET x64 and offline packages execute only replacement
 scenes. Frozen Core, default host proof and two compact accepted catalog/bank profiles
 are staged privately from the verified archive. No original assets are read.
 
 ## Findings versus interpretation
 
-Observation: [the scheduled branch](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldPresentationHost.cs)
+Observation: the scheduled branch (external historical reference)
 reads schedule once, bounds0..8, tests optional continue before each slot and executes
 fixed BeforeStep, actual Step and completion independently. Four supplied0/1/2/8 counts
 agree with pre-native exact traces and yield11 real frozen concrete pump calls. Confidence:
@@ -52,9 +52,9 @@ and planner lifetime with callers; no Runtime74 source or CancellationToken API 
 
 ## Validation
 
-[Independent producer/verifier](../../../SWG-Godot-Client/poc/round74-tests/Rendering/verify_picker.py)
+the separate implementation record
 generates counts, call trace and25 exact failure prefixes before each native run.
-[Standalone verification](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldFixedStepHostVerification.cs)
+Standalone verification (external historical reference)
 uses a counting/fault-injection wrapper around actual frozen SceneWorldPresentationPump,
 with a cold generic world and loader/factory that reject if reached. A wrapper fault
 before its inner call is explicitly distinguished from an actual concrete pump call.
@@ -72,7 +72,7 @@ ambiguity remain in ignored failed outputs; corrected replays are separate. Priv
 image was inspected. Eight runner guards, PowerShell syntax, Python/XML/Markdown,
 workspace validation, diff whitespace, scope/hash and HEAD/index/private-ignore gates pass.
 Exactly one allowed existing host changes;4403 frozen files stay unchanged, with nine
-new public files. The offline Godot root-certificate-store warning remains with exit0;
+new public files. The offline prototype host root-certificate-store warning remains with exit0;
 no network or resource-leak diagnostic is observed.
 
 No main scene, shared ledger/registry or unfinished sibling import changed. Cold-pump

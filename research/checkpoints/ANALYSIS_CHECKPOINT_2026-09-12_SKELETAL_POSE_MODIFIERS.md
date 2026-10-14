@@ -83,7 +83,7 @@ A replacement can implement these behaviors with an engine animation graph, but 
 - skeleton transform names are asset contracts and missing transforms are tolerated;
 - modifier-disable configuration remains observable behavior.
 
-Godot, DX12, or another renderer does not change these requirements. They belong to skeletal evaluation and original-asset compatibility, not the graphics API.
+Prototype host, DX12, or another renderer does not change these requirements. They belong to skeletal evaluation and original-asset compatibility, not the graphics API.
 
 For a native 64-bit implementation, child animation references, modifier ownership and bone handles must use native safe handles/pointers internally. The `yaw_dir` value, FourCC tags, serialized child order and asset transform names remain fixed-width compatibility data.
 

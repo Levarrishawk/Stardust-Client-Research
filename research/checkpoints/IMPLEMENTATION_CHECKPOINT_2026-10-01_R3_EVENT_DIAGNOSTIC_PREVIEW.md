@@ -22,26 +22,12 @@ Observation: cancellation at the first source lookup closes archive scope, trans
 
 ## Exact verification commands
 
-PowerShell from the checkout root, with an existing private cache copied from the accepted main cache; sources-cleared config ensures offline restore. Godot SDK4.7.2 was reused from the existing local SDK cache into the ignored package cache, not downloaded.
+PowerShell from the checkout root, with an existing private cache copied from the accepted main cache; sources-cleared config ensures offline restore. Prototype host SDK4.7.2 was reused from the existing local SDK cache into the ignored package cache, not downloaded.
 
-```powershell
-$env:APPDATA = Join-Path $env:TEMP 'stardust-runtime-r3-appdata'
-$env:NUGET_PACKAGES = Join-Path $PWD 'local-private/round1/nuget-packages'
-dotnet restore poc/round3-tests/Runtime/Runtime.csproj --configfile poc/round3-tests/Runtime/NuGet.Config --packages $env:NUGET_PACKAGES -p:NuGetAudit=false
-dotnet run --project poc/round3-tests/Runtime/Runtime.csproj --no-restore -p:UseSharedCompilation=false -- C:/Stardust-DEV C:/Stardust-DEV/swgemu_live.cfg
-dotnet restore poc/Stardust.Godot/Stardust.Godot.csproj --configfile poc/round3-tests/Runtime/NuGet.Config --packages $env:NUGET_PACKAGES -p:NuGetAudit=false
-dotnet build poc/Stardust.Godot/Stardust.Godot.csproj --no-restore -p:UseSharedCompilation=false -warnaserror
-dotnet restore poc/Stardust.Core.SmokeTests/Stardust.Core.SmokeTests.csproj --configfile poc/round3-tests/Runtime/NuGet.Config --packages $env:NUGET_PACKAGES -p:NuGetAudit=false
-dotnet build poc/Stardust.Core.SmokeTests/Stardust.Core.SmokeTests.csproj --no-restore -p:UseSharedCompilation=false
-$eventGodot = 'C:/Users/ancie/Documents/GitHub/Stardust-Client/local-private/toolchain/godot-4.7.2-dotnet/Godot_v4.7.2-stable_mono_win64/Godot_v4.7.2-stable_mono_win64_console.exe'
-& tools/powershell/Invoke-StardustAnimationEventPreview.ps1 -GodotPath $eventGodot -ArchiveRoot C:/Stardust-DEV -Configuration C:/Stardust-DEV/swgemu_live.cfg -Headless
-& tools/powershell/Invoke-StardustAnimationEventPreview.ps1 -GodotPath $eventGodot -ArchiveRoot C:/Stardust-DEV -Configuration C:/Stardust-DEV/swgemu_live.cfg -Headless -CancelLoad
-$env:PYTHONUTF8 = '1'
-& C:/Users/ancie/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe tools/python/validate_organized_workspace.py .
-git -c safe.directory=C:/Users/ancie/.codex/worktrees/9175/Stardust-Client -c core.safecrlf=false diff --check
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
 
-Native sink suite and both pinned originals PASS. Core/Godot/shared SmokeTests builds PASS zero warnings/errors. Headless original preview and first-lookup cancellation PASS. Godot logs include the existing ERROR: Failed to read the root certificate store at startup; it is a nonfatal existing environment issue and these offline fixtures exit0 with acceptance markers. No network/certificate changes or GPU/visible run. Full shared native suite execution is not claimed; new synthetic/original scenarios execute through the permanent console and shared project compilation verifies inclusion. Delivery-counter exhaustion and timed exit-during-load are unrun, not execution-verified.
+
+Native sink suite and both pinned originals PASS. historical implementation path (omitted) SmokeTests builds PASS zero warnings/errors. Headless original preview and first-lookup cancellation PASS. Prototype host logs include the existing ERROR: Failed to read the root certificate store at startup; it is a nonfatal existing environment issue and these offline fixtures exit0 with acceptance markers. No network/certificate changes or GPU/visible run. Full shared native suite execution is not claimed; new synthetic/original scenarios execute through the permanent console and shared project compilation verifies inclusion. Delivery-counter exhaustion and timed exit-during-load are unrun, not execution-verified.
 
 ## Scope and handoff
 
@@ -56,11 +42,8 @@ Launcher now supports separate -CapturePath/-CaptureClip walk or run. Capture pa
 
 Lead GPU commands after integration and rendering ownership release (not executed here):
 
-```powershell
-New-Item -ItemType Directory -Force local-private/round3/animation-events | Out-Null
-& tools/powershell/Invoke-StardustAnimationEventPreview.ps1 -GodotPath $eventGodot -ArchiveRoot C:/Stardust-DEV -Configuration C:/Stardust-DEV/swgemu_live.cfg -CapturePath "$PWD/local-private/round3/animation-events/walk-fresh.png" -CaptureClip walk
-& tools/powershell/Invoke-StardustAnimationEventPreview.ps1 -GodotPath $eventGodot -ArchiveRoot C:/Stardust-DEV -Configuration C:/Stardust-DEV/swgemu_live.cfg -CapturePath "$PWD/local-private/round3/animation-events/run-fresh.png" -CaptureClip run
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 
 Final worker validation: workspace validator1026 Markdown/0 broken links/0 private links;2602 names/0 duplicates;345 packet rows. Scope helper review passes exactly11 assigned paths (ten additions plus Main.cs). Main.cs was rebuilt byte-for-byte from the verified baseline ZIP with only the dispatch insertion, using the observed CRLF at that insertion point. Removing that inserted byte sequence reproduces the exact baseline; normalized diff adds one line and removes none. Private normalized diff and byte-preservation proof accompany the hash manifest. Focused diff checks pass.

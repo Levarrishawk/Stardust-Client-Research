@@ -1,9 +1,9 @@
 # R14-G: guarded owned static visual and original terminal lifecycle
 
 2026-10-02. Question: can accepted static resources become an attachable, current
-Godot visual while retaining all original terminal LODs, keeping the explicit SWTS
+Prototype host visual while retaining all original terminal LODs, keeping the explicit SWTS
 inspection exception bounded, and retiring stale ownership deterministically?
-Stop condition: scoped adapter plus standalone native/Godot/source/mip/pixel proof,
+Stop condition: scoped adapter plus standalone historical implementation path (omitted) proof,
 cleanup and lead handoff. Authorization is Round14 only.
 
 ## Inputs and orientation
@@ -30,13 +30,13 @@ Accepted terminal catalog:CRC2907007746; object
 `E9FE68A85ED45CA33AC2715BD7275C01AFB1CFC837E5CEB61E8E3AB567586281`;
 APT SHA `74316F0F9E28961C3AB983D5DF51DA313A3A4E8AD96358FECC04F747801B6021`.
 Explicit pinned SWTS frame0 as recorded in the durable contract. Existing .NET8,
-Godot4.7.2 Mono, cached Python/Pillow and source-cleared offline NuGet were used.
+Prototype host4.7.2 Mono, cached Python/Pillow and source-cleared offline NuGet were used.
 No executable addresses were relied on; no executable execution, networking,
 external mutation, downloads or publication.
 
 ## Observations and implementation consequences
 
-[Adapter](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneStaticVisual.cs) requires a current finalized
+Adapter (external historical reference) requires a current finalized
 exact registry handle with byte-identical raw create, or caller-derived Transform3D
 plus a borrowed serialized lifetime predicate. Registry placement uses accepted
 SceneCreatePlacementBuilder Reject policy and SRS reflection. Predicate checks
@@ -56,19 +56,19 @@ GPU IDs. Unsupported transforms and foreign creates leave placement unchanged.
 Confidence: **Confirmed**; consequence: source completeness and shader fidelity are
 separate, and this inspection exception must remain opt-in and labeled.
 
-[Standalone preview](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneStaticVisualPreview.cs) loads two
+Standalone preview (external historical reference) loads two
 independent terminal closures off-owner in one read-only archive scope. Each has27
 source reads/1,401,794 bytes, four inherited templates/four LODs, five shaders/four
 effects, seven textures/all62 CPU mips. All source evidence remains unchanged after
 visual lifecycle. Native clearing54 borrowed resolver buffers preserves complete
-evidence. The [independent original oracle](../../../SWG-Godot-Client/poc/round14-tests/Rendering/Verify-Original.py)
+evidence. The independent original oracle (external historical reference)
 reconstructs source union/priority/SHA, inheritance, geometry and all62 original
 mip hashes; native/GPU/headless records agree. Confidence: **Confirmed**.
 
 A and B use independently authored high-bit IDs and nonunit quaternion
 (.2,-0,.3,1.7), with wire positions(-2,7,4)/(8,7,4). A's core origin is(-2,4,7),
-Godot origin(-2,4,-7), norm1.7378147687453016. The
-[independent visual oracle](../../../SWG-Godot-Client/poc/round14-tests/Rendering/Verify-Visual.py)
+Prototype host origin(-2,4,-7), norm1.7378147687453016. The
+independent visual oracle (external historical reference)
 uses quaternion-vector cross products and SRS to verify all basis columns rather
 than copying the implementation's matrix equations. Raw signed zero remains in
 47-byte create evidence. A initial handle2/incarnation1 becomes handle6/incarnation5
@@ -86,9 +86,9 @@ all62 CPU mips are independently audited, including auxiliary textures.
 
 ## Validation and corrections
 
-Godot build passes with zero warnings/errors. Native68 negatives include all47
+Prototype host build passes with zero warnings/errors. Native68 negatives include all47
 create truncations, descriptor/policy/placement/capacity and foreign/lifecycle/reset/
-close checks. Godot22 negatives plus16 selections cover four wrong-thread actions,
+close checks. Prototype host22 negatives plus16 selections cover four wrong-thread actions,
 budget rejection before allocation, detached parent, stale/foreign/disposed state,
 false injected guard, injected retirement, stale/faulted transfer rollback and
 strict-default rejection. Positive cleanup allocates/disposes7 roots; cancel
@@ -113,8 +113,8 @@ research metrics/registries/ledgers are unchanged and lead-owned.
 
 Twelve new files, no baseline file modification:
 
-- `poc/Stardust.Godot/SceneStaticVisual.cs`
-- `poc/Stardust.Godot/SceneStaticVisualPreview.cs`
+- historical prototype identifier (omitted)
+- historical prototype identifier (omitted)
 - `tools/powershell/Invoke-StardustSceneStaticVisualPreview.ps1`
 - `docs/SCENE_STATIC_VISUAL_CONTRACT.md`
 - this checkpoint

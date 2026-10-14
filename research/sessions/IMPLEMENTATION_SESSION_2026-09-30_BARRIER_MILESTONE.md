@@ -4,7 +4,7 @@ Continues the [portal transfer milestone](IMPLEMENTATION_SESSION_2026-09-30_PORT
 
 Read the [contract](../../docs/PORTAL_BARRIER_COLLISION_CONTRACT.md) and [checkpoint](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_BARRIER_COLLISION.md). Actor bounds can stop before transfer while retaining the source floor owner; changing current permission resumes motion. Unsupported nonlevel requests stop explicitly. Physical leaf clearance remains separate.
 
-Validation: full smoke tests and warning-free build; independent agreement across 291 layouts, 7,642 references and 21,693 geometry/policy probes. Godot verifies 12 level links with 24 contact/recovery probes, two explicit nonlevel stops, two-pick actor controls and existing transfer/path/GPU gates. Capture visually reviewed. Four canonical names bring the registry to 2,597; research scores and packet coverage unchanged.
+Validation: full smoke tests and warning-free build; independent agreement across 291 layouts, 7,642 references and 21,693 geometry/policy probes. Prototype host verifies 12 level links with 24 contact/recovery probes, two explicit nonlevel stops, two-pick actor controls and existing transfer/path/GPU gates. Capture visually reviewed. Four canonical names bring the registry to 2,597; research scores and packet coverage unchanged.
 
 New insight: runtime eligibility uses LeadingByte exclusion and SolidByte support, while WindingByte is separate. The inversion pass belongs only to unsupported PRTO/0002. Permission barrier activity does not read visual opening fraction; raw collision mode 1 has distinct handling.
 

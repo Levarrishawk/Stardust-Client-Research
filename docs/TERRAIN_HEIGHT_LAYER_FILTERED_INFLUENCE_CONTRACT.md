@@ -1,8 +1,8 @@
 # Boundary-admitted height-layer FFRA influence
 
-Round 57, 2026-10-04. [TerrainHeightLayerFilteredInfluence](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainHeightLayerFilteredInfluence.cs) composes the actual [round 56 boundary admission](TERRAIN_HEIGHT_LAYER_BOUNDARY_ADMISSION_CONTRACT.md) with one owned [FFRA rule](TERRAIN_GENERATOR_FRACTAL_FILTER_RULE_CONTRACT.md). It produces local influence and a separate incoming product for a complete grid. AHFR stays unevaluated; this is not ancestor traversal or full terrain generation.
+Round 57, 2026-10-04. TerrainHeightLayerFilteredInfluence (external historical reference) composes the actual [round 56 boundary admission](TERRAIN_HEIGHT_LAYER_BOUNDARY_ADMISSION_CONTRACT.md) with one owned [FFRA rule](TERRAIN_GENERATOR_FRACTAL_FILTER_RULE_CONTRACT.md). It produces local influence and a separate incoming product for a complete grid. AHFR stays unevaluated; this is not ancestor traversal or full terrain generation.
 
-See [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainHeightLayerFilteredInfluenceScenarios.cs), [independent Fraction oracle](../../SWG-Godot-Client/poc/round57-tests/Assets/peer.py), [isolated runner](../../SWG-Godot-Client/poc/round57-tests/Assets/Invoke-SelectedRule.ps1) and [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R57_HEIGHT_LAYER_FILTERED_INFLUENCE.md).
+See native scenarios (external historical reference), independent Fraction oracle (external historical reference), isolated runner (external historical reference) and [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R57_HEIGHT_LAYER_FILTERED_INFLUENCE.md).
 
 ## Exact input identity and eligibility
 

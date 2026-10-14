@@ -1,6 +1,6 @@
 # Independent configured playground transport generations
 
-[transport_fixtures.py](../../SWG-Godot-Client/poc/round81-tests/Networking/transport_fixtures.py) is an importable Python fixture producer and verifier for frozen configured Version13. It reuses the isolated [Round14 independent encoder](../../SWG-Godot-Client/poc/round14-tests/Networking/peer.py); it does not import production codecs, sibling Round81 work, or run a socket. These are authored synthetic identities, not live authentication or server session semantics.
+transport_fixtures.py (external historical reference) is an importable Python fixture producer and verifier for frozen configured Version13. It reuses the isolated Round14 independent encoder (external historical reference); it does not import production codecs, sibling Round81 work, or run a socket. These are authored synthetic identities, not live authentication or server session semantics.
 
 ## Producer API
 
@@ -22,12 +22,12 @@ Runtime terrain failure remains distinct from root failure: a failure after N co
 
 ## Evidence and reproduction
 
-[replay.py](../../SWG-Godot-Client/poc/round81-tests/Networking/replay.py) passes35 positive checks/43 rejection cases before native comparisons. Three authored stationary generations have120/1/120 samples,2/0/2 roots, exact initial sequence0, heartbeat at sample110, and a strict completed1/attempted2 runtime-fault report with healthy roots. Source profile/application objects stay unchanged; round-trip regeneration recovers the source exactly. Distinct tested seeds reject old-seed correction ACK CRCs. Transport-only boundary tests also reject incorrect authored steps, Boolean steps and failed ACK release. CRC2 is finite integrity checking; rejection of these fixtures is not a universal mathematical uniqueness claim.
+replay.py (external historical reference) passes35 positive checks/43 rejection cases before native comparisons. Three authored stationary generations have120/1/120 samples,2/0/2 roots, exact initial sequence0, heartbeat at sample110, and a strict completed1/attempted2 runtime-fault report with healthy roots. Source profile/application objects stay unchanged; round-trip regeneration recovers the source exactly. Distinct tested seeds reject old-seed correction ACK CRCs. Transport-only boundary tests also reject incorrect authored steps, Boolean steps and failed ACK release. CRC2 is finite integrity checking; rejection of these fixtures is not a universal mathematical uniqueness claim.
 
 ```powershell
 python poc/round81-tests/Networking/replay.py --profile <accepted-private-Version13-profile.json> --output-dir local-private/round81-review
 ```
 
-The worker also compiled frozen80 Godot offline with zero warnings/errors and executed one12-update headless configured idle host with accepted original local terrain/actor resources. An independent pose from the accepted before-native movement fixture was written to an oracle before launch. Exact handshake, one sequence0 root at sample10, ACK,12 cadence rows, BudgetCompleted and empty teardown pass. This is one real child, not a repeated full persistent-host proof. Original executable execution was unnecessary and no VA claim is made.
+The worker also compiled frozen80 prototype host offline with zero warnings/errors and executed one12-update headless configured idle host with accepted original local terrain/actor resources. An independent pose from the accepted before-native movement fixture was written to an oracle before launch. Exact handshake, one sequence0 root at sample10, ACK,12 cadence rows, BudgetCompleted and empty teardown pass. This is one real child, not a repeated full persistent-host proof. Original executable execution was unnecessary and no VA claim is made.
 
 Frozen80 full-host admission hardcodes connection0xF00D00DB/seed0xA1B2C3D4 in `ScenePumpedTerrainPointTarget.LoadPointTargetArguments`. Therefore its admission cannot execute distinct reseeded full profiles unchanged. The lead owns the joined host admission/reset work; the worker does not edit that shared file. Next: feed normal401, strict225/226 and recovery401 segments with independently authored movement/quaternion/runtime expectations through this API, alongside the existing full behavior oracle. [Investigation record](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R81_TRANSPORT_GENERATIONS.md).

@@ -1,6 +1,6 @@
 # Accepted-displacement locomotion event preview
 
-Round 4 adds an engine-neutral modern preview policy. It does not establish the original client's event scheduling. Moving clips advance from accepted planar displacement after collision resolution; elapsed time advances idle. The wrapper produces owned diagnostics, with no audio, effects, root-motion application, animation graph, or Godot integration.
+Round 4 adds an engine-neutral modern preview policy. It does not establish the original client's event scheduling. Moving clips advance from accepted planar displacement after collision resolution; elapsed time advances idle. The wrapper produces owned diagnostics, with no audio, effects, root-motion application, animation graph, or prototype host integration.
 
 LocomotionEventPreviewClock takes idle/walk/run PreviewLocomotionClip descriptors, an explicit run threshold, and the corresponding CompressedLocomotion event sources. Source and descriptor EndFrame must match. Callers must pair descriptors derived from the same prepared clips; event sources do not carry frame-rate metadata. Tick(seconds, acceptedWorldDelta, active) returns a LocomotionEventPreviewBatch containing State, Generation, UnwrappedPhase, Advanced, and ordered occurrences. Reset(heading) returns to idle and starts a new generation.
 

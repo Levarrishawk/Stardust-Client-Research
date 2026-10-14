@@ -2,7 +2,7 @@
 
 ## Question and stopping condition
 
-Can the existing owned MSGS records feed a deterministic bounded engine-neutral event cursor with explicit modern fractional/loop/control policy? Stop at independent synthetic and pinned original tests, atomic guards, ownership and lead handoff. No original scheduler recovery, effects/audio delivery, root translation, Godot or animation graph change.
+Can the existing owned MSGS records feed a deterministic bounded engine-neutral event cursor with explicit modern fractional/loop/control policy? Stop at independent synthetic and pinned original tests, atomic guards, ownership and lead handoff. No original scheduler recovery, effects/audio delivery, root translation, prototype host or animation graph change.
 
 ## Baseline, inputs and tools
 

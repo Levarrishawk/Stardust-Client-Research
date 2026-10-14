@@ -17,7 +17,7 @@ All requests specify Low reasoning and preparation-only orientation, followed by
 
 Managed worktrees were created detached at the primary HEAD; lead assigns codex/ worker branches before the first implementation round. Do not assume a specialty-to-worktree mapping until each task reports its actual checkout. Four observed checkout suffixes are61c9,a94e,bdb2,ec53. No commits or changes to the primary HEAD occurred.
 
-Validation: main Godot build passes with0 warnings/errors; organized-workspace validator and diff check pass; no staged paths. Native/GPU acceptance from the previous completed session remains historical verification rather than new preparation execution.
+Validation: main prototype host build passes with0 warnings/errors; organized-workspace validator and diff check pass; no staged paths. Native/GPU acceptance from the previous completed session remains historical verification rather than new preparation execution.
 
 ## Resume
 

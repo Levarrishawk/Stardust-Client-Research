@@ -1,9 +1,9 @@
 # Offline preview focus owner
 
 October6,2026. Modern replacement policy for focus loss and return. No original
-client focus behavior is inferred. [Source](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineFocusHost.cs),
-[native proof](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineFocusHostVerification.cs),
-[independent model](../../SWG-Godot-Client/poc/round76-tests/Rendering/verify_picker.py).
+client focus behavior is inferred. Source (external historical reference),
+native proof (external historical reference),
+independent model (external historical reference).
 
 ## API and exact ownership
 
@@ -23,7 +23,7 @@ handlers to Window.FocusExited and FocusEntered. Failed admission clears referen
 and permits retry. It owns only its node, two signal connections, primitive state
 and one latest diagnostic. It borrows callbacks and all scene/controller/input objects.
 
-The creating managed thread and Godot main thread are required for all explicit
+The creating managed thread and prototype host main thread are required for all explicit
 methods and getters. Every substantive transition checks exact owner attachment,
 parent, viewport and window before and after callbacks, including queued deletion.
 The Configure token is retained as lifetime cancellation; HandleFocus also admits a
@@ -69,11 +69,11 @@ Dispose and reimplemented IDisposable.Dispose close and Free the own node; the p
 native disposal callback never Free-recurses. Raw attached/detached Free, idle parent
 Free/QueueFree and repeated explicit disposal are supported by actual native tests.
 Use the concrete host or IDisposable for explicit own-node deletion; statically
-GodotObject-typed Dispose retains Godot binding-disposal semantics.
+Prototype hostObject-typed Dispose retains prototype host binding-disposal semantics.
 
 ## Confirmed evidence and limits
 
-Actual Godot4.7.2 .NET runs pass81 headless/82 GPU checks. Independently authored
+Actual prototype host4.7.2 .NET runs pass81 headless/82 GPU checks. Independently authored
 pre-native expectations compare22 focus rows, exact callback trace,22 failure prefixes
 and five native teardown outcomes. Both initial pause values, repeated signals,
 manual/run clear/fresh admission, lifetime/per-call cancellation, caught reentry,
@@ -82,7 +82,7 @@ and survival of unrelated listeners/borrowed owners are covered. The accepted75
 keyboard proof passes74 unchanged checks,15 actions,16 negatives and five teardown
 cases. Build has zero warnings/errors; no leak/resource-in-use diagnostics occur.
 
-Window signals are synthetically injected into real Godot Window instances. This
+Window signals are synthetically injected into real prototype host Window instances. This
 confirms connection/routing semantics, not OS scheduling, physical focus changes or
 keyboard hardware. The GPU run completes an actual rendered frame; no new visible
 UI is introduced. Original focus policy, full preview/controller integration,

@@ -56,8 +56,8 @@ abort/check/commit/release, owner-thread/foreign/stale candidate checks,
 incarnation history/recreation/acknowledgment/close and four exact/one-less
 two-actor variable-output cap cases. World routing is not claimed.
 
-Actual separate Core/SmokeTests/Godot builds pass zero warnings/errors. Default
-smoke reports18 journal events/zero failures. Godot adapter source is unchanged
+Actual separate historical implementation path (omitted) builds pass zero warnings/errors. Default
+smoke reports18 journal events/zero failures. Prototype host adapter source is unchanged
 in this round; fresh accepted41 headless/GPU evidence is retained with its date.
 Canonical reconciliation is complete. Exact main frozen scope:58 changes,
 46 additions/12 existing; zero unrelated changes or deletions. Main HEAD and

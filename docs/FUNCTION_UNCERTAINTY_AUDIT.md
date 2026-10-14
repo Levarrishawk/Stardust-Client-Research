@@ -1,5 +1,8 @@
 # Function uncertainty audit
 
+Current accounting — October 14, 2026: **2,626 unique curated semantic addresses**, zero duplicate rows. Exhaustive function reversal remains **uncalibrated**; historical counts below are dated evidence. See [research status](../ANALYSIS_STATUS.md).
+
+
 **Current routing (2026-09-24):** The 2026-09-22 queue below is a historical snapshot and omits later-confirmed material animation and forward-shader issues. Use the [2026-09-24 material-uncertainty reconciliation](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-24_MATERIAL_UNCERTAINTY_RECONCILIATION.md) and [workstream inventory](../WORKSTREAM_INVENTORY.md) as the active list. The 2,000-plus provisional-name addresses are identified evidence, not unresolved original functions.
 
 Date opened: 2026-09-12  
@@ -112,7 +115,7 @@ This queue is intentionally short and should shrink as blocks close. It is not e
 | closed | customization presentation data | all 18 DTII fields, 467-row corpus, species/group hierarchy, height-scale exception, and top-level creation/image-design route are mapped | exact widget geometry/localized labels are UI breadth |
 | closed | customization group instances | all six fields, 96-row corpus, composite-key loader and lookup are mapped | historical internal container names are not behaviorally material |
 | closed | equipment slot rules | SRMG/BIND grammar, SLOT/NEGT/ANDT/ORTS AST, all four shipped expressions, factory registry, live object consumer and derived-variable insertion are mapped | concrete customization-owner C++ class name remains Strong rather than Confirmed |
-| closed | CKAT/KFAT QCHN channel | exact compressed record, 11/11/10 sign-magnitude split, quantizer selectors, root-versus-joint placement and `[w,x,y,z]` result are closed; reconstructed nonnegative component is `w` | Godot adapter fixtures now pass with Z reflection and quaternion mapping `[-x,-y,z,w]`; see the 2026-09-22 coordinate checkpoint |
+| closed | CKAT/KFAT QCHN channel | exact compressed record, 11/11/10 sign-magnitude split, quantizer selectors, root-versus-joint placement and `[w,x,y,z]` result are closed; reconstructed nonnegative component is `whistorical prototype identifier (omitted)[-x,-y,z,w]`; see the 2026-09-22 coordinate checkpoint |
 | closed | SMAT SFSK/APAG policy | SFSK bypasses intermediate skeletal detail index 1 beyond the near threshold; APAG bypasses the normal age test for periodic animation/action generation; all nine deployed assets are identified | original acronym expansions are naming-only |
 
 ## Not material unknowns

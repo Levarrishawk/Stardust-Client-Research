@@ -2,7 +2,7 @@
 
 ## Question and stopping condition
 
-Can a clean engine-neutral implementation decode the original style table, move one named normal leaf using the recovered curve and determine conservative actor clearance, with independent byte/math checks and a working Godot adapter? Stop after one named style passes; defer full interior wiring, paired leaves, force fields and original narrow-phase ordering.
+Can a clean engine-neutral implementation decode the original style table, move one named normal leaf using the recovered curve and determine conservative actor clearance, with independent byte/math checks and a working prototype host adapter? Stop after one named style passes; defer full interior wiring, paired leaves, force fields and original narrow-phase ordering.
 
 ## Inputs and identity
 
@@ -22,25 +22,21 @@ The [durable contract](../../docs/SINGLE_LEAF_DOOR_CONTRACT.md) records observat
 
 Confirmed refinements: retention radius is 1.5 times authored radius; new-contact center is local `(0,1,0)` with authored radius; movement uses a power/cosine blend, not raw linear fraction. Exact legacy lookup case behavior, denied-contact secondary behavior, general actor collision dispatch and narrow-phase leaf extent choice remain Unknown. Server `MMOCoreORB/sql/datatables.sql:67` is vocabulary correlation only.
 
-Implementation is independently authored in [decoder](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/DoorStyleTableDecoder.cs), [asset reader](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/SingleLeafDoorAsset.cs), [runtime](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/SingleLeafDoorRuntime.cs), [synthetic scenarios](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/DoorLeafScenarios.cs) and [Godot adapter](../../../SWG-Godot-Client/poc/Stardust.Godot/Main.Door.cs). The existing collider gains an unpadded explicit-box constructor. Original curve precision is interpreted with modern double intermediates and F32 pi; no x87 bit-equivalence claim. Frame/contact policy remains an explicit modern seam.
+Implementation is independently authored in decoder (external historical reference), asset reader (external historical reference), runtime (external historical reference), synthetic scenarios (external historical reference) and the separate implementation record. The existing collider gains an unpadded explicit-box constructor. Original curve precision is interpreted with modern double intermediates and F32 pi; no x87 bit-equivalence claim. Frame/contact policy remains an explicit modern seam.
 
 ## Reproduction and validation
 
 With .NET 8 and Python available, from repository root:
 
-```powershell
-dotnet run --no-restore --project poc/Stardust.Core.SmokeTests
-dotnet build --no-restore poc/Stardust.Godot
-python tools/python/verify_single_leaf_door.py C:\Stardust-DEV C:\Stardust-DEV\swgemu_live.cfg local-private/generated-evidence/door-style-milestone poc/Stardust.Core.SmokeTests/bin/Debug/net8.0/Stardust.Core.SmokeTests.dll
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
 
-The [independent verifier](../../../SWG-Godot-Client/tools/python/verify_single_leaf_door.py) reads effective archives, pins the inputs, decodes all rows and the primary box independently, then checks native output against its controller/curve and axial box oracle. Result: **124 rows, 100 frames, 60 blocked and 40 clear, three source identities**, zero discrepancies. Detailed summary and native output remain private. The synthetic suite includes malformed inputs, contact cap/pruning, hysteresis, revoked permission, callback failure, transformed owner and deterministic cleanup. Full core smoke and Godot build pass.
+
+The independent verifier (external historical reference) reads effective archives, pins the inputs, decodes all rows and the primary box independently, then checks native output against its controller/curve and axial box oracle. Result: **124 rows, 100 frames, 60 blocked and 40 clear, three source identities**, zero discrepancies. Detailed summary and native output remain private. The synthetic suite includes malformed inputs, contact cap/pruning, hysteresis, revoked permission, callback failure, transformed owner and deterministic cleanup. Full core smoke and prototype host build pass.
 
 Bounded headless/GPU inspector command:
 
-```powershell
-& tools/powershell/Invoke-StardustAssetPreview.ps1 -GodotPath local-private/toolchain/godot-4.7.2-dotnet/Godot_v4.7.2-stable_mono_win64/Godot_v4.7.2-stable_mono_win64_console.exe -ArchiveRoot C:\Stardust-DEV -Configuration C:\Stardust-DEV\swgemu_live.cfg -Member appearance/cantina_door.apt -ExpectedSha256 86B5E5DB2B96C77FE8A262F07C8D26F538525B537217CE24B6FCE2CEF9AD3A57 -DoorStyle cantina_door -DoorTableSha256 C4C572DEBD51DC9D77E57E7D5A8D6741A01A03CAF00BF31601180A05551536B7 -Headless
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 Replace `-Headless` with `-CapturePath` and a fresh absolute PNG destination under ignored `local-private` for GPU capture. Both modes pass contact/permission/reset controls, displaced adapter pose and box clearance checks; GPU capture was visually inspected. The known Windows root-certificate-store startup error is nonfatal; no network is used. Interactive mode uses `-Interactive` with the same pins. The adapter renders one neutral mesh; it does not play effects or load optional frames/textures.
 

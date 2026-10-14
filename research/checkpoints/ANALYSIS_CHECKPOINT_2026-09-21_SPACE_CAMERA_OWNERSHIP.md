@@ -38,7 +38,7 @@ The constructor builds twenty linearly spaced zoom/distance settings. Per-frame 
 - The session/scene chooses one camera controller; controllers own transient target references and release them when the resolved ship/turret changes.
 - Cockpit-frame objects are presentation children attached to a named frame and must be destroyed/replaced with the profile/session, not persisted in the network object model.
 - A missing ship, station, turret, profile or mount transform disables that camera path safely for the frame; it must not fabricate a network object.
-- Camera input state and interpolation remain simulation/controller state. DX12/Vulkan/Godot receives only the resulting transform, projection and visibility policy.
+- Camera input state and interpolation remain simulation/controller state. historical implementation path (omitted) receives only the resulting transform, projection and visibility policy.
 
 ## Confidence
 

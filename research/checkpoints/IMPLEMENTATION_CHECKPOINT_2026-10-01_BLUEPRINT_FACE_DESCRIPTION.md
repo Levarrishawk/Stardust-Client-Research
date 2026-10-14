@@ -14,7 +14,7 @@ Five shader slots, five VTXA0003/declaration0x1101 arrays, zero index buffers, P
 
 ## Verification and confidence
 
-Confirmed byte structure and prototype ownership. Independent raw Python parsing checks all tables/destination/camera/render/prepare fields and vertex payload hashes. Every original truncated prefix rejects, as do unsupported version, mismatched destination count and missing/masked blueprint. Portable synthetic fixture validates owned description plus truncation, out-of-range vertex, nonfinite camera and unsupported operation. Native full suite and Godot build pass. No generated face rendering, shader branch equivalence, palette application or original command execution is claimed.
+Confirmed byte structure and prototype ownership. Independent raw Python parsing checks all tables/destination/camera/render/prepare fields and vertex payload hashes. Every original truncated prefix rejects, as do unsupported version, mismatched destination count and missing/masked blueprint. Portable synthetic fixture validates owned description plus truncation, out-of-range vertex, nonfinite camera and unsupported operation. Native full suite and prototype host build pass. No generated face rendering, shader branch equivalence, palette application or original command execution is claimed.
 
 ## Compatibility consequence and next action
 

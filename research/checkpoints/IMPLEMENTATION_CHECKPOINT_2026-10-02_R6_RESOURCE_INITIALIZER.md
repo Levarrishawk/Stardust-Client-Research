@@ -24,7 +24,7 @@ Observation: one Task.Run original reader job closes configured archives before 
 
 ## Commands and validation
 
-Run from this checkout. Use installed .NET 8 and bundled Python; no downloads. Accepted Core package lock remains byte-identical to baseline. Offline restore uses the main private NuGet cache and the owned sources-cleared configuration. APPDATA is task-specific to avoid inaccessible system NuGet settings. Native-only: no Godot build/execution, headless renderer or GPU assertion.
+Run from this checkout. Use installed .NET 8 and bundled Python; no downloads. Accepted Core package lock remains byte-identical to baseline. Offline restore uses the main private NuGet cache and the owned sources-cleared configuration. APPDATA is task-specific to avoid inaccessible system NuGet settings. Native-only: no prototype host build/execution, headless renderer or GPU assertion.
 
     $env:APPDATA = Join-Path $env:TEMP 'stardust-runtime-r6-appdata'
     New-Item -ItemType Directory -Force $env:APPDATA | Out-Null

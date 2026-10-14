@@ -73,7 +73,7 @@ The zoom control is discrete at the preference level but smoothly interpolated a
 
 ## Replacement design consequence
 
-Use a backend-neutral camera rig interface with concrete controllers. The initial compatible world client needs FreeChase plus its IFF configuration reader; cockpit, turret, fly-by, placement, and debug controllers can follow as separately testable modes. Preserve the legacy asset-driven numeric tables in an intermediate camera-profile model rather than hard-coding them in Godot or renderer code.
+Use a backend-neutral camera rig interface with concrete controllers. The initial compatible world client needs FreeChase plus its IFF configuration reader; cockpit, turret, fly-by, placement, and debug controllers can follow as separately testable modes. Preserve the legacy asset-driven numeric tables in an intermediate camera-profile model rather than hard-coding them in prototype host or renderer code.
 
 ## Confidence
 

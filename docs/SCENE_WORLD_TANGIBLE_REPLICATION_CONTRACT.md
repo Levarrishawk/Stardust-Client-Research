@@ -1,6 +1,6 @@
 # Optional typed TANO3 world replication
 
-Round27 Runtime, 2026-10-03. The [world coordinator](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldCoordinator.cs) now optionally binds the accepted [complete TANO3 codecs](TANGIBLE_VIEW3_CODEC_CONTRACT.md) to the [tangible store](SCENE_TANGIBLE_REPLICATION_CONTRACT.md). This is engine-neutral offline integration; display, packed customization interpretation, live networking and Godot factory registration remain separate.
+Round27 Runtime, 2026-10-03. The world coordinator (external historical reference) now optionally binds the accepted [complete TANO3 codecs](TANGIBLE_VIEW3_CODEC_CONTRACT.md) to the [tangible store](SCENE_TANGIBLE_REPLICATION_CONTRACT.md). This is engine-neutral offline integration; display, packed customization interpretation, live networking and prototype host factory registration remain separate.
 
 ## Public API
 
@@ -8,7 +8,7 @@ Both existing world constructors append `SceneWorldTangibleReplicationPolicy? ta
 
 `TangibleReplicationEnabled`, `RetainedTangibleReplicationDecodedBytes`, `FindTangibleReplication(long generation, ulong id)`, `ApplyTangibleDelta(long generation, TangibleView3DeltaPlan plan)` and `IsCurrent(SceneWorldTangibleReplicationSnapshot)` expose typed state. `SceneWorldObjectSnapshot.TangibleReplication` propagates through ordinary snapshots and change batches. The immutable token exposes Generation, Incarnation, Revision, Baseline, Names, TangibleScalars, Customization and Components. Current tokens require this owner, generation, active phase and exact current store state. Pending complete state may be inspected; finalized object/resource publication is still gated by the end barrier.
 
-The [router](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldTangibleApplicationRouter.cs) constructor is:
+The router (external historical reference) constructor is:
 
 ```csharp
 SceneWorldTangibleApplicationRouter(SceneWorldCoordinator world,
@@ -39,9 +39,9 @@ CREO and TANO decoded budgets are separate. `RetainedReplicationDecodedBytes` re
 
 ## Evidence and limits
 
-Confirmed by [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldTangibleReplicationScenarios.cs): 132 checks /37 cases, exact independent TANO wires in both orders, mixed families, aliases/equal storage, duplicates/reseed, intermediate/global growth rollback, journal/revision overflow, static barriers, stale generations/incarnations, decoder mutation/acknowledgement/restart/reentry, owner/close/resource failure and held stale jobs. Only two deliberate synthetic failing loader calls occur; no assets load.
+Confirmed by native scenarios (external historical reference): 132 checks /37 cases, exact independent TANO wires in both orders, mixed families, aliases/equal storage, duplicates/reseed, intermediate/global growth rollback, journal/revision overflow, static barriers, stale generations/incarnations, decoder mutation/acknowledgement/restart/reentry, owner/close/resource failure and held stale jobs. Only two deliberate synthetic failing loader calls occur; no assets load.
 
-The [independent oracle](../../SWG-Godot-Client/poc/round27-tests/Runtime/verify.py) reads [synthetic literal wires](../../SWG-Godot-Client/poc/round27-tests/Runtime/ordered-fixtures.json), recomputes byte grammar, ordered state, unsigned component arithmetic, and logical charges, and checks 284 malformed advertised envelopes. It also runs accepted prior receipt oracles. This proves deterministic fixture behavior, not original executable execution, a second scheduler implementation, or live interoperability. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R27_TANGIBLE_WORLD.md).
+The independent oracle (external historical reference) reads synthetic literal wires (external historical reference), recomputes byte grammar, ordered state, unsigned component arithmetic, and logical charges, and checks 284 malformed advertised envelopes. It also runs accepted prior receipt oracles. This proves deterministic fixture behavior, not original executable execution, a second scheduler implementation, or live interoperability. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R27_TANGIBLE_WORLD.md).
 
 Next: lead registers the router over existing CREO ingress and requires a current typed token in the optional static visual factory, then validates exact-wire static caption/visibility publication and cleanup. Keep localized-name/display policy and packed customization interpretation explicit.
 

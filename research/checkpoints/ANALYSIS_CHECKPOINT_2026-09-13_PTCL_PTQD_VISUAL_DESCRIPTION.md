@@ -48,7 +48,7 @@ PTEX reads a shader resource string, six 32-bit fields at legacy offsets `+0x14.
 
 ## Replacement contract
 
-Deserialize each version field-by-field into engine-neutral records; never mirror pointer-bearing 32-bit objects. Simulation/render preparation should publish `{transform, rgb, alpha, sizeX, sizeY, rotation, uvRect, resourceId}`. A DX12, Vulkan or Godot backend may batch that freely. Attachments and mesh particles must remain represented even if an early renderer milestone supports only quads.
+Deserialize each version field-by-field into engine-neutral records; never mirror pointer-bearing 32-bit objects. Simulation/render preparation should publish `{transform, rgb, alpha, sizeX, sizeY, rotation, uvRect, resourceId}`. A DX12, Vulkan or prototype host backend may batch that freely. Attachments and mesh particles must remain represented even if an early renderer milestone supports only quads.
 
 ## Remaining unknowns
 

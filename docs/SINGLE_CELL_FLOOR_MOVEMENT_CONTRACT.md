@@ -40,7 +40,7 @@ Neighbors must have a reversed shared vertex-index pair and a reciprocal neighbo
 
 Results carry current triangle, projected contact position, normalized whole-segment parameter, exit edge, boundary portal ID and completed crossing count. Accepted progress is `1`; partial stops retain their boundary contact. Invalid starts retain their original position. These values are not the original locator memory layout or enum values. No sliding, body radius, vertical sweep, falling, doors, permission enforcement, alternate-floor continuation, or server movement transmission is implemented.
 
-## Godot inspection and validation
+## Prototype host inspection and validation
 
 Interior floor inspection exposes **Walk between picks**. Right-click a start, then a destination in the same cell. A yellow line/marker shows attained contact; the status names the outcome. Cell selection and mode toggles clear pending start/output; each completed pair releases its pending start. The line mesh is reused and cleared, and resources are disposed with the preview. The existing graph route remains a separate Euclidean inspection.
 
@@ -54,7 +54,7 @@ Trace `0x012792B0` / `0x01275FE0` and `0x0126AA80`: establish contact/projection
 
 ## 2026-09-30 portal transfer follow-up
 
-The [bounded transfer contract](PORTAL_FLOOR_TRANSFER_CONTRACT.md) adds one owner transfer and remaining motion with current offline entry/barrier policy. Floor portal IDs index the owning cell reference vector; they are distinct from global geometry/PGRF keys. The prior tentative 0126AA80 owner-transfer interpretation is corrected: it preserves the same floor wrapper; 012670E0 / 00B2B3F0 perform cell continuation. Fourteen original directed links, 56 independent probes and 28 Godot adapter probes pass. Full actor collision, door lifecycle and exterior continuation remain open.
+The [bounded transfer contract](PORTAL_FLOOR_TRANSFER_CONTRACT.md) adds one owner transfer and remaining motion with current offline entry/barrier policy. Floor portal IDs index the owning cell reference vector; they are distinct from global geometry/PGRF keys. The prior tentative 0126AA80 owner-transfer interpretation is corrected: it preserves the same floor wrapper; 012670E0 / 00B2B3F0 perform cell continuation. Fourteen original directed links, 56 independent probes and 28 prototype host adapter probes pass. Full actor collision, door lifecycle and exterior continuation remain open.
 
 ## Returned-contact stability
 

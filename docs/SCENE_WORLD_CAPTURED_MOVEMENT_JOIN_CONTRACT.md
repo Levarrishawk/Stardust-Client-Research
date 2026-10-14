@@ -4,9 +4,9 @@ Date:2026-10-04. Actual [explicit admission](SCENE_WORLD_EXPLICIT_MOVEMENT_ADMIS
 
 ## Inputs and identity
 
-The [native runner](../../SWG-Godot-Client/poc/round48-tests/Integration/ExplicitMovementJoinProgram.cs) SHA-gates configuration and loads the five necessary8290-byte sources for shared_human_male.iff through the configured overlay. The selected catalog entry's root SHA and create CRC agree with that input. Thus this caller discharges the adapter's explicitly documented selected-catalog trust; the adapter itself cannot inspect the coordinator's private catalog.
+The native runner (external historical reference) SHA-gates configuration and loads the five necessary8290-byte sources for shared_human_male.iff through the configured overlay. The selected catalog entry's root SHA and create CRC agree with that input. Thus this caller discharges the adapter's explicitly documented selected-catalog trust; the adapter itself cannot inspect the coordinator's private catalog.
 
-The [independent peer](../../SWG-Godot-Client/poc/round48-tests/Integration/explicit_movement_join_peer.py) reuses a fresh static/asset oracle for exact authored bits/provenance and handpacks synthetic unit-quaternion creation, typed CREO3 and received scalar updates. Four named source choices cross four received states, three supplied unit directions and three render partitions:144 cases. Missing, nonfinite and negative received values never fall back to authored inputs. Signed zero survives eligibility and capture.
+The independent peer (external historical reference) reuses a fresh static/asset oracle for exact authored bits/provenance and handpacks synthetic unit-quaternion creation, typed CREO3 and received scalar updates. Four named source choices cross four received states, three supplied unit directions and three render partitions:144 cases. Missing, nonfinite and negative received values never fall back to authored inputs. Signed zero survives eligibility and capture.
 
 ## Actual ticks and capture
 

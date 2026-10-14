@@ -1,6 +1,6 @@
 # Explicit family-routed height-fractal contract
 
-Round 51 adds one bounded, stateless engine-neutral route in [TerrainFamilyHeightFractal.cs](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainFamilyHeightFractal.cs). It composes the accepted owned family set, explicit supported-mode sampler factory and retained AHFR consumer. The route is a modern compatibility slice; original active precision controls, cache policy and whole-terrain parity remain Unknown.
+Round 51 adds one bounded, stateless engine-neutral route in TerrainFamilyHeightFractal.cs (external historical reference). It composes the accepted owned family set, explicit supported-mode sampler factory and retained AHFR consumer. The route is a modern compatibility slice; original active precision controls, cache policy and whole-terrain parity remain Unknown.
 
 ## Inputs and strict eligibility
 
@@ -26,9 +26,9 @@ For rule length L and cell count C, accounted bytes are `8*L+65536+9512+136+32*C
 
 ## Verification and confidence
 
-[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainFamilyHeightFractalScenarios.cs) and the [independent producer/verifier](../../SWG-Godot-Client/poc/round51-tests/Rendering/verify_route.py) compare 203 complete routes: 81 calls using the effective original first family under all four precision-control combinations, 90 authored synthetic calls across five signed IDs/six modes/three profiles, and 32 rejection cases. Synthetic coordinates, operands and raw variants are explicitly authored. The expected path computes table/noise/normalization and consumer arithmetic independently; no expected native sample is supplied to the route. Original executable bytes are hash-gated and read statically; it is never executed.
+Native scenarios (external historical reference) and the the separate implementation record compare 203 complete routes: 81 calls using the effective original first family under all four precision-control combinations, 90 authored synthetic calls across five signed IDs/six modes/three profiles, and 32 rejection cases. Synthetic coordinates, operands and raw variants are explicitly authored. The expected path computes table/noise/normalization and consumer arithmetic independently; no expected native sample is supplied to the route. Original executable bytes are hash-gated and read statically; it is never executed.
 
-Ten ownership checks cover input/rule/export mutation, family/raw/sample identity, repeat fresh misses, stable prior receipts and calls from another thread. Frozen supported-mode/default-mode/kernel/raw/consumer suites, the lead 2592 family join and default smoke are the proportional regression gates. The fresh offline [runner](../../SWG-Godot-Client/poc/round51-tests/Rendering/Invoke-Route.ps1) accepts explicit private input roots and rejects nonprivate, existing or linked output ancestors before creating output.
+Ten ownership checks cover input/rule/export mutation, family/raw/sample identity, repeat fresh misses, stable prior receipts and calls from another thread. Frozen supported-mode/default-mode/kernel/raw/consumer suites, the lead 2592 family join and default smoke are the proportional regression gates. The fresh offline runner (external historical reference) accepts explicit private input roots and rejects nonprivate, existing or linked output ancestors before creating output.
 
 **Confirmed:** the modern bounded family lookup-to-retained-affector route and its tested rejection/ownership behavior. **Strongly inferred:** compatibility of this finite arithmetic composition from the accepted executable-backed component evidence. **Unknown:** original active controls, runtime family/cache lifetime, exceptional behavior, optional helper modes and complete terrain parity. These measures add no function/protocol/research completion count.
 

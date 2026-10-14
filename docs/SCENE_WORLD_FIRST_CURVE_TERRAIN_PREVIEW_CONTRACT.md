@@ -10,7 +10,7 @@ Four10-by10 grids use supplied prior zero/incoming one and explicit24-bit coordi
 
 ## Independent verification and publication
 
-The [lead peer](../../SWG-Godot-Client/poc/round58-tests/Integration/first_curve_layer_host_peer.py) checks coordinates/products with Fraction, kernel/base stores exactly, and curve outputs against100-digit Decimal using the declared tolerance. The exact height oracle then consumes the actual exported binary64 dyadic, rather than claiming Decimal power bit identity. Verified native heights supply bounded host observations; they never enter the Core calculation as target heights.
+The lead peer (external historical reference) checks coordinates/products with Fraction, kernel/base stores exactly, and curve outputs against100-digit Decimal using the declared tolerance. The exact height oracle then consumes the actual exported binary64 dyadic, rather than claiming Decimal power bit identity. Verified native heights supply bounded host observations; they never enter the Core calculation as target heights.
 
 All four native height fields and mesh candidates are built before the first terrain visual allocation. The bounded host fixture is at most524288 bytes. Geometry uses the established patch coordinate/winding adapter, debug color words and supplied upward normals; these are synthetic presentation choices. Camera elevation follows the observed local height. Original creature publication and the existing nine-state terrain motion driver remain the presentation path.
 

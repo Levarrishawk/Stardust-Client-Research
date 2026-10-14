@@ -10,7 +10,7 @@ The Round 49 frozen baseline has 3,499 files at accepted main HEAD `5493338d9cd4
 
 Original executable SHA-256: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`; configuration: `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`; root template: `E0B61445E8A85CCF0AC5937F0F9CBCA8711718AFEE63384F30970D5AEE120243`; SAT: `951FCE8C2FFC0EB318C751026D24D8C9BF17263D706EB3C93D015867EC801A9C`. The explicit installation/configuration paths, source identities, authored values and generated receipts remain private. The static oracle checks 50 loader anchors and prerequisite instruction/source checks; no original executable execution or live contact occurred.
 
-Tools: bundled Python, cached static-analysis packages, installed .NET, cached offline NuGet dependencies, [static oracle](../../../SWG-Godot-Client/tools/python/verify_creature_template_movement.py), frozen [profile peer](../../../SWG-Godot-Client/poc/round46-tests/Networking/peer.py), frozen [authored peer](../../../SWG-Godot-Client/poc/round47-tests/Networking/peer.py), and the new [resource peer](../../../SWG-Godot-Client/poc/round49-tests/Assets/peer.py). Independent expectations come from raw installed data and the frozen fixture producers, not native output.
+Tools: bundled Python, cached static-analysis packages, installed .NET, cached offline NuGet dependencies, static oracle (external historical reference), frozen profile peer (external historical reference), frozen authored peer (external historical reference), and the new resource peer (external historical reference). Independent expectations come from raw installed data and the frozen fixture producers, not native output.
 
 ## Findings and implementation consequences
 
@@ -20,7 +20,7 @@ Observation: the profile and authored snapshot retain 21,018 logical decoded byt
 
 Observation: 22 native checks include 19 rejection cases covering invalid policy preflight, policy-without-opt-in, parent missing/masked, cycle, wrong root pin, outer source limits, combined/profile/snapshot decoded limits, pre-cancellation and cancellation at the fifth inherited read. A private synthetic parent mutation yields Unsupported with no numeric bits, while appearance loading still succeeds. Confidence: Confirmed for these deterministic cases. Consequence: fail closed without partial publication; preserve unsupported evidence instead of manufacturing values.
 
-The durable API, accounting and reproduction contract is [SCENE_CREATURE_MOVEMENT_RESOURCE_CONTRACT.md](../../docs/SCENE_CREATURE_MOVEMENT_RESOURCE_CONTRACT.md). Production edits are restricted to the bundle, creature reader, router options/dispatch and request option copying. No host/coordinator/Godot entry point, curated registry, canonical historical count or sibling Round 49 API changes are required.
+The durable API, accounting and reproduction contract is [SCENE_CREATURE_MOVEMENT_RESOURCE_CONTRACT.md](../../docs/SCENE_CREATURE_MOVEMENT_RESOURCE_CONTRACT.md). Production edits are restricted to the bundle, creature reader, router options/dispatch and request option copying. No historical implementation path (omitted) entry point, curated registry, canonical historical count or sibling Round 49 API changes are required.
 
 ## Validation
 

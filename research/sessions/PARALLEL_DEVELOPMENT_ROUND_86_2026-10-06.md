@@ -21,6 +21,6 @@ The peer, timing and planar policy are authored; original cadence/collision/pred
 
 ## Resume point
 
-Next bounded slice: exact outbound protocol disconnect plus bounded actual send completion/drain and failure retirement through the reusable session/port owner. No further live authorization is implied. [Overnight continuation](OVERNIGHT_DEVELOPMENT_2026-10-06_TO_07.md), [milestone plan](../../../SWG-Godot-Client/docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md), [reproduction](../../../SWG-Godot-Client/poc/round86-tests/Integration/README.md).
+Next bounded slice: exact outbound protocol disconnect plus bounded actual send completion/drain and failure retirement through the reusable session/port owner. No further live authorization is implied. [Overnight continuation](OVERNIGHT_DEVELOPMENT_2026-10-06_TO_07.md), milestone plan (external historical reference), reproduction (external historical reference).
 
 Final mechanical gates:43 scoped public changes (28 new,15 existing), zero unrelated changes; HEAD/index preserved. Validator1881 Markdown files, zero broken/private links,2626 names/no duplicates,345 packet rows. Relevant staged hashes agree with main:1090 for each final joined path,2639 for default source staging; fourteen defaults passed with no omissions. All four workers independently observed idle. Accepted UTC 2026-10-07T01:09:36.644662+00:00. Heartbeat remains active for the renewed deadline.

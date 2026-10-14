@@ -4,7 +4,7 @@ Date:2026-10-03. Question: can complete CREO4 state enter genuine current-incarn
 storage, and can ordered supplied layers feed the existing geometry/query boundary?
 Stop after independent leaf/join gates and canonical acceptance. Inputs and
 scope are in the [session](../sessions/PARALLEL_DEVELOPMENT_ROUND_42_2026-10-03.md).
-Bundled Python/.NET8/Godot4.7.2 are cached; no downloads or original process runs.
+Bundled historical implementation path (omitted) are cached; no downloads or original process runs.
 
 ## Four independent leaves
 
@@ -38,8 +38,8 @@ It uses frozen41 state; no unfinished sibling dependency was consumed.
 
 ## Lead joins and implementation consequences
 
-The [two-layer native join](../../../SWG-Godot-Client/poc/round42-tests/Integration/Program.cs) calls
-the actual sequence API without reading Expected fields. The [independent peer](../../../SWG-Godot-Client/poc/round42-tests/Integration/sequence_peer.py)
+The two-layer native join (external historical reference) calls
+the actual sequence API without reading Expected fields. The independent peer (external historical reference)
 passes nine profiles,3600 samples,144 patches,576 queries and13230 ordered rule
 visits.2574 sample heights change in the second layer. Exact intermediate/final
 words, visits, patch coordinates/indices and independent barycentric queries
@@ -75,7 +75,7 @@ UseSharedCompilation=false/UseAppHost=false and explicit cached Python UTF8/no
 bytecode. Generate/verify peers against fresh private receipts. StoreIntegration
 uses Runtime/ordered-fixtures.json; its peer independently regenerates the fixture.
 Integration uses sequence_peer.py generate/verify. Detailed receipts stay ignored.
-Separate Core/SmokeTests/Godot and default smoke gates, link/syntax/whitespace,
+Separate historical implementation path (omitted) and default smoke gates, link/syntax/whitespace,
 exact frozen scope/head/index checks precede final session acceptance.
 
 Next action: retained FHGT layer carrier and query-time ordered evaluation,

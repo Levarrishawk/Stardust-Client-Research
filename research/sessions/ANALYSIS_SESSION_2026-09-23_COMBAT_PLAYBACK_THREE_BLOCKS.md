@@ -2,7 +2,7 @@
 
 ## Scope
 
-Original executable only: `C:\Stardust-DEV\Stardust.exe` (SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`), effective assets under its configured `swgemu_live.cfg` TRE overlay, and current Stardust server source for context. Read-only Ghidra pseudocode is reconstructed, not original source. No Godot/build work, runtime packet interception, protection bypass, executable edit, TRE edit, commit, or push was performed.
+Original executable only: `C:\Stardust-DEV\Stardust.exe` (SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`), effective assets under its configured `swgemu_live.cfg` TRE overlay, and current Stardust server source for context. Read-only Ghidra pseudocode is reconstructed, not original source. No prototype host/build work, runtime packet interception, protection bypass, executable edit, TRE edit, commit, or push was performed.
 
 ## Completed blocks
 
@@ -30,6 +30,6 @@ This is a behavioral/data model for a future x64 implementation. Do not copy the
 - Decode `FISU`, `ULAT` and other effective action families' variable use; tags in their `INFO` chunks are not enough to establish all side effects.
 - Resolve arbitration priority `+0x68`, actor-marking policy and exact tie probability with fixtures or a permitted runtime trace.
 - Preserve unsupported-looking but effective-corpus-forward `PSKA/0003` and `FIPL`/`PPRL` files as typed unknowns. They are outside the 24-path combat-manager reference set, not proven globally unreachable.
-- Maintain the original-asset requirement: paths, tags and scripts remain data inputs to any Godot or custom-engine client.
+- Maintain the original-asset requirement: paths, tags and scripts remain data inputs to any prototype host or custom-engine client.
 
 Validation after the three blocks: **510 Markdown files; zero broken links; 2,281 unique provisional addresses, zero duplicates; 345 packet rows**. The previous project-wide rough estimate (90% comprehensive / 96% implementation-grade) is not recalculated from these three localized blocks; no new numerical percentage is asserted.

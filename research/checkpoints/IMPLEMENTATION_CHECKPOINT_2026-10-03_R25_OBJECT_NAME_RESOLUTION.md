@@ -19,7 +19,7 @@ Readonly original root `C:/Stardust-DEV`; `swgemu_live.cfg` SHA-256 `22158E5BD9B
 
 Selection is the first value-pass record of each table, joined to its exact name-pass key. This is a deterministic format/presentation test, not proof that either key is an actual replicated object-name reference. No broader lookup/discovery is performed; original text/raw keys stay in ignored private receipts.
 
-Seven additions: [resolver](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/LocalizedObjectNameResolver.cs), [native scenarios](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/LocalizedObjectNameScenarios.cs), [contract](../../docs/LOCALIZED_OBJECT_NAME_CONTRACT.md), this checkpoint, [project](../../../SWG-Godot-Client/poc/round25-tests/Assets/Assets.csproj), [entry point](../../../SWG-Godot-Client/poc/round25-tests/Assets/Program.cs) and [oracle](../../../SWG-Godot-Client/poc/round25-tests/Assets/verify_names.py). Frozen name state/named plan/snapshot forwarder, shared projects/Program, canonical ledgers and main preview remain unchanged. Lead owns registration and canonical reconciliation.
+Seven additions: resolver (external historical reference), native scenarios (external historical reference), [contract](../../docs/LOCALIZED_OBJECT_NAME_CONTRACT.md), this checkpoint, project (external historical reference), entry point (external historical reference) and oracle (external historical reference). Frozen name state/named plan/snapshot forwarder, shared projects/Program, canonical ledgers and main preview remain unchanged. Lead owns registration and canonical reconciliation.
 
 ## Evidence, interpretation and consequences
 

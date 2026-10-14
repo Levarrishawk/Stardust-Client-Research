@@ -2,7 +2,7 @@
 
 ## Contract
 
-[SceneObjectResourceAccounting.Measure](../../SWG-Godot-Client/poc/Stardust.Core/Assets/SceneObjectResourceAccounting.cs) is a pure engine-neutral measurement of an existing `SceneObjectResources`. It returns a sealed, get-only `SceneObjectResourceAccountingReceipt` with `Sources`, `SourceBytes`, `DecodedTextures`, `Mips`, `DecodedTextureBytes` and checked `PendingWeight = SourceBytes + DecodedTextureBytes`.
+SceneObjectResourceAccounting.Measure (external historical reference) is a pure engine-neutral measurement of an existing `SceneObjectResources`. It returns a sealed, get-only `SceneObjectResourceAccountingReceipt` with `Sources`, `SourceBytes`, `DecodedTextures`, `Mips`, `DecodedTextureBytes` and checked `PendingWeight = SourceBytes + DecodedTextureBytes`.
 
 This is a logical queued-resource budget. It excludes geometry, animation, descriptor/collection/CLR storage, allocator overhead, GPU storage and transient decoding buffers. The same encoded asset may be logically charged by more than one queued object. It is not a heap estimate, resident-memory measurement or allocation promise. The receipt retains only scalar values; it does not retain the measured result or decoded arrays.
 
@@ -20,7 +20,7 @@ Null caller input throws `ArgumentNullException`; malformed represented accounti
 
 ## Evidence and consequences
 
-[Native fixture](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneObjectResourceAccountingScenarios.cs), [independent header oracle](../../SWG-Godot-Client/poc/round16-tests/Assets/verify_accounting.py) and [dated checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R16_RESOURCE_ACCOUNTING.md) reproduce these **Confirmed modern observations**:
+Native fixture (external historical reference), independent header oracle (external historical reference) and [dated checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R16_RESOURCE_ACCOUNTING.md) reproduce these **Confirmed modern observations**:
 
 | Original closure | Sources | Source bytes | Unique textures | Mips | Decoded texture bytes | Pending weight |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |

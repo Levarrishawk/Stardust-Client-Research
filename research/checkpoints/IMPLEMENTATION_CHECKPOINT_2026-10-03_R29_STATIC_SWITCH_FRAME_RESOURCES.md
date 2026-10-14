@@ -2,7 +2,7 @@
 
 ## Question and stopping condition
 
-Can an explicit all-frame option join the accepted immutable SWTS frame bundle with static scene loading, using the same outer source cache, honest duplicate retained-pixel accounting and no-I/O completion checks? Stop after original source/pixel/header oracle, bounded fault/ownership/cancellation/reentry cases, default creature/static/routing/validation/accounting regressions and exact scope validation. World/Godot/cursor/clock integration remains lead-owned.
+Can an explicit all-frame option join the accepted immutable SWTS frame bundle with static scene loading, using the same outer source cache, honest duplicate retained-pixel accounting and no-I/O completion checks? Stop after original source/pixel/header oracle, bounded fault/ownership/cancellation/reentry cases, default creature/static/routing/validation/accounting regressions and exact scope validation. historical implementation path (omitted) integration remains lead-owned.
 
 ## Inputs and orientation
 
@@ -12,7 +12,7 @@ Read START/latest accepted28/session29, current status/ledger/UNKNOWN, static/fr
 
 ## Scope and API
 
-Four focused modifications: [static loader](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/SceneStaticResourceReader.cs), [options/router](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/SceneObjectResourceRouter.cs), [completion gate](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/SceneObjectResourceValidation.cs), [logical accounting](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/SceneObjectResourceAccounting.cs). Six additions: [scenario](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneStaticSwitchFrameResourcesScenarios.cs), [contract](../../docs/SCENE_STATIC_SWITCH_FRAME_RESOURCES_CONTRACT.md), this checkpoint, [project](../../../SWG-Godot-Client/poc/round29-tests/Assets/Assets.csproj), [entry point](../../../SWG-Godot-Client/poc/round29-tests/Assets/Program.cs), [oracle](../../../SWG-Godot-Client/poc/round29-tests/Assets/verify_scene_switch.py). No other baseline/shared/world/Godot/default Program edits.
+Four focused modifications: static loader (external historical reference), the separate implementation record, completion gate (external historical reference), logical accounting (external historical reference). Six additions: scenario (external historical reference), [contract](../../docs/SCENE_STATIC_SWITCH_FRAME_RESOURCES_CONTRACT.md), this checkpoint, project (external historical reference), entry point (external historical reference), oracle (external historical reference). No other historical implementation path (omitted) Program edits.
 
 Append optional `SceneStaticSwitchFramePolicy? switchFrames = null` to the static loader/options constructor. Policy exposes optional bundle `Limits`, total `MaximumRetainedMips` and `MaximumPendingWeight`; resource record exposes optional immutable `SwitchFrames`. Accounting adds four get-only bundle counters. Existing calls/default scalar values remain valid; receipt JSON includes additive zero counters. Exact bounds, source/cancellation/ownership/error and validation policies live in the durable contract.
 

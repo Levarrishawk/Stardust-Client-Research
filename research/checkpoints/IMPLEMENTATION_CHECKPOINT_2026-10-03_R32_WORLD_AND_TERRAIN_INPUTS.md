@@ -4,7 +4,7 @@
 
 ## Input identity and method
 
-Four persistent Low specialists used2786 frozen public files: manifest `07d6abdbdab081bad0d3fb3c67a4724c6cd2865ac5411e04e9dc6b2821d9dd04`, ZIP `e98dc53bba40cc13dda5298b5c713a51d870bfc3ee43944239a6d62e5e627487`. Full member/path/ancestor-link/hash preflight preceded overlay. Working-byte exact scopes, unchanged HEAD/index and unrelated/private bytes are preserved. Cached Python/.NET8/Godot only; original executable SHA `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150` gates all VA/static reliance. No original execution/live/contact/publication.
+Four persistent Low specialists used2786 frozen public files: manifest `07d6abdbdab081bad0d3fb3c67a4724c6cd2865ac5411e04e9dc6b2821d9dd04`, ZIP `e98dc53bba40cc13dda5298b5c713a51d870bfc3ee43944239a6d62e5e627487historical prototype identifier (omitted)E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150` gates all VA/static reliance. No original execution/live/contact/publication.
 
 ## Specialist results and independent lead replay
 
@@ -19,9 +19,9 @@ The original Tatooine sample is priority42,1188446 bytes, SHA `6039D0C15F9CCB518
 
 ## Lead vertical join
 
-Optional Main `--tangible6-peer` above TANO3/CREO routers runs [independently authored synthetic peer/oracle](../../../SWG-Godot-Client/poc/round32-tests/Integration/verify_peer.py) and [joined verifier](../../../SWG-Godot-Client/poc/round32-tests/Integration/verify_world.py). Six literal states include full U64 IDs, modulo U32 counter wrap, whole assignment, passive update and clear. Eight current finalized-incarnation events are observed and acknowledged exactly once; post-ack state charge is8+8*N. Terminal destroy/recreate seeds a fresh state before its end barrier. Original human/terminal publication, geometry/captions/pose and three closed archive jobs are retained. Existing fourteen-state quantized-clock/all-eight-original-mip and prior typed name/visibility/customization checks pass in both actual headless and hidden GPU.
+Optional Main `--tangible6-peer` above TANO3/CREO routers runs the separate implementation record and joined verifier (external historical reference). Six literal states include full U64 IDs, modulo U32 counter wrap, whole assignment, passive update and clear. Eight current finalized-incarnation events are observed and acknowledged exactly once; post-ack state charge is8+8*N. Terminal destroy/recreate seeds a fresh state before its end barrier. Original human/terminal publication, geometry/captions/pose and three closed archive jobs are retained. Existing fourteen-state quantized-clock/all-eight-original-mip and prior typed name/visibility/customization checks pass in both actual headless and hidden GPU.
 
-Main logs: headless `preview-027cc66964fc41b289d06855c9d96dff`, GPU `preview-8530aa412f7648a79c7da1c8f124068e`. Captures inspected privately. Default prior clock headless `preview-f1d7f43b52f84a3fafeb6bdf460b819c` passes after all source integration. Shared Core suite passes; final Godot build zero warnings/errors. Exact prior pre-state certificate/shader diagnostics remain counted; no post-state engine errors accepted.
+Main logs: headless `preview-027cc66964fc41b289d06855c9d96dff`, GPU `preview-8530aa412f7648a79c7da1c8f124068e`. Captures inspected privately. Default prior clock headless `preview-f1d7f43b52f84a3fafeb6bdf460b819c` passes after all source integration. Shared Core suite passes; final prototype host build zero warnings/errors. Exact prior pre-state certificate/shader diagnostics remain counted; no post-state engine errors accepted.
 
 A lead scaffold initially used `dotnet run` with disabled apphost and failed to find an EXE; explicit DLL execution fixed the harness. A later build inherited isolated proof package settings and could not resolve the installed SDK; explicit existing cached packages and a corrected bundled offline feed fixed it. Corrected feed native/build/headless replay passes without downloads. Neither failure is claimed as a passed gate.
 

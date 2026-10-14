@@ -54,7 +54,7 @@ PTAT/TGEN flora family data
   -> material/mesh grouped GPU instancing
 ```
 
-Godot MultiMesh or an equivalent explicit renderer instance buffer is conceptually appropriate. Compatibility depends on family selection, seed/tile determinism, transforms, color and distance-band behavior—not on 500-quad batches, legacy memory pools or raw appearance pointers.
+Prototype host MultiMesh or an equivalent explicit renderer instance buffer is conceptually appropriate. Compatibility depends on family selection, seed/tile determinism, transforms, color and distance-band behavior—not on 500-quad batches, legacy memory pools or raw appearance pointers.
 
 Static collidable flora must remain a different object/collision policy from decorative static and dynamic flora. The client may render decorative flora locally, while the server remains authoritative for movement and tangible world objects.
 

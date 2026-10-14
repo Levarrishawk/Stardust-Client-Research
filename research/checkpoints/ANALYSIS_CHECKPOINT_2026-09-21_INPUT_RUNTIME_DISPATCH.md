@@ -61,7 +61,7 @@ The ground scene initializes multiple cameras and action consumers, then install
 - Preserve the original IMAP files and command names through an adapter; do not require rebinding all legacy content.
 - Maintain explicit contexts: global, login/UI, ground, space, placement/debug.
 - Allow UI to consume navigation/text-entry actions while gameplay is suppressed, without losing device state.
-- Use modern raw input/XInput or Godot input APIs internally; DirectInput compatibility is not required.
+- Use modern raw input/XInput or prototype host input APIs internally; DirectInput compatibility is not required.
 - Preserve separate ground/space profiles and import/export of bindings.
 - Treat numeric physical-device identifiers in legacy files as 32-bit asset fields, translating them to modern device descriptors.
 

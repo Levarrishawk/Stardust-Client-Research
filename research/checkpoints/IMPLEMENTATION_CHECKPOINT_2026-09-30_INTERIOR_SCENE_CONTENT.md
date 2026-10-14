@@ -2,7 +2,7 @@
 
 ## Question, identity and source boundary
 
-Can actor/floor/door and selected appearance/material loading share one bounded source lifetime and identity record? Stop at original exact source union, one external read per asset, malformed/resource negatives and native/host regression. Reuse [selected scene pins](IMPLEMENTATION_CHECKPOINT_2026-09-30_SELECTED_SCENE_ROOMS.md). Tools: existing independent portal/material verifier, original scene verifier, .NET smoke suite and Godot bounded launcher.
+Can actor/floor/door and selected appearance/material loading share one bounded source lifetime and identity record? Stop at original exact source union, one external read per asset, malformed/resource negatives and native/host regression. Reuse [selected scene pins](IMPLEMENTATION_CHECKPOINT_2026-09-30_SELECTED_SCENE_ROOMS.md). Tools: existing independent portal/material verifier, original scene verifier, .NET smoke suite and prototype host bounded launcher.
 
 ## Collision input observation
 

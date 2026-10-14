@@ -38,7 +38,7 @@ The best approach may differ by milestone. Login/selection can be redesigned, wh
 
 ## Engine-evaluation implications
 
-Godot has to be evaluated against the actual mediator/layout problem: support large declarative hierarchies, named-path lookup, data binding, effectors/animations, scaling from legacy 1024x768 reference layouts, cursor/style palettes, dynamic scripted pages and independent ground/space HUD composition. A small proof should convert or recreate one nontrivial include and connect it to a typed domain event.
+Prototype host has to be evaluated against the actual mediator/layout problem: support large declarative hierarchies, named-path lookup, data binding, effectors/animations, scaling from legacy 1024x768 reference layouts, cursor/style palettes, dynamic scripted pages and independent ground/space HUD composition. A small proof should convert or recreate one nontrivial include and connect it to a typed domain event.
 
 ## Remaining analysis
 

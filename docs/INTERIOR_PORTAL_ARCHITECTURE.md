@@ -83,7 +83,7 @@ One referenced floor, `appearance/collision/yt1300_r1_hall1_collision_floor0.flr
 
 ## Engine evaluation requirement
 
-Before choosing Godot versus a custom renderer, the engine spike must load one representative building end to end: `POB/PRTO`, all referenced cell appearances, portal polygons, at least one door transform and one `FLR`; then demonstrate exterior-to-cell transition, portal-based visibility, collision and cross-cell path continuity. A successful visual import alone is insufficient.
+Before choosing prototype host versus a custom renderer, the engine spike must load one representative building end to end: `POB/PRTO`, all referenced cell appearances, portal polygons, at least one door transform and one `FLR`; then demonstrate exterior-to-cell transition, portal-based visibility, collision and cross-cell path continuity. A successful visual import alone is insufficient.
 
 ## Remaining unknowns
 
@@ -112,7 +112,7 @@ The [PGRF checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-
 
 ## Directed route inspection — 2026-09-30
 
-The [route checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_DIRECTED_ROUTE_INSPECTOR.md) closes modern owned Euclidean/Dijkstra inspection against 25,847 independent Bellman–Ford probes, with exact edge-chain validation. Eight original floor/layout graphs upload and route-display in Godot; hidden GPU capture passes. Original client cost, cross-cell association and dynamic permission remain distinct. Metrics and registry counts are unchanged.
+The [route checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_DIRECTED_ROUTE_INSPECTOR.md) closes modern owned Euclidean/Dijkstra inspection against 25,847 independent Bellman–Ford probes, with exact edge-chain validation. Eight original floor/layout graphs upload and route-display in prototype host; hidden GPU capture passes. Original client cost, cross-cell association and dynamic permission remain distinct. Metrics and registry counts are unchanged.
 
 
 ## Portal/floor association audit — 2026-09-30
@@ -122,20 +122,20 @@ The [association checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2
 
 ## Bounded single-cell movement — 2026-09-30
 
-The [movement contract](SINGLE_CELL_FLOOR_MOVEMENT_CONTRACT.md) now separates original edge predicate/caller observations from a modern owned horizontal walker. Godot floor inspection exposes two-pick attained-contact/status visualization. Missing-neighbor portal/open-floor exits and special collision edges stop explicitly; cross-cell ownership/entry permission and full original collision remain open.
+The [movement contract](SINGLE_CELL_FLOOR_MOVEMENT_CONTRACT.md) now separates original edge predicate/caller observations from a modern owned horizontal walker. Prototype host floor inspection exposes two-pick attained-contact/status visualization. Missing-neighbor portal/open-floor exits and special collision edges stop explicitly; cross-cell ownership/entry permission and full original collision remain open.
 
 ## 2026-09-30 portal transfer follow-up
 
-The [bounded transfer contract](PORTAL_FLOOR_TRANSFER_CONTRACT.md) adds one owner transfer and remaining motion with current offline entry/barrier policy. Floor portal IDs index the owning cell reference vector; they are distinct from global geometry/PGRF keys. The prior tentative 0126AA80 owner-transfer interpretation is corrected: it preserves the same floor wrapper; 012670E0 / 00B2B3F0 perform cell continuation. Fourteen original directed links, 56 independent probes and 28 Godot adapter probes pass. Full actor collision, door lifecycle and exterior continuation remain open.
+The [bounded transfer contract](PORTAL_FLOOR_TRANSFER_CONTRACT.md) adds one owner transfer and remaining motion with current offline entry/barrier policy. Floor portal IDs index the owning cell reference vector; they are distinct from global geometry/PGRF keys. The prior tentative 0126AA80 owner-transfer interpretation is corrected: it preserves the same floor wrapper; 012670E0 / 00B2B3F0 perform cell continuation. Fourteen original directed links, 56 independent probes and 28 prototype host adapter probes pass. Full actor collision, door lifecycle and exterior continuation remain open.
 
 ## 2026-09-30 permission barrier follow-up
 
-The [barrier contract](PORTAL_BARRIER_COLLISION_CONTRACT.md) adds normal-controller primitives and bounded source-cell actor-box contact before transfer. Runtime fields are LeadingByte exclusion, SolidByte support and separate WindingByte; B43E80 inversion is specific to PRTO/0002. Current permission, mutable portal state and physical door-leaf clearance remain distinct. Independent 291-layout / 21,693-probe agreement and 12-link Godot actor contact gates pass; nonlevel requests stop explicitly. Physical leaf collision and global actor solver ordering remain next.
+The [barrier contract](PORTAL_BARRIER_COLLISION_CONTRACT.md) adds normal-controller primitives and bounded source-cell actor-box contact before transfer. Runtime fields are LeadingByte exclusion, SolidByte support and separate WindingByte; B43E80 inversion is specific to PRTO/0002. Current permission, mutable portal state and physical door-leaf clearance remain distinct. Independent 291-layout / 21,693-probe agreement and 12-link prototype host actor contact gates pass; nonlevel requests stop explicitly. Physical leaf collision and global actor solver ordering remain next.
 
 
 ## 2026-09-30 original single-leaf follow-up
 
-The [single-leaf contract](SINGLE_LEAF_DOOR_CONTRACT.md) refines trigger input, 1.5-times-radius retention and authored power/cosine motion, with a standalone original-style runtime and Godot inspector. Conservative primary-box clearance passes independent checks; original narrow-phase collision and global actor ordering remain Unknown. Next: compose one named POB door instance with cell ownership and integrate its current leaf clearance before one portal transfer.
+The [single-leaf contract](SINGLE_LEAF_DOOR_CONTRACT.md) refines trigger input, 1.5-times-radius retention and authored power/cosine motion, with a standalone original-style runtime and prototype host inspector. Conservative primary-box clearance passes independent checks; original narrow-phase collision and global actor ordering remain Unknown. Next: compose one named POB door instance with cell ownership and integrate its current leaf clearance before one portal transfer.
 
 
 ## 2026-09-30 named doorway movement

@@ -20,7 +20,7 @@ Organized: 2026-09-22
 - Two canonical CSV registries moved to `data/curated/`.
 - 104 top-level analysis scripts moved under `tools/` by language.
 - Ghidra state, toolchains, scratch work, 76 decompiler trees, 84 extracted top-level assets, and 328 generated top-level evidence files moved under `local-private/`.
-- Five generated Godot/.NET cache and build-output directories moved from `poc/` to `local-private/poc-build/`; proof source, fixtures, and results remain under `poc/`.
+- Five generated prototype host/.NET cache and build-output directories moved from `poc/` to `local-private/poc-build/`; proof source, fixtures, and results remain under `poc/`.
 
 All moves occurred within `D:\Development\Experimental-Client`. Relative Markdown links were rewritten against the relocation map. The exact pre-move inventory is retained in `local-private/manifests/` and intentionally ignored by Git.
 
@@ -28,4 +28,4 @@ On 2026-09-22, the complete organized workspace was moved to `C:\Users\ancie\Doc
 
 ## October 14, 2026 research-only cleanup
 
-The inventory above describes the historical organization. The duplicate `poc/` tree and implementation-dependent tooling have now been removed after verifying their copies in SWG-Godot-Client. See the [cleanup handoff](research/sessions/RESEARCH_ONLY_CLEANUP_2026-10-14.md).
+The inventory above describes the historical organization. The duplicate `poc/` tree and implementation-dependent tooling have now been removed after verifying their copies in the separate implementation repository. See the [cleanup handoff](research/sessions/RESEARCH_ONLY_CLEANUP_2026-10-14.md).

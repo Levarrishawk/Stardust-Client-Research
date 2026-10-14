@@ -1,6 +1,6 @@
 # Synthetic offline channel-zero acknowledgement
 
-[OfflineSoeAcknowledgementFactory](../../SWG-Godot-Client/poc/Stardust.Core/Session/OfflineSoeAcknowledgementFactory.cs) is a stateless modern helper for explicitly synthetic offline profiles. It creates a protected channel-zero cumulative ACK without a socket, session, receive event, counter, retry or alternate selector/channel. Its output is not evidence that a server received or acknowledged a packet.
+OfflineSoeAcknowledgementFactory (external historical reference) is a stateless modern helper for explicitly synthetic offline profiles. It creates a protected channel-zero cumulative ACK without a socket, session, receive event, counter, retry or alternate selector/channel. Its output is not evidence that a server received or acknowledged a packet.
 
 ```csharp
 byte[] syntheticAck = OfflineSoeAcknowledgementFactory.Create(
@@ -15,7 +15,7 @@ Factory validates width1..4 and modern transport maximum range4..65507 first. Ma
 
 Each successful call returns a fresh exclusive caller-owned mutable array. The helper retains no state or bytes, infers no next sequence/negotiation and closes no owners. Callers retain or clear output when finished. No owner-thread restriction is invented for this pure static helper; actual session/transport owners retain their own affinity/serialization rules.
 
-[Independent replay](../../SWG-Godot-Client/poc/round76-tests/Networking/replay.py) computes all expected bytes before native.72 vectors cross sequences0/1/255/256/32767/65535, seeds0/A1B2C3D4/FFFFFFFF and CRC widths1/2/3/4. Frozen independent Python reflected CRC/selector4 model protects exact four-byte packets, selects low CRC width bytes in big-endian order, and restores its isolated seed override before native. Each vector uses exact capacity5+width. Native decode confirms exact4-byte packet; Python compares complete protected/decoded bytes. Fresh output survives clearing another returned array, then caller clears it.
+Independent replay (external historical reference) computes all expected bytes before native.72 vectors cross sequences0/1/255/256/32767/65535, seeds0/A1B2C3D4/FFFFFFFF and CRC widths1/2/3/4. Frozen independent Python reflected CRC/selector4 model protects exact four-byte packets, selects low CRC width bytes in big-endian order, and restores its isolated seed override before native. Each vector uses exact capacity5+width. Native decode confirms exact4-byte packet; Python compares complete protected/decoded bytes. Fresh output survives clearing another returned array, then caller clears it.
 
 Negative cases cover widths−1/0/5, maxima−1/0/3/65508/Int32.MaxValue and one insufficient capacity for each supported width. Upper transport bound65507 succeeds with9-byte output. Final350 native checks, zero build warnings/errors.
 

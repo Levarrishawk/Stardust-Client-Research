@@ -10,7 +10,7 @@ The accepted Round 8 baseline has 1,924 public files. ZIP SHA-256 `c878c4e17f1f6
 
 Installed overlay: `C:/Stardust-DEV`, explicit `swgemu_live.cfg`, configuration SHA-256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`. Read-only original archive access only. No executable/VA evidence, network, live server, packet capture, GPU or engine execution.
 
-Modified existing files are only `TexturedStaticMesh.cs`, `TexturedAppearanceGraph.cs` and `SceneStaticResourceReader.cs`. New files are the SWTS decoder, isolated smoke scenarios/project/Program, independent Python verifier, [durable contract](../../docs/SWITCH_TEXTURE_STATIC_RESOURCE_CONTRACT.md) and this checkpoint. Main/shared runners, root status/ledger, registries, old Round 7 documents/tests, Godot and server files remain unchanged against the accepted baseline. Lead reconciliation of living status/ledger is deferred to acceptance, per worker scope.
+Modified existing files are only `TexturedStaticMesh.cs`, `TexturedAppearanceGraph.cs` and `SceneStaticResourceReader.cs`. New files are the SWTS decoder, isolated smoke scenarios/project/Program, independent Python verifier, [durable contract](../../docs/SWITCH_TEXTURE_STATIC_RESOURCE_CONTRACT.md) and this checkpoint. Main/shared runners, root status/ledger, registries, old Round 7 documents/tests, prototype host and server files remain unchanged against the accepted baseline. Lead reconciliation of living status/ledger is deferred to acceptance, per worker scope.
 
 ## Evidence and findings
 

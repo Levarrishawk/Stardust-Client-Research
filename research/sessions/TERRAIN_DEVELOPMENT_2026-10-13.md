@@ -16,11 +16,11 @@ Stardust compatibility. Research/function/protocol scores are unchanged.
 
 ## First increment
 
-See [general region contract and reproduction](../../../SWG-Godot-Client/docs/TATOOINE_REGION_DEVELOPMENT.md)
+See general region contract and reproduction (external historical reference)
 and [second-curve contract](../../docs/TERRAIN_SECOND_CURVE_FRACTAL_BATCH_CONTRACT.md).
 General signed region requests replace Mos Taike's bespoke loop. Second-curve
 support admits the original rolling-hills family. Twelve selected CPU regions
-pass; Mos Taike foundation/placement checks remain stable. The Godot host can
+pass; Mos Taike foundation/placement checks remain stable. The prototype host host can
 open an arbitrary admitted 4x4 region through `--terrain-region-profile`.
 DX12 rendered the new region on RTX4070 SUPER, with725 published positions
 independently checked for displacement and grounding. All GPU resources report
@@ -47,9 +47,9 @@ those expectations were updated for the added independently verified curve
 suite, then all23 passed. This acceptance precedes the in-progress residency
 and normal-policy changes below.
 
-Local toolchain: Godot4.7.2 .NET official ed1daf0bf under the ignored toolchain,
+Local toolchain: prototype host4.7.2 .NET official ed1daf0bf under the ignored toolchain,
 .NET8.0.300, cached Python under the user's Codex runtime. Older round49
-Godot cached packages fail current lock hashes. The bundled official nupkgs
+Prototype host cached packages fail current lock hashes. The bundled official nupkgs
 match the current locks; the isolated `host-packages` cache plus
 `Host.NuGet.Config` and `host-appdata/NuGet/NuGet.Config` fixes this without
 altering locks. Export templates are not installed at the searched standard
@@ -113,7 +113,7 @@ proof passes714 movement updates and256 independent patch associations
 family and texture identities reject. This is partial modern patch-center,
 first-entry rendering with anisotropic filtering, not full material parity.
 
-Official Godot4.7.2 templates were downloaded and SHA256 verified:
+Official prototype host4.7.2 templates were downloaded and SHA256 verified:
 `92f8681e349ef1f90891b792da95e3b2b0bd1ed610b78018c58feb2d87e15a9d`.
 The streaming package built with its bundled runtime. Export records the
 sandbox certificate-store diagnostic; all other export errors remain fatal.
@@ -167,7 +167,7 @@ Next bounded increment: explicit modern five-family per-vertex interpolation
 using separate blend attributes, preserving source labels/COLOR/geometry. The
 original classifier-to-ALP/rotation/shader composition remains unresolved; the
 September21 diffuse-ARGB correction must be preserved. Terrain_terrace owns
-engine-neutral attribute fixtures; terrain_materials owns Godot blend binding,
+engine-neutral attribute fixtures; terrain_materials owns prototype host blend binding,
 CUSTOM0 readback and a solid-color GPU fixture. Both have bounded assignments.
 Terrain_compatibility is doing a short read-only audit of the accepted320m path.
 Parent will admit a new blended host mode only after independent seam/color
@@ -210,7 +210,7 @@ subedges and all292 copied boundary occurrences match exactly; source normals,
 colors, five-family labels and10m UV phase are preserved. The far mesh is1920
 vertices/1728 triangles over307200m². The fine surface alone supplies grounding.
 [Core contract](../../docs/TERRAIN_MODERN_FAR_RING_CONTRACT.md) and
-[GPU fixture](../../../SWG-Godot-Client/poc/terrain-far-gpu-tests/README.md) describe the limits.
+GPU fixture (external historical reference) describe the limits.
 
 The uncached original pond run generated valid geometry but failed the existing
 three-successor movement gate. Reusing unchanged coarse requests fixed that
@@ -271,7 +271,7 @@ The [modern normal-grid primitive](../../docs/TERRAIN_MODERN_SLOPE_NORMAL_GRID_C
 is complete. Debug/Release and parent Release replay pass 2440 checks including
 39 rejections, eight independent integer-grid oracles, fractional F32 rounding
 and epsilon-boundary fixtures. Original parity stays false. No slope branches
-or traversal/Godot integration were enabled. All workers are now idle.
+or historical implementation path (omitted) integration were enabled. All workers are now idle.
 
 The harness is registered as default suite `terrain-slope-normals`; current
 metadata has 37 defaults (27 .NET/ten Python). This focused addition does not

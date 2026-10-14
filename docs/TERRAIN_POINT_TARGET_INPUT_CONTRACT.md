@@ -1,10 +1,10 @@
 # Terrain point-target input adapter
 
-[TerrainPointTargetInputAdapter](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainPointTargetInputAdapter.cs) borrows an actual [camera picker](TERRAIN_CAMERA_PICKER_CONTRACT.md) and actual [point-target controller](SCENE_WORLD_TERRAIN_POINT_TARGET_CONTRACT.md) retaining the exact same ray-query reference. It owns managed bounded diagnostics and borrower references only. It creates no terrain, world, motion store, marker, controller or resource job and never disposes a borrower. This is modern replacement behavior; original picking and movement parity remain unproved.
+TerrainPointTargetInputAdapter (external historical reference) borrows an actual [camera picker](TERRAIN_CAMERA_PICKER_CONTRACT.md) and actual [point-target controller](SCENE_WORLD_TERRAIN_POINT_TARGET_CONTRACT.md) retaining the exact same ray-query reference. It owns managed bounded diagnostics and borrower references only. It creates no terrain, world, motion store, marker, controller or resource job and never disposes a borrower. This is modern replacement behavior; original picking and movement parity remain unproved.
 
 ## Admission and API
 
-Construct `TerrainPointTargetInputAdapter(picker, controller, maximumAttempts = 16)` on the Godot main thread and both borrowers' owner thread. The limit is 1..16. Constructor validates exact query identity, controller admission at its current clock and picker admission at viewport pixel zero with maximumT zero; it performs no query or publication. Thus an exhausted or unavailable borrower is rejected even during construction.
+Construct `TerrainPointTargetInputAdapter(picker, controller, maximumAttempts = 16)` on the prototype host main thread and both borrowers' owner thread. The limit is 1..16. Constructor validates exact query identity, controller admission at its current clock and picker admission at viewport pixel zero with maximumT zero; it performs no query or publication. Thus an exhausted or unavailable borrower is rejected even during construction.
 
 `HandleInput(InputEvent input, long timestampMicroseconds, double maximumT, out TerrainPointTargetInputResult? result, CancellationToken cancellation = default)` returns false and null for motion, other mouse buttons and released left buttons. It checks owner, disposed state and null input first; ignored input does not inspect clock, token, caps, selection or query and leaves attempts and LastResult unchanged.
 
@@ -18,7 +18,7 @@ The accepted event is passed directly to actual picker `HandleInput`. An actual 
 
 The two borrowers do not form a transaction. A picker can commit its receipt/marker selection before a callback-induced cancellation, caught adapter reentry, borrower invalidation or later controller rejection prevents target submission. That exact actual pick is retained in the failed result; the adapter does not replace the previous target when SubmitTarget has not committed. An external owner can independently mutate or dispose a borrower; its effects are not rolled back. Picker failure may also charge a query without publishing a pick. Its existing reused-marker property mutation prefix is not rolled back. Late cooperative cancellation can race the final borrower publication checks; no hard cancellation or universal rollback is promised.
 
-Adapter mutation reentry, including nested Dispose, sets a poison flag before throwing. Catching that nested exception in a Godot callback still prevents the outer target suffix. Picker `ValidateAdmission` uses its existing mutation gate and preserves its own caught-reentry poison. Read-only inspection does not consume attempts.
+Adapter mutation reentry, including nested Dispose, sets a poison flag before throwing. Catching that nested exception in a prototype host callback still prevents the outer target suffix. Picker `ValidateAdmission` uses its existing mutation gate and preserves its own caught-reentry poison. Read-only inspection does not consume attempts.
 
 ## Currency and lifetime
 
@@ -28,6 +28,6 @@ Dispose is owner-thread guarded, idempotent and drops only adapter borrower refe
 
 ## Reproduction
 
-The [standalone runner](../../SWG-Godot-Client/poc/round66-tests/Rendering/Invoke-Picker.ps1) stages an offline Godot project under a fresh ignored private output root. It pins the documented original executable as input identity only; it never executes it. It uses accepted frozen65/62 synthetic terrain generation, the pinned accepted65 synthetic typed baseline fixture, real camera projection and pressed/released/right/motion events. The [oracle](../../SWG-Godot-Client/poc/round66-tests/Rendering/verify_picker.py) reuses frozen Fraction triangle/projection models and explicitly casts independently expected target X/Z to binary32. Native hit or target values do not seed expectations.
+The standalone runner (external historical reference) stages an offline prototype host project under a fresh ignored private output root. It pins the documented original executable as input identity only; it never executes it. It uses accepted frozen65/62 synthetic terrain generation, the pinned accepted65 synthetic typed baseline fixture, real camera projection and pressed/released/right/motion events. The oracle (external historical reference) reuses frozen Fraction triangle/projection models and explicitly casts independently expected target X/Z to binary32. Native hit or target values do not seed expectations.
 
 Headless and GPU receipt results, exact tested source hashes and the approved Runtime dependency amendment are recorded in the [Round66 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R66_POINT_TARGET_INPUT.md). GPU marker readback proves a bounded diagnostic marker on synthetic geometry, not original visual or interaction fidelity.

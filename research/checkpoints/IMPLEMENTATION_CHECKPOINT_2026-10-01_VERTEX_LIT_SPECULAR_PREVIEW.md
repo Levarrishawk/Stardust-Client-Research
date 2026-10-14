@@ -14,7 +14,7 @@ Explicit policy: literal positive-power/parallel diagnostic vertex light calcula
 
 ## Validation and corrected fixture
 
-Original standalone and interior GPU/idle/live color/27 shapes/four age/reset/rejection/resource/actor/door/collision/portal/reflected owner checks pass. Independent raw source/material/normal/face/shape/animation/floor and256 supplied compiled instruction cases agree. Native full suite and Godot build zero warnings/errors pass.
+Original standalone and interior GPU/idle/live color/27 shapes/four age/reset/rejection/resource/actor/door/collision/portal/reflected owner checks pass. Independent raw source/material/normal/face/shape/animation/floor and256 supplied compiled instruction cases agree. Native full suite and prototype host build zero warnings/errors pass.
 
 GPU initialc207cd1a8be8410f8da3283d52ae4eb3; final built e355a090d8574021bb864a5eb89bd720; interior GPUaccb029d19cf435bb1c99ad8709fc9e2; final headless4b5c53e7f47a473db3c9035c82fb9640; cancellation5e7dd2054cd34253a6e06d5a09039066. Private original/interpreter records interior-vertex-lit-native.txt/interior-vertex-lit-independent.txt and inspected captures preserve reproducibility.
 

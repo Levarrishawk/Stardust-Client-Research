@@ -8,7 +8,7 @@ Which original triangle-edge rules constrain a bounded single-cell horizontal mo
 
 Executable SHA-256 rechecked: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Configuration SHA-256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`, 48 TREE mounts under `C:\Stardust-DEV`. Floor inventory SHA-256 `09CBEEDE9C6EB84EE4AE9FB2F24937D104A99C17AC9BC7D2C87B4CA6ADFA8A9E`. Original YT-1300 POB SHA-256 `8B4B59335CF34BA91DAA5CCB092AF60C9A996849DB29E77EB154FD4DF202DF4A`.
 
-Capstone/pefile and `disasm_range.py` were used for static analysis only. .NET 8 smoke tests and Godot 4.7.2 .NET x64 executed only the owned offline prototype. Raw disassembly, generated proprietary-derived fixtures, logs and capture remain ignored/private. No original execution, live contact, commit or publication.
+Capstone/pefile and `disasm_range.py` were used for static analysis only. .NET 8 smoke tests and prototype host 4.7.2 .NET x64 executed only the owned offline prototype. Raw disassembly, generated proprietary-derived fixtures, logs and capture remain ignored/private. No original execution, live contact, commit or publication.
 
 ## Findings versus interpretation
 
@@ -16,7 +16,7 @@ Capstone/pefile and `disasm_range.py` were used for static analysis only. .NET 8
 
 Caller `0x012647B0` returns false for results 2/4/10 and true for certain owner-resolved collision outputs; this is not a general legal-movement boolean. Broader caller `0x01267380` horizontalizes contact motion, handles portal/open-boundary outcomes separately and caps recursive owner continuation at five. Full result-family names, special-edge geometry and permission enforcement remain Unknown. `FLT_MAX` at `0x015FFCA4` was verified directly, correcting the initial working assumption that it was one. No public claim was based on that mistaken assumption.
 
-Confirmed implementation: `SingleCellFloorWalker` is independently authored from the durable edge contract and geometric fixtures. It owns topology, returns immutable progress, traverses reciprocal solid same-floor neighbors, projects contact Y, and explicitly stops at missing-neighbor portal/open exits or unsupported collision policies. Its statuses, numeric tolerance, nearly vertical guard and crossing cap are modern policies. The Godot adapter adds a two-pick line/marker inspector with mode/cell reset and reused resources.
+Confirmed implementation: `SingleCellFloorWalker` is independently authored from the durable edge contract and geometric fixtures. It owns topology, returns immutable progress, traverses reciprocal solid same-floor neighbors, projects contact Y, and explicitly stops at missing-neighbor portal/open exits or unsupported collision policies. Its statuses, numeric tolerance, nearly vertical guard and crossing cap are modern policies. The prototype host adapter adds a two-pick line/marker inspector with mode/cell reset and reused resources.
 
 ## Validation and corrections
 
@@ -26,7 +26,7 @@ Independent raw floor bytes plus XZ segment/edge intersections pass **17,658 pro
 
 Initial validation corrected a synthetic portal-parameter assertion, independent fixture contact-height rounding and vertical-neighbor selection. Position checks exposed an authored face with horizontal-normal ratio approximately `6.5051e-6`; float XZ rounding changed inferred height by 0.5 units. The bounded native policy now rejects nearly vertical height fields explicitly, and fixtures choose supported surfaces. No original slope limit is inferred. The final corpus denominator still covers 4,441 eligible floors; no claim is made for excluded surfaces or every path within each floor.
 
-Godot headless and hidden GPU runs pass seven nonzero reflected cell walks, two-pick control/reset, existing seven surface-to-route controls, eight cell selectors and graph readback. Build has zero warnings/errors. GPU capture was visually inspected: named cell, floor/route rendering and movement-mode control are readable. The existing certificate-store startup error remains nonfatal; it is not movement verification. User mouse interaction was not manually performed; the same selection/control callbacks were exercised programmatically.
+Prototype host headless and hidden GPU runs pass seven nonzero reflected cell walks, two-pick control/reset, existing seven surface-to-route controls, eight cell selectors and graph readback. Build has zero warnings/errors. GPU capture was visually inspected: named cell, floor/route rendering and movement-mode control are readable. The existing certificate-store startup error remains nonfatal; it is not movement verification. User mouse interaction was not manually performed; the same selection/control callbacks were exercised programmatically.
 
 Workspace validator passes 765 Markdown files with zero broken/private links, 2,590 unique address names and 345 packet rows. `git diff --check` passes. Existing unrelated modifications remain intact and staging is empty. The capture launcher correctly refused to overwrite an earlier capture; the final GPU gate used a fresh filename.
 
@@ -34,12 +34,8 @@ Workspace validator passes 765 Markdown files with zero broken/private links, 2,
 
 From repository root, using the local Python runtime and an ignored output directory:
 
-```powershell
-dotnet run --no-restore --project poc/Stardust.Core.SmokeTests
-python tools/python/verify_floor_mesh.py C:\Stardust-DEV C:\Stardust-DEV\swgemu_live.cfg PRIVATE_FLOOR_OUTPUT --core-dll CORE_SMOKE_DLL
-python tools/python/verify_floor_walks.py C:\Stardust-DEV C:\Stardust-DEV\swgemu_live.cfg FLOOR_INVENTORY_JSON PRIVATE_WALK_OUTPUT CORE_SMOKE_DLL
-dotnet build --no-restore poc/Stardust.Godot
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 `FLOOR_INVENTORY_JSON` is the producer's `floors.json`; output directories must resolve under the ignored private workspace directory. The verifier pins generated fixtures and every source member before native evaluation. Smoke DLL is `poc/Stardust.Core.SmokeTests/bin/Debug/net8.0/Stardust.Core.SmokeTests.dll`.
 

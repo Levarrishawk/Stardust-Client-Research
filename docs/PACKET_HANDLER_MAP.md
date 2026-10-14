@@ -658,3 +658,12 @@ October14 combat-spam refinement: [exact0x134 payload/color adapter](NGE_PRECU_C
 ## October14 spatial-chat implementation receipt
 
 [Spatial-chat contract](NGE_PRECU_SPATIAL_CHAT_CONTRACT.md) closes original0xF4 flags width/order against direct reader/writer probes and resolves a new172-byte application failure in the source NGE codec. The explicit Pre-CU adapter preserves owned OOB/text and bounds only the known eight-zero current-producer tail. Native11439/3538 plus five isolated cases pass; naturally received structured spatial chat is decoded in the rendered world. Nested presentation/outgoing acceptance remain open. The existing SpatialChat matrix row remains documented;345 source rows and all coverage denominators remain unchanged.
+
+
+## Original inspection attributes
+
+| Server message / opcode | Candidate client function | Parsed fields | Resulting action | Confidence | Evidence |
+|---|---|---|---|---|---|
+| AttributeListMessage / F3F12F2A (Z→C) | original listener 004FA000 → constructor 00AD1D70 → apply004FA380 | operand count consumed by original reader; observed counts3/4; U64ID, U32count, ordered narrow Archive key + Unicode32 value pairs; no NGE static-item name/revision | atomic cache replacement, typed AttributesChanged publication to inspection/inventory consumers | Confirmed original registrations and identified source-client failure; local server correlation | [Object attribute boundary](NGE_PRECU_OBJECT_ATTRIBUTE_CONTRACT.md), original baseline hash verified, Core3 AttributeListMessage/GetAttributesBatchCommand |
+
+C→Z getAttributesBatch uses ordinary queued-command text containing decimal IDs only; NGE ID/revision pairs require a profile bridge. Existing packet-gap-matrix row remains documented; no new packet identity/count.

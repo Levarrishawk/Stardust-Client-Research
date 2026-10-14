@@ -21,7 +21,7 @@ human/terminal object-resource chains and explicit diagnostic material retain
 their accepted pinned identities. Terrain remains supplied synthetic geometry.
 Neither camera input nor packets come from a live user/server in these fixtures.
 
-The [common launcher](../../../SWG-Godot-Client/poc/round16-tests/Integration/Launch.ps1) adds Version2
+The common launcher (external historical reference) adds Version2
 policy`SuppliedTerrainInputPausedTargetWithQueuedFullRootCorrection` alongside the
 unchanged Version1 policy. Supplied finite values fix speed4,10ms ticks,128 updates,
 pause5/resume8, retarget10 and full correction20. Policy rejects conflicting modes.
@@ -64,13 +64,13 @@ completed prefix, not a rollback or still-current motion claim after world close
 
 ## Independent verification
 
-[Trajectory peer](../../../SWG-Godot-Client/poc/round66-tests/Integration/point_input_peer.py) computes
+Trajectory peer (external historical reference) computes
 each camera hit from retained geometry with Fraction intersection, then target
 binary32 values and movement/grounding/speed/clock independently. It applies the
 authored pause/retarget schedule and independently packed root bytes; native hit
 or pose output never seeds expected movement. It also checks retained original
 publication/material, fixed terrain/ray probes, actual references and cleanup.
-[Failure peer](../../../SWG-Godot-Client/poc/round66-tests/Integration/queued_failure_peer.py) requires
+Failure peer (external historical reference) requires
 the codec's exact length error,20 completed updates, no full correction publication
 and all outer/inner owners drained. The unchanged Round65 oracle checks the prior
 89-step Version1 trajectory after these host changes.
@@ -83,7 +83,7 @@ rays and five target conversions per mode. Joined headless/GPU both pass102 upda
 two actual camera picks, three paused ticks, retarget10, queued correction20 and
 arrival/consecutive zero-speed stop across two patches/two chunks. Malformed
 queued input drains the20-update prefix without correction publication. Unchanged
-Version1 passes89 updates. Normal Godot build is zero-warning/error; default core
+Version1 passes89 updates. Normal prototype host build is zero-warning/error; default core
 smoke18 events/zero failures. All31 final worker/current/main hashes match.
 GPU capture was inspected: original human and terminal remain on the supplied
 textured diagnostic terrain. This is not an original terrain fidelity or joined

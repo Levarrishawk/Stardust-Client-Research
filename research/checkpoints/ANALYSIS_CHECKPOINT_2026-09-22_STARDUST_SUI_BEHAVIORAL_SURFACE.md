@@ -55,7 +55,7 @@ Dynamic indexed paths require hierarchical lookup at runtime; they cannot all be
 
 ## Architectural consequence
 
-The original UI asset adapter should expose a typed property service rather than allow gameplay code to know Godot/DX12 widget internals:
+The original UI asset adapter should expose a typed property service rather than allow gameplay code to know prototype host/DX12 widget internals:
 
 ```text
 SUI command interpreter

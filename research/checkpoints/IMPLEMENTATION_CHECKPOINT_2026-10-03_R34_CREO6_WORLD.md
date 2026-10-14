@@ -1,6 +1,6 @@
 # Round34 optional CREO6 world publication
 
-2026-10-03 UTC. Bounded question: can accepted33 full current CREO6 scalar/string/pair state compose atomically with serialized world publication and historical event ownership while preserving existing view3/TANO/resource partitions? Stop at optional policy, supported router, independent replay, negative/lifecycle/coexistence checks, durable contract and scope validation. No vector deltas/store/codec/host/Godot edits.
+2026-10-03 UTC. Bounded question: can accepted33 full current CREO6 scalar/string/pair state compose atomically with serialized world publication and historical event ownership while preserving existing view3/TANO/resource partitions? Stop at optional policy, supported router, independent replay, negative/lifecycle/coexistence checks, durable contract and scope validation. No vector historical implementation path (omitted) edits.
 
 ## Inputs and identity
 

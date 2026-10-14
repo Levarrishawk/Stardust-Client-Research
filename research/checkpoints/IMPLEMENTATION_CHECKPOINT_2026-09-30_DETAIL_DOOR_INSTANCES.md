@@ -20,7 +20,7 @@ python tools/python/verify_persistent_door_actor.py C:\Stardust-DEV C:\Stardust-
 # Reverse selection: cell 6 / portal 0, separate private output directory.
 ```
 
-Native build/smoke and screening pass; independent selected traces total 1,896 ticks / 88 transfers / 56 blocked ticks. The bounded Godot `-DoorWalk` command uses the Mustafar POB, cell 5/reference 1 and leaf hash above; headless/GPU timing/key/diagonal/owner/LOD adapter gates pass. Capture inspected. Detailed original outputs remain ignored. Known certificate startup diagnostic is nonfatal; no original execution, live server or publication.
+Native build/smoke and screening pass; independent selected traces total 1,896 ticks / 88 transfers / 56 blocked ticks. The bounded prototype host `-DoorWalk` command uses the Mustafar POB, cell 5/reference 1 and leaf hash above; headless/GPU timing/key/diagonal/owner/LOD adapter gates pass. Capture inspected. Detailed original outputs remain ignored. Known certificate startup diagnostic is nonfatal; no original execution, live server or publication.
 
 ## Next probe
 

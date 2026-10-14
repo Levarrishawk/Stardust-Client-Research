@@ -20,7 +20,7 @@ Confirmed rejection/lifecycle observation: zero/nonfinite/range, wrong clock/pre
 
 ## Validation and resume
 
-[Scenarios](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldTerrainMovementSpeedScenarios.cs) pass489 checks/133 negatives. [Independent producer/verifier](../../../SWG-Godot-Client/poc/round69-tests/Runtime/verify_speed.py) compares96 updates in six cases. Generate with explicit sealed runtime/terrain paths into fresh private input/expected files; offline restore/build the [runner](../../../SWG-Godot-Client/poc/round69-tests/Runtime/Runtime.csproj), execute its actual DLL into fresh native output, then independently verify into a fresh receipt. Final private handoff records exact portable commands, hashes and receipts.
+Scenarios (external historical reference) pass489 checks/133 negatives. the separate implementation record compares96 updates in six cases. Generate with explicit sealed runtime/terrain paths into fresh private input/expected files; offline restore/build the runner (external historical reference), execute its actual DLL into fresh native output, then independently verify into a fresh receipt. Final private handoff records exact portable commands, hashes and receipts.
 
 Unchanged68 manual102/390/71 and65 point111/721/136 pass against final Core; three builds zero warnings/errors. Initial and strengthened-arrival runs passed; all intermediate logs are retained. No unrelated pause/clear/full default/host/GPU replay is claimed. Final frozen-scope, exact narrow source-diff, UTF8/AST/XML/links/whitespace/validator/HEAD/index/status gates establish ownership and reproducibility.
 

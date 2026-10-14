@@ -22,4 +22,4 @@ Core smoke passes. Independent original floor regression preserves all 17,658 ex
 
 ## Compatibility consequence and next probe
 
-The engine-neutral actor may opt into precise movement; the prior default remains until host verification. Original floor shape and conservative boxes are preserved at their boundaries, while numerical output policy is explicitly modern. Next: expose the opt-in in Godot, run pinned YT-2400 headless controls and inspect a private GPU capture. Then investigate the Yavin 4/0 reverse LandingFailed rather than widening global start tolerance.
+The engine-neutral actor may opt into precise movement; the prior default remains until host verification. Original floor shape and conservative boxes are preserved at their boundaries, while numerical output policy is explicitly modern. Next: expose the opt-in in prototype host, run pinned YT-2400 headless controls and inspect a private GPU capture. Then investigate the Yavin 4/0 reverse LandingFailed rather than widening global start tolerance.

@@ -76,6 +76,6 @@ idempotent disposal and exclusive reopen after failed mount cleanup.
 Original assets remain private; commands print compact identities/counts only.
 
 Next: decode `texture/stco_tan.dds` independently into RGBA, establish its format
-and mip bounds, and map `effect/a_simple.eft`'s selected pass before a Godot
+and mip bounds, and map `effect/a_simple.eft`'s selected pass before a prototype host
 material adapter. Coordinate and winding conversion need a separate asymmetric
 fixture; successful mounting alone does not close those gates.

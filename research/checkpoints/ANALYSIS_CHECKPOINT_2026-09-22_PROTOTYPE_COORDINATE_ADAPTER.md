@@ -1,4 +1,4 @@
-# SWG-to-Godot coordinate adapter fixtures
+# SWG-to-prototype host coordinate adapter fixtures
 
 Date: 2026-09-22
 
@@ -11,15 +11,15 @@ angle constructor and quaternion-to-basis builder independently confirm this.
 Wire encoders often serialize translation as x/z/y, but that is field order,
 not a different in-memory coordinate system.
 
-Godot is also Y-up but treats -Z as forward. The smallest explicit adapter is
+Prototype host is also Y-up but treats -Z as forward. The smallest explicit adapter is
 therefore the Z reflection `S = diag(1,1,-1)`.
 
 ## Adapter
 
-| Value | SWG -> Godot |
+| Value | SWG -> prototype host |
 |---|---|
 | position or direction | `(x, y, z) -> (x, y, -z)` |
-| quaternion memory `[w,x,y,z]` | `(w,x,y,z) -> Godot Quaternion(-x,-y,z,w)` |
+| quaternion memory `[w,x,y,z]` | historical prototype identifier (omitted) |
 | rotation basis | `R_g = S * R_s * S` |
 | triangle indices | reverse one winding edge/order once at import |
 | normal | transform as direction `(nx,ny,-nz)` |
@@ -34,13 +34,13 @@ reflection: quaternion vector components transform as an axial vector,
 `coordinate_adapter_fixture.py` tests identity, +90-degree yaw, pitch and roll,
 plus a normalized mixed quaternion. For every fixture, the matrix created from
 the adapted quaternion equals `S * R_swg * S` within `1e-6`. The script also
-prints the explicit Godot `[x,y,z,w]` constructor values and exits nonzero on
+prints the explicit prototype host `[x,y,z,w]` constructor values and exits nonzero on
 failure. All fixtures passed on 2026-09-22.
 
 ## Required use boundaries
 
 - Decode files into an engine-neutral SWG-space representation first.
-- Apply this adapter once when publishing transforms/geometry to Godot; do not
+- Apply this adapter once when publishing transforms/geometry to prototype host; do not
   scatter sign changes among individual asset readers.
 - Keep network translation decoding separate: read wire x/z/y into logical SWG
   `(x,y,z)`, then apply the same host adapter if/when publishing to the scene.
@@ -52,7 +52,7 @@ failure. All fixtures passed on 2026-09-22.
 
 - SWG `[w,x,y,z]`, Y-up, +Z/K forward, and wire x/z/y distinction: **confirmed
   by executable code**.
-- Godot conversion equations and fixture invariants: **confirmed
+- prototype host conversion equations and fixture invariants: **confirmed
   mathematically and by numerical tests**.
 - Whether a future custom DX12 renderer should retain SWG +Z-forward internally
   instead of applying this adapter: **architecture choice**, not a compatibility
@@ -61,4 +61,4 @@ failure. All fixtures passed on 2026-09-22.
 
 ## October1 implementation correction
 
-The extra imported-index reversal above is superseded by the [original-source facing audit](../../docs/GODOT_GEOMETRY_FACING_CONTRACT.md). Z reflection already converts tested source CCW faces to Godot CW; preserve authored indices. The quaternion/matrix equations and historical rotation test results remain valid. The earlier synthetic rendering fixtures used an opposite source winding and did not establish outward original faces.
+The extra imported-index reversal above is superseded by the [original-source facing audit](../../docs/PROTOTYPE_GEOMETRY_FACING_CONTRACT.md). Z reflection already converts tested source CCW faces to prototype host CW; preserve authored indices. The quaternion/matrix equations and historical rotation test results remain valid. The earlier synthetic rendering fixtures used an opposite source winding and did not establish outward original faces.

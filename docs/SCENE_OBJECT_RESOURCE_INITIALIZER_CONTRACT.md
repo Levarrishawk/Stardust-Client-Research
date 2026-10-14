@@ -1,6 +1,6 @@
 # Generic scene object resource initializer
 
-R14-R,2026-10-02. [SceneObjectResourceInitializer](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneObjectResourceInitializer.cs) schedules the accepted [sealed resource router](SCENE_OBJECT_RESOURCE_ROUTER_CONTRACT.md) results for both catalog recipes. This is modern engine-neutral asynchronous ownership policy. It adds no source discovery, parser, executor thread or implicit recipe options.
+R14-R,2026-10-02. SceneObjectResourceInitializer (external historical reference) schedules the accepted [sealed resource router](SCENE_OBJECT_RESOURCE_ROUTER_CONTRACT.md) results for both catalog recipes. This is modern engine-neutral asynchronous ownership policy. It adds no source discovery, parser, executor thread or implicit recipe options.
 
 ## Exact API
 

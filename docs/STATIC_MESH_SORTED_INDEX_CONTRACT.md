@@ -12,7 +12,7 @@ Each variant owns its direction and readonly index list. Counts must fit the exa
 
 `SortedMeshIndexSelector.Select` requires finite camera displacement already expressed in primitive-local space. It selects the minimum dot product and preserves the first entry on ties, matching the strict-less comparison at VA 007707D0. Without variants it returns the original INDX list. Wider double intermediates prevent modern extreme-input overflow; ordinary values are compatible, but bit-identical x87 decisions near precision ties are not claimed. Caller transform conversion is separate. The original preparation code uses rotation transpose on world camera-minus-translation; arbitrary modern shear/scale inverse semantics are not inferred from it.
 
-The neutral Godot inspector uploads the ordinary index list and does not claim translucent ordering or faithful original materials. A later material renderer must supply camera-local displacement and bind the selected variant for the relevant surface.
+The neutral prototype host inspector uploads the ordinary index list and does not claim translucent ordering or faithful original materials. A later material renderer must supply camera-local displacement and bind the selected variant for the relevant surface.
 
 ## Additional declarations
 

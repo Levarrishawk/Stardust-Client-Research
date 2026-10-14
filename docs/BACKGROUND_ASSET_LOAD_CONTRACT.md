@@ -4,7 +4,7 @@
 
 Cancellation does not forcibly abort arbitrary loader code. Factories must honor the token and release their owned resources in finally/using scopes. A canceled/closed owner never publishes a newly accepted result; already transferred decoded data belongs to the caller. The host additionally checks cancellation/tree lifetime before scene publication.
 
-The interior host snapshots options/specification and opens configuration/TRE overlay on the worker. All overlay reads and CPU decoding stay there; token checks occur before lookup and before transfer. Existing individual decoders are bounded but do not poll cancellation inside every decode loop. Owned archive streams close before result delivery. Godot UI remains active during loading; Cancel requests cooperative shutdown. Every node/GPU allocation and scene-state publication occurs on the main thread after delivery. Exit cancels pending work.
+The interior host snapshots options/specification and opens configuration/TRE overlay on the worker. All overlay reads and CPU decoding stay there; token checks occur before lookup and before transfer. Existing individual decoders are bounded but do not poll cancellation inside every decode loop. Owned archive streams close before result delivery. Prototype host UI remains active during loading; Cancel requests cooperative shutdown. Every node/GPU allocation and scene-state publication occurs on the main thread after delivery. Exit cancels pending work.
 
 `-CancelSceneLoad` is a bounded headless-only test option requiring a pinned scene specification. It cancels at the pending first asset lookup, verifies archive scope closure and rejects any scene/GPU publication. It does not alter installed assets.
 

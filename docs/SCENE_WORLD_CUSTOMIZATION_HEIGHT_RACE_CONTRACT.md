@@ -1,6 +1,6 @@
 # Held customization versus current body state
 
-The standalone [customization preview](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldCreatureCustomizationPreview.cs) has an explicit `--customization-height-race` mode. `--customization-race-retire generation|destroy` chooses its final held-worker stale-lifetime case; default is generation. Existing normal mode is preserved. No production wrapper change was required: the accepted [appearance transaction](SCENE_WORLD_CREATURE_CUSTOMIZATION_VISUAL_CONTRACT.md) updates material selections/generated texture without restoring an earlier root/body state.
+The standalone customization preview (external historical reference) has an explicit `--customization-height-race` mode. `--customization-race-retire generation|destroy` chooses its final held-worker stale-lifetime case; default is generation. Existing normal mode is preserved. No production wrapper change was required: the accepted [appearance transaction](SCENE_WORLD_CREATURE_CUSTOMIZATION_VISUAL_CONTRACT.md) updates material selections/generated texture without restoring an earlier root/body state.
 
 ## Controlled sequence
 
@@ -14,24 +14,19 @@ Only Height currently affects root scale in this boundary; the other five values
 
 ## Independent evidence
 
-The [producer](../../SWG-Godot-Client/poc/round22-tests/Rendering/Generate-Peer.py) extends the Rendering18 fixture family with two scalar packets authored using Python byte packing, independently of production encoding. The [native scenario](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldCustomizationHeightRaceScenarios.cs) checks exact decode/encode, scalar state, finite Height bits and truncation/update limits: 134 assertions. The own runner also passes the accepted source adapter's 97 assertions and prior one-composer/latest-pending ownership regression.
+The producer (external historical reference) extends the Rendering18 fixture family with two scalar packets authored using Python byte packing, independently of production encoding. The native scenario (external historical reference) checks exact decode/encode, scalar state, finite Height bits and truncation/update limits: 134 assertions. The own runner also passes the accepted source adapter's 97 assertions and prior one-composer/latest-pending ownership regression.
 
-The [Python audit](../../SWG-Godot-Client/poc/round22-tests/Rendering/Verify.py) independently parses latest scalar bytes and compares held/committed/reset receipts. It independently verifies original-byte face preparation and all five composition layers for both supplied profiles. GPU MAIN readback SHA-256 equals accepted output hashes: zero `A41EE8925C695A8BC2DA0CAC1FA17864D471270507DF3900472F0655A5A42808`, varied `60C109DF85346F25B814E303B6D022D7D2D94459234790B6337ABB1877E7B8F5`.
+The Python audit (external historical reference) independently parses latest scalar bytes and compares held/committed/reset receipts. It independently verifies original-byte face preparation and all five composition layers for both supplied profiles. GPU MAIN readback SHA-256 equals accepted output hashes: zero `A41EE8925C695A8BC2DA0CAC1FA17864D471270507DF3900472F0655A5A42808`, varied `60C109DF85346F25B814E303B6D022D7D2D94459234790B6337ABB1877E7B8F5`.
 
 The race camera uses FOV 40 at `(-1.5,1.3,-6)` looking at `(-1.5,1.3,0)`. Captures at the held and committed stages use identical live Height/pose/clock. Their appearance differs at 36,972 pixels; silhouette/background are identical. The ordinary Height/idle reset changes 30,005 silhouette-mask pixels. These pixel results corroborate a changed appearance at retained current geometry, rather than comparing poses across advancing asynchronous time.
 
 ## Reproduction
 
-Use bundled Python, cached .NET 8/Godot 4.7.2 Mono, task-private APPDATA, and the existing package cache. No downloads or original executable execution are involved.
+Use bundled Python, cached .NET historical implementation path (omitted) 4.7.2 Mono, task-private APPDATA, and the existing package cache. No downloads or original executable execution are involved.
 
-```powershell
-python poc/round22-tests/Rendering/Generate-Peer.py local-private/round22/peer.json
-dotnet restore poc/round22-tests/Rendering/Rendering.csproj --configfile poc/round22-tests/Rendering/NuGet.Config -p:NuGetAudit=false -p:UseSharedCompilation=false
-dotnet run --project poc/round22-tests/Rendering/Rendering.csproj --no-restore -p:NuGetAudit=false -p:UseSharedCompilation=false -- local-private/round22/peer.json poc/preview-profiles/scene-object-catalog.json
-dotnet build poc/Stardust.Godot/Stardust.Godot.csproj --no-restore -p:NuGetAudit=false -p:UseSharedCompilation=false
-./poc/round22-tests/Rendering/Launch.ps1 -GodotPath $taskGodot -ArchiveRoot C:/Stardust-DEV -Configuration C:/Stardust-DEV/swgemu_live.cfg -FixturePath local-private/round22/peer.json -Retirement generation
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
 
-For the GPU destroy case add `-Retirement destroy -CapturePath` with a fresh absolute private PNG. The [launcher](../../SWG-Godot-Client/poc/round22-tests/Rendering/Launch.ps1) passes the explicit race arguments and prints private log/export paths. Captures include ordinary base/varied plus `-held`, `-committed`, `-reset` siblings. Run `Verify.py EXPORT PEER LOG [CAPTURE_STEM]`; omission of the stem audits receipts/original composition without claiming rendered pixels. Native package restore uses the own no-sources config and populated private cache; Godot build uses its existing cached SDK.
+
+For the GPU destroy case add `-Retirement destroy -CapturePath` with a fresh absolute private PNG. The launcher (external historical reference) passes the explicit race arguments and prints private log/export paths. Captures include ordinary base/varied plus `-held`, `-committed`, `-reset` siblings. Run `Verify.py EXPORT PEER LOG [CAPTURE_STEM]`; omission of the stem audits receipts/original composition without claiming rendered pixels. Native package restore uses the own no-sources config and populated private cache; prototype host build uses its existing cached SDK.
 
 The [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R22_CUSTOMIZATION_HEIGHT_RACE.md) records input identity, validation, confidence, remaining uncertainty and lead's next mixed-wire join.

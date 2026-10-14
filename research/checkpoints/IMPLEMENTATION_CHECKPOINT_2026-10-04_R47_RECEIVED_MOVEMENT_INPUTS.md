@@ -26,6 +26,6 @@ Reproduce using bundled Python (UTF8/no bytecode), cached .NET8 packages and pri
 
 ## Scope, limits and next action
 
-Only four assigned new artifacts and five own runner files are eligible for integration; frozen world/router/kernel/store/motion/default and canonical files are unchanged. Lead owns living status/ledger reconciliation. No original execution, live contact/capture/fuzzing, external mutation, download, staging/commit/push/publication, Godot edits or sibling/lead messages.
+Only four assigned new artifacts and five own runner files are eligible for integration; frozen world/router/kernel/store/motion/default and canonical files are unchanged. Lead owns living status/ledger reconciliation. No original execution, live contact/capture/fuzzing, external mutation, download, staging/commit/push/publication, prototype host edits or sibling/lead messages.
 
 Unknowns remain original missing/default initialization, runtime modifier composition, speed/angle arithmetic, authored-versus-received precedence and live behavior. No named walk/run selector is added; generic finite inspection is not a finite-nonnegative speed policy. Next exact lead join pairs current received eligibility with authored raw/provenance without fallback or seed, then explicitly bounds any selected speed policy. Integration should review exact source/hash scope and replay native/independent/frozen gates before canonical acceptance.

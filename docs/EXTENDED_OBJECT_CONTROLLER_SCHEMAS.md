@@ -105,6 +105,6 @@ Fields are **confirmed from producers**. Human meanings of every result enumerat
 
 1. Dispatch ObjectController on `(direction, type)`, then allow a second discriminator such as crafting `subcode`.
 2. Bound every count and string before allocation; several formats contain heterogeneous or variable records.
-3. Wire widths remain fixed in an x64 client. Never serialize native pointers, `size_t`, enum storage, or Godot `Variant` representations.
+3. Wire widths remain fixed in an x64 client. Never serialize native pointers, `size_thistorical prototype identifier (omitted)Variant` representations.
 4. Preserve actual coordinate order even if internal math uses conventional `(x,y,z)` vectors.
 5. Repeated CRCs, constants, and trailing zeros remain protocol fields until executable parsing proves otherwise.

@@ -10,7 +10,7 @@ Orientation covered START/latest accepted27, status/ledger/unknown functions and
 
 ## Observation, interpretation and confidence
 
-Confirmed implementation: [cursor](../../../SWG-Godot-Client/poc/Stardust.Core/Runtime/DeltaTimeTextureCursor.cs) retains float32 residual and uses explicit double addition/repeated subtraction, frame wrap, bounded work, checked counters and prebuilt immutable candidate receipts. All failures preserve the exact prior reference and issued snapshots. Reset preserves monotonic cumulative advances; close preserves final values while invalidating freshness. These ownership/validation/receipt policies are modern, not recovered legacy memory layout.
+Confirmed implementation: cursor (external historical reference) retains float32 residual and uses explicit double addition/repeated subtraction, frame wrap, bounded work, checked counters and prebuilt immutable candidate receipts. All failures preserve the exact prior reference and issued snapshots. Reset preserves monotonic cumulative advances; close preserves final values while invalidating freshness. These ownership/validation/receipt policies are modern, not recovered legacy memory layout.
 
 Confirmed numerical fixture: original documented interval bits3DCCCCCD, initial delta32700000, then3E4CCCCC yield persistent residual equal to interval after one step. Zero delta advances again and clears residual. No clamp was used. Ten0.0125 inputs versus one0.125 input produce distinct float32 residuals (3CCCCCD0/3CCCCCCC); arbitrary partition bit identity is not claimed.
 
@@ -20,14 +20,14 @@ Compatibility consequence: engine-neutral local frame state is ready for a separ
 
 ## Validation and reproduction
 
-Build own [runner](../../../SWG-Godot-Client/poc/round28-tests/Runtime/Runtime.csproj) with cached packages and `NuGetAudit=false`, `UseSharedCompilation=false`, `UseAppHost=false`. Native:
+Build own runner (external historical reference) with cached packages and `NuGetAudit=false`, `UseSharedCompilation=false`, `UseAppHost=false`. Native:
 
 ```text
 dotnet <Runtime.dll> poc/round28-tests/Runtime/ordered-fixtures.json <cursor-receipt.json>
 python poc/round28-tests/Runtime/verify.py <cursor-receipt.json>
 ```
 
-Zero warnings/errors. Native 870 checks /36 cases pass. Independent oracle checks all180 operations, including3 budget/6 argument/5 overflow rejections and four full-budget successes; constructor malformed cases are separate. Positive/negative bits cover signed zero, interval neighbors, count1/8/large modulus, multiple wraps, subnormal/extreme floats, original interval, repeated/partition rounding, reset, exact immutable receipts, foreign owner and closed writes. No broad unchanged world/Godot regressions are warranted for this additive isolated class.
+Zero warnings/errors. Native 870 checks /36 cases pass. Independent oracle checks all180 operations, including3 budget/6 argument/5 overflow rejections and four full-budget successes; constructor malformed cases are separate. Positive/negative bits cover signed zero, interval neighbors, count1/8/large modulus, multiple wraps, subnormal/extreme floats, original interval, repeated/partition rounding, reset, exact immutable receipts, foreign owner and closed writes. No broad unchanged historical implementation path (omitted) regressions are warranted for this additive isolated class.
 
 Workspace validator, both new document links, git diff --check, UTF-8/LF/trailing-whitespace and exact scope audits pass. Exactly nine authorized additions; all 2,666 baseline files byte-identical; HEAD/index preserved; private evidence and build products ignored. Focused snapshot diff and git status inspected. Only four allowed additions and five own runner files are authored; no snapshot file changes are permitted. Receipts/logs/build outputs remain ignored. Lead owns canonical session/status reconciliation outside this worker allowlist. No Git stage/commit/push/publication occurred.
 

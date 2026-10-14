@@ -16,18 +16,18 @@ Confirmed freshness: global mutations supersede global receipts; Advance stales 
 
 Confirmed fixture arithmetic:390 native checks/36 cases, all157 independent Python operations agree. Twenty-two same-tick cases, seven invalid/capacity/range failures, six argument failures, eight checked overflow failures, and five closed writes are covered; malformed constructors are separate. Large exclusive-bound neighbor accepts18,446,742,802,399,232,000 ticks, rounded threshold/above reject safely. A configured ulong cap that rounds upward as double is separately checked before cast and rejects its one-tick-too-large candidate. Two0.0015 advances yield2 ticks versus one0.003 yielding3. Float320.005 yields4 ticks under chosen double multiplication; an initial diagnostic assumption of5 was corrected after the independent exact comparison, with no production change.
 
-Modern policy, not parity: seconds input/quantization/accumulation is correlated with accepted ordinary-time static evidence. Original PC24/FISTP precision, invalid/overflow/wrap and first-registration policy remain unclaimed. Class metadata explicitly reports OriginalPC24Parity=false. No scheduler callbacks or scene/cursor/Godot integration are added.
+Modern policy, not parity: seconds input/quantization/accumulation is correlated with accepted ordinary-time static evidence. Original PC24/FISTP precision, invalid/overflow/wrap and first-registration policy remain unclaimed. Class metadata explicitly reports OriginalPC24Parity=false. No scheduler callbacks or historical implementation path (omitted) integration are added.
 
 ## Reproduction and validation
 
-Own [runner](../../../SWG-Godot-Client/poc/round29-tests/Runtime/Runtime.csproj) builds offline with cached packages and flags NuGetAudit=false, UseSharedCompilation=false, UseAppHost=false. Build passes zero warnings/errors.
+Own runner (external historical reference) builds offline with cached packages and flags NuGetAudit=false, UseSharedCompilation=false, UseAppHost=false. Build passes zero warnings/errors.
 
 ```text
 dotnet <Runtime.dll> poc/round29-tests/Runtime/ordered-fixtures.json <clock-receipt.json>
 python poc/round29-tests/Runtime/verify.py <clock-receipt.json>
 ```
 
-The oracle uses Python integer truncation/range/sums and float32 bit conversion over independent synthetic input bits; every global/object/current/delivery row is compared. It does not execute production code as its reference. Native tests include capacities/duplicates, missing noops, divergent/skipped service, revision/tick/token overflow, registration at now, remove/recreate/reset, foreign owners, exact immutable receipts and closed cleanup. All failure references remain stable. No broad unchanged world/Godot tests are warranted for an additive isolated class.
+The oracle uses Python integer truncation/range/sums and float32 bit conversion over independent synthetic input bits; every global/object/current/delivery row is compared. It does not execute production code as its reference. Native tests include capacities/duplicates, missing noops, divergent/skipped service, revision/tick/token overflow, registration at now, remove/recreate/reset, foreign owners, exact immutable receipts and closed cleanup. All failure references remain stable. No broad unchanged historical implementation path (omitted) tests are warranted for an additive isolated class.
 
 Workspace validator, new-document relative links, git diff --check, UTF-8/LF/trailing-whitespace and exact scope audits pass. Focused snapshot diff and git status inspected. Verified scope: four allowed new artifacts plus five own Runtime29 runner files; all2,695 baseline files unchanged. Private logs/receipts/build output remain ignored. Lead owns canonical status/session reconciliation outside this allowlist. No staging, commit, push or publication.
 

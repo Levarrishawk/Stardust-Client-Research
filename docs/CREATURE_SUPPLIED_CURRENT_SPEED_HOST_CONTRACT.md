@@ -1,6 +1,6 @@
 # Received current-reader movement preview
 
-Round59 joins [current movement receipts](SCENE_WORLD_CREATURE_MOVEMENT_CURRENT_INPUT_CONTRACT.md) to the [supplied local-only reader](CREATURE_SUPPLIED_CURRENT_SPEED_READER_CONTRACT.md), then the frozen [atomic speed plan](CREATURE_NOMINAL_SPEED_PLAN_CONTRACT.md). [Host source](../../SWG-Godot-Client/poc/Stardust.Godot/ScenePumpedCurrentNominalSpeed.cs) is an explicit modern offline experiment. OriginalGetterBranchParity=false and OriginalEffectiveMovementParity=false.
+Round59 joins [current movement receipts](SCENE_WORLD_CREATURE_MOVEMENT_CURRENT_INPUT_CONTRACT.md) to the [supplied local-only reader](CREATURE_SUPPLIED_CURRENT_SPEED_READER_CONTRACT.md), then the frozen [atomic speed plan](CREATURE_NOMINAL_SPEED_PLAN_CONTRACT.md). Host source (external historical reference) is an explicit modern offline experiment. OriginalGetterBranchParity=false and OriginalEffectiveMovementParity=false.
 
 ## Admission and operation
 

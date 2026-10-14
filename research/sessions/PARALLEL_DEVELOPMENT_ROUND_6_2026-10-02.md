@@ -11,7 +11,7 @@ HEAD65de8c88141071744dc75594be126b3bab3696a5 plus1,855 public files. Manifest SH
 | Worker | Milestone | Boundary |
 |---|---|---|
 | Assets |R6-ASSETS-01| Raw decoded-create position/quaternion to explicit engine-neutral placement policy and independent matrix/reflection oracle |
-| Rendering |R6-RENDER-01| Reusable owned Godot creature visual with current registry handle and accepted resources |
+| Rendering |R6-RENDER-01| Reusable owned prototype host creature visual with current registry handle and accepted resources |
 | Runtime |R6-RUNTIME-01| Bounded asynchronous resource initializer with revision/generation-safe completion and cancellation |
 | Networking |R6-NET-01| Exact owned23-byte application baseline/delta outer envelopes preserving raw tags/views/counts and opaque field bytes |
 
@@ -32,7 +32,7 @@ Lead assignment correction: the first dispatch incorrectly called the applicatio
 | Worker | Result | Verification and limit |
 |---|---|---|
 | Assets | Explicit raw-create placement policy |27 placements,105 points,26 parent compositions,25 negatives. Independent cross-product oracle max basis2.9226e-8/point5.6515e-7/composition3.0473e-6; wrong transpose/axis/reflection/order discriminators pass. Normalization/zero choice modern; raw bits retained. |
-| Rendering | Reusable owned Godot creature visual | Original37-source/4,683,848-byte closure;19 native identity/transform negatives;128 idle/96 movement updates retain resources. Six registry invalidations, stale preflight, staged/post-attach cleanup, wrong-thread and explicit fresh publication pass. Authored MAIN only; caller engine pose explicit. |
+| Rendering | Reusable owned prototype host creature visual | Original37-source/4,683,848-byte closure;19 native identity/transform negatives;128 idle/96 movement updates retain resources. Six registry invalidations, stale preflight, staged/post-attach cleanup, wrong-thread and explicit fresh publication pass. Authored MAIN only; caller engine pose explicit. |
 | Runtime | Bounded asynchronous resource initializer | Deterministic task barriers prove snapshot ownership, outstanding capacity including ignored cancellation, one-shot completion, old/new revision and attempt freshness, result completeness, late faults/disposal/drain. One actual original37-source job closes archives before owner transfer and independently matches all identities. Modern object barrier only. |
 | Networking | Owned baseline/delta application envelopes | Corrected23-byte outer application header/minimum25 with count; strict size/budget/length, raw tag/view/declared count and opaque byte ownership. Native and independent actual-byte/scalar/malformed oracle pass. Inner schema validation remains separate. |
 
@@ -42,9 +42,9 @@ Canonical contracts: [placement](../../docs/SCENE_CREATE_PLACEMENT_CONTRACT.md),
 
 Scope review and conflict-preflight integration accepted33 worker files:32 additions and one Main.cs branch. Removing that exact branch reproduces baseline Main bytes, including line endings. Shared native runner registers placement/envelope/initializer scenarios. No existing reader, registry, clock, shader or mesh implementation changed.
 
-Lead reproduced all four native boundaries, placement and envelope Python oracles, original initializer source audit, combined native suite and warning-free Godot build. Fresh lead GPU/headless/cancel visual logs independently match all37 paths/priority/bytes/SHA identities and the exact synthetic47-byte create including signed zero. Seven invalid options, lifecycle6, preflight/no allocation, staged cleanup, attachment-time invalidation, wrong-thread and disposal markers pass. Fresh capture inspected: complete character at idle45; pale authored MAIN reflects this slice's explicit omission of customization/albedo/normal/specular, not regression of the existing full interior. Default routes preserved by exact unchanged bytes; no fresh full-interior GPU is claimed this round.
+Lead reproduced all four native boundaries, placement and envelope Python oracles, original initializer source audit, combined native suite and warning-free prototype host build. Fresh lead GPU/headless/cancel visual logs independently match all37 paths/priority/bytes/SHA identities and the exact synthetic47-byte create including signed zero. Seven invalid options, lifecycle6, preflight/no allocation, staged cleanup, attachment-time invalidation, wrong-thread and disposal markers pass. Fresh capture inspected: complete character at idle45; pale authored MAIN reflects this slice's explicit omission of customization/albedo/normal/specular, not regression of the existing full interior. Default routes preserved by exact unchanged bytes; no fresh full-interior GPU is claimed this round.
 
-Private evidence resides in the round6 acceptance folder. Lead visual logs: preview-5f9fdf9434dd4252a44a7cee90883a67 (GPU), preview-7afb897f3d76481c872e0bc4aa042066 (headless), preview-8eafac89ea9f4d64a17da128dcd2d619 (cancel). Images/source exports stay ignored. Known Godot certificate-store startup diagnostic persists in passing runs.
+Private evidence resides in the round6 acceptance folder. Lead visual logs: preview-5f9fdf9434dd4252a44a7cee90883a67 (GPU), preview-7afb897f3d76481c872e0bc4aa042066 (headless), preview-8eafac89ea9f4d64a17da128dcd2d619 (cancel). Images/source exports stay ignored. Known prototype host certificate-store startup diagnostic persists in passing runs.
 
 Two review findings matter: networking stopped the mistaken27-byte assignment before code, allowing the23 application/27 framed distinction to be clarified in schema, handler and coverage docs; Runtime added prepared-result completeness and attempt freshness because restarting can supersede a load without changing the registry handle. Consumers must check initializer.IsCurrent(ticket), not only registry.IsCurrent(handle).
 

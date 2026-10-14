@@ -42,7 +42,7 @@ Portal-record cleanup `00B52D60` removes the registered door and invokes the ins
 
 `PortalBarrierFloorWalker` connects this to the existing one-portal query for **identity owner frames and level source motion**. It prepares barriers only for paired floor links whose template allows door construction. Per-call permission is sampled once per consulted link; entry/barrier controls combine as offline passage policy. The floor query bounds attainable progress, then source-cell barrier contacts can shorten it before owner transfer. A candidate contact must have an attainable source floor locator. Unknown/denied/blocked state retains that cell, with zero transfers. Nonlevel requests stop at the starting locator with `UnsupportedNonlevelBarrierSweep`; no unsupported collision success is reported. Destination-cell barrier sweeps, exterior barriers without paired floors, actor contact events, leaf meshes and full floor-projected sweep paths are deferred.
 
-Godot **Actor bounds** uses an explicit inspection box of width/depth 0.5 and height 1.8, centered 0.9 above the picked foot. Toggle with Portal transfer and Walk between picks. Entry allowed and Barrier open remain offline controls; they are not a live cell-permission feed or door animation.
+Prototype host **Actor bounds** uses an explicit inspection box of width/depth 0.5 and height 1.8, centered 0.9 above the picked foot. Toggle with Portal transfer and Walk between picks. Entry allowed and Barrier open remain offline controls; they are not a live cell-permission feed or door animation.
 
 ## Verification and measured scope
 

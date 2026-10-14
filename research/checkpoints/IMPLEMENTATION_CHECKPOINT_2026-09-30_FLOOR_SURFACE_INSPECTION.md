@@ -12,7 +12,7 @@ Inputs use the previously verified [floor corpus](IMPLEMENTATION_CHECKPOINT_2026
 
 Native analytic tests additionally exercise 1,000 seeded grid probes, nearest reversed layers, endpoint inclusion, equal ties across leaves, empty/degenerate/coplanar queries, non-solid policy, source ownership and finite rejection. The canonical [query contract](../../docs/FLOOR_SURFACE_QUERY_CONTRACT.md) records the numeric policy and distinction from navigation.
 
-Optional cell floors share the POB/appearance aggregate cache. Independent `verify_portal_scene.py --floors` verifies **eight cells, seven floors/149 floor triangles, 21 sources**, all appearance geometry/sorted hashes and floor field hashes. Missing floors are explicit local diagnostics; aggregate budget tests remain fatal. Godot floor-only display and reflected right-click picking verify upload data and seven center probes. Headless and hidden GPU runs pass; the original hall floor capture was visually inspected and remains private. Builds/smoke pass; no live networking or original execution occurred.
+Optional cell floors share the POB/appearance aggregate cache. Independent `verify_portal_scene.py --floors` verifies **eight cells, seven floors/149 floor triangles, 21 sources**, all appearance geometry/sorted hashes and floor field hashes. Missing floors are explicit local diagnostics; aggregate budget tests remain fatal. Prototype host floor-only display and reflected right-click picking verify upload data and seven center probes. Headless and hidden GPU runs pass; the original hall floor capture was visually inspected and remains private. Builds/smoke pass; no live networking or original execution occurred.
 
 ## Next probe
 

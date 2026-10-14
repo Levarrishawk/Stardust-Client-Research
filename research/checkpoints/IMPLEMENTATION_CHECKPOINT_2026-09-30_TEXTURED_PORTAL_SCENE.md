@@ -4,7 +4,7 @@
 
 Can existing shared cell geometry gain bounded material/texture bundles with independent source/pixel agreement and honest unsupported branches? Closed for SSHT and baseline IMPL0004/0005, PASS0008/0009; CSHD customization is the next separate probe.
 
-Original executable SHA rechecked: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Configuration SHA `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`, 48 TREE0005 mounts. Pinned `appearance/yt1300.pob` SHA `8B4B59335CF34BA91DAA5CCB092AF60C9A996849DB29E77EB154FD4DF202DF4A`, priority52/9,455 bytes. Only static original reads and owned offline native/Godot execution occurred.
+Original executable SHA rechecked: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Configuration SHA `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`, 48 TREE0005 mounts. Pinned `appearance/yt1300.pob` SHA `8B4B59335CF34BA91DAA5CCB092AF60C9A996849DB29E77EB154FD4DF202DF4A`, priority52/9,455 bytes. Only static original reads and owned offline historical implementation path (omitted) execution occurred.
 
 ## Evidence and conclusions
 
@@ -16,6 +16,6 @@ Original executable SHA rechecked: `E782BF1C49B3DA730F66B54BC558947C46493F7133F6
 
 ## Validation and closure
 
-Native ownership, repeated source lookup, aggregate encoded/decoded budgets, missing texture isolation and complete truncation fixtures pass. Asymmetric PASS0008/0009 fixtures prove field offsets. `verify_portal_scene.py --textures` independently agrees on all sources, 221 mips and 18 implementation/pass records plus seven floors/eight graphs. Godot builds without warnings/errors; bounded strict headless and hidden GPU MAIN capture pass. The existing certificate-store startup error remains nonfatal and unrelated to asset loading; process exits0. All original-derived captures/output stay ignored/private. Workspace link/registry validation and focused diff checks follow this checkpoint.
+Native ownership, repeated source lookup, aggregate encoded/decoded budgets, missing texture isolation and complete truncation fixtures pass. Asymmetric PASS0008/0009 fixtures prove field offsets. `verify_portal_scene.py --textures` independently agrees on all sources, 221 mips and 18 implementation/pass records plus seven floors/eight graphs. Prototype host builds without warnings/errors; bounded strict headless and hidden GPU MAIN capture pass. The existing certificate-store startup error remains nonfatal and unrelated to asset loading; process exits0. All original-derived captures/output stay ignored/private. Workspace link/registry validation and focused diff checks follow this checkpoint.
 
 Canonical [contract](../../docs/TEXTURED_PORTAL_SCENE_CONTRACT.md). Scores, packet counts and 2,590-name registry are unchanged. Next exact probe: CSHD0001 inline SSHT and TXTR/TFAC structure, original default/customization application and an explicitly limited default inspection path.

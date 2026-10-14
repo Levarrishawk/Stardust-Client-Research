@@ -6,7 +6,7 @@ camera behavior and controller mapping are not recovered by this slice.
 
 ## Explicit stop in the admission
 
-The [admission](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldExplicitMovementAdmission.cs)
+The admission (external historical reference)
 now exposes its fixed `SpeedSource` and `bool SubmitStop(long timestampMicroseconds)`.
 Stop checks owner/reentry/open state and the current active finalized typed CREO3
 creation incarnation, then submits exactly `(0,0,0)` with null entry permission
@@ -19,8 +19,8 @@ All frozen48 source-admission behavior remains unchanged.
 
 ## Node ownership and configuration
 
-[SceneWorldSourcedInputHost](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldSourcedInputHost.cs) is
-an owner/main-thread Node. Inject `Func<long>` or use monotonic Godot microseconds.
+SceneWorldSourcedInputHost (external historical reference) is
+an owner/main-thread Node. Inject `Func<long>` or use monotonic prototype host microseconds.
 Add it to a live parent, then call:
 
 ```csharp
@@ -101,10 +101,10 @@ the admission after transfer; no inaccessible pending-history API is invented.
 Public failures record `Failure`, stop/suspend best-effort at the last accepted
 timestamp and dispose owned admission in a finally block. Failure cleanup never
 samples the clock again, preventing recursion. Native input/notifications retain
-failures instead of throwing into Godot dispatch. Wrong-thread/reentry guards
+failures instead of throwing into prototype host dispatch. Wrong-thread/reentry guards
 reject before transfer or mutation. Close is owner-thread/idempotent and attempts
 an explicit stop/inactive Advance before disposal; it never closes borrowed world,
-reader or motion store. Standard Godot tree ownership still applies: remove/free
+reader or motion store. Standard prototype host tree ownership still applies: remove/free
 Nodes when their parent no longer owns them. Close/Dispose release admission;
 the standalone proof explicitly frees its detached test Nodes.
 
@@ -130,21 +130,21 @@ resource publication may supply the already specified authored snapshot later.
 
 ## Evidence and validation
 
-Confirmed modern behavior: the [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldExplicitStopScenarios.cs)
+Confirmed modern behavior: the native scenarios (external historical reference)
 execute real zero-input ticks and reject stale/order/time/capacity/thread/reentry
-cases. [Independent schedules](../../SWG-Godot-Client/poc/round49-tests/Runtime/peer.py) cover 288 cases,
+cases. Independent schedules (external historical reference) cover 288 cases,
 3,955 native checks and 1,152 comparisons. The
-[standalone Godot proof](../../SWG-Godot-Client/poc/round49-tests/Runtime/Godot/SourcedHostProof.cs)
+the separate implementation record
 dispatches actual InputEventKey events, focus notifications and tree pause; 16
-cases/144 checks and [43 independent comparisons](../../SWG-Godot-Client/poc/round49-tests/Runtime/verify_godot.py)
+cases/144 checks and 43 independent comparisons (external historical reference)
 pass over synthetic pinned source inputs and actual sealed admission/drivers.
 The launcher checks every existing lexical output ancestor for ReparsePoint
 before directory creation and requires a fresh output directory. A private
 junction ancestor and an existing directory reject without creating output;
-a normal fresh actual-Godot control passes. No native Node leak warning remains. Installed Godot logs an environment
+a normal fresh actual-prototype host control passes. No native Node leak warning remains. Installed prototype host logs an environment
 certificate-store read error; this proof uses no connection or TLS operation.
 
 Frozen48 admission,47 received,18 local,39 terrain and default core smoke pass.
-Both the standalone and shared Godot projects build with zero warnings/errors.
+Both the standalone and shared prototype host projects build with zero warnings/errors.
 The [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R49_SOURCED_INPUT_HOST.md)
 records input identity, corrected failures, reproduction and precise next work.

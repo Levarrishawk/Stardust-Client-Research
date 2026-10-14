@@ -34,7 +34,7 @@ The compressed-animation quantizer is substantially better constrained than at s
 2. **Asset reachability and version gaps:** determine whether the four gap-bearing playback scripts, forward shader/effect versions, and the police-station portal layout are reachable under current Stardust server/client content. A parser for an unused asset is less urgent than a reachable visual failure.
 3. **Long-tail behavior and lifecycle:** continue UI/gameplay workflows, ownership/failure cleanup and presentation scalars, including non-prefix animation-message subscribers (`fire*` etc.), rare lighting/feedback fields and input force-feedback handoff.
 4. **Server interoperability checks:** the server packet-source matrix remains **345 documented classes / zero reachable documentation gaps**, which does not mean every optional client presentation effect or every server policy is correct. The auction-duration behavior and crafting state reconciliation merit runtime fixtures; existing active byte-level schema risks remain separately catalogued.
-5. **Before engine/build choice:** consolidate requirements for consuming *original* TRE/IFF assets, make a tiny read-only import/decoder fixture suite, then revisit Godot versus a custom DX12/Vulkan shell. Do not mistake this overnight analysis for authorization to start a wholesale client build.
+5. **Before engine/build choice:** consolidate requirements for consuming *original* TRE/IFF assets, make a tiny read-only import/decoder fixture suite, then revisit prototype host versus a custom DX12/Vulkan shell. Do not mistake this overnight analysis for authorization to start a wholesale client build.
 
 ## Reproducibility and handoff
 

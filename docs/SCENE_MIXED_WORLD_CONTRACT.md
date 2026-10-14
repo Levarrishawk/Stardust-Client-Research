@@ -1,6 +1,6 @@
 # Explicit mixed creature/static world
 
-R14-R,2026-10-02. [SceneWorldCoordinator](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldCoordinator.cs) now has an explicit generic resource constructor and separate publication API, using the accepted [router/options](SCENE_OBJECT_RESOURCE_ROUTER_CONTRACT.md) and new [initializer](SCENE_OBJECT_RESOURCE_INITIALIZER_CONTRACT.md). One coordinator owns registry, ready barrier, replication, lifecycle, resource queues and acknowledged changes for both recipes. No duplicate world/state implementation, parent transform graph, engine consumer or original readiness policy is added.
+R14-R,2026-10-02. SceneWorldCoordinator (external historical reference) now has an explicit generic resource constructor and separate publication API, using the accepted [router/options](SCENE_OBJECT_RESOURCE_ROUTER_CONTRACT.md) and new [initializer](SCENE_OBJECT_RESOURCE_INITIALIZER_CONTRACT.md). One coordinator owns registry, ready barrier, replication, lifecycle, resource queues and acknowledged changes for both recipes. No duplicate world/state implementation, parent transform graph, engine consumer or original readiness policy is added.
 
 ## Old and generic entry points
 
@@ -51,13 +51,13 @@ Lead registration: parse peer dictionary and call `SceneMixedWorldScenarios.Run(
 
 ## Lead acceptance and joined completion gate
 
-Lead replaced the temporary generic validation wrapper with the independently accepted [pure gate](SCENE_OBJECT_RESOURCE_VALIDATION_CONTRACT.md). Fresh deterministic tasks, original66-source/142-mip oracle, shared native suite and a separately handpacked original human/terminal integration still pass. Conservative gate limits, static HDR exclusion and unrequested transformed-result exclusions are explicit; legacy delivery/readers are unchanged. [Mixed Godot proof](MIXED_WORLD_PREVIEW_CONTRACT.md) checks exact publications, stale acknowledgment, static-only recreation, unaffected human state/GPU resources, recipe-family failure and drain. It applies two actors explicitly; reusable heterogeneous presentation is next.
+Lead replaced the temporary generic validation wrapper with the independently accepted [pure gate](SCENE_OBJECT_RESOURCE_VALIDATION_CONTRACT.md). Fresh deterministic tasks, original66-source/142-mip oracle, shared native suite and a separately handpacked original human/terminal integration still pass. Conservative gate limits, static HDR exclusion and unrequested transformed-result exclusions are explicit; legacy delivery/readers are unchanged. [Mixed prototype host proof](MIXED_WORLD_PREVIEW_CONTRACT.md) checks exact publications, stale acknowledgment, static-only recreation, unaffected human state/GPU resources, recipe-family failure and drain. It applies two actors explicitly; reusable heterogeneous presentation is next.
 
 ## Round15 presentation consumer join
 
 Generic publications/current snapshots now feed a reusable
 [engine-neutral consumer](SCENE_WORLD_OBJECT_PRESENTATION_CONTRACT.md), with
-[recipe adapters](SCENE_WORLD_OBJECT_VISUAL_CONTRACT.md) owning Godot roots.
+[recipe adapters](SCENE_WORLD_OBJECT_VISUAL_CONTRACT.md) owning prototype host roots.
 Resource freshness, creation incarnation, typed state and opaque history identity
 are checked independently. Acknowledgment requires the exact current successfully
 applied batch. Stale attempts cannot replace current actors; missing actors may
@@ -69,7 +69,7 @@ is recorded in [Round15](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_15_2026
 
 [Round16](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_16_2026-10-02.md)
 joins the bounded [pump](SCENE_WORLD_PRESENTATION_PUMP_CONTRACT.md),
-[Godot host](SCENE_WORLD_PRESENTATION_HOST_CONTRACT.md) and logical
+[prototype host host](SCENE_WORLD_PRESENTATION_HOST_CONTRACT.md) and logical
 [resource accounting](SCENE_OBJECT_RESOURCE_ACCOUNTING_CONTRACT.md).
 Independent peer and original headless/GPU/cancellation checks pass; the human
 retains its resource identity during state updates and terminal-only recreation.
@@ -83,7 +83,7 @@ separate. Research scores and protocol/name denominators are unchanged.
 joins [compact codecs](COMPACT_SCENE_TRANSFORM_CONTRACT.md),
 [native poses](SCENE_WORLD_OBJECT_MOTION_CONTRACT.md),
 [body envelopes](SCENE_CREATURE_BODY_ENVELOPE_CONTRACT.md) and
-[Godot motion](SCENE_WORLD_OBJECT_MOTION_VISUAL_CONTRACT.md).
+[prototype host motion](SCENE_WORLD_OBJECT_MOTION_VISUAL_CONTRACT.md).
 Continuous original headless/GPU/cancel and independent/native/shared gates pass.
 Height applies once; immutable create/resource identity survives wrap/stale and
 clear/local resume. Diagnostic zero yaw/immediate pose is modern policy, not

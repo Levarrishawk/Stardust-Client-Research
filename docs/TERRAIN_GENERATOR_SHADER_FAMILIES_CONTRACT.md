@@ -1,6 +1,6 @@
 # Terrain generator shader-family raw contract
 
-Round61, 2026-10-05 Eastern. [TerrainGeneratorShaderFamilies](../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainGeneratorShaderFamilies.cs) owns the observed SGRP0006/SFAM byte structure. It adds a separate decoder to the intentionally opaque shader group of [TerrainGeneratorInput](TERRAIN_GENERATOR_INPUT_CONTRACT.md). It does not resolve names, construct materials/shaders, select duplicates, evaluate blends or infer GPU behavior.
+Round61, 2026-10-05 Eastern. TerrainGeneratorShaderFamilies (external historical reference) owns the observed SGRP0006/SFAM byte structure. It adds a separate decoder to the intentionally opaque shader group of [TerrainGeneratorInput](TERRAIN_GENERATOR_INPUT_CONTRACT.md). It does not resolve names, construct materials/shaders, select duplicates, evaluate blends or infer GPU behavior.
 
 ## Executable and installed-byte evidence
 
@@ -59,7 +59,7 @@ ArrayBytes includes the retained encoded byte array and, for Bind, the temporary
 
 Unsigned sizes are checked against remaining extents before narrowing, count arithmetic is checked, and minimum entry extents precede loops/record arrays. First span-only preflight computes complete counts; the owned snapshot is revalidated before records are constructed. Cancellation is checked during scans/entry loops, before snapshots, after records, and **after result construction/SHA hashing before return**. HashData itself is synchronous/uninterruptible. No partially built result escapes; an earlier completed result is preserved after failed/canceled calls. Mid-copy concurrent mutation and cancellation timed inside hashing were not executed tests.
 
-[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainGeneratorShaderFamiliesScenarios.cs), [independent byte verifier](../../SWG-Godot-Client/poc/round61-tests/Assets/peer.py) and [offline replay](../../SWG-Godot-Client/poc/round61-tests/Assets/Invoke-SelectedRule.ps1) cover synthetic truncations/counts/string/raw-bit/duplicates/framing/caps/cancellation, detached exports/read-only/repeat/parallel ownership, the one pinned original group,50 static anchors and four wrong-identity gates. The [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-05_R61_SHADER_FAMILIES.md) records final counts, six-lead budget, elapsed phases and scope. A next bounded string-setter/consumer trace is required before mapping these bytes to a resolver or material behavior.
+Native scenarios (external historical reference), independent byte verifier (external historical reference) and offline replay (external historical reference) cover synthetic truncations/counts/string/raw-bit/duplicates/framing/caps/cancellation, detached exports/read-only/repeat/parallel ownership, the one pinned original group,50 static anchors and four wrong-identity gates. The [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-05_R61_SHADER_FAMILIES.md) records final counts, six-lead budget, elapsed phases and scope. A next bounded string-setter/consumer trace is required before mapping these bytes to a resolver or material behavior.
 
 ## Round62 first-string consumer evidence
 

@@ -2,7 +2,7 @@
 
 Round31, 2026-10-03. This is a bounded modern implementation policy over the accepted [TANO6 state contract](TANGIBLE_VIEW6_STATE_CONTRACT.md) and [state policy](TANGIBLE_VIEW6_STATE_POLICY.md). The standalone store introduces no recovered protocol, executable-address claim or callback delivery. Round32 adds an internal preparation seam for the separately owned optional world adapter.
 
-Implementation: [SceneTangibleView6ReplicationStore](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneTangibleView6ReplicationStore.cs). Verification: [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneTangibleView6StoreScenarios.cs), [isolated runner](../../SWG-Godot-Client/poc/round31-tests/Runtime/Program.cs), [synthetic wire fixtures](../../SWG-Godot-Client/poc/round31-tests/Runtime/ordered-fixtures.json), [independent verifier](../../SWG-Godot-Client/poc/round31-tests/Runtime/verify.py).
+Implementation: SceneTangibleView6ReplicationStore (external historical reference). Verification: native scenarios (external historical reference), isolated runner (external historical reference), synthetic wire fixtures (external historical reference), independent verifier (external historical reference).
 
 ## Ownership and currentness
 

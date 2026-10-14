@@ -8,7 +8,7 @@ Do mathematically complete fixed-step cycles stop/wrap across clip lengths and p
 
 The modern preview clock uses compensated frame accumulation and snaps a positive nearest loop boundary only within eight double machine epsilons scaled by max(endFrame,absolute nextFrame). Seek resets compensation; pause/focus do not accumulate elapsed time. This explicit numerical policy also permits fractional one-shot clips to stop at their intended endpoint. It is not a recovered legacy loop rule.
 
-Native full suite passes all18 duration/scale combinations, two-cycle480-step and one-shot240-step cases, materially incomplete boundary preservation, seek reset, existing pause/focus/invalid-time gates. Godot build passes, selected original textured GPU480-update/control/readback regression passes and textured interior headless two-owner regression passes. Original byte sources/material/pose logic are unchanged.
+Native full suite passes all18 duration/scale combinations, two-cycle480-step and one-shot240-step cases, materially incomplete boundary preservation, seek reset, existing pause/focus/invalid-time gates. Prototype host build passes, selected original textured GPU480-update/control/readback regression passes and textured interior headless two-owner regression passes. Original byte sources/material/pose logic are unchanged.
 
 ## Consequence and next probe
 

@@ -4,7 +4,7 @@
 
 Which first forward boundary prevents the 37 precise screen non-round-trips? Record the first non-Accepted forward tick, then independently correlate original floor triangle neighbors, solid byte, geometric normal and encountered portal target. Stop after every remaining candidate has an explicit category. This is an offline installed-input audit, not original execution.
 
-The [screen producer](../../../SWG-Godot-Client/tools/python/probe_door_instance_capabilities.py) retains the same 782-candidate SHA-256 `D80CB2CA9034EB33729078150F1DB32A5ADD09179C803B5F32B81FE233FA3423`, configuration and source identity checks described by the [precise actor contract](../../docs/PRECISE_DOOR_ACTOR_CONTRACT.md). Detailed geometry and boundary records stay ignored/private.
+The screen producer (external historical reference) retains the same 782-candidate SHA-256 `D80CB2CA9034EB33729078150F1DB32A5ADD09179C803B5F32B81FE233FA3423`, configuration and source identity checks described by the [precise actor contract](../../docs/PRECISE_DOOR_ACTOR_CONTRACT.md). Detailed geometry and boundary records stay ignored/private.
 
 ## Observations
 

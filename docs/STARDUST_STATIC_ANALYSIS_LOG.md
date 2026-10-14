@@ -489,7 +489,7 @@ The scalar decoders retain the old value, deserialize the new fixed-width value,
 
 Server source fixes two additional specialized wire layouts used by these replicated systems. Creature wearables serialize ASCII16 customization, U32 containment/arrangement, U64 object ID and U32 client template CRC. Waypoints serialize U64 key plus U32 cell ID, F32 X/Z/Y, U64 unknown, U32 planet CRC, Unicode32 name, U64 object ID, U8 color and U8 active, under specialized commands 0 add/set, 1 drop and 2 update. These source-confirmed layouts are now cross-referenced in `REPLICATION_SCHEMA_MAP.md`.
 
-An explicit pre-build decision gate was added to `64BIT_PORT_PLAN.md`: after required client analysis, compare Godot and other viable engines against custom DX12/Vulkan approaches before authorizing implementation.
+An explicit pre-build decision gate was added to `64BIT_PORT_PLAN.md`: after required client analysis, compare prototype host and other viable engines against custom DX12/Vulkan approaches before authorizing implementation.
 
 ### Callback subscriber and complex-container pass
 

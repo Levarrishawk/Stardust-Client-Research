@@ -2,7 +2,7 @@
 
 ## Boundary and confidence
 
-[SingleCellFloorWalker.Trace](../../SWG-Godot-Client/poc/Stardust.Core/Assets/SingleCellFloorWalker.cs) exposes the accepted geometric prefix of the existing horizontal-XZ walk. Each segment identifies its triangle, original request start/end parameters and double-precision three-dimensional feet points. Height follows that triangle's authored plane. A flat-to-ramp crease must retain the crease height; interpolating only the request's first and final heights produces a different path.
+SingleCellFloorWalker.Trace (external historical reference) exposes the accepted geometric prefix of the existing horizontal-XZ walk. Each segment identifies its triangle, original request start/end parameters and double-precision three-dimensional feet points. Height follows that triangle's authored plane. A flat-to-ramp crease must retain the crease height; interpolating only the request's first and final heights produces a different path.
 
 Observation: 17,658 installed requests produce 22,063 segments and 4,405 triangle transitions, including 8,393 sloped segments. Independent plane checks pass. Confidence: Confirmed for these pinned fixtures and synthetic tests. This is a replacement API and numerical policy; original actor traversal/order remains Unknown. No original function names or research scores change.
 
@@ -16,9 +16,9 @@ The path terminal point represents the theoretical geometric intersection. The a
 
 ## Verification and reproduction
 
-[Synthetic tests](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/FloorPathScenarios.cs) cover a flat/ramp crease, reverse traversal, boundary prefixes, traversal limits, invalid input, stationary movement and 1,000 seeded two-plane traces. The separate existing `Walk` result is compared on every optional native trace.
+Synthetic tests (external historical reference) cover a flat/ramp crease, reverse traversal, boundary prefixes, traversal limits, invalid input, stationary movement and 1,000 seeded two-plane traces. The separate existing `Walk` result is compared on every optional native trace.
 
-[Independent verifier](../../SWG-Godot-Client/tools/python/verify_floor_paths.py) pins the generated fixture and every original floor, then checks ordering, horizontal request parameters, adjacency, positional continuity, terminal agreement, reusable locators and five plane samples per segment. All **110,315 plane checks** pass over **4,441 eligible floors / 17,658 requests**. Outcomes remain 8,846 Accepted, 4,370 BlockedEdge, 3,970 PortalBoundary, 384 OpenBoundary and 88 UnsupportedEdgePolicy.
+Independent verifier (external historical reference) pins the generated fixture and every original floor, then checks ordering, horizontal request parameters, adjacency, positional continuity, terminal agreement, reusable locators and five plane samples per segment. All **110,315 plane checks** pass over **4,441 eligible floors / 17,658 requests**. Outcomes remain 8,846 Accepted, 4,370 BlockedEdge, 3,970 PortalBoundary, 384 OpenBoundary and 88 UnsupportedEdgePolicy.
 
 Generate the fixtures with the existing floor-walk verifier, then run:
 

@@ -1,6 +1,6 @@
 # Opt-in typed world replication
 
-R10-RUNTIME-01, 2026-10-02. [SceneWorldCoordinator](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldCoordinator.cs) optionally binds the accepted [full CREO:3 baseline](CREATURE_VIEW3_BASELINE_CONTRACT.md) and [six-scalar plan](CREATURE_VIEW3_SCALAR_DELTA_CONTRACT.md) through the [incarnation store](SCENE_CREATURE_REPLICATION_STORE_CONTRACT.md). The original [opaque world contract](SCENE_WORLD_COORDINATOR_CONTRACT.md) remains the default. This is a modern offline policy, not recovered original readiness or presentation behavior.
+R10-RUNTIME-01, 2026-10-02. SceneWorldCoordinator (external historical reference) optionally binds the accepted [full CREO:3 baseline](CREATURE_VIEW3_BASELINE_CONTRACT.md) and [six-scalar plan](CREATURE_VIEW3_SCALAR_DELTA_CONTRACT.md) through the [incarnation store](SCENE_CREATURE_REPLICATION_STORE_CONTRACT.md). The original [opaque world contract](SCENE_WORLD_COORDINATOR_CONTRACT.md) remains the default. This is a modern offline policy, not recovered original readiness or presentation behavior.
 
 ## Configuration and API
 

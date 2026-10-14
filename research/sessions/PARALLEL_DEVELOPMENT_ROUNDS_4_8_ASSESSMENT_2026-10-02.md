@@ -12,13 +12,13 @@ Batch orientation04:08:09 UTC (00:08:09 Eastern); final Round8 acceptance07:47:5
 | [5](PARALLEL_DEVELOPMENT_ROUND_5_2026-10-02.md) | Explicit create-CRC to original creature resources | All-four retained automatic detail preview | Opt-in interior movement-event diagnostics | Immutable-snapshot scene object registry |
 | [6](PARALLEL_DEVELOPMENT_ROUND_6_2026-10-02.md) | Robust raw-create placement and normalization policy | Revision-guarded owned creature visuals | Bounded asynchronous resource initializer | Owned baseline/delta application envelopes |
 | [7](PARALLEL_DEVELOPMENT_ROUND_7_2026-10-02.md) | Inherited original static object resources; explicit partial-material diagnostics | Asynchronously loaded creature at source placement | Offline transport/world coordinator | Ordered atomic six-scalar CREO3 delta plans |
-| [8](PARALLEL_DEVELOPMENT_ROUND_8_2026-10-02.md) | Explicit pinned SWTS frame closes all four terminal material meshes | World-owned offline transport-to-Godot publication | Exact-revision scalar state and stale retirement | Complete eighteen-field CREO3 baseline codec |
+| [8](PARALLEL_DEVELOPMENT_ROUND_8_2026-10-02.md) | Explicit pinned SWTS frame closes all four terminal material meshes | World-owned offline transport-to-prototype host publication | Exact-revision scalar state and stale retirement | Complete eighteen-field CREO3 baseline codec |
 
 These are bounded implementation outcomes. The earlier research knowledge was already largely documented; executable function, research, protocol and implementation denominators are not interchangeable.
 
 ## Realistic progress
 
-The batch moves from separate asset/render/event/packet proofs to an offline scene-object pipeline: actual-layout lifecycle bytes pass through the existing SOE transport; a generation-owned world stages/replays them; finalized objects request pinned original resources on a worker; a current world publication becomes a retained Godot visual at the derived placement. Finalized, Prepared and Ready are independently observable. This pipeline uses original object -> inherited appearance -> mesh/skeleton/material/clip dependencies, not substituted demonstration assets. Packets and scheduling cases are explicitly synthetic.
+The batch moves from separate asset/render/event/packet proofs to an offline scene-object pipeline: actual-layout lifecycle bytes pass through the existing SOE transport; a generation-owned world stages/replays them; finalized objects request pinned original resources on a worker; a current world publication becomes a retained prototype host visual at the derived placement. Finalized, Prepared and Ready are independently observable. This pipeline uses original object -> inherited appearance -> mesh/skeleton/material/clip dependencies, not substituted demonstration assets. Packets and scheduling cases are explicitly synthetic.
 
 Four original skeletal detail meshes can remain retained under modern automatic projection/hysteresis selection. The existing full customized interior continues to pass movement/collision/camera, door/room lighting, original textures/generated face and accepted-displacement event diagnostics. New static terminal preparation covers all four mesh levels with selected original SWTS texture frames. Shader switching timing itself remains unknown.
 
@@ -37,7 +37,7 @@ The final Round8 lead acceptance includes:
 - Original world creature:37 sources /4,683,848 bytes; actual SOE select/ready/retry/application exports, exact raw create/placement/reflection, stale publication, cancellation and drain checks. Fresh GPU capture inspected; headless/cancel and seven invalid options pass.
 - Existing async preview headless/cancel after completed-task retention hardening; worker R6 legacy headless evidence also passes after the visual refactor.
 - Fresh complete interior GPU regression:160 sources /16,643,480 bytes, generated face/customization/material/lighting/movement/event/retention/teardown gates; capture inspected.
-- Combined native suite and Godot build with zero warnings/errors. Known nonfatal Godot certificate-store startup diagnostics remain.
+- Combined native suite and prototype host build with zero warnings/errors. Known nonfatal prototype host certificate-store startup diagnostics remain.
 - Repository links/whitespace/registry checks; empty index and unchanged HEAD65de8c88141071744dc75594be126b3bab3696a5. Unrelated dirty changes preserved. Original-derived screenshots, bytes, generated exports and toolchains remain ignored private material.
 
 No original executable run, sockets/DNS/live server, packet capture, fuzzing or external mutation occurred. The viewport screenshots are replacement-client GPU output, not packet captures.

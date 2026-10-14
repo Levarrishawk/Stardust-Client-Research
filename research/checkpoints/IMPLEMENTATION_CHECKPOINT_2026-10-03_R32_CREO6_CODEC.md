@@ -8,7 +8,7 @@ Frozen snapshot2786 files, manifest SHA256 `07d6abdbdab081bad0d3fb3c67a4724c6cd2
 
 Read AGENTS, START_HERE, accepted31 session, relevant status/ledger/unknown terms, [prefix contract](../../docs/CREATURE_VIEW6_PREFIX_CONTRACT.md), prior codec/state checkpoints and curated provisional/server-gap rows. Reused accepted envelope/raw-byte-string/freeze facilities after inspection. No existing production/shared code changes.
 
-Reran [round31 static verifier](../../../SWG-Godot-Client/poc/round31-tests/Networking/static_audit.py) against `C:/Stardust-DEV/Stardust.exe`, SHA256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`, before relying on VAs. Passed109 anchors,18 registrations,16RTTI. In particular00B94C60/00439F60 confirm wearable string plus4/8/4 body and extended string branch;0044180D confirms baseline element invocation. Existing cached pefile/Capstone only. Server source is separately correlated in the durable contract, not used as client proof.
+Reran round31 static verifier (external historical reference) against `C:/Stardust-DEV/Stardust.exe`, SHA256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`, before relying on VAs. Passed109 anchors,18 registrations,16RTTI. In particular00B94C60/00439F60 confirm wearable string plus4/8/4 body and extended string branch;0044180D confirms baseline element invocation. Existing cached pefile/Capstone only. Server source is separately correlated in the durable contract, not used as client proof.
 
 ## Findings versus interpretation
 

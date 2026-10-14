@@ -4,7 +4,7 @@
 
 CREO view6 inherits the exact TANO view6 field objects at indices 0 and 1: a passive U32 and the specialized CachedNetworkId defender vector. Creature-owned fields begin at index 2; the pinned client has 18 registered fields through index 17. This is confirmed static structure, not original client execution or a newly implemented CREO6 codec.
 
-The [round-31 verifier](../../SWG-Godot-Client/poc/round31-tests/Networking/static_audit.py) hash-gates the executable, checks 109 instruction anchors, all 18 registrations and 16 distinct RTTI vtables. The [checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-03_R31_CREATURE_VIEW6_PREFIX.md) records reproduction and confidence. Existing [schema map](REPLICATION_SCHEMA_MAP.md), [earlier delta investigation](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-15_CREATURE_VIEW6_DELTAS.md) and [registration investigation](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-11_GHIDRA.md) remain the historical evidence record. This milestone consolidates implementation prerequisites and does not change research, name or packet denominators.
+The round-31 verifier (external historical reference) hash-gates the executable, checks 109 instruction anchors, all 18 registrations and 16 distinct RTTI vtables. The [checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-03_R31_CREATURE_VIEW6_PREFIX.md) records reproduction and confidence. Existing [schema map](REPLICATION_SCHEMA_MAP.md), [earlier delta investigation](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-15_CREATURE_VIEW6_DELTAS.md) and [registration investigation](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-11_GHIDRA.md) remain the historical evidence record. This milestone consolidates implementation prerequisites and does not change research, name or packet denominators.
 
 ## Direct inheritance and dispatch evidence
 
@@ -33,7 +33,7 @@ Field2 starts at payload offset `14 + 8 * defenderCount`; there is no U16 field 
 
 The [TANO6 codec grammar](TANGIBLE_VIEW6_CODEC_CONTRACT.md) and [specialized state policy](TANGIBLE_VIEW6_STATE_POLICY.md) therefore apply to the inherited defender field itself: U32 raw extent/counter, U8 command, U16 index or assignment length, full U64 IDs, assignment extent N+1 and whole-command overshoot, exact unsigned counter filtering and modulo U32 mutation. That reuse follows identical field vtable/parser identity, not analogy to a creature integer vector. Passive value remains raw; neither family-specific server constants nor RTTI establish its historical semantic meaning.
 
-The current [owned TANO codec](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/TangibleView6Codec.cs) intentionally accepts only TANO and an exact two-field baseline. It cannot decode a CREO baseline by changing its tag or discarding the extension. A future composite decoder should reuse the characterized field grammar under an explicit CREO schema and retain its own whole-message bounds and metadata.
+The current owned TANO codec (external historical reference) intentionally accepts only TANO and an exact two-field baseline. It cannot decode a CREO baseline by changing its tag or discarding the extension. A future composite decoder should reuse the characterized field grammar under an explicit CREO schema and retain its own whole-message bounds and metadata.
 
 ## Creature extension structure
 

@@ -1,6 +1,6 @@
 # Shared-template localized name profile
 
-[SharedTemplateLocalizedNameProfile](../../SWG-Godot-Client/poc/Stardust.Core/Assets/SharedTemplateLocalizedNameProfile.cs) extracts owned raw `objectName` and `detailedDescription` StringId pairs from SHOT parameters. It reuses the existing shared-template decoder, source cache and provenance type. It performs no STF reads, display conversion, object creation or replicated-name writes.
+SharedTemplateLocalizedNameProfile (external historical reference) extracts owned raw `objectName` and `detailedDescription` StringId pairs from SHOT parameters. It reuses the existing shared-template decoder, source cache and provenance type. It performs no STF reads, display conversion, object creation or replicated-name writes.
 
 ```csharp
 var profile = SharedTemplateLocalizedNameProfile.Load(resolve, rootPath, rootSha256,
@@ -56,6 +56,6 @@ Invalid profile options throw `ArgumentOutOfRangeException`; malformed/unsafe/cy
 
 The existing cache snapshots borrowed callback arrays. Returned selected raw pairs and read-only metadata own their state; source or returned-copy mutation cannot change the profile. Cancellation is polled before/after callbacks, between visits and before return; the bounded synchronous IFF decoder/string scan does not poll internally. Same-thread recursive Load poisons the outer call even if swallowed; finally clears the guard. Independent threads are permitted. Callback effects/concurrent buffer races are outside rollback.
 
-[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SharedTemplateLocalizedNameScenarios.cs) and the [independent oracle](../../SWG-Godot-Client/poc/round27-tests/Assets/verify_template_names.py) pass 176 fixtures (18 positive/158 rejected), 12 controlled checks and 32 concurrent loads. Exact limits, explicit-empty/partial/unresolved results, unsupported modes, safe paths, cycles, identity/missing/masked sources and all109 truncated prefixes are covered. Both original profiles resolve at one root source; the oracle separately verifies their full chains and two referenced STF key matches. Detailed raw names/text stay private. Preload/name and existing structural-template regressions pass.
+Native scenarios (external historical reference) and the independent oracle (external historical reference) pass 176 fixtures (18 positive/158 rejected), 12 controlled checks and 32 concurrent loads. Exact limits, explicit-empty/partial/unresolved results, unsupported modes, safe paths, cycles, identity/missing/masked sources and all109 truncated prefixes are covered. Both original profiles resolve at one root source; the oracle separately verifies their full chains and two referenced STF key matches. Detailed raw names/text stay private. Preload/name and existing structural-template regressions pass.
 
 Next join authored name references to an explicitly preloaded table provider as a separate optional presentation input. Keep authored metadata separate from authoritative live replicated names. Original getter/fallback policy, unobserved nested modes, locale/cache and STF variant0 remain open.

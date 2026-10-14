@@ -92,7 +92,7 @@ state; no duplicate checkpoint was created.
   **82% to 83%**. The large number of closures is real, but most are bounded
   residuals; a one-point increase avoids overstating breadth.
 - Engine/POC decision readiness remains **93%**; the user has elected to finish
-  client analysis before returning to Godot/build work.
+  client analysis before returning to prototype host/build work.
 
 ## Resume point
 

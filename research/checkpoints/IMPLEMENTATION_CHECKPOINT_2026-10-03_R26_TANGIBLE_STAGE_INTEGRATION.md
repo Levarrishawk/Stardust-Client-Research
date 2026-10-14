@@ -4,7 +4,7 @@ October3,2026 UTC. Question: can complete TANO3 bytes, current owned state, boun
 
 ## Inputs and method
 
-Four persistent Low workers used a2596-file snapshot. Manifest SHA2562f5f65bd69ac86003ab9ddb14ecb01e411d4702a069934147a2d57d2607eecc9; ZIPf847efa6c85734f9078c53eeb55dda7a33bafac6aee89bfed0178121b12010ad. Lead froze common TANO models, reviewed exact scopes and integrated verified bytes. Cached .NET8/Godot4.7.2 and bundled Python only. No new VA claims, original executable execution, live contact or Git mutation.
+Four persistent Low workers used a2596-file snapshot. Manifest SHA2562f5f65bd69ac86003ab9ddb14ecb01e411d4702a069934147a2d57d2607eecc9; ZIPf847efa6c85734f9078c53eeb55dda7a33bafac6aee89bfed0178121b12010ad. Lead froze common TANO models, reviewed exact scopes and integrated verified bytes. Cached historical implementation path (omitted) and bundled Python only. No new VA claims, original executable execution, live contact or Git mutation.
 
 Original tables remain pinned to Round25: obj_n.stf2527bytes SHA2563EEA0D2B5E785F593B9C9180877665A495CD67B68BF3D6DAF74F7820FCAFB054 and terminal_name.stf4610bytes SHA256CDEDCD3ECE3E5FE6C7455B70760DDDB047B2F16281D740A1034D465F081FF603, both priority53. Original terminal retains its27-source/1,401,794 encoded-byte closure and seven textures. Raw originals and captures remain ignored.
 

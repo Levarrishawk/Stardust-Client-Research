@@ -1,9 +1,9 @@
 # Offline outcome display owner
 
 October6,2026. Modern noninteractive display over primitive caller-supplied outcome
-state. [Source](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineOutcomeHud.cs),
-[native verification](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineOutcomeHudVerification.cs),
-[independent oracle](../../SWG-Godot-Client/poc/round79-tests/Rendering/verify_picker.py).
+state. Source (external historical reference),
+native verification (external historical reference),
+independent oracle (external historical reference).
 
 ```csharp
 public sealed record TerrainOfflineOutcomeHudState(string Reason,
@@ -42,13 +42,13 @@ no caller-provided text is rendered directly.
 
 The owner creates one CanvasLayer22, Panel at16,328 sized608x148 and Label at12,8
 inside that panel, font16. Panel and Label both use MouseFilter.Ignore/FocusMode.None.
-The Panel uses the existing Godot theme; no separate style resource is created.
+The Panel uses the existing prototype host theme; no separate style resource is created.
 The inspected1280x720 GPU image shows all five lines clear below the existing limits
 line and playground HUD. No input handler, button or focus capture is added.
 
 Configure is attempted once and performs the first Refresh. It captures the exact
 borrowed owner, its parent and viewport. Pre/post-source and post-Label.Text guards
-require creating managed/Godot main thread, live unqueued exact attachments and
+require creating historical implementation path (omitted) main thread, live unqueued exact attachments and
 noninteractive control flags. The callback is read once per refresh attempt that
 passes preflight. Formatting/state validation occurs before native text assignment;
 Caption/RefreshCount commit only after the last guard. A nested mutation caught by
@@ -86,7 +86,7 @@ Bounded frozen playground/limits captions remain exact without full playground r
 Build has zero warnings/errors; logs show no native leak/resource-in-use diagnostic.
 The final GPU image was visually inspected.
 
-Observation: these are synthetic supplied outcome records displayed by real Godot.
+Observation: these are synthetic supplied outcome records displayed by real prototype host.
 Confidence: Confirmed for the fixtures. Consequence: lead may join an actual report
 and capture normal completion before caller cleanup. Faulted-state caption/lifetime
 is separately tested; a complete failed-host screenshot is not established here.

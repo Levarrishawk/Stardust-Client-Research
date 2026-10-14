@@ -5,7 +5,7 @@
 Can the accepted generic world and recipe visuals be hosted continuously with
 bounded ingress/publication/change work, retained delayed resources and owned
 shutdown, consuming the same original human and terminal closures? Stop after
-independent scoped review and joined native/original/Godot/peer/cleanup gates.
+independent scoped review and joined historical implementation path (omitted) gates.
 
 ## Inputs and method
 
@@ -36,8 +36,8 @@ publication. Workers remain Low. Lead owns shared integration and acceptance.
   False publication/current-state retry, stale completion/recreation, queue
   admission, burst rejection without factory prefix, family failure and delayed
   close/drain are verified.
-- [Original continuous preview](../../../SWG-Godot-Client/poc/Stardust.Godot/ScenePumpedWorldPreview.cs)
-  joins actual pump, logical accounting, Godot host and accepted recipe factory.
+- Original continuous preview (external historical reference)
+  joins actual pump, logical accounting, prototype host host and accepted recipe factory.
   Fresh headless/GPU receipts pass per-frame max2 ingress/max1 publications.
   Real original human39-source and terminal27-source closures transfer after
   archives close. Height1.4 causes no load; terminal recreation causes only
@@ -46,7 +46,7 @@ publication. Workers remain Low. Lead owns shared integration and acceptance.
   Caller-owned byte buffers are cleared after queue admission to prove copying.
   GPU verification checks accepted visual resources; no new pixel-comparison
   or animation-semantic claim is made.
-- Godot combined build has zero warnings/errors. Shared native suite passes.
+- prototype host combined build has zero warnings/errors. Shared native suite passes.
 
 Observation: these are original object-template dependency closures with explicit
 modern recipes and synthetic offline messages. Interpretation: the reusable
@@ -69,10 +69,10 @@ scenario's accepted classic keys; corrected input then passed171 checks.
 
 ## Reproduction
 
-Use cached .NET8, bundled Python and existing Godot4.7.2.NET only. Clear-source
+Use cached .NET8, bundled Python and existing prototype host4.7.2.NET only. Clear-source
 NuGet configuration is provided in the Runtime test directory; no download needed.
 Set task APPDATA and existing private NuGet cache for native runners. Unset
-NUGET_PACKAGES for the cached Godot SDK build.
+NUGET_PACKAGES for the cached prototype host SDK build.
 
 1. Generate runtime peer with accepted round14 Runtime/Generate-Peer.py. Run
    round16 Runtime runner with root/config/catalog/bank/peer/export.
@@ -83,9 +83,9 @@ NUGET_PACKAGES for the cached Godot SDK build.
    --verify EXPORT --require-pump.
 4. Shared runner flags --round16-pump and --round16-peer use the same six inputs;
    --round16-accounting uses four. Each also runs the shared baseline suite.
-5. Build Godot --no-restore -p:UseSharedCompilation=false using existing SDK.
-   Rendering/Launch.ps1 -GodotPath EXISTING_GODOT and verify.py LOG.
-6. Integration/Generate-Peer.py PEER, then Integration/Launch.ps1 with GodotPath,
+5. Build prototype host --no-restore -p:UseSharedCompilation=false using existing SDK.
+   Rendering/Launch.ps1 -prototype hostPath EXISTING_prototype host and verify.py LOG.
+6. Integration/Generate-Peer.py PEER, then Integration/Launch.ps1 with prototype hostPath,
    ArchiveRoot, Configuration, FixturePath and CatalogProfile. Default headless;
    -Gpu verifies GPU resources, -CancelLoad separately proves original job drain.
    Integration/verify_preview.py LOG [cancel] checks observable receipts.

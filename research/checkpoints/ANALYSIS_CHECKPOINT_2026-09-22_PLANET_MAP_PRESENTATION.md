@@ -41,7 +41,7 @@ and waypoint. Planet imagery is selected by name from children of `pageMaps`; a
 missing planet page logs a warning and uses `default`.
 
 This is an important original-asset contract: a replacement may render the map
-with native Godot/UI primitives, but it must import the same authored planet map
+with native prototype host/UI primitives, but it must import the same authored planet map
 image/page mapping and semantic category names. Hard-coding only the known
 planets would discard overlay/custom content.
 

@@ -33,14 +33,14 @@ addresses. Configuration SHA
 source identities are checked; aggregate chain size8290 bytes. Original words,
 names and bulk evidence stay ignored/private; public fixture content is synthetic.
 
-Tools: installed .NET8 and Godot4.7.2 .NET, writable existing private offline cache,
+Tools: installed .NET8 and prototype host4.7.2 .NET, writable existing private offline cache,
 installed offline nupkgs, bundled Python and existing static loader, asset resolver,
 fixtures/verifiers/workspace validator. No original EXE execution, live server,
 packet capture/fuzzing, GPU, download, stage, commit, push or publication occurs.
 
 ## Observation versus interpretation
 
-Observation: [admission](../../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldExplicitMovementAdmission.cs)
+Observation: admission (external historical reference)
 adds fixed enum values5/6, trailing optional borrowed current reader and immutable
 CurrentSource receipt property. Construction verifies exact same root instance,
 pin, current world registry/typed object, operational context and reader currency
@@ -55,9 +55,9 @@ current or direct readers. Actual queued bootstrap2 remains2 after a first parti
 publication; captured received3 remains3 after a later9 update. Historical currency
 changes while the admitted velocity remains fixed.
 
-Observation: [native scenarios](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldCurrentMovementAdmissionScenarios.cs)
+Observation: native scenarios (external historical reference)
 execute126 sequences/1134 states/5471 checks. The independent
-[peer](../../../SWG-Godot-Client/poc/round50-tests/Runtime/peer.py) passes8112 comparisons. Negative
+peer (external historical reference) passes8112 comparisons. Negative
 coverage includes same-hash different root instance, foreign world/current reader,
 unused/conflicting readers, pending/finalized-missing typed context, current/typed/
 registry/recreation/generation/close invalidation, owner, direction, time/order,
@@ -68,7 +68,7 @@ chain/8290 bytes. Six original-authored/synthetic-received actual-driver sequenc
 cover54 states. Independent raw-byte/source/trajectory verifier passes275 comparisons.
 No original effective movement values are inferred from these raw parameters.
 
-Observation: the [actual Godot proof](../../../SWG-Godot-Client/poc/round50-tests/Runtime/Godot/CurrentHostProof.cs)
+Observation: the the separate implementation record
 links the existing Node implementation without copies/edits. Both new choices
 pass native WASD transitions, absence bootstrap, late received, present NaN/Inf
 stop, restoration without catch-up, received zero/signedzero origin, focus and
@@ -95,14 +95,14 @@ Own native5471/independent8112; original54 states/275 comparisons/five identitie
 actual Node54/independent20. Frozen49 stop3955/1152 and actual Node144/43 pass.
 Frozen48 admission9154/2988 and frozen47 received16947 checks pass. Default Core
 smoke has18 allowlisted journal events and zero failures. All successful final
-native/Godot/smoke builds have zero warnings/errors.
+historical implementation path (omitted) builds have zero warnings/errors.
 
 The pre-overlay worker did not yet contain the current-reader source; discovery
 continued after the one verified overlay, without inventing a replacement. The
-new implementation/native/original/Godot suites passed first build/run. Explicit
+new historical implementation path (omitted) suites passed first build/run. Explicit
 UTF8 output encoding subsequently emitted a BOM, rejected by all three Python
 JSON verifiers. Writers now use UTF8Encoding(false); failed output/logs retained,
-all three suites rerun and arithmetic expectations unchanged. Godot's
+all three suites rerun and arithmetic expectations unchanged. Prototype host's
 certificate-store read error is an existing environment limitation; no TLS or
 network operation is performed. Failed/prior logs are retained; fresh engine
 outputs and acceptance markers are checked before independent verification.
@@ -115,11 +115,11 @@ uses independently decoded RawHex from the original oracle. Static oracle is
 existing verify_creature_template_movement.py with SHA-gated executable/package/
 server-root/root/configuration/receipt arguments. No original executable is run.
 
-[Launch.ps1](../../../SWG-Godot-Client/poc/round50-tests/Runtime/Launch.ps1) takes installed Godot console,
+Launch.ps1 (external historical reference) takes installed prototype host console,
 existing writable package cache and fresh own private output; it rejects lexical
 reparse ancestors before creation, enforces fresh directory, restores offline,
 starts hidden/headless with45-second deadline, and requires fresh receipt/marker.
-Use [verify_godot.py](../../../SWG-Godot-Client/poc/round50-tests/Runtime/verify_godot.py) on that receipt.
+Use the separate implementation record on that receipt.
 Run organized-workspace validation, focused diff/scope/UTF8/link/whitespace and
 HEAD/index checks. Final audit:3547 frozen files byte-identical, one allowed
 existing source changed,16 new files/3564 public total; HEAD/index unchanged.

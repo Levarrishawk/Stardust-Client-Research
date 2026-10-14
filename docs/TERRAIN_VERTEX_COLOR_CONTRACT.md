@@ -1,6 +1,6 @@
 # Terrain vertex color contract
 
-[TerrainVertexColor](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainVertexColor.cs) converts one supplied three-byte RGB terrain sample into an immutable modified RGB, normalized RGBA vector and diffuse ARGB word. The caller supplies the baked-mask byte, explicit modifier enable flag and both endpoint RGB values. This engine-neutral scalar stage can precede [patch assembly](TERRAIN_PATCH_ASSEMBLY_CONTRACT.md); this milestone does not connect those stages.
+TerrainVertexColor (external historical reference) converts one supplied three-byte RGB terrain sample into an immutable modified RGB, normalized RGBA vector and diffuse ARGB word. The caller supplies the baked-mask byte, explicit modifier enable flag and both endpoint RGB values. This engine-neutral scalar stage can precede [patch assembly](TERRAIN_PATCH_ASSEMBLY_CONTRACT.md); this milestone does not connect those stages.
 
 ## Evidence and recovered order
 
@@ -29,7 +29,7 @@ All inputs and receipts are value types. There are no borrowed buffers, allocati
 
 ## Reproduction and checks
 
-The standalone [runner](../../SWG-Godot-Client/poc/round34-tests/Rendering/Invoke-Color.ps1) accepts explicit executable, cached package directory, Python and .NET paths:
+The standalone runner (external historical reference) accepts explicit executable, cached package directory, Python and .NET paths:
 
 ```powershell
 .\poc\round34-tests\Rendering\Invoke-Color.ps1 -Exe C:\Stardust-DEV\Stardust.exe -Packages <cached-static-analysis-packages> -Python <python.exe> -Dotnet <dotnet.exe>

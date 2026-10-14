@@ -13,7 +13,7 @@ Executable SHA, gated before PE/VAs:
 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`.
 Complete55-byte body,24 instructions, SHA
 `f1b4be7cfda63e76daa9ee145dfa6d9cecedaa6b4b4d776f1626fd34cb3d30a1`.
-The [verifier](../../SWG-Godot-Client/tools/python/verify_terrain_shader_family_lookup_consumer.py)
+The verifier (external historical reference)
 checks independent bounded raw-PE/pefile mapping, complete hash,24 exact byte/
 operand anchors, two raw extent fences and complete calls/return/reachability.
 Frozen67 mapping/path/one-occurrence/model sources are SHA-gated before reuse;
@@ -121,13 +121,13 @@ no original helper and does not create a resolver or production client component
 
 ## Reproduction and verification
 
-[Portable runner](../../SWG-Godot-Client/poc/round68-tests/Assets/Invoke-SelectedRule.ps1):
+Portable runner (external historical reference):
 
 ```powershell
 & ./poc/round68-tests/Assets/Invoke-SelectedRule.ps1 -Python $Python -Exe $Exe -Packages $CachedStaticPackages -AssetRoot $AssetRoot -Config $Config
 ```
 
-Explicit cached inputs, automatic fresh ignored output. [Independent peer](../../SWG-Godot-Client/poc/round68-tests/Assets/peer.py)
+Explicit cached inputs, automatic fresh ignored output. Independent peer (external historical reference)
 passes102 guards:7 identity,3 frozen-source,6 PE truncation,6 headers,7 mapped
 extents,25 raw/operand,7 complete-body/extent,4 control/reachability,1 incoming
 inventory,18 budget,8 path,6 safe-model policy and4 no-publication checks.

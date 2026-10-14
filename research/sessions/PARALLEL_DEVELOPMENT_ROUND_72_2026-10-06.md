@@ -9,7 +9,7 @@ Dispatch completed October6,2026 at06:43:31UTC after accepted71 at06:41:42UTC. L
 | Worker | Milestone | Stopping boundary |
 | --- | --- | --- |
 | Assets | Separate recovered root-delta evaluator | Four root modes; external actor basis/application Unknown |
-| Rendering | Explicit orbit-camera pivot update | Preserve orbit angles/distance, exact Godot ownership and honest effect prefix |
+| Rendering | Explicit orbit-camera pivot update | Preserve orbit angles/distance, exact prototype host ownership and honest effect prefix |
 | Runtime | Engine-neutral modern pivot follow clock | Supplied accepted positions, exact fixed steps and explicit correction snap |
 | Networking | Outer-multipacket disconnect prefix ordering | Returned/queued application prefix, closed transport, caller teardown policy |
 
@@ -28,7 +28,7 @@ Execution gates complete2026-10-06 07:01:03UTC; Accepted2026-10-06 07:02:34 UTC;
 | Runtime | Native bounded follow clock and correction snap |84 compared actions/1597 checks/764 negatives;20 actual grounded updates and one snap |
 | Networking | Outer disconnect application/control ordering and exceptional zeroing |52 checks/apply-drop policies/malformed suffix/wrong-ID reliable prefix; one approved source line |
 
-[Joined checkpoint](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R72_FOLLOWING_CAMERA_AND_DISCONNECT_PREFIX.md) passes109 headless/GPU updates, native following pivot and one unchanged-clock correction snap, retained original supplied poses/two footstep occurrences, all earlier camera/input/ray/material/offline wire gates. One reliable62-byte application and caller-owned ACK precede matching disconnect; suffix does not dispatch, caller explicitly drops queued prefix on scene close. Wrong-ID after same109 updates preserves completed reliability prefix/terminal ingress then all owners drain. Prior Version7 passes109 with unchanged default trajectory oracle. Normal Godot/default smoke zero warnings/errors; default smoke18 events/zero failures. GPU capture inspected.
+[Joined checkpoint](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R72_FOLLOWING_CAMERA_AND_DISCONNECT_PREFIX.md) passes109 headless/GPU updates, native following pivot and one unchanged-clock correction snap, retained original supplied poses/two footstep occurrences, all earlier camera/input/ray/material/offline wire gates. One reliable62-byte application and caller-owned ACK precede matching disconnect; suffix does not dispatch, caller explicitly drops queued prefix on scene close. Wrong-ID after same109 updates preserves completed reliability prefix/terminal ingress then all owners drain. Prior Version7 passes109 with unchanged default trajectory oracle. Normal prototype host/default smoke zero warnings/errors; default smoke18 events/zero failures. GPU capture inspected.
 
 Before-native independent full trajectory/phase/follow expectation remains. Tight camera and optional movement-step checks consume accepted positions only after full trajectory verification, never native camera/phase/speed output seeds. Explicit new-boundary checks precede projecting changed metadata for prior test reuse. Logged decimal floats decode to binary32. NativePivot logged-decimal max discrepancy2.330932620253634e-7; F32 comparisons use2e-7, before-native follow5e-6, camera position3e-6/direction4e-7. No original camera/root world/control/graph/terrain/material association/live parity claim.
 

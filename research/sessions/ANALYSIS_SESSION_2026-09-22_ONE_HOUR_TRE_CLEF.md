@@ -50,6 +50,6 @@ Highest-value remaining targeted work:
 
 ## Research state and handoff
 
-Stable provisional-name registry: **2,214 unique addresses, zero duplicates** (ten new names this session). Server packet matrix: **345 documented, zero reachable gaps**; no new packet handler mapping was claimed. Planning estimates remain **96% implementation-grade** and **90% expanded comprehensive**; these are heuristic replacement-readiness estimates, not a percentage of all executable functions reverse-engineered. No Godot or DX12/Vulkan build was attempted. No Git stage, commit, or push was performed; user retains commit control.
+Stable provisional-name registry: **2,214 unique addresses, zero duplicates** (ten new names this session). Server packet matrix: **345 documented, zero reachable gaps**; no new packet handler mapping was claimed. Planning estimates remain **96% implementation-grade** and **90% expanded comprehensive**; these are heuristic replacement-readiness estimates, not a percentage of all executable functions reverse-engineered. No prototype host or DX12/Vulkan build was attempted. No Git stage, commit, or push was performed; user retains commit control.
 
 Reproduction scripts live under `tools/python/`; read-only Ghidra pseudocode, CSV evidence, and original asset bytes remain in ignored `local-private/` (not for Git). The original executable, assets, and server source were not modified.

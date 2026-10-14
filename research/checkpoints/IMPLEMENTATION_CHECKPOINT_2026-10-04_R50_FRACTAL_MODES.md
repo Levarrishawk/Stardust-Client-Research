@@ -22,7 +22,7 @@ Final mode suite:530 scenarios/44 factory rejects;14094 actions/11826 returned q
 
 Fresh full frozen49 replay passes274/5940/28 original-default cases/rejections, kernel1155, raw330/U642592, retained7762/786 and prior sampler/terrain gates. Lead432 actual joins preserve four high-bit values and108 final differences; default smoke passes. Builds have zero warnings/errors. A guessed lead peer filename was absent; corrected it using the `rg --files` inventory and documented contract, with no mutation from the failed read. No arithmetic build/comparison failure occurred.
 
-The [runner](../../../SWG-Godot-Client/poc/round50-tests/Rendering/Invoke-Modes.ps1) uses fresh ignored outputs, pre-creation lexical reparse guards, explicit UTF8/PYTHONUTF8/PYTHONDONTWRITEBYTECODE and cached offline runtimes/packages. Final source/hash/scope/link/whitespace/AST/XML/PowerShell/organized-workspace/HEAD/index evidence is in the private handoff. Only authorized Core file plus the new mode test/doc/checkpoint and own runner change; lead owns shared canonical reconciliation and round acceptance.
+The runner (external historical reference) uses fresh ignored outputs, pre-creation lexical reparse guards, explicit UTF8/PYTHONUTF8/PYTHONDONTWRITEBYTECODE and cached offline runtimes/packages. Final source/hash/scope/link/whitespace/AST/XML/PowerShell/organized-workspace/HEAD/index evidence is in the private handoff. Only authorized Core file plus the new mode test/doc/checkpoint and own runner change; lead owns shared canonical reconciliation and round acceptance.
 
 ## Precise resume point
 

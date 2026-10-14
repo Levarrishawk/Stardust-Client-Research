@@ -22,7 +22,7 @@ Six exact-address byte candidates were found: `00629354`, `006293B8`, `00629A14`
 
 ## Reproduction and checks
 
-[Producer](../../../SWG-Godot-Client/tools/python/verify_player_controller_run_flag.py) accepts explicit executable, static-package, server-root and fresh private receipt paths. [Independent runner](../../../SWG-Godot-Client/poc/round51-tests/Networking/research_checks.py) accepts those inputs plus a fresh private output directory. Both reuse the frozen lexical ancestor/reparse output gate. Detailed original bytes and exploratory output remain private; public evidence is small independently selected witnesses and descriptions.
+Producer (external historical reference) accepts explicit executable, static-package, server-root and fresh private receipt paths. Independent runner (external historical reference) accepts those inputs plus a fresh private output directory. Both reuse the frozen lexical ancestor/reparse output gate. Detailed original bytes and exploratory output remain private; public evidence is small independently selected witnesses and descriptions.
 
 Independent checks passed six byte witnesses, five relative calls, three strings and eleven rejection cases. The SHA-gated producer checks six candidates, 38 instruction anchors, complete bounded bodies, and the frozen controller/movement prerequisite. Synthetic symlink/reparse tests ensure rejection occurs before resolution/creation; they do not create host links. A read of default-supplier backing storage returned no file bytes (the mapped storage is not established as an effective runtime default); that observation was retained as Unknown, not treated as a false verification pass.
 

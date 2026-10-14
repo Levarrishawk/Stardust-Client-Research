@@ -10,7 +10,7 @@ Input: the same original `appearance/thm_must_mining_outpost.pob`, SHA25679085C9
 
 Observation:19 original records produce288 original-data arithmetic cases. Independent Python double-precision evaluation agrees at maximum3.14700491e-7. The full original-source verifier checks the same effective overlay, record bytes and existing route/material/camera boundaries.
 
-Interpretation: the [explicit lighting policy](../../docs/CELL_LIGHTING_PREVIEW_CONTRACT.md) is implementable independently of Godot. First-authored primary selection, all remaining vertex contributions, ambient0.1, near-point denominator0.01 and literal specular power are modern policy, not claims about original renderer selection.
+Interpretation: the [explicit lighting policy](../../docs/CELL_LIGHTING_PREVIEW_CONTRACT.md) is implementable independently of prototype host. First-authored primary selection, all remaining vertex contributions, ambient0.1, near-point denominator0.01 and literal specular power are modern policy, not claims about original renderer selection.
 
 Confidence: Confirmed original inputs/owned arithmetic; Unknown original selection/global environment/vertex LIT equivalence.
 

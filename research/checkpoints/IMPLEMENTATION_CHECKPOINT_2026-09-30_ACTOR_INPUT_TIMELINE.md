@@ -2,7 +2,7 @@
 
 ## Bounded question
 
-Can changes between render/tick boundaries produce the same original actor trajectory across render partitions, without backdating new input or replaying skipped/suspended motion? Stop after independent replay and Godot event-routing checks.
+Can changes between render/tick boundaries produce the same original actor trajectory across render partitions, without backdating new input or replaying skipped/suspended motion? Stop after independent replay and prototype host event-routing checks.
 
 ## Identity and evidence
 
@@ -12,13 +12,10 @@ Observation: transitions at 137,000 / 1,213,000 / 2,419,000 / 2,817,000 / 3,007,
 
 ## Validation
 
-```powershell
-dotnet run --no-restore --project poc/Stardust.Core.SmokeTests
-dotnet build --no-restore poc/Stardust.Godot
-python tools/python/verify_actor_input_timeline.py C:\Stardust-DEV C:\Stardust-DEV\swgemu_live.cfg local-private/generated-evidence/input-timeline-milestone poc/Stardust.Core.SmokeTests/bin/Debug/net8.0/Stardust.Core.SmokeTests.dll
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
 
-Core smoke passes; Godot builds with zero warnings/errors. Independent original replay passes 1,488 updates / 1,320 ticks / 18 transfers, zero discrepancies. Synthetic direct tick-indexed comparison, queue limits, rejection, no-backdating, suspension/stall and reset gates pass. The prior bounded launcher with `-DoorWalk` passes headless and GPU; injected `_Input` transitions reach the queue, release/cancellation drain correctly, and one nonaligned original event crosses after 60 ticks. Private capture inspected. No original executable execution or server contact. Known nonfatal certificate-store startup diagnostic persists.
+
+Core smoke passes; prototype host builds with zero warnings/errors. Independent original replay passes 1,488 updates / 1,320 ticks / 18 transfers, zero discrepancies. Synthetic direct tick-indexed comparison, queue limits, rejection, no-backdating, suspension/stall and reset gates pass. The prior bounded launcher with `-DoorWalk` passes headless and GPU; injected `_Input` transitions reach the queue, release/cancellation drain correctly, and one nonaligned original event crosses after 60 ticks. Private capture inspected. No original executable execution or server contact. Known nonfatal certificate-store startup diagnostic persists.
 
 ## Next probe
 

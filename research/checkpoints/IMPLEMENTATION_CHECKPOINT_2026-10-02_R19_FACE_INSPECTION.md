@@ -6,7 +6,7 @@ Question: does the supplied human face profile generate and bind the exact head 
 
 Authoritative snapshot: HEAD `1fc55dd89cd23ce3af49e3fe471210bdebe9735c`, 2,346 files. Snapshot manifest SHA-256 `6c642fef4824b7b07cd596e2be2fe1041f6286a505dc4a64a356938b3453e047`; ZIP SHA-256 `4add5c5a3869686632288e4cb259406ee50174a44f3a9c715fdb8a87eda93893`. Worker HEAD remains `65de8c88141071744dc75594be126b3bab3696a5`. Overlay members were preflighted and copied with exact size/hash checks. No executable addresses were used; this is an asset/implementation inspection, not additional executable research.
 
-Original input is the read-only installed overlay rooted at `C:/Stardust-DEV`, configuration `swgemu_live.cfg`, SHA-256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`. Profile and output identities, budget semantics, camera, and reproducible commands are specified in the durable contract. Tools: existing .NET 8 SDK, Godot 4.7.2 Mono, bundled Python with NumPy/Pillow, baseline descriptor/builder/visual verification APIs. No original executable execution, server contact, downloads, or publication occurred.
+Original input is the read-only installed overlay rooted at `C:/Stardust-DEV`, configuration `swgemu_live.cfg`, SHA-256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`. Profile and output identities, budget semantics, camera, and reproducible commands are specified in the durable contract. Tools: existing .NET 8 SDK, prototype host 4.7.2 Mono, bundled Python with NumPy/Pillow, baseline descriptor/builder/visual verification APIs. No original executable execution, server contact, downloads, or publication occurred.
 
 ## Observations and interpretation
 
@@ -21,6 +21,6 @@ Implementation consequence: retain the baseline generated-face binding and owner
 
 ## Validation and remaining questions
 
-Build succeeds without warnings/errors. Headless and GPU previews pass; the independent composition/binding/pixel oracle passes; the separate cancellation preview passes. Existing Godot certificate-store startup diagnostic is nonfatal. Source changes are restricted to the standalone preview and own round-19 runner; no shared navigation, Core, status, registry, or ledger edits are part of this worker milestone. Baseline workspace/scope checks are recorded in the final handoff.
+Build succeeds without warnings/errors. Headless and GPU previews pass; the independent composition/binding/pixel oracle passes; the separate cancellation preview passes. Existing prototype host certificate-store startup diagnostic is nonfatal. Source changes are restricted to the standalone preview and own round-19 runner; no shared navigation, Core, status, registry, or ledger edits are part of this worker milestone. Baseline workspace/scope checks are recorded in the final handoff.
 
 Next probe: the lead can join this inspection evidence with the separately implemented production resource-reader policy and verify its opt-in route using the same supplied profile and negative cases. Other profile values, shutdown under forced termination, and decoder peak-memory accounting remain outside this milestone. No research/readiness/function/protocol completion denominator changes are claimed.

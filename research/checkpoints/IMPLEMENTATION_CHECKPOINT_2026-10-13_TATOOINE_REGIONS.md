@@ -4,7 +4,7 @@ Question: can the current original-resource height path generate and render
 regions outside the hand-selected district without skipping applicable rules?
 Stopping condition for this increment: reusable bounded region requests,
 independently verified second-curve admission, twelve geographic regressions
-and one actual DX12 region presentation. See the [durable contract](../../../SWG-Godot-Client/docs/TATOOINE_REGION_DEVELOPMENT.md)
+and one actual DX12 region presentation. See the durable contract (external historical reference)
 for exact source identities, policies and reproduction.
 
 Observation: ten of twelve selected regions generated before the curve change;

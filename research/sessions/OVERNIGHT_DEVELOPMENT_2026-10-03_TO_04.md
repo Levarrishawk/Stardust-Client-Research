@@ -35,7 +35,7 @@ and [lead checkpoint](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R44_OB
 record the received-only scalar join, original terrain/fractal prerequisites and
 startup/template initialization. Combined workspace acceptance passed at2026-10-04 00:30:47UTC;
 Round45 has completed its four independently replayed milestones and supplied
-current-height Godot join. Its combined gate passed at 2026-10-04 01:38:28 UTC;
+current-height prototype host join. Its combined gate passed at 2026-10-04 01:38:28 UTC;
 Round46 may now be dispatched.
 
 Read START_HERE, the latest accepted round, this record and relevant durable
@@ -71,27 +71,27 @@ Round50 active2026-10-04 06:44:00 UTC: [assignments](PARALLEL_DEVELOPMENT_ROUND_
 
 ## Round50 accepted
 
-Gate2026-10-04 07:38:05UTC. Four Low milestones and2592 actual owned-family conditional compositions pass; current-field11 original-resource headless/GPU and nonfinite rejection pass. Final assembled Core/Godot/default terrain/typed host and canonical gates pass. [Accepted report](PARALLEL_DEVELOPMENT_ROUND_50_2026-10-04.md). Workers idle; prepare a bounded frozen51 before08:00UTC, finish and report by09:00UTC.
+Gate2026-10-04 07:38:05UTC. Four Low milestones and2592 actual owned-family conditional compositions pass; current-field11 original-resource headless/GPU and nonfinite rejection pass. Final assembled historical implementation path (omitted) terrain/typed host and canonical gates pass. [Accepted report](PARALLEL_DEVELOPMENT_ROUND_50_2026-10-04.md). Workers idle; prepare a bounded frozen51 before08:00UTC, finish and report by09:00UTC.
 
 Round51 dispatched2026-10-04 07:43:18UTC: [active scopes](PARALLEL_DEVELOPMENT_ROUND_51_2026-10-04.md). Last full overnight round; worker target08:10/final08:25UTC, lead report09:00UTC. Accept before any further work; no full round after08:00UTC.
 
 ## Round51 accepted
 
-Gate2026-10-04 08:35:20UTC. Four Low milestones and486 actual generator/family/height compositions pass; final Core/Godot and canonical gates pass. [Accepted report](PARALLEL_DEVELOPMENT_ROUND_51_2026-10-04.md). Rounds44–51 are accepted: eight rounds/32 specialist milestones, with independent lead review/replay. All workers idle. No further full round; prepare the precise handoff and stop/report09:00UTC. Original full terrain/controller parity remains open.
+Gate2026-10-04 08:35:20UTC. Four Low milestones and486 actual generator/family/height compositions pass; final historical implementation path (omitted) and canonical gates pass. [Accepted report](PARALLEL_DEVELOPMENT_ROUND_51_2026-10-04.md). Rounds44–51 are accepted: eight rounds/32 specialist milestones, with independent lead review/replay. All workers idle. No further full round; prepare the precise handoff and stop/report09:00UTC. Original full terrain/controller parity remains open.
 
 ## Overnight implementation outcome
 
 | Area | Accepted progress across Rounds44–51 | Practical limit |
 |---|---|---|
 | Assets and terrain | Owned original generator/family publication, retained sample consumers, seeded conditional noise modes0–5 and explicit family-to-height routing. | Original metadata is used with explicitly supplied coordinates/rules/controls. Complete original traversal, optional controls and persistent cache policy remain open. |
-| Runtime and observer state | Partial CREO4 scalar state reaches initializing/active world admission and actual Godot inspection; authored, received and current movement sources have distinct provenance and presence rules. | Partial state does not invent absent fields. Explicit modern motion admission is not the full original controller. |
+| Runtime and observer state | Partial CREO4 scalar state reaches initializing/active world admission and actual prototype host inspection; authored, received and current movement sources have distinct provenance and presence rules. | Partial state does not invent absent fields. Explicit modern motion admission is not the full original controller. |
 | Host integration | Original human/terminal resources survive headless/GPU partial/current previews with deterministic cleanup; current-field movement and present-nonfinite rejection are independently checked. | Bounded replacement-host execution, not original-client execution or live-server validation. |
 | Controller evidence | Constructor/writer/current getter chains, selected creature ownership, complete acceleration helper and run-default preference/local0x99 inversion are documented and independently verified. | Indexed acceleration getter, update units and input-message producer/timing still block complete controller parity. |
 
 The largest final terrain composition checked2592 owned-family routes in Round50;
 Round51 checked486 complete generator-to-family-to-height routes. These are
 separate deterministic fixture sets, not additive coverage denominators. Final
-assembled Core smoke and Godot builds passed with zero warnings/errors; canonical
+assembled Core smoke and prototype host builds passed with zero warnings/errors; canonical
 validation found1536 Markdown files and zero broken/private links. Research89 and
 readiness94 remain unchanged weighted heuristics, not a client completion estimate.
 
@@ -103,7 +103,7 @@ claims. No Round52 baseline has been frozen and no worker has been assigned it.
 | Specialist | Next falsifiable question | Acceptance boundary |
 |---|---|---|
 | Assets | Can the immutable generator descriptor expose encoded length and cached SHA identity so family publication can reserve the actual root copy? | Preserve owned input and rejection semantics; demonstrate actual copy charges and negative limits. The Round51 64MiB reservation is conservative accounting, not a physical allocation. Preserve its dated measurements. |
-| Rendering | Can one controlled family-backed height patch reach the existing surface/Godot opt-in through the accepted native route? | Explicit coordinates, controls and fresh sampler policy; independently check native heights and host coordinates. Lead owns shared hooks. Supplied rules remain synthetic; no full original layer claim. |
+| Rendering | Can one controlled family-backed height patch reach the existing historical implementation path (omitted) opt-in through the accepted native route? | Explicit coordinates, controls and fresh sampler policy; independently check native heights and host coordinates. Lead owns shared hooks. Supplied rules remain synthetic; no full original layer claim. |
 | Runtime | What does indexed template getter011ADD30 load, inherit and return for indices0/1? | SHA-gated getter/caller evidence and one original acceleration record if available. Keep controller update units unresolved until separately demonstrated; do not implement acceleration from guessed units. |
 | Networking | Which producer enqueues controller message0x99, and when does it emit on held, edge or release input? | One command/input-map-to-queue boundary with direct call evidence. Effective default, configuration/reset timing and physical binding remain distinct questions. |
 

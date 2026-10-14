@@ -42,14 +42,14 @@ The existing explicit caller configuration remains appropriate. An integration m
 
 ## Reproduction and verification
 
-[Runner](../../SWG-Godot-Client/poc/round35-tests/Rendering/Invoke-RuntimePolicy.ps1) uses explicit paths:
+Runner (external historical reference) uses explicit paths:
 
 ```powershell
 .\poc\round35-tests\Rendering\Invoke-RuntimePolicy.ps1 -Exe C:\Stardust-DEV\Stardust.exe -Packages <cached-pefile-capstone-directory> -Python <python.exe>
 ```
 
-[Verifier and oracle](../../SWG-Godot-Client/poc/round35-tests/Rendering/verify_runtime_policy.py) hash-gate before PE decoding, then check70 instruction anchors, five data pointers,50 literal-reference occurrences across11 keys,44 endpoint instruction sites/six writes, ten passed-pointer/callee anchors, five direct-call target inventories and ten local bodies. An independent bit oracle covers all65,536 prior words times64 exception-unmask combinations (4,194,304 cases). A bounded decoded integer interpreter agrees with a separate precision-setter model for125 synthetic states. It interprets only the recovered setter's integer state transitions; it is not dynamic execution of the original executable and does not emulate OS thread state.
+Verifier and oracle (external historical reference) hash-gate before PE decoding, then check70 instruction anchors, five data pointers,50 literal-reference occurrences across11 keys,44 endpoint instruction sites/six writes, ten passed-pointer/callee anchors, five direct-call target inventories and ten local bodies. An independent bit oracle covers all65,536 prior words times64 exception-unmask combinations (4,194,304 cases). A bounded decoded integer interpreter agrees with a separate precision-setter model for125 synthetic states. It interprets only the recovered setter's integer state transitions; it is not dynamic execution of the original executable and does not emulate OS thread state.
 
-[Identity tests](../../SWG-Godot-Client/poc/round35-tests/Rendering/test_identity.py) reject a modified executable and a one-byte truncation before importing the unavailable decoder packages or creating a receipt. All checks pass. Generated receipts and proprietary-derived inputs remain ignored. There is no GPU work, new corpus sweep or software-profile implementation.
+Identity tests (external historical reference) reject a modified executable and a one-byte truncation before importing the unavailable decoder packages or creating a receipt. All checks pass. Generated receipts and proprietary-derived inputs remain ignored. There is no GPU work, new corpus sweep or software-profile implementation.
 
 Next: establish the OS-specific new-thread control state with independently authorized evidence, then audit the bounded transitive/virtual generation route for control changes. Separately, investigate computed aliases to the endpoint/enable storage only if a concrete reachable producer is found. Keep the accepted supplied policies until those edges close.

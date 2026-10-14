@@ -3,7 +3,7 @@
 Target: `C:\Stardust-DEV\Stardust.exe`  
 SHA-256: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`
 
-This session remained analysis-only. No replacement-client, Godot, DX12, or
+This session remained analysis-only. No replacement-client, prototype host, DX12, or
 server implementation code was started or modified.
 
 ## Outcome

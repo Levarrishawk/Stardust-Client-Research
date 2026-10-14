@@ -61,8 +61,8 @@ They are not evidence of complete client, gameplay or live interoperability.
 
 ## Lead join and source-state research
 
-[The public native join](../../../SWG-Godot-Client/poc/round40-tests/Integration/Program.cs) calls the
-actual separate Core API. [Its independent peer](../../../SWG-Godot-Client/poc/round40-tests/Integration/layer_peer.py)
+The public native join (external historical reference) calls the
+actual separate Core API. Its independent peer (external historical reference)
 reconstructs unspilled circle/rectangle query arithmetic with Fraction/integer
 operations, then derives local/product/height bits, patch indices and barycentric
 queries independently. Native code does not consume Expected fixture fields.
@@ -85,10 +85,10 @@ No guessed runtime descriptor, cache activation or ancestor policy is added.
 
 ## Integration guard reproduction
 
-The existing [workspace helper](../../../SWG-Godot-Client/tools/python/parallel_round_workspace.py)
+The existing workspace helper (external historical reference)
 now checks canonical paths/casefold collisions and lexical root/ancestor/target
 links, retains exact reviewed source bytes after complete destination preflight,
-and verifies every copied file afterward. [The private synthetic guard runner](../../../SWG-Godot-Client/poc/round40-tests/Integration/verify_workspace_guards.py)
+and verifies every copied file afterward. The private synthetic guard runner (external historical reference)
 passes20 checks including a real NTFS junction, linked root, late destination
 conflict and source-byte change before copying; earlier19-check receipt is
 retained privately. This is boundary checking, not an atomic filesystem
@@ -112,11 +112,11 @@ far; worker-local corrected attempts are reported in their individual checkpoint
 ## Combined gates and next action
 
 All four final handoffs were reviewed and independently replayed in main.
-Actual separate Core/SmokeTests and Godot builds pass with zero warnings/errors;
+Actual separate Core/SmokeTests and prototype host builds pass with zero warnings/errors;
 default smoke reports18 journal events/zero failures. The retained original-actor
 headless host and its independent terrain/full-CREO6/TANO6/animation/name/customization
 oracles pass; supplied terrain has16 patches/128 triangles, nine motion states
-and exact16-resource cleanup. Godot adapter behavior is unchanged this round;
+and exact16-resource cleanup. Prototype host adapter behavior is unchanged this round;
 the prior accepted GPU proof remains dated39 rather than claimed as a new run.
 Final scope/link/head/index counts are recorded in the acceptance session.
 

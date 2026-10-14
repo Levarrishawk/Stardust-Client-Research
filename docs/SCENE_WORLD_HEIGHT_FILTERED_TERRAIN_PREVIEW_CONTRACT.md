@@ -2,12 +2,12 @@
 
 Date: 2026-10-04. This synthetic version-3 preview joins the accepted
 [current-height sequence](TERRAIN_SUPPLIED_HEIGHT_FILTERED_SEQUENCE_CONTRACT.md)
-to the actual Godot terrain and motion host. It is a conditional compatibility
+to the actual prototype host terrain and motion host. It is a conditional compatibility
 slice, not an implementation of the original recursive terrain generator.
 
 ## Boundary and publication
 
-[ScenePumpedHeightFilteredTerrain](../../SWG-Godot-Client/poc/Stardust.Godot/ScenePumpedHeightFilteredTerrain.cs)
+ScenePumpedHeightFilteredTerrain (external historical reference)
 decodes bounded supplied BCIR/BREC, two FHGT and six AHCN envelopes. Four chunks
 each supply 100 initial height words. The first layer stores its result before
 the second FHGT queries that mutable height. Query precisions are explicitly
@@ -29,9 +29,9 @@ synthetic hill; resource retention is established independently of visibility.
 
 ## Independent execution evidence
 
-The [Python peer](../../SWG-Godot-Client/poc/round45-tests/Integration/height_filtered_host_peer.py)
+The Python peer (external historical reference)
 uses independently authored Fraction arithmetic and generates inputs before
-the host runs. Actual native/Godot headless and GPU receipts match 400 samples,
+the host runs. Actual historical implementation path (omitted) headless and GPU receipts match 400 samples,
 16 patches, 128 triangles and nine timed motion states. Ninety samples witness
 the second query observing a preceding height write. Terrain cleanup balances
 all sixteen allocations/disposals. The joined original human/terminal loaders

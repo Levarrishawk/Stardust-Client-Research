@@ -1,16 +1,16 @@
-# Terrain patch geometry and Godot inspection contract
+# Terrain patch geometry and prototype host inspection contract
 
 ## Scope
 
-[TerrainPatchGeometry](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainPatchGeometry.cs)
+TerrainPatchGeometry (external historical reference)
 owns a supplied nine-vertex CPU cell: positions, normals, raw ARGB words,
 scaled base UVs, up to three selected auxiliary UV sets, and an explicit
 [accepted topology pattern](TERRAIN_PATCH_TOPOLOGY_CONTRACT.md).
 It performs no PTAT/TGEN evaluation, height sampling, neighbor/seam selection,
 material lookup, ALP texture binding, or original terrain rendering.
 
-[TerrainPatchVisual](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainPatchVisual.cs) is a separate
-owned Godot inspection adapter. The proof renders synthetic heights with exact
+TerrainPatchVisual (external historical reference) is a separate
+owned prototype host inspection adapter. The proof renders synthetic heights with exact
 topology and an explicit UV/COLOR diagnostic shader. It does not claim original
 appearance, lighting, blending, or material parity.
 
@@ -63,16 +63,16 @@ at most 600 bytes, excluding object/array overhead and shared definitions.
 There is no engine, I/O, clock, callback, generator, or mutable published state
 in the core type.
 
-## Godot boundary
+## Prototype host boundary
 
-The adapter validates a live parent and Godot main thread before creating
-resources. It supports base UV and at most one auxiliary set (Godot UV2);
+The adapter validates a live parent and prototype host main thread before creating
+resources. It supports base UV and at most one auxiliary set (prototype host UV2);
 additional sets reject before allocation. Its inspection scale cap is 16.
 It requires nondegenerate source triangles whose cross products agree with
 the sum of supplied normals. This is a deliberately bounded adapter policy.
 
 Positions/normals reflect Z. Original index order is preserved: source CCW
-becomes Godot CW under reflection. The adapter explicitly normalizes normals
+becomes prototype host CW under reflection. The adapter explicitly normalizes normals
 at the engine boundary; CPU normals remain raw. ARGB-derived RGBA and base UV
 are uploaded separately; the one auxiliary set goes to UV2. Readback verifies
 cardinality, indices, reflected vectors, color channels and both UV channels.
@@ -89,7 +89,7 @@ shaders are not implemented.
 
 ## Verification and remaining seam
 
-The [independent oracle](../../SWG-Godot-Client/poc/round32-tests/Rendering/verify_geometry.py)
+The independent oracle (external historical reference)
 SHA-gates the original before PE/VA use, checks nine base points, four auxiliary
 sets and 30 instruction sites across four ranges. Native fixtures use declared
 synthetic heights, 27 pattern/scale/selector cases, and raw color words spanning
@@ -100,7 +100,7 @@ Headless and hidden GPU proofs verify all nine patterns and four auxiliary
 selectors, 81 atlas vertices plus nine varied-ARGB vertices, six preflight/
 owner rejection cases, and balanced resource disposal. GPU image readback
 passes four front UV/color samples and four culled-back samples. Captures and
-detailed receipts remain private. Native and Godot focused builds report zero
+detailed receipts remain private. Native and prototype host focused builds report zero
 warnings/errors. The known pre-state certificate-store diagnostic is allowed;
 other engine warnings/errors, including object leaks, reject acceptance.
 

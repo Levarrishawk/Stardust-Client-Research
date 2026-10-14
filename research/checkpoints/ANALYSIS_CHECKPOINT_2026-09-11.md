@@ -6,7 +6,7 @@ The two-hour analysis block materially advanced the protocol surface without beg
 
 The conservative estimate of **properly researched replacement-relevant client behavior is 38%**. This uses the declared weighted scope below. It is neither the percentage of machine-code functions named nor a claim that 38% of original source has been recovered.
 
-The engine/build decision evidence gate remains complete: enough is known to conduct a Godot proof of concept while keeping networking isolated from engine concerns. That narrower gate being 100% does not make the whole client 100% analyzed.
+The engine/build decision evidence gate remains complete: enough is known to conduct a prototype host proof of concept while keeping networking isolated from engine concerns. That narrower gate being 100% does not make the whole client 100% analyzed.
 
 ## Findings completed in this block
 
@@ -76,7 +76,7 @@ Server source can confirm bytes and server effects, but a server-derived schema 
 ## Percentages that must remain separate
 
 1. **Overall replacement-relevant behavioral research: 38%.** This is the requested total estimate.
-2. **Engine/first-POC decision readiness: 100%.** Enough evidence exists to test Godot without pretending the whole client is understood.
+2. **Engine/first-POC decision readiness: 100%.** Enough evidence exists to test prototype host without pretending the whole client is understood.
 3. **Mechanically stable individual-function naming: 0.17% of heuristic candidates.** Exhaustive function reconstruction is overwhelmingly incomplete.
 
 Protocol identity has its own 94.74% lower-bound metric and must not substitute for any of these.
@@ -101,9 +101,9 @@ Protocol identity has its own 94.74% lower-bound metric and must not substitute 
 
 ## Recommended next step
 
-Proceed with a tiny Godot x64 networking spike after reviewing this checkpoint. It should load configuration, serialize the documented 14-byte SOE session request, validate a synthetic/session response through pure protocol code, serialize and verify the synthetic `LoginClientId` fixture, log parsed results, and exit cleanly. Live server contact remains a separately authorized controlled test. No world, renderer, UI recreation, or gameplay belongs in that milestone.
+Proceed with a tiny prototype host x64 networking spike after reviewing this checkpoint. It should load configuration, serialize the documented 14-byte SOE session request, validate a synthetic/session response through pure protocol code, serialize and verify the synthetic `LoginClientId` fixture, log parsed results, and exit cleanly. Live server contact remains a separately authorized controlled test. No world, renderer, UI recreation, or gameplay belongs in that milestone.
 
-If the Godot spike passes its fail gates, return to sustained executable research before broad construction, prioritizing replication schemas and asset import boundaries rather than indiscriminate function naming.
+If the prototype host spike passes its fail gates, return to sustained executable research before broad construction, prioritizing replication schemas and asset import boundaries rather than indiscriminate function naming.
 
 ## Validation record
 

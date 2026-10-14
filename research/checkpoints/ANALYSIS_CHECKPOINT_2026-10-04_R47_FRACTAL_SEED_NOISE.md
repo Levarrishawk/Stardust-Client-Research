@@ -12,7 +12,7 @@ ONE full frozen47 overlay:3412 public files, main HEAD `5493338d9cd4255cf58f25de
 
 EXE SHA256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150` gates VA use. Config, effective Tatooine/TGEN, first family1 and84-byte MFRC identities/offsets are in the durable contract and replay receipt. This reuses the same first family from accepted46; no other family is interpreted. Original noise sample count remains zero. Detailed listings, raw frame, derived tables, vectors, logs and hash handoff remain ignored private evidence.
 
-Tools: cached Python/PE/Capstone, independent Fraction/isqrt/integer arithmetic, installed .NET8.0.300 and cached offline package dependencies. [Verifier](../../../SWG-Godot-Client/tools/python/verify_terrain_fractal_seed_noise.py) and [own runner](../../../SWG-Godot-Client/poc/round47-tests/Rendering/Invoke-SeedNoise.ps1) use explicit Exe/Packages/AssetRoot/Config/Python/Dotnet/CachedPackages and a fresh private RunRoot. The runner references actual Core and links its frozen arithmetic source for research, with cleared feeds/locked restore/private artifacts/disabled audit, apphost and shared compiler. No sibling47 type/API is used.
+Tools: cached Python/PE/Capstone, independent Fraction/isqrt/integer arithmetic, installed .NET8.0.300 and cached offline package dependencies. Verifier (external historical reference) and own runner (external historical reference) use explicit Exe/Packages/AssetRoot/Config/Python/Dotnet/CachedPackages and a fresh private RunRoot. The runner references actual Core and links its frozen arithmetic source for research, with cleared feeds/locked restore/private artifacts/disabled audit, apphost and shared compiler. No sibling47 type/API is used.
 
 ## Closed observations and interpretation
 

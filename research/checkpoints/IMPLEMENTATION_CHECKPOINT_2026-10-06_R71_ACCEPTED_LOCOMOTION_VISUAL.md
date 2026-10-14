@@ -1,6 +1,6 @@
 # Round71 accepted locomotion visual
 
-Date: October6,2026. Question: can an opt-in Godot wrapper display a supplied native
+Date: October6,2026. Question: can an opt-in prototype host wrapper display a supplied native
 locomotion state exactly, while preserving an existing disabled presentation chain and
 rejecting callback/publication/lifetime failures without adding elapsed animation time?
 Stopping condition: standalone headless/GPU state and original-pose agreement, ownership
@@ -15,18 +15,18 @@ and negative replay, focused scope audit, then handoff for the lead's main-scene
   `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`, verified
   before executable-table reads. Configuration SHA-256
   `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`.
-- Idle/walk/run clip pins are retained in the [independent producer](../../../SWG-Godot-Client/poc/round71-tests/Rendering/verify_visual.py).
+- Idle/walk/run clip pins are retained in the independent producer (external historical reference).
   All three resolve at overlay priority30. Body mesh priority53:
   `93378D74AA75B1C6673C9008914FFB51CF7DC380FF18459DBBFC26EF016A59B0`;
   body skeleton priority53:
   `7F3EB762EB97B27C2170014BE66BFCA0C232E35B2F8CDBEFEA912736FB681CC3`.
-- Cached Python, .NET8 and Godot4.7.2 .NET x64; offline cached package restoration.
+- Cached Python, .NET8 and prototype host4.7.2 .NET x64; offline cached package restoration.
   Trusted incoming sync completed before edits; final audit independently verifies every
   frozen byte, preserved HEAD/index and exactly ten new public files.
 
 ## Findings and confidence
 
-Observation: [the new wrapper](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldAcceptedLocomotionVisual.cs)
+Observation: the new wrapper (external historical reference)
 reads the supplied immutable state once per enabled presentation, maps its exact enum
 and frame to existing prepared pose APIs, and contains no animation clock/Advance call.
 Interpretation: accepted-displacement phase can be displayed without elapsed-frame drift.
@@ -54,7 +54,7 @@ Observation: disabled Tick forwards elapsed time and reads no state; enabled Tic
 zero seconds; Apply forwards exactly once and rejects an obsolete snapshot without state
 read. Actual current Height is applied after a legitimate revision. Callback-induced
 revision loss retires the chain instead of presenting over stale Height. Confidence:
-Confirmed by [standalone verification](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldAcceptedLocomotionVisualVerification.cs).
+Confirmed by standalone verification (external historical reference).
 Implementation consequence: the lead can retain legacy prepoint acceptance gates and
 enable the wrapper when the supplied observer becomes active.
 
@@ -77,7 +77,7 @@ preserving prior receipts and linked targets. PowerShell syntax, Python/XML/Mark
 workspace validator, frozen scope hashes and git diff whitespace checks pass. No shared
 source, ledgers, registry or sibling dependency changes belong to this worker's handoff.
 
-The offline Godot root-certificate-store warning remains with successful exit0 and no
+The offline prototype host root-certificate-store warning remains with successful exit0 and no
 network requested. Frozen external-freed-root disposal can throw after its owned resources
 are cleared; retirement/single disposal are tested, no new no-throw promise is made.
 Original executable execution, live server contact/capture/fuzz, whole animation/texture

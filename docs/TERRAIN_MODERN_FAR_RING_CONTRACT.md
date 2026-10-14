@@ -1,6 +1,6 @@
 # Explicit modern stitched far terrain ring
 
-[TerrainModernFarTerrainView](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainModernFarTerrainView.cs)
+TerrainModernFarTerrainView (external historical reference)
 builds a640m view around the existing320m fine ground window. The policy is
 `Modern640MetreFarRingWithExactFineBoundary`, an explicit modern rendering
 choice. It does not recover original LOD scheduling, simplify the fine height
@@ -86,7 +86,7 @@ no worker and performs no caching or source reads.
 
 ## Focused gate and limitations
 
-[Native tests](../../SWG-Godot-Client/poc/terrain-far-ring-tests/Program.cs) pass22,199 synthetic
+Native tests (external historical reference) pass22,199 synthetic
 assertions and44,379 with the pinned original file. Exact integer/rational X/Z
 area is307,200m², the640m square minus the320m hole. Undirected3D edge incidence
 checks every interior edge twice,256 distinct5m hole subedges and128 outer20m
@@ -120,20 +120,20 @@ these useful acceptance counts, not comparative performance results.
 This checks four specific640m footprints. It does not establish unrestricted
 world coverage, and the builder continues rejecting unknown/invalid profiles.
 
-The [independent ring verifier](../../SWG-Godot-Client/tools/python/verify_terrain_far_ring.py)
+The independent ring verifier (external historical reference)
 passes both native synthetic and original receipts: exact Fraction area,
 topology, source channels and periodic UVs, including11,520 original TRN family
-assignments. Its [ten mutation tests](../../SWG-Godot-Client/tools/python/test_verify_terrain_far_ring.py)
+assignments. Its ten mutation tests (external historical reference)
 reject wrong source IDs/ranges/transition bits and coherently altered original
 source/output labels. Source weights are explicitly derived from categorical
 labels rather than supplied original blend fields; output weights are compared.
 
-The [GPU adapter gate](../../SWG-Godot-Client/poc/terrain-far-gpu-tests/README.md) separately checks
+The GPU adapter gate (external historical reference) separately checks
 asymmetric texture orientation, source attributes, blend channels, fine-edge
 samples and disposal. Integrated streaming/rollback acceptance belongs to the
 separate host proof. The helper's default synthetic suite
 is registered as `terrain-far-ring` in the
-[offline regression runner](../../SWG-Godot-Client/docs/CLIENT_REGRESSION_RUNBOOK.md).
+offline regression runner (external historical reference).
 
 ```powershell
 dotnet restore poc/terrain-far-ring-tests/TerrainFarRingTests.csproj --configfile poc/terrain-far-ring-tests/NuGet.Config

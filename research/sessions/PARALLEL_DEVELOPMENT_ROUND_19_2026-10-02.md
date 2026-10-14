@@ -44,7 +44,7 @@ headless/GPU source/binding/accounting receipts match the independent producer,
 and all nine control/correction/suspension/reset stages pass. Separate cancellation
 publishes zero and drains2/2 archives. Incarnation-loss stops the driver, retires
 actors and drains3/3 jobs; missing profile key rejects with actors0/jobs2/2 closed.
-Fresh main capture inspected. Zero-warning/error Godot build and independent
+Fresh main capture inspected. Zero-warning/error prototype host build and independent
 standalone pixel oracle pass. Lead fixed dropped async FaceInspection copying,
 relative capture-path handling and cleanup that could skip world close after an
 input-close exception. [Combined checkpoint](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R19_FACE_INTEGRATION.md)

@@ -32,7 +32,7 @@ The two apparent `Imperial` elements are malformed text containing an unescaped 
 
 The effective corpus contains 20 event-like property spellings. The heavily used core is `OnShow`, `OnHide`, `OnEnable`, `OnDisable`, their effector variants, `OnPress`, `OnSet`, `OnUnset`, `OnActivate`, `OnDeactivate`, hover events, `OnRunScript`, `OnSliderChange`, and `OnSelectionChanged`.
 
-Attributes containing dotted paths (for example `button.visible`, `tabs.activetab`, or nested color components) show that the format is not merely XML property initialization. It also embeds path-targeted assignments and event expressions. A generic XML-to-Godot scene converter would lose behavior unless it preserves this expression/path layer.
+Attributes containing dotted paths (for example `button.visible`, `tabs.activetab`, or nested color components) show that the format is not merely XML property initialization. It also embeds path-targeted assignments and event expressions. A generic XML-to-prototype host scene converter would lose behavior unless it preserves this expression/path layer.
 
 `Data` and `Namespace` intentionally accept open-ended game-specific keys. Across the whole corpus there are 3,661 attribute spellings, but that number must not be interpreted as 3,661 engine properties. Excluding `Data`/`Namespace` still leaves 1,016 structural/path spellings, many of which are dotted target assignments or style aliases rather than primitive widget fields.
 
@@ -43,7 +43,7 @@ The original assets can be consumed without cloning the original renderer if the
 1. tolerant legacy text parser preserving source spelling, order and malformed-but-used escapes;
 2. include resolver over the TRE overlay with cycle detection and diagnostic provenance;
 3. engine-neutral widget/style/effect AST with named-path lookup and open-ended data properties;
-4. Godot adapter implementing an initially small widget core and explicit custom controls.
+4. Prototype host adapter implementing an initially small widget core and explicit custom controls.
 
 Do not require complete visual support before accepting a file. Unknown elements/properties should remain in the AST, produce structured diagnostics, and be round-trippable. This permits incremental fidelity while retaining the original asset as the authority.
 

@@ -1,6 +1,6 @@
 # Primitive offline root completion observation
 
-[OfflineSoeRootMotionCompletion.Capture(session, transport, queue)](../../SWG-Godot-Client/poc/Stardust.Core/Session/OfflineSoeRootMotionCompletion.cs) returns an immutable primitive snapshot of actual frozen child history and queue/transport counts. It owns no state, references, buffers, codec or lifetime and performs no drain/receive/send/cadence operation.
+OfflineSoeRootMotionCompletion.Capture(session, transport, queue) (external historical reference) returns an immutable primitive snapshot of actual frozen child history and queue/transport counts. It owns no state, references, buffers, codec or lifetime and performs no drain/receive/send/cadence operation.
 
 Fields: Samples:int, Queued:int, Drained:ulong, NextSequence:ushort, SessionFaulted:bool, TransportState:string, QueueCount:int, QueueBytes:int, PendingMessages:int, RetainedPackets:int, CleanDrain:bool. TransportState is the actual enum name. Every field comes from session.State or public actual queue/transport getters; no count is reconstructed from status or earlier receipts.
 
@@ -10,7 +10,7 @@ Capture checks all three null inputs before reads, then reads cached session.Sta
 
 After [root owner](OFFLINE_SOE_ROOT_MOTION_SESSION_OWNER_CONTRACT.md) disposal, actual Session history and Closed transport remain inspectable. Queue history counts remain until caller drains/disposes queue. Captured primitive values contain no borrower references and remain unchanged across subsequent cleanup.
 
-[Independent replay](../../SWG-Godot-Client/poc/round79-tests/Networking/replay.py) computes exact handshake, one expected root/protected datagram/ACK, three complete session receipts and eight reports before native. Each of two actual frozen point-driver traces has three ordinary10ms updates: native Z speed2 twice, then stopped. Positive trace drains one counter1/flags5 root at30ms via frozen owner/session/ACK helper. Fault trace supplies sequence1 ACK when sequence0 is expected: cadence consumes sample3/queues1, no drain succeeds, session faults and FIFO1/62 remains. No rollback or retry.
+Independent replay (external historical reference) computes exact handshake, one expected root/protected datagram/ACK, three complete session receipts and eight reports before native. Each of two actual frozen point-driver traces has three ordinary10ms updates: native Z speed2 twice, then stopped. Positive trace drains one counter1/flags5 root at30ms via frozen owner/session/ACK helper. Fault trace supplies sequence1 ACK when sequence0 is expected: cadence consumes sample3/queues1, no drain succeeds, session faults and FIFO1/62 remains. No rollback or retry.
 
 | Observation | Samples/Queued/Drained/Next | State; queue packets/bytes; pending/retained | CleanDrain |
 | --- | --- | --- | --- |

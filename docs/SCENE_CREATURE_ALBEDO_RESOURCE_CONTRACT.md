@@ -1,6 +1,6 @@
 # Optional scene creature albedo resources
 
-R10-ASSETS-01, October 2, 2026. [SceneCreatureResourceReader.Load](../../SWG-Godot-Client/poc/Stardust.Core/Assets/SceneCreatureResourceReader.cs) appends `bool loadAlbedoFactors = false` as its final parameter. Explicit `true` forwards to the existing descriptor reader's albedo option. Default behavior remains the accepted [scene creature resource contract](SCENE_CREATURE_RESOURCE_CONTRACT.md). This bounded CPU composition adds no new shader/profile/palette policy and makes no full-lighting or rendering claim.
+R10-ASSETS-01, October 2, 2026. SceneCreatureResourceReader.Load (external historical reference) appends `bool loadAlbedoFactors = false` as its final parameter. Explicit `true` forwards to the existing descriptor reader's albedo option. Default behavior remains the accepted [scene creature resource contract](SCENE_CREATURE_RESOURCE_CONTRACT.md). This bounded CPU composition adds no new shader/profile/palette policy and makes no full-lighting or rendering claim.
 
 ## API and retained behavior
 
@@ -16,7 +16,7 @@ The evaluator operates on sampled source-encoding RGBA. For one factor, output R
 
 ## Original human closure and evidence
 
-Inputs are the [authored catalog profile](../../SWG-Godot-Client/poc/preview-profiles/scene-object-catalog.json), human CRC `2937962913`, object `object/creature/player/shared_human_male.iff` SHA-256 `E0B61445E8A85CCF0AC5937F0F9CBCA8711718AFEE63384F30970D5AEE120243`, appearance SHA-256 `951FCE8C2FFC0EB318C751026D24D8C9BF17263D706EB3C93D015867EC801A9C`, existing idle selection and [walk/run profile](../../SWG-Godot-Client/poc/preview-profiles/human-locomotion.json). The read-only `C:/Stardust-DEV` overlay uses explicit `swgemu_live.cfg` SHA-256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`.
+Inputs are the authored catalog profile (external historical reference), human CRC `2937962913`, object `object/creature/player/shared_human_male.iff` SHA-256 `E0B61445E8A85CCF0AC5937F0F9CBCA8711718AFEE63384F30970D5AEE120243`, appearance SHA-256 `951FCE8C2FFC0EB318C751026D24D8C9BF17263D706EB3C93D015867EC801A9C`, existing idle selection and the separate implementation record. The read-only `C:/Stardust-DEV` overlay uses explicit `swgemu_live.cfg` SHA-256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`.
 
 **Confirmed observation:** omitted and explicit false each retain 37 read-once sources / 4,683,848 bytes. Opt-in follows the same five inherited object templates, SAT, MLOD/detail0 body/head MGN, skeleton/material/palette/animation path and adds exactly these sources:
 
@@ -50,9 +50,9 @@ The existing [resource initializer](SCENE_CREATURE_RESOURCE_INITIALIZER_CONTRACT
 
 ## Verification and reproduction
 
-[Own scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneCreatureAlbedoScenarios.cs) pass 16 reader rejection cases and two initializer-accounting failures, source/program/pixel ownership, unchanged false modes, exact limits, actual sampled colors and real initializer transfer. The unchanged earlier creature native regression passes 75 rejections and its unchanged independent audit verifies the 37-source default, caller pins and raw-create identity. The shared runner is untouched.
+Own scenarios (external historical reference) pass 16 reader rejection cases and two initializer-accounting failures, source/program/pixel ownership, unchanged false modes, exact limits, actual sampled colors and real initializer transfer. The unchanged earlier creature native regression passes 75 rejections and its unchanged independent audit verifies the 37-source default, caller pins and raw-create identity. The shared runner is untouched.
 
-[New Python verifier](../../SWG-Godot-Client/tools/python/verify_scene_creature_albedo_resources.py) checks the exact default-plus-program union, every source priority/size/SHA, object inheritance and SAT/MLOD selected identities, original program/pass/factor/palette semantics via `verify_skeletal_albedo`, all 80 mips via the accepted Pillow DDS verifier and four actual sampled MAIN pixels plus hand-evaluated factor color. It also checks byte-identical 47-byte create re-encoding and the recorded failure/initializer receipts. It exports only aggregate identities/descriptions, not asset bytes. **Confidence:** Confirmed finite-fixture CPU agreement; research/function/protocol coverage denominators do not change.
+New Python verifier (external historical reference) checks the exact default-plus-program union, every source priority/size/SHA, object inheritance and SAT/MLOD selected identities, original program/pass/factor/palette semantics via `verify_skeletal_albedo`, all 80 mips via the accepted Pillow DDS verifier and four actual sampled MAIN pixels plus hand-evaluated factor color. It also checks byte-identical 47-byte create re-encoding and the recorded failure/initializer receipts. It exports only aggregate identities/descriptions, not asset bytes. **Confidence:** Confirmed finite-fixture CPU agreement; research/function/protocol coverage denominators do not change.
 
 From the isolated checkout with cached .NET 8 packages:
 

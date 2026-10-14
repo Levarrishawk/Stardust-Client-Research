@@ -2,11 +2,11 @@
 
 ## Explicit adapter policy
 
-The engine-neutral compressed-normal decoder remains the compatibility boundary. Godot preview shading uses its recovered alpha/green and absolute-radicand reconstruction with explicit diagnostic ambient0.35, directional0.75 and world light normalize(0.4,0.6,-0.7). This is a diffuse inspection policy; original light selection, specular, bloom and fog remain unimplemented.
+The engine-neutral compressed-normal decoder remains the compatibility boundary. Prototype host preview shading uses its recovered alpha/green and absolute-radicand reconstruction with explicit diagnostic ambient0.35, directional0.75 and world light normalize(0.4,0.6,-0.7). This is a diffuse inspection policy; original light selection, specular, bloom and fog remain unimplemented.
 
-For normal-enabled materials, the adapter uploads authored tangent mappings after shape application and skinning. It reflects Z and negates tangent W. Because Godot packs an orthonormal basis, it normalizes N, projects T away from N and normalizes T. Zero directions and handedness other than±1 reject. Core raw weighted directions are retained. GPU readback tolerance is0.003 for tangent XYZ, exact W; normal tolerance remains0.002. These are adapter packing tolerances, not legacy shader bit-identity claims.
+For normal-enabled materials, the adapter uploads authored tangent mappings after shape application and skinning. It reflects Z and negates tangent W. Because prototype host packs an orthonormal basis, it normalizes N, projects T away from N and normalizes T. Zero directions and handedness other than±1 reject. Core raw weighted directions are retained. GPU readback tolerance is0.003 for tangent XYZ, exact W; normal tolerance remains0.002. These are adapter packing tolerances, not legacy shader bit-identity claims.
 
-Normal sampling uses raw DDS channels, linear filtering and mipmaps before decoding. Tangent-space vectors are transformed through Godot view T/B/N, then into world space. Materials without CNRM use geometric normals. Albedo hue factors and the existing display transfer adapter remain applied after sampling.
+Normal sampling uses raw DDS channels, linear filtering and mipmaps before decoding. Tangent-space vectors are transformed through prototype host view T/B/N, then into world space. Materials without CNRM use geometric normals. Albedo hue factors and the existing display transfer adapter remain applied after sampling.
 
 ## Live age details
 

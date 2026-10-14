@@ -1,7 +1,7 @@
 # Round52: family-height host and controller prerequisites
 
 Date2026-10-04. Question: can an actual owned original generator/family set feed
-a bounded computed height patch and the existing Godot surface/grounding adapter,
+a bounded computed height patch and the existing prototype host surface/grounding adapter,
 while closing one acceleration getter and one local run-input producer? Stop at
 these reviewed scopes, independent replays and proportional assembled gates.
 
@@ -32,14 +32,14 @@ The original139608-byte TGEN/5633-byte group/43 families feeds400 actual height
 routes under explicitly synthetic AHFR/coordinates/uniform operands and controls.
 Independent expected noise/AHFR yields196 distinct heights. Headless and GPU
 checks agree on400 height words,16 patches/128 triangles, nine grounded poses,
-native/Godot reflection and exact resource drain. GPU capture was inspected:
+historical implementation path (omitted) reflection and exact resource drain. GPU capture was inspected:
 the original human and animated terminal remain visible on the inspection surface.
 Normals/color/seams are supplied policies, not original terrain materials.
 
 A synthetic fourth-chunk NaN operand rejects after300 valid samples with measured
 zero terrain-visual allocations, no movement/terrain publication, zero actors and
 drained host state. Final assembled Core smoke passes18 journal events/zero
-failures; shared Godot builds have zero warnings/errors. Prior Version3 filtered
+failures; shared prototype host builds have zero warnings/errors. Prior Version3 filtered
 terrain passes400 samples/16 patches/128 triangles/nine grounded states/90
 preceding-height witnesses. No optional unrelated suite was repeated.
 

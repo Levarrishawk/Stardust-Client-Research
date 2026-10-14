@@ -29,7 +29,7 @@ The [dynamic IMM32 checkpoint](../checkpoints/ANALYSIS_CHECKPOINT_2026-09-24_DYN
 
 ## Architecture consequence
 
-The evidence continues to support a replacement organized around explicit platform/input and text-composition services, original-asset/resource adapters, a wire-compatible protocol/session layer, replicated object model, world/scene simulation, separate ground and space HUD compositions, and presentation/renderer backends. New HUD findings reinforce that original named UI pages and game-state/event routes are data contracts even when the modern interface is redesigned. Network-visible field widths stay as the server expects; the 64-bit process does **not** widen 32-bit wire fields or repack original asset records. Original assets remain mandatory. No engine choice was made; Godot/DX12/Vulkan options should be revisited only after the user-requested comprehensive analysis gate is genuinely met.
+The evidence continues to support a replacement organized around explicit platform/input and text-composition services, original-asset/resource adapters, a wire-compatible protocol/session layer, replicated object model, world/scene simulation, separate ground and space HUD compositions, and presentation/renderer backends. New HUD findings reinforce that original named UI pages and game-state/event routes are data contracts even when the modern interface is redesigned. Network-visible field widths stay as the server expects; the 64-bit process does **not** widen 32-bit wire fields or repack original asset records. Original assets remain mandatory. No engine choice was made; prototype host/DX12/Vulkan options should be revisited only after the user-requested comprehensive analysis gate is genuinely met.
 
 ## Major remaining unknowns and risks
 

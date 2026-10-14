@@ -13,12 +13,12 @@ Accepted72 input:4371 frozen files. Manifest SHA-256
 Trusted sync preserves HEAD/index/private/unrelated material. Executable is only hashed
 to verify `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`;
 the replay executes only replacement scenes and reads no original assets. Cached Python,
-.NET8 and Godot4.7.2 .NET x64 use offline cached packages. No sibling73 API is imported.
+.NET8 and prototype host4.7.2 .NET x64 use offline cached packages. No sibling73 API is imported.
 
-The [independent producer](../../../SWG-Godot-Client/poc/round73-tests/Rendering/verify_picker.py) writes eight
+The independent producer (external historical reference) writes eight
 synthetic states and their expected captions before native execution and stages the
 unchanged accepted orbit host from the verified archive. The
-[verification scene](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflinePlaygroundHudVerification.cs)
+verification scene (external historical reference)
 constructs the actual CanvasLayer/Panel/Labels and reads their actual texts.
 
 ## Findings versus interpretation
@@ -67,7 +67,7 @@ separated sections in a608x230 panel; final640x480 image is readable and unclipp
 Original earlier receipts/captures remain ignored. Build has zero warnings/errors.
 Eight runner guard cases, PowerShell syntax, Python/XML/Markdown, workspace validator,
 diff whitespace, frozen4371 unchanged hashes, exactly ten new public files, HEAD/index
-and private-ignore audit pass. The offline Godot root-certificate-store warning remains
+and private-ignore audit pass. The offline prototype host root-certificate-store warning remains
 with exit0; no network requested or resource-leak diagnostic observed.
 
 No main preview, shared source, registry, ledger or unfinished sibling input changed.

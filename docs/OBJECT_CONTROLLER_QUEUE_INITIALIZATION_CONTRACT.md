@@ -6,7 +6,7 @@ Five four-byte fields, two internal 12-byte record allocation requests, 16-byte 
 
 ## Input, scope, and reproduction
 
-All VAs use executable SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. [Verifier](../../SWG-Godot-Client/tools/python/verify_object_controller_queue_initialization.py): explicit `--exe`, `--packages`, fresh ignored `--receipt`. [Independent runner](../../SWG-Godot-Client/poc/round57-tests/Networking/research_checks.py): explicit `--exe`, `--packages`, fresh ignored `--output-dir`. Identity rejection precedes package import/VA use; no original execution or live contact occurs.
+All VAs use executable SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Verifier (external historical reference): explicit `--exe`, `--packages`, fresh ignored `--receipt`. Independent runner (external historical reference): explicit `--exe`, `--packages`, fresh ignored `--output-dir`. Identity rejection precedes package import/VA use; no original execution or live contact occurs.
 
 Exactly two new primary bodies are decoded: initializer `00AA6050`, 696 bytes/254 instructions, SHA-256 `3d9aecdf55a2b69d44c5becb7ba669254c5d250de66bf9c4c6a04616863f1c5e`, ending `ret 4`; cleanup `00AA6310`, 96 bytes/34 instructions, SHA-256 `e8d84f8aa8b8c1dac2109867b3aec627a21c91169f60645bacca1aeeb6e0787b`, ending `ret`. No helper body, tiny forwarder/accessor, external xref search, or full frozen Controller/scene audit is added.
 

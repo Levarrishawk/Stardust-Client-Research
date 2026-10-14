@@ -23,7 +23,7 @@ No original executable execution, live contact, staging or publication authorize
 ## Preparation resume (superseded by acceptance)
 
 Retrieve active worker status; do not duplicate dispatch. Review baseline-relative
-scopes, integrate, run native/wire/pose/original/Godot/body/lifecycle gates and
+scopes, integrate, run historical implementation path (omitted) gates and
 reconcile canonical docs before acceptance. Then prepare next bounded round.
 
 ## Accepted outcomes
@@ -50,7 +50,7 @@ and30,705 terminal pixels with resource identities retained; Height-only regions
 Lead continuous original join passes headless/GPU, independent wire/native/
 engine/body observations, counter wrap/stale rejection, clear/create reset/local
 resume, unchanged raw create and resource identity, terminal-only reload and
-real archive cancellation/drain. Fresh capture inspected. Godot zero-warning/error
+real archive cancellation/drain. Fresh capture inspected. Prototype host zero-warning/error
 build and shared native suite pass. No original yaw/interpolation/physics claim.
 [Combined checkpoint](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R17_MOTION_INTEGRATION.md)
 records reproduction and exact limitations.

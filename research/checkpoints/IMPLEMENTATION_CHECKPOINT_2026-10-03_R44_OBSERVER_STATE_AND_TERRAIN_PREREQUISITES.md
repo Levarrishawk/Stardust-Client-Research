@@ -25,7 +25,7 @@ Python struct parsing; no production codec is imported into the Python oracle.
 
 ## Observation, interpretation and consequence
 
-The [native probe](../../../SWG-Godot-Client/poc/round44-tests/Integration/Program.cs) passed23
+The native probe (external historical reference) passed23
 lifecycle counterexample checks and20 accepted partial-state join checks. With
 opt-in full4, active pending-baseline delivery rejects with
 `Finalized CREO4 target required.` and retains the current incarnation and active
@@ -42,7 +42,7 @@ separate partial model with received-field provenance and explicit absence,
 then validate lifecycle admission against this exact order. Do not invent an
 all-zero baseline, make private view4 mandatory, or guess untouched fields.
 
-The independent [literal oracle](../../../SWG-Godot-Client/poc/round44-tests/Integration/observer_peer.py)
+The independent literal oracle (external historical reference)
 checks all envelope scalars, exact length and ordered raw assignments, both
 failure outcomes and four independently modeled partial states. The same literal
 observer wire applied to the accepted partial kernel makes only1/5/10 known;

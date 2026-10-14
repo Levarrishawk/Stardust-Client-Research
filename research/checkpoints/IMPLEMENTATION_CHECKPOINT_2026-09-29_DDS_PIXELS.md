@@ -53,6 +53,6 @@ Synthetic tests cover exact palettes/alpha, row order, owned storage, clipped
 dimensions/counts/headers/flags/surfaces and input/decode budgets. Full suite passes.
 These are replacement policies where stricter than legacy behavior.
 
-Next: carry declared mip pixels into Godot unchanged, verify upload readback,
+Next: carry declared mip pixels into prototype host unchanged, verify upload readback,
 and establish UV orientation separately from DDS row decoding. Original assets
 and derived images remain private; no publication or original execution occurred.

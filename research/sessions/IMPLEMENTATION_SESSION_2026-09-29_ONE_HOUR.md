@@ -32,12 +32,12 @@ Closeout: 20:09 EDT after the requested hour and final verification.
   includes source identities, independent peer method, cleanup, limits and next probe.
 - [TRE checkpoint](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_TRE_READER.md)
   includes archive/member SHA-256, source identities, synthetic negatives and reproduction.
-- [Acceptance record](../../../SWG-Godot-Client/docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md)
+- Acceptance record (external historical reference)
   is the durable implementation/caller contract and open-gate register.
 - The core suite and original-entry probe pass. The independent peer covers
   32 seeded data/ACK-loss, corruption, duplicate and reorder traces.
 - Python's 22 transport assertions and login/zone fixture assertions pass.
-- Core and Godot build with zero warnings/errors. Godot headless transcript
+- Core and prototype host build with zero warnings/errors. Prototype host headless transcript
   exits 0; its existing root-certificate-store diagnostic remains unresolved.
 - Workspace validator: zero broken Markdown links, zero links into private
   evidence, 2,585 provisional rows with zero duplicates, and 345 packet rows.
@@ -76,7 +76,7 @@ asymmetry; it does not establish the original client's complete status layout.
 
 **Assets:** use `TreArchive`/`TreOverlay` to load one original static mesh and
 its shader/texture dependency chain. Match the durable MESH/SPS/VTXA schemas,
-indices, axes, winding and units before adding a Godot display adapter. Original
+indices, axes, winding and units before adding a prototype host display adapter. Original
 TREs remain authoritative; a converted intermediate format is not required.
 First concrete candidate: resolve the winning
 `appearance/mesh/thm_tato_imprv_building_s09_r0_mesh_l4.msh`, whose documented

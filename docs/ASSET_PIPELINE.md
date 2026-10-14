@@ -18,7 +18,7 @@ APPR metadata remains opaque. See the [mesh checkpoint](../research/checkpoints/
 Explicit mounting opens all 48 current configured TREE/0005 archives and
 resolves that mesh's 9 shaders, 9 DDS envelopes and 1 EFCT. SSHT/TXM decoding
 extracts references and preserves other metadata. The later owned textured mesh
-increment below implements DDS pixels and an explicit unlit Godot adapter.
+increment below implements DDS pixels and an explicit unlit prototype host adapter.
 Faithful lighting and full appearance behavior remain open. See the [dependency checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_SHADER_OVERLAY.md).
 
 TRE CRCs validate raw index-name bytes; requests normalize before lookup.
@@ -498,11 +498,11 @@ verified against independent Python byte digests. This establishes extraction,
 not IFF interpretation or rendering. TREE 0004/0006, TOC, loose nodes,
 equal-priority ties, non-ASCII names, MD5 and the complete configured overlay
 remain open. See the [implementation checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_TRE_READER.md)
-and [acceptance record](../../SWG-Godot-Client/docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
+and acceptance record (external historical reference).
 
 ## Owned textured mesh increment (2026-09-29)
 
-The [DDS contract](DDS_DECODER_CONTRACT.md) and [material graph checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_MATERIAL_GRAPH.md) now implement the previously open pixel/dependency slice. EFCT/0001, IMPL/0005, PASS/0009, MATS/0000 and TCSS/0000 are bounded owned descriptions. STAG/0000 has 18 U8 fields, tags at offsets 18/22, then seven U8 fields. All 80 original texture mips match independent reference bytes. The [selected material/specular contract](SKELETAL_SPECULAR_CONTRACT.md) now assigns MATL component order through direct loader/backend constant mapping; full format breadth remains open. Godot's explicit unlit adapter is described in the [GPU preview checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_ORIGINAL_GODOT_PREVIEW.md).
+The [DDS contract](DDS_DECODER_CONTRACT.md) and [material graph checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_MATERIAL_GRAPH.md) now implement the previously open pixel/dependency slice. EFCT/0001, IMPL/0005, PASS/0009, MATS/0000 and TCSS/0000 are bounded owned descriptions. STAG/0000 has 18 U8 fields, tags at offsets 18/22, then seven U8 fields. All 80 original texture mips match independent reference bytes. The [selected material/specular contract](SKELETAL_SPECULAR_CONTRACT.md) now assigns MATL component order through direct loader/backend constant mapping; full format breadth remains open. Prototype host's explicit unlit adapter is described in the [GPU preview checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_ORIGINAL_PROTOTYPE_PREVIEW.md).
 
 ## Native DTLA and four-coordinate vertices (2026-09-29)
 
@@ -510,7 +510,7 @@ The [DDS contract](DDS_DECODER_CONTRACT.md) and [material graph checkpoint](../r
 
 ## Owned detail bundle and repeated pixel bindings
 
-The [selector/material checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_DETAIL_SELECTOR_AND_MATERIALS.md) establishes that PPSH/0001 owns one FORM PTXM/chunk 0002 per declared binding, each exactly U8 stage plus LE U32 tag. The native reader now preserves multiple records and rejects duplicate/out-of-range stages. `TexturedDetailAppearanceReader` provides a bounded eager inspector bundle with a shared dependency cache. This is separate from lazy runtime appearances and fetch-or-default. See the [Godot LOD inspector](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_GODOT_LOD_INSPECTOR.md) for limits and verification.
+The [selector/material checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_DETAIL_SELECTOR_AND_MATERIALS.md) establishes that PPSH/0001 owns one FORM PTXM/chunk 0002 per declared binding, each exactly U8 stage plus LE U32 tag. The native reader now preserves multiple records and rejects duplicate/out-of-range stages. `TexturedDetailAppearanceReader` provides a bounded eager inspector bundle with a shared dependency cache. This is separate from lazy runtime appearances and fetch-or-default. See the [prototype host LOD inspector](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_PROTOTYPE_LOD_INSPECTOR.md) for limits and verification.
 
 ## Strict APT entry points and coordinate dimensions
 
@@ -538,7 +538,7 @@ Canonical contract: [extent and distance](APPEARANCE_EXTENT_DISTANCE_CONTRACT.md
 
 ## BC6H HDR extension — 2026-09-30
 
-The [HDR checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BC6H_HDR.md) adds a separate owned RGB half output for typed signed/unsigned BC6H. Forty standards-only fixtures/264 mips match independent Godot bcdec bit for bit and pass real GPU half upload/readback. Native endpoint, truncation, surface and budget gates pass. Static material integration and HDR presentation remain separate; this is not original executable acceptance evidence. Existing pinned dependencies, research metrics and registry counts are unchanged.
+The [HDR checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BC6H_HDR.md) adds a separate owned RGB half output for typed signed/unsigned BC6H. Forty standards-only fixtures/264 mips match independent prototype host bcdec bit for bit and pass real GPU half upload/readback. Native endpoint, truncation, surface and budget gates pass. Static material integration and HDR presentation remain separate; this is not original executable acceptance evidence. Existing pinned dependencies, research metrics and registry counts are unchanged.
 
 
 ## Owned portal layout — 2026-09-30
@@ -548,7 +548,7 @@ The [portal reader checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT
 
 ## Portal cell scene increment — 2026-09-30
 
-The [cell scene checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_CELL_SCENE.md) closes shared bounded cell appearance loading and named-cell offline inspection. The pinned original YT-1300 matches independently across eight cells, 14 sources, 11 meshes, 66,617 vertices, 55,916 triangles and 310 sorted variants. VTXA `0x110D` preserves its packed word and correct UV offset. Native ownership/budget/identity tests and Godot headless/GPU gates pass. Manual visibility is distinct from unimplemented portal culling, floors, doors and lighting. Research scores, packet rows and address counts are unchanged.
+The [cell scene checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_CELL_SCENE.md) closes shared bounded cell appearance loading and named-cell offline inspection. The pinned original YT-1300 matches independently across eight cells, 14 sources, 11 meshes, 66,617 vertices, 55,916 triangles and 310 sorted variants. VTXA `0x110D` preserves its packed word and correct UV offset. Native ownership/budget/identity tests and prototype host headless/GPU gates pass. Manual visibility is distinct from unimplemented portal culling, floors, doors and lighting. Research scores, packet rows and address counts are unchanged.
 
 
 ## Owned floor reader — 2026-09-30
@@ -568,7 +568,7 @@ The [PGRF checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-
 
 ## Directed route inspection — 2026-09-30
 
-The [route checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_DIRECTED_ROUTE_INSPECTOR.md) closes modern owned Euclidean/Dijkstra inspection against 25,847 independent Bellman–Ford probes, with exact edge-chain validation. Eight original floor/layout graphs upload and route-display in Godot; hidden GPU capture passes. Original client cost, cross-cell association and dynamic permission remain distinct. Metrics and registry counts are unchanged.
+The [route checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_DIRECTED_ROUTE_INSPECTOR.md) closes modern owned Euclidean/Dijkstra inspection against 25,847 independent Bellman–Ford probes, with exact edge-chain validation. Eight original floor/layout graphs upload and route-display in prototype host; hidden GPU capture passes. Original client cost, cross-cell association and dynamic permission remain distinct. Metrics and registry counts are unchanged.
 
 
 ## Portal/floor association audit — 2026-09-30
@@ -692,7 +692,7 @@ Optional complete CREO4 world publication and original-resource headless/GPU joi
 The [Round45 report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_45_2026-10-04.md) records independently reviewed/replayed supplied
 AHFR/FFRA consumers, an incarnation-bound received-only partial CREO4 store,
 one human movement-template input chain and the actual current-height FHGT/AHCN
-Godot preview. The store accepts pending/finalized objects without default seeds
+Prototype host preview. The store accepts pending/finalized objects without default seeds
 but has no world/router admission yet. Original fractal generation/cache lifetime,
 floating controls, complete terrain and later creature writers remain unknown.
 Research scores and canonical name/packet denominators remain unchanged.

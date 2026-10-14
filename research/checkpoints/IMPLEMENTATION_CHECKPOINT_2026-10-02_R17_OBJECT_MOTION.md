@@ -10,7 +10,7 @@ Read AGENTS, START_HERE/[latest Round16](../sessions/PARALLEL_DEVELOPMENT_ROUND_
 
 ## Observations, interpretation and consequences
 
-Observation: [store](../../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldObjectMotionStore.cs) retains one immutable pose/private last-counter row per live finalized incarnation and one store-global checked U64 revision. Canonical object/placement, handle, typed currentness and opaque history validate incoming snapshots; rows retain no old world/state/asset snapshots. Interpretation: modern borrowed motion provider, separate from registry/resource/state ownership. Confidence: Confirmed native tests/source. Consequence: consumers request a fresh world snapshot, then may retain motion until replaced or its incarnation retires; disposing the store does not close the world.
+Observation: store (external historical reference) retains one immutable pose/private last-counter row per live finalized incarnation and one store-global checked U64 revision. Canonical object/placement, handle, typed currentness and opaque history validate incoming snapshots; rows retain no old world/state/asset snapshots. Interpretation: modern borrowed motion provider, separate from registry/resource/state ownership. Confidence: Confirmed native tests/source. Consequence: consumers request a fresh world snapshot, then may retain motion until replaced or its incarnation retires; disposing the store does not close the world.
 
 Observation: accepted local input exposes null counter but keeps the private authoritative counter. First authoritative U32 is unrestricted; later modular distance1..7FFFFFFF accepts, duplicate/older/exact-half rejects atomically. Independent U64-distance test model covers64 boundary pairs, including wrap and local-after-authoritative. Interpretation: explicit modern serial freshness with no original timing claim. Confidence: Confirmed deterministic native tests; original counter behavior remains outside scope. Consequence: integration must not call Clear for ordinary state/resource updates, since Clear intentionally resets row counter history.
 
@@ -20,7 +20,7 @@ Observation: containment/resource restart/state/history updates retain creation 
 
 ## Reproduction and results
 
-Scenario entry: `SceneWorldObjectMotionScenarios.Run(IReadOnlyDictionary<string,string> peer, string exportPath)`. [Own runner](../../../SWG-Godot-Client/poc/round17-tests/Runtime/Runtime.csproj) takes peer/export arguments. Run from repository root; it reads accepted catalog and motion-bank profile JSON from poc/preview-profiles, without opening TREs or loading resources. Existing independent Round14 producer supplies synthetic real-layout lifecycle/CREO/TANO fixture bytes; this store performs no wire parsing itself.
+Scenario entry: `SceneWorldObjectMotionScenarios.Run(IReadOnlyDictionary<string,string> peer, string exportPath)`. Own runner (external historical reference) takes peer/export arguments. Run from repository root; it reads accepted catalog and motion-bank profile JSON from poc/preview-profiles, without opening TREs or loading resources. Existing independent Round14 producer supplies synthetic real-layout lifecycle/CREO/TANO fixture bytes; this store performs no wire parsing itself.
 
 ```powershell
 $env:PYTHONUTF8='1'

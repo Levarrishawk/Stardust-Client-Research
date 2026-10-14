@@ -2,7 +2,7 @@
 
 October6,2026. Modern caller-supplied scheduling policy extending the
 [presentation host](SCENE_WORLD_PRESENTATION_HOST_CONTRACT.md).
-[SceneWorldPresentationHost](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldPresentationHost.cs)
+SceneWorldPresentationHost (external historical reference)
 retains its exact existing overload and adds a schedule overload:
 
 ```csharp
@@ -45,7 +45,7 @@ reentry guards. Captured parent and viewport must stay current. Caught nested _P
 Configure (including null arguments), callback mutation/subscription attempts poison the
 outer scheduled call. CloseAsync is an intended stop operation, not rejected reentry.
 Close, node exit, failure or cancellation exception stops immediately; no later slots or
-multicast callbacks run. Normal Godot reparenting triggers ExitTree and normal close.
+multicast callbacks run. Normal prototype host reparenting triggers ExitTree and normal close.
 Failure preserves completed prefixes without rollback and faults Completion after the
 existing close/drain/dispose handoff. A callback's earlier effects cannot be undone.
 
@@ -56,7 +56,7 @@ callbacks and captured parent/viewport references. The host owns the accepted pu
 Close, drain wait and Dispose exactly once. All configuration rejection precedes transfer;
 caught drain-getter reentry/current-parent loss in scheduled configuration also rejects
 without touching candidate ownership. Rejected configuration can be retried while open.
-Methods remain creating-thread/Godot-main-thread bound; off-thread rejection occurs before
+Methods remain historical implementation path (omitted) bound; off-thread rejection occurs before
 schedule or pump effects. The host still owns no world input, simulation planner or quit.
 
 The caller can translate cancellation into CloseAsync or throw a cancellation exception
@@ -66,14 +66,14 @@ overflow and arbitrary pump behavior outside its interface contract remain unexe
 
 ## Reproducible bounded evidence
 
-[Invoke-Picker.ps1](../../SWG-Godot-Client/poc/round74-tests/Rendering/Invoke-Picker.ps1) builds a private
+Invoke-Picker.ps1 (external historical reference) builds a private
 standalone scene with the modified host, frozen Core and frozen default proof/profile
 inputs from the verified4404-file archive. The
-[independent producer/verifier](../../SWG-Godot-Client/poc/round74-tests/Rendering/verify_picker.py) writes
+the separate implementation record writes
 exact slot traces, counts and25 failure prefixes before native execution. No original
 assets, original executable execution or unfinished sibling source is involved.
 
-[New verification](../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldFixedStepHostVerification.cs) uses an
+New verification (external historical reference) uses an
 instrumented wrapper over the actual frozen SceneWorldPresentationPump and a cold generic
 world with forbidden loader/factory. Four schedules0/1/2/8 produce11 separate actual
 pump calls. Endpoint gate permits2 of8, interval endpoints0.001/0.1 pass, and25 exact

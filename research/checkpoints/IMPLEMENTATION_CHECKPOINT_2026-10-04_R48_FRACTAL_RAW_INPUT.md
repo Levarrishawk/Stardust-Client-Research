@@ -12,7 +12,7 @@ Original EXE SHA256E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6
 
 ## Evidence and implementation
 
-Canonical [raw contract](../../docs/TERRAIN_FRACTAL_RAW_INPUT_CONTRACT.md), [supplied inspection extension](../../docs/TERRAIN_RETAINED_FRACTAL_SAMPLE_CONTRACT.md); sources [raw decoder](../../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainFractalRawInput.cs), [sample](../../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainSuppliedFractalSample.cs), [native scenarios](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainFractalRawInputScenarios.cs), [independent peer](../../../SWG-Godot-Client/poc/round48-tests/Assets/peer.py), [replay](../../../SWG-Godot-Client/poc/round48-tests/Assets/Invoke-FractalRaw.ps1).
+Canonical [raw contract](../../docs/TERRAIN_FRACTAL_RAW_INPUT_CONTRACT.md), [supplied inspection extension](../../docs/TERRAIN_RETAINED_FRACTAL_SAMPLE_CONTRACT.md); sources raw decoder (external historical reference), sample (external historical reference), native scenarios (external historical reference), independent peer (external historical reference), replay (external historical reference).
 
 Observation: MFRC/0001 FORM/FORM/DATA is84 bytes with52-byte DATA, thirteen little-endian words in loader/writer order. Static fresh289 anchors agree. Confidence: Confirmed structure, field destinations and signed seed/octave roles. Implementation preserves raw uint words and signed/flag/finite inspection without running setters, normalizing state or admitting runtime eligibility. Nonfinite raw parameter bits are accepted structurally.0000 remains explicitly unsupported, not guessed or made opaque; all unknown versions reject.
 

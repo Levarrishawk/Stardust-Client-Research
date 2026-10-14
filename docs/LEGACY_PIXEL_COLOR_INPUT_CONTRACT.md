@@ -2,7 +2,7 @@
 
 PS1.x/PS2.0 COLOR inputs are saturated to0..1 before shader use. Primary [Microsoft HLSL documentation](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-writing-shaders-9) states this range; the [input register reference](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx9-graphics-reference-asm-ps-registers-input-color) also describes normalized unsigned color interpolation. Original selected PEXE declarations consume v0/v1 as COLOR inputs, closing applicability to the owned character/room programs.
 
-`LegacyPixelColorInput.Saturate` represents this engine-neutral boundary. Godot normal/specular and vertex-lit mouth shaders clamp supplied/interpolated vertex diffuse/specular before recovered pixel arithmetic. Primary dot3 light constants and later pixel specular sums remain HDR; no final RGB clamp is introduced.
+`LegacyPixelColorInput.Saturate` represents this engine-neutral boundary. Prototype host normal/specular and vertex-lit mouth shaders clamp supplied/interpolated vertex diffuse/specular before recovered pixel arithmetic. Primary dot3 light constants and later pixel specular sums remain HDR; no final RGB clamp is introduced.
 
 The helper rejects nonfinite input. It does not model hardware-specific color interpolation precision, the exact point of clamp within raster interpolation, or original vertex LIT power behavior. The adapter applies the defined range at fragment input; exact raster precision remains Unknown.
 

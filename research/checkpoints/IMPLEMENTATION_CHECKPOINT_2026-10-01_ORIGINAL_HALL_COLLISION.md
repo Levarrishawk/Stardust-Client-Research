@@ -20,12 +20,12 @@ The probe uses both original floor-triangle centroids, four directions each and 
 
 `tools/python/verify_original_hall_collision.py` independently rereads pinned original mesh/floor bytes, matches extraction SHA/counts, checks72 floor-plane points and94 conservatively selected LP narrow-phase cases. All16 outcomes/contact IDs/segments agree; maximum contact-parameter difference4.107825191113079e-15. No original payloads are written to public data.
 
-Native tangent-entry/closed-contact, authored micro-overlap, explicit clearance, negative clearance, portal target-floor-height and step-source-rollback gates pass. Existing full native smoke and Godot build pass. After the kernel change, prior512 straight sweeps,512 precise paths and512 portal LP cases all pass with unchanged pins/outcome counts. Workspace/link and diff checks pass.
+Native tangent-entry/closed-contact, authored micro-overlap, explicit clearance, negative clearance, portal target-floor-height and step-source-rollback gates pass. Existing full native smoke and prototype host build pass. After the kernel change, prior512 straight sweeps,512 precise paths and512 portal LP cases all pass with unchanged pins/outcome counts. Workspace/link and diff checks pass.
 
 Reproduce native `--original-hall-collision ROOT --configuration CONFIG --member appearance/thm_must_mining_outpost.pob --expected-sha256 POB_SHA`, saving output under ignored evidence. Run the original-hall verifier with ROOT, CONFIG, that output and the pinned configuration hash. All asset-derived coordinates/source identities in the probe output remain private.
 
 ## Confidence, limits and next action
 
-**Confirmed by execution and independent original parsing:** this replacement body/floor collision slice and its explicit clearance. Original actor selector, tolerances and collision ordering remain Unknown. The Godot actor has not yet adopted triangles; no visual host claim.2,599 names,345 packets and research scores89%/94% unchanged.
+**Confirmed by execution and independent original parsing:** this replacement body/floor collision slice and its explicit clearance. Original actor selector, tolerances and collision ordering remain Unknown. The prototype host actor has not yet adopted triangles; no visual host claim.2,599 names,345 packets and research scores89%/94% unchanged.
 
 Next: conservative static-triangle acceleration with explicit candidate/work budgets, validated against exhaustive contact. Then accept both20,501-triangle room sets and compose portal/door movement without truncating original obstacles.

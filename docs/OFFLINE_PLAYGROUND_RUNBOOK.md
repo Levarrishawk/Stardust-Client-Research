@@ -4,7 +4,7 @@ This is a bounded offline preview using the original supplied resource chain, mo
 
 ## Prepare the profile
 
-Use the accepted Version12 profile and original-resource/peer context already used by the [launcher](../../SWG-Godot-Client/poc/round16-tests/Integration/Launch.ps1). The [producer](../../SWG-Godot-Client/poc/round77-tests/Integration/create_configured_profile.py) writes a fresh Version13 profile into an ignored output directory. It does not extract assets or contact a server.
+Use the accepted Version12 profile and original-resource/peer context already used by the launcher (external historical reference). The producer (external historical reference) writes a fresh Version13 profile into an ignored output directory. It does not extract assets or contact a server.
 
 ```powershell
 python poc/round77-tests/Integration/create_configured_profile.py --source $SourceProfile --output $OutputProfile
@@ -12,7 +12,7 @@ $HostArguments.TerrainPointTargetProfile = $OutputProfile
 & poc/round16-tests/Integration/Launch.ps1 @HostArguments
 ```
 
-Here `$SourceProfile` is the accepted Version12 profile, `$OutputProfile` is a new ignored path, and `$HostArguments` is the existing accepted host argument dictionary, including Godot path, original archive/configuration, catalog, synthetic peer partitions and customization context. Those inputs must be supplied; the profile does not replace them. Use the existing cached Godot/.NET build setup described in the [PoC README](../../SWG-Godot-Client/poc/README.md).
+Here `$SourceProfile` is the accepted Version12 profile, `$OutputProfile` is a new ignored path, and `$HostArguments` is the existing accepted host argument dictionary, including prototype host path, original archive/configuration, catalog, synthetic peer partitions and customization context. Those inputs must be supplied; the profile does not replace them. Use the existing cached prototype host/.NET build setup described in the PoC README (external historical reference).
 
 Default settings are below. Supply their UTF8 JSON with `--settings $SettingsJson` to change the bounded modern policy. All eight names are mandatory; duplicates, unknown names, malformed UTF8, coercion, nesting and oversized input are rejected. See the [settings contract](TERRAIN_OFFLINE_PLAYGROUND_SETTINGS_CONTRACT.md).
 
@@ -51,36 +51,32 @@ The default profile starts idle with real measured frame timing and no scripted 
 
 [Movement restart owner](TERRAIN_OFFLINE_SESSION_RESTART_OWNER_CONTRACT.md), [root restart owner](OFFLINE_SOE_ROOT_MOTION_RESTART_OWNER_CONTRACT.md) and [persistent display](TERRAIN_OFFLINE_RESTART_HUD_CONTRACT.md) now have an independently verified [joined prototype](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R80_RESTART_COMPOSITION.md). Each successful generation owns fresh children; completion reports are captured before retirement and remain immutable. Factories run only after old children retire. A false restart request keeps the old outcome available; acceptance disables duplicates, and the caller disposes the display only after fresh admission. Runtime and root factories are sequential: a later failure closes an already admitted prefix and does not roll back caller placement. Failed owned retirement is terminal. Borrowed world/store/surface/FIFO remain caller-owned, and empty root buffers can coexist with a faulted movement outcome.
 
-The Round80 small standalone Godot proof passes two completed runs, a terrain fault and recovery with actual GUI routing, four handshakes and three exact offline roots. Its display persists across frames and failed requests. That round leaves the single-run launcher unchanged. Round81 below closes the full terrain/actor/input/camera restart wiring; physical native-window clicking and live multiplayer remain separate acceptance gates.
+The Round80 small standalone prototype host proof passes two completed runs, a terrain fault and recovery with actual GUI routing, four handshakes and three exact offline roots. Its display persists across frames and failed requests. That round leaves the single-run launcher unchanged. Round81 below closes the full terrain/actor/input/camera restart wiring; physical native-window clicking and live multiplayer remain separate acceptance gates.
 
 ## Persistent full preview: Round81
 
-The [interactive launcher](../../SWG-Godot-Client/poc/Stardust.Godot/PersistentOfflinePlaygroundLauncher.cs) creates one fresh full preview at a time. Completed or faulted previews drain their input, camera, clocks, root transport, actors, terrain and resource jobs before exposing the persistent outcome. Click **Restart offline preview** to load the next explicit run. The prior outcome remains visible until new resources/input owners are ready. Existing one-run launches still exit normally.
+The interactive launcher (external historical reference) creates one fresh full preview at a time. Completed or faulted previews drain their input, camera, clocks, root transport, actors, terrain and resource jobs before exposing the persistent outcome. Click **Restart offline preview** to load the next explicit run. The prior outcome remains visible until new resources/input owners are ready. Existing one-run launches still exit normally.
 
 Prepare a default idle Version13 profile above, with `InteractiveReplay=false`. Supply `$BaseArgumentsJson` as the complete accepted native argument vector, including original asset/configuration/catalog and every existing synthetic replication/customization partition. It contains one `--terrain-point-target-profile` argument; the producer substitutes a private profile per run and reseeds inherited synthetic protected fixtures. It does not build missing input context or contact a server.
 
-```powershell
-python poc/round81-tests/Integration/create_restart_arguments.py --base-arguments $BaseArgumentsJson --profile $OutputProfile --runs 8 --output $FreshPrivateDirectory
-& $Godot --path (Resolve-Path 'poc/Stardust.Godot').Path (Resolve-Path 'poc/round81-tests/Integration/InteractivePlayground.tscn').Path -- --offline-restart-arguments (Resolve-Path "$FreshPrivateDirectory/arguments.json").Path
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
 
-Build the current Godot project with the existing cached offline SDK/packages before launching. The argument file is a UTF8 JSON array of1..32 full string argument arrays, at most262144 bytes; each run has2..256 arguments of at most4096 characters. The per-session simulation/click/settings limits remain explicit. At the successful run cap, additional restart requests decline; start another launcher to begin a new bounded group. Failed cleanup is terminal and retains its incomplete prefix.
 
-[Joined verification](../../SWG-Godot-Client/poc/round81-tests/Integration/Invoke-PlaygroundRestart.ps1) passes four actual original-resource previews in headless/GPU:401,401,225 completed/226 attempted terrain fault, then401 healthy updates;140 protected roots and26 original footstep occurrences. Actual viewport W/Shift/orbit/wheel retirement stress resets on the successor. Genuine SubViewport button events reject/retry one factory and admit three replacements; physical OS pointer routing is unexecuted. Controlled active close through this launcher passes31 updates/three roots, reports Incomplete, drains and exits without a successor. Physical OS close notification remains unexecuted. Full reproduction, independent oracles and uncertainty are in the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R81_FULL_PLAYGROUND_RESTART.md).
+Build the current prototype host project with the existing cached offline SDK/packages before launching. The argument file is a UTF8 JSON array of1..32 full string argument arrays, at most262144 bytes; each run has2..256 arguments of at most4096 characters. The per-session simulation/click/settings limits remain explicit. At the successful run cap, additional restart requests decline; start another launcher to begin a new bounded group. Failed cleanup is terminal and retains its incomplete prefix.
+
+Joined verification (external historical reference) passes four actual original-resource previews in headless/GPU:401,401,225 completed/226 attempted terrain fault, then401 healthy updates;140 protected roots and26 original footstep occurrences. Actual viewport W/Shift/orbit/wheel retirement stress resets on the successor. Genuine SubViewport button events reject/retry one factory and admit three replacements; physical OS pointer routing is unexecuted. Controlled active close through this launcher passes31 updates/three roots, reports Incomplete, drains and exits without a successor. Physical OS close notification remains unexecuted. Full reproduction, independent oracles and uncertainty are in the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R81_FULL_PLAYGROUND_RESTART.md).
 
 ## Named scenario entry: Round82
 
 The [scenario manifest](OFFLINE_SCENARIO_MANIFEST_CONTRACT.md) stores named input
 paths, eight explicit Boolean options and one private Version13 profile per run.
-The [producer](../../SWG-Godot-Client/poc/round82-tests/Networking/scenario_author.py) accepts the same
+The producer (external historical reference) accepts the same
 complete `$BaseArgumentsJson` context above and a supplied `$OutputProfile`.
 Use an idle profile with `InteractiveReplay=false` for human-operated inspection.
 The producer reseeds every run and writes a fresh ignored scenario directory.
 
-```powershell
-python poc/round82-tests/Networking/scenario_author.py --base-arguments $BaseArgumentsJson --profile $OutputProfile --runs 8 --output $FreshPrivateDirectory
-& $Godot --path (Resolve-Path 'poc/Stardust.Godot').Path (Resolve-Path 'poc/round81-tests/Integration/InteractivePlayground.tscn').Path -- --offline-scenario (Resolve-Path "$FreshPrivateDirectory/scenario.json").Path
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 Build with the existing offline SDK/package setup first. All16 context inputs
 remain required; this entry does not extract missing assets or create missing
@@ -94,7 +90,7 @@ The [inspection panel](OFFLINE_PLAYGROUND_INSPECTION_CONTRACT.md) displays the
 last completed run's update counts, fault and cleanup status, actors, jobs,
 archives and root frames. These are historical counts while the next preview is
 active. At the finite run cap, Restart is disabled and the panel explains the
-limit. **Close offline preview** requests drain and exit. Owned Godot window-close
+limit. **Close offline preview** requests drain and exit. Owned prototype host window-close
 signals use the same idempotent route. Physical OS pointer and close-button
 routing remain unverified.
 

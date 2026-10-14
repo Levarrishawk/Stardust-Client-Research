@@ -88,7 +88,7 @@ Ground, space and UI use separate map assets. Confirmed embedded defaults includ
 
 ## Replacement-client implications
 
-Preserve the `IMAP/0006` parser, command names, shift-state masks, separate ground/space/UI maps, and normalized input semantics. Replace acquisition with Godot input events or a native Raw Input/XInput layer. An adapter should translate modern physical events into a device-neutral compatibility event, then apply the original InputMap binding logic. This also makes rebinding independent of the renderer and window layer.
+Preserve the `IMAP/0006` parser, command names, shift-state masks, separate ground/space/UI maps, and normalized input semantics. Replace acquisition with prototype host input events or a native Raw Input/XInput layer. An adapter should translate modern physical events into a device-neutral compatibility event, then apply the original InputMap binding logic. This also makes rebinding independent of the renderer and window layer.
 
 Joystick normalization must reproduce center/range, dead-zone, sensitivity, inversion and POV-centered behavior. Keyboard mapping must preserve the configurable 256-entry translation table where legacy scan-code identity matters.
 

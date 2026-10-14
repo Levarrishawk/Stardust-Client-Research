@@ -7,7 +7,7 @@ an original client Height-to-transform or posture-to-animation implementation.
 
 `SceneCreatureStatePresentation` owns one `SceneCreatureVisual`. Its caller supplies
 an exact resource handle, original prepared resources, the accepted store's current
-snapshot, a base engine transform, and a live Godot parent. The inspector uses the
+snapshot, a base engine transform, and a live prototype host parent. The inspector uses the
 accepted create placement conversion once, including the engine Z reflection.
 The adapter itself consumes an explicit engine transform and never converts raw
 create coordinates.
@@ -30,7 +30,7 @@ foreign-store snapshots, and old incarnations return false; a valid visual survi
 state-only rejection. A synchronous `beforeApplication` hook permits bounded tests
 of a revision change between validation and application. The adapter rechecks after
 that hook. Engine operations and registry/store ownership remain serialized on the
-Godot main thread. `Tick(0)` performs resource-lifetime validation without advancing
+Prototype host main thread. `Tick(0)` performs resource-lifetime validation without advancing
 the animation clock.
 
 Height is a **uniform multiplier of the base transform's three basis columns**.
@@ -58,14 +58,11 @@ normal and specular integration are deferred. It uses no Round 10 albedo depende
 The inspector's application messages are independently packed synthetic fixtures;
 they are not captures or evidence of original server arrival behavior.
 
-Generate fixtures and run after building the existing Godot project using the
+Generate fixtures and run after building the existing prototype host project using the
 available offline SDK/cache:
 
-```powershell
-python poc/round10-tests/Rendering/Generate-Peer.py local-private/round10/peer.json
-dotnet run --project poc/round10-tests/Rendering/Rendering.csproj --no-restore -- local-private/round10/peer.json C:/Stardust-DEV C:/Stardust-DEV/swgemu_live.cfg poc/preview-profiles/human-locomotion.json
-tools/powershell/Invoke-StardustCreatureStatePreview.ps1 -GodotPath $GodotPath -ArchiveRoot C:/Stardust-DEV -Configuration C:/Stardust-DEV/swgemu_live.cfg -FixturePath local-private/round10/peer.json -Headless
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 The new native test project has a source-cleared `NuGet.Config`. Restore it with
 that config and the existing cache; set APPDATA to an existing private directory
@@ -79,12 +76,12 @@ idle frame zero and retained GPU resource IDs. Capture, cancellation, headless a
 interactive combinations are validated before launch. Interactive controls apply
 the height delta, reset the baseline, or hide the actor.
 
-The independent [state verifier](../../SWG-Godot-Client/poc/round10-tests/Rendering/Verify-State.py)
+The independent state verifier (external historical reference)
 accepts fixture JSON, native log, GPU log, headless log, cancellation log, baseline
 PNG and delta PNG in that order. It verifies the 47-byte create and signed zero,
 delta bytes, scalar raw bits, quaternion cross-product rotation and SRS reflection,
 source identity equality, and foreground pixel/extent growth below UI row 180.
-The [original-source verifier](../../SWG-Godot-Client/poc/round10-tests/Rendering/Verify-Original.py)
+The original-source verifier (external historical reference)
 independently reads archive bytes and effective priorities for all 37 logged rows.
 Neither verifier executes the original client.
 

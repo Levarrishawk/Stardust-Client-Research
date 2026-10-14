@@ -76,19 +76,7 @@ observed. Caller layer activation/ordering follows the
 [height-order contract](TERRAIN_HEIGHT_LAYER_ORDER_CONTRACT.md).
 
 The helper declares modern binary64 arithmetic and checks each recovered F32
-store. Active fraction must be in[0,1); collapsed ramp intervals and nonfinite
-arithmetic reject. These are modern eligibility policies, not recovered
-legacy malformed-input behavior. Disabled rules preserve supplied bits without
-arithmetic; nonpositive finite amount/step also skips. The target's startup
-control word and CRT exceptional/processor-workaround behavior remain Unknown.
-NGE reference949451032647e45e42c3aaef3f41b132c8af36e3,
-sharedTerrain/src/shared/generator/AffectorHeight.cpp symbols
-AffectorHeightTerrace::affect/load_0004, corroborates semantic field names and
-formula; it is not the target oracle.
-
-## Verification and resume point
-
-[Standalone tests](../../SWG-Godot-Client/poc/terrain-terrace-tests/Program.cs) include675 arithmetic
+store. Active fraction must be inthe separate implementation record include675 arithmetic
 samples, every truncation of a synthetic AHTR, malformed versions/extents,
 nonfinite operands, disabled unsupported writers/filters/subtrees, enabled
 unsupported rejection and ordered current-height dispatch. The

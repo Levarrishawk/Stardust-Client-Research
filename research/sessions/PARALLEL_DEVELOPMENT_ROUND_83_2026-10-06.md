@@ -1,6 +1,6 @@
 # Round83: reusable login-to-zone handoff
 
-Date: October6,2026. One focused round authorized by Levarris. No separate oversight report exists; the findings in his prompt are the review record. The [milestone plan](../../../SWG-Godot-Client/docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md) was produced before dispatch, after source/durable/accepted82 orientation.
+Date: October6,2026. One focused round authorized by Levarris. No separate oversight report exists; the findings in his prompt are the review record. The milestone plan (external historical reference) was produced before dispatch, after source/durable/accepted82 orientation.
 
 ## Assignments and gained capability
 
@@ -17,15 +17,15 @@ Lead replayed each sealed component in private isolated workspaces, then integra
 
 Preflight:51 rejections/four cleanup checks, independent synthetic priorities/tombstones/missing metadata. Original read-only configSHA25622158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524,48 mounts, selected object1974 bytes/priority39/SHA256E0B61445E8A85CCF0AC5937F0F9CBCA8711718AFEE63384F30970D5AEE120243 match the independent Python index. No proprietary bytes promoted. This checks one explicit resource, not full closure.
 
-All nine required consolidated suites passed with no default omissions: default Core, Runtime82, Runtime83, Assets83, Runtime81 verifier, Networking81/82/83 and runner83. Builds are warning-free; output, cache and source snapshot are private. Optional original/Godot fixture suites remain skipped-unverified in this command. Original preflight was independently run separately. Timeout tests stop an owned spawned child. Runner does not instantiate UDP, run original EXE or contact a server.
+All nine required consolidated suites passed with no default omissions: default Core, Runtime82, Runtime83, Assets83, Runtime81 verifier, Networking81/82/83 and runner83. Builds are warning-free; output, cache and source snapshot are private. Optional historical implementation path (omitted) fixture suites remain skipped-unverified in this command. Original preflight was independently run separately. Timeout tests stop an owned spawned child. Runner does not instantiate UDP, run original EXE or contact a server.
 
 Failures handled: worker timeout probe exposed sandbox-denied taskkill; replaced with verified Windows Job Object ownership. Lead's first isolated asset replay omitted a helper dependency; complete frozen tools staging fixed it and replay passed. Neither failed attempt is reported as acceptance.
 
 ## Boundaries and next action
 
-Synthetic peers prove exact chosen bytes/state/ownership only. Real credential/version acceptance, pinned two-port host, full player/terrain preparation, session-world-Godot composition, movement authority and server-observed disconnect remain unverified. [Controlled-server plan](../../docs/CONTROLLED_SERVER_VALIDATION_PLAN.md) specifies prerequisites/exchanges/criteria/redaction/cleanup/stops but is unexecuted. Offline bridge implementation precedes requesting specific live authorization.
+Synthetic peers prove exact chosen bytes/state/ownership only. Real credential/version acceptance, pinned two-port host, full player/terrain preparation, session-world-prototype host composition, movement authority and server-observed disconnect remain unverified. [Controlled-server plan](../../docs/CONTROLLED_SERVER_VALIDATION_PLAN.md) specifies prerequisites/exchanges/criteria/redaction/cleanup/stops but is unexecuted. Offline bridge implementation precedes requesting specific live authorization.
 
-Next bounded milestone: route selected zone application payloads into the existing world coordinator, minimum-resource barrier and Godot presentation using explicit installation inputs; add phase-specific pinned injected port ownership. No unrelated RE probe or additional UI polish is assigned.
+Next bounded milestone: route selected zone application payloads into the existing world coordinator, minimum-resource barrier and prototype host presentation using explicit installation inputs; add phase-specific pinned injected port ownership. No unrelated RE probe or additional UI polish is assigned.
 
 ## Preservation and handoff
 

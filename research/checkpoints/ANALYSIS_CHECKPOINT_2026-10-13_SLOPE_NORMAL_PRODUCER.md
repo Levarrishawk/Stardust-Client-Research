@@ -2,7 +2,7 @@
 
 ## Bounded question and input
 
-Does `00B65730`, called at `00B63E99`, produce the state +3C descriptor consumed by `FSLP` query `00B78A90`, and what are its axes, current-height source, edge behavior, normalization and dirty timing? Static-only, twenty-minute boundary; no original execution, Core/Godot changes, registry changes or broad regression runs.
+Does `00B65730`, called at `00B63E99`, produce the state +3C descriptor consumed by `FSLP` query `00B78A90`, and what are its axes, current-height source, edge behavior, normalization and dirty timing? Static-only, twenty-minute boundary; no original execution, historical implementation path (omitted) changes, registry changes or broad regression runs.
 
 Executable SHA-256 was checked before VA interpretation: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Input path was `C:/Stardust-DEV/Stardust.exe`. PE mapping and Capstone were used through the existing private analysis packages. No new original asset output was generated. The [endpoint closure](ANALYSIS_CHECKPOINT_2026-10-13_SLOPE_ENDPOINT_GRAPH.md) was read first; it remains separate from this normal producer.
 

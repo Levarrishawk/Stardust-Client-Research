@@ -16,11 +16,11 @@ Confirmed native behavior: 132 checks /37 cases. Baseline preserves raw duplicat
 
 Confirmed callback boundary: caught policy/router reentry rejects; exact grammar rejects unknown fields before custom decoder invocation. Router world freshness includes a checked mutation-attempt epoch in addition to journal and all object/typed revisions, so acknowledgements and resource restarts are detected. Callback side effects remain visible; the returned plan does not commit. This is a modern purity policy, not recovered original callback control flow.
 
-Unknown/deferred: Godot factory/Main registration, final exact-wire localization/render join, live networking, packed customization semantics and typed raw presentation receipts. Research/function/protocol coverage denominators remain unchanged.
+Unknown/deferred: prototype host factory/Main registration, final exact-wire localization/render join, live networking, packed customization semantics and typed raw presentation receipts. Research/function/protocol coverage denominators remain unchanged.
 
 ## Verification and reproduction
 
-Own [runner](../../../SWG-Godot-Client/poc/round27-tests/Runtime/Runtime.csproj) uses cached .NET dependencies, isolated APPDATA and its no-source NuGet.Config. Build flags: NuGetAudit=false, UseSharedCompilation=false, UseAppHost=false. Build passes with zero warnings/errors. Native entry:
+Own runner (external historical reference) uses cached .NET dependencies, isolated APPDATA and its no-source NuGet.Config. Build flags: NuGetAudit=false, UseSharedCompilation=false, UseAppHost=false. Build passes with zero warnings/errors. Native entry:
 
 ```text
 dotnet <Runtime.dll> worldtangible <root> <config> <catalog> <animation-bank> <peer-json> poc/round27-tests/Runtime/ordered-fixtures.json <worldtangible-receipt.json>

@@ -6,7 +6,7 @@ Can verified original sparse shapes update retained animated GPU geometry withou
 
 ## Findings and verification
 
-[Durable contract](../../docs/LIVE_SKELETAL_SHAPE_CONTRACT.md) records exact-profile ownership, original-source recomputation, main-thread bounded control policy and retained pose/surface ownership. Core two-mesh shared-key/owned snapshot, extra-key rejection and nonaccumulation fixtures pass. Native full suite and Godot build pass (zero warnings/errors).
+[Durable contract](../../docs/LIVE_SKELETAL_SHAPE_CONTRACT.md) records exact-profile ownership, original-source recomputation, main-thread bounded control policy and retained pose/surface ownership. Core two-mesh shared-key/owned snapshot, extra-key rejection and nonaccumulation fixtures pass. Native full suite and prototype host build pass (zero warnings/errors).
 
 Original standalone74-source closure unchanged. GPU all27 maximum controls, repeated values, exact reset at retained original sampled frame30 and invalid-topology/NaN preservation pass. Existing480-tick idle loops, pose/focus/scrub, face/color revisions and filtered albedo checks pass. GPU/headless/canceled-first-lookup fixtures pass; Shape tab capture inspected. Original asset bytes are unmodified, logs/private vectors remain ignored; no original execution/server contact/staging/publication.
 

@@ -9,7 +9,7 @@ remains paused. No next round was dispatched.
 
 One offline entry now drives login → character list → permission-gated selection
 → scene barrier → visible original-resource selected human, through reusable
-engine-neutral components and the existing Godot presentation stack. Explicit
+engine-neutral components and the existing prototype host presentation stack. Explicit
 installation root/configuration and public animation choices derive the catalog
 and hashes. Synthetic peers remain labeled test inputs. Local close drains ports,
 minimum work, resource jobs, actors and credential/transport buffers; protocol
@@ -49,8 +49,8 @@ compares actual protected ClientId/Select/ready bytes and original preparation,
 39 loaded source identities and terrain hash; the final GPU screenshot is inspected.
 Cancellation and minimum-resource failure emit no ready or player and drain cleanly.
 
-Reproduce using [the explicit joined command](../../../SWG-Godot-Client/poc/round84-tests/Integration/README.md)
-and [default regression runbook](../../../SWG-Godot-Client/docs/CLIENT_REGRESSION_RUNBOOK.md). Private
+Reproduce using the explicit joined command (external historical reference)
+and default regression runbook (external historical reference). Private
 receipts preserve the failed peer sequence interpretation, opaque/typed composition
 mistake, corrected test helper, native-exit failure/repair and legacy-profile
 staging corrections. No failed attempt is counted as passing evidence.
@@ -65,7 +65,7 @@ orderly close/await/free and remove/await/free are the supported lifecycle paths
 Next milestone: complete server-shaped player baseline/lifecycle ingress plus
 explicit nearby-object admission/defer behavior in this session. Then implement
 authoritative movement and protocol disconnect before requesting bounded live
-validation. See [current gates](../../../SWG-Godot-Client/docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md) and
+validation. See current gates (external historical reference) and
 [unexecuted controlled-server plan](../../docs/CONTROLLED_SERVER_VALIDATION_PLAN.md).
 No original executable execution, live contact, capture/fuzzing, staging, commit,
 push or publication occurred. No research percentage is promoted to a client

@@ -1,8 +1,8 @@
-# 2026-09-30 original multi-door Godot host
+# 2026-09-30 original multi-door prototype host host
 
 ## Question and inputs
 
-Does the original three-cell/two-leaf scene render and retain shared timing/input/lifecycle semantics? Close after controls, owner placement, timestamped route, physical keys and headless/GPU gates. POB/specification/table/leaf pins are unchanged from the [original scene](IMPLEMENTATION_CHECKPOINT_2026-09-30_ORIGINAL_INTERIOR_SCENE.md) and [bundle](IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_SCENE_BUNDLE.md) checkpoints. Tool: Godot 4.7.2 .NET x64 and bounded offline preview launcher.
+Does the original three-cell/two-leaf scene render and retain shared timing/input/lifecycle semantics? Close after controls, owner placement, timestamped route, physical keys and headless/GPU gates. POB/specification/table/leaf pins are unchanged from the [original scene](IMPLEMENTATION_CHECKPOINT_2026-09-30_ORIGINAL_INTERIOR_SCENE.md) and [bundle](IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_SCENE_BUNDLE.md) checkpoints. Tool: prototype host 4.7.2 .NET x64 and bounded offline preview launcher.
 
 ## Confirmed results
 

@@ -8,7 +8,7 @@ Can composed static appearances retain shared owned material/pixel resources and
 
 Same verified executable/configuration baseline as the [garage checkpoint](IMPLEMENTATION_CHECKPOINT_2026-09-30_SORTED_MESH_GARAGE.md): executable SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`; configuration `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`; 48 TREE0005 mounts. Root `appearance/component/mun_all_garage_s01_u01.cmp`, priority 30, SHA-256 `1FE0DF11A1A1B6506AA18B1672F87A03F6C892D48C91A72D63E4D3B170D64B12`.
 
-Tools: owned .NET core and smoke fixtures, existing independent IFF/TRE/Pillow readers extended through `verify_component_appearance.py --textured`, Godot 4.7.2 .NET x64 headless and host OpenGL GPU. Original executable and live sockets remain unused.
+Tools: owned .NET core and smoke fixtures, existing independent IFF/TRE/Pillow readers extended through `verify_component_appearance.py --textured`, prototype host 4.7.2 .NET x64 headless and host OpenGL GPU. Original executable and live sockets remain unused.
 
 ## Result and confidence
 
@@ -16,7 +16,7 @@ Tools: owned .NET core and smoke fixtures, existing independent IFF/TRE/Pillow r
 
 **Confirmed original agreement:** the complete garage bundle has 50 sources, nine material meshes, eleven shaders, eight effects, seventeen textures and 151 mip levels. The independent reader discovers dependency paths from original IFF bytes, verifies every source identity and matches every decoded RGBA mip hash. The nine geometry hashes and 400 sorted variants continue to match independently.
 
-**Confirmed Godot boundary:** all nine templates upload with 35 textured surfaces and ten explicitly neutral surfaces across all loaded LODs. A shared GPU cache owns seventeen unique ImageTextures rather than duplicating them per mesh. All uploaded geometry/pixel readback checks, LOD midpoint switches and the existing asymmetric GPU UV/front-face fixture pass. Headless and hidden GPU runs exit zero. The captured textured garage was visually inspected.
+**Confirmed prototype host boundary:** all nine templates upload with 35 textured surfaces and ten explicitly neutral surfaces across all loaded LODs. A shared GPU cache owns seventeen unique ImageTextures rather than duplicating them per mesh. All uploaded geometry/pixel readback checks, LOD midpoint switches and the existing asymmetric GPU UV/front-face fixture pass. Headless and hidden GPU runs exit zero. The captured textured garage was visually inspected.
 
 The first GPU attempt replaced six complete mesh templates because one shader in each failed the opaque MAIN policy. The corrected opt-in component mode substitutes a neutral material only for the rejected shader batches and reports their paths/reasons. Standalone preview remains strict by default. Premultiplied-alpha eligibility is checked for the selected MAIN material, while other source images remain unchanged and uploadable as data.
 
@@ -30,6 +30,6 @@ Canonical behavior is consolidated in the [component contract](../../docs/COMPON
 
 ## Validation and next probe
 
-Native smoke suite passes; Godot build has zero warnings/errors. Independent 151-mip checks and actual seventeen-texture GPU sharing/readback pass. The pre-existing Godot certificate-store warning persists with successful offline exits. Research scores, address-name count and protocol registries do not change.
+Native smoke suite passes; prototype host build has zero warnings/errors. Independent 151-mip checks and actual seventeen-texture GPU sharing/readback pass. The pre-existing prototype host certificate-store warning persists with successful offline exits. Research scores, address-name count and protocol registries do not change.
 
 Next: identify the virtual local offset consumed by DTLA PIVT=0 and decode its APPR extent source. Implement camera/world distance only after that offset is proven; keep explicit offline selection as a reproducible inspector control.

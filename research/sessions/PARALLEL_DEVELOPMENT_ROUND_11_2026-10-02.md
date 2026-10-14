@@ -11,7 +11,7 @@ HEAD65de8c88141071744dc75594be126b3bab3696a5 plus2,039 public working files. Man
 | Worker | Milestone |
 |---|---|
 | Assets | Owned palette-only explicit scene customization without face generation |
-| Rendering | Typed offline world publication/state to original albedo Godot actor |
+| Rendering | Typed offline world publication/state to original albedo prototype host actor |
 | Runtime | Bounded coalesced postcommit world change delivery |
 | Networking | Atomic mixed scalar/wounds delta plan with selected recovered legacy grammar |
 
@@ -19,7 +19,7 @@ All use accepted Round10 interfaces. Rendering deliberately uses accepted querie
 
 ## Acceptance gate
 
-Lead scope/conflict review, independent wire/state/palette/source/pixel oracles, lifecycle/ownership/cleanup negatives, combined native and original-world proof, clean Godot build and fresh GPU/headless/cancel evidence. Failed mixed updates publish no prefix; failed generations publish no observer batch. Explicit palette choices do not claim a recovered wire customization decoder. Height presentation remains modern bounded policy.
+Lead scope/conflict review, independent wire/state/palette/source/pixel oracles, lifecycle/ownership/cleanup negatives, combined native and original-world proof, clean prototype host build and fresh GPU/headless/cancel evidence. Failed mixed updates publish no prefix; failed generations publish no observer batch. Explicit palette choices do not claim a recovered wire customization decoder. Height presentation remains modern bounded policy.
 
 ## Resume
 
@@ -30,7 +30,7 @@ Retrieve four idle handoffs, integrate approved paths and reconcile current docu
 | Worker | Accepted result | Evidence and limits |
 |---|---|---|
 | Assets | Owned palette-only scene customization | Three exact namespace controls with intersected ranges; two choices, five selections each, four factors and eight independently evaluated source pixels. 38 negative checks, bounded enumeration/disposal, ownership and initializer transfer pass. Shares 39 sources/4,686,371 bytes and 80 mips without reads. Face generation and wire customization remain separate. |
-| Rendering | World-owned original albedo actor | Original inherited 39-source closure, current world/state/resource guards, explicit barrier and separate Finalized/Prepared/Ready. Clean combined Godot build; fresh lead native/GPU/headless/cancel and eight prelaunch negatives pass. Fixed GPU IDs/camera; 28,113 changed actor pixels, width132->204,height237->367. Modern Height[.25,2], not original behavior. |
+| Rendering | World-owned original albedo actor | Original inherited 39-source closure, current world/state/resource guards, explicit barrier and separate Finalized/Prepared/Ready. Clean combined prototype host build; fresh lead native/GPU/headless/cancel and eight prelaunch negatives pass. Fixed GPU IDs/camera; 28,113 changed actor pixels, width132->204,height237->367. Modern Height[.25,2], not original behavior. |
 | Runtime | Bounded coalesced acknowledged world changes | Latest snapshots resolved at drain, first-touch ordering, tombstones/recreation/detached children and stale acknowledgment retry. Independent496-byte peer/coalescing model, rollback/capacity/sequence/thread/ownership/cleanup and old typed/opaque tests pass. Resource delivery separate; one serialized consumer and global failure/reset handling required. |
 | Networking | Ordered atomic mixed scalar/wounds plan | Indices11..17, both selected strict/legacy grammars, unchanged baseline seed and raw bits. Lead native and17-case independent wire/state oracle pass; late failure returns no changed state. Store/world integration reserved for Round12. |
 
@@ -40,7 +40,7 @@ Contracts: [palette-only colors](../../docs/SCENE_CREATURE_PALETTE_CUSTOMIZATION
 
 Scope reviews accept39 worker changes (36 additions,three focused existing files). Lead registers mixed scenarios and optional --round11-changes in the existing shared runner with byte-preserving insertions. The shared suite passes with the integrated coordinator. Root repeats every producer/native/independent oracle using the delivered contracts; private lead receipts are stored under this round's ignored evidence directory. No unfinished worker API was consumed.
 
-The original typed-world runner and fresh Godot inspector now run against the integrated observer-enabled coordinator. Every effective source/program/palette/factor/mip identity, independently framed496-byte wire order, scalar bits and quaternion/SRS placement matches. Fresh captures inspected: whole actor, authored warm body color, asymmetric placement and changed bounded Height. GPU log preview-a5c65ef00cca4b20a056fae1329a8463;headless preview-2248cf69fafe4b03ad7ec06b1f6226fe;cancel preview-8493b234b34d485e8f761931b443e072. Known certificate-store startup diagnostic remains nonfatal. Wrapper releases borrowed world/publication references on retirement/disposal; visual guards release on cleanup. World generation and registry epoch are independently checked; the explicit divergence test passes.
+The original typed-world runner and fresh prototype host inspector now run against the integrated observer-enabled coordinator. Every effective source/program/palette/factor/mip identity, independently framed496-byte wire order, scalar bits and quaternion/SRS placement matches. Fresh captures inspected: whole actor, authored warm body color, asymmetric placement and changed bounded Height. GPU log preview-a5c65ef00cca4b20a056fae1329a8463;headless preview-2248cf69fafe4b03ad7ec06b1f6226fe;cancel preview-8493b234b34d485e8f761931b443e072. Known certificate-store startup diagnostic remains nonfatal. Wrapper releases borrowed world/publication references on retirement/disposal; visual guards release on cleanup. World generation and registry epoch are independently checked; the explicit divergence test passes.
 
 All original inputs/derived pixel arrays/images/build outputs remain ignored/private. No staging, commits, publication, original execution or live contact. Research89%/94%,2,602 unique names and345 packet rows unchanged. These are bounded implementation slices, not an overall client completion percentage.
 

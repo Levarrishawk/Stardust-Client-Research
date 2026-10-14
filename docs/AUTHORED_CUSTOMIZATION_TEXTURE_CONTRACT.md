@@ -12,7 +12,7 @@ Different ranges for the same variable remain valid and clamp independently. Ori
 
 The same per-load source/decode caches and fatal aggregate budgets apply. Missing selected textures fail the material bundle with explicit neutral geometry fallback. Unselected texture choices and referenced palette assets are not eagerly loaded. Decoder-level palette controls remain intact; palette shading, material customization and dynamic variable updates are unimplemented.
 
-Godot requires explicit MAIN-only inspection for customizable materials. The launcher flag `-AuthoredTextureDefaults` requires `-InteriorTextures -MainTextureOnly`; the footer identifies authored texture defaults and omitted palette/original lighting. Default strict behavior is unchanged.
+Prototype host requires explicit MAIN-only inspection for customizable materials. The launcher flag `-AuthoredTextureDefaults` requires `-InteriorTextures -MainTextureOnly`; the footer identifies authored texture defaults and omitted palette/original lighting. Default strict behavior is unchanged.
 
 ## Independent and host verification
 
@@ -22,6 +22,6 @@ The original eight-cell YT-1300 now has **87 shared present sources,11 complete 
 
 ## Reproduction and next action
 
-Run `verify_customizable_shaders.py ROOT CONFIG PRIVATE_OUTPUT --core-dll DLL` and `verify_portal_scene.py ROOT CONFIG appearance/yt1300.pob SHA DLL --authored-defaults`. Native optional flag is `--portal-textures-defaults`. Build Godot and invoke the bounded launcher with Interior/InteriorTextures/MainTextureOnly/AuthoredTextureDefaults, selecting Cell0 for the exterior or Cell1 for the hall. Use a fresh ignored capture path for GPU verification.
+Run `verify_customizable_shaders.py ROOT CONFIG PRIVATE_OUTPUT --core-dll DLL` and `verify_portal_scene.py ROOT CONFIG appearance/yt1300.pob SHA DLL --authored-defaults`. Native optional flag is `--portal-textures-defaults`. Build prototype host and invoke the bounded launcher with Interior/InteriorTextures/MainTextureOnly/AuthoredTextureDefaults, selecting Cell0 for the exterior or Cell1 for the hall. Use a fresh ignored capture path for GPU verification.
 
 [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_AUTHORED_TEXTURE_INSPECTION.md). Next: integrate separately verified typed BC6H RGB-half images into material bundles without coercing HDR pixels into RGBA8.

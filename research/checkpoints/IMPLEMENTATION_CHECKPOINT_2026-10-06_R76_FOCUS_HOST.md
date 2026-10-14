@@ -1,6 +1,6 @@
 # Round76: offline focus owner
 
-Date:2026-10-06. Question: can exact Godot window focus connections clear gameplay
+Date:2026-10-06. Question: can exact prototype host window focus connections clear gameplay
 input, capture/restore prior pause and retire safely without taking ownership of a
 session or disturbing other listeners? Stopping condition: independent pre-native
 rows/trace/prefixes/teardown, actual headless/GPU, accepted keyboard regression and
@@ -14,14 +14,14 @@ archive SHA-256:2887d1c027dff45fcb834e72228359219f52528985e0631470b9734f7926a845
 Original executable SHA-256 rechecked:
 E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150.
 The original executable is read for identity only; no VAs, asset reads or original
-execution are used. Tools are cached Python, offline .NET8/Godot4.7.2 SDK/packages
-and Godot .NET x64 headless/OpenGL compatibility GPU. No unfinished76 sibling imports.
+execution are used. Tools are cached Python, offline historical implementation path (omitted) SDK/packages
+and prototype host .NET x64 headless/OpenGL compatibility GPU. No unfinished76 sibling imports.
 
 [Contract](../../docs/TERRAIN_OFFLINE_FOCUS_HOST_CONTRACT.md),
-[host](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineFocusHost.cs),
-[Godot verification](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineFocusHostVerification.cs),
-[runner](../../../SWG-Godot-Client/poc/round76-tests/Rendering/Invoke-Picker.ps1),
-[oracle](../../../SWG-Godot-Client/poc/round76-tests/Rendering/verify_picker.py).
+host (external historical reference),
+the separate implementation record,
+runner (external historical reference),
+oracle (external historical reference).
 
 Invoke the runner with cached Python/dotnet, original executable identity input,
 accepted offline package cache and a fresh ignored RunRoot. It validates the frozen

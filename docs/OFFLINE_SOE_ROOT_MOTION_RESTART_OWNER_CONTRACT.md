@@ -1,6 +1,6 @@
 # Serialized bounded offline root generations
 
-[OfflineSoeRootMotionRestartOwner](../../SWG-Godot-Client/poc/Stardust.Core/Session/OfflineSoeRootMotionRestartOwner.cs) owns at most one active frozen [root session owner](OFFLINE_SOE_ROOT_MOTION_SESSION_OWNER_CONTRACT.md), one immutable last [completion report](OFFLINE_SOE_ROOT_MOTION_COMPLETION_CONTRACT.md), and any terminal failed retirement prefix. It stores no factory or queue reference and creates no codec/socket/cadence policy.
+OfflineSoeRootMotionRestartOwner (external historical reference) owns at most one active frozen [root session owner](OFFLINE_SOE_ROOT_MOTION_SESSION_OWNER_CONTRACT.md), one immutable last [completion report](OFFLINE_SOE_ROOT_MOTION_COMPLETION_CONTRACT.md), and any terminal failed retirement prefix. It stores no factory or queue reference and creates no codec/socket/cadence policy.
 
 ```csharp
 using var restart = new OfflineSoeRootMotionRestartOwner(maximumRuns: 8);
@@ -25,7 +25,7 @@ After buffer admission, LastCompletion is stored before current Dispose so it su
 
 Normal Dispose is idempotent, closes active owned child and clears Active, preserving generation/report histories and all borrowed scenes/FIFOs. Explicit Dispose may abort an unfinished active generation without claiming completion. Returned references belong to controller; callers must not independently dispose/advance overlapping children outside the intended serialized Session.Observe path.
 
-[Independent replay](../../SWG-Godot-Client/poc/round80-tests/Networking/replay.py) authors all handshake/root/ACK/receipt/completion expectations before native. Three successful admissions use distinct connection IDs/seeds: F00D00DB/A1B2C3D4,11223344/FFFFFFFF,55667788/0. Each actual point-driver trace takes three10ms steps: native Z speed2 twice then stop. Generations1/3 drain independently packed62-byte counter1/flags5 roots and synthetic ACK0. Generation2 supplies wrong ACK1 after cadence queues stop, preserving Samples3/Queued1/Drained0/Next0/fault/FIFO1/62. Complete closes that owner, caller separately clears FIFO, and generation3 starts fresh.
+Independent replay (external historical reference) authors all handshake/root/ACK/receipt/completion expectations before native. Three successful admissions use distinct connection IDs/seeds: F00D00DB/A1B2C3D4,11223344/FFFFFFFF,55667788/0. Each actual point-driver trace takes three10ms steps: native Z speed2 twice then stop. Generations1/3 drain independently packed62-byte counter1/flags5 roots and synthetic ACK0. Generation2 supplies wrong ACK1 after cadence queues stop, preserving Samples3/Queued1/Drained0/Next0/fault/FIFO1/62. Complete closes that owner, caller separately clears FIFO, and generation3 starts fresh.
 
 Final92 checks, nine actual point updates, three exact handshakes, three main completion reports plus the independent empty cleanup-case report, two exact protected root/ACK frames. Factory is proven to run only after previous owner's Closed state. Healthy queue/pending/retained Complete rejection preserves active owner; admission failures cover null/throw/old-disposed/disposed-new/advanced/dirty/caught-reentry, thread and cap. Rejected same-thread candidates close transport and preserve scene/store/FIFO. Emergency controller disposal preserves FIFO and records no invented completion.
 

@@ -4,7 +4,7 @@
 
 Can an engine-neutral BPLN decoder preserve independently verified version layouts, raw metadata and ordered point pairs, with bounded immutable ownership, and reproduce the same 34 pinned Tatooine records? Stop after direct factory/inheritance/version/read/header/default/cache/teardown evidence, independent fixtures and this ordered corpus comparison agree. No influence evaluation, axis assignment, layer generator or new corpus sweep is included.
 
-Canonical conclusion: [BPLN input contract](../../docs/TERRAIN_BOUNDARY_POLYLINE_INPUT_CONTRACT.md). New files: [decoder](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainBoundaryPolylineInput.cs), [public Core smoke scenarios](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainBoundaryPolylineInputScenarios.cs), [runner project](../../../SWG-Godot-Client/poc/round38-tests/Assets/Assets.csproj), [runner entry](../../../SWG-Godot-Client/poc/round38-tests/Assets/Program.cs), [independent verifier](../../../SWG-Godot-Client/poc/round38-tests/Assets/verify_bpln_input.py), that contract and this checkpoint. Existing public files are frozen; lead owns living-doc reconciliation.
+Canonical conclusion: [BPLN input contract](../../docs/TERRAIN_BOUNDARY_POLYLINE_INPUT_CONTRACT.md). New files: decoder (external historical reference), public Core smoke scenarios (external historical reference), runner project (external historical reference), runner entry (external historical reference), independent verifier (external historical reference), that contract and this checkpoint. Existing public files are frozen; lead owns living-doc reconciliation.
 
 ## Orientation and input pins
 

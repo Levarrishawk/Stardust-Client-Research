@@ -10,7 +10,7 @@ Frozen Round 50 snapshot: 3,548 public files; manifest SHA-256 `4c041de82399f47d
 
 The original executable SHA-256 is `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`, configuration `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`, selected terrain source `6039D0C15F9CCB518D72AE01A1ABDF41FCFF2153B5CBF7EB3BA6E6C634A3A427`, TGEN `B623B789E5F8486414C1D68CD341005E7E25FD97AF30567E64E7AC848DEB6C32`. Group SHA-256: `A221167452D8D67719BD72A3DB30CC10B7B652881B935D3571B9D55328B444A1`.
 
-Tools: bundled Python and cached static-analysis packages; installed .NET and offline cached NuGet; the frozen [family verifier](../../../SWG-Godot-Client/tools/python/verify_terrain_fractal_family_lookup.py), existing TRE/IFF evidence tools, new [independent peer](../../../SWG-Godot-Client/poc/round50-tests/Assets/peer.py), and [runner](../../../SWG-Godot-Client/poc/round50-tests/Assets/Invoke-FamilySet.ps1). The executable is read statically and SHA-gated before address interpretation. No original executable execution, live contact, download, capture or fuzzing occurred.
+Tools: bundled Python and cached static-analysis packages; installed .NET and offline cached NuGet; the frozen family verifier (external historical reference), existing TRE/IFF evidence tools, new independent peer (external historical reference), and runner (external historical reference). The executable is read statically and SHA-gated before address interpretation. No original executable execution, live contact, download, capture or fuzzing occurred.
 
 ## Evidence, interpretation and consequences
 

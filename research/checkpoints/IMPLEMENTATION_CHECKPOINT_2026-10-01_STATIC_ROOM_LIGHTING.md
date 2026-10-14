@@ -1,6 +1,6 @@
 # Original room pixel/material closure — October1,2026
 
-Question: can selected original room pixel variants, texture bindings and baked/dynamic inputs be represented independently of Godot? Stop at owned descriptions, exact instruction identity and independently executed pixel fixtures.
+Question: can selected original room pixel variants, texture bindings and baked/dynamic inputs be represented independently of prototype host? Stop at owned descriptions, exact instruction identity and independently executed pixel fixtures.
 
 Input remains the pinned original three-room chain/effective48-mount overlay. Six selected original pixel/vertex assets add6,924 bytes:154 total sources/16,618,979 bytes. Identity, overlay priority and one-read closure are audited; no original executable execution or server contact.
 

@@ -32,7 +32,7 @@ Message work and kernel work are separate limits, each narrowed by the store wor
 
 ## Evidence and verification
 
-Confirmed implementation behavior is exercised by [the store scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneCreatureView6CompositeStoreScenarios.cs) and [the own runner](../../SWG-Godot-Client/poc/round35-tests/Runtime/Program.cs). All fixtures are synthetic. The [independent oracle](../../SWG-Godot-Client/poc/round35-tests/Runtime/peer.py) reuses the accepted Round34 independent wire/model/event oracle, regenerates the compact fixture, and compares full initial/final models, revisions, logical sizes, ordered metadata, and kernel work for 34 sequences and 106 events.
+Confirmed implementation behavior is exercised by the store scenarios (external historical reference) and the own runner (external historical reference). All fixtures are synthetic. The independent oracle (external historical reference) reuses the accepted Round34 independent wire/model/event oracle, regenerates the compact fixture, and compares full initial/final models, revisions, logical sizes, ordered metadata, and kernel work for 34 sequences and 106 events.
 
 The native run passed 521 checks, including 373 budget checks and twelve store/lifecycle groups. These establish the bounded prototype contract; they add no executable research or protocol-coverage percentage. See [the checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R35_CREO6_COMPOSITE_STORE.md) for reproduction and scope gates.
 

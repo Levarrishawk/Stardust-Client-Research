@@ -20,6 +20,6 @@ Existing PersistentCrcString/CrcLowerString RTTI and prior caller ordering are i
 
 ## Verification and resume
 
-[Explicit-input runner](../../../SWG-Godot-Client/poc/round82-tests/Assets/Invoke-SelectedRule.ps1) produces fresh ignored evidence. Independent raw/pefile body/inherited RTTI mapping, five instruction anchors, no calls/branches, exact receiver fields,19 admission negatives and eight authored isolated effects fixtures pass. Synthetic global words are not runtime contents/original CPU/alias/lifetime proof. No failed verification so far; native production build not applicable. Final scope/link/diff/UTF8/AST/PowerShell checks and file hashes are sealed in handoff.
+Explicit-input runner (external historical reference) produces fresh ignored evidence. Independent raw/pefile body/inherited RTTI mapping, five instruction anchors, no calls/branches, exact receiver fields,19 admission negatives and eight authored isolated effects fixtures pass. Synthetic global words are not runtime contents/original CPU/alias/lifetime proof. No failed verification so far; native production build not applicable. Final scope/link/diff/UTF8/AST/PowerShell checks and file hashes are sealed in handoff.
 
 Next separately authorize193-byte00AA4250 delegate: direct key-field/buffer/reference writes, discriminator0 path and immediate failure boundary, stopping before allocator/erase/lifetime graph. Global019446B8 writer/semantics remain separate. Stop IDLE after sealing one Round82; no next milestone or outbound messages.

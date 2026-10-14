@@ -27,7 +27,7 @@ StaticShaderReferences default external-only API still rejects inline effects. E
 
 ## Validation
 
-Full64-bit portable smoke suite passes, including asymmetric legacy field positions, post-DATA options, absent capability/flags/scroll, truncated prefixes, malformed15-byte PTXM and duplicate stages, opt-in/default/mixed-reference behavior. Both pinned original shaders pass native decoding, every truncated prefix and cleared-input ownership. Independent verify_inline_face_effect.py agrees on every25-field PASS, phase/versions, both candidates, program paths and raw texture/stage metadata. Godot project build succeeds with zero warnings/errors. Private extracted assets and raw evidence remain ignored.
+Full64-bit portable smoke suite passes, including asymmetric legacy field positions, post-DATA options, absent capability/flags/scroll, truncated prefixes, malformed15-byte PTXM and duplicate stages, opt-in/default/mixed-reference behavior. Both pinned original shaders pass native decoding, every truncated prefix and cleared-input ownership. Independent verify_inline_face_effect.py agrees on every25-field PASS, phase/versions, both candidates, program paths and raw texture/stage metadata. Prototype host project build succeeds with zero warnings/errors. Private extracted assets and raw evidence remain ignored.
 
 ## Next probe
 

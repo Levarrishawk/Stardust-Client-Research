@@ -30,8 +30,8 @@ Native synthetic asymmetric RGB/flags, ownership, exact size/version/count, comp
 
 All 7,908 factors across 5,173 shaders agree independently under three policies: 23,724 cases. Exactly one factor references the missing palette; sixteen authored defaults use entry zero. Run `verify_customizable_shaders.py ROOT CONFIG PRIVATE_OUTPUT --core-dll DLL --palette-inventory PRIVATE_PALETTE_JSON`; native `--cshd-palette-list` remains manifest-pinned.
 
-[Reader checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PALETTE_READER.md). [Factor checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PALETTE_FACTOR_BUNDLES.md). Next: inspect factor colors in Godot; original material lighting and live customization remain separate.
+[Reader checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PALETTE_READER.md). [Factor checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PALETTE_FACTOR_BUNDLES.md). Next: inspect factor colors in prototype host; original material lighting and live customization remain separate.
 
-## Godot swatch inspection
+## Prototype host swatch inspection
 
 `Invoke-StardustAssetPreview.ps1 -PaletteInspector` accepts a pinned CSHD root. Rows expose target tags, exact variable scope/name, palette paths, requested/selected indices, colors/flags and missing provenance. Authored reset restores per-record defaults; supplied values share exact keys. Maximum 128 UI rows. Headless control gates and actual GPU readback pass on present/missing original shaders. These canvas colors do not translate original material programs. See the [inspector checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PALETTE_FACTOR_INSPECTOR.md).

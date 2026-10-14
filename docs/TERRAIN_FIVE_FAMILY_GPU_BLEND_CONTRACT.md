@@ -1,13 +1,13 @@
 # Modern five-family GPU blend boundary
 
 The [engine-neutral attributes](TERRAIN_MODERN_FIVE_FAMILY_BLEND_CONTRACT.md)
-have an explicit Godot rendering adapter. This is modern linear interpolation
+have an explicit prototype host rendering adapter. This is modern linear interpolation
 of the [partial original family labels](TERRAIN_SURFACE_PREVIEW_CONTRACT.md),
 not recovered ALP selection, original shader execution or complete traversal.
 
 ## Adapter and ownership
 
-[TerrainPatchBlendMaterialBinding](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainPatchBlendMaterialBinding.cs)
+TerrainPatchBlendMaterialBinding (external historical reference)
 accepts exactly five supplied material/texture entries keyed3,5,6,8,9:
 
 ```csharp
@@ -27,7 +27,7 @@ value4. Existing policies retain their values and constructors. The separate
 diagnostic value5 is unshaded and intended for the synthetic proof.
 
 Weights upload as CUSTOM0, four full binary32 components per vertex. The pinned
-GodotSharp4.7.2 XML describes `ArrayType.Custom0` as `float[]` for
+Prototype hostSharp4.7.2 XML describes `ArrayType.Custom0` as `float[]` for
 `ArrayCustomFormat.RgbaFloat`; that format is shifted by
 `ArrayFormat.FormatCustom0Shift` in the surface flags. Existing COLOR, base UV,
 UV2, indices, positions and normals keep their existing adapter paths. Readback
@@ -49,8 +49,8 @@ The synthetic diagnostic uses linear solid-color textures and nearest filtering;
 the weight and modulation formula is identical. There is no ALP sampling,
 label smoothing, priority reconstruction, geometry change or child RNG.
 
-Numeric diffuse multipliers upload as `Godot.Vector4`. An early GPU candidate
-uploaded `Godot.Color`, which received engine color-space treatment and failed
+Numeric diffuse multipliers upload as historical prototype identifier (omitted). An early GPU candidate
+uploaded historical prototype identifier (omitted), which received engine color-space treatment and failed
 the independent non-white multiplier fixture. The correction is confined to
 this new binding. The existing original-region host loads every family under
 `TextureTimesVertexColor`, whose `DiffuseMultiplier` is always `(1,1,1,1)`;
@@ -67,8 +67,8 @@ a separate host acceptance gate.
 ## Focused verification
 
 The standalone
-[scene](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainFiveFamilyBlendVerification.tscn) and
-[harness](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainFiveFamilyBlendVerification.cs) require no
+scene (external historical reference) and
+harness (external historical reference) require no
 original assets. They create five pure-family patches and two adjacent patches
 at negative X whose shared lower edge varies between family3 and9.
 
@@ -82,12 +82,12 @@ which lie close to the requested quarter/midpoint coordinates. Cleanup balances
 seven patch allocations/disposals and one shared binding allocation/disposal.
 Headless passes the attribute/ownership checks without claiming GPU pixels.
 
-Run the scene with the pinned local Godot executable, project path
-`poc/Stardust.Godot`, `--rendering-driver d3d12 --rendering-method forward_plus`,
+Run the scene with the pinned local prototype host executable, project path
+historical prototype identifier (omitted), `--rendering-driver d3d12 --rendering-method forward_plus`,
 and optional `-- --receipt <fresh-private-json-path>`. It writes a private
 receipt/capture and prints renderer admission plus cleanup counters.
 
-The [independent verifier](../../SWG-Godot-Client/tools/python/verify_terrain_five_family_blend_gpu.py)
+The independent verifier (external historical reference)
 recomputes all14 pixel expectations, cross-edge continuity and six tamper
 rejections from the receipt and stdout, and binds all14 pixels to the adjacent
 PNG capture:

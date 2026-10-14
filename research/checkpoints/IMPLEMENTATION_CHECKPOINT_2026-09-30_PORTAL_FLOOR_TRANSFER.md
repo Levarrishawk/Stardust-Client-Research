@@ -16,17 +16,14 @@ Three canonical names were added for `00422CB0`, `00B2B3F0`, `00B2BDB0`: **2,593
 
 ## Implementation and reproduction
 
-Core: `poc/Stardust.Core/Assets/PortalFloorTransferQuery.cs`; synthetic tests: `poc/Stardust.Core.SmokeTests/PortalTransferScenarios.cs`; independent verifier: `tools/python/verify_portal_transfers.py`. Godot adapter and controls live in `FloorMeshPreview.cs` and `Main.cs`. The query owns snapshots and supports one portal with finite rigid owner frames, exact local-ID mapping, bounded pairing/crossings, explicit permission failures and bounded landing correction.
+Core: `poc/Stardust.Core/Assets/PortalFloorTransferQuery.cs`; synthetic tests: `poc/Stardust.Core.SmokeTests/PortalTransferScenarios.cs`; independent verifier: `tools/python/verify_portal_transfers.pyhistorical prototype identifier (omitted)FloorMeshPreview.cs` and `Main.cs`. The query owns snapshots and supports one portal with finite rigid owner frames, exact local-ID mapping, bounded pairing/crossings, explicit permission failures and bounded landing correction.
 
-```powershell
-dotnet run --no-restore --project poc/Stardust.Core.SmokeTests
-dotnet build --no-restore poc/Stardust.Godot
-python tools/python/verify_portal_transfers.py C:\Stardust-DEV C:\Stardust-DEV\swgemu_live.cfg appearance/yt1300.pob 8B4B59335CF34BA91DAA5CCB092AF60C9A996849DB29E77EB154FD4DF202DF4A local-private/generated-evidence/portal-transfer-milestone poc/Stardust.Core.SmokeTests/bin/Debug/net8.0/Stardust.Core.SmokeTests.dll
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
 
-Run `tools/powershell/Invoke-StardustAssetPreview.ps1` with the pinned scene, `-Interior -InteriorFloors -InteriorPaths -FloorOnly -Cell 1`, private Godot path and `-Headless` for the bounded host gate; omit headless and supply a fresh private capture path for GPU verification. The configured runtime Python may be needed. APPDATA can point to a task-specific temporary directory.
 
-Results: full smoke tests pass; build has zero warnings/errors; **14 links / 56 independent probes** agree. Godot **28 adapter probes**, current-policy two-pick controls, existing surface/route selectors and coordinate fixtures pass headless and GPU. The startup certificate-store diagnostic is nonfatal. Private logs, source manifests and captures remain ignored. The native verifier and headless gate were rerun after final API refinement to pass the complete link to the permission provider.
+Run `tools/powershell/Invoke-StardustAssetPreview.ps1` with the pinned scene, `-Interior -InteriorFloors -InteriorPaths -FloorOnly -Cell 1historical prototype identifier (omitted)-Headless` for the bounded host gate; omit headless and supply a fresh private capture path for GPU verification. The configured runtime Python may be needed. APPDATA can point to a task-specific temporary directory.
+
+Results: full smoke tests pass; build has zero warnings/errors; **14 links / 56 independent probes** agree. Prototype host **28 adapter probes**, current-policy two-pick controls, existing surface/route selectors and coordinate fixtures pass headless and GPU. The startup certificate-store diagnostic is nonfatal. Private logs, source manifests and captures remain ignored. The native verifier and headless gate were rerun after final API refinement to pass the complete link to the permission provider.
 
 ## Precise resume point
 

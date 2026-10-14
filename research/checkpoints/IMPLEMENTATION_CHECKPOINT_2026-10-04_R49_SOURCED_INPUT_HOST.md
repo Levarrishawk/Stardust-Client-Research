@@ -1,11 +1,11 @@
 # R49 explicit sourced input caller
 
 Date: 2026-10-04. Question: can a fixed explicit authored or received speed drive
-physical Godot WASD through frozen48 admission, with an independent zero stop,
+physical prototype host WASD through frozen48 admission, with an independent zero stop,
 current-source eligibility, suspension and deterministic ownership?
 
 Stopping condition: real native stop ticks and independent schedules pass; actual
-Godot dispatch/currency/focus/pause/clock/lifecycle failures pass; frozen
+Prototype host dispatch/currency/focus/pause/clock/lifecycle failures pass; frozen
 regressions and mechanical public-scope/HEAD/index gates pass.
 
 ## Inputs, identity, tools and scope
@@ -25,7 +25,7 @@ synthetic typed CREO3 stage bytes and explicit received scalar words. Original
 executable addresses/execution, original assets, servers, capture, fuzzing,
 original noise and GPUs are not inputs. No new original-client semantic claim
 or executable VA needs a hash gate here. Tools are installed .NET8, installed
-Godot4.7.2 .NET headless, existing offline nupkgs/private package cache, bundled
+Prototype host4.7.2 .NET headless, existing offline nupkgs/private package cache, bundled
 Python, existing verifier/regression projects and organized-workspace validator.
 No toolchain/package/generated output enters public source.
 
@@ -37,16 +37,16 @@ resource/presentation wiring. No stage, commit, push or publication occurs.
 
 ## Evidence, interpretation and compatibility impact
 
-Observation: [SubmitStop](../../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldExplicitMovementAdmission.cs)
+Observation: SubmitStop (external historical reference)
 checks current active/finalized typed creation before submitting zero to the real
 driver. It does not sample source values or publish source-provenance receipts.
 The fixed source is readable. Existing time/order/horizon/capacity remain the
-sealed driver's atomic admission. [Native tests](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldExplicitStopScenarios.cs)
+sealed driver's atomic admission. Native tests (external historical reference)
 execute stop ticks over four source choices, three directions, eight timestamps
 and three render partitions, including a stop that becomes effective only at a
 later tick start. Missing authored and disposed received inputs can still stop.
 
-Observation: the [sourced host](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldSourcedInputHost.cs)
+Observation: the sourced host (external historical reference)
 uses physical/logical WASD, explicit unit direction, a fixed source and exact
 current received receipt. No keys or unavailable source use zero stop. Unavailable
 source additionally advances inactive to prevent stale catch-up. Focus/pause
@@ -54,7 +54,7 @@ clear held keys and resume without replay. Clock guards detect reentry, changed
 parent and admission state; teardown never calls the clock again and still disposes
 when the native Node has already been freed.
 
-Observation: the [actual Godot proof](../../../SWG-Godot-Client/poc/round49-tests/Runtime/Godot/SourcedHostProof.cs)
+Observation: the the separate implementation record
 dispatches native key events, focus notifications and real tree pause/unpause,
 then exercises missing and changed received inputs, owner/thread, reentry,
 backward clock, state mutation, parent detach/free, generation/recreation,
@@ -79,43 +79,43 @@ these policies and exact future integration hooks.
 ## Validation and corrected failures
 
 - Native: 288 cases / 3,955 checks; independent planar oracle: 1,152 comparisons.
-- Actual Godot: 16 cases / 144 checks; independent receipt oracle: 43 comparisons.
+- Actual prototype host: 16 cases / 144 checks; independent receipt oracle: 43 comparisons.
 - Frozen48: 840 cases / 9,154 checks / 2,988 comparisons.
 - Frozen47: 128 cases / 1,408 actions / 10,240 slots / 16,947 checks.
 - Frozen18: 90 local-motion checks; frozen39: 22 sequences / 21,735 comparisons / 2,954 checks.
 - Default core smoke: 18 allowlisted journal events / zero failures.
-- Native, standalone Godot, shared Godot and smoke builds: zero warnings/errors.
+- Native, standalone prototype host, shared prototype host and smoke builds: zero warnings/errors.
 
 Native runner initially named the update type incorrectly; corrected to frozen
 CreatureView4Update. Independent last-speed expectation initially assumed a stop
 queued after the final tick start would already change measured speed; corrected
-to actual tick-start schedule without changing driver behavior. Offline Godot SDK
+to actual tick-start schedule without changing driver behavior. Offline prototype host SDK
 resolution initially lacked its installed package source, then attempted a
 read-only main cache; existing local writable cache plus installed nupkgs resolved
-both, without download. Native runner excludes its nested Godot sources.
+both, without download. Native runner excludes its nested prototype host sources.
 
-The first Godot run passed behavior but leaked detached Nodes because Dispose
+The first prototype host run passed behavior but leaked detached Nodes because Dispose
 alone does not free Node ownership. The proof now closes/removes/frees its Nodes.
 A subsequent orphan free-before-close exposed a disposed native pointer call;
 cleanup now checks native validity, and the proof closes its orphan before free.
 An additional native-free clock mutation passes. A verifier call following that
 failed run had read the prior receipt, so it was not accepted as final evidence;
 final runs require actual exit success, marker and a fresh receipt before verifying.
-Final Godot run has no behavioral exception or leaked-node warning. Its initial
+Final prototype host run has no behavioral exception or leaked-node warning. Its initial
 certificate-store read error remains an environment limitation; no network/TLS
 operation or credential input occurs. Discovery misses were corrected without
 changing frozen APIs.
 
 ## Reproduction and handoff
 
-Run the [native producer](../../../SWG-Godot-Client/poc/round49-tests/Runtime/peer.py) generate command,
+Run the native producer (external historical reference) generate command,
 restore/build own Runtime.csproj with cleared NuGet sources and run its DLL with
-fixture and private output arguments; use peer verify on that output. For Godot,
-[Launch.ps1](../../../SWG-Godot-Client/poc/round49-tests/Runtime/Launch.ps1) takes the installed console
+fixture and private output arguments; use peer verify on that output. For prototype host,
+Launch.ps1 (external historical reference) takes the installed console
 executable, an existing writable offline package cache and own private output
 directory, restores/builds against installed nupkgs, launches hidden/headless with
 45-second deadline and fresh output/marker checks. Use
-[verify_godot.py](../../../SWG-Godot-Client/poc/round49-tests/Runtime/verify_godot.py) on its fresh receipt.
+the separate implementation record on its fresh receipt.
 Do not infer actual execution from a build or an older receipt.
 
 Final audit passes: 3,498 frozen files unchanged, exactly one existing source with
@@ -130,7 +130,7 @@ produced a fresh passing engine receipt. Lead review found prefix-only output
 containment insufficient: the launcher now checks lexical existing ancestors
 for ReparsePoint before creation and rejects existing output directories.
 A private junction ancestor rejects before its target receives new output;
-an existing directory rejects; a normal fresh actual Godot control passes
+an existing directory rejects; a normal fresh actual prototype host control passes
 144 checks and 43 independent comparisons. Hash/scope gates rerun after repair.
 Focused source and git status inspected.
 Mechanical handoff contains exact final hashes, one changed baseline path, sixteen

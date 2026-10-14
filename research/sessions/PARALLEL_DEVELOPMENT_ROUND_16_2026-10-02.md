@@ -14,7 +14,7 @@ is read from the private manifest; worker HEAD/index are preserved independently
 | Worker at Low | Bounded assignment | Acceptance |
 |---|---|---|
 | Runtime | Engine-neutral bounded scene pump, queues/retries/failure/drain | Accepted |
-| Rendering | Godot continuous process host against frozen pump interface | Accepted |
+| Rendering | prototype host continuous process host against frozen pump interface | Accepted |
 | Assets | Pure checked source and decoded-texture accounting | Accepted |
 | Networking | Independent offline per-frame wire/lifecycle obligations | Accepted |
 
@@ -50,12 +50,12 @@ in standalone and shared hosts. Worker baseline-only output cannot satisfy the
 require-pump verifier.
 
 Lead joined original human39-source and terminal27-source closures in real
-continuous Godot frames. Fresh headless/GPU and real archive cancellation pass.
+continuous prototype host frames. Fresh headless/GPU and real archive cancellation pass.
 Max2 ingress/max1 publication per frame, latest Height without reload, terminal-only
 third load, preserved human resource/GPU identity, advancing idle clock and full
 close/drain pass. No new pixel comparison or original timing claim.
 Constructor affinity rejects foreign-world ownership before acquisition.
-Godot build zero warnings/errors; shared baseline suite and focused checks pass.
+Prototype host build zero warnings/errors; shared baseline suite and focused checks pass.
 [Combined checkpoint](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R16_PUMP_INTEGRATION.md)
 gives evidence, reproduction, confidence, limits and next action.
 

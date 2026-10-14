@@ -22,7 +22,7 @@ This workspace is prepared for a future standalone research repository. Organiza
 - Dated evidence reports in `research/`
 - The two normalized registries in `data/curated/`
 - Independently authored reproducibility scripts in `tools/`, after review
-- The bounded Godot proof under `poc/`, after review
+- The bounded prototype host proof under `poc/`, after review
 
 ## Always private by default
 

@@ -6,7 +6,7 @@ User instruction: work to the next milestone after [the completed overnight run]
 
 - Static wrapper/classifier/edge-predicate/caller chain and runtime field expansion documented in the [durable contract](../../docs/SINGLE_CELL_FLOOR_MOVEMENT_CONTRACT.md).
 - Owned engine-neutral single-cell movement with explicit boundary, collision-policy, topology and numeric stops.
-- Godot two-pick movement inspection, contact line/marker and deterministic reset/disposal.
+- prototype host two-pick movement inspection, contact line/marker and deterministic reset/disposal.
 - Full native smoke suite, 500 seeded grid walks and independent 17,658-probe / 4,441-floor agreement.
 - Seven reflected original-cell movement adapters, two-pick controls, headless/GPU host gates and visually inspected capture.
 

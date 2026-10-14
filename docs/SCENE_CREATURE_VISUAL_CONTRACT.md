@@ -6,7 +6,7 @@ R6-RENDER-01, 2026-10-02. This is a bounded replacement-client adapter contract,
 
 `SceneCreatureVisual.TryPublish` receives an owner registry, exact handle, parsed `SceneCreatureResources`, explicit engine `Transform3D`, and live parent. `Matches` checks registry identity, scene generation, object ID, revision, and the exact encoded create bytes. Float bit patterns and the raw flag matter; negative zero cannot match positive zero. A stale preflight returns null without visual allocation. The candidate stays hidden during allocation and attachment; checks after the staging callback and after attachment reject intervening invalidation and synchronously free the candidate.
 
-All visual creation, updates, and disposal require the Godot main thread. The registry must be serialized with those operations. Finalize, contain, replace, destroy, reset, and close invalidate the old handle. Retirement occurs on the next guarded visual operation, which disposes the old root/resources. There is no registry event subscription: the caller must tick/check after registry changes before rendering. A fresh current snapshot requires explicit publication. This strict modern policy does not assert original seamless reconciliation.
+All visual creation, updates, and disposal require the prototype host main thread. The registry must be serialized with those operations. Finalize, contain, replace, destroy, reset, and close invalidate the old handle. Retirement occurs on the next guarded visual operation, which disposes the old root/resources. There is no registry event subscription: the caller must tick/check after registry changes before rendering. A fresh current snapshot requires explicit publication. This strict modern policy does not assert original seamless reconciliation.
 
 ## Placement, animation, and ownership
 
@@ -22,20 +22,18 @@ The original closure contains 37 distinct sources, 4,683,848 bytes, ten decoded 
 
 Confirmed by replacement-code execution: native production identity/transform methods reject 19 negative cases; headless and OpenGL GPU fixtures exercise 128 idle and 96 movement updates, six invalidating transitions, explicit new revision publication, stale preflight, staged cleanup, reentrant post-attachment cleanup, wrong-thread rejection, and teardown. GPU capture verifies mip readback and explicit engine origin `(1.4, 0.2, -0.75)`. The synthetic create uses source fields `(positionX=-2, positionZ=7, positionY=4)` and a nonunit quaternion; these remain unapplied. Its 47-byte oracle is synthetic, not a captured packet. Cancellation occurs during the first lookup and closes the worker-owned overlay.
 
-Native tests reference the actual built adapter and managed Godot math library; they exercise pure methods without allocating Godot objects or claiming GPU execution. `verify_preview.py` independently packs the synthetic create and compares every path, priority, length, and hash between native/headless/GPU runs. Seven invalid launcher combinations fail before engine launch. The prior accepted [source reader audit](../../SWG-Godot-Client/tools/python/verify_scene_creature_resources.py) remains the original-format evidence; renderer tests do not replace it.
+Native tests reference the actual built adapter and managed prototype host math library; they exercise pure methods without allocating prototype host objects or claiming GPU execution. `verify_preview.py` independently packs the synthetic create and compares every path, priority, length, and hash between native/headless/GPU runs. Seven invalid launcher combinations fail before engine launch. The prior accepted source reader audit (external historical reference) remains the original-format evidence; renderer tests do not replace it.
 
-Authored MAIN textures are retained; this slice does not apply customization albedo factors or generated face textures, nor implement normal/specular shading. The pale captured actor is not a claim of complete customized appearance. Vulkan, general species, source-to-engine placement, attachment reconciliation, and automatic registry notifications remain unverified or deferred. The Godot startup certificate-store diagnostic remains in logs and did not fail fixture assertions.
+Authored MAIN textures are retained; this slice does not apply customization albedo factors or generated face textures, nor implement normal/specular shading. The pale captured actor is not a claim of complete customized appearance. Vulkan, general species, source-to-engine placement, attachment reconciliation, and automatic registry notifications remain unverified or deferred. The prototype host startup certificate-store diagnostic remains in logs and did not fail fixture assertions.
 
 ## Reproduction
 
-Use the original `C:/Stardust-DEV` overlay and pinned `swgemu_live.cfg`. Godot 4.7.2 .NET and its already restored SDK assets are prerequisites. Build the adapter first with the default SDK resolver; do not redirect it to the console-only package cache:
+Use the original `C:/Stardust-DEV` overlay and pinned `swgemu_live.cfg`. Prototype host 4.7.2 .NET and its already restored SDK assets are prerequisites. Build the adapter first with the default SDK resolver; do not redirect it to the console-only package cache:
 
-```powershell
-Remove-Item Env:NUGET_PACKAGES -ErrorAction SilentlyContinue
-dotnet build poc/Stardust.Godot/Stardust.Godot.csproj --no-restore -p:UseSharedCompilation=false -p:NuGetAudit=false
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
 
-Then build the console using the accepted offline Core cache. Supply a sources-cleared NuGet configuration and existing accepted dependencies; this does not promise an uncached network restore. `GodotManagedReference` can override the accepted user-cache GodotSharp DLL path. The adapter reference is `.godot/mono/temp/bin/Debug/Stardust.Godot.dll` (no target-framework subdirectory).
+
+Then build the console using the accepted offline Core cache. Supply a sources-cleared NuGet configuration and existing accepted dependencies; this does not promise an uncached network restore. historical prototype identifier (omitted) can override the accepted user-cache prototype hostSharp DLL path. The adapter reference is historical prototype identifier (omitted) (no target-framework subdirectory).
 
 ```powershell
 $env:NUGET_PACKAGES='C:/Users/ancie/Documents/GitHub/Stardust-Client/local-private/nuget-packages'
@@ -43,7 +41,7 @@ dotnet build poc/round6-tests/Rendering/Rendering.csproj --configfile local-priv
 dotnet poc/round6-tests/Rendering/bin/Debug/net8.0/Rendering.dll C:/Stardust-DEV C:/Stardust-DEV/swgemu_live.cfg poc/preview-profiles/human-locomotion.json
 ```
 
-Use `tools/powershell/Invoke-StardustSceneCreatureVisualPreview.ps1` with explicit `-GodotPath`, `-ArchiveRoot`, and `-Configuration`. Default or `-Headless` runs the headless fixture; `-CancelLoad` runs cancellation; `-CapturePath` takes a separate bounded GPU capture to a fresh PNG in an existing checkout private directory. `-Interactive` explicitly opens controls. Automated runs have a 45-second deadline. `verify_preview.py` takes native, GPU, headless, and cancellation log paths in that order. `verify_options.ps1` takes those three launcher inputs and `-ExistingCapture`.
+Use `tools/powershell/Invoke-StardustSceneCreatureVisualPreview.ps1` with explicit historical prototype identifier (omitted), `-ArchiveRoot`, and `-Configuration`. Default or `-Headless` runs the headless fixture; `-CancelLoad` runs cancellation; `-CapturePath` takes a separate bounded GPU capture to a fresh PNG in an existing checkout private directory. `-Interactive` explicitly opens controls. Automated runs have a 45-second deadline. `verify_preview.py` takes native, GPU, headless, and cancellation log paths in that order. `verify_options.ps1` takes those three launcher inputs and `-ExistingCapture`.
 
 See the [R6 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R6_CREATURE_VISUAL.md) for the handoff and precise next probe.
 

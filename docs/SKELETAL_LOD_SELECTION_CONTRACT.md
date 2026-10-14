@@ -38,7 +38,7 @@ Missing or masked selected MGN, skeleton, shader, effect or texture rejects. Mal
 
 ## Reproduction
 
-Use [the isolated console project](../../SWG-Godot-Client/poc/round1-tests/Assets/Assets.csproj) and [the independent audit](../../SWG-Godot-Client/tools/python/verify_skeletal_lod_selection.py). The project references Core and links existing smoke helpers, leaving shared runners unchanged.
+Use the isolated console project (external historical reference) and the independent audit (external historical reference). The project references Core and links existing smoke helpers, leaving shared runners unchanged.
 
 ```powershell
 # Use an existing offline NuGet package cache and task-specific APPDATA.

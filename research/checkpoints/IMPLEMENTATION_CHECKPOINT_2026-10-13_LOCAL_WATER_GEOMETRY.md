@@ -44,9 +44,9 @@ its BoundaryPolygon loader/buildLocalWaterTable used only as corroboration.
 
 ## Implementation and gate
 
-[Semantic collection](../../../SWG-Godot-Client/poc/Stardust.Core/Geometry/OriginalTatooineLocalWater.cs)
+Semantic collection (external historical reference)
 pins source identity, version/order/activation and retains immutable occurrence
-provenance. [Geometry](../../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainModernLocalWaterPolygon.cs)
+provenance. Geometry (external historical reference)
 preserves authored input/height/bounds, clones exports and clips to the current
 ground window with at most eight vertices/six triangles per pond. Outside or
 tangent intersections are empty; unsupported/malformed profiles reject.
@@ -65,7 +65,7 @@ presentation remain separate evidence.
 
 ## Remaining work and exact next gate
 
-The [independent IFF/Fraction verifier](../../../SWG-Godot-Client/tools/python/verify_terrain_water_render.py)
+The the separate implementation record
 passes the original receipt's24 clips with zero ULP differences; its16 mutation
 tests pass. Source identities, all points/heights, upward indices, anchored UVs
 and clipping are compared separately from production decoding. Workspace

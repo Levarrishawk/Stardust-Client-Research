@@ -2,7 +2,7 @@
 
 ## Question and stop
 
-Do owned SIDX variants and the two observed coordinate layouts unblock the previously rejected nested garage graph, with independent byte-level agreement? Stop after native grammar/selection negatives, all original geometry and sorted hashes, and neutral Godot inspection.
+Do owned SIDX variants and the two observed coordinate layouts unblock the previously rejected nested garage graph, with independent byte-level agreement? Stop after native grammar/selection negatives, all original geometry and sorted hashes, and neutral prototype host inspection.
 
 ## Identity and evidence
 
@@ -23,7 +23,7 @@ Two illustrative original comparisons:
 
 **Confirmed implementation:** synthetic primitive versions 0000/0001 exercise exact variant order, minimum-dot selection, first ties, ordinary-index fallback, every truncated file prefix, nonfinite directions, out-of-range references and trailing bytes. New coordinate-layout tests preserve two 2D sets and a third 4D set. Existing mesh geometry hashes remain stable because sorted ordering has its own hash.
 
-Godot 4.7.2 .NET x64 builds with zero warnings/errors. Hidden headless and real OpenGL GPU runs pass geometry readback and every LOD midpoint switch. The neutral garage capture was visually inspected. It is not a faithful textured/translucent rendering: SIDX selection is implemented in core but this neutral adapter still draws ordinary INDX. Baseline readiness, culling and original lighting remain separate.
+Prototype host 4.7.2 .NET x64 builds with zero warnings/errors. Hidden headless and real OpenGL GPU runs pass geometry readback and every LOD midpoint switch. The neutral garage capture was visually inspected. It is not a faithful textured/translucent rendering: SIDX selection is implemented in core but this neutral adapter still draws ordinary INDX. Baseline readiness, culling and original lighting remain separate.
 
 ## Compatibility and next action
 

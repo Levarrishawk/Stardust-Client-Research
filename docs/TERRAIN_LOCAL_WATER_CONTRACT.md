@@ -1,9 +1,9 @@
 # Pinned Tatooine local water and modern clipped geometry
 
-[OriginalTatooineLocalWater](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/OriginalTatooineLocalWater.cs)
+OriginalTatooineLocalWater (external historical reference)
 admits four authored ponds from the pinned original Tatooine terrain. It leaves
 the neutral [BPOL codec](TERRAIN_BOUNDARY_POLYGON_INPUT_CONTRACT.md) unchanged.
-[TerrainModernLocalWaterPolygon](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainModernLocalWaterPolygon.cs)
+TerrainModernLocalWaterPolygon (external historical reference)
 interprets its existing extension fields only under the supported local-water
 profile and constructs explicit modern geometry. Full shader execution, legacy
 tessellation, reflection, water physics and swimming are outside this contract.
@@ -72,7 +72,7 @@ The actual shader resolves as `shader/wter_dsrt_bright.sht`, priority38,
 It is SSHT0001 and references `effect\water.eft`, with MFFP/ENVM/_SKY/CUBE/MAIN/NRML
 bindings. MAIN is `texture/wter_aqua.dds`, priority37,87536 bytes,256×256 DXT5,
 SHA256 `4F187C6A25DCE89CCC74BAF9D95BB8EDB1E4ABBEC71D8FA21E53B9CB949CE043`.
-The existing [supplied MAIN loader](../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainSuppliedStaticMaterial.cs)
+The existing supplied MAIN loader (external historical reference)
 is the bounded texture boundary; texture/effect execution belongs to the adapter.
 The policy name `ModernSuppliedWaterMainTextureWorldXZ` explicitly omits original
 normal/environment animation and effect execution. These asset identities and
@@ -121,16 +121,16 @@ counts, not measured total heap usage or original scheduler controls.
 
 ## Validation and visible-water prerequisite
 
-[Focused tests](../../SWG-Godot-Client/poc/terrain-local-water-tests/Program.cs) use authored byte
+Focused tests (external historical reference) use authored byte
 fixtures and independently recorded geometry bounds. They cover both windings,
 source/export ownership, logical names, full/partial/repeated/no-hit/tangent clips,
 a diamond producing eight vertices/six triangles, malformed/truncated input,
 disabled/inactive/unknown records, invalid count/order, nonconvex/self-crossing/
 nonfinite/degenerate geometry, invalid height/size/name, lowered caps and cancellation.
 The synthetic gate passes270 assertions; optional pinned original gate311.
-The [independent byte/Fraction verifier](../../SWG-Godot-Client/tools/python/verify_terrain_water_render.py)
+The the separate implementation record
 separately passes all24 original receipt clips with zero ULP differences.
-Its [mutation tests](../../SWG-Godot-Client/tools/python/test_verify_terrain_water_render.py)
+Its mutation tests (external historical reference)
 pass16 cases. This closes the original CPU byte/geometry comparison; the
 separate host proof is recorded by the parent integration task.
 
@@ -153,7 +153,7 @@ and balanced GPU disposal remain host acceptance. No original process or
 network execution is required or performed by these core tests.
 
 The synthetic focused suite is required as `terrain-local-water` in the
-[offline regression runner](../../SWG-Godot-Client/docs/CLIENT_REGRESSION_RUNBOOK.md), without original inputs.
+offline regression runner (external historical reference), without original inputs.
 
 
 ## Accepted offline DX12 host (October 13)

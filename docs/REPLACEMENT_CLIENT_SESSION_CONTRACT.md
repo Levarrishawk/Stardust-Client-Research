@@ -2,7 +2,7 @@
 
 ## Bounded capability and evidence
 
-[ReplacementClientSession](../../SWG-Godot-Client/poc/Stardust.Core/Session/ReplacementClientSession.cs) connects the existing real login coordinator/codecs to a separate fresh SOE zone transport. Its endpoint is permission-gated SelectCharacter submission. It delivers subsequent complete zone application payloads to the caller, but does not apply CmdStartScene, create a world, publish scene readiness, render or open sockets. This is a reusable engine-neutral component and an authored in-memory transcript proof; live server compatibility remains Unknown.
+ReplacementClientSession (external historical reference) connects the existing real login coordinator/codecs to a separate fresh SOE zone transport. Its endpoint is permission-gated SelectCharacter submission. It delivers subsequent complete zone application payloads to the caller, but does not apply CmdStartScene, create a world, publish scene readiness, render or open sockets. This is a reusable engine-neutral component and an authored in-memory transcript proof; live server compatibility remains Unknown.
 
 The byte layouts are the existing [login/zone specification](LOGIN_AND_ZONE_STATE_MACHINE.md) and lead-reviewed ZoneAuthenticationCodec. Server correlation supports the permission gate; it does not independently prove acceptance by a running server. The Runtime worker consumed only the lead-reviewed staged codec SHA256 `05f104518ec19bd01b5c27c7c48fff36e08ce4df9756f388e933da43529ebf37`. That dependency was copied into private evidence, not the frozen public worker tree.
 
@@ -56,7 +56,7 @@ Invalid actions called through StartLogin/Authenticate/BeginZone/Poll throw and 
 
 ## Reproduction and observed validation
 
-The [standalone project](../../SWG-Godot-Client/poc/round83-tests/Runtime/Runtime.csproj) compiles actual Core sources with the explicit reviewed codec. In an integrated checkout it defaults to the Core codec; in a frozen worker without that file, supply `-p:ZoneCodecSource=<reviewed-private-source>`. No unpublished sibling source is required.
+The standalone project (external historical reference) compiles actual Core sources with the explicit reviewed codec. In an integrated checkout it defaults to the Core codec; in a frozen worker without that file, supply `-p:ZoneCodecSource=<reviewed-private-source>`. No unpublished sibling source is required.
 
 ```powershell
 python poc/round83-tests/Runtime/fixtures.py --out <fresh-private-fixture.json> --client-id-opcode 0xD5899226 --permissions-opcode 0xE00730E5

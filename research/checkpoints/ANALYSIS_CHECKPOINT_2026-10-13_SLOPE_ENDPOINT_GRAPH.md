@@ -1,6 +1,6 @@
 # FSLP0002 endpoint operation graph
 
-Date: 2026-10-13. Bounded question: can serialized endpoints be converted to the target's cached slope thresholds from direct static evidence? Result: exact load/clamp/subtract/sine/store graph is Confirmed; original numerical cache parity remains Unknown. No original process, runtime/publication, network, Core/Godot or registry changes. The accepted far/water executable is unchanged.
+Date: 2026-10-13. Bounded question: can serialized endpoints be converted to the target's cached slope thresholds from direct static evidence? Result: exact load/clamp/subtract/sine/store graph is Confirmed; original numerical cache parity remains Unknown. No original process, runtime/publication, network, historical implementation path (omitted) or registry changes. The accepted far/water executable is unchanged.
 
 Read the slope and initialization contracts, R43/R44 checkpoints, arithmetic policy, layer-order contract and existing curated/static tools. The durable conclusion is in [the slope contract](../../docs/TERRAIN_FILTER_SLOPE_CONTRACT.md). This follow-up does not replace historical corpus counts or investigate the normal producer.
 

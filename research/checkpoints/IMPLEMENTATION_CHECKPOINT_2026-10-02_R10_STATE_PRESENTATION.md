@@ -27,7 +27,7 @@ configuration pin stated in the contract. Existing catalog pins constrain
 and the human locomotion profile. The independently audited effective source set
 contains 37 entries and 4,683,848 bytes. No original executable was run or needed.
 
-Tools: .NET SDK 8.0.300, Godot 4.7.2 .NET x64, OpenGL GPU renderer on RTX 4070 Super,
+Tools: .NET SDK 8.0.300, prototype host 4.7.2 .NET x64, OpenGL GPU renderer on RTX 4070 Super,
 bundled Python and Pillow, existing offline NuGet cache. Existing visual, Core,
 previews, projects, shared runners, ledgers and registries remain unchanged.
 The only accepted-baseline modification is one opt-in Main branch; all other worker
@@ -85,7 +85,7 @@ The build succeeds with zero warnings/errors. Native source/byte/placement check
 independent archive audit, GPU/headless/cancellation fixtures and prelaunch checks
 pass. The initial native restore encountered host AppData access denial; setting
 APPDATA to the existing private build directory and using the source-cleared
-config/offline cache resolved it. Godot's known startup certificate-store diagnostic
+config/offline cache resolved it. Prototype host's known startup certificate-store diagnostic
 does not prevent the fixture or capture acceptance markers.
 
 Private evidence is under the checkout's `local-private/round10/`: generated

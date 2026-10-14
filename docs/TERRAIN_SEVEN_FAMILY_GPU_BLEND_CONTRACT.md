@@ -1,7 +1,7 @@
 # Opt-in modern seven-family terrain interpolation
 
-[TerrainModernSevenFamilyBlend](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainModernSevenFamilyBlend.cs)
-and the Godot adapters admit the explicit family set 1/3/4/5/6/8/9. This is modern
+TerrainModernSevenFamilyBlend (external historical reference)
+and the prototype host adapters admit the explicit family set 1/3/4/5/6/8/9. This is modern
 vertex interpolation of ordered partial labels. Original slope arithmetic,
 child texture choice, ALP blending and complete material traversal parity are
 false. The [query-time normal contract](TERRAIN_MODERN_SLOPE_NORMAL_GRID_CONTRACT.md)
@@ -23,7 +23,7 @@ Every source vertex has exactly one family contribution. Triangle interpolation
 produces the modern blend. `CopyWeights()` returns four components;
 `CopyExtraWeights()` returns two. All accessors detach storage. `Encode(keys)`
 admits 1..4096 labels with per-label cancellation; unknown keys and invalid
-counts reject. The [focused Core suite](../../SWG-Godot-Client/poc/terrain-seven-family-blend-tests/Program.cs)
+counts reject. The focused Core suite (external historical reference)
 passes 6,227 checks and 219 independently rational barycentric samples, including
 all seven families, negative-X adjacent seams, reversed triangle orientation,
 quarter 3/9 contributions, geometry preservation, ownership, malformed inputs,
@@ -94,7 +94,7 @@ new ordered CPU work without claiming frame-pacing acceptance.
 
 ## Focused GPU acceptance
 
-The [standalone scene](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainSevenFamilyBlendVerification.tscn)
+The standalone scene (external historical reference)
 builds the actual bounded synthetic stitched ring at negative coordinates,
 one adjoining fine patch, and seven pure-family patches. Its independent
 barycentric reference accumulates supplied family labels rather than sampling
@@ -112,7 +112,7 @@ shared-binding allocation/disposal. Maximum RGB error is 0.0020514727, below
 cancellation and disposal with live borrowers reject. Headless passes 883
 attribute/ownership checks without claiming pixels.
 
-The [independent checker](../../SWG-Godot-Client/tools/python/verify_terrain_seven_family_blend_gpu.py)
+The independent checker (external historical reference)
 passes 24 PNG-bound pixels,11,952 uploaded components and 12 negative mutations,
 including both live custom arrays, source labels/weights, texture data,
 cleanup and false parity claims. Fresh private uploaded-array acceptance
@@ -131,7 +131,7 @@ dotnet run --no-restore --project poc/terrain-seven-family-blend-tests/TerrainSe
 python tools/python/verify_terrain_seven_family_blend_gpu.py --receipt <private-json> --stdout <private-stdout>
 ```
 
-The scene requires the pinned local Godot 4.7.2 .NET executable and actual
+The scene requires the pinned local prototype host 4.7.2 .NET executable and actual
 `--rendering-driver d3d12 --rendering-method forward_plus`; its four captures
 use `.png`, `.pure.png`, `.uv.png` and `.back.png`. Original slope numerical
 parity, shader execution parity and full-frame performance remain unclaimed.

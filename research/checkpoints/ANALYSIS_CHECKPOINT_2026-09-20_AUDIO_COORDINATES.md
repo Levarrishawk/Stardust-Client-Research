@@ -22,7 +22,7 @@ The apparent axis issue belongs at the protocol boundary, not the audio boundary
 - Convert SWG wire X/Z/Y records into internal X/Y/Z exactly once.
 - Derive listener forward from the transform K axis and up from J.
 - Pass source/listener X/Y/Z consistently to the chosen engine audio API.
-- If Godot or another host uses a different forward convention, implement that as an explicit engine adapter and validate with left/right/front/back fixtures; do not alter protocol values.
+- If prototype host or another host uses a different forward convention, implement that as an explicit engine adapter and validate with left/right/front/back fixtures; do not alter protocol values.
 - Preserve separate source obstruction, occlusion and distance policy already mapped elsewhere.
 
 ## Confidence

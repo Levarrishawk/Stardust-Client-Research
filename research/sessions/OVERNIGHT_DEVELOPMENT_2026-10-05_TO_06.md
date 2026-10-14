@@ -8,7 +8,7 @@ Round66 is accepted at2026-10-06 04:22:18 UTC. [Accepted outcomes/timing](PARALL
 
 ## Boundaries and reporting
 
-Follow AGENTS.md and the adopted parallel-development rules. No original executable execution, live server contact, packet capture, fuzzing, staging, commit, push or publication. Original assets remain unmodified and private. Bounded native/Godot replacement tests remain authorized. Report accepted outcomes, failed or unrun checks, original-parity limitations and exact resume actions. At07:00 leave workers idle and report accepted and incomplete work separately.
+Follow AGENTS.md and the adopted parallel-development rules. No original executable execution, live server contact, packet capture, fuzzing, staging, commit, push or publication. Original assets remain unmodified and private. Bounded historical implementation path (omitted) replacement tests remain authorized. Report accepted outcomes, failed or unrun checks, original-parity limitations and exact resume actions. At07:00 leave workers idle and report accepted and incomplete work separately.
 
 ## Round64 dispatched
 

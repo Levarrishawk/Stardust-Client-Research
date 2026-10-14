@@ -1,12 +1,12 @@
 # Round80: persistent offline outcome and bounded restart composition
 
-Date:2026-10-06. Question: can actual configured movement and synthetic root owners complete, preserve immutable outcomes, retire, and start fresh generations through a persistent Godot outcome/restart display, including fault recovery and factory failures? Stop four independently sealed components plus one bounded joined headless/GPU proof. This is a modern compatibility prototype; no live connection or legacy restart behavior is inferred.
+Date:2026-10-06. Question: can actual configured movement and synthetic root owners complete, preserve immutable outcomes, retire, and start fresh generations through a persistent prototype host outcome/restart display, including fault recovery and factory failures? Stop four independently sealed components plus one bounded joined headless/GPU proof. This is a modern compatibility prototype; no live connection or legacy restart behavior is inferred.
 
 ## Input identity and tools
 
 Frozen accepted79:4608 public files; manifest d51ed19b0af61626ead8049942d9f12690304e308bd2bceb10126d851cf2b51b; archive 3f7adfc1647ce05dcae6bc9967de1eb345d8178e8d572a7d0643be9799579484. Main HEAD ece6e3943ac84fb10d84bc9d44314fa7ba032f92 was captured after the user's intervening Git update and is preserved. Four existing isolated specialists remained Low. Exact incoming/prior/own-final sync gates and final baseline-relative review preserve dirty/private/HEAD/index state;29 final worker file hashes match integration.
 
-Lead reused cached Python/.NET8/Godot4.7.2 packages and fresh ignored replay outputs. Synthetic runtime fixture SHA c69010c21428da37435ccef1f8f371449c01481687332482774616aaf257dd21 and terrain fixture SHA 85226fe4fb7f1961c3ebb1e3df520d3d5ec0e9ac1601b0c2338ee08a9d7698cd are gated by the joined oracle before any native build. Static original executable SHA E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150 is independently gated before getter VAs. No original executable was run.
+Lead reused cached historical implementation path (omitted) packages and fresh ignored replay outputs. Synthetic runtime fixture SHA c69010c21428da37435ccef1f8f371449c01481687332482774616aaf257dd21 and terrain fixture SHA 85226fe4fb7f1961c3ebb1e3df520d3d5ec0e9ac1601b0c2338ee08a9d7698cd are gated by the joined oracle before any native build. Static original executable SHA E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150 is independently gated before getter VAs. No original executable was run.
 
 ## Four accepted component boundaries
 
@@ -21,7 +21,7 @@ Rare same-thread child-retirement/allocation failures without injection hooks re
 
 ## Joined proof and durable lifecycle
 
-[Native composition](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineRestartCompositionVerification.cs) joins the three independently authored owners over the same caller-owned synthetic world/store/surface/FIFO. It does not load resource actors. [Independent oracle](../../../SWG-Godot-Client/poc/round80-tests/Integration/restart_peer.py) computes binary32 positions/completion reports and constructs handshakes,62-byte roots, seeded transforms and ACKs before native execution. The saved expectations must precede native output and equal recomputation; native output never seeds expectations.
+Native composition (external historical reference) joins the three independently authored owners over the same caller-owned synthetic world/store/surface/FIFO. It does not load resource actors. Independent oracle (external historical reference) computes binary32 positions/completion reports and constructs handshakes,62-byte roots, seeded transforms and ACKs before native execution. The saved expectations must precede native output and equal recomputation; native output never seeds expectations.
 
 Four successful admissions comprise two consecutive maximum3 budget completions, a strict terrain fault (one completed/two attempted), and a healthy maximum3 recovery. Three accepted restart callbacks create fresh movement and Established transport owners with zero update/sample/sequence history and four distinct connection IDs/seeds. Three final-stop protected root frames and exact ACKs compare byte-for-byte. The terrain-fault generation has one observed root sample and zero frames; its buffers are empty while movement remains Faulted and Stopped=false.
 
@@ -45,11 +45,10 @@ Focused builds have zero warnings/errors. Successful headless/GPU logs retain th
 
 ## Reproduction
 
-Run each linked component producer/verifier with its explicit inputs, fresh ignored output and cached dependencies. The joined runner takes explicit Python, Godot, cached-package directory, runtime/terrain fixtures and a fresh ignored output root:
+Run each linked component producer/verifier with its explicit inputs, fresh ignored output and cached dependencies. The joined runner takes explicit Python, prototype host, cached-package directory, runtime/terrain fixtures and a fresh ignored output root:
 
-```powershell
-& ./poc/round80-tests/Integration/Invoke-Restart.ps1 -Python <cached-python> -CachedPackages <cached-packages> -Godot <godot-console> -RuntimeFixture <runtime-cases.json> -TerrainFixture <surface-fixtures.json> -RunRoot <fresh-local-private-output>
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 It generates independent fixtures before native build, builds the private scene offline, imports, runs headless then GPU, and verifies both outputs. It creates no socket or original execution. Private manifests/receipts/logs remain ignored; curated files contain independently authored contracts and compact hashes only.
 

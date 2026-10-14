@@ -12,6 +12,6 @@ Observation: a target box starting 0.2 metres beyond a portal stops a 0.25-metre
 
 Independent 2,400 requests across eight poses and two directions pass contact, current policy, owner, parameter, floor plane and reuse checks: 138 Accepted / 1,560 BoxStopped / 702 FloorStopped; 173 transferred / 2,227 not transferred. The reference was corrected to include original triangle splits: the documented rounded-face start policy can conservatively stop before a nearby face at an internal triangle boundary. One target-only seam overlap preserves the source explicitly.
 
-Native asymmetric frames, callback snapshot/tie/failure, resource/malformed and large-world precision-rollback gates pass. The shared landing extraction preserves 6,000 synthetic and 600 original-plane / 12,000 repeat regressions. Core smoke/build pass; no new Godot integration claim. Scores 89% / 94%, names 2,599 and packet rows 345 unchanged.
+Native asymmetric frames, callback snapshot/tie/failure, resource/malformed and large-world precision-rollback gates pass. The shared landing extraction preserves 6,000 synthetic and 600 original-plane / 12,000 repeat regressions. Core smoke/build pass; no new prototype host integration claim. Scores 89% / 94%, names 2,599 and packet rows 345 unchanged.
 
 Next: connect directional permission barriers and captured leaf bounds, then verify an original sloped door actor. Existing level-only adapter remains the default until that gate passes. No original executable execution, live server, staging or publication.

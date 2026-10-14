@@ -14,12 +14,8 @@ Native acceptance increases from 53 to 91 of 124 table rows. All 291 effective P
 
 ## Validation
 
-```powershell
-dotnet run --no-restore --project poc/Stardust.Core.SmokeTests
-dotnet build --no-restore poc/Stardust.Godot
-python tools/python/inventory_door_capabilities.py C:\Stardust-DEV C:\Stardust-DEV\swgemu_live.cfg local-private/generated-evidence/door-capability-milestone/expanded poc/Stardust.Core.SmokeTests/bin/Debug/net8.0/Stardust.Core.SmokeTests.dll
-# Add --direct-only and a separate private output directory to reproduce the former boundary.
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 Native smoke and build pass. Independent table/identity/root-envelope/occurrence reconciliation passes both current and former boundaries. Synthetic incomplete/malformed/transformed/oversized/missing-band gates pass. The bounded launcher runs `door_tato_filler_s01` using the primary/table hashes in the matrix; headless/GPU controls and all-band switch checks pass, capture inspected. Existing cantina persistent actor headless regression passes after the LOD hook. Known certificate startup diagnostic is nonfatal; no original execution/server contact/publication.
 

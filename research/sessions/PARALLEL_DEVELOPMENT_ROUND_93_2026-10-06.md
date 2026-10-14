@@ -4,7 +4,7 @@ Started October6,2026 Eastern; accepted October7 after independent integration a
 
 ## Capability gained
 
-Round93 adds an explicit controlled-transport entry over the reusable installation/application/Godot host and a bounded redacted attempt receipt written after actual local drain or startup rollback. Default startup still refuses contact. Offline native headless/GPU replay verifies the same strict admission/composition with mandatory synthetic spy ports, protected exchanges, one approved original human, bounded movement, deadlines and disconnect. Run, cleanup, rollback and diagnostic failures remain distinct; standalone quit follows ownership completion. The real UDP constructor branch is compiled and source-reviewed, never executed.
+Round93 adds an explicit controlled-transport entry over the reusable historical implementation path (omitted) host and a bounded redacted attempt receipt written after actual local drain or startup rollback. Default startup still refuses contact. Offline native headless/GPU replay verifies the same strict admission/composition with mandatory synthetic spy ports, protected exchanges, one approved original human, bounded movement, deadlines and disconnect. Run, cleanup, rollback and diagnostic failures remain distinct; standalone quit follows ownership completion. The real UDP constructor branch is compiled and source-reviewed, never executed.
 
 ## Independently verified evidence
 
@@ -16,4 +16,4 @@ Frozen accepted92 input:4,964 files; manifest ebc0ba7276c5ca797c22fc32feca405404
 
 Next: obtain operator-approved deployment/account access, explicit advertised hostname-to-IPv4 mappings/ports and client version, one existing supported outdoor human with measured CREO3/4/6 limits and original resource identity, and a bounded minimum-readiness scenario. Keep movement disabled unless fresh stamp/ready state, matching validated position and passable floor are established. Then request specific authorization for one bounded controlled attempt. No original executable, real socket, DNS/server contact or live interoperability has been verified. General avatar/customization, nearby actors, full terrain and server-observed authority/release remain open.
 
-All workers idle; no next round dispatched. [Bootstrap](../../docs/REPLACEMENT_CLIENT_BOOTSTRAP_CONTRACT.md), [reproduction](../../../SWG-Godot-Client/docs/CLIENT_REGRESSION_RUNBOOK.md), [native harness](../../../SWG-Godot-Client/poc/round93-tests/Rendering/README.md), [ordered milestone](../../../SWG-Godot-Client/docs/REPLACEMENT_CLIENT_MILESTONE_PLAN.md) and [controlled plan](../../docs/CONTROLLED_SERVER_VALIDATION_PLAN.md).
+All workers idle; no next round dispatched. [Bootstrap](../../docs/REPLACEMENT_CLIENT_BOOTSTRAP_CONTRACT.md), reproduction (external historical reference), native harness (external historical reference), ordered milestone (external historical reference) and [controlled plan](../../docs/CONTROLLED_SERVER_VALIDATION_PLAN.md).

@@ -1,6 +1,6 @@
 # Offline peer disconnect ownership
 
-Round71 tests frozen transport, ingress, outbound FIFO/bridge and scene pump without changing production code. [Replay](../../SWG-Godot-Client/poc/round71-tests/Networking/replay.py) independently packs bytes before native execution; [scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldPeerDisconnectScenarios.cs) exercise the actual owners.
+Round71 tests frozen transport, ingress, outbound FIFO/bridge and scene pump without changing production code. Replay (external historical reference) independently packs bytes before native execution; scenarios (external historical reference) exercise the actual owners.
 
 The decoded packet is `00 05 12 34 56 78 00 06`: two-byte opcode, big-endian connection ID, and two trailing reason bytes. Protected selector4/seeded-CRC2 wire bytes are `00 05 C6 F7 E4 D9 C6 C0 C6 D2 7E`, using seed A1B2C3D4 and the established synthetic session. The [durable transport schema](SOE_TRANSPORT_PROTOCOL.md) records the legacy 0x0600 field; this fixture preserves its `00 06` bytes. Frozen `ValidatePacket` requires exactly eight decoded bytes; `AcceptDisconnect` checks the ID and does not read or constrain the reason. A second independent packet with reason bytes FE DC also closes. No reason semantics or live phase legality is inferred from decoder acceptance.
 

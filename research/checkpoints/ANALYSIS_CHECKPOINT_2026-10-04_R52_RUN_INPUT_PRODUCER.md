@@ -28,7 +28,7 @@ An initial function-inventory lookup chose an overlapping row with an inconsiste
 
 ## Verification
 
-[Producer/verifier](../../../SWG-Godot-Client/tools/python/verify_player_controller_run_input_producer.py) checks 44 anchors, six complete bodies, original asset identity/action slots and focused frozen run-flag/controller prerequisites. Complete-body instruction counts are70/141/159/12/23/58. [Independent runner](../../../SWG-Godot-Client/poc/round52-tests/Networking/research_checks.py) checks ten byte witnesses, six calls, one dynamically selected original string and four original action slots. One synthetic positive and 30 deterministic negatives pass, including malformed asset/path/identity/assertion/truncation/cap cases. No original dynamic execution or fuzzing occurred.
+the separate implementation record checks 44 anchors, six complete bodies, original asset identity/action slots and focused frozen run-flag/controller prerequisites. Complete-body instruction counts are70/141/159/12/23/58. Independent runner (external historical reference) checks ten byte witnesses, six calls, one dynamically selected original string and four original action slots. One synthetic positive and 30 deterministic negatives pass, including malformed asset/path/identity/assertion/truncation/cap cases. No original dynamic execution or fuzzing occurred.
 
 Final AST/UTF8/newline, organized-workspace links, whitespace, baseline-relative allowed scope/hashes and HEAD/index checks are recorded after execution in the private receipt. Any build or smoke result is reported only if actually run. No native production, registry, shared entrypoint or main checkout changes are part of this milestone. Lead owns canonical reconciliation.
 

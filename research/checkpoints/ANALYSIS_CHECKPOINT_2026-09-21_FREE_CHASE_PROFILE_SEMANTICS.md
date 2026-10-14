@@ -25,7 +25,7 @@ The per-frame camera collision branch compares zoom distance with `FRST * watche
 
 ## Replacement contract
 
-- Preserve the profile as original asset data; do not hard-code these values into a Godot or renderer camera.
+- Preserve the profile as original asset data; do not hard-code these values into a prototype host or renderer camera.
 - Resolve `(posture,state)` overrides before posture-only values, then `DEFH`.
 - Smooth target-offset changes so posture/state transitions do not snap the camera.
 - Treat first-person selection as camera-controller state, independent of the graphics backend.

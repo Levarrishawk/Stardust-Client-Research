@@ -12,7 +12,7 @@ The same pinned configuration, object, SAT, body/head MGN and idle clip as the [
 
 `SkeletalShaderDeformation.CreateAll` validates the complete shader batch, computes all global positions once, then maps each shader and computes its directions from that shader's position-associated influences. Owned results remain separate. Aggregate vertex and shader budgets, late invalid maps, absent direction maps and singular palettes reject before publication. The single-shader API remains available.
 
-For the selected original body/head, global position evaluations per pose fall from 3,478 to 1,454 because two body and three head surfaces share their mesh's positions. This is a mechanically derived reduction in position work, not an FPS claim. Godot retains materials while rebuilding deformed surfaces.
+For the selected original body/head, global position evaluations per pose fall from 3,478 to 1,454 because two body and three head surfaces share their mesh's positions. This is a mechanically derived reduction in position work, not an FPS claim. Prototype host retains materials while rebuilding deformed surfaces.
 
 ## Verification and confidence
 

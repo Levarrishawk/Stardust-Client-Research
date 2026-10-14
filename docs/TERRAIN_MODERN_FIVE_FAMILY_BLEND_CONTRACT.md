@@ -1,6 +1,6 @@
 # Explicit modern five-family vertex blend
 
-[TerrainModernFiveFamilyBlend](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainModernFiveFamilyBlend.cs)
+TerrainModernFiveFamilyBlend (external historical reference)
 binds exactly nine supplied family labels to the exact retained
 `TerrainPatchGeometry`. Its policy name is `ModernFiveFamilyVertexLinearBlend`.
 This is a modern rendering choice, not recovered original ALP selection,
@@ -43,7 +43,7 @@ roundoff may leave a small residual in the derived fifth contribution.
 
 ## Focused validation
 
-[Native tests](../../SWG-Godot-Client/poc/terrain-five-family-blend-tests/Program.cs) use an independent
+Native tests (external historical reference) use an independent
 normalized `BigInteger` Fraction oracle. It converts the actual binary32 X/Z
 positions exactly, finds triangles using signed rational areas, and sums
 barycentric contributions by the supplied categorical keys. A separate double
@@ -73,6 +73,6 @@ capture remain the adapter's acceptance gate. No original-function claim or
 compatibility coverage denominator changes.
 
 The focused suite is required as `terrain-five-family-blend` in the
-[offline regression runner](../../SWG-Godot-Client/docs/CLIENT_REGRESSION_RUNBOOK.md). It takes no private
+offline regression runner (external historical reference). It takes no private
 input arguments. Registration and runner orchestration tests are distinct from
 a full thirty-suite replay and from visual adapter acceptance.

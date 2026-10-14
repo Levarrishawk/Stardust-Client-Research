@@ -65,7 +65,7 @@ Exact format/version coverage remains unknown and is a major workstream.
 
 ## Engine and renderer choice is provisional
 
-No implementation choice is final during analysis. Once all client analysis needed to constrain a build is complete, perform the pre-build engine decision gate specified in `64BIT_PORT_PLAN.md`. That gate explicitly includes Godot, a custom DX12 client, and a custom Vulkan client. An engine must be judged against recovered SWG protocol, resource, scene/cell, terrain, animation, material and lifecycle requirements—not only its headline rendering API.
+No implementation choice is final during analysis. Once all client analysis needed to constrain a build is complete, perform the pre-build engine decision gate specified in `64BIT_PORT_PLAN.md`. That gate explicitly includes prototype host, a custom DX12 client, and a custom Vulkan client. An engine must be judged against recovered SWG protocol, resource, scene/cell, terrain, animation, material and lifecycle requirements—not only its headline rendering API.
 
 ## DX12 versus Vulkan for a custom renderer
 
@@ -81,9 +81,9 @@ Why DX12 currently wins:
 
 Vulkan becomes preferable if Linux-native client support is an actual near-term requirement, or if a portability layer is a primary product constraint. Keep asset decoding, material descriptions, visibility results, and draw-packet construction API-neutral so a Vulkan backend remains feasible.
 
-### Godot evaluation questions
+### Prototype host evaluation questions
 
-The later evidence matrix should test whether Godot can cleanly support the recovered requirements, especially custom binary resource loaders/importers for TRE/IFF-derived assets, stable 64-bit network/object identifiers, transactional baseline/delta application, zone and cell/portal streaming, SWG skeletal customization, terrain scale, translated legacy material states, and controlled threading/lifecycle order. Prototype scoring should use one representative asset and one replicated-object update path, not a broad gameplay build.
+The later evidence matrix should test whether prototype host can cleanly support the recovered requirements, especially custom binary resource loaders/importers for TRE/IFF-derived assets, stable 64-bit network/object identifiers, transactional baseline/delta application, zone and cell/portal streaming, SWG skeletal customization, terrain scale, translated legacy material states, and controlled threading/lifecycle order. Prototype scoring should use one representative asset and one replicated-object update path, not a broad gameplay build.
 
 Engine-provided rendering, windowing, input, audio, UI and tooling could materially reduce work. Conversely, any need to fork core engine behavior, duplicate its scene graph, or bypass its resource system would reduce that advantage. These are Unknown until the asset/world analysis supplies concrete test cases.
 
@@ -303,24 +303,24 @@ The modern renderer should receive particle draw batches from a simulation-owned
 
 Emitter-group construction confirms a second ownership tier. Each runtime group retains its immutable `EMGP` description and parent effect, initializes common PTIM-driven timing state, then creates one runtime emitter for every ordered `EMTR` description. Effect → group → emitter lifetime and order are therefore compatibility semantics; legacy 0xD8/0x364 allocation sizes and vector implementations are not. The deployed version census proves a modern decoder needs EMTR 0000, 0006 and 0009-0014 immediately, while implementing the executable's complete 0000-0014 dispatch is inexpensive defensive compatibility.
 
-Modern EMTR field analysis reinforces the simulation/render split. Terrain collision sampling, surface-height offset, surface-frame alignment, generation accumulation and randomized direction changes occur before rendering. DX12/Godot/Vulkan particle submission must therefore consume simulation results rather than reinterpret authored EMTR data directly. Shape selection is a six-value closed enum, while rendered particle payload is a quad-or-mesh tagged union; the optional sound template routes independently through audio/resource management.
+Modern EMTR field analysis reinforces the simulation/render split. Terrain collision sampling, surface-height offset, surface-frame alignment, generation accumulation and randomized direction changes occur before rendering. historical implementation path (omitted) particle submission must therefore consume simulation results rather than reinterpret authored EMTR data directly. Shape selection is a six-value closed enum, while rendered particle payload is a quad-or-mesh tagged union; the optional sound template routes independently through audio/resource management.
 
 Waveform tracing makes this boundary concrete: emitter translation/rotation, shape extent, direction spread, generation rate, initial velocity, lifetime and gravity are simulation inputs. Particle age divided by authored lifetime becomes normalized age for the nested quad/mesh visual description. A modern renderer receives the resulting transform and visual sample; it must not own emission timing, terrain queries, gravity integration or particle death.
 
 ## Outdoor environment descriptors
 
-The renderer-facing outdoor state is selected by `(PTAT environmentFamilyId << 16) | serverWeatherIndex`. Each 25-column descriptor supplies gradient-sky texture, independent bottom/top cloud shaders with size and speed, a 256×8 time-indexed lighting ramp, shadow and fog policy, optional camera-attached weather appearance, day/night environment maps and wind scale. GroundEnvironment retains previous/current descriptors and blends their ramp-derived parameters for exactly five seconds. ENVM/0000 separately defines shared star, sun, moon and repeated celestial resources. A DX12/Godot/Vulkan implementation can redesign GPU representation, but it must preserve these asset inputs, family/weather fallback and transition behavior.
+The renderer-facing outdoor state is selected by `(PTAT environmentFamilyId << 16) | serverWeatherIndex`. Each 25-column descriptor supplies gradient-sky texture, independent bottom/top cloud shaders with size and speed, a 256×8 time-indexed lighting ramp, shadow and fog policy, optional camera-attached weather appearance, day/night environment maps and wind scale. GroundEnvironment retains previous/current descriptors and blends their ramp-derived parameters for exactly five seconds. ENVM/0000 separately defines shared star, sun, moon and repeated celestial resources. A historical implementation path (omitted) implementation can redesign GPU representation, but it must preserve these asset inputs, family/weather fallback and transition behavior.
 
 All eight lighting-ramp consumer roles are now closed. Rows drive, in order: ambient color/repeated-CELS opacity; main-light primary RGB/intensity; main-light secondary RGB/intensity; fill RGB/intensity; bounce RGB/intensity; fallback sky RGB/SUN-MOON visibility; fog RGB/sky-family opacity; and shadow-volume RGBA. The legacy renderer has distinct generic-celestial, principal sun/moon, and ShadowVolume alpha paths plus two main-light banks; collapsing them would discard authored behavior. When no sky source resource exists, GroundEnvironment builds a solid six-face `_SKY` cube texture from row 5.
 4. Trace resource-loss/recreation policy independently of the deployment post-processing proxy.
 
 ## Native preview boundary (2026-09-29)
 
-The [original GPU preview](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_ORIGINAL_GODOT_PREVIEW.md) renders one verified mesh section in Godot. Z reflection and unchanged UV0 passed numerical and asymmetric GPU tests; the extra index reversal was corrected on October1 after original source/normal and opposite-side culling checks (see [geometry facing](GODOT_GEOMETRY_FACING_CONTRACT.md)); uploaded geometry and all 80 mip levels match CPU inputs. Explicit opaque unlit MAIN sampling is preview policy. Candidate graphs and program names are preserved without translating legacy lighting or selecting a legacy capability branch. Parent appearance/LOD, faithful lighting and world rendering remain open.
+The [original GPU preview](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_ORIGINAL_PROTOTYPE_PREVIEW.md) renders one verified mesh section in prototype host. Z reflection and unchanged UV0 passed numerical and asymmetric GPU tests; the extra index reversal was corrected on October1 after original source/normal and opposite-side culling checks (see [geometry facing](PROTOTYPE_GEOMETRY_FACING_CONTRACT.md)); uploaded geometry and all 80 mip levels match CPU inputs. Explicit opaque unlit MAIN sampling is preview policy. Candidate graphs and program names are preserved without translating legacy lighting or selecting a legacy capability branch. Parent appearance/LOD, faithful lighting and world rendering remain open.
 
 ## Original detail inspection boundary
 
-Godot now uploads and switches the four authored L0–L3 children. Explicit offline selection distance drives a baseline-backed selector; orbit-camera zoom does not implicitly establish the unimplemented PIVT origin. The material adapter chooses an authored opaque MAIN/MAIN fixed fallback for unlit sampling, preserving other candidate metadata without executing programs. All child geometry/texture uploads and GPU UV/front-face checks pass. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_GODOT_LOD_INSPECTOR.md).
+Prototype host now uploads and switches the four authored L0–L3 children. Explicit offline selection distance drives a baseline-backed selector; orbit-camera zoom does not implicitly establish the unimplemented PIVT origin. The material adapter chooses an authored opaque MAIN/MAIN fixed fallback for unlit sampling, preserving other candidate metadata without executing programs. All child geometry/texture uploads and GPU UV/front-face checks pass. See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_PROTOTYPE_LOD_INSPECTOR.md).
 
 ## Explicit texture-only inspection
 
@@ -348,12 +348,12 @@ Canonical contract: [extent and distance](APPEARANCE_EXTENT_DISTANCE_CONTRACT.md
 
 ## BC6H HDR extension — 2026-09-30
 
-The [HDR checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BC6H_HDR.md) adds a separate owned RGB half output for typed signed/unsigned BC6H. Forty standards-only fixtures/264 mips match independent Godot bcdec bit for bit and pass real GPU half upload/readback. Native endpoint, truncation, surface and budget gates pass. Static material integration and HDR presentation remain separate; this is not original executable acceptance evidence. Existing pinned dependencies, research metrics and registry counts are unchanged.
+The [HDR checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BC6H_HDR.md) adds a separate owned RGB half output for typed signed/unsigned BC6H. Forty standards-only fixtures/264 mips match independent prototype host bcdec bit for bit and pass real GPU half upload/readback. Native endpoint, truncation, surface and budget gates pass. Static material integration and HDR presentation remain separate; this is not original executable acceptance evidence. Existing pinned dependencies, research metrics and registry counts are unchanged.
 
 
 ## Portal cell scene increment — 2026-09-30
 
-The [cell scene checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_CELL_SCENE.md) closes shared bounded cell appearance loading and named-cell offline inspection. The pinned original YT-1300 matches independently across eight cells, 14 sources, 11 meshes, 66,617 vertices, 55,916 triangles and 310 sorted variants. VTXA `0x110D` preserves its packed word and correct UV offset. Native ownership/budget/identity tests and Godot headless/GPU gates pass. Manual visibility is distinct from unimplemented portal culling, floors, doors and lighting. Research scores, packet rows and address counts are unchanged.
+The [cell scene checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_CELL_SCENE.md) closes shared bounded cell appearance loading and named-cell offline inspection. The pinned original YT-1300 matches independently across eight cells, 14 sources, 11 meshes, 66,617 vertices, 55,916 triangles and 310 sorted variants. VTXA `0x110D` preserves its packed word and correct UV offset. Native ownership/budget/identity tests and prototype host headless/GPU gates pass. Manual visibility is distinct from unimplemented portal culling, floors, doors and lighting. Research scores, packet rows and address counts are unchanged.
 
 Original CELL/LGHT creation, HDR colors, corrected poses and separate specular instances are specified in the [cell-light contract](PORTAL_CELL_LIGHT_CONTRACT.md). Runtime light selection remains open.
 

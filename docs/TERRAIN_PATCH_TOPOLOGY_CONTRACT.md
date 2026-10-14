@@ -49,7 +49,7 @@ winding.
 
 ## API and modern bounds
 
-[Production helper](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainPatchTopology.cs):
+Production helper (external historical reference):
 
 - `GetIndexCount(patternIndex)` returns the active count.
 - `CopyIndices(patternIndex)` returns a new owned ushort array.
@@ -79,8 +79,8 @@ call cannot change topology or a caller's previous result.
 
 ## Verification and limits
 
-[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainPatchTopologyScenarios.cs)
-and the [independent static/ring oracle](../../SWG-Godot-Client/poc/round31-tests/Rendering/verify_topology.py)
+Native scenarios (external historical reference)
+and the the separate implementation record
 pass 362 native checks: 45 rebasing cases, 66 rejection cases, and 60 synthetic
 triangles. The oracle compares every active original index, all counts and
 padding, twelve instruction sites in two ranges, and all native output against
@@ -91,9 +91,9 @@ Synthetic points are explicitly `(X,Z)`:
 `(0,0),(1,0),(1,1),(0,1),(-1,1),(-1,0),(-1,-1),(0,-1),(1,-1)`.
 Every triangle has positive signed X/Z area under that fixture. This checks
 consistent order and nondegeneracy for the declared fixture only; it is not
-proof of original coordinate order or Godot winding.
+proof of original coordinate order or prototype host winding.
 
-No original client execution, Godot/GPU operation, live server, packet capture,
+No original client execution, prototype host/GPU operation, live server, packet capture,
 download, or terrain corpus sweep was performed. Full generator/scene/render
 integration remains deferred. Reproduction and exact next action are in the
 [Round 31 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R31_TERRAIN_PATCH_TOPOLOGY.md).

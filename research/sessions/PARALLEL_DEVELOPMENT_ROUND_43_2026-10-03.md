@@ -69,7 +69,7 @@ actual public Core APIs; expected arrays are independently regenerated in Python
 
 ## Acceptance checks and scope
 
-Main separate Core/role runners/Godot and combined Core/SmokeTests builds pass
+Main separate Core/role historical implementation path (omitted) and combined Core/SmokeTests builds pass
 zero warnings/errors. Default64-bit smoke passes18 journal events/zero failures.
 Organized validator:1442 Markdown files,zero broken/private links,2626 canonical
 names/zero duplicates and345 packet-source rows unchanged. Scope audit:3268

@@ -24,7 +24,7 @@ Readonly root `C:/Stardust-DEV`, configuration `swgemu_live.cfg` SHA `22158E5BD9
 
 ## Scope and API
 
-Seven additions only: [decoder](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainMapMasks.cs), [native scenarios](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainMapMasksScenarios.cs), [durable contract](../../docs/TERRAIN_MAP_MASKS_CONTRACT.md), this checkpoint, [project](../../../SWG-Godot-Client/poc/round31-tests/Assets/Assets.csproj), [entry point](../../../SWG-Godot-Client/poc/round31-tests/Assets/Program.cs), [fixture producer/oracle](../../../SWG-Godot-Client/poc/round31-tests/Assets/verify_masks.py). No existing production/shared Program/global/world/Godot changes. Lead owns historical framing reconciliation.
+Seven additions only: decoder (external historical reference), native scenarios (external historical reference), [durable contract](../../docs/TERRAIN_MAP_MASKS_CONTRACT.md), this checkpoint, project (external historical reference), entry point (external historical reference), the separate implementation record. No existing production/shared historical implementation path (omitted) changes. Lead owns historical framing reconciliation.
 
 `TerrainMapMasks.Decode(ReadOnlySpan<byte> versionForm,TerrainMapMaskLimits? limits=null)` exposes get-only version/empty/raw float bits/float values/U32 row/dimension/mask length, cloned mask/Data inspection bytes, and bounded raw integer-grid `GetBit`/inclusive clipped `AnyBit`. `TerrainMapMaskKind` distinguishes Wmap/Smap. Exact ranges/errors/query policy are in the contract. No float-coordinate mapping or mutation API is added.
 

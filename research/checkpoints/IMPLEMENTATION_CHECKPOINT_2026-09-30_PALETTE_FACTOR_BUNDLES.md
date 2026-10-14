@@ -26,4 +26,4 @@ Run `verify_customizable_shaders.py ROOT CONFIG PRIVATE_OUTPUT --core-dll DLL --
 
 ## Remaining uncertainty and next probe
 
-Factor queries do not translate original lighting, material factor semantics or live owner/customization state. Next: a bounded Godot swatch inspector showing target tags, exact variable namespaces, requested/selected indices and fallback provenance, verified on a real shader and synthetic color fixture.
+Factor queries do not translate original lighting, material factor semantics or live owner/customization state. Next: a bounded prototype host swatch inspector showing target tags, exact variable namespaces, requested/selected indices and fallback provenance, verified on a real shader and synthetic color fixture.

@@ -5,7 +5,7 @@ height rules and original-actor grounding, while independently extending private
 creature state? Stop after independent leaf/join/host gates and canonical review.
 Input identities and exact scope are in the [session](../sessions/PARALLEL_DEVELOPMENT_ROUND_41_2026-10-03.md).
 Original executable SHA256 is E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150.
-Cached .NET/Godot4.7.2 and bundled Python are used offline.
+Cached historical implementation path (omitted) and bundled Python are used offline.
 
 ## Accepted leaves and interpretation
 
@@ -41,7 +41,7 @@ excluded or unknown. Full14-field composition/publication is still next.
 
 ## Lead integration and static findings
 
-The [native join](../../../SWG-Godot-Client/poc/round41-tests/Integration/Program.cs) uses the actual
+The native join (external historical reference) uses the actual
 Core executor and no Expected fields. Independent arithmetic/geometry oracles
 pass nine profiles,3600 samples,144 patches,576 queries and5508 ordered height
 operation visits. Debug normals/colors and filter query values are supplied.
@@ -70,14 +70,14 @@ adds them and asserts both list lengths before generation. Fresh headless/GPU
 runs then pass. The deliberate malformed-host run fails with the expected
 initial-height error and exact cleanup. Read-only wrong script-name discovery
 and wildcard discovery attempts failed; neither supplies behavioral evidence.
-Known Godot certificate-store/GPU startup diagnostics are retained in receipts.
+Known prototype host certificate-store/GPU startup diagnostics are retained in receipts.
 
 Runtime's own40 overlay hash admission initially sampled current bytes; later
 reconstructed final40 focused evidence corroborates all ten exact incoming
 bytes. This is postflight corroboration, not a claimed independent preflight.
 Frozen41 scope checks preserve every unrelated byte, worker HEAD and empty index.
 
-Separate Core/SmokeTests/Godot builds and the default smoke gate precede final
+Separate historical implementation path (omitted) builds and the default smoke gate precede final
 acceptance. Exact scope, links and mechanical counts are in the session.
 Next probe: compose field13 with the supported CREO4 model, prepare current
 incarnation storage, and investigate one real height filter before using

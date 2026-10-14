@@ -38,7 +38,7 @@ Measured within the new structure, Round2's29m13s acceptance was faster than Rou
 - Keep isolated checkouts, exact file ownership, verified dirty-workspace snapshots and one milestone per worker. All scope preflights passed; integration never required commits or discarded unrelated work.
 - Keep the lead acceptance gate. Review corrected effect-graph assumptions, a palette-fallback negative fixture, portable reproduction instructions, omitted event textures/capture and whole-file newline normalization. Passing local assertions alone did not close visual acceptance.
 - State the complete acceptance checklist before dispatch: original dependency loading, authored texture closure, negative cases, current-generation identity, owned teardown, visual capture and documentation. Review-driven scope corrections are part of delivery time.
-- Preserve one GPU owner at a time. CPU/native work proceeds independently; shared Godot and full-scene validation belongs at integration. This host's single GPU remains a serial resource.
+- Preserve one GPU owner at a time. CPU/native work proceeds independently; shared prototype host and full-scene validation belongs at integration. This host's single GPU remains a serial resource.
 - Balance milestone sizes and dependencies. Networking/Rendering finished earlier than Runtime in Round3; the round barrier intentionally leaves them idle. Do not feed follow-on work without Levarris's authorization. Plan dependent work into a later accepted snapshot.
 - Measure user-visible accepted behavior and end-to-end elapsed time. Keep research scores, registry coverage, implementation results and unknown compiled/live behavior separate.
 

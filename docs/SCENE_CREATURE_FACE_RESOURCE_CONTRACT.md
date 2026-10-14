@@ -2,7 +2,7 @@
 
 ## API and scope
 
-[SceneCreatureResourceReader.Load](../../SWG-Godot-Client/poc/Stardust.Core/Assets/SceneCreatureResourceReader.cs) adds final optional `SceneCreatureFaceInspectionPolicy? faceInspection=null`. [SceneObjectResourceRouter.Load](../../SWG-Godot-Client/poc/Stardust.Core/Assets/SceneObjectResourceRouter.cs) forwards the frozen creature option's `FaceInspection` only in its creature branch. Frozen policy/options definitions remain unchanged.
+SceneCreatureResourceReader.Load (external historical reference) adds final optional `SceneCreatureFaceInspectionPolicy? faceInspection=null`. SceneObjectResourceRouter.Load (external historical reference) forwards the frozen creature option's `FaceInspection` only in its creature branch. Frozen policy/options definitions remain unchanged.
 
 Face inspection requires the complete albedo route, explicit supplied `BlueprintCustomizationKey/int` values and caller-selected source limits. No values are inferred from a player, packet or authored profile automatically. The default albedo-enabled route remains39 sources/4,686,371 bytes; the existing albedo-disabled route remains37 sources. Default source/decoded limits and existing call signatures remain source-compatible. This route addresses the [known head gap](SCENE_HUMAN_HEAD_MATERIAL_GAP.md) by owning generated face data, without changing any renderer.
 
@@ -22,7 +22,7 @@ Cancellation checks apply before the first read, around resolver calls, after de
 
 ## Bounded original result
 
-[Native scenario](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneCreatureFaceResourceScenarios.cs), [independent verifier](../../SWG-Godot-Client/poc/round19-tests/Assets/verify_face_resources.py) and [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R19_FACE_RESOURCES.md) establish **Confirmed modern fixture behavior**:
+Native scenario (external historical reference), independent verifier (external historical reference) and [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R19_FACE_RESOURCES.md) establish **Confirmed modern fixture behavior**:
 
 | Quantity | Opted original value |
 | --- | ---: |

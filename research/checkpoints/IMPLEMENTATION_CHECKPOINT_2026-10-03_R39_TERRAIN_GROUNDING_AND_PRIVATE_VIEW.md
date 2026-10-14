@@ -17,7 +17,7 @@ Original executable SHA-256
 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`
 was checked before VA reliance. Original configuration SHA-256
 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`
-was checked by the host. Existing Python/PE/Capstone/.NET8/Godot4.7.2 caches
+was checked by the host. Existing historical implementation path (omitted) caches
 were used without downloads. The original executable was not run and no
 server was contacted.
 
@@ -97,7 +97,7 @@ at three and the original human publication is retained. Six full CREO6 models/
 45 ordered events, six TANO6 states/eight events,14 quantized animation states/
 all8 mip identities, names/customization and exact acknowledgments/current
 ownership regressions pass. Terrain cleanup is exactly16 allocations and16
-disposals, each owning three Godot resources.
+disposals, each owning three prototype host resources.
 
 Private headless log: `preview-33e5cebe0c6c43c182d88b4fb9db1435.log`.
 Final GPU log: `preview-1bcfe267867e495896d2493557d726c7.log`; its private
@@ -125,7 +125,7 @@ clamp is established. Full TGEN traversal/lifecycle/query semantics remain open.
 
 ## Combined verification and next action
 
-Actual Core/Godot/default separate SmokeTests builds pass with zero warnings/
+Actual historical implementation path (omitted) separate SmokeTests builds pass with zero warnings/
 errors. Default Core execution passes its allowlisted18-event/zero-failure
 journal. Final workspace/link/whitespace/exact-scope/count receipts are in the
 session acceptance. No metrics are rescored: research89%, readiness94%,2,626

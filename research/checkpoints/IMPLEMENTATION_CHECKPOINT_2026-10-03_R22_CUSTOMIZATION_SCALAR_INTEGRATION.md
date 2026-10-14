@@ -6,7 +6,7 @@ October3,2026 UTC. Questions: can one CREO:3 delta mix field4 with six existing 
 
 Snapshot2443 public files, manifest `ef026386b3fcb2bbb0c03340e75e761dcd62f856798dda7ff1f00aa917894ecb`, ZIP `2e52e818dbcd3a713bfb0827b6b3663c98573371fe47f562997c6cedfcd01746`. Lead-frozen owned ordered customization/scalar union built before snapshot. Four isolated Low scopes reviewed before integration; no unfinished same-round dependencies.
 
-Readonly C:/Stardust-DEV configured overlay remains pinned by cfg SHA256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`. Original ACST priority53,458340 bytes, SHA256 `5A4F052E92B5E29CD3001CA1E0FE0438358CAA45E201E72E062BE65A6886DA20`. CIDM pin/count unchanged. No new VA or semantic-name claims, original execution, live contact, download, staging or publication. Cached .NET8/Godot4.7.2/bundled Python, task APPDATA, no-source native restore and shared compiler disabled. All raw original exports/captures remain ignored/private.
+Readonly C:/Stardust-DEV configured overlay remains pinned by cfg SHA256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`. Original ACST priority53,458340 bytes, SHA256 `5A4F052E92B5E29CD3001CA1E0FE0438358CAA45E201E72E062BE65A6886DA20`. CIDM pin/count unchanged. No new VA or semantic-name claims, original execution, live contact, download, staging or publication. Cached historical implementation path (omitted) Python, task APPDATA, no-source native restore and shared compiler disabled. All raw original exports/captures remain ignored/private.
 
 ## Observed gates and confidence
 
@@ -15,7 +15,7 @@ Readonly C:/Stardust-DEV configured overlay remains pinned by cfg SHA256 `22158E
 - Coordinator prepares owned raw, replication and pending-world-change candidates under serialized guards. All budgets/revision overflow precede no-callback assignment. Rejection leaves semantic state unchanged, including unrelated replication housekeeping; the worker removed incidental pruning discovered during inspection. Raw-only preserves replication state/revision; scalar-only preserves raw journal and issued receipt. Native196 checks/40 cases and symbolic independent ordered-state oracle pass. Prior raw136/28, consumer160, pump171, drain1165/37 remain passing.
 - Actual mixed wire host passes headless and GPU. Five appearance stages match original zero/varied hashes from Round21 while Height advances1.4,1.7,1.2,1.3,1.4 exactly once. Repeated Height and both raw/scalar orders work. Posture8/states64 and rank5/linkFEDCBA9876543210/shock3 reach typed state without inventing their rendering semantics. Empty fields advance raw revision but retain display while scalar Height still changes. Pose clock, original publication/resources and three balanced archive loads remain unchanged. Exact GPU upload/readback passes; independent mixed and prior nine-stage movement oracles agree.
 - Standalone held CPU composition preserves latest Height1.6, all six scalar values, walk frame4.5/source revision/ownership on late GPU commit. Independent original face preparation/composition and pixel audit finds36972 appearance pixels changed with identical silhouette/background. Committed PNG inspected. Generation loss/headless and destruction/GPU dispose without publishing held work and observe worker drain. No production wrapper bug found; only bounded preview diagnostics change. Native134 scalar/source97/composer regressions pass.
-- Default shared smoke and final shared/Godot builds pass with zero warnings/errors. Round21 field4-only host and Round20 real pending CPU close independently pass after integration. Known pre-frame certificate once/GPU shader nine diagnostics match prior accepted host runs; runtime diagnostics are not described as error-free.
+- Default shared smoke and final historical implementation path (omitted) builds pass with zero warnings/errors. Round21 field4-only host and Round20 real pending CPU close independently pass after integration. Known pre-frame certificate once/GPU shader nine diagnostics match prior accepted host runs; runtime diagnostics are not described as error-free.
 
 Confidence: Confirmed for tested bounded replacement behavior and exact original directory queries. Typed setters/ACST precedence rely on earlier pinned static research; no new original behavioral coverage score is claimed.
 
@@ -25,11 +25,8 @@ Each of the four linked worker checkpoints in the session supplies native produc
 
 Generate Round21 wire fixture and pinned private CIDM, then:
 
-```powershell
-& $taskPython poc/round22-tests/Integration/Generate-Mixed.py local-private/parallel-development/round21/integration-wire.json local-private/parallel-development/round22/integration-mixed.json
-./poc/round16-tests/Integration/Launch.ps1 -GodotPath $taskGodot -ArchiveRoot C:/Stardust-DEV -Configuration C:/Stardust-DEV/swgemu_live.cfg -FixturePath local-private/parallel-development/round16/integration-peer.json -CatalogProfile poc/preview-profiles/scene-object-catalog.json -MotionPeer local-private/parallel-development/round17/integration-motion.json -LocalInput -FaceProfile poc/preview-profiles/human-face-zero.json -CustomizationWirePeer local-private/parallel-development/round22/integration-mixed.json -CustomizationDictionary local-private/parallel-development/round21/original-cidm.iff -CustomizationScalars
-& $taskPython poc/round22-tests/Integration/verify_mixed.py $taskPrintedLog
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 Add -Gpu and fresh private CapturePath for GPU. Rendering22 launcher runs held race with -Retirement generation headless or -Retirement destroy plus a fresh private CapturePath for GPU; feed printed export/fixture/log and optional capture stem to Verify.py. Shared native flags are --round22-acst, --round22-customization-scalars, --round22-customization-state and --round22-height-race.
 

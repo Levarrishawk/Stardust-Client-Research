@@ -4,7 +4,7 @@
 
 Can a bounded engine-neutral compositor reproduce the selected original five prepared face layers under an explicit modern raster policy? Stop when hand-calculated fixtures and an independent raw-asset reference agree on coverage, mips and every layer's RGBA digest; GPU binding is next.
 
-Inputs: documented executable/DLL identities reverified this run; pinned original human object/SAT/config and BTRT from the [execution boundary](IMPLEMENTATION_CHECKPOINT_2026-10-01_FACE_EXECUTION_BOUNDARY.md). Original asset bytes are unchanged. Tools: .NET native smoke/optional object-root probe, Python/NumPy/Pillow raw rectangular reference, Godot build. No original binary execution/server contact.
+Inputs: documented executable/DLL identities reverified this run; pinned original human object/SAT/config and BTRT from the [execution boundary](IMPLEMENTATION_CHECKPOINT_2026-10-01_FACE_EXECUTION_BOUNDARY.md). Original asset bytes are unchanged. Tools: .NET native smoke/optional object-root probe, Python/NumPy/Pillow raw rectangular reference, prototype host build. No original binary execution/server contact.
 
 ## Findings and confidence
 
@@ -18,7 +18,7 @@ Interpretation/Strongly inferred: authored smaller rectangles plus texture dimen
 
 Run native `--skeletal-face-compose` with the established pinned original object/SAT/config options; run `tools/python/verify_skeletal_descriptors.py` over its ignored output with the configuration SHA pin. Exact51-source/2,283,555-byte union and prior source/geometry/texture/palette/program/preparation audits pass, followed by independent composition. Producer/verifier outputs remain private.
 
-Portable smoke passes hand-calculated blend/copied-alpha, shared-edge/clipping/degenerate/linear-address/LOD/ownership and missing-resource/sampler/pixels/winding/planarity/nonfinite/budget/cancellation gates. Godot build passes with zero warnings/errors. Workspace/link and diff checks recorded in the session; no staging/publication.
+Portable smoke passes hand-calculated blend/copied-alpha, shared-edge/clipping/degenerate/linear-address/LOD/ownership and missing-resource/sampler/pixels/winding/planarity/nonfinite/budget/cancellation gates. Prototype host build passes with zero warnings/errors. Workspace/link and diff checks recorded in the session; no staging/publication.
 
 ## Consequence and exact next action
 

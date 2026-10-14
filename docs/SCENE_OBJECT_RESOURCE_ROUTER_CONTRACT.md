@@ -1,6 +1,6 @@
 # Explicit scene object resource routing
 
-R13-A,2026-10-02. [SceneObjectResourceRouter](../../SWG-Godot-Client/poc/Stardust.Core/Assets/SceneObjectResourceRouter.cs) is an engine-neutral synchronous composition of the two accepted catalog recipes. It adds no world publication, initializer adapter, render abstraction, runtime switcher or implicit fallback/global catalog.
+R13-A,2026-10-02. SceneObjectResourceRouter (external historical reference) is an engine-neutral synchronous composition of the two accepted catalog recipes. It adds no world publication, initializer adapter, render abstraction, runtime switcher or implicit fallback/global catalog.
 
 ## API and discriminator
 
@@ -40,7 +40,7 @@ The token is checked before catalog routing, by existing reader callbacks around
 
 ## Fresh original proof and limits
 
-The supplied [two-entry profile](../../SWG-Godot-Client/poc/preview-profiles/scene-object-catalog.json) and pinned installed configuration select:
+The supplied two-entry profile (external historical reference) and pinned installed configuration select:
 
 | Route | CRC | Source closure | Textures/mips |
 | --- | --- | --- | --- |
@@ -49,8 +49,8 @@ The supplied [two-entry profile](../../SWG-Godot-Client/poc/preview-profiles/sce
 
 Both preserve the entire47-byte synthetic real-layout create: U64 ID`FEDCBA9876543210`, seven raw float words`80000000/3E800000/BF000000/40000000/42F70000/C2350000/00000001`, selected CRC and raw flag255. Quaternion/position values are neither repaired nor normalized/reordered. Five inherited creature templates and terminal object/inheritance/APT/LOD/mesh dependencies are checked by the accepted independent original audits. Every routed source priority/length/SHA and texture mip hash matches those independently checked closures. This is original asset/modern router evidence, not a global recipe catalog or recovered original routing/world readiness behavior.
 
-[Native scenario](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneObjectResourceRouterScenarios.cs) passes65 rejection checks: unknown/incorrect recipes/options, null/nonfinite/canceled inputs, invalid option bounds/pins/routes/policies, missing/masked sources, wrong root/appearance/frame pins, unsupported complete-material policy, actual frame range, source/decode budgets and resolver exceptions. Preflight reads0; canceled resolvers make exactly one call per route. Exact source count/byte bounds succeed; one below rejects. All66 borrowed original buffers are cleared without changing whole-payload/pixel fingerprints; output remains valid after worker-owned archive scopes close. Dedicated workers differ from the caller thread. Source/option maps reject mutation. These are native observations; Python checks their receipts without claiming to re-execute ownership/cancellation.
+Native scenario (external historical reference) passes65 rejection checks: unknown/incorrect recipes/options, null/nonfinite/canceled inputs, invalid option bounds/pins/routes/policies, missing/masked sources, wrong root/appearance/frame pins, unsupported complete-material policy, actual frame range, source/decode budgets and resolver exceptions. Preflight reads0; canceled resolvers make exactly one call per route. Exact source count/byte bounds succeed; one below rejects. All66 borrowed original buffers are cleared without changing whole-payload/pixel fingerprints; output remains valid after worker-owned archive scopes close. Dedicated workers differ from the caller thread. Source/option maps reject mutation. These are native observations; Python checks their receipts without claiming to re-execute ownership/cancellation.
 
-The own [compact oracle](../../SWG-Godot-Client/poc/round13-tests/Assets/verify_router.py) verifies raw wire/catalog/routing/source totals and mip identity, composing accepted source/pin/inheritance/geometry/pixel auditors. Existing albedo and selected-frame regression scenarios pass16 and168 rejection cases. No whole corpus rescan, original executable/GPU/network execution or world publication is performed. [Checkpoint and commands](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R13_RESOURCE_ROUTER.md).
+The own compact oracle (external historical reference) verifies raw wire/catalog/routing/source totals and mip identity, composing accepted source/pin/inheritance/geometry/pixel auditors. Existing albedo and selected-frame regression scenarios pass16 and168 rejection cases. No whole corpus rescan, original executable/GPU/network execution or world publication is performed. [Checkpoint and commands](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R13_RESOURCE_ROUTER.md).
 
 The shared --round13-resource-router entry registers the explicit four-input original proof. Round14's separately accepted [generic initializer/world](SCENE_MIXED_WORLD_CONTRACT.md) now adapts this discriminator with the [pure completion gate](SCENE_OBJECT_RESOURCE_VALIDATION_CONTRACT.md); [mixed original rendering](MIXED_WORLD_PREVIEW_CONTRACT.md) uses recipe-specific guarded adapters. The router itself remains synchronous and owns no world readiness/publication policy.

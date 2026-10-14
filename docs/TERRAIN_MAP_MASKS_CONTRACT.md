@@ -1,6 +1,6 @@
 # Terrain map mask inputs
 
-[TerrainMapMasks](../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainMapMasks.cs) is an owned engine-neutral decoder for the conceptual MAPS object. It consumes its **direct version FORM**, not a PTAT/TGEN document or literal `FORM MAPS` wrapper.
+TerrainMapMasks (external historical reference) is an owned engine-neutral decoder for the conceptual MAPS object. It consumes its **direct version FORM**, not a PTAT/TGEN document or literal `FORM MAPS` wrapper.
 
 ```csharp
 TerrainMapMasks Decode(ReadOnlySpan<byte> versionForm, TerrainMapMaskLimits? limits = null);
@@ -48,4 +48,4 @@ Read-only root `C:/Stardust-DEV`, configuration `swgemu_live.cfg` SHA `22158E5BD
 
 DATA:16384.0 (`0x46800000`),8.0 (`0x41000000`),256,2048. Each mask is524,288 bytes. WMAP SHA `B893659B5BCE74ACFC851BF4613F6B25A8DEB9EC1DEE27D7103910376743F3FF`; SMAP SHA `D14368C40FDAB9F37C197F9BA0F6C92E7AE236579AC6B3BF6D3FA0E14CB114D9`. Native receipt prints input identities, raw/float metadata, hashes and sampled grid bits after archives close and source buffers clear. The independent Python oracle reconstructs the direct form from raw extents and computes both hashes and sampled bits.
 
-[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainMapMasksScenarios.cs) and [fixture producer/oracle](../../SWG-Godot-Client/poc/round31-tests/Assets/verify_masks.py) pass143 synthetic fixtures (five accepted/138 rejected),18 point/14 rectangle values, five query rejections and four ownership checks. Exact/one-less caps, empty forms, positive subnormals, padded/non-byte-aligned grids, malformed metadata/records/extents, all92 truncated prefixes and clone isolation are covered. All proprietary detailed receipts remain private; no corpus sweep or original executable run occurs. [Checkpoint and commands](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R31_TERRAIN_MAP_MASKS.md).
+Native scenarios (external historical reference) and the separate implementation record pass143 synthetic fixtures (five accepted/138 rejected),18 point/14 rectangle values, five query rejections and four ownership checks. Exact/one-less caps, empty forms, positive subnormals, padded/non-byte-aligned grids, malformed metadata/records/extents, all92 truncated prefixes and clone isolation are covered. All proprietary detailed receipts remain private; no corpus sweep or original executable run occurs. [Checkpoint and commands](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R31_TERRAIN_MAP_MASKS.md).

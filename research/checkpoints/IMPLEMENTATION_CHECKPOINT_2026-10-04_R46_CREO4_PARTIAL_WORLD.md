@@ -30,6 +30,6 @@ Reproduce with bundled Python (UTF8/no bytecode), cached .NET8 packages and priv
 
 ## Scope and next action
 
-Only assigned SceneWorldCoordinator plus four new assigned artifacts and five own runner files are eligible for integration. Frozen kernel/store/full4/full6/codec/default routing, canonical rows, other worker files and Godot remain unchanged. Lead owns living status/ledger reconciliation. No stage/commit/push/download/publication, original execution/live/capture/fuzzing/external mutation or sibling/lead messages.
+Only assigned SceneWorldCoordinator plus four new assigned artifacts and five own runner files are eligible for integration. Frozen kernel/store/full4/full6/codec/default routing, canonical rows, other worker files and prototype host remain unchanged. Lead owns living status/ledger reconciliation. No stage/commit/push/download/publication, original execution/live/capture/fuzzing/external mutation or sibling/lead messages.
 
 Next bounded probe: consume nullable received movement observations in an explicit renderer/host adapter, defining missing-field behavior without original/default guesses. Integration owner should review source and receipts, replay independent and frozen gates, and reconcile canonical progress only after acceptance. Full/partial merging and original template defaults remain unresolved.

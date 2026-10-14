@@ -28,7 +28,7 @@ Frozen68 verifier SHA
 gated before prior mapping/path/original-record reuse; earlier source chain gated.
 No prior lookup/accessor/predicate/setter/serializer/normalization suite repeats.
 
-Only new [verifier](../../../SWG-Godot-Client/tools/python/verify_terrain_shader_family_selector.py),
+Only new verifier (external historical reference),
 [contract](../../docs/TERRAIN_SHADER_FAMILY_SELECTOR_CONTRACT.md), this checkpoint
 andtwo own69Assets runners. All4226 baseline/shared/registry/ledger bytes frozen;
 lead owns canonical integration. No unfinished69 sibling, original execution/live
@@ -78,7 +78,7 @@ Dated68 unknownABI report stays historical; durable69 contract provides closure.
 
 ## Reproduction and meaningful original occurrence
 
-[Portable runner](../../../SWG-Godot-Client/poc/round69-tests/Assets/Invoke-SelectedRule.ps1):
+Portable runner (external historical reference):
 
 ```powershell
 & ./poc/round69-tests/Assets/Invoke-SelectedRule.ps1 -Python $Python -Exe $Exe -Packages $CachedStaticPackages -AssetRoot $AssetRoot -Config $Config

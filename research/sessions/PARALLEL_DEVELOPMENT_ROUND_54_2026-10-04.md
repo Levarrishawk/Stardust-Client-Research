@@ -34,7 +34,7 @@ remain separate. Acceptance pending; do not dispatch another round before it.
 
 ## Round54 accepted increment
 
-Four Low workers are idle. All28 integrated final hashes must match actual handoffs at assembled acceptance. Worker76/156 selection/field cases and two static carriers/map assignment pass; lead native/Fraction/headless/GPU, late zero-allocation rejection, prior host and final Core/Godot gates pass. [Lead checkpoint](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R54_PER_CELL_TERRAIN_AND_PLAYER_CARRIER.md). Assembled scope/link/hash acceptance follows.
+Four Low workers are idle. All28 integrated final hashes must match actual handoffs at assembled acceptance. Worker76/156 selection/field cases and two static carriers/map assignment pass; lead native/Fraction/headless/GPU, late zero-allocation rejection, prior host and final historical implementation path (omitted) gates pass. [Lead checkpoint](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R54_PER_CELL_TERRAIN_AND_PLAYER_CARRIER.md). Assembled scope/link/hash acceptance follows.
 
 ## Assembled acceptance
 

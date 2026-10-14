@@ -4,7 +4,7 @@ October 3, 2026 UTC. Final bounded overnight round. Questions: can original map 
 
 ## Input identity and scope
 
-Four persistent Low workers received 2,754-file snapshot manifest093a193c288ed5889c62317c57028a26f0afffa9c710b104a9c5f9bd2163b0fb and ZIPd80bb36fd1d71a63ff31d2eaf28a5d9dc7c90de197b5e0abd7bd2bf29f86dc70. Full member/hash/path/ancestor-link preflight preceded overlay. Exact working-byte scopes reviewed and integrated; cached Python/.NET8/static packages/Godot only. Original executable hash E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150 checked before VA reliance. No original execution, live contact, downloaded toolchain or publication.
+Four persistent Low workers received 2,754-file snapshot manifest093a193c288ed5889c62317c57028a26f0afffa9c710b104a9c5f9bd2163b0fb and ZIPd80bb36fd1d71a63ff31d2eaf28a5d9dc7c90de197b5e0abd7bd2bf29f86dc70. Full member/hash/path/ancestor-link preflight preceded overlay. Exact working-byte scopes reviewed and integrated; cached Python/.NET8/static historical implementation path (omitted) only. Original executable hash E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150 checked before VA reliance. No original execution, live contact, downloaded toolchain or publication.
 
 ## Accepted specialist behavior
 
@@ -15,9 +15,9 @@ Four persistent Low workers received 2,754-file snapshot manifest093a193c288ed58
 
 ## Actual consumed-time failure join
 
-Lead added explicit terminal-clock-fault fixture mode above accepted30 delivery. Both actual main headless and hidden GPU runs pass ten preceding states/all8 original mip identities, then a500-second input consumes500000 clock ticks within its clock budget but exceeds cursor catch-up budget. The playback faults/closes, owns zero registrations, outer presentation and eight-texture cache retire, visual receipt is unchanged and no delivery retry occurs. Host closes all three archive jobs and preserves earlier typed TANO3/CREO3 oracle results. Exact existing pre-frame certificate/GPU initialization allowances remain; no post-frame errors are tolerated. [Independent failure verifier](../../../SWG-Godot-Client/poc/round31-tests/Integration/verify_clock_fault.py) checks tick consumption, fault/retirement and cache/clock drain.
+Lead added explicit terminal-clock-fault fixture mode above accepted30 delivery. Both actual main headless and hidden GPU runs pass ten preceding states/all8 original mip identities, then a500-second input consumes500000 clock ticks within its clock budget but exceeds cursor catch-up budget. The playback faults/closes, owns zero registrations, outer presentation and eight-texture cache retire, visual receipt is unchanged and no delivery retry occurs. Host closes all three archive jobs and preserves earlier typed TANO3/CREO3 oracle results. Exact existing pre-frame certificate/GPU initialization allowances remain; no post-frame errors are tolerated. Independent failure verifier (external historical reference) checks tick consumption, fault/retirement and cache/clock drain.
 
-This is modern bounded fault retirement, not original timing/overflow/renderer parity. Normal supplied-time and clock-backed paths were separately verified in30; final shared default Core suite, zero-warning/error Godot build and normal14-state clock headless regression pass after all source integration.
+This is modern bounded fault retirement, not original timing/overflow/renderer parity. Normal supplied-time and clock-backed paths were separately verified in30; final shared default Core suite, zero-warning/error prototype host build and normal14-state clock headless regression pass after all source integration.
 
 ## Confidence and next action
 

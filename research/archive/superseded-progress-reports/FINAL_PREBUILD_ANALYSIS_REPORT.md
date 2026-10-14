@@ -64,33 +64,8 @@ The sole client baseline is `C:\Stardust-DEV\Stardust.exe`, SHA-256 `E782BF1C49B
 
 ## Reconstructed client architecture
 
-```mermaid
-flowchart TD
-    PL[Platform: process/window/time/threads] --> LOOP[Lifecycle and frame scheduler]
-    PL --> IN[Raw input -> action map]
-    PL --> SOCK[UDP sockets]
-    SOCK --> SOE[SOE session/reliability/transforms]
-    SOE --> CODEC[Named fixed-width message codecs]
-    CODEC --> SESS[Login/zone/session state machine]
-    CODEC --> TX[Transactional replication commit]
-    TX --> REG[64-bit NetworkObject registry]
-    REG --> DOM[Typed object/domain state]
-    DOM --> EVT[Typed domain events]
-    EVT --> UI[UI mediators]
-    EVT --> AV[Appearance/animation/audio]
-    VFS[TRE overlay VFS] --> IFF[Bounds-checked IFF/table codecs]
-    IFF --> RES[Typed dependency graph/cache]
-    RES --> WORLD[Terrain/cells/portals/scene]
-    RES --> AV
-    WORLD --> VIS[Visibility and draw extraction]
-    AV --> VIS
-    VIS --> REN[Semantic renderer interface]
-    REN --> GPU[Godot or DX12/Vulkan backend]
-    LOOP --> TX
-    LOOP --> WORLD
-    LOOP --> UI
-    LOOP --> REN
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 ### Required ownership rules
 
@@ -150,9 +125,9 @@ Use engine-neutral intermediate resources and dependency tracking. Directly impo
 
 If a custom renderer is selected, **DX12 is the recommended first backend** for the currently Windows-only project. The reasons are Windows deployment alignment, PIX/DRED/Visual Studio diagnostics, HLSL/DXC, simpler platform integration and no demonstrated near-term need for Linux-native delivery. Vulkan offers valuable portability but does not simplify SWG's legacy material, asset or lifecycle reconstruction; it adds extension/platform/tooling work before portability has product value.
 
-Keep the semantic renderer narrow enough for a later Vulkan backend. This recommendation does not decide custom renderer versus Godot.
+Keep the semantic renderer narrow enough for a later Vulkan backend. This recommendation does not decide custom renderer versus prototype host.
 
-## Godot versus custom client decision
+## Prototype host versus custom client decision
 
 Analysis is now sufficient to begin the engine evaluation requested by the user. The decision must use `ENGINE_DECISION_REQUIREMENTS.md` and four bounded spikes:
 
@@ -161,7 +136,7 @@ Analysis is now sufficient to begin the engine evaluation requested by the user.
 3. one human customization/wearable/animation chain;
 4. one terrain plus portal-building world slice with transition cancellation.
 
-Godot should be evaluated first as the high-leverage engine option. It wins if it hosts these models without a deep engine fork, duplicate authoritative scene graph or compromised headless/lifecycle control. A custom DX12 client wins if character/world integration requires bypassing Godot's core resource, animation or scene systems. Vulkan is held as a portability-driven alternative.
+Prototype host should be evaluated first as the high-leverage engine option. It wins if it hosts these models without a deep engine fork, duplicate authoritative scene graph or compromised headless/lifecycle control. A custom DX12 client wins if character/world integration requires bypassing prototype host's core resource, animation or scene systems. Vulkan is held as a portability-driven alternative.
 
 No engine spike or replacement implementation was begun during this analysis.
 
@@ -211,7 +186,7 @@ No renderer, engine window, TRE loading, UI, audio, character selection or world
 ## Proposed development sequence
 
 1. Review this report and run the engine decision spikes.
-2. Select Godot or custom DX12 (Vulkan only if portability requirement changes).
+2. Select prototype host or custom DX12 (Vulkan only if portability requirement changes).
 3. Implement the engine-neutral x64 networking POC with golden tests.
 4. Extend through zone authentication and scene transcript harness.
 5. Implement object registry and representative baseline/delta schemas headlessly.

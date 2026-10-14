@@ -13,7 +13,7 @@ Baseline executable SHA-256:
 All addresses are VAs for that PE32 image. The selected body is exactly
 `01320590..0132065F`,208 bytes,85 instructions, SHA
 `ad7f167f1af74dd4aa9d8bdd3e65e868dd15586b88bc6f535ba112b61b7bd966`.
-The [verifier](../../SWG-Godot-Client/tools/python/verify_terrain_shader_family_predicate.py) gates
+The verifier (external historical reference) gates
 identity before PE parsing or VA reads, independently maps raw PE headers and
 sections, crosschecks pefile's mapping, verifies53 raw-byte/decoded-operand
 anchors and the full body hash, and reconciles four direct call sites and12
@@ -133,7 +133,7 @@ call selects the zero branch follows from the static image.
 
 ## Witnesses, limits and replay
 
-The [portable peer](../../SWG-Godot-Client/poc/round63-tests/Assets/peer.py) passes127 negative guards:
+The portable peer (external historical reference) passes127 negative guards:
 7 wrong identities,3 sealed-input,6 PE truncation,6 PE-header,7 mapped-extent,
 54 raw/operand-anchor,6 body/caller,16 control-edge,10 lead/site-budget,
 8 output-path and4 no-publication integration checks. Reparse checks use
@@ -158,7 +158,7 @@ establish byte-model applicability, not an observed original query, runtime
 mode, consumer result, shader/material meaning or new corpus coverage. Original
 strings and instruction details remain ignored; public stdout is aggregate.
 
-Replay [Invoke-SelectedRule.ps1](../../SWG-Godot-Client/poc/round63-tests/Assets/Invoke-SelectedRule.ps1)
+Replay Invoke-SelectedRule.ps1 (external historical reference)
 with cached Python/static packages and explicit original inputs:
 
 ```powershell

@@ -13,12 +13,12 @@ Accepted71 frozen input:4335 public files. Manifest SHA-256
 Trusted sync completed before edits and preserved private material/HEAD/index. Original
 executable identity was verified as
 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`;
-it was only hashed, never executed. Cached Python, .NET8, Godot4.7.2 .NET x64 and offline
+it was only hashed, never executed. Cached Python, .NET8, prototype host4.7.2 .NET x64 and offline
 cached packages execute only the replacement scenes. No original asset reads are needed.
 
 ## Findings versus interpretation
 
-Observation: [SetPivot](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainCameraOrbitHost.cs) accepts a
+Observation: SetPivot (external historical reference) accepts a
 bounded candidate, calculates position before effects, performs actual GlobalPosition
 and LookAt with guards, and commits Pivot after both return. Interpretation: it supports
 an explicit modern following adapter without owning an actor or simulation clock.
@@ -35,8 +35,8 @@ following remains available during disabled input; caller must disable following
 separately if its UI policy requires that.
 
 Observation: a retained precision experiment used a large pivot and0.25 distance. Its
-rounded candidate differed from target, yet Godot logged "same position" during LookAt.
-Interpretation: exact binary32 distinction is insufficient for Godot's approximate
+rounded candidate differed from target, yet prototype host logged "same position" during LookAt.
+Interpretation: exact binary32 distinction is insufficient for prototype host's approximate
 origin/target admission. Confidence: Confirmed engine diagnostic; the general policy is
 bounded by direct IsEqualApprox admission. Consequence: new SetPivot rejects this case
 before effects. Existing Configure/Dispatch behavior is deliberately preserved. Final
@@ -54,7 +54,7 @@ and preflight-versus-mutation failure behavior.
 
 ## Validation and retained limits
 
-[Independent producer/verifier](../../../SWG-Godot-Client/poc/round72-tests/Rendering/verify_picker.py)
+the separate implementation record
 creates both new and existing-orbit expectations before native execution. The frozen
 regression source is verified against the incoming archive and staged privately. Final
 standalone build has zero warnings/errors. New scene:98 headless/100 GPU checks,
@@ -66,7 +66,7 @@ Focused audit verifies4334 frozen files unchanged and only the allowed existing 
 changed, plus nine new public files. Eight runner rejection cases, PowerShell syntax,
 Python/XML/Markdown checks, workspace validator, diff whitespace, HEAD/index and private
 ignore gates pass. Initial failing precision experiment and its corrected replay remain
-ignored for audit. The offline Godot root-certificate-store warning remains with exit0;
+ignored for audit. The offline prototype host root-certificate-store warning remains with exit0;
 final runs contain no LookAt failure or resource leak diagnostics.
 
 No main scene, registry, ledgers or unfinished sibling source changed. No root motion,

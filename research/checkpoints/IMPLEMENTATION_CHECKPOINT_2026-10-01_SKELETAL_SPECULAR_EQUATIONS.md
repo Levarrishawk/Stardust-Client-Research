@@ -12,7 +12,7 @@ Original body/head/face specularRGB0.2/power20 and mouthRGB1/power300 independen
 
 ## Implementation and proof
 
-Engine-neutral immutable StaticShaderMaterial, selected SkeletalSpecularMaterials and supplied-light SkeletalSpecularEvaluator preserve this boundary. Explicit evaluator limits on power/half-angle/finite inputs are documented policy. Native full suite/asymmetric hand vectors and original missing-record/texture/program/sampler negatives pass; Godot build zero warnings/errors.79-source original union remains6,982,490 bytes.
+Engine-neutral immutable StaticShaderMaterial, selected SkeletalSpecularMaterials and supplied-light SkeletalSpecularEvaluator preserve this boundary. Explicit evaluator limits on power/half-angle/finite inputs are documented policy. Native full suite/asymmetric hand vectors and original missing-record/texture/program/sampler negatives pass; prototype host build zero warnings/errors.79-source original union remains6,982,490 bytes.
 
 Independent Python raw MATL and bounded original PEXE interpreter agree for192 point-texel/supplied-light cases, maximum9.305903359013712e-8 at1e-5 tolerance. Detailed proprietary-derived original programs remain ignored; no bytecode was embedded into curated code. Private evidence specular-native.txt/specular-independent.txt/specular-smoke.txt and material-loader/color-reader/pack/constant-upload-direct.txt support reproducibility.
 

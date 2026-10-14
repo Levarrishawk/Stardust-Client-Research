@@ -59,7 +59,7 @@ values invented for absent metadata.
 
 ## Implementation and verification
 
-[TerrainBoundaryRectangleInput](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainBoundaryRectangleInput.cs)
+TerrainBoundaryRectangleInput (external historical reference)
 accepts spans or frozen TerrainGeneratorSection, checks bytes before snapshot/
 section copy, uses bounded IFF, preserves complete known/opaque bytes and
 publishes immutable header/fields plus independent word/extension copies.

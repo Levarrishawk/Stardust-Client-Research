@@ -59,7 +59,7 @@ This is a scoped render-target copy/readback service, not the complete frame ren
 ## Replacement consequences
 
 - Preserve the abstract operations—create sampled/renderable image, choose subresource, transition/bind as target, read back/copy, restore prior target—but do not reproduce global COM pointers or D3D9 pool semantics.
-- DX12/Godot adapters require explicit image usage flags, barriers/layout transitions, staging/readback resources, fences and reset/recreation policy.
+- historical implementation path (omitted) adapters require explicit image usage flags, barriers/layout transitions, staging/readback resources, fences and reset/recreation policy.
 - Dynamic shader tag registration should reference renderer-neutral texture handles. The material system must not retain raw pointers to backend images.
 - Post-processing clearly requires multiple same-frame render targets and shader chaining, so the future renderer needs an explicit render graph or equivalent ordered pass description.
 

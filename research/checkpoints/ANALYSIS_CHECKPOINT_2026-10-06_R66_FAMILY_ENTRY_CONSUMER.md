@@ -27,7 +27,7 @@ candidate has no canonical semantic label. Verified executable SHA before static
 Frozen65 verifier plus61/33 one-occurrence decoder sources are separately SHA-gated
 before import. Reuse only mapping/path/raw decoding; no old static suite rerun.
 
-Only new assigned [verifier](../../../SWG-Godot-Client/tools/python/verify_terrain_shader_family_entry_accessor.py),
+Only new assigned verifier (external historical reference),
 [contract](../../docs/TERRAIN_SHADER_FAMILY_ENTRY_ACCESSOR_CONTRACT.md), this checkpoint,
 and two own66Assets runners. All4123 baseline files/shared hosts/registries/ledgers
 remain frozen. Lead owns canonical integration. No unfinished66 sibling dependency,
@@ -86,7 +86,7 @@ and field/store/ABI addresses are in the contract rather than duplicated here.
 
 ## Reproduction and verification
 
-[Portable runner](../../../SWG-Godot-Client/poc/round66-tests/Assets/Invoke-SelectedRule.ps1):
+Portable runner (external historical reference):
 
 ```powershell
 & ./poc/round66-tests/Assets/Invoke-SelectedRule.ps1 -Python $Python -Exe $Exe -Packages $CachedStaticPackages -AssetRoot $AssetRoot -Config $Config

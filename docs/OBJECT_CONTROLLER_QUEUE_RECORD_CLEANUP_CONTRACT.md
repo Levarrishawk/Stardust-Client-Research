@@ -4,7 +4,7 @@ Round 58, 2026-10-04. Bounded question: what does `00AA67C0` initialize, and wha
 
 ## Input and reproducibility
 
-Baseline `Stardust.exe` SHA-256: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Addresses are baseline VAs. The [verifier](../../SWG-Godot-Client/tools/python/verify_object_controller_queue_record_cleanup.py) rejects another executable before importing analysis packages or using addresses. It decodes only two full bodies with pefile/Capstone in 32-bit x86 mode. The [independent checks](../../SWG-Godot-Client/poc/round58-tests/Networking/research_checks.py) map PE sections manually and inspect selected bytes and the three accepted caller edges.
+Baseline `Stardust.exe` SHA-256: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Addresses are baseline VAs. The verifier (external historical reference) rejects another executable before importing analysis packages or using addresses. It decodes only two full bodies with pefile/Capstone in 32-bit x86 mode. The independent checks (external historical reference) map PE sections manually and inspect selected bytes and the three accepted caller edges.
 
 | Body | Bytes / instructions | SHA-256 |
 | --- | --- | --- |

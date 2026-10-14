@@ -43,5 +43,5 @@ No installed modern DDS corpus or BC6H/BC7 pixels were tested.
 
 Next modern-format action: introduce independently checked BC7 mode/partition
 fixtures and an RGBA decoder; keep BC6H and signed-channel output contracts
-separate. The [Godot preview](IMPLEMENTATION_CHECKPOINT_2026-09-29_ORIGINAL_GODOT_PREVIEW.md)
+separate. The [prototype host preview](IMPLEMENTATION_CHECKPOINT_2026-09-29_ORIGINAL_PROTOTYPE_PREVIEW.md)
 already distinguishes explicit Linear versus sRGB/unspecified color textures.

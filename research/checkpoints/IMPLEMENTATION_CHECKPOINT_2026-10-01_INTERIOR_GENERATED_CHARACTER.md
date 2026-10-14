@@ -2,7 +2,7 @@
 
 ## Question and stopping condition
 
-Can the owned original generated face and albedo factors enter the existing interior character scene while retaining single-read asset ownership, geometry, animation, room transfers and cleanup? Stop at independent original byte/field/pixel agreement and offline Godot route/GPU/cancellation proofs.
+Can the owned original generated face and albedo factors enter the existing interior character scene while retaining single-read asset ownership, geometry, animation, room transfers and cleanup? Stop at independent original byte/field/pixel agreement and offline prototype host route/GPU/cancellation proofs.
 
 ## Input identity and method
 
@@ -12,19 +12,19 @@ Inputs are the unchanged configured installed overlay: configuration SHA25622158
 
 `InteriorSceneContentBundleReader` accepts explicit face values and an albedo-factor option, validates required stages before lookup, loads all dependencies through the existing scene cache and composes the face before publishing the character. Cancellation checks guard source lookup, composition and final delivery. The character's nested source budget is128/32MiB when generating a face; the outer scene keeps its existing256/128MiB bound.
 
-The Godot worker owns profile parsing, original loading and CPU composition. GPU publication remains on the main thread after the archive scope closes. Existing per-mesh generated MAIN bindings and sampled albedo shaders are reused; rebuilt animation surfaces retain the same materials. Launcher paths are resolved before process launch; the first attempt exposed and corrected a relative-profile path failure.
+The prototype host worker owns profile parsing, original loading and CPU composition. GPU publication remains on the main thread after the archive scope closes. Existing per-mesh generated MAIN bindings and sampled albedo shaders are reused; rebuilt animation surfaces retain the same materials. Launcher paths are resolved before process launch; the first attempt exposed and corrected a relative-profile path failure.
 
 Confirmed original result:139 unique sources/15,541,123 bytes, one generated head MAIN binding, four albedo descriptions/two original programs,32 face DDS/251 declared mips/three face palettes. The face output agrees with the independent rectangular/Pillow/NumPy reference under the explicit modern composition policy. Both character meshes total2,810 triangles. The original three-room guard retains42,986 triangles.
 
-Native route:2,880 ticks,24 transfers,182 blocked contacts; every recorded locator and reflected-owner position independently agrees with floor bytes. This does not independently reimplement the dynamic door controller. Godot proves guarded closing behavior, denied entry/retreat/reset, physical keyboard/mouse routes, transformed owners, timestamped transfers/stall/pause/focus, two idle cycles and retained byte/material identities. GPU filtered albedo fixtures agree within0.001545 normalized error; tolerance remains2/255. Capture visually inspected: colored animated character with generated face inside the original interior.
+Native route:2,880 ticks,24 transfers,182 blocked contacts; every recorded locator and reflected-owner position independently agrees with floor bytes. This does not independently reimplement the dynamic door controller. Prototype host proves guarded closing behavior, denied entry/retreat/reset, physical keyboard/mouse routes, transformed owners, timestamped transfers/stall/pause/focus, two idle cycles and retained byte/material identities. GPU filtered albedo fixtures agree within0.001545 normalized error; tolerance remains2/255. Capture visually inspected: colored animated character with generated face inside the original interior.
 
 ## Reproduction and validation
 
-Native command: `dotnet run --no-restore --project poc/Stardust.Core.SmokeTests -- --original-interior-generated-character <archive-root> --configuration <cfg> --scene-spec <spec> --expected-sha256 <spec-pin>`. Run from repository root; explicit authored values come from [human face profile](../../../SWG-Godot-Client/poc/preview-profiles/human-face-zero.json).
+Native command: `dotnet run --no-restore --project poc/Stardust.Core.SmokeTests -- --original-interior-generated-character <archive-root> --configuration <cfg> --scene-spec <spec> --expected-sha256 <spec-pin>`. Run from repository root; explicit authored values come from human face profile (external historical reference).
 
 Independent command: `python tools/python/verify_original_interior_sphere.py <archive-root> <cfg> <native-output> --configuration-sha256 <configuration-pin>`. It reuses the raw face resource/preparation/program/composition/binding and albedo auditors, checks all source identities/counts and single external reads, and retains the room/character/floor audits.
 
-Godot launcher adds `-SceneCharacterMaterialDefaults -SceneCharacterPaletteDefaults -SceneCharacterFaceProfile <profile> -SceneCharacterAlbedoFactors` to the prior pinned animated interior command. Headless and GPU checks pass. Strict option/canceled-before-lookup gates are included in the portable suite. Worker cancellation at first lookup must close the archive and publish zero scene/GPU objects. Private native/reference/log/capture outputs remain ignored.
+Prototype host launcher adds `-SceneCharacterMaterialDefaults -SceneCharacterPaletteDefaults -SceneCharacterFaceProfile <profile> -SceneCharacterAlbedoFactors` to the prior pinned animated interior command. Headless and GPU checks pass. Strict option/canceled-before-lookup gates are included in the portable suite. Worker cancellation at first lookup must close the archive and publish zero scene/GPU objects. Private native/reference/log/capture outputs remain ignored.
 
 ## Confidence and implementation consequence
 

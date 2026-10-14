@@ -1,6 +1,6 @@
 # TANO view3 owned baseline and delta codecs
 
-Round26 Networking, October3,2026. [TangibleView3BaselineCodec](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/TangibleView3BaselineCodec.cs) is an independent eleven-field TANO:3 reader/writer. [TangibleView3DeltaCodec](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/TangibleView3DeltaCodec.cs) accepts ordered indices0..10 only. Both use frozen [TangibleView3Models](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/TangibleView3Models.cs). This is a standalone offline codec stage; typed TANO world binding, atomic transactions, display and component state application remain separate.
+Round26 Networking, October3,2026. TangibleView3BaselineCodec (external historical reference) is an independent eleven-field TANO:3 reader/writer. TangibleView3DeltaCodec (external historical reference) accepts ordered indices0..10 only. Both use frozen TangibleView3Models (external historical reference). This is a standalone offline codec stage; typed TANO world binding, atomic transactions, display and component state application remain separate.
 
 ## Evidence and schema boundary
 
@@ -55,7 +55,7 @@ Baseline encode independently recomputes wire length, logical charge, finite val
 
 ## Verification and reproduction
 
-[Native scenario](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TangibleView3CodecScenarios.cs), [runner](../../SWG-Godot-Client/poc/round26-tests/Networking/Networking.csproj) and [independent Python producer/oracle](../../SWG-Godot-Client/poc/round26-tests/Networking/peer.py) require only synthetic bytes.45 baselines/30 deltas round-trip exactly;3,447,617 negative probes and18,335 ownership/cap/sibling checks pass. Python independently revalidates75 complete wires, all baseline fields/raw component duplicates, ordered delta indices/values and charges, rejects21 malformed cases and74 one-less decoded budgets.
+Native scenario (external historical reference), runner (external historical reference) and the separate implementation record require only synthetic bytes.45 baselines/30 deltas round-trip exactly;3,447,617 negative probes and18,335 ownership/cap/sibling checks pass. Python independently revalidates75 complete wires, all baseline fields/raw component duplicates, ordered delta indices/values and charges, rejects21 malformed cases and74 one-less decoded budgets.
 
 The negative count is dominated by3,433,054 large-frame prefixes and is not a coverage percentage. EVERY fixture frame prefix is checked; corrected-envelope internal-field prefixes are exhaustive for small fixtures and first64/final16 for large fixtures. Other negatives cover trailing baseline bytes, wrong family/view/kind/opcode/size, nonfinite floats, every creature-extension index, malformed/overflow string/unit/component counts, aggregate names, invalid limit arithmetic and all logical cap categories. Exact limits pass and one-less applicable limits reject on both decode/encode.
 

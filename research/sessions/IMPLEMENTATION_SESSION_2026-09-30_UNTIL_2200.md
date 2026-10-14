@@ -14,7 +14,7 @@ The [prior run](IMPLEMENTATION_SESSION_2026-09-30_UNTIL_1500.md) supplies floor 
 
 2. [Precise persistent sloped door actor](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PRECISE_DOOR_ACTOR.md): original YT-2400 both directions/two owner poses pass 1,896 independent ticks / 88 transfers / 53 blocked. Same 782-candidate screen completes 495 exact round trips. Returned-height repair eliminates InvalidStart; 1,000 steep-plane synthetic and all 17,658 original floor probes pass.
 
-3. [Precise Godot host](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PRECISE_DOOR_GODOT.md): explicit sloped option passes pinned forward headless/reverse GPU controls, scheduling, timestamped input, diagonal round trips and reflected placement; private capture inspected.
+3. [Precise prototype host host](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PRECISE_DOOR_PROTOTYPE.md): explicit sloped option passes pinned forward headless/reverse GPU controls, scheduling, timestamped input, diagonal round trips and reflected placement; private capture inspected.
 
 4. [Thin target landing](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_LANDING_NORMAL.md): 10-micrometre inward-edge fallback closes Yavin reverse failure. Original 948/44/64 independent trace and 1,000 synthetic target landings pass. Screen now 496 exact round trips; no LandingFailed.
 
@@ -26,17 +26,17 @@ The [prior run](IMPLEMENTATION_SESSION_2026-09-30_UNTIL_1500.md) supplies floor 
 
 8. [World step/portal actor](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_PORTAL_FLOOR_STEP.md): original small-house both directions/two poses pass 1,896 ticks / 88 transfers / 88 steps / 58 blocked. Native world rollback/snapshot/transfer cap gates pass. Screen now 504 exact round trips, 29 remaining Accepted.
 
-9. [Step doorway host](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_STEP_DOOR_GODOT.md): explicit step flag, pinned forward headless/reverse GPU controls, scheduling/input and reflected placement pass. Headless manual count 20 repeated transfers / 23 steps; capture inspected.
+9. [Step doorway host](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_STEP_DOOR_PROTOTYPE.md): explicit step flag, pinned forward headless/reverse GPU controls, scheduling/input and reflected placement pass. Headless manual count 20 repeated transfers / 23 steps; capture inspected.
 
 10. [Local vertical coverage](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_FLOOR_STEP_RAY.md): separate explicit policy, connected-hole rejection, 16 independent original landings / three NoLanding; 64 movement/blocker cases and 640 repeat transitions pass. Whole-strip default remains unchanged.
 
 11. [Local-step original actor](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_RAY_STEP_DOOR_ACTOR.md): black-sun both directions/two poses pass 1,896 ticks / 88 transfers / 90 steps / 56 blocked. Same local screen 509 round trips; 24 classified non-round-trips. Prior small-house regression unchanged.
 
-12. [Local-step host](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_RAY_STEP_DOOR_GODOT.md): explicit option passes forward headless/reverse GPU controls, timing/input and reflected placement; 20 manual transfers each, 23/25 steps.
+12. [Local-step host](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_RAY_STEP_DOOR_PROTOTYPE.md): explicit option passes forward headless/reverse GPU controls, timing/input and reflected placement; 20 manual transfers each, 23/25 steps.
 
 13. [Connected approach](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_CONNECTED_DOOR_APPROACH.md): 1,056 independently checked endpoints; separate screen 524/528; lower black-sun both directions 1,896 ticks / 88 transfers / 182 steps / 56 blocked.
 
-14. [Connected host](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_CONNECTED_DOOR_GODOT.md): lower-floor forward headless/reverse GPU controls and reflected placement pass, 20 manual transfers each / 48 and 50 steps.
+14. [Connected host](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_CONNECTED_DOOR_PROTOTYPE.md): lower-floor forward headless/reverse GPU controls and reflected placement pass, 20 manual transfers each / 48 and 50 steps.
 
 15. [Persistent multi-door scene](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_DOOR_SCENE.md): three-cell/two-leaf native ownership and failure/lifecycle gates pass; independent 1,440 ticks / 24 transfers / 128 blocked.
 
@@ -46,7 +46,7 @@ The [prior run](IMPLEMENTATION_SESSION_2026-09-30_UNTIL_1500.md) supplies floor 
 
 18. [Pinned scene bundle](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_SCENE_BUNDLE.md): bounded explicit selections, shared one-read-per-asset and malformed/duplicate/identity gates pass; original independent trace unchanged.
 
-19. [Original multi-door host](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_SCENE_GODOT.md): headless/GPU controls, physical events/diagonals, typed route/timing and both-leaf reflected placement pass.
+19. [Original multi-door host](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_SCENE_PROTOTYPE.md): headless/GPU controls, physical events/diagonals, typed route/timing and both-leaf reflected placement pass.
 
 20. [Explicit closing safety](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_DOOR_CLOSING_SAFETY.md): native scene denied-entry/retreat and event/failure gates; independent 240 ticks / 52 holds, original default regression unchanged.
 
@@ -84,7 +84,7 @@ Trace original static-mesh collision eligibility to choose an evidence-backed ob
 
 ## Final verification record
 
-Native smoke suite passes through the triangle step gates. Both independent512-case triangle oracles pass (straight sweeps and two-segment paths). Godot build has zero warnings/errors. A fresh original three-cell headless host run passes65-source/shared visuals, loading-worker/main-thread ownership, zero-pass upload mapping, guarded close, mouse/input/visibility and two-owner-pose scheduling/transfer checks. It observed192 loading frames; this is not a benchmark. The known root certificate-store startup error remains nonfatal in the offline headless host. Earlier GPU captures were inspected at their individual checkpoints; the final regression is headless.
+Native smoke suite passes through the triangle step gates. Both independent512-case triangle oracles pass (straight sweeps and two-segment paths). Prototype host build has zero warnings/errors. A fresh original three-cell headless host run passes65-source/shared visuals, loading-worker/main-thread ownership, zero-pass upload mapping, guarded close, mouse/input/visibility and two-owner-pose scheduling/transfer checks. It observed192 loading frames; this is not a benchmark. The known root certificate-store startup error remains nonfatal in the offline headless host. Earlier GPU captures were inspected at their individual checkpoints; the final regression is headless.
 
 Repository validator and final focused diff/index checks are recorded at closure below. No live server, original executable execution, staging, commit or publication occurred. Existing unrelated dirty work remains preserved.
 

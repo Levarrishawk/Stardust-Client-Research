@@ -40,6 +40,6 @@ Additional confirmed response layouts:
 
 ## Replacement design consequence
 
-The decoder should expose typed, direction-specific DTOs and then translate them into Godot-facing events. Conversation, combat, and spatial-chat wire variants should remain protocol-layer variants rather than leaking packed/legacy optional layouts into UI or animation code.
+The decoder should expose typed, direction-specific DTOs and then translate them into prototype host-facing events. Conversation, combat, and spatial-chat wire variants should remain protocol-layer variants rather than leaking packed/legacy optional layouts into UI or animation code.
 
 Malformed list/count records must fail before state mutation. In particular, combat defender records and “players near you” entries should be parsed with remaining-length checks because current server constructors contain conditional record shapes.

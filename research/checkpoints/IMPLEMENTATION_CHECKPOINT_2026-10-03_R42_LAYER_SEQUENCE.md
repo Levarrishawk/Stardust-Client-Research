@@ -28,7 +28,7 @@ Complete preflight reserves all supplied layers/queries/rules/frozen operation c
 
 ## API and compatibility consequence
 
-The [durable sequence contract](../../docs/TERRAIN_SUPPLIED_LAYER_SEQUENCE_CONTRACT.md) specifies [TerrainSuppliedLayerSequence](../../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainSuppliedLayerSequence.cs):
+The [durable sequence contract](../../docs/TERRAIN_SUPPLIED_LAYER_SEQUENCE_CONTRACT.md) specifies TerrainSuppliedLayerSequence (external historical reference):
 
 ```csharp
 TerrainSuppliedLayerSequenceLayer.Create(layer, rules, affectorPrecision, maximumRules = 256)
@@ -43,7 +43,7 @@ Defaults/hard ceilings are recorded in the contract:256/65,536 samples;64/4,096 
 
 ## Reproduction and verification
 
-The [replay script](../../../SWG-Godot-Client/poc/round42-tests/Rendering/Invoke-LayerSequence.ps1) accepts explicit installed Python, pinned executable, cached static packages, cached NuGet, dotnet and a fresh private output root:
+The replay script (external historical reference) accepts explicit installed Python, pinned executable, cached static packages, cached NuGet, dotnet and a fresh private output root:
 
 ```powershell
 & .\poc\round42-tests\Rendering\Invoke-LayerSequence.ps1 `
@@ -53,9 +53,9 @@ The [replay script](../../../SWG-Godot-Client/poc/round42-tests/Rendering/Invoke
 
 Exact argument paths, hashes and receipts are in the private Rendering handoff. Successful evidence is named `replay-2` under the ignored Round42 root. Use a fresh root on replay. Builds have isolated artifacts/private APPDATA/CLI_HOME, locked offline restore and disabled shared compiler/app host; Python uses UTF8/no-bytecode.
 
-The [independent Fraction/integer oracle](../../../SWG-Godot-Client/poc/round42-tests/Rendering/verify_sequence.py) passes **15,456 plans:14,160 accepted and1,296 rejected**, including **1,904 multi-layer plans** and **1,140 premature-projection witnesses**. It independently computes descriptor admission, child limit mapping, source-order height threading and complete reference/work budgets while reusing frozen independent numerical references. Synthetic mixed raw/circle/rectangle/polygon carriers cover five arithmetic phases, selectors/operations/gates/incoming signs, raw nonfinite recovery, empty plans, ordering permutations, late overflow and all exact/one-less caps.
+The the separate implementation record passes **15,456 plans:14,160 accepted and1,296 rejected**, including **1,904 multi-layer plans** and **1,140 premature-projection witnesses**. It independently computes descriptor admission, child limit mapping, source-order height threading and complete reference/work budgets while reusing frozen independent numerical references. Synthetic mixed raw/circle/rectangle/polygon carriers cover five arithmetic phases, selectors/operations/gates/incoming signs, raw nonfinite recovery, empty plans, ordering permutations, late overflow and all exact/one-less caps.
 
-The [native scenario](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainSuppliedLayerSequenceScenarios.cs) passes **64 ownership/budget/atomicity checks**, including immutable aliases, complete aggregate rejection before late arithmetic failure,4,096 rules,4,096 layers, read-only collections and retained results. Actual separate Core-reference runner and actual Core/SmokeTests builds pass with zero warnings/errors. No shared registration was edited. Wrong/truncated identities reject before decoder use or fixture/receipt creation. Final workspace/source/link/scope validation is retained in the private handoff.
+The native scenario (external historical reference) passes **64 ownership/budget/atomicity checks**, including immutable aliases, complete aggregate rejection before late arithmetic failure,4,096 rules,4,096 layers, read-only collections and retained results. Actual separate Core-reference runner and actual Core/SmokeTests builds pass with zero warnings/errors. No shared registration was edited. Wrong/truncated identities reject before decoder use or fixture/receipt creation. Final workspace/source/link/scope validation is retained in the private handoff.
 
 Failed attempt: the first runner build reported CS0136 because the fixture-local `limits` name conflicted with a later scenario variable. Renaming it `fixtureLimits` corrected the build; fresh `replay-2` passed all checks. Final audit initially duplicated runner paths already included in the expanded allowlist; deduplicating its admission list corrected that check. No arithmetic repair or original execution-based verification is claimed.
 

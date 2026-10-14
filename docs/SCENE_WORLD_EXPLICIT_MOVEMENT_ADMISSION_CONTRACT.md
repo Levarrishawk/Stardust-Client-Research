@@ -95,12 +95,12 @@ references retained by their callers; they may still hold source evidence.
 
 Observation: frozen authored selection, received currency, world typed-state
 currency and actual local-driver admission are composed directly in the
-[adapter](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldExplicitMovementAdmission.cs).
-[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldExplicitMovementAdmissionScenarios.cs)
+adapter (external historical reference).
+Native scenarios (external historical reference)
 execute actual ticks over synthetic pinned SCOT roots and literal received wires.
-The [independent peer](../../SWG-Godot-Client/poc/round48-tests/Runtime/peer.py) authors fixture bytes and
+The independent peer (external historical reference) authors fixture bytes and
 compares binary32 planar integration without using native receipt outputs as
-expectations. The [fixture](../../SWG-Godot-Client/poc/round48-tests/Runtime/ordered-fixtures.json) is
+expectations. The fixture (external historical reference) is
 explicitly synthetic and contains no original assets or private source data.
 
 Confirmed implementation behavior: 840 cases, 9,154 native checks and 2,988

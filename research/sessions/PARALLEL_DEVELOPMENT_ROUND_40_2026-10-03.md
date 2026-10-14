@@ -35,7 +35,7 @@ negatives/2808 budgets/1065 ownership checks/144 new+107 prerequisite anchors.
 Lead join:nine arithmetic profiles/3600 samples/144 patches/576 queries. Fresh
 ADTA mapping:52 anchors/one original raw occurrence; wrong-identity gate rejects
 before decoding. Working-file copy guards:20 private synthetic checks, including
-a real Windows junction and linked root. Core/SmokeTests/Godot builds pass with
+a real Windows junction and linked root. historical implementation path (omitted) builds pass with
 zero warnings/errors; default smoke18 journal events/zero failures. Retained
 original-resource headless terrain/full-CREO6/TANO6/clock/name/customization
 regressions pass. Prior39 GPU evidence is retained; no new GPU run is claimed.

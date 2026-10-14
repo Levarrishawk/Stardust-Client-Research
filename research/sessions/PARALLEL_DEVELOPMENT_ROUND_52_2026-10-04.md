@@ -18,7 +18,7 @@ HEAD/index and private/unrelated paths. Workers verify all3627 incoming files.
 | Specialist | Bounded question | Acceptance boundary |
 |---|---|---|
 | Assets | Actual generator identity and family copy reservation | Two assigned native files only; owned identity, exact caps and one original input; historical51 measurements preserved |
-| Rendering | Controlled family-height patch | New immutable native patch using frozen51 route, explicit coordinates/controls, aggregate limits and independent expected heights; lead owns shared Godot hooks |
+| Rendering | Controlled family-height patch | New immutable native patch using frozen51 route, explicit coordinates/controls, aggregate limits and independent expected heights; lead owns shared prototype host hooks |
 | Runtime | Indexed acceleration getter011ADD30 | Complete bounded static getter semantics and one original record if available; units/RNG/effective sampling remain separately evidenced |
 | Networking | Run-input message0x99 producer | One input-map command/enqueue path and supported held/edge/release timing; physical binding/configuration defaults remain separate |
 
@@ -43,7 +43,7 @@ All worker/lead functional gates are complete; assembled acceptance is below. Se
 | Runtime | Complete indexed getter/endpoint,71 anchors/24 bytes/eight calls/15 branches/34 negatives/one original acceleration record | Update units and global/parent/vehicle invariants open |
 | Networking |44 anchors/six bodies/ten bytes/six calls/four original action slots/30 negatives | Active InputMap/controller queue and normalized event caller open |
 
-All four workers are idle. Lead original-generator/family patch-to-surface host passes400 computed heights,16 patches/128 triangles and nine grounded states in headless/GPU runs; actual GPU capture inspected. Late fourth-chunk NaN rejects after300 samples with measured zero terrain-visual allocations and clean drain. Final Core smoke/Godot builds have zero warnings/errors; prior filtered terrain and its90 preceding-height witnesses pass. [Lead checkpoint](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R52_FAMILY_PATCH_AND_INPUT_PRODUCER.md) records corrected validation failures and next bounded probes.
+All four workers are idle. Lead original-generator/family patch-to-surface host passes400 computed heights,16 patches/128 triangles and nine grounded states in headless/GPU runs; actual GPU capture inspected. Late fourth-chunk NaN rejects after300 samples with measured zero terrain-visual allocations and clean drain. Final Core historical implementation path (omitted) builds have zero warnings/errors; prior filtered terrain and its90 preceding-height witnesses pass. [Lead checkpoint](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R52_FAMILY_PATCH_AND_INPUT_PRODUCER.md) records corrected validation failures and next bounded probes.
 
 The main commit at05:09:45 Eastern preceded the frozen52 snapshot; its manifest correctly pinsbeee58c2fe14fa8c90ae0e2ae2f3f67e91c69e0b. The initial report copied the older51 HEAD label; that label is corrected here without recreating frozen inputs or modifying Git history. Main/worker HEADs and indices remain preserved.
 

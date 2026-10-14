@@ -4,7 +4,7 @@ Question: can a held latest-only appearance transaction commit without reverting
 
 ## Inputs and scope
 
-Lead snapshot2480 files, manifest SHA-256 `066fc74338f9438b21fdb4320dfb74d1e10ee15c8fe6867349f538c7a8124c81`, ZIP `735d279ceb20800145f65f25efb7d1e731e1abd2cac7c583d4b55ee29238e5a1`, main snapshot HEAD `1fc55dd89cd23ce3af49e3fe471210bdebe9735c`. Worker HEAD remains `65de8c88141071744dc75594be126b3bab3696a5`, index empty. Archive hash/member containment/size/hash preflight preceded overlay. Original resources C:/Stardust-DEV; cfg pin `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`. Existing Python/.NET8/Godot4.7.2Mono only; no executable VAs/new original-executable claims or EXE execution.
+Lead snapshot2480 files, manifest SHA-256 `066fc74338f9438b21fdb4320dfb74d1e10ee15c8fe6867349f538c7a8124c81`, ZIP `735d279ceb20800145f65f25efb7d1e731e1abd2cac7c583d4b55ee29238e5a1`, main snapshot HEAD `1fc55dd89cd23ce3af49e3fe471210bdebe9735c`. Worker HEAD remains `65de8c88141071744dc75594be126b3bab3696a5`, index empty. Archive hash/member containment/size/hash preflight preceded overlay. Original resources C:/Stardust-DEV; cfg pin `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`. Existing historical implementation path (omitted) only; no executable VAs/new original-executable claims or EXE execution.
 
 Synthetic complete baseline106 bytes SHA-256 `a4a74896c16cd91ae44781f7b0755971829f960a0bf0b3546a25fb13afbe2a41`; first compound104 bytes `d6e6bd31c4b611862d5653cec73af396d3ab73c20afe58b0632bd802d92ab476`; latest110 bytes `71eb3992b9d6bd417e4e69ffa389d7d82c5aa8607ed7ca098278322d8dabb894`. Producer authors packets independently of production codecs. Baseline counters verified by actual decode: component7/wounds9.
 
@@ -22,7 +22,7 @@ Host eligibility tests verify current scalar/mixed/mixed-components acceptance a
 
 ## Validation and handoff
 
-Own native226 + accepted scalar134/source97 + CPU queue pass; Godot build zero warnings/errors. Container generation headless and destroy GPU independent audits pass. Post-fix R22 scalar-race host/oracle and R20 normal headless/GPU host/oracle pass; normal GPU48,398 changed pixels (face3,090/body44,861) with fixed silhouette/background. An initial R20 audit invocation omitted its required PNG arguments; rerun with a fresh GPU pair passes. Godot logs retain the known nonfatal root-certificate-store startup error; all host acceptance/teardown markers pass.
+Own native226 + accepted scalar134/source97 + CPU queue pass; prototype host build zero warnings/errors. Container generation headless and destroy GPU independent audits pass. Post-fix R22 scalar-race host/oracle and R20 normal headless/GPU host/oracle pass; normal GPU48,398 changed pixels (face3,090/body44,861) with fixed silhouette/background. An initial R20 audit invocation omitted its required PNG arguments; rerun with a fresh GPU pair passes. Prototype host logs retain the known nonfatal root-certificate-store startup error; all host acceptance/teardown markers pass.
 
 Workspace validator1217 Markdown files/zero broken or private links,2602 provisional rows/no duplicate addresses,345 packet rows/no public files at least25MiB. Python syntax checks, focused diff/whitespace and scope audit pass:2478 baseline files byte-identical; exactly two allowed modified presentation files and nine allowed new files. Worker HEAD unchanged/index empty. Generated original-derived exports/captures remain ignored; no private-output links, original assets or proprietary corpora promoted.
 

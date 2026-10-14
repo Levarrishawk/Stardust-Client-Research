@@ -1,6 +1,6 @@
 # Round16 rendering: continuous presentation host
 
-October 2, 2026. Question: can a reusable Godot Node own a frozen presentation
+October 2, 2026. Question: can a reusable prototype host Node own a frozen presentation
 pump, process continuously, and close/drain safely without coupling to the
 unfinished concrete pump? Stop after this independent milestone and handoff.
 
@@ -21,25 +21,25 @@ terminology, consumer/visual/interior host contracts, Round15 integration checkp
 frozen pump interface and existing preview/launcher/source tools before changes.
 No executable addresses or original executable behavior were used. No original
 asset input was needed: the proof reads only public catalog/bank configuration.
-Installed Python/.NET8/Godot4.7.2 Mono and existing offline private APPDATA/cache;
-no downloads. Godot's existing certificate-store diagnostic remains nonfatal.
+Installed historical implementation path (omitted) Mono and existing offline private APPDATA/cache;
+no downloads. Prototype host's existing certificate-store diagnostic remains nonfatal.
 
 ## Evidence and confidence
 
-Observation: [host source](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldPresentationHost.cs)
+Observation: host source (external historical reference)
 implements Configure success-only ownership; finite process delta; ordered ingress,
 Step and observation; bounded latest receipt; failure close; synchronous exit close
 and async owner-thread drain/disposal. Confidence: Confirmed modern policy through
 source and executed independent proof. Consequence: lead can wire the concrete
 pump without adding another loader, registry, consumer or timing denominator.
 
-Observation: [proof](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldPresentationHostPreview.cs)
+Observation: proof (external historical reference)
 implements only the frozen interface and owns real baseline cold world/consumer
 instances. Three real process frames run; scripted fault/cleanup cases account
 for seven Step calls, including one throwing Step. 102 assertions include repeated
 completion and cleanup checks, not 102 distinct scenarios. All 18 pump owners close
 and dispose exactly once. Confidence: Confirmed by independent
-[oracle](../../../SWG-Godot-Client/poc/round16-tests/Rendering/verify.py). Consequence: the host preserves
+oracle (external historical reference). Consequence: the host preserves
 ownership on rejection and awaits drain before disposal.
 
 Positive/negative evidence covers detached/null/missing-drain/second/thread
@@ -58,14 +58,8 @@ No shared baseline behavior was altered for these fixture corrections.
 
 Use installed tool paths and existing private APPDATA; no restore/download needed:
 
-```powershell
-$env:APPDATA=(Resolve-Path local-private/round2/appdata).Path
-dotnet build poc/Stardust.Godot/Stardust.Godot.csproj --no-restore -v minimal
-& poc/round16-tests/Rendering/Launch.ps1 -GodotPath <installed-Godot4.7.2-Mono-console>
-python poc/round16-tests/Rendering/verify.py <returned-private-log>
-python tools/python/validate_organized_workspace.py .
-git -c core.safecrlf=false diff --check
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 Build: zero warnings/errors. Headless independent oracle: checks102, pumps18,
 steps7, close/dispose-once=true, callbacks/close/drain=true, headless-process=true.

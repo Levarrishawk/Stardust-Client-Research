@@ -1,6 +1,6 @@
 # Coalesced postcommit world changes
 
-R11-RUNTIME-01, 2026-10-02. A modern single-consumer serialized observation API on [SceneWorldCoordinator](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldCoordinator.cs), alongside accepted [typed world state](SCENE_WORLD_REPLICATION_CONTRACT.md). No synchronous callbacks, events, dispatch threads, subscriptions, or resource publication queue are added. This is implementation policy, not recovered original observer behavior.
+R11-RUNTIME-01, 2026-10-02. A modern single-consumer serialized observation API on SceneWorldCoordinator (external historical reference), alongside accepted [typed world state](SCENE_WORLD_REPLICATION_CONTRACT.md). No synchronous callbacks, events, dispatch threads, subscriptions, or resource publication queue are added. This is implementation policy, not recovered original observer behavior.
 
 ## Exact API for the next consumer
 

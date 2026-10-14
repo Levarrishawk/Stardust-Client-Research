@@ -18,6 +18,6 @@ Owned MSGS/LOCT and half-open integer collection implement documented loader/eva
 
 ## Validation and next probe
 
-Full native suite passes for both pinned original clip probes. Independent effective-overlay verifiers pass222 samples. Godot build passes zero warnings/errors. Workspace/link and diff checks run during checkpoint closure. No curated address names or packet counts changed; research89%/94% unchanged.
+Full native suite passes for both pinned original clip probes. Independent effective-overlay verifiers pass222 samples. Prototype host build passes zero warnings/errors. Workspace/link and diff checks run during checkpoint closure. No curated address names or packet counts changed; research89%/94% unchanged.
 
 Next: own explicitly selected idle/walk/run clips in one bundle, use validated suffix support without event dispatch, retain mesh/material/shape identity through clip switches and couple diagnostic locomotion phase to accepted collision displacement. Preserve unknown original graph behavior explicitly.

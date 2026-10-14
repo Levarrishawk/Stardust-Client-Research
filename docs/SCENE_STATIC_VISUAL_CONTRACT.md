@@ -1,9 +1,9 @@
 # Owned static visual boundary
 
-R14-G, 2026-10-02. [SceneStaticVisual](../../SWG-Godot-Client/poc/Stardust.Godot/SceneStaticVisual.cs)
+R14-G, 2026-10-02. SceneStaticVisual (external historical reference)
 wraps accepted [static resources](SCENE_STATIC_RESOURCE_CONTRACT.md) and
 [explicit SWTS selection](SWITCH_TEXTURE_STATIC_RESOURCE_CONTRACT.md) with owned
-Godot GPU/node lifetime. It uses the unchanged GeometryAppearancePreview. Core,
+Prototype host GPU/node lifetime. It uses the unchanged GeometryAppearancePreview. Core,
 existing inspectors, shared Main and world APIs are unchanged.
 
 ## Publication and lifetime
@@ -23,7 +23,7 @@ SceneStaticVisual? TryPublish(SceneStaticResources source, Transform3D transform
 The registry overload requires an exact current finalized handle and byte-identical
 47-byte raw create. The exact handle protects registry identity, generation, object
 ID and revision, including destruction/recreation. It derives placement using
-SceneCreatePlacementBuilder with zero-quaternion Reject, then the accepted Godot
+SceneCreatePlacementBuilder with zero-quaternion Reject, then the accepted prototype host
 SRS reflection. Containment/end revisions that change the exact handle require
 explicit retirement/republication; there is no inferred parent transform.
 
@@ -36,7 +36,7 @@ or disposes the staged candidate. A transfer exception rolls back owned GPU/node
 resources. No publication callback is retained. Arbitrary forged descriptor graphs
 are not authenticated by these checks.
 
-Every mutating/verification/disposal call requires the Godot main thread and the
+Every mutating/verification/disposal call requires the prototype host main thread and the
 instance's serialized owner thread. Stale calls retire resources before mutation;
 disposed calls return false. SetVisible, SelectDetail, ApplyPlacement and
 SetEngineTransform preserve existing GPU IDs. ApplyPlacement accepts only the
@@ -82,7 +82,7 @@ oracle checks all62 source mips, including auxiliary textures.
 
 ## Standalone proof and reproduction
 
-[SceneStaticVisualPreview](../../SWG-Godot-Client/poc/Stardust.Godot/SceneStaticVisualPreview.cs) loads
+SceneStaticVisualPreview (external historical reference) loads
 independent A/B closures off the owner thread in one read-only archive scope. B is
 hidden and retained while A is destroyed/recreated. Recreating A reuses its immutable
 prepared CPU closure under a new exact handle and creates new GPU resources; it
@@ -90,7 +90,7 @@ performs no archive reload. B keeps exact GPU IDs. Source evidence is identical
 before/after the full visual lifecycle. Registry close and injected false predicates
 retire visuals. Seven allocated positive/negative-control roots all dispose.
 
-Synthetic [fixture producer](../../SWG-Godot-Client/poc/round14-tests/Rendering/Generate-Fixture.py)
+Synthetic fixture producer (external historical reference)
 authors distinct high-bit IDs, a nonunit quaternion (.2,-0,.3,1.7), wire positions
 (-2,7,4)/(8,7,4), and raw flag255. These are real-layout authored bytes, not captures.
 The fixed camera faces the authored screen using transformed normals. Fresh whole
@@ -101,13 +101,8 @@ placement normalization, camera, lifetime/limits and unshaded inspection are mod
 policy. Original runtime placement, lighting/render fidelity and parent/gameplay
 semantics are not established.
 
-```powershell
-python poc/round14-tests/Rendering/Generate-Fixture.py local-private/round14/fixture.json
-dotnet build poc/Stardust.Godot/Stardust.Godot.csproj --no-restore -p:UseSharedCompilation=false -p:NuGetAudit=false
-dotnet restore poc/round14-tests/Rendering/Rendering.csproj --configfile poc/round14-tests/Rendering/NuGet.Config -p:NuGetAudit=false
-dotnet run --project poc/round14-tests/Rendering/Rendering.csproj --no-restore -p:UseSharedCompilation=false -p:NuGetAudit=false -- C:/Stardust-DEV C:/Stardust-DEV/swgemu_live.cfg local-private/round14/fixture.json
-tools/powershell/Invoke-StardustSceneStaticVisualPreview.ps1 -GodotPath $GodotPath -ArchiveRoot C:/Stardust-DEV -Configuration C:/Stardust-DEV/swgemu_live.cfg -FixturePath local-private/round14/fixture.json -CapturePath local-private/round14/fresh.png
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 Use the existing offline NuGet cache/private APPDATA. Launcher default/`-Headless`
 uses the headless lifecycle proof; `-CancelLoad` waits for the first lookup, resets
@@ -120,7 +115,7 @@ fault cleanup uses finally. External tree removal cancels and observes cleanup.
 Native arguments: root, configuration, fixture. Native68 negatives include all47
 create truncations, exact lifecycle/foreign identity, descriptor budgets/policy,
 zero/nonfinite placement, reset/close and registry capacity. Clearing54 borrowed
-resolver buffers preserves complete original evidence. Godot22 negatives cover
+resolver buffers preserves complete original evidence. Prototype host22 negatives cover
 wrong thread4, stale/foreign/disposed checks, placement errors, budgets, detached
 parent, injected lifetime/transfer rollback and explicit default effect rejection.
 Five prelaunch negatives leave logs/captures absent. GPU/headless/cancel/build and
@@ -129,14 +124,14 @@ nonfatal; no positive-run implementation exception or leak warning was observed.
 
 ## Export schemas and lead integration
 
-[Verify-Original.py](../../SWG-Godot-Client/poc/round14-tests/Rendering/Verify-Original.py) takes root,
+Verify-Original.py (external historical reference) takes root,
 configuration, native/GPU/headless logs. It independently reconstructs original
 source union/priority/SHA, inheritance, all LOD geometry and all62 mip hashes.
-[Verify-Visual.py](../../SWG-Godot-Client/poc/round14-tests/Rendering/Verify-Visual.py) takes fixture,
+Verify-Visual.py (external historical reference) takes fixture,
 native/GPU/headless/cancel logs, first/recreated PNG. It independently hand-decodes
 raw create, derives rotation with quaternion cross products and SRS reflection,
 checks handle/incarnation metadata and actual whole-terminal pixels.
-[Verify-Launch.ps1](../../SWG-Godot-Client/poc/round14-tests/Rendering/Verify-Launch.ps1) takes common
+Verify-Launch.ps1 (external historical reference) takes common
 launcher arguments plus ExistingCapture.
 
 - `switch_frame` reuses the accepted independently audited source/material/geometry/

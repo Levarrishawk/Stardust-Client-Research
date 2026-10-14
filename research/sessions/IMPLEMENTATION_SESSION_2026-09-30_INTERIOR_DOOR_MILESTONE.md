@@ -2,7 +2,7 @@
 
 Completed [interior doorway integration](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_DOOR_MOVEMENT.md) for the original cantina/private-room `cantina_door`. Named POB reference, authored transform, both floors and original leaf now feed the bounded actor-box/floor transfer query. Closed/partial leaf retains source ownership; clear leaf plus allowed entry permits one transfer. Permission remains independent of leaf motion.
 
-Independent verification matches 24 cases over both source references, two owner poses and six states. Synthetic current-snapshot, ownership, malformed-input and unsupported-contact gates pass. Godot build/headless/GPU controls pass; original capture inspected and kept private. Existing YT-1300 floor/portal/barrier controls still pass. Metrics and canonical name/packet counts are unchanged. No commits or staging; unrelated dirty work preserved.
+Independent verification matches 24 cases over both source references, two owner poses and six states. Synthetic current-snapshot, ownership, malformed-input and unsupported-contact gates pass. Prototype host build/headless/GPU controls pass; original capture inspected and kept private. Existing YT-1300 floor/portal/barrier controls still pass. Metrics and canonical name/packet counts are unchanged. No commits or staging; unrelated dirty work preserved.
 
 ## Exact resume point
 

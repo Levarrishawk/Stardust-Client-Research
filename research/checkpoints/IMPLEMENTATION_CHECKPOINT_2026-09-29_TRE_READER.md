@@ -91,5 +91,5 @@ historical codec behavior or byte-exact compressed output.
 
 Next: use this reader to load one original static mesh, resolve its shader and
 texture dependencies, and validate recovered vertex/index packing and axis
-conventions before displaying it through a Godot adapter. The archive remains
-the authoritative input. See the [acceptance record](../../../SWG-Godot-Client/docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md).
+conventions before displaying it through a prototype host adapter. The archive remains
+the authoritative input. See the acceptance record (external historical reference).

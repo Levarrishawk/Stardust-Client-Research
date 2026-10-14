@@ -1,6 +1,6 @@
 # Round15 rendering: generic recipe factory
 
-October 2, 2026. Bounded question: can one Godot factory turn accepted generic
+October 2, 2026. Bounded question: can one prototype host factory turn accepted generic
 publications into creature/static presentations while preserving independent
 resource-attempt and typed-state freshness? Stop after standalone proof and
 handoff; no Round16 work.
@@ -25,14 +25,14 @@ symlinks and private/Git members, copied only listed paths, and reverified all
 
 Original read-only archive root `C:/Stardust-DEV`; configuration `swgemu_live.cfg`
 SHA256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`.
-Installed .NET8, Python and Godot4.7.2 Mono, existing offline caches; no downloads.
+Installed .NET8, Python and prototype host4.7.2 Mono, existing offline caches; no downloads.
 Default NuGet settings were inaccessible; existing private APPDATA resolved the
-build. Nonfatal Godot certificate-store diagnostic persists.
+build. Nonfatal prototype host certificate-store diagnostic persists.
 
 ## Findings, evidence and consequences
 
 Confirmed modern behavior in
-[factory/adapter](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldObjectVisualFactory.cs): exact
+the separate implementation record: exact
 publication/current finalized metadata and independent typed scalar freshness;
 recipe selection without fixed IDs; public `SceneWorldObjectVisual` getters;
 main-thread/live-parent checks; terminal inspection opt-in before allocation;
@@ -47,7 +47,7 @@ recreation performs exactly one additional job, preserving human incarnation.
 Confidence: Confirmed by the original-data native runner and independent receipt
 oracle. Consequence: adapters consume existing completions without another loader.
 
-Observation: standalone Godot proof rejects cross-object/recipe and altered
+Observation: standalone prototype host proof rejects cross-object/recipe and altered
 placement without allocating, rejects detached parent and worker thread, rejects
 default terminal policy without allocating, and injects a Height change via
 `ChildEnteredTree` to prove staged-state rollback. Stale typed and opaque
@@ -77,19 +77,8 @@ Existing baseline files were not changed to resolve either issue.
 From the repository, using the installed Python path and existing private
 APPDATA/NuGet cache:
 
-```powershell
-python poc/round15-tests/Rendering/Generate-Peer.py <private-peer.json>
-dotnet build poc/Stardust.Godot/Stardust.Godot.csproj --no-restore
-dotnet run --project poc/round15-tests/Rendering/Rendering.csproj -- <root> <cfg> poc/preview-profiles/scene-object-catalog.json poc/preview-profiles/human-locomotion.json <peer> <private-native.json>
-python poc/round15-tests/Rendering/verify.py <peer> <native-receipt>
-& poc/round15-tests/Rendering/Launch.ps1 -GodotPath <installed-godot> -ArchiveRoot <root> -Configuration <cfg> -FixturePath <peer> -Headless
-& poc/round15-tests/Rendering/Launch.ps1 -GodotPath <installed-godot> -ArchiveRoot <root> -Configuration <cfg> -FixturePath <peer> -CancelLoad
-& poc/round15-tests/Rendering/Launch.ps1 -GodotPath <installed-godot> -ArchiveRoot <root> -Configuration <cfg> -FixturePath <peer> -CapturePath <fresh-private.png>
-python poc/round15-tests/Rendering/verify_preview.py <gpu-log> <headless-log> <cancel-log> <initial.png> <updated.png> <recreated.png>
-& poc/round15-tests/Rendering/Verify-Launch.ps1 -GodotPath <installed-godot> -ArchiveRoot <root> -Configuration <cfg> -FixturePath <peer> -ExistingCapture <initial.png>
-python tools/python/validate_organized_workspace.py .
-git -c core.safecrlf=false diff --check
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 Build passes with zero warnings/errors. Native source/fixture receipt, headless,
 GPU, real cancellation, pixel/log oracle and launcher negatives pass. Repository

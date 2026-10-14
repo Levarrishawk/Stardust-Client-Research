@@ -1,12 +1,12 @@
-# Original static mesh Godot preview — 2026-09-29
+# Original static mesh prototype host preview — 2026-09-29
 
 ## Question and scope
 
-Can Godot render the verified original static mesh and DDS chain while preserving the coordinate, UV, index and mip boundaries? Stop after an actual GPU render, independent upload checks and deterministic resource cleanup. This is an offline unlit asset preview, not a world/client completeness claim.
+Can prototype host render the verified original static mesh and DDS chain while preserving the coordinate, UV, index and mip boundaries? Stop after an actual GPU render, independent upload checks and deterministic resource cleanup. This is an offline unlit asset preview, not a world/client completeness claim.
 
 ## Inputs and adapter
 
-Uses the exact mesh/configuration/effect identities in the [material graph checkpoint](IMPLEMENTATION_CHECKPOINT_2026-09-29_MATERIAL_GRAPH.md) and the [DDS contract](../../docs/DDS_DECODER_CONTRACT.md). Godot 4.7.2 .NET x64 receives an owned engine-neutral bundle. `StaticMeshPreview` reflects Z on positions/normals once, reverses each triangle's winding, and preserves UV0. One ArrayMesh surface represents each original batch. Nine owned textures receive complete RGBA8 mip chains; all 80 mip byte sequences are compared after upload/readback against CPU data. Positions, normals, indices and UVs are also compared.
+Uses the exact mesh/configuration/effect identities in the [material graph checkpoint](IMPLEMENTATION_CHECKPOINT_2026-09-29_MATERIAL_GRAPH.md) and the [DDS contract](../../docs/DDS_DECODER_CONTRACT.md). Prototype host 4.7.2 .NET x64 receives an owned engine-neutral bundle. `StaticMeshPreview` reflects Z on positions/normals once, reverses each triangle's winding, and preserves UV0. One ArrayMesh surface represents each original batch. Nine owned textures receive complete RGBA8 mip chains; all 80 mip byte sequences are compared after upload/readback against CPU data. Positions, normals, indices and UVs are also compared.
 
 The explicit preview policy is opaque, unlit MAIN/UV0 sampling with repeating linear mip sampling. It requires the observed single opaque pass and fixed/programmable texture bindings; unsupported bindings fail. Unspecified legacy color space is treated as sRGB for presentation; DX10 Linear omits the color-source hint. Premultiplied alpha is retained by CPU decoding but rejected by this preview. No original shader program is translated or executed.
 
@@ -18,7 +18,7 @@ Confirmed on this host: OpenGL 3.3, NVIDIA RTX 4070 SUPER, driver 591.86. The or
 
 ## Reproduction
 
-Build the Godot project in Debug. Invoke `tools/powershell/Invoke-StardustAssetPreview.ps1` with `-GodotPath`, `-ArchiveRoot`, `-Configuration`, `-Member` and `-ExpectedSha256`, using identities above. `-Headless` runs the resource gate; omit it for the GPU gate. `-CapturePath` must name a fresh private PNG. `-Interactive` opens the inspector with orbit controls. The launcher enforces a 45-second deadline for noninteractive runs and checks process/capture results.
+Build the prototype host project in Debug. Invoke `tools/powershell/Invoke-StardustAssetPreview.ps1` with historical prototype identifier (omitted), `-ArchiveRoot`, `-Configuration`, `-Member` and `-ExpectedSha256`, using identities above. `-Headless` runs the resource gate; omit it for the GPU gate. `-CapturePath` must name a fresh private PNG. `-Interactive` opens the inspector with orbit controls. The launcher enforces a 45-second deadline for noninteractive runs and checks process/capture results.
 
 ## Remaining uncertainty and next action
 

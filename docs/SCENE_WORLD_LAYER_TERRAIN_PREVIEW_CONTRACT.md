@@ -11,7 +11,7 @@ Four fixed 8-meter requests produce 100 padded samples each. Owned circle and
 rectangle inputs produce split-phase queries; explicit supplied filter values
 and incoming weights feed the local layer combiner. Three ordered AHCN rules
 operate on each supplied initial height. All phase policies are explicit.
-Finite results are assembled into16 immutable patch queries and16 owned Godot
+Finite results are assembled into16 immutable patch queries and16 owned prototype host
 visuals. Normals and colors are supplied debug channels. No original generated
 normals, materials, complete recursive traversal or active precision is claimed.
 
@@ -36,7 +36,7 @@ states/all8 selected mip identities. A fresh GPU capture was visually inspected.
 Late malformed initial-height data rejects and drains12 partial visuals.
 The prior version1 headless mode is replayed separately.
 
-The independent [host peer](../../SWG-Godot-Client/poc/round41-tests/Integration/layer_host_peer.py)
+The independent host peer (external historical reference)
 regenerates its fixture before verification. The [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R41_SUPPLIED_HEIGHT_AND_CREO4_FIELDS.md)
 records failures and acceptance. No original executable or live server runs.
 

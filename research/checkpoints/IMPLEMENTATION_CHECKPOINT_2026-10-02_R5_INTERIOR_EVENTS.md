@@ -22,26 +22,26 @@ Lead requested visible capture diagnostics. Only opt-in capture waits for UI lay
 
 ## Reproduction and checks
 
-Use installed dotnet/.NET 8, bundled Python and the existing Godot 4.7.2 replacement engine. No toolchain/dependency download. Set APPDATA to a task-specific temporary directory because the system NuGet configuration is inaccessible in the sandbox. Native restore uses the owned sources-cleared NuGet.Config and the main accepted offline package cache. Main core-cache package bytes match the existing worker/user copies for five dependencies, and their metadata contentHash agrees with the accepted lock files. Cache archive/stored SHA-512 differs from lock contentHash; these were recorded separately, not claimed equivalent. Godot.NET.Sdk is in the existing default user resolver cache, matching the prior worker copy (archive SHA-256 679fe9c6736ca1943b06732ac5113f50c248ea0280593ff7db08814b72057acb); it is absent from main's core-package cache. Remove NUGET_PACKAGES for restored Godot builds. Accepted package locks remain byte-identical to baseline. Private handoff records include assets/lock/cache hashes.
+Use installed dotnet/.NET 8, bundled Python and the existing prototype host 4.7.2 replacement engine. No toolchain/dependency download. Set APPDATA to a task-specific temporary directory because the system NuGet configuration is inaccessible in the sandbox. Native restore uses the owned sources-cleared NuGet.Config and the main accepted offline package cache. Main core-cache package bytes match the existing worker/user copies for five dependencies, and their metadata contentHash agrees with the accepted lock files. Cache archive/stored SHA-512 differs from lock contentHash; these were recorded separately, not claimed equivalent. Prototype host.NET.Sdk is in the existing default user resolver cache, matching the prior worker copy (archive SHA-256 679fe9c6736ca1943b06732ac5113f50c248ea0280593ff7db08814b72057acb); it is absent from main's core-package cache. Remove NUGET_PACKAGES for restored prototype host builds. Accepted package locks remain byte-identical to baseline. Private handoff records include assets/lock/cache hashes.
 
 Commands from repository root:
 
-1. Set APPDATA to a fresh task-specific temporary directory and create it; remove NUGET_PACKAGES for Godot.
+1. Set APPDATA to a fresh task-specific temporary directory and create it; remove NUGET_PACKAGES for prototype host.
 2. dotnet restore poc/round5-tests/Runtime/Runtime.csproj --configfile poc/round5-tests/Runtime/NuGet.Config --packages C:/Users/ancie/Documents/GitHub/Stardust-Client/local-private/nuget-packages -p:NuGetAudit=false
 3. dotnet build poc/round5-tests/Runtime/Runtime.csproj --no-restore -p:UseSharedCompilation=false
 4. dotnet poc/round5-tests/Runtime/bin/Debug/net8.0/Runtime.dll
-5. Build restored poc/Stardust.Godot/Stardust.Godot.csproj and poc/Stardust.Core.SmokeTests/Stardust.Core.SmokeTests.csproj with --no-restore -p:UseSharedCompilation=false; execute the shared SmokeTests DLL.
+5. Build restored historical implementation path (omitted) and poc/Stardust.Core.SmokeTests/Stardust.Core.SmokeTests.csproj with --no-restore -p:UseSharedCompilation=false; execute the shared SmokeTests DLL.
 6. Run poc/round5-tests/Runtime/Verify-Options.ps1: 19 launcher negatives reject before nonexistent paths can resolve. The original self-test additionally runs 41 raw-option missing/duplicate/conflict checks before asset reads.
-7. Run poc/round5-tests/Runtime/Invoke-Original.ps1 with GodotPath and SceneSpecification below. Repeat with -DefaultRoute for the existing full-route regression.
+7. Run poc/round5-tests/Runtime/Invoke-Original.ps1 with prototype hostPath and SceneSpecification below. Repeat with -DefaultRoute for the existing full-route regression.
 8. python tools/python/validate_organized_workspace.py .; git diff --check; new-file whitespace checks; baseline-relative parallel_round_workspace.py review.
 
 Exact headless/lead GPU inputs and command (PowerShell; GPU command is provided, not executed here):
 
-    $eventGodot = 'C:/Users/ancie/Documents/GitHub/Stardust-Client/local-private/toolchain/godot-4.7.2-dotnet/Godot_v4.7.2-stable_mono_win64/Godot_v4.7.2-stable_mono_win64_console.exe'
+    $eventprototype host = historical implementation path (omitted)
     $eventSpec = 'C:/Users/ancie/Documents/GitHub/Stardust-Client/local-private/generated-evidence/precise-door-actor-milestone/original-scene/scene-spec.json'
-    & poc/round5-tests/Runtime/Invoke-Original.ps1 -GodotPath $eventGodot -SceneSpecification $eventSpec
-    & poc/round5-tests/Runtime/Invoke-Original.ps1 -GodotPath $eventGodot -SceneSpecification $eventSpec -DefaultRoute
-    & poc/round5-tests/Runtime/Invoke-Original.ps1 -GodotPath $eventGodot -SceneSpecification $eventSpec -Gpu -CapturePath "$PWD/local-private/round5/interior-events-fresh.png"
+    & poc/round5-tests/Runtime/Invoke-Original.ps1 -prototype hostPath $eventprototype host -SceneSpecification $eventSpec
+    & poc/round5-tests/Runtime/Invoke-Original.ps1 -prototype hostPath $eventprototype host -SceneSpecification $eventSpec -DefaultRoute
+    & poc/round5-tests/Runtime/Invoke-Original.ps1 -prototype hostPath $eventprototype host -SceneSpecification $eventSpec -Gpu -CapturePath "$PWD/local-private/round5/interior-events-fresh.png"
 
 Create the private capture directory first and choose a fresh filename. The existing launcher enforces its 45-second deadline. Inspect pose, interior framing and the visible event/lifetime label. Worker original final headless log ends with the teardown assertion; default headless ends with original camera assertions. Known certificate-store startup error persists despite passing offline runs. No GPU/readback/visual proof is inferred from headless tests.
 

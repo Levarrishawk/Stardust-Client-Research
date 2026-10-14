@@ -19,7 +19,7 @@ All use accepted Round9 APIs; presentation is independently store-driven until t
 
 ## Acceptance gate
 
-Lead scope/conflict review; native producers and independent byte/state/source/pixel oracles; prior closed boundaries proportional to changed files; combined world/state proof; clean Godot build and fresh state-change GPU/headless/cancel checks. Legacy policy must be instruction-backed rather than guessed. Shared documents and registrations remain lead-owned.
+Lead scope/conflict review; native producers and independent byte/state/source/pixel oracles; prior closed boundaries proportional to changed files; combined world/state proof; clean prototype host build and fresh state-change GPU/headless/cancel checks. Legacy policy must be instruction-backed rather than guessed. Shared documents and registrations remain lead-owned.
 
 ## Resume
 
@@ -38,11 +38,11 @@ Contracts: [scene albedo](../../docs/SCENE_CREATURE_ALBEDO_RESOURCE_CONTRACT.md)
 
 ## Lead integration
 
-All38 worker file changes are scope/conflict-checked and integrated (34 additions,four focused existing files). Main preserves all accepted bytes with one dispatch insertion. Lead adds a four-file [original typed-world integration proof](../../../SWG-Godot-Client/poc/round10-tests/Integration/Integration.csproj), registers native legacy/optional typed-world probes and reconciles current vector/albedo descriptions. HUEB for pinned authored-default body/mouth is FFD5D5D5, not the older white wording. No shader/palette/source behavior was changed to match prose.
+All38 worker file changes are scope/conflict-checked and integrated (34 additions,four focused existing files). Main preserves all accepted bytes with one dispatch insertion. Lead adds a four-file original typed-world integration proof (external historical reference), registers native legacy/optional typed-world probes and reconciles current vector/albedo descriptions. HUEB for pinned authored-default body/mouth is FFD5D5D5, not the older white wording. No shader/palette/source behavior was changed to match prose.
 
 The combined proof decodes independently hand-packed496-byte SOE peer frames, applies complete baseline/scalars through world staging, prepares the actual inherited original39-source albedo creature on a separate worker with archives closed before transfer, and verifies state-only deltas supersede state while retaining the current resource publication. A valid prefix with unsupported trailing field fails and retires the whole generation, state/resources/history/budgets and drains. Independent audit checks delivered bytes, untouched baseline, scalar bits, source accounting and ownership/failure receipts. An initial lead oracle invocation used the old Verify-Transcript.py name; using the delivered Verify-World.py passes without product changes.
 
-Lead fresh state GPU captures inspected: whole actor at valid asymmetric placement, changed extent at Height1.5 and fixed idle/camera/resource IDs. Logs GPU preview-0495efc1a8b546458150e31d085846a5;headless preview-afea20e504d248748b4b4cec752dc826;cancel preview-6272e41944de4fc3bb5e46056ea96304. Combined Godot build zero warnings/errors; shared native suite and prior opaque-world scenario pass. Known certificate-store startup error remains nonfatal. Raw original bytes,exports and images stay private.
+Lead fresh state GPU captures inspected: whole actor at valid asymmetric placement, changed extent at Height1.5 and fixed idle/camera/resource IDs. Logs GPU preview-0495efc1a8b546458150e31d085846a5;headless preview-afea20e504d248748b4b4cec752dc826;cancel preview-6272e41944de4fc3bb5e46056ea96304. Combined prototype host build zero warnings/errors; shared native suite and prior opaque-world scenario pass. Known certificate-store startup error remains nonfatal. Raw original bytes,exports and images stay private.
 
 The vector recovery corrects an earlier abstraction: N is an operation-loop bound; assign consumes k+1 units. Skip is unsigned min((N-C+L) mod2^32,N); there is no final forced L=C/max(L,C). Equal replacement/invalid removal/empty clear do not advance L. LegacyBounded reproduces the proven kernel with modern bounds/atomicity and rejects unknown commands. It is selected out of band, including parsing. Static evidence uses4,351 bounded decoder/helper bytes, no original execution, no new provisional labels. Current shared schemas and uncertainty ledger reflect this correction; map/set rules are not inferred from it.
 

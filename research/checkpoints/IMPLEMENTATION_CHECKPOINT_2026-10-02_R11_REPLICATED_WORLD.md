@@ -24,7 +24,7 @@ idle selection. The optional reader retains 39 sources / 4,686,371 bytes.
 Configuration and object/appearance identity pins are in the canonical contract
 and accepted profiles. No executable VA claim or original-client execution.
 
-.NET SDK 8.0.300, existing offline NuGet cache, Godot 4.7.2 .NET x64/OpenGL on RTX
+.NET SDK 8.0.300, existing offline NuGet cache, prototype host 4.7.2 .NET x64/OpenGL on RTX
 4070 Super, bundled Python/Pillow and accepted independently authored archive,
 IFF/albedo/DDS audit tools. Shared Core, profiles, prior previews, registries,
 status/ledgers and runners are untouched. Only the optional world guard in
@@ -84,13 +84,13 @@ headless preview passes with its accepted 37-source inputs. Confidence: **Confir
 
 ## Verification, artifacts and resume
 
-Godot build: zero warnings/errors. Independent world and original audits pass;
+Prototype host build: zero warnings/errors. Independent world and original audits pass;
 fresh GPU/headless/cancel acceptance markers and old-preview regression pass.
 An initial test assumed four surfaces from four material descriptions; source
 geometry showed repeated bindings, so validation now checks all source surfaces
 and four distinct shader paths. An initial audit guessed a SAT directory; it now
 selects the unique source matching the accepted catalog appearance pin. Neither
-correction changes assets, shaders or presentation behavior. The known Godot
+correction changes assets, shaders or presentation behavior. The known prototype host
 certificate-store startup diagnostic remains nonfatal.
 
 Local audit directory: `local-private/round11/`. It contains generated peer JSON,

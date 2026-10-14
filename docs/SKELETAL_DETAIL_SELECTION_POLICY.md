@@ -59,4 +59,4 @@ dotnet poc/round4-tests/Assets/bin/Debug/net8.0/Assets.dll > local-private/round
 python tools/python/verify_skeletal_detail_selection.py local-private/round4/native.txt
 ```
 
-[Core API](../../SWG-Godot-Client/poc/Stardust.Core/Assets/SkeletalDetailSelectionPolicy.cs), [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SkeletalDetailSelectionScenarios.cs), [isolated console](../../SWG-Godot-Client/poc/round4-tests/Assets/Assets.csproj), [independent oracle](../tools/python/verify_skeletal_detail_selection.py).
+Core API (external historical reference), native scenarios (external historical reference), isolated console (external historical reference), [independent oracle](../tools/python/verify_skeletal_detail_selection.py).

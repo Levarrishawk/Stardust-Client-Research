@@ -2,7 +2,7 @@
 
 ## Bounded question and API
 
-Can the selected-player bridge accept an authored owner baseline/lifecycle set while explicitly deferring nearby and unsupported objects, without allocating an unbounded neighbor registry or misreporting baseline completeness? [ReplacementSelectedPlayerIngress](../../SWG-Godot-Client/poc/Stardust.Core/Session/ReplacementSelectedPlayerIngress.cs) implements this modern optional policy, not a recovered global dispatch table.
+Can the selected-player bridge accept an authored owner baseline/lifecycle set while explicitly deferring nearby and unsupported objects, without allocating an unbounded neighbor registry or misreporting baseline completeness? ReplacementSelectedPlayerIngress (external historical reference) implements this modern optional policy, not a recovered global dispatch table.
 
 Namespace `Stardust.Core.Session`:
 
@@ -41,7 +41,7 @@ RequiredBaselinesReceived reflects observed supported baseline envelopes only. I
 
 Input accepted84 snapshot4789 public files was synchronized with prior seals/HEAD/index/private preserved. Orientation included frozen START_HERE/latest84, current terminology/ledger, existing bridge/session/lifecycle/replication contracts and accepted full4/full6 fixture authors. No new executable VA, original execution, live I/O, GPU or reverse-engineering probe is involved.
 
-[Fixture author](../../SWG-Godot-Client/poc/round85-tests/Runtime/fixtures.py) reuses accepted84/83 login/zone authors and independent14 SOE framing, full4 fields from accepted38 and full6 fields from accepted32. It independently packs selected/nearby/PLAY envelopes and expected primitive values. CREO1/PLAY and nearby field bodies are explicitly opaque structural test inputs, not complete decoded server baselines. [Program](../../SWG-Godot-Client/poc/round85-tests/Runtime/Program.cs) drives the actual session, optional policy and world with full4/full6 policies; [verifier](../../SWG-Godot-Client/poc/round85-tests/Runtime/verify.py) compares observed models, defer counts and the exact protected ready wire against authored expectations.
+Fixture author (external historical reference) reuses accepted84/83 login/zone authors and independent14 SOE framing, full4 fields from accepted38 and full6 fields from accepted32. It independently packs selected/nearby/PLAY envelopes and expected primitive values. CREO1/PLAY and nearby field bodies are explicitly opaque structural test inputs, not complete decoded server baselines. Program (external historical reference) drives the actual session, optional policy and world with full4/full6 policies; verifier (external historical reference) compares observed models, defer counts and the exact protected ready wire against authored expectations.
 
 Confirmed on 2026-10-06:52 checks/32 rejection cases; warning-free Core and standalone build. The positive delayed-resource path stages selected create/3/4/6/end, returns12 policy-deferred packets plus one nonworld notice, then inspects full4 ListenTo123 and encumbrances1/2/3, and full6 Passive118. One exact ready remains sequence2. No resource loader or visual actor is used. Required views alone do not imply completeness: a valid-size full4 envelope with a missing typed body records its bit, but world barrier replay fails, closes session/world and emits zero ready.
 

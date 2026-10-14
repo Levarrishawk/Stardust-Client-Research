@@ -13,7 +13,7 @@ executable execution, server contact, commit, push or publication was authorized
   `6039D0C15F9CCB518D72AE01A1ABDF41FCFF2153B5CBF7EB3BA6E6C634A3A427`.
 - TGEN SHA-256:
   `B623B789E5F8486414C1D68CD341005E7E25FD97AF30567E64E7AC848DEB6C32`.
-- Godot 4.7.2 .NET x64, actual D3D12/Forward+ on RTX 4070 SUPER.
+- prototype host 4.7.2 .NET x64, actual D3D12/Forward+ on RTX 4070 SUPER.
   Existing private .NET 8 toolchain/cache and original effective installed overlay.
 
 The [endpoint contract](../../docs/TERRAIN_FILTER_SLOPE_CONTRACT.md) establishes
@@ -62,7 +62,7 @@ verification of all earlier height generation or original generated-map parity.
 
 Core seven-family tests pass6227 assertions/219 independent Fraction samples.
 The actual DX12 fixture passes912 checks/10 expected rejections. The parent
-[PNG/upload checker](../../../SWG-Godot-Client/tools/python/verify_terrain_seven_family_blend_gpu.py)
+the separate implementation record
 confirms24 pixels,11952 uploaded custom components and12 tamper rejections.
 Old five-family and far GPU fixtures also pass. All measured resources balance.
 

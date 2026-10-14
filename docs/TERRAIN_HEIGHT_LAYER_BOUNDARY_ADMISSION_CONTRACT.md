@@ -1,8 +1,8 @@
 # Explicit height-layer first boundary gate
 
-Round 56, 2026-10-04. [TerrainHeightLayerBoundaryAdmission](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainHeightLayerBoundaryAdmission.cs) evaluates the first boundary gate of one accepted, explicitly selected layer across one complete immutable Layer-phase coordinate grid. Its output says whether filters **would** be admitted. No filter, fractal or height samples are produced.
+Round 56, 2026-10-04. TerrainHeightLayerBoundaryAdmission (external historical reference) evaluates the first boundary gate of one accepted, explicitly selected layer across one complete immutable Layer-phase coordinate grid. Its output says whether filters **would** be admitted. No filter, fractal or height samples are produced.
 
-The inputs are the [owned layer slice](TERRAIN_GENERATOR_HEIGHT_LAYER_SLICE_CONTRACT.md), [coordinate grid](TERRAIN_SAMPLE_COORDINATE_GRID_CONTRACT.md), explicit cache/query/combine arithmetic controls, limits and cancellation token. [Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainHeightLayerBoundaryAdmissionScenarios.cs), [independent oracle](../../SWG-Godot-Client/poc/round56-tests/Assets/peer.py), [isolated replay](../../SWG-Godot-Client/poc/round56-tests/Assets/Invoke-SelectedRule.ps1) and [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R56_HEIGHT_LAYER_BOUNDARY_ADMISSION.md) make the boundary reproducible.
+The inputs are the [owned layer slice](TERRAIN_GENERATOR_HEIGHT_LAYER_SLICE_CONTRACT.md), [coordinate grid](TERRAIN_SAMPLE_COORDINATE_GRID_CONTRACT.md), explicit cache/query/combine arithmetic controls, limits and cancellation token. Native scenarios (external historical reference), independent oracle (external historical reference), isolated replay (external historical reference) and [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R56_HEIGHT_LAYER_BOUNDARY_ADMISSION.md) make the boundary reproducible.
 
 ## Accepted inputs and provenance
 

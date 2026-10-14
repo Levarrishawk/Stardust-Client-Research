@@ -1,4 +1,4 @@
-# Original Godot LOD inspector — 2026-09-29
+# Original prototype host LOD inspector — 2026-09-29
 
 ## Bounded question and inputs
 
@@ -14,7 +14,7 @@ The preview now requires an authored opaque single-stage MAIN/MAIN fixed fallbac
 
 ## Verification
 
-Native synthetic detail-bundle tests pass shared-dependency single-read caching, identity mismatch, missing and masked resources. Existing selector and parser negatives pass. Godot Debug build passes with zero warnings/errors. Both headless and real OpenGL 3.3/RTX 4070 SUPER inspector tests pass. The real GPU run verifies all four resource sets, selected-child switches at authored band midpoints and the asymmetric UV/front-face fixture. A private 1280×720 capture was visually inspected and shows L0 (552 vertices/534 triangles) with the slider. Source-derived image stays ignored. The existing root certificate diagnostic still appears with successful exit 0.
+Native synthetic detail-bundle tests pass shared-dependency single-read caching, identity mismatch, missing and masked resources. Existing selector and parser negatives pass. Prototype host Debug build passes with zero warnings/errors. Both headless and real OpenGL 3.3/RTX 4070 SUPER inspector tests pass. The real GPU run verifies all four resource sets, selected-child switches at authored band midpoints and the asymmetric UV/front-face fixture. A private 1280×720 capture was visually inspected and shows L0 (552 vertices/534 triangles) with the slider. Source-derived image stays ignored. The existing root certificate diagnostic still appears with successful exit 0.
 
 Run `tools/powershell/Invoke-StardustAssetPreview.ps1` using the original DTLA member/hash and explicit runtime/archive/configuration paths, adding `-Detail`. `-Headless` validates resources; omitted runs GPU verification. `-Interactive` opens the inspector; `-CapturePath` requires a fresh private filename.
 

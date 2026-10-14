@@ -2,13 +2,13 @@
 
 ## Question and stopping condition
 
-What local offset does DTLA PIVT=0 select, and can independent original extent bytes plus transformed fixtures establish camera-driven LOD? Stop after the virtual/extent chain, full current inventory agreement, positive/negative native fixtures and standalone/composed Godot switching gates.
+What local offset does DTLA PIVT=0 select, and can independent original extent bytes plus transformed fixtures establish camera-driven LOD? Stop after the virtual/extent chain, full current inventory agreement, positive/negative native fixtures and standalone/composed prototype host switching gates.
 
 ## Inputs and evidence
 
 Rehashed original executable `C:\Stardust-DEV\Stardust.exe`: SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Configuration SHA-256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`, 48 TREE0005 mounts. Existing DTLA inventory supplies 6,198 names; sorted newline member-list SHA-256 `8AFA871E8541F59794C9A96DCFA3F6D44E2CE4CEC1A911F954F1580EFE60FA0E`.
 
-Tools: Capstone/pefile static disassembly and vtable reader, existing independent TRE/IFF Python readers, new `verify_detail_extents.py`, owned .NET smoke suite and Godot 4.7.2 .NET x64 headless/OpenGL. The original executable was not run. A mistaken end-address invocation exposed an unbounded negative slice; `disasm_range.py` now rejects non-increasing or over-1-MiB ranges before reading the executable.
+Tools: Capstone/pefile static disassembly and vtable reader, existing independent TRE/IFF Python readers, new `verify_detail_extents.pyhistorical prototype identifier (omitted)disasm_range.py` now rejects non-increasing or over-1-MiB ranges before reading the executable.
 
 The [durable contract](../../docs/APPEARANCE_EXTENT_DISTANCE_CONTRACT.md) records exact constructor/vtable/reader/initializer addresses. **Confirmed:** false PIVT uses the transformed primary extent sphere center; true uses world translation; absent pivot is initialized false; NULL falls back to local zero. BOX stores maximum then minimum. The valid box path preserves the authored sphere center rather than recalculating midpoint.
 
@@ -22,6 +22,6 @@ The [durable contract](../../docs/APPEARANCE_EXTENT_DISTANCE_CONTRACT.md) record
 
 ## Validation and next probe
 
-Core smoke suite passes; Godot build has zero warnings/errors; independent corpus checks and bounded headless/GPU runs pass. Existing offline Godot certificate-store warning remains nonfatal. Five newly labeled addresses bring the distinct provisional registry to 2,590, with no duplicate addresses. Research score and 345-row packet boundary are unchanged.
+Core smoke suite passes; prototype host build has zero warnings/errors; independent corpus checks and bounded headless/GPU runs pass. Existing offline prototype host certificate-store warning remains nonfatal. Five newly labeled addresses bring the distinct provisional registry to 2,590, with no duplicate addresses. Research score and 345-row packet boundary are unchanged.
 
 Next: add typed BC6H unsigned/signed HDR DDS only if a separate owned HDR output representation and independent decoder reference can be verified. Full materials, DPVS and lazy runtime loading remain deferred.

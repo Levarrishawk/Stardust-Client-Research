@@ -1,6 +1,6 @@
 # One-step floor movement with box clearance
 
-[SingleCellFloorStepBoxWalker](../../SWG-Godot-Client/poc/Stardust.Core/Assets/SingleCellFloorStepBoxWalker.cs) combines strict floor walking, the [bounded riser proposal](FLOOR_STEP_PROPOSAL_CONTRACT.md), actor-sized box clearance and supported-floor continuation. It permits one modern step per same-space request. It does not transfer cells or replace the default door actor movement.
+SingleCellFloorStepBoxWalker (external historical reference) combines strict floor walking, the [bounded riser proposal](FLOOR_STEP_PROPOSAL_CONTRACT.md), actor-sized box clearance and supported-floor continuation. It permits one modern step per same-space request. It does not transfer cells or replace the default door actor movement.
 
 ## Sequence and ownership
 
@@ -16,7 +16,7 @@ Crossing accounting includes the original prefix, vertical-strip triangles, land
 
 Native synthetic gates pass clear rise/drop, 200 repeated step transitions, low-ceiling rollback, 100 repeat holds without drift, source retreat, unknown/passable clearance, post-step target contact/global progress, invalid inputs and traversal limits.
 
-[Independent installed checks](../../SWG-Godot-Client/tools/python/verify_floor_step_proposals.py) with --with-movement preserve nine accepted proposals and ten explicit strip rejections across 19 original boundaries. On the nine accepted original floors, **36** clear/blocked/unknown/passable cases pass independently checked planes and vertical box intervals. Blocked repeats have zero drift. Nine floors × 20 round trips also pass **360 step transitions** with reusable output and return error at most 0.1 mm. Original floors are paired with explicitly synthetic blockers; these counts do not establish complete original world collision.
+Independent installed checks (external historical reference) with --with-movement preserve nine accepted proposals and ten explicit strip rejections across 19 original boundaries. On the nine accepted original floors, **36** clear/blocked/unknown/passable cases pass independently checked planes and vertical box intervals. Blocked repeats have zero drift. Nine floors × 20 round trips also pass **360 step transitions** with reusable output and return error at most 0.1 mm. Original floors are paired with explicitly synthetic blockers; these counts do not establish complete original world collision.
 
 ## Next boundary
 

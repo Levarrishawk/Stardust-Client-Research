@@ -1,10 +1,10 @@
 # Offline session keyboard host
 
 October6,2026. Modern caller policy for the offline preview. This is replacement
-Godot behavior, with no claim about original client keys or session semantics.
-[Host source](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineSessionInputHost.cs),
-[native verification](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineSessionInputHostVerification.cs),
-[independent model](../../SWG-Godot-Client/poc/round75-tests/Rendering/verify_picker.py).
+Prototype host behavior, with no claim about original client keys or session semantics.
+Host source (external historical reference),
+native verification (external historical reference),
+independent model (external historical reference).
 
 ## Admission and actions
 
@@ -21,7 +21,7 @@ void Dispose();
 Configure accepts once, borrows three callbacks, and captures the exact owner,
 owner parent and viewport. Configuration failure before acceptance clears references
 and permits retry. Configure, Dispatch, Close, Dispose and diagnostics require the
-creating managed thread and Godot main thread. Reentry is rejected and poisons the
+creating managed thread and prototype host main thread. Reentry is rejected and poisons the
 outer action even if the callback catches the rejection.
 
 Logical P pressed without Echo reads the pause source once and calls setPaused with
@@ -47,15 +47,15 @@ borrowed references and retains an honest LastDiagnostic. SinkMayHaveRun is set
 before invoking a sink; SinkReturned only after return; StateCommitted only after
 the final guard. No rollback of callback effects is attempted. AcceptedCount counts
 committed actions; StateReadCount counts attempted source reads. Engine input catches
-exceptions at its boundary and sets FromGodotEvent; direct Dispatch rethrows them.
+exceptions at its boundary and sets Fromprototype hostEvent; direct Dispatch rethrows them.
 
 Close disables unhandled processing and releases callbacks, while leaving the
 closed host node attached. Dispose also frees the host's own node, idempotently.
-Godot's base Dispose alone does not establish node removal. The concrete public Dispose and reimplemented IDisposable.Dispose perform the explicit
-free. The protected Godot disposal callback only retires managed references and
+Prototype host's base Dispose alone does not establish node removal. The concrete public Dispose and reimplemented IDisposable.Dispose perform the explicit
+free. The protected prototype host disposal callback only retires managed references and
 calls base disposal; it never invokes Free. Raw Free, parent Free and QueueFree can
 therefore enter the native disposal callback without recursive node destruction.
-A statically GodotObject-typed Dispose retains Godot binding-disposal semantics;
+A statically prototype hostObject-typed Dispose retains prototype host binding-disposal semantics;
 use the concrete host or IDisposable when requesting explicit own-node deletion. Native owner deletion during a callback is tolerated
 after _ExitTree closes the host, while the outer action still fails its post guard.
 ExitTree closes without freeing the borrowed owner. Getters retain managed diagnostic
@@ -64,7 +64,7 @@ owner is created, disposed or advanced by this host.
 
 ## Optional visible controls
 
-[HUD source](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflinePlaygroundHud.cs) retains the exact
+HUD source (external historical reference) retains the exact
 legacy Configure(Node, Func<State>, CancellationToken = default) signature and
 captions. A new overload requires the first three arguments explicitly:
 
@@ -81,7 +81,7 @@ admission, refresh and ownership rules remain in the
 
 ## Evidence and limits
 
-Confirmed by actual Godot4.7.2 .NET runs:74 headless/75 GPU checks,15 viewport actions
+Confirmed by actual prototype host4.7.2 .NET runs:74 headless/75 GPU checks,15 viewport actions
 and16 independent exact failure-prefix comparisons, two focused-GUI-consumed keys,
 two pause toggles and one finish, direct and native callback failures, owner removal
 and deletion, cancellation, off-thread and caught reentry, retry after rejected

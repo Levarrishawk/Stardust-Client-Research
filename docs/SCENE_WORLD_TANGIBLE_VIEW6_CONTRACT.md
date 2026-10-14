@@ -2,7 +2,7 @@
 
 Round32, 2026-10-03. This modern serialized adapter integrates the accepted [TANO6 store](SCENE_TANGIBLE_VIEW6_STORE_CONTRACT.md), [state contract](TANGIBLE_VIEW6_STATE_CONTRACT.md) and [codec](TANGIBLE_VIEW6_CODEC_CONTRACT.md). No legacy control-flow or live interoperability claim is added.
 
-Implementation: [coordinator](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldCoordinator.cs), [policy, receipts and router](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldTangibleView6ApplicationRouter.cs). Verification: [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldTangibleView6Scenarios.cs), [isolated runner](../../SWG-Godot-Client/poc/round32-tests/Runtime/Program.cs), [synthetic fixtures](../../SWG-Godot-Client/poc/round32-tests/Runtime/ordered-fixtures.json) and [independent oracle](../../SWG-Godot-Client/poc/round32-tests/Runtime/verify.py).
+Implementation: coordinator (external historical reference), policy, receipts and router (external historical reference). Verification: native scenarios (external historical reference), isolated runner (external historical reference), synthetic fixtures (external historical reference) and independent oracle (external historical reference).
 
 ## Frozen public boundary
 

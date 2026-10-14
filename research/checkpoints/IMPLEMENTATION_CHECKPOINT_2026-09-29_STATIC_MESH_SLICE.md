@@ -2,7 +2,7 @@
 
 Date: 2026-09-29. Question: can a bounded engine-neutral decoder reproduce one
 original MESH's positions, normals, UVs and triangle indices independently of
-Godot? Stop at exact geometry agreement and malformed-input tests, before rendering.
+Prototype host? Stop at exact geometry agreement and malformed-input tests, before rendering.
 
 ## Inputs and evidence
 
@@ -74,4 +74,4 @@ remain ignored, and no new function names or registry rows were added.
 
 Next: resolve the nine external shader dependencies through explicit configured
 mounts, then establish one texture decode/material/axis conversion with fixtures
-before adapting this geometry to Godot.
+before adapting this geometry to prototype host.

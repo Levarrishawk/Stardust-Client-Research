@@ -1,6 +1,6 @@
 # Complete conditional sampler to retained consumers
 
-Round49, 2026-10-04. The [lead native runner](../../SWG-Godot-Client/poc/round49-tests/Integration/SamplerConsumerJoinProgram.cs) composes the actual [raw MFRC decoder](TERRAIN_FRACTAL_RAW_INPUT_CONTRACT.md), [owned conditional mode0 sampler](TERRAIN_CONDITIONAL_FRACTAL_SAMPLER_CONTRACT.md), and frozen retained AHFR/FFRA/layer-influence consumers. Expected arithmetic comes from the [independent Fraction peer](../../SWG-Godot-Client/poc/round49-tests/Integration/sampler_consumer_join_peer.py). The original executable is SHA-gated and inspected statically; it is never executed.
+Round49, 2026-10-04. The lead native runner (external historical reference) composes the actual [raw MFRC decoder](TERRAIN_FRACTAL_RAW_INPUT_CONTRACT.md), [owned conditional mode0 sampler](TERRAIN_CONDITIONAL_FRACTAL_SAMPLER_CONTRACT.md), and frozen retained AHFR/FFRA/layer-influence consumers. Expected arithmetic comes from the independent Fraction peer (external historical reference). The original executable is SHA-gated and inspected statically; it is never executed.
 
 ## Inputs, stores and provenance
 

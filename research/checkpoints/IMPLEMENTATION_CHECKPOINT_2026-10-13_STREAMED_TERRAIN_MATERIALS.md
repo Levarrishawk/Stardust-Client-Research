@@ -19,7 +19,7 @@ the direct Pre-CU evidence and exact eight admitted ASCN layers. Effective
 archive lookup supplies five original first-entry MAIN textures. NGE source
 at `949451032647e45e42c3aaef3f41b132c8af36e3` is corroboration only.
 
-Host: Godot4.7.2 .NET x64, D3D12 Forward+, RTX4070 SUPER. Official export
+Host: prototype host4.7.2 .NET x64, D3D12 Forward+, RTX4070 SUPER. Official export
 template archive SHA256 is
 `92F8681E349EF1F90891B792DA95E3B2B0BD1ED610B78018C58FEB2D87E15A9D`.
 The package includes its .NET runtime and reads the installed original assets;
@@ -39,7 +39,7 @@ original executable, socket, live server, commit or publication was used.
   receipt remains failed. Adoption plus shared materials and bounded staging
   passed later runtime gates. Timing results apply to the combined changes.
 - The engine-neutral blend maps families3/5/6/8 to four independent one-hot
-  attributes; family9 is the remaining weight. Godot CUSTOM0 retains all36
+  attributes; family9 is the remaining weight. Prototype host CUSTOM0 retains all36
   float components per patch. Geometry, vertex diffuse COLOR and UVs retain
   their previous meaning. Texture child selection remains modern first-entry.
 - A synthetic actual-GPU probe caught automatic colour conversion of numeric
@@ -84,7 +84,7 @@ unverified; synthetic controls drive the proof.
 
 ## Reproduction and next probe
 
-Use the [region runbook](../../../SWG-Godot-Client/docs/TATOOINE_REGION_DEVELOPMENT.md),
+Use the region runbook (external historical reference),
 [residency contract](../../docs/TERRAIN_REGION_RESIDENCY_CONTRACT.md),
 [upload contract](../../docs/TERRAIN_GPU_UPLOAD_STAGING_CONTRACT.md),
 [blend definition](../../docs/TERRAIN_MODERN_FIVE_FAMILY_BLEND_CONTRACT.md) and

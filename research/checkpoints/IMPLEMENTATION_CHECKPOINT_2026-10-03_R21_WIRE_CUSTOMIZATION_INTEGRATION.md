@@ -6,7 +6,7 @@ October3,2026 UTC. Question: can a current CREO:3 field4 delta reach owned full 
 
 Configured readonly original overlay C:/Stardust-DEV, swgemu_live.cfg SHA256 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`. Original CIDM priority53,3697 bytes, SHA256 `FD3A7C9FFB9E2AF4234C214F803E20CE9A2F06091F15F4E91578C6B4FBF6BCF2`:121 exact names,120 namespace projections; anomalous ID118 preserved. No new executable VA claims or original execution. Existing original object/appearance/LOD/mesh/shader dependencies remain unchanged. All extracted bytes, synthetic wire JSON, receipts, logs and images remain ignored/private.
 
-[Independent producer](../../../SWG-Godot-Client/poc/round21-tests/Integration/Generate-Wire.py) uses Python struct and original overlay bytes, no native codecs. Ten synthetic field4 frames map eight explicit profile keys through exact CIDM. [Wire oracle](../../../SWG-Godot-Client/poc/round21-tests/Integration/verify_wire.py), [failure oracle](../../../SWG-Godot-Client/poc/round21-tests/Integration/verify_fault.py), prior local-motion oracle and GPU readback check the joined host independently of its assertions. Native worker gates: projection817 fixtures/13 context failures/two atomic unknown failures/eight original mappings; outer codec21 cases/2098 malformed probes/8376 ownership checks; raw state136 checks/28 cases; source adapter97 assertions. Prior consumer160, pump171 and drain1165/37 pass in the main workspace. Default shared smoke passes; shared and Godot final builds zero warnings/errors.
+Independent producer (external historical reference) uses Python struct and original overlay bytes, no native codecs. Ten synthetic field4 frames map eight explicit profile keys through exact CIDM. Wire oracle (external historical reference), failure oracle (external historical reference), prior local-motion oracle and GPU readback check the joined host independently of its assertions. Native worker gates: projection817 fixtures/13 context failures/two atomic unknown failures/eight original mappings; outer codec21 cases/2098 malformed probes/8376 ownership checks; raw state136 checks/28 cases; source adapter97 assertions. Prior consumer160, pump171 and drain1165/37 pass in the main workspace. Default shared smoke passes; shared and prototype host final builds zero warnings/errors.
 
 ## Observations and interpretation
 
@@ -19,15 +19,12 @@ Confidence: Confirmed for bounded native, original-input and joined replacement-
 
 ## Reproduction
 
-Use existing bundled Python, cached .NET8 and cached Godot4.7.2 .NET x64. Set task-private APPDATA and PYTHONUTF8=1. Restore native projects with their no-source NuGet config and existing private package cache. Disable shared compilation. Worker checkpoints linked by the session give each native command and verifier.
+Use existing bundled Python, cached .NET8 and cached prototype host4.7.2 .NET x64. Set task-private APPDATA and PYTHONUTF8=1. Restore native projects with their no-source NuGet config and existing private package cache. Disable shared compilation. Worker checkpoints linked by the session give each native command and verifier.
 
 Generate the continuous peer with round16 Integration/Generate-Peer.py and motion peer with round17's accepted producer. Then:
 
-```powershell
-& $taskPython poc/round21-tests/Integration/Generate-Wire.py C:/Stardust-DEV C:/Stardust-DEV/swgemu_live.cfg local-private/parallel-development/round16/integration-peer.json local-private/parallel-development/round21/integration-wire.json local-private/parallel-development/round21/original-cidm.iff
-./poc/round16-tests/Integration/Launch.ps1 -GodotPath $taskGodot -ArchiveRoot C:/Stardust-DEV -Configuration C:/Stardust-DEV/swgemu_live.cfg -FixturePath local-private/parallel-development/round16/integration-peer.json -CatalogProfile poc/preview-profiles/scene-object-catalog.json -MotionPeer local-private/parallel-development/round17/integration-motion.json -LocalInput -FaceProfile poc/preview-profiles/human-face-zero.json -CustomizationWirePeer local-private/parallel-development/round21/integration-wire.json -CustomizationDictionary local-private/parallel-development/round21/original-cidm.iff
-& $taskPython poc/round21-tests/Integration/verify_wire.py $taskPrintedLog
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 Add -Gpu and a fresh private -CapturePath for GPU/readback. Generate separate peers with --fault malformed / --fault unknown and run the same launcher: each must exit1 and report cleanup, then feed their printed logs in that order to verify_fault.py. Runtime fixtures require round14 Runtime/Generate-Peer.py; source fixtures require round18 Rendering/Generate-Peer.py. These families deliberately use different selected object identities. Wrong-family lead attempts were rejected before acceptance; corrected main runs pass. One initial shared-compiler output lock was resolved by disabling shared compilation. Receipt audit expects prior *-native.txt names; main logs were copied byte-for-byte to those filenames before the complete audit passed.
 

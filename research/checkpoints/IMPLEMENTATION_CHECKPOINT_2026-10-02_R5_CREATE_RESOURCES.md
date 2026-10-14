@@ -12,9 +12,9 @@ Orientation: START_HERE/latest named implementation session, accepted Round 4 re
 
 ## Observation, interpretation and consequence
 
-Observation: [new catalog](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/ObjectTemplateCatalog.cs) snapshots normalized object paths and root/appearance pins, checks exact legacy checksum, rejects duplicates/conflicts/collisions and enforces entry/path budgets. A fixed pair of independently authored synthetic `object/synthetic/*.iff` paths has CRC `BFCB749D`; catalog rejection is tested. The fixture pair was derived deterministically through polynomial linear dependence, not random fuzzing or original catalog extraction.
+Observation: new catalog (external historical reference) snapshots normalized object paths and root/appearance pins, checks exact legacy checksum, rejects duplicates/conflicts/collisions and enforces entry/path budgets. A fixed pair of independently authored synthetic `object/synthetic/*.iff` paths has CRC `BFCB749D`; catalog rejection is tested. The fixture pair was derived deterministically through polynomial linear dependence, not random fuzzing or original catalog extraction.
 
-Observation: [new reader](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/SceneCreatureResourceReader.cs) copies explicit animation selections before lookup and delegates to unchanged descriptor/material/animation readers at detail 0. It returns the raw create scalar snapshot and owned result only after complete success and a retained decoded-image check. It checks cancellation at external lookup boundaries; no callback/archive ownership transfer or global cache exists.
+Observation: new reader (external historical reference) copies explicit animation selections before lookup and delegates to unchanged descriptor/material/animation readers at detail 0. It returns the raw create scalar snapshot and owned result only after complete success and a retained decoded-image check. It checks cancellation at external lookup boundaries; no callback/archive ownership transfer or global cache exists.
 
 Observation: original human path CRC 2,937,962,913 selects the pinned object -> five-template inheritance -> SAT -> MLOD -> detail 0 MGN/skeleton/shader/effect/texture/palette/LAT/idle/walk/run closure. The native proof and independent audit agree on 37 read-once sources / 4,683,848 bytes, 53 joints, four MAIN shader bindings, ten textures and three prepared clips. Native raw transform/wire bits retain negative zero, subnormal, nonunit quaternion, full-width object ID and raw flag 255. This create packet is synthetic, not a captured real session.
 
@@ -38,7 +38,7 @@ Offline accepted NuGet package cache, task APPDATA under TEMP, sources-cleared p
 
 The first audit reconstructed JSON `-0` as an integer zero. Corrected export parsing to retain negative-zero float semantics; native wire/raw bit assertions and codec/reader were unchanged. An initial build began while the multi-file patch was still applying and lacked the entry point; the complete project then compiled cleanly. These were tooling/export issues, not successful verification of partial work.
 
-Private native output/audit and baseline-relative hash/diff records remain ignored. No original executable execution, network contact, GPU or Godot headless run. No staging/commit/push/publishing.
+Private native output/audit and baseline-relative hash/diff records remain ignored. No original executable execution, network contact, GPU or prototype host headless run. No staging/commit/push/publishing.
 
 ## Handoff and remaining questions
 

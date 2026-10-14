@@ -17,7 +17,7 @@ Networking may statically read the pinned executable's canonical integer-set sna
 
 ## Acceptance
 
-Lead scope/conflict review and integration; independent exact byte/state/set/counter/DDS/palette/source/pixel oracles; atomic failure, lifecycle/ownership/budget cleanup; shared native and combined original-world proof; clean Godot build and fresh bounded GPU/headless/cancel. DDS prior inventory and fresh sample acceptance remain distinct. Current research89%/94%,2,602 names and345 packet rows are not an overall implementation score.
+Lead scope/conflict review and integration; independent exact byte/state/set/counter/DDS/palette/source/pixel oracles; atomic failure, lifecycle/ownership/budget cleanup; shared native and combined original-world proof; clean prototype host build and fresh bounded GPU/headless/cancel. DDS prior inventory and fresh sample acceptance remain distinct. Current research89%/94%,2,602 names and345 packet rows are not an overall implementation score.
 
 ## Stop gate
 
@@ -42,11 +42,11 @@ The fresh original DDS is texture/nebula_dant_back.dds, priority35,mtg_patch_006
 
 ## Lead combined integration
 
-The six-file [combined proof](../../../SWG-Godot-Client/poc/round12-tests/Integration/Integration.csproj) prepares the actual inherited original creature through the accepted catalog/object/SAT/detail0 mesh/skeleton/animation/shader/texture closure and optional palette selection on an owned worker. Configuration SHA22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524 and object SHAE0B61445E8A85CCF0AC5937F0F9CBCA8711718AFEE63384F30970D5AEE120243 are checked through accepted readers/catalog pins; profile72BE9FC64AEA1A0EB15DAA2B43E31CBD272BB01CBA61E78C5F190E04D3556726 is independently parsed.
+The six-file combined proof (external historical reference) prepares the actual inherited original creature through the accepted catalog/object/SAT/detail0 mesh/skeleton/animation/shader/texture closure and optional palette selection on an owned worker. Configuration SHA22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524 and object SHAE0B61445E8A85CCF0AC5937F0F9CBCA8711718AFEE63384F30970D5AEE120243 are checked through accepted readers/catalog pins; profile72BE9FC64AEA1A0EB15DAA2B43E31CBD272BB01CBA61E78C5F190E04D3556726 is independently parsed.
 
 Independently framed496-byte synthetic messages stage before the caller barrier. A mixed assignment/scalar transaction commits revision2/mutation5, wounds13[-2,2147483647,-2],Height1.25 and109 logical retained bytes (baseline81 plus current header16 plus values12). Equal replacement leaves wounds13 while Height1.5 commits revision3; stale acknowledgment retains changes for retry. Bounded insert zero-fills to index5, commits revision4/mutation7,wounds14[-2,2147483647,-2,0,0,-7],121 bytes. State changes invalidate old state, retain the resource publication and start no second load. A valid Height prefix followed by oversized growth rejects the entire generation, clears current state/observer/resources/budgets, cancels/drains and exposes no prefix. Native checks and an independent arithmetic/wire/state/profile oracle pass. Logical accounting is explicit modern policy, not CLR heap measurement.
 
-The inspector adds an explicit -MixedReplication/--replicated-mixed option after all four APIs are integrated. Scalar-mode defaults remain intact. An independently framed Height1.5+wounds assignment reaches current observer-driven presentation at revision3/counter13. It records current wounds without inventing damage/posture effects. The three mixed-mode actor images exactly match their scalar-mode counterparts below UI row180; all fixed-resource, palette, stale-ack, lifecycle and teardown guards pass. Clean final Godot build has zero warnings/errors. Shared native suite includes the new components/opaque DDS tests and optional --round12-mixed peer export; all pass. An initial lead registration omitted the required export argument; corrected three-argument invocation passes without product changes.
+The inspector adds an explicit -MixedReplication/--replicated-mixed option after all four APIs are integrated. Scalar-mode defaults remain intact. An independently framed Height1.5+wounds assignment reaches current observer-driven presentation at revision3/counter13. It records current wounds without inventing damage/posture effects. The three mixed-mode actor images exactly match their scalar-mode counterparts below UI row180; all fixed-resource, palette, stale-ack, lifecycle and teardown guards pass. Clean final prototype host build has zero warnings/errors. Shared native suite includes the new components/opaque DDS tests and optional --round12-mixed peer export; all pass. An initial lead registration omitted the required export argument; corrected three-argument invocation passes without product changes.
 
 Fresh lead logs: GPU preview-ab4fb94162fd4c6d86e40f219939cde1;headless preview-a2bc652c6369437ca37cc77918be6630;cancel preview-a61287dea50f4ea59cd03710d418637c;mixed GPU preview-41af15f174f5434bb643c27b8d17369f. Three captures inspected: whole actor, changed Height, two explicit palette choices; asymmetric placement is intentional fixture data. Known root-certificate-store startup diagnostic remains nonfatal. The consumer's wrong-thread apply metadata ordering was corrected before worker acceptance and reverified; multi-actor presentation remains sequential, not an atomic GPU batch.
 
@@ -54,18 +54,12 @@ Original/derived source bytes, detailed exports, logs/images, instruction disass
 
 ## Exact combined reproduction
 
-Use installed cached tools, source-cleared NuGet configuration, private APPDATA/package cache and UseSharedCompilation=false as in worker contracts. Before renderer runners, build the Godot project with --no-restore and the installed Godot SDK. Private output directories must already exist for captures.
+Use installed cached tools, source-cleared NuGet configuration, private APPDATA/package cache and UseSharedCompilation=false as in worker contracts. Before renderer runners, build the prototype host project with --no-restore and the installed prototype host SDK. Private output directories must already exist for captures.
 
-```powershell
-python poc/round12-tests/Rendering/Generate-Peer.py PRIVATE/render-peer.json
-python poc/round12-tests/Integration/Generate-Peer.py PRIVATE/render-peer.json PRIVATE/integration-peer.json
-dotnet run --no-restore --project poc/round12-tests/Integration/Integration.csproj -- C:/Stardust-DEV C:/Stardust-DEV/swgemu_live.cfg poc/preview-profiles/scene-object-catalog.json poc/preview-profiles/human-locomotion.json poc/preview-profiles/human-scene-colors.json PRIVATE/integration-peer.json PRIVATE/integration-export.json
-python poc/round12-tests/Integration/verify.py PRIVATE/integration-peer.json PRIVATE/integration-export.json poc/preview-profiles/human-scene-colors.json
-python poc/round12-tests/Integration/Generate-Mixed-Presentation.py PRIVATE/render-peer.json PRIVATE/render-mixed-peer.json
-tools/powershell/Invoke-StardustReplicatedWorldPreview.ps1 -GodotPath GODOT -ArchiveRoot C:/Stardust-DEV -Configuration C:/Stardust-DEV/swgemu_live.cfg -FixturePath PRIVATE/render-mixed-peer.json -CatalogProfile poc/preview-profiles/scene-object-catalog.json -PaletteProfile poc/preview-profiles/human-scene-colors.json -MixedReplication -CapturePath PRIVATE/world-mixed.png
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
 
-PRIVATE means an explicit existing ignored directory in this checkout; GODOT means the installed replacement-host console binary, not Stardust.exe. Native Integration.csproj needs an offline restore first. Rendering's ordinary producer/runner/source/state/pixel oracles use the exact argument order in its contract. [Mixed presentation oracle](../../../SWG-Godot-Client/poc/round12-tests/Integration/Verify-Mixed-Presentation.py) takes peer JSON,mixed log,and alternating ordinary/mixed initial,height,authored image paths. No captured/PoC envelope is presented as original traffic.
+
+PRIVATE means an explicit existing ignored directory in this checkout; prototype host means the installed replacement-host console binary, not Stardust.exe. Native Integration.csproj needs an offline restore first. Rendering's ordinary producer/runner/source/state/pixel oracles use the exact argument order in its contract. Mixed presentation oracle (external historical reference) takes peer JSON,mixed log,and alternating ordinary/mixed initial,height,authored image paths. No captured/PoC envelope is presented as original traffic.
 
 ## Remaining scope and stop
 

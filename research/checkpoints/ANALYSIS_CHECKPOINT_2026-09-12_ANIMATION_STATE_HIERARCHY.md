@@ -53,7 +53,7 @@ The binary writer emits `ASHT/0002`, serializes optional `AGPS/INFO` with the ac
 2. Preserve action groups, nested states, state links and action/message payloads as a graph, not a flattened clip list.
 3. Resolve state paths deterministically and reject unsupported relative paths with actionable diagnostics.
 4. Supply an explicit default root state when the source omits one, matching client behavior.
-5. Keep the parsed graph engine-neutral so a Godot AnimationTree adapter or custom runtime can consume the same model.
+5. Keep the parsed graph engine-neutral so a prototype host AnimationTree adapter or custom runtime can consume the same model.
 
 ## Confidence and remaining unknowns
 

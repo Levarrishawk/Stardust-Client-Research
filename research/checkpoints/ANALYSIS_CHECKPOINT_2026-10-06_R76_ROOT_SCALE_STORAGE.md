@@ -22,6 +22,6 @@ Ten explicit candidates of12: lookup and its eight distinct direct delegates plu
 
 ## Validation and resume
 
-[Portable runner](../../../SWG-Godot-Client/poc/round76-tests/Assets/Invoke-SelectedRule.ps1) uses explicit paths and fresh ignored output. Independent raw/pefile mapping agrees;89+8 instruction coverage,21+4 anchors, nine calls/five internal aligned branches and19 synthetic rejection guards pass. These reject verifier identity/truncation/mutation/bounds/anchor/key-file assumptions, not legacy CPU cases. No native production build applies to this static documentation milestone.
+Portable runner (external historical reference) uses explicit paths and fresh ignored output. Independent raw/pefile mapping agrees;89+8 instruction coverage,21+4 anchors, nine calls/five internal aligned branches and19 synthetic rejection guards pass. These reject verifier identity/truncation/mutation/bounds/anchor/key-file assumptions, not legacy CPU cases. No native production build applies to this static documentation milestone.
 
 Next precise probe: separately authorize1484-byte007D40C0 insertion writer, establish temporary zero-bit transfer to node+20 and identify immediate node allocator/erase/destructor for lifetime. A typed01923F7C key producer remains a separate unresolved boundary. Stop and idle after sealed scope/validation; no self-dispatch.

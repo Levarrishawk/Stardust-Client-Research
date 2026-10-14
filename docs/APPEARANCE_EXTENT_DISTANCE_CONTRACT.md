@@ -12,7 +12,7 @@ The implemented valid slice rejects nonfinite values, negative radius, reversed 
 
 Direct baseline evidence: DTLA constructor 00787400 installs vtable 015E3D84. Slot +8 targets 00B2C2F0, which returns extent+8 or zero vector 01945AB8. Slot +0x14 targets 00788300, fetching template+0x0C. APPR loaders 00B2CCA0/00B2CCF0 store the ExtentFactory result there. EXBX loader 0125F690 calls EXSP loader 01271570; SPHR reader 01271450 stores center at +8 and radius at +0x14. BOX reader 0125F520 reads maximum then minimum without recomputing the valid sphere. Selector 00787710 chooses this virtual offset for false PIVT and translation for true PIVT. Template constructor 007993F0 initializes absent PIVT to false. NULL callback 012703F0 returns zero; initializer 00AB8990 zeros the fallback vector. These are confirmed instruction/data observations for the documented executable SHA.
 
-## Godot boundary and reproduction
+## Prototype host boundary and reproduction
 
 The adapter converts transforms using S R S and translation S t, with S=diag(1,1,-1); camera coordinates receive the same reflection. Component detail instances use their own global transform. `-CameraLod` enables automatic selection initially; the inspector checkbox can restore the manual distance slider. Distances beyond float range clamp to the selector's far endpoint as replacement policy. This proves distance origin and selection, not original DPVS, lazy loading, visibility hysteresis or lighting.
 
@@ -26,4 +26,4 @@ See the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-3
 
 Confirmed baseline `00B2CCA0` calls `00B2CCF0` then `00B2CD10`; primary stores template `+0C`, secondary stores `+10`, both through factory `012707C0`. The nonnull secondary receives virtual `+40`. This source metadata does not establish runtime actor fallback or participation.
 
-The [bounded six-source probe](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_AUTHORED_COLLISION_EXTENTS.md) independently agrees on original primary F32 values and six NULL secondaries: three selected rooms, door DTLA and both leaf meshes. Synthetic primitive/NULL/malformed/unsupported gates and Godot build pass. Actor collision extent source policy remains in the [separate participation trace](GROUNDED_ACTOR_COLLISION_PARTICIPATION.md).
+The [bounded six-source probe](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_AUTHORED_COLLISION_EXTENTS.md) independently agrees on original primary F32 values and six NULL secondaries: three selected rooms, door DTLA and both leaf meshes. Synthetic primitive/NULL/malformed/unsupported gates and prototype host build pass. Actor collision extent source policy remains in the [separate participation trace](GROUNDED_ACTOR_COLLISION_PARTICIPATION.md).

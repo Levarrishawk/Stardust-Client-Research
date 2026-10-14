@@ -4,7 +4,7 @@ Round82 extends the [persistent shell](PERSISTENT_OFFLINE_PLAYGROUND_CONTRACT.md
 
 ## Primitive snapshot
 
-`PersistentOfflinePlayground.InspectionStatus` returns an immutable `OfflinePlaygroundInspectionStatus` on the Godot owner thread. `InspectionCaption` returns its visible text while the owned panel exists. The record contains strings, integers, booleans and nullable values only; no actor, camera, session, node, resource or completion callback references escape through it.
+`PersistentOfflinePlayground.InspectionStatus` returns an immutable `OfflinePlaygroundInspectionStatushistorical prototype identifier (omitted)InspectionCaption` returns its visible text while the owned panel exists. The record contains strings, integers, booleans and nullable values only; no actor, camera, session, node, resource or completion callback references escape through it.
 
 - Shell state: `State`, `StartedRuns`, `MaximumRuns`, `RemainingRuns`, `ChildPresent`, `CurrentReady`, `Terminal`, `Closing`, `RestartEnabled`, `CloseEnabled`.
 - Last completion report: `Reason`, `CompletedUpdates`, `AttemptedUpdates`, `Faulted`, `CleanupSucceeded`, `Actors`, `OutstandingArchiveJobs`, `ArchiveCalls`, `ArchiveClosed`, `RootFrames`, `FailureType`, `CleanupFailureTypes`.
@@ -22,8 +22,8 @@ The shell subscribes exactly once to its actual owning `Window.CloseRequested`. 
 
 ## Evidence and confidence
 
-**Observation:** the owner-thread snapshot reads only the current child readiness plus the shell's cached primitive completion report. Native standalone fixtures exercised actual GUI restart/close clicks, cap and terminal disabled buttons, passive panel input, repeated close routes, exact Window signal and late signal after native teardown. An independently authored, strict-type oracle was generated before each native run. Full private Godot/Core builds passed with warnings treated as errors.
+**Observation:** the owner-thread snapshot reads only the current child readiness plus the shell's cached primitive completion report. Native standalone fixtures exercised actual GUI restart/close clicks, cap and terminal disabled buttons, passive panel input, repeated close routes, exact Window signal and late signal after native teardown. An independently authored, strict-type oracle was generated before each native run. Full private prototype host/Core builds passed with warnings treated as errors.
 
-**Interpretation and confidence:** Confirmed for the synthetic standalone Godot control/lifecycle fixtures; source-reviewed for the unchanged asset-backed child bridge. The fixtures explicitly inject authored completion/readiness and do not prove original-asset counters, physical OS close delivery, gameplay, protocol, or original executable behavior. Signal emission and WM notification calls are synthetic routing tests, not physical OS events.
+**Interpretation and confidence:** Confirmed for the synthetic standalone prototype host control/lifecycle fixtures; source-reviewed for the unchanged asset-backed child bridge. The fixtures explicitly inject authored completion/readiness and do not prove original-asset counters, physical OS close delivery, gameplay, protocol, or original executable behavior. Signal emission and WM notification calls are synthetic routing tests, not physical OS events.
 
 **Compatibility consequence:** lead integration should consume this primitive API, retain actual completed/attempted distinctions, and verify it against full child reports. No retired preview reference should be retained for inspection. See the [Round82 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R82_PLAYGROUND_INSPECTION.md) for exact scope and reproduction.

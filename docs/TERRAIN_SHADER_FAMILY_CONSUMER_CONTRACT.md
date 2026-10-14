@@ -11,7 +11,7 @@ opaque fields remain unchanged.
 
 All addresses are VAs in PE32 baseline SHA-256
 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`.
-The [static verifier](../../SWG-Godot-Client/tools/python/verify_terrain_shader_family_consumer.py)
+The static verifier (external historical reference)
 gates that identity before parsing or reading an address. It verifies three
 complete bounded byte ranges,79 decoded instructions, and52 exact instruction
 anchors, including the already recovered0006 loader's first-string callsite.
@@ -127,7 +127,7 @@ Synthetic consumer witnesses inject raw callee results explicitly. They check
 opaque argument identity/order, repeated family pointers, first-zero stopping, nonzero
 continuation and nonpositive-count bypass. They perform no comparison, shader
 lookup or resource loading.23 local synthetic checks and eight independent
-pointer checks pass. The [peer](../../SWG-Godot-Client/poc/round62-tests/Assets/peer.py) also runs82
+pointer checks pass. The peer (external historical reference) also runs82
 negative guards:7 wrong identities,52 synthetic anchor mutations,3 bounded body
 mutations,8 lead-budget,8 output-path and4 no-publication integration guards.
 Linked-ancestor rejection is tested with synthetic filesystem metadata; no
@@ -142,7 +142,7 @@ bodies are not expanded or semantically labeled. Exploratory adjacent/window
 decodes are not additional recovered contracts. This ledger distinguishes
 candidate sites from followed function targets and complete body expansions.
 
-Replay with [Invoke-SelectedRule.ps1](../../SWG-Godot-Client/poc/round62-tests/Assets/Invoke-SelectedRule.ps1),
+Replay with Invoke-SelectedRule.ps1 (external historical reference),
 explicit cached Python/packages, original executable/asset/config paths and a
 fresh private RunRoot:
 

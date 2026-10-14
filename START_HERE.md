@@ -1,6 +1,6 @@
 # Stardust client research: start here
 
-This repository contains executable-backed research, compatibility specifications, curated registries and reproducibility tools. Godot implementation lives in [SWG-Godot-Client](../SWG-Godot-Client/README.md).
+This repository contains executable-backed research, compatibility specifications, curated registries and reproducibility tools. It does not contain a client implementation.
 
 Latest workspace handoff: [research-only cleanup, October 14, 2026](research/sessions/RESEARCH_ONLY_CLEANUP_2026-10-14.md). Latest terrain research: [slope normal producer](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-13_SLOPE_NORMAL_PRODUCER.md) and [slope endpoint graph](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-13_SLOPE_ENDPOINT_GRAPH.md). Historical development reports remain evidence, not active work instructions.
 
@@ -12,10 +12,10 @@ Latest workspace handoff: [research-only cleanup, October 14, 2026](research/ses
 - Canonical workspace: `C:\Users\ancie\Documents\GitHub\Stardust-Client`
 - Objective: behavioral, wire-protocol, and original-asset compatibility in a native 64-bit replacement client
 - Current evidence-backed baseline: **89% comprehensive behavioral coverage / 94% implementation-and-engine-decision research readiness**. These are weighted observable-contract scores, not function percentages. Function/address coverage is separately **uncalibrated**. See the [current rescore](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_EVIDENCE_BASED_COVERAGE_RESCORE.md), [measurement reset](RESEARCH_COVERAGE_REBASELINE_2026-09-25.md), and [model-transition audit](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_MODEL_TRANSITION_AUDIT.md).
-- Server packet-source matrix: **345 documented / 0 reachable gaps**
+- Server packet-source matrix: **345/345 recorded rows documented / 0 reachable inventory gaps**; this is not end-to-end protocol validation
 - Stable provisional-name registry: **2,626 distinct addresses / 0 duplicate rows** (current canonical registry)
 
-Function-level accounting remains separate from behavioral readiness.
+The last formal assessment is dated September 25, 2026: approximately **89% behavioral coverage**, with a judgment range of **86–91%**. Later findings have not been formally rescored. The **94% readiness** score measures research inputs, not implemented functionality. The percentage of executable functions fully reversed remains **unknown**. See [current research status and remaining gaps](ANALYSIS_STATUS.md).
 
 ## Recommended review order
 

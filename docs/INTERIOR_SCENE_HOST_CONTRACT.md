@@ -1,12 +1,12 @@
 # Original multi-door scene host
 
-The Godot preview consumes the [pinned scene bundle](INTERIOR_DOOR_SCENE_BUNDLE_CONTRACT.md) and [shared typed scheduler/timeline](TYPED_ACTOR_SCHEDULING_CONTRACT.md). The current bounded inspector requires two selected leaves forming a three-cell route. Core scene/bundle APIs retain their broader documented resource limits.
+The prototype host preview consumes the [pinned scene bundle](INTERIOR_DOOR_SCENE_BUNDLE_CONTRACT.md) and [shared typed scheduler/timeline](TYPED_ACTOR_SCHEDULING_CONTRACT.md). The current bounded inspector requires two selected leaves forming a three-cell route. Core scene/bundle APIs retain their broader documented resource limits.
 
 PowerShell options: `-SceneSpecification`, `-SceneSpecificationSha256`, `-DoorTableSha256`, plus existing archive/configuration/member/layout identity and headless/capture/interactive options. The specification selects its doors and precise local-step policy; single-door inspector flags cannot be combined. The layout pin supplied to the launcher must match the bundle's independently pinned POB.
 
 The preview draws all loaded floors, both independently posed primary leaves and the persisted actor. Controls provide forward/reverse/wait/reset, second-door entry permission, transformed owner, pause and continuous physical W/A/S/D movement. Each render frame advances the typed integer clock; key transitions submit timestamped normalized planar input. Focus and mode changes consume suspended input without replaying motion. The scheduler borrows the scene; exiting disposes the owned controllers, geometry previews and resources.
 
-[Host acceptance](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_SCENE_GODOT.md) passes headless/GPU gates on the same Mustafar 5→6→7 route: 16 manual transfers over two poses, second denial/retreat/reset, actual physical key event/release route and normalized diagonals, two-pose diagonal owner round trips, timestamped four-transfer scene route, stall/pause/focus and both leaf/actor/floor placement. Private capture inspected. This remains an offline floor/door scene, with full building obstacle meshes and closing-leaf overlap response unresolved.
+[Host acceptance](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_INTERIOR_SCENE_PROTOTYPE.md) passes headless/GPU gates on the same Mustafar 5→6→7 route: 16 manual transfers over two poses, second denial/retreat/reset, actual physical key event/release route and normalized diagonals, two-pose diagonal owner round trips, timestamped four-transfer scene route, stall/pause/focus and both leaf/actor/floor placement. Private capture inspected. This remains an offline floor/door scene, with full building obstacle meshes and closing-leaf overlap response unresolved.
 
 `-HoldClosingDoors` explicitly enables [modern closing safety](DOOR_CLOSING_SAFETY_CONTRACT.md). Its original headless/GPU gate passes occupied hold, denied entry, retreat/release and existing controls. Full obstacle meshes, opening sweeps and original collision order remain unresolved.
 
@@ -24,7 +24,7 @@ The host now uses the [owned combined content reader](INTERIOR_SCENE_CONTENT_CON
 
 The current visual adapter owns one composite graph for rooms and both doors. Independent leaf nodes share both immutable LOD meshes; camera LOD and world transforms remain per instance. One GPU texture cache serves the graph. [Shared scene gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SHARED_SCENE_VISUALS.md) passes headless/GPU resource identity and placement: five textured templates / 44 unique textured surfaces / two omitted / zero neutral / 28 GPU textures. Door MAIN textures are now included.
 
-CPU content loading now uses the [owned cancellable worker](BACKGROUND_ASSET_LOAD_CONTRACT.md). Configuration/TRE streams belong to the worker and close before transfer; Godot resources are created on the main thread. A responsive loading panel supplies Cancel. [Success/cancellation gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BACKGROUND_SCENE_LOAD.md) passes original headless/GPU success and headless pending-lookup cancellation with no scene publication.
+CPU content loading now uses the [owned cancellable worker](BACKGROUND_ASSET_LOAD_CONTRACT.md). Configuration/TRE streams belong to the worker and close before transfer; prototype host resources are created on the main thread. A responsive loading panel supplies Cancel. [Success/cancellation gate](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BACKGROUND_SCENE_LOAD.md) passes original headless/GPU success and headless pending-lookup cancellation with no scene publication.
 
 
 ## Explicit original-profile sphere

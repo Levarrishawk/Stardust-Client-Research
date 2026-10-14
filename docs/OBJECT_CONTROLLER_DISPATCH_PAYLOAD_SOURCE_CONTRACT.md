@@ -6,7 +6,7 @@ This extends the [selected caller contract](OBJECT_CONTROLLER_QUEUE_PAYLOAD_CALL
 
 ## Input, scope and reproducibility
 
-Baseline executable SHA-256: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Addresses are VAs. The [verifier](../../SWG-Godot-Client/tools/python/verify_object_controller_dispatch_payload_source.py) rejects another executable before analysis imports/VA reads, then decodes the complete selected span. The [independent runner](../../SWG-Godot-Client/poc/round62-tests/Networking/research_checks.py) separately maps raw PE sections and checks bytes, direct targets, stack/register identities, object/payload sources, masks and branches.
+Baseline executable SHA-256: `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Addresses are VAs. The verifier (external historical reference) rejects another executable before analysis imports/VA reads, then decodes the complete selected span. The independent runner (external historical reference) separately maps raw PE sections and checks bytes, direct targets, stack/register identities, object/payload sources, masks and branches.
 
 | Body | Bytes / instructions | Exit | SHA-256 |
 | --- | --- | --- | --- |

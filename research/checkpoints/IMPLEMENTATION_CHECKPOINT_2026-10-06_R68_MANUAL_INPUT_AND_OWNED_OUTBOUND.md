@@ -6,7 +6,7 @@ follow accepted67 and frozen4191 public files. Executed bounded results are reco
 
 ## Bounded question and inputs
 
-Can actual Godot unhandled WASD input switch the existing sole-writer grounded
+Can actual prototype host unhandled WASD input switch the existing sole-writer grounded
 point driver into manual direction intent, stop it before GUI focus, resume from
 an empty held set, then return to a picked point while FIFO-owned outbound root
 frames remain independently reproducible and drain on failure?
@@ -56,12 +56,12 @@ history is an honest prefix, with no rollback or no-motion-publication claim.
 
 ## Evidence and verification plan
 
-[Independent trajectory peer](../../../SWG-Godot-Client/poc/round68-tests/Integration/manual_point_peer.py)
+Independent trajectory peer (external historical reference)
 intersects actual camera rays against independently calculated Fraction geometry,
 casts targets to binary32, calculates authored point/manual poses, speeds, clocks
 and orientation, then checks raw root headers/XYZ/speed/quaternion basis and FIFO
 ordering. Expected values are not seeded from native hit/pose/quaternion output.
-[Failure peer](../../../SWG-Godot-Client/poc/round68-tests/Integration/manual_clock_failure_peer.py)
+Failure peer (external historical reference)
 checks the actual clock rejection and pending queue/controller/Node/visual drains.
 
 Lead replays: Assets24 anchors/102 guards/39 independent wrapper checks and35
@@ -72,7 +72,7 @@ exact frames/70 checks/six lifecycle gates. Joined headless/GPU each pass110
 updates, four point picks/eight manual intents/two GUI-consumed keys/nine FIFO
 packets, across two patches/two chunks. Invalid clock preserves25 completed
 updates and target/driver, drains one pending frame and all owners. Unchanged
-Version3 passes102 updates. Normal Godot/default smoke builds zero warnings/errors;
+Version3 passes102 updates. Normal prototype host/default smoke builds zero warnings/errors;
 smoke18 events/zero failures. All30 final worker/main hashes match. GPU capture
 inspected original actors on diagnostic textured terrain, without original fidelity
 or joined marker-pixel claim. Final scope/text/links/timing are in the session. Modern

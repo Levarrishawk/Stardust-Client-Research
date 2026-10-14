@@ -1,9 +1,12 @@
 # 64-bit Replacement Plan
 
+Current scope — October 14, 2026: this is research documentation. Any implementation choices or acceptance results below are historical evidence. Use [current status](../ANALYSIS_STATUS.md) for coverage and open questions; no engine choice or client development is prescribed here.
+
+
 ## Host and asset increment — 2026-09-29
 
 A cancellable engine-neutral login host now binds guarded monotonic time,
-I/O accounting and bounded safe JSONL persistence. Godot runs injected offline
+I/O accounting and bounded safe JSONL persistence. Prototype host runs injected offline
 I/O; the IPv4 UDP adapter is compiled but unexecuted. One original CPU mesh
 matches Python and its dependencies resolve through the configured archive set.
 Next: independently verified DDS pixels/mips and one material/axis adapter.
@@ -16,10 +19,11 @@ See the [session resume point](../research/sessions/IMPLEMENTATION_SESSION_2026-
 3. **Asset dependence:** world, appearance, animation, terrain, shaders, UI, effects, and audio are deeply asset-dependent. The networking POC is not.
 4. **Conceptual reuse:** session sequencing, wire messages, template CRCs, replication views, containment/cell/scene concepts, and virtual paths. Redesign platform, allocation, jobs, renderer, UI internals, and resource ownership.
 5. **Major blockers:** remaining long-tail asset/presentation semantics, unresolved-resource failure behavior, exhaustive ownership and optional workflow auditing, original-asset provenance/redistribution review, and validation against the actually deployed server build/configuration. The packet inventory is closed, while operational wire tests and fidelity tests still remain.
-6. **Renderer/engine:** the user selected Godot 4.7.2 .NET x64 as the host after
-   its bounded feasibility proof passed with an engine-neutral .NET 8 core and
-   Direct3D 12 Forward+. Protocol, state, simulation, and original-asset logic
-   remain outside Godot behind adapter boundaries. See `RENDERING_ARCHITECTURE.md`.
+6. **Renderer/engine:** historical feasibility experiments used a host adapter
+   with an engine-neutral core. Their acceptance applies only to their bounded
+   fixtures. Protocol, state, simulation and original-asset contracts remain
+   independent of rendering choices; this research repository prescribes no engine.
+   See `RENDERING_ARCHITECTURE.md`.
 7. **Smallest POC:** a headless-capable x64 Windows executable that initializes logs/config, establishes the transport session, sends the minimum login message to a controlled Stardust test server, parses one known reply, records a deterministic structured log, disconnects, and exits cleanly.
 
 ## 32-to-64-bit hazards
@@ -41,7 +45,7 @@ See the [session resume point](../research/sessions/IMPLEMENTATION_SESSION_2026-
 ## Pre-build engine decision gate
 
 **Status: completed.** After the broader client analysis and bounded feasibility
-proof, the user selected Godot 4.7.2 .NET x64 as the host. The comparison below
+proof, the user selected prototype host 4.7.2 .NET x64 as the host. The comparison below
 is retained as the decision record; implementation must continue to enforce its
 engine-neutral compatibility boundaries. See [the archived historical pre-build
 report](../research/archive/superseded-progress-reports/FINAL_PREBUILD_ANALYSIS_REPORT.md),
@@ -50,26 +54,26 @@ report](../research/archive/superseded-progress-reports/FINAL_PREBUILD_ANALYSIS_
 After the protocol, replication, object lifecycle, asset formats, world/cell model, animation, UI/input and audio dependencies are sufficiently characterized—and before substantial replacement-client implementation—compare at least:
 
 - a custom native client with a narrow DX12 renderer;
-- Godot as a host engine, using native integration only where protocol/resource workloads require it;
+- prototype host as a host engine, using native integration only where protocol/resource workloads require it;
 - a custom Vulkan client if cross-platform delivery has become a concrete requirement;
 - any other mature engine that demonstrably satisfies the recovered compatibility constraints.
 
 The comparison must use a written evidence matrix covering: native x64 support; ability to own the SOE transport and fixed-width codecs; deterministic lifecycle ordering; background I/O; custom TRE/IFF and SWG asset import/runtime loading; large-world coordinates; cell/portal visibility; skeletal animation customization; terrain; shader/material translation; UI flexibility; Windows debugging/profiling; licensing and redistribution; source-level escape hatches; upgrade risk; and long-term maintenance cost.
 
-Godot must be evaluated as an architectural option, not assumed to be either a drop-in solution or unsuitable. The decisive question is whether its scene/resource/rendering model reduces implementation risk without forcing protocol, object replication, asset identity or world-streaming behavior into brittle engine-specific shapes. The narrow networking POC may still be implemented as an engine-independent executable/library after this gate, but no build begins until the user approves the resulting decision.
+Prototype host must be evaluated as an architectural option, not assumed to be either a drop-in solution or unsuitable. The decisive question is whether its scene/resource/rendering model reduces implementation risk without forcing protocol, object replication, asset identity or world-streaming behavior into brittle engine-specific shapes. The narrow networking POC may still be implemented as an engine-independent executable/library after this gate, but no build begins until the user approves the resulting decision.
 
 The transform boundary is no longer an engine-evaluation unknown. Stardust uses
-Y-up/+Z-forward transforms and `[w,x,y,z]` quaternions; Godot uses Y-up/-Z-
+Y-up/+Z-forward transforms and `[w,x,y,z]` quaternions; prototype host uses Y-up/-Z-
 forward. A single Z reflection maps positions/directions, while quaternion
 construction uses `[-x,-y,z,w]`; authored triangle indices are preserved after reflection and tangent
-handedness flips once. See [geometry facing](GODOT_GEOMETRY_FACING_CONTRACT.md). Principal-axis and mixed-pose matrix fixtures pass. Keep original assets
-in engine-neutral SWG space and apply this conversion only at the Godot adapter.
+handedness flips once. See [geometry facing](PROTOTYPE_GEOMETRY_FACING_CONTRACT.md). Principal-axis and mixed-pose matrix fixtures pass. Keep original assets
+in engine-neutral SWG space and apply this conversion only at the prototype host adapter.
 
-Likewise, Godot's animation facilities must sit behind a compatibility graph,
+Likewise, prototype host's animation facilities must sit behind a compatibility graph,
 not replace it directly. The client invalidates a per-frame pose cache, advances
 ordered logical/physical controllers, accumulates root motion per substep and
 emits animation messages synchronously before installing returned/queued
-replacement animation. A Godot `AnimationTree` may implement blending, but the
+replacement animation. A prototype host `AnimationTree` may implement blending, but the
 track handles, transition queue, message order and root-motion contract remain
 owned by the compatibility layer.
 
@@ -117,7 +121,7 @@ bounded inbound/outbound fragmentation. It also matches the documented
 `ErrorMessage` fixtures while preserving credential bytes. Cluster list/status
 fixtures and a bounded `EnumerateCharacterId` parser retain separate zone/ping
 ports, explicit LE64 object IDs, and strict UTF-16LE names. A socket-independent
-client transport drives the Godot-hosted offline transcript through these four
+client transport drives the prototype host-hosted offline transcript through these four
 login responses. A socket-independent coordinator now exposes the complete
 tick/receive/outbound flow with validated endpoint-redacted options.
 
@@ -138,7 +142,7 @@ establish mesh/texture rendering or complete Phase 4.
 Current open Phase 1 gates: status/liveness and CRC exceptions, actual UDP
 ownership/endpoint filtering, clock and journal binding, outbound compression
 policy, and a separately authorized controlled-server run. See the
-[implementation acceptance record](../../SWG-Godot-Client/docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md) and
+implementation acceptance record (external historical reference) and
 [session handoff](../research/sessions/IMPLEMENTATION_SESSION_2026-09-29_ONE_HOUR.md).
 
 ### Inputs
@@ -198,7 +202,7 @@ a missing named resource.
 
 ## Textured preview increment (2026-09-29)
 
-Engine-neutral DDS and owned material graphs feed an explicit original Godot preview with byte-verified uploads and GPU coordinate tests. See the [session](../research/sessions/IMPLEMENTATION_SESSION_2026-09-29_TEXTURED_PREVIEW_HOUR.md). Next asset gate is parent appearance/LOD loading; faithful lighting and BC7/HDR extensions remain bounded follow-ups.
+Engine-neutral DDS and owned material graphs feed an explicit original prototype host preview with byte-verified uploads and GPU coordinate tests. See the [session](../research/sessions/IMPLEMENTATION_SESSION_2026-09-29_TEXTURED_PREVIEW_HOUR.md). Next asset gate is parent appearance/LOD loading; faithful lighting and BC7/HDR extensions remain bounded follow-ups.
 
 ## Overnight implementation progression
 
@@ -212,7 +216,7 @@ The [camera LOD checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_20
 
 ## BC6H HDR extension — 2026-09-30
 
-The [HDR checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BC6H_HDR.md) adds a separate owned RGB half output for typed signed/unsigned BC6H. Forty standards-only fixtures/264 mips match independent Godot bcdec bit for bit and pass real GPU half upload/readback. Native endpoint, truncation, surface and budget gates pass. Static material integration and HDR presentation remain separate; this is not original executable acceptance evidence. Existing pinned dependencies, research metrics and registry counts are unchanged.
+The [HDR checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BC6H_HDR.md) adds a separate owned RGB half output for typed signed/unsigned BC6H. Forty standards-only fixtures/264 mips match independent prototype host bcdec bit for bit and pass real GPU half upload/readback. Native endpoint, truncation, surface and budget gates pass. Static material integration and HDR presentation remain separate; this is not original executable acceptance evidence. Existing pinned dependencies, research metrics and registry counts are unchanged.
 
 
 ## APPR hardpoints — 2026-09-30

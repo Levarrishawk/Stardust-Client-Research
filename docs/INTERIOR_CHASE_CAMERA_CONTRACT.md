@@ -1,6 +1,6 @@
 # Interior chase-camera contract
 
-The engine-neutral `ChaseCameraObstruction` owns selected room triangles and accepts live world-space door boxes. Target/desired positions are explicit: target is authoritative actor feet plus the original FCHS posture-height result; desired is target minus normalized look direction times selected authored zoom. The Godot adapter uses posture0, no active state, appearance metric1 and maximum-zoom multiplier1 as explicit preview inputs. These constants do not recover the original appearance metric or runtime preferences. [Original profile](FREE_CHASE_CAMERA_PROFILE_CONTRACT.md).
+The engine-neutral `ChaseCameraObstruction` owns selected room triangles and accepts live world-space door boxes. Target/desired positions are explicit: target is authoritative actor feet plus the original FCHS posture-height result; desired is target minus normalized look direction times selected authored zoom. The prototype host adapter uses posture0, no active state, appearance metric1 and maximum-zoom multiplier1 as explicit preview inputs. These constants do not recover the original appearance metric or runtime preferences. [Original profile](FREE_CHASE_CAMERA_PROFILE_CONTRACT.md).
 
 ## Explicit replacement policy
 
@@ -10,9 +10,9 @@ The authored FRST0.5 threshold chooses character visibility: hide at resolved di
 
 ## Ownership and renderer boundary
 
-The original profile joins the existing cache within the archive worker scope. Complete scene closure is148 unique sources/16,612,055 bytes, including the two owned movement clips; every external source is read once. Camera queries consume snapshots after archive disposal. Camera/zoom/view changes retain actor state, door state, skeletal pose/topology/material identities and texture cache. Reflect world positions/look directions once at Godot publication.
+The original profile joins the existing cache within the archive worker scope. Complete scene closure is148 unique sources/16,612,055 bytes, including the two owned movement clips; every external source is read once. Camera queries consume snapshots after archive disposal. Camera/zoom/view changes retain actor state, door state, skeletal pose/topology/material identities and texture cache. Reflect world positions/look directions once at prototype host publication.
 
-This integration exposed an incorrect extra triangle reversal in both static and skeletal upload. The corrected adapter preserves source indices after Z reflection. Original source geometry and the two-sided GPU probe establish the corrected boundary; see [geometry facing](GODOT_GEOMETRY_FACING_CONTRACT.md). Earlier inside-out captures do not establish outward-face rendering.
+This integration exposed an incorrect extra triangle reversal in both static and skeletal upload. The corrected adapter preserves source indices after Z reflection. Original source geometry and the two-sided GPU probe establish the corrected boundary; see [geometry facing](PROTOTYPE_GEOMETRY_FACING_CONTRACT.md). Earlier inside-out captures do not establish outward-face rendering.
 
 ## Validation
 

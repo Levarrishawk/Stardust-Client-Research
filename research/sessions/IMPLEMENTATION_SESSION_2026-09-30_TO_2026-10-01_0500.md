@@ -22,7 +22,7 @@ Question: which runtime static-mesh collision path selects eligible shader primi
 
 6. [Actor extent participation](../checkpoints/ANALYSIS_CHECKPOINT_2026-10-01_ACTOR_EXTENT_PARTICIPATION.md): inspected body paths consume transformed collision extents and separate floor queries. Full-triangle guard remains a conservative modern probe; original controller reachability and extent sources remain open.
 
-7. [Authored collision extents](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_AUTHORED_COLLISION_EXTENTS.md): shared bounded secondary decoder agrees on six pinned original appearances; all secondary extents are NULL. Primitive/negative native gates and Godot build pass.
+7. [Authored collision extents](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_AUTHORED_COLLISION_EXTENTS.md): shared bounded secondary decoder agrees on six pinned original appearances; all secondary extents are NULL. Primitive/negative native gates and prototype host build pass.
 
 8. [Creature collision fallback](../checkpoints/ANALYSIS_CHECKPOINT_2026-10-01_CREATURE_COLLISION_FALLBACK.md): source precedence and template dimensions confirmed; ordinary fallback sphere bottom is step height above origin. Original human profile and controller reachability remain open.
 
@@ -36,7 +36,7 @@ Question: which runtime static-mesh collision path selects eligible shader primi
 
 13. [Solid box sphere contact](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SOLID_BOX_SPHERE_CONTACT.md): analytic features/solid interior/permissions and512 independent synthetic cases pass.
 
-14. [Sphere-box floor transfer](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SPHERE_BOX_FLOOR_TRANSFER.md): supported capture/ownership composition and512 independent cases pass; full native/Godot gates pass.
+14. [Sphere-box floor transfer](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SPHERE_BOX_FLOOR_TRANSFER.md): supported capture/ownership composition and512 independent cases pass; full historical implementation path (omitted) gates pass.
 
 15. [Persistent sphere doors](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_PERSISTENT_SPHERE_DOORS.md): optional explicit sphere scene volume passes80 synthetic transfers and2,880 original ticks/24 transfers/182 contacts; frame/source audit passes. Closing guard is an enclosing cube, with positive synthetic hold coverage.
 
@@ -48,7 +48,7 @@ Question: which runtime static-mesh collision path selects eligible shader primi
 
 19. [Human skeleton descriptors](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_HUMAN_SKELETON_DESCRIPTORS.md): ten unchanged sources/19,394 bytes and five levels/131 joints match independently. Case mismatch corrected using instruction-backed default ASCII folding; native/negative gates pass.
 
-20. [Human bind transforms](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_HUMAN_BIND_TRANSFORMS.md): native noncommuting poses and176 independently computed original matrices agree (max4.141e-7); Godot build passes.
+20. [Human bind transforms](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_HUMAN_BIND_TRANSFORMS.md): native noncommuting poses and176 independently computed original matrices agree (max4.141e-7); prototype host build passes.
 
 21. [Human skin sources](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_HUMAN_SKIN_SOURCES.md): twelve unchanged sources/329,296 bytes,1,454 positions/2,170 weights and all transform-name correspondence agree independently. Native and masked-source gates pass; suffix retained explicitly.
 
@@ -81,6 +81,6 @@ Implement keyed endpoint/interior rotation and translation evaluation, then expl
 
 ## Final verification and limitations
 
-The complete native smoke suite passes after milestone32, including synthetic host/accounting and malformed-input gates. Godot build passes with zero warnings/errors. Independent original audits and inspected GPU/cancellation captures are recorded in their checkpoints. Workspace validator:902 Markdown files, zero broken links, zero links into private evidence,2,599 unique provisional addresses and345 packet rows. `git diff --check` passes. No proprietary/binary original source candidate appears in the changed-file inventory; generated logs/extracts/captures remain ignored. Nothing staged or committed.
+The complete native smoke suite passes after milestone32, including synthetic host/accounting and malformed-input gates. Prototype host build passes with zero warnings/errors. Independent original audits and inspected GPU/cancellation captures are recorded in their checkpoints. Workspace validator:902 Markdown files, zero broken links, zero links into private evidence,2,599 unique provisional addresses and345 packet rows. `git diff --check` passes. No proprietary/binary original source candidate appears in the changed-file inventory; generated logs/extracts/captures remain ignored. Nothing staged or committed.
 
 This run establishes practical implementation slices, not a replacement-client completion percentage. The rendered original human uses neutral materials; its arm pose is explicitly synthetic. Selected original idle channels and packed rotations are decoded but not interpolated or played. Generated face/customization/material/occlusion behavior, complete animation graphs and original matrix-producer operand/cache linkage remain separate work. Modern triangle participation/closing-envelope/publication policies are declared divergences.

@@ -24,7 +24,7 @@ The contract cites Microsoft and Intel only for API units and architectural bit 
 
 ## Verification and handoff
 
-Run the [verifier](../../../SWG-Godot-Client/poc/round28-tests/Rendering/Verify-SwitchClock.py) with explicit `--exe`, cached `--packages`, and a new ignored `--receipt` path. Its positive audit covers 26 ranges, seven RTTI slots, export/import identity, scale constants, and ordered frame call sites. Wrong-identity and truncated synthetic executable inputs must fail before PE/VA analysis. These are static checks, not execution-based animation tests.
+Run the verifier (external historical reference) with explicit `--exe`, cached `--packages`, and a new ignored `--receipt` path. Its positive audit covers 26 ranges, seven RTTI slots, export/import identity, scale constants, and ordered frame call sites. Wrong-identity and truncated synthetic executable inputs must fail before PE/VA analysis. These are static checks, not execution-based animation tests.
 
 Executed results: positive audit passed (26 instruction ranges, seven RTTI slots); both synthetic negatives rejected input before VA use. Python syntax and scoped EOF/trailing-whitespace checks passed. The workspace validator reported zero broken links, zero links into private storage, and zero duplicate provisional addresses. `git diff --check` passed. All 2,666 supplied baseline hashes remained unchanged, exactly three scoped public files were added, HEAD was preserved, and the index stayed empty. The full dirty status was inspected against the snapshot rather than treating snapshot-overlay differences as this worker's changes.
 

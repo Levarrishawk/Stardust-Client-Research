@@ -2,7 +2,7 @@
 
 ## Question and scope
 
-Can all selected original room triangles be retained and queried across the existing portal route with supported owner transitions? Close extraction, capacity, conservative contact and independent agreement. This is an isolated triangle/floor probe; current door leaves and the persistent Godot actor are not yet composed with it.
+Can all selected original room triangles be retained and queried across the existing portal route with supported owner transitions? Close extraction, capacity, conservative contact and independent agreement. This is an isolated triangle/floor probe; current door leaves and the persistent prototype host actor are not yet composed with it.
 
 ## Inputs and geometry
 

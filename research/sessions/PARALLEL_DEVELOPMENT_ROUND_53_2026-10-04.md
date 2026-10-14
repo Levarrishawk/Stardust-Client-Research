@@ -24,7 +24,7 @@ preserve main/worker dirty bytes, HEAD/index, private and unrelated paths.
 | Networking | Selected ground InputMap/controller queue connection | One queue-instance assignment and normalized end-binding event path; effective physical profile remains separately evidenced |
 
 Workers use frozen52 public APIs; no unfinished sibling53 dependency. Only exact
-role allowlists and new own53 runners are writable. Lead owns shared Godot hooks,
+role allowlists and new own53 runners are writable. Lead owns shared prototype host hooks,
 canonical reconciliation, independent replays and any original-rule/batched-host
 composition. Workers stop after one final hash/scope/evidence handoff.
 
@@ -45,7 +45,7 @@ before any subsequent dispatch. [Daytime record](DAYTIME_DEVELOPMENT_2026-10-04.
 All four workers are idle. All28 integrated hashes match final handoffs. Lead400
 actual original-rule retained samples/heights match reference/Fraction oracles;
 4 samplers replace400 under explicit preview controls. Headless/GPU/negative
-cleanup, both prior terrain previews and final Core/Godot gates pass. Full original
+cleanup, both prior terrain previews and final historical implementation path (omitted) gates pass. Full original
 terrain and player unit/queue-instance parity remain Unknown. Research/readiness/
 function/protocol denominators remain unchanged. [Lead checkpoint](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R53_ORIGINAL_RULE_AND_BATCHED_PATCH.md).
 

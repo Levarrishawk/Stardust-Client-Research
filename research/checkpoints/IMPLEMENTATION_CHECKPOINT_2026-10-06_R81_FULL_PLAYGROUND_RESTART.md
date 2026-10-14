@@ -8,7 +8,7 @@ Stopping condition: four fresh full previews, two normal completions followed by
 
 Frozen accepted80 has4646 public files, manifest SHA256 `b0a66693ebdf2e61fae7eb8c314c671f6393bb37c0b014a90b8ab62a61f1bf4d`, archive SHA256 `b864d128336891a981c4d254e4637f872db71f3058a95683d41b52e0154099fd`. Main HEAD `ece6e3943ac84fb10d84bc9d44314fa7ba032f92`; worker HEAD `65de8c88141071744dc75594be126b3bab3696a5`. Dirty public/private work and the empty index remain preserved.
 
-Original EXE SHA256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150` is checked before static VAs; it is never executed. Replacement native Godot4.7.2 .NET x64 uses the established original archive/configuration/catalog/customization and synthetic replication context. The original configuration pin remains `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`.
+Original EXE SHA256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150historical prototype identifier (omitted)22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`.
 
 The joined producer consumes the accepted configured normal/strict-fault Version13 profiles, sparse Version9 terrain context and original locomotion expectations. It regenerates the independent401-row trajectory before native execution and reseeds inherited protected input fixtures while preserving their application bytes. Detailed generated inputs/logs/images/build outputs remain ignored/private. No original content or bulk executable output is promoted.
 
@@ -43,7 +43,7 @@ The independent transport boundary checks exact seed-specific protection/ACK byt
 
 The running GPU image shows original creature/terminal presentation, supplied terrain/material and controls. The fault image shows225/6000 updates,23 root frames, empty buffers and restart button after actors/terrain have been removed. Both inspected images are readable and unclipped at1280x720.
 
-Controlled active close through the actual [interactive launcher](../../../SWG-Godot-Client/poc/Stardust.Godot/PersistentOfflinePlaygroundLauncher.cs) passes after31 updates/three protected roots. It captures `Incomplete`, `WindowClosing=true`, equal completed/attempted counts and successful actor/publication/archive/input/root cleanup, exits0, and admits no successor. It does not invent a successful stop. Independent movement-prefix and wire checks pass. This calls the controlled close API; physical OS close-button notification routing remains unexecuted.
+Controlled active close through the actual interactive launcher (external historical reference) passes after31 updates/three protected roots. It captures `Incomplete`, `WindowClosing=true`, equal completed/attempted counts and successful actor/publication/archive/input/root cleanup, exits0, and admits no successor. It does not invent a successful stop. Independent movement-prefix and wire checks pass. This calls the controlled close API; physical OS close-button notification routing remains unexecuted.
 
 The unchanged one-run Version13 normal fixture passes401/seven events/39 roots and the unchanged strict-fault fixture passes225/226/five events/23 roots, including its original outcome HUD checks. The default failure body is preserved separately from persistent cleanup. All full native builds report zero warnings/errors. Known certificate-store diagnostics persist; expected strict-terrain and intentional-close errors are retained in logs rather than hidden.
 
@@ -60,13 +60,12 @@ The initial lead Rendering replay correctly rejected a legitimate sibling-modifi
 
 ## Reproduction
 
-Use cached offline Python/Godot/.NET dependencies and original input roots/context. Generate full argument arrays matching the existing [single-run launcher](../../../SWG-Godot-Client/poc/round16-tests/Integration/Launch.ps1), including every original-resource/synthetic-peer partition. No input root is synthesized by this milestone.
+Use cached offline historical implementation path (omitted) dependencies and original input roots/context. Generate full argument arrays matching the existing single-run launcher (external historical reference), including every original-resource/synthetic-peer partition. No input root is synthesized by this milestone.
 
-```powershell
-& poc/round81-tests/Integration/Invoke-PlaygroundRestart.ps1 -Python $Python -GodotPath $Godot -CachedPackages $Packages -BaseArguments $BaseArgsJson -NormalProfile $ConfiguredReplay -FaultProfile $StrictFaultReplay -Terrain $TerrainContext -Clips $OriginalClipExpectations -RunRoot $FreshPrivateRun
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
 
-For GPU add `-Gpu` and supply the measured normal replay profile. [Independent joined verifier](../../../SWG-Godot-Client/poc/round81-tests/Integration/playground_restart_peer.py), [interactive argument producer](../../../SWG-Godot-Client/poc/round81-tests/Integration/create_restart_arguments.py), [active-close scene](../../../SWG-Godot-Client/poc/round81-tests/Integration/ActiveClose.tscn) and [active-close verifier](../../../SWG-Godot-Client/poc/round81-tests/Integration/verify_active_close.py) are public reproducible code; generated inputs/evidence remain private. The active-close policy is declared before native:Incomplete,30..37 completed updates, equal attempted count, controlled-close flag, zero actors/jobs/publications/buffers, three closed archive jobs and no successor.
+
+For GPU add `-Gpu` and supply the measured normal replay profile. Independent joined verifier (external historical reference), interactive argument producer (external historical reference), active-close scene (external historical reference) and active-close verifier (external historical reference) are public reproducible code; generated inputs/evidence remain private. The active-close policy is declared before native:Incomplete,30..37 completed updates, equal attempted count, controlled-close flag, zero actors/jobs/publications/buffers, three closed archive jobs and no successor.
 
 ## Confidence, limits and next action
 

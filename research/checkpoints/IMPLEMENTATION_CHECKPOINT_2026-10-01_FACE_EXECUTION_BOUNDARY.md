@@ -26,7 +26,7 @@ Blend factors established in the [inline-effect checkpoint](IMPLEMENTATION_CHECK
 
 `BlueprintFacePixelProgramDecoder` owns bounded PSHP0000 metadata and recognizes exactly the observed shader1.1 instruction/mask/register/swizzle pattern. Unsupported patterns, envelopes and truncation reject. Optional `loadFacePixelPrograms` requires face resources; default resource closure is unchanged. Program dependencies share the original source cache and deduplicate by normalized path. Vertex source/includes are not yet an owned program closure.
 
-Native `--skeletal-face-programs` uses the pinned original object/SAT/config path. 51 sources/2,283,555 bytes; one shared pixel program. Independent verifier derives the required PPSH name from original shader bytes, compares instruction bytes/register semantics and the exact source union, and retains prior geometry/texture/palette/preparation audits. Portable source ownership/every-truncated-prefix/every-altered-token rejection and original missing/masked program cases pass. Godot build: zero warnings/errors. Workspace/link and diff checks recorded in the session.
+Native `--skeletal-face-programs` uses the pinned original object/SAT/config path. 51 sources/2,283,555 bytes; one shared pixel program. Independent verifier derives the required PPSH name from original shader bytes, compares instruction bytes/register semantics and the exact source union, and retains prior geometry/texture/palette/preparation audits. Portable source ownership/every-truncated-prefix/every-altered-token rejection and original missing/masked program cases pass. Prototype host build: zero warnings/errors. Workspace/link and diff checks recorded in the session.
 
 ## Remaining uncertainty and next probe
 

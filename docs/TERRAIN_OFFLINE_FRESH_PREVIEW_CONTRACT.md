@@ -4,7 +4,7 @@
 
 Round81 adds `RecordOfflineFreshPreviewState()` to the configured Version13 host. The single call is at the end of `BeginPointTarget`, after prepared input/camera/frame/root helpers and before its first update. Other versions return without a report. This is replacement-host evidence, not recovered legacy client behavior or a protocol coverage metric.
 
-The partial [implementation](../../SWG-Godot-Client/poc/Stardust.Godot/ScenePumpedOfflineFreshState.cs) checks actual borrowed and owned objects before serializing a primitive-only `offline_fresh_preview_state` JSON record. It does not retain nodes or sessions in the record. `ReferenceEquals` establishes the point/controller and root/transport ownership relationships. Godot instance identifiers support same-process child distinction; identifiers from separate processes may repeat.
+The partial implementation (external historical reference) checks actual borrowed and owned objects before serializing a primitive-only `offline_fresh_preview_state` JSON record. It does not retain nodes or sessions in the record. `ReferenceEquals` establishes the point/controller and root/transport ownership relationships. Prototype host instance identifiers support same-process child distinction; identifiers from separate processes may repeat.
 
 ## SchemaVersion 1
 
@@ -33,7 +33,7 @@ Configured Version13 admission reads both SoeConnectionId and SoeSeed through Ge
 
 ## Independent verifier and runner
 
-[verify_fresh.py](../../SWG-Godot-Client/poc/round81-tests/Runtime/verify_fresh.py) exports:
+verify_fresh.py (external historical reference) exports:
 
 - `expected(profile)` returns independently calculated initialization expectations for frozen Version13 policy `SuppliedConfiguredOfflinePlayground`.
 - `records(log)` extracts newline `key=JSON` records.
@@ -43,19 +43,15 @@ Results include actual input-intent, speed-intent and noninitial orbit record co
 
 CLI examples, with explicit private inputs and a fresh output under this checkout's ignored `local-private`:
 
-```powershell
-python poc/round81-tests/Runtime/verify_fresh.py generate --profile <profile.json> --out <fresh-private-expected.json>
-python poc/round81-tests/Runtime/verify_fresh.py verify --profile <profile.json> --log <console.log> --out <fresh-private-receipt.json>
-python poc/round81-tests/Runtime/test_verifier.py
-python poc/round81-tests/Runtime/run_headless.py --godot <Godot_console.exe> --args <prepared-argv.json> --console-out <fresh-private-console.log>
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
 
-The runner takes a JSON string array of explicit Godot arguments. It requires `--headless`, a private prepared `--path`, and a fresh private `--log-file`; timeout is 45 seconds. Prepare a private copy of the frozen Godot project and sibling preview-profiles, reference the frozen Core project, and build using exact locked offline packages. Preserve the full frozen resource/peer/profile arguments. It does not download packages or fabricate missing original resources. Output guards reuse the existing symlink/reparse-aware private path validator.
+
+The runner takes a JSON string array of explicit prototype host arguments. It requires `--headless`, a private prepared `--path`, and a fresh private `--log-file`; timeout is 45 seconds. Prepare a private copy of the frozen prototype host project and sibling preview-profiles, reference the frozen Core project, and build using exact locked offline packages. Preserve the full frozen resource/peer/profile arguments. It does not download packages or fabricate missing original resources. Output guards reuse the existing symlink/reparse-aware private path validator.
 
 ## Verified result and limits
 
 Confirmed on 2026-10-06: warning-free full-host build; original-resource headless short fixture completed 3/3 updates; original-resource strict terrain-gap fixture faulted at 225/226 completed/attempted updates. Both passed fresh-state and cleanup verification. The fault fixture recorded two manual intents and two ShiftPressed speed intents, with no noninitial orbit record. Closed cleanup was observed, but final held masks were not reported. Authored synthetic tests cover repeated normal/fault segments and 33 rejection cases; these are parser tests, not native input evidence.
 
-The initial restore failed with missing BCnEncoder and mismatched Godot locked hashes. Exact previously validated offline packages resolved this without changing locks. The first native attempt failed because the isolated project lacked its sibling preview-profiles; copying those public inputs resolved it. Godot also emitted a root-certificate-store diagnostic; no network operation was requested.
+The initial restore failed with missing BCnEncoder and mismatched prototype host locked hashes. Exact previously validated offline packages resolved this without changing locks. The first native attempt failed because the isolated project lacked its sibling preview-profiles; copying those public inputs resolved it. Prototype host also emitted a root-certificate-store diagnostic; no network operation was requested.
 
 Next probe: lead-owned persistent full-host runs should feed individual child log segments into `verify_runs(..., True)`, including held-input retirement and camera perturbation evidence if the frozen cleanup schema supports it. No Rendering81 lifecycle API is imported here.

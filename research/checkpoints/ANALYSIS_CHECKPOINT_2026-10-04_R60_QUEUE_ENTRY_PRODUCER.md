@@ -4,7 +4,7 @@ Date: 2026-10-04. Question: what is stored at entry+8 by one insertion path, and
 
 ## Input, evidence, confidence and consequence
 
-The [durable contract](../../docs/OBJECT_CONTROLLER_QUEUE_ENTRY_PRODUCER_CONTRACT.md) records baseline SHA-256, complete body hashes/extents/exits, ABI, exact receiver/argument/field/arithmetic/call/branch observations and failure/ownership limits. The [verifier](../../../SWG-Godot-Client/tools/python/verify_object_controller_queue_entry_producer.py) and [independent runner](../../../SWG-Godot-Client/poc/round60-tests/Networking/research_checks.py) are the reproducible consumer gates.
+The [durable contract](../../docs/OBJECT_CONTROLLER_QUEUE_ENTRY_PRODUCER_CONTRACT.md) records baseline SHA-256, complete body hashes/extents/exits, ABI, exact receiver/argument/field/arithmetic/call/branch observations and failure/ownership limits. The verifier (external historical reference) and independent runner (external historical reference) are the reproducible consumer gates.
 
 Confirmed: `00AA6480` selects the current queue+0C record and stores its third stack argument at entry+8 on spare/growth insertion paths. All four entry DWORDs come from the four arguments. Growth copies the value, clears old entry+8 fields, calls the old-storage delegate, then publishes end/limit/begin. Optional queue+10 callback uses slot offset 4 after publication. Strongly inferred: transfer-shaped relocation and payload-pointer role. Unknown: payload construction/class/genuine vtable, actual insertion caller/occurrence, unique ownership/deletion and exceptional/callback policy. The callback receiver is loaded independently from queue+10; equality with the payload argument remains Unknown.
 

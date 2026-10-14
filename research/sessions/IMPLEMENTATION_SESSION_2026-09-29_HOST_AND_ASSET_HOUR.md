@@ -13,7 +13,7 @@ server contact, captures, commits, staging or publication occurred.
 2. [Async login host](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_LOGIN_HOST.md):
    one outstanding receive across ticks, pinned IPv4/port, handshake/login
    deadlines, retries, cancellation, sanitized failures, owned completion and
-   deterministic cleanup. Concrete UDP adapter compiled only. Godot awaits the
+   deterministic cleanup. Concrete UDP adapter compiled only. Prototype host awaits the
    injected offline host; this transfers the core I/O lifecycle into the engine.
 3. [Bounded persisted journal](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_BOUNDED_JOURNAL.md):
    allowlisted JSONL, whole-record byte/event caps, explicit no-overwrite files,
@@ -32,7 +32,7 @@ server contact, captures, commits, staging or publication occurred.
 
 - Full .NET 8 x64 core smoke suite passes, including independent impaired peer,
   1.5 MB/32-trace transport tests, new host/journal/mesh/shader/mount negatives.
-- Godot Debug build: zero warnings/errors. Headless `--self-test`: exit 0,
+- prototype host Debug build: zero warnings/errors. Headless `--self-test`: exit 0,
   six sends, seven peer receives, one foreign drop, 18 allowlisted journal events,
   zero journal failures. Existing `Failed to read the root certificate store`
   sandbox diagnostic remains; startup is not claimed error-free.
@@ -56,7 +56,7 @@ liveness remain open. Journal persistence is synchronous and bounded.
 
 The asset slice preserves raw geometry and opaque appearance/shader metadata.
 It does not decode DDS pixels, bind EFCT passes, convert axes/winding, render
-original meshes or establish broad mesh/asset coverage. Godot's visible scene
+original meshes or establish broad mesh/asset coverage. Prototype host's visible scene
 still uses synthetic geometry. The acceptance record is the living implementation
 boundary; 89%/94% research scores are not client completion percentages.
 
@@ -65,7 +65,7 @@ boundary; 89%/94% research scores are not client completion percentages.
 Use the winning `texture/stco_tan.dds` from the explicit overlay. Confirm DDS
 header, format, mip byte ranges and dimensions, decode to engine-neutral RGBA,
 and compare pixels with an independent decoder plus truncation/size negatives.
-Then inspect `effect/a_simple.eft`'s selected pass before a Godot adapter for the
+Then inspect `effect/a_simple.eft`'s selected pass before a prototype host adapter for the
 already verified mesh. Establish an asymmetric axis/UV/winding fixture before
 calling the resulting view compatible. No live-server permission is needed
 for this bounded offline asset milestone.
@@ -76,9 +76,9 @@ and zone-state work separate from this asset milestone.
 
 ## Canonical handoff
 
-[Implementation acceptance](../../../SWG-Godot-Client/docs/CLIENT_IMPLEMENTATION_ACCEPTANCE.md),
+Implementation acceptance (external historical reference),
 [asset specification](../../docs/ASSET_PIPELINE.md),
-[prototype README](../../../SWG-Godot-Client/poc/README.md),
+prototype README (external historical reference),
 [current status](../../ANALYSIS_STATUS.md) and
 [chronological ledger](../../COMPREHENSIVE_ANALYSIS_LEDGER.md) are reconciled.
 No new provisional semantic names or packet rows were necessary.

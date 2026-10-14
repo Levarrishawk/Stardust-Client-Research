@@ -99,7 +99,7 @@ must never enter a replacement file decoder.
 - Decode all integers into fixed-width values and resolve names to stable command IDs/handles after validation.
 - Preserve four independent command actions and two flags even before every semantic label is known.
 - Treat unknown physical indices as unbound with diagnostics, not as array indices without range checks.
-- Modern physical events can be translated into the same six binding families, allowing Godot/Raw Input/XInput acquisition while retaining original maps.
+- Modern physical events can be translated into the same six binding families, allowing prototype host/Raw Input/XInput acquisition while retaining original maps.
 
 ## Confidence
 

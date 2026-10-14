@@ -16,17 +16,14 @@ Four names added: `012A4C40`, `012A4E60`, `012A50A0`, `012A4A30`. Registry now *
 
 ## Implementation and gates
 
-New engine-neutral files: `PortalBarrierCollision.cs`, `PortalDoorController.cs`, `PortalBarrierFloorWalker.cs`. Synthetic/native probe: `PortalBarrierScenarios.cs`. Godot adds Actor bounds, using a documented 0.5×1.8×0.5 inspection box. Level-source barriers can stop progress before the portal and retain the source owner. Nonlevel integration stops explicitly; no live actor contacts or original style controller inputs are claimed.
+New engine-neutral files: `PortalBarrierCollision.cs`, `PortalDoorController.cs`, `PortalBarrierFloorWalker.cs`. Synthetic/native probe: `PortalBarrierScenarios.cs`. Prototype host adds Actor bounds, using a documented 0.5×1.8×0.5 inspection box. Level-source barriers can stop progress before the portal and retain the source owner. Nonlevel integration stops explicitly; no live actor contacts or original style controller inputs are claimed.
 
-```powershell
-dotnet run --no-restore --project poc/Stardust.Core.SmokeTests
-dotnet build --no-restore poc/Stardust.Godot
-python tools/python/verify_portal_barriers.py C:\Stardust-DEV C:\Stardust-DEV\swgemu_live.cfg local-private/generated-evidence/portal-barrier-milestone poc/Stardust.Core.SmokeTests/bin/Debug/net8.0/Stardust.Core.SmokeTests.dll
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 The verifier independently rereads effective original bytes, records source SHA pins, prepares a hashed manifest, then compares native eligibility, frame/bounds and first-contact parameters/positions/normals against analytic thin-axis probes. Results: **291 layouts / 7,642 references / 7,231 eligible candidates / 21,693 independent probes**, all agree. Original transformed geometry comparisons use `1e-4` bounds/frame tolerance, `2e-5` parameter tolerance and `2e-4` center tolerance; these are validation tolerances, not hidden collision allowances.
 
-Full smoke tests pass and Godot builds with zero warnings/errors. Bounded offline launcher `tools/powershell/Invoke-StardustAssetPreview.ps1` with pinned YT-1300, `-Interior -InteriorFloors -InteriorPaths -FloorOnly -Cell 1` passes headless and GPU. Actor contact adapter: **12 level links / 24 probes**, two nonlevel sample paths excluded with source-retaining stops. GPU capture was visually inspected; controls fit without overlap. Existing 14-link transfer and surface/path/coordinate gates remain passing. The Godot certificate-store startup diagnostic remains nonfatal.
+Full smoke tests pass and prototype host builds with zero warnings/errors. Bounded offline launcher `tools/powershell/Invoke-StardustAssetPreview.ps1` with pinned YT-1300, `-Interior -InteriorFloors -InteriorPaths -FloorOnly -Cell 1` passes headless and GPU. Actor contact adapter: **12 level links / 24 probes**, two nonlevel sample paths excluded with source-retaining stops. GPU capture was visually inspected; controls fit without overlap. Existing 14-link transfer and surface/path/coordinate gates remain passing. The prototype host certificate-store startup diagnostic remains nonfatal.
 
 Detailed inventories, logs and capture remain under ignored private generated evidence. No asset bytes or raw decompiler corpora were promoted. No server contact, repository publication, staging or commits occurred.
 

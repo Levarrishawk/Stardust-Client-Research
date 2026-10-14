@@ -1,6 +1,6 @@
 # Current-world received creature movement inputs
 
-[SceneWorldReceivedCreatureMovementInputs](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldReceivedCreatureMovementInputs.cs) reads ten correlated CREO4 F32 slots from an exact current [partial-world publication](SCENE_WORLD_CREATURE_VIEW4_PARTIAL_CONTRACT.md). It preserves received observations only. It supplies no authored/default values, numeric conversion, modifier composition, angle conversion, motion formula or walk/run selector. Field6 (listen target) is not movement and is excluded.
+SceneWorldReceivedCreatureMovementInputs (external historical reference) reads ten correlated CREO4 F32 slots from an exact current [partial-world publication](SCENE_WORLD_CREATURE_VIEW4_PARTIAL_CONTRACT.md). It preserves received observations only. It supplies no authored/default values, numeric conversion, modifier composition, angle conversion, motion formula or walk/run selector. Field6 (listen target) is not movement and is excluded.
 
 ## Fixed slots and raw classification
 
@@ -32,7 +32,7 @@ The copied policy and read-only fields cannot be mutated by callers. Failed read
 
 Observation: actual Core source and an independently authored literal-byte/presence/provenance/lifecycle model agree on128 cases,1408 actions and10240 field observations. Cases include all ten F32 slots, missing/listen-only state, repeated assignments, signed-zero, subnormal, finite negative/max values, signed infinities and NaN payloads, pending/finalized phase transitions, containment, destroy/recreate and reset. Native negatives add replacement, foreign-world/source/consumer, owner affinity, output bounds, immutability, atomic failure and deterministic disposal/close. Confidence: Confirmed for this bounded modern implementation under serialized synthetic inputs. No original executable behavior or runtime-default inference is asserted.
 
-[Round47 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R47_RECEIVED_MOVEMENT_INPUTS.md) records frozen identities, reproduction, regressions and corrections. The [scenario suite](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldReceivedCreatureMovementInputScenarios.cs) uses a [separate actual-Core runner](../../SWG-Godot-Client/poc/round47-tests/Runtime/Runtime.csproj); its [independent peer](../../SWG-Godot-Client/poc/round47-tests/Runtime/peer.py) generates literal envelopes and models lifecycle/raw classification without importing production/native expectations.
+[Round47 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R47_RECEIVED_MOVEMENT_INPUTS.md) records frozen identities, reproduction, regressions and corrections. The scenario suite (external historical reference) uses a separate actual-Core runner (external historical reference); its independent peer (external historical reference) generates literal envelopes and models lifecycle/raw classification without importing production/native expectations.
 
 Next bounded join: pair exact-current nullable received eligibility with separate authored provenance. Preserve both origins, require an explicit policy for any selected walk/run field, and provide no fallback, default seed, modifier arithmetic or original-runtime claim.
 

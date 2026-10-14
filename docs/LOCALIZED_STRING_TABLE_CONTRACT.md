@@ -1,6 +1,6 @@
 # Owned localized string table contract
 
-The engine-neutral [reader](../../SWG-Godot-Client/poc/Stardust.Core/Assets/LocalizedStringTable.cs) implements a bounded STF variant 1 table. The [September localization investigation](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-21_LOCALIZATION_STF_RUNTIME.md) establishes runtime context; [Round24](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R24_STF_TABLE.md) verifies the byte layout against two original tables. This does not implement locale selection, fallback, caching or name presentation.
+The engine-neutral reader (external historical reference) implements a bounded STF variant 1 table. The [September localization investigation](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-21_LOCALIZATION_STF_RUNTIME.md) establishes runtime context; [Round24](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R24_STF_TABLE.md) verifies the byte layout against two original tables. This does not implement locale selection, fallback, caching or name presentation.
 
 ## Verified layout
 
@@ -34,6 +34,6 @@ No callbacks, archive handles or mutable input buffers survive the call. Indepen
 
 ## Verification and remaining boundary
 
-The [native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/LocalizedStringTableScenarios.cs) and [independent Python fixtures/oracle](../../SWG-Godot-Client/poc/round24-tests/Assets/verify_stf.py) cover 102 synthetic cases (4 positive, 98 malformed), six budget failures, invalid settings, ownership, exact raw identity, pass permutation and concurrent independent lookups. They compare all 97 records of the two pinned original tables, including raw units/keys/CRC, header, pass order and display conversion. Original-derived detailed output remains ignored and private. This is targeted format validation, not corpus coverage or a runtime localization manager.
+The native scenarios (external historical reference) and the separate implementation record cover 102 synthetic cases (4 positive, 98 malformed), six budget failures, invalid settings, ownership, exact raw identity, pass permutation and concurrent independent lookups. They compare all 97 records of the two pinned original tables, including raw units/keys/CRC, header, pass order and display conversion. Original-derived detailed output remains ignored and private. This is targeted format validation, not corpus coverage or a runtime localization manager.
 
 The next question is how the accepted runtime manager selects a locale and handles missing table/key references, then how object names consume that result. Cache ownership and fallback must be specified before integrating this reader into name presentation.

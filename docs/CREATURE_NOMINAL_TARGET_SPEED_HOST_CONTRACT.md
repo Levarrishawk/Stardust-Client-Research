@@ -8,7 +8,7 @@ The bounded owned JSON supplies run and walk binary32 getter-return words, a byt
 
 Round58 Version2 uses one actual [atomic plan](CREATURE_NOMINAL_SPEED_PLAN_CONTRACT.md). It primitive-validates the whole supplied sequence before arithmetic, copies it, then retains the actual target and transition receipts in order. The target builder preserves its squared sum, square root, intermediate binary32 snapshot and retained factor multiplication; each transition consumes its actual target. The host checks all stored speeds before closing the preceding input writer and constructing the motion driver. A failure publishes no new motion writer. Version1 retains its prior supplied-target loop.
 
-The 60-step fixture exercises run, high-bit byte run, walk fallback, a non-unit direction and a factor of two. The modern planar adapter sends each actual stored transition speed along native positive Z; it does not use the supplied direction as a recovered movement vector. Native-to-Godot Z reflection and resource identity retain the existing host contract.
+The 60-step fixture exercises run, high-bit byte run, walk fallback, a non-unit direction and a factor of two. The modern planar adapter sends each actual stored transition speed along native positive Z; it does not use the supplied direction as a recovered movement vector. Native-to-prototype host Z reflection and resource identity retain the existing host contract.
 
 ## Receipts and cleanup
 

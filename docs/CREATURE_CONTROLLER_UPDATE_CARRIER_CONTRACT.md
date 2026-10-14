@@ -10,7 +10,7 @@ This advances the unresolved edge in the frozen [player update units contract](P
 
 Executable: `C:/Stardust-DEV/Stardust.exe`; SHA-256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. Addresses are baseline VAs. Tools: installed offline Python, pefile, Capstone x86-32; the independent runner maps PE sections and decodes selected relative-call bytes without pefile or Capstone.
 
-Run [the producer](../../SWG-Godot-Client/tools/python/verify_creature_controller_update_carrier.py) with explicit `--exe EXE --packages STATIC_PACKAGES --server-root SERVER_ROOT --receipt FRESH_PRIVATE_RECEIPT`. Run [the independent checks](../../SWG-Godot-Client/poc/round54-tests/Runtime/research_checks.py) with the same inputs and `--output-dir FRESH_PRIVATE_DIRECTORY`. Output destinations must be fresh, ignored private paths under the checkout. The server source input is reused by frozen prerequisites; it is correlation evidence, not proof of these carrier instructions. Neither command executes the original program.
+Run the producer (external historical reference) with explicit `--exe EXE --packages STATIC_PACKAGES --server-root SERVER_ROOT --receipt FRESH_PRIVATE_RECEIPT`. Run the independent checks (external historical reference) with the same inputs and `--output-dir FRESH_PRIVATE_DIRECTORY`. Output destinations must be fresh, ignored private paths under the checkout. The server source input is reused by frozen prerequisites; it is correlation evidence, not proof of these carrier instructions. Neither command executes the original program.
 
 ## Complete body bounds
 
@@ -44,7 +44,7 @@ The frozen prior producer supplies the accepted ordinary QPC/QPF seconds path, s
 
 The proven additional path is `00430260 -> 0063F3B0 -> input of 00554C60`. A connection from that input to `00B23100 -> 00B3D1C0 -> 00629750` has **not** been established. Do not infer the intermediate class name from analogous source. No controller instance attachment, whole-program caller census, startup FPU survey, live server, original execution, or native acceleration implementation is included.
 
-[Synthetic fixtures](../../SWG-Godot-Client/poc/round54-tests/Runtime/carrier-fixtures.json) exercise 36 opaque-word/receiver combinations and four conditional seconds representations. They include unusual F32 bit patterns solely to check the model's copying behavior; they do not show that the original client accepts those values. Eight negative checks cover input identity, missing/truncated/unmapped reads, and forbidden/existing output paths. Independent raw witnesses include 16 byte windows, three relative calls, one optional branch, RTTI/dispatch, and two complete-body digests. The initial independent RTTI length expectation was 20 bytes rather than 21 including the terminator; it was corrected before the successful fresh run.
+Synthetic fixtures (external historical reference) exercise 36 opaque-word/receiver combinations and four conditional seconds representations. They include unusual F32 bit patterns solely to check the model's copying behavior; they do not show that the original client accepts those values. Eight negative checks cover input identity, missing/truncated/unmapped reads, and forbidden/existing output paths. Independent raw witnesses include 16 byte windows, three relative calls, one optional branch, RTTI/dispatch, and two complete-body digests. The initial independent RTTI length expectation was 20 bytes rather than 21 including the terminator; it was corrected before the successful fresh run.
 
 ## Exact next probe
 

@@ -1,6 +1,6 @@
 # World object motion store
 
-R17-R, October 2, 2026. [Store](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldObjectMotionStore.cs) implements the lead-frozen [motion snapshot/source](../../SWG-Godot-Client/poc/Stardust.Core/Session/ISceneWorldObjectMotionSource.cs) over the accepted [world](SCENE_MIXED_WORLD_CONTRACT.md). This is modern engine-neutral pose bookkeeping; it introduces no protocol codec, original movement-counter claim, fixed step, physics, interpolation or engine conversion.
+R17-R, October 2, 2026. Store (external historical reference) implements the lead-frozen the separate implementation record over the accepted [world](SCENE_MIXED_WORLD_CONTRACT.md). This is modern engine-neutral pose bookkeeping; it introduces no protocol codec, original movement-counter claim, fixed step, physics, interpolation or engine conversion.
 
 ## API and borrowed ownership
 
@@ -44,4 +44,4 @@ Height remains independent replication and must not be baked into native motion 
 
 Clear removes rows/counter history but retains the global revision. Prune removes only nonlive finalized incarnations. Dispose clears rows and the borrowed world reference; repeated disposal, Clear and Prune are harmless. Disposed Find returns null/IsCurrent false; publication throws ObjectDisposedException. Foreign-thread operations reject even after disposal.
 
-[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneWorldObjectMotionScenarios.cs) use accepted synthetic lifecycle/typed/opaque bytes, no asset reads, and an independent U64 serial-boundary model for 64 pairs. They cover counter-local interaction, rigid/invalid values, atomicity/capacity, state/resource independence, all lifecycle boundaries, clone/foreign identity, Clear revision continuity and owner/busy-world construction. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R17_OBJECT_MOTION.md) records identity/reproduction and the next adapter join.
+Native scenarios (external historical reference) use accepted synthetic lifecycle/typed/opaque bytes, no asset reads, and an independent U64 serial-boundary model for 64 pairs. They cover counter-local interaction, rigid/invalid values, atomicity/capacity, state/resource independence, all lifecycle boundaries, clone/foreign identity, Clear revision continuity and owner/busy-world construction. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R17_OBJECT_MOTION.md) records identity/reproduction and the next adapter join.

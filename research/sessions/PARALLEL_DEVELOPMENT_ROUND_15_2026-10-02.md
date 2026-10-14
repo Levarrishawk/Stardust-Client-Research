@@ -11,7 +11,7 @@ are idle after their single milestones. No Round16 dispatch.
 | Assets | Original two-recipe resource retention fixture; six additions | Fresh native/oracle: two state updates keep exact resources and two loader calls; identical terminal recreation needs a new ticket and one load; six altered-input negatives |
 | Runtime | Engine-neutral bounded heterogeneous presentation consumer; seven additions | Source/ownership review; corrected tally; standalone/shared160 checks including capacity, stale/foreign ownership, candidate rollback, callback/late-fault/cleanup and retryable partial application |
 | Networking | Independent mixed lifecycle observation peer/model; six additions | Shared native/model match40 events, four controlled calls, delayed state/completions, foreign same-revision batch, terminal isolation and current failure with pending work |
-| Rendering | Godot recipe factory/adapters and original proof; twelve additions | Guarded attachment, explicit pre-allocation policy, invalid-state cleanup, worker GPU/headless/cancel/launcher proof; fresh lead standalone headless and combined GPU/headless/cancel |
+| Rendering | prototype host recipe factory/adapters and original proof; twelve additions | Guarded attachment, explicit pre-allocation policy, invalid-state cleanup, worker GPU/headless/cancel/launcher proof; fresh lead standalone headless and combined GPU/headless/cancel |
 
 Each worker preserves all2,197 snapshot files and changes only its exact allowed
 new paths. Lead reviews the baseline-relative scope before integration. Shared

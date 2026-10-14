@@ -12,11 +12,11 @@ Confirmed original observation: independent raw MGN TRTS parsing yields one bind
 
 The strict version1 JSON preview profile supplies each exact variableName/factoryFlag/int32 value. Duplicate/unknown fields, duplicate keys, wrong types, missing/extra values and bounds reject. `poc/preview-profiles/human-face-zero.json` is an independently authored inspection profile, not recovered character-creation defaults. Profile selection remains explicit and requires owned materials.
 
-Godot uploads the generated one-mip RGBA image through the existing cache and creates a material for its specific TRTS destination. GPU verification checks dimensions/all bytes and the actual shader parameter's texture resource identity; mesh updates retain that same material. Original full character geometry remains5 surfaces/1,790 shader vertices/2,810 triangles. Other material palette shading is still pending.
+Prototype host uploads the generated one-mip RGBA image through the existing cache and creates a material for its specific TRTS destination. GPU verification checks dimensions/all bytes and the actual shader parameter's texture resource identity; mesh updates retain that same material. Original full character geometry remains5 surfaces/1,790 shader vertices/2,810 triangles. Other material palette shading is still pending.
 
 ## Validation
 
-Portable smoke: strict profile ownership/duplicate/type/count gates; shared output across two synthetic mesh keys; conflicting/unbound/unsupported tag/extra-value/cancellation rejection. Full native suite and Godot build pass, zero build warnings/errors.
+Portable smoke: strict profile ownership/duplicate/type/count gates; shared output across two synthetic mesh keys; conflicting/unbound/unsupported tag/extra-value/cancellation rejection. Full native suite and prototype host build pass, zero build warnings/errors.
 
 Native `--skeletal-generated-face` follows pinned original chain and verifies72-source union, one raw TRTS binding, all15 CPU layer digests and selected animation metadata. Independent Python agrees. Headless host passes worker-to-main transfer with archive closure. Requested cancellation at first lookup closes archives and publishes zero GPU content.
 

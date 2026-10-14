@@ -2,11 +2,11 @@
 
 ## API and policy
 
-[SceneCreatureBodyEnvelope.Create](../../SWG-Godot-Client/poc/Stardust.Core/Assets/SceneCreatureBodyEnvelope.cs) accepts an already loaded `SceneObjectResources`, `float height` and optional `bool specialDimensions=false`. It returns a sealed get-only `SceneCreatureBodyEnvelopeReceipt`. The receipt contains native `LocalCenter`/`Radius`, Height/mode, scaled StepHeight/CollisionHeight/Length/WarpTolerance, root/appearance paths and source identities, plus detached read-only resolved-field/profile-source provenance.
+SceneCreatureBodyEnvelope.Create (external historical reference) accepts an already loaded `SceneObjectResources`, `float height` and optional `bool specialDimensions=false`. It returns a sealed get-only `SceneCreatureBodyEnvelopeReceipt`. The receipt contains native `LocalCenter`/`Radius`, Height/mode, scaled StepHeight/CollisionHeight/Length/WarpTolerance, root/appearance paths and source identities, plus detached read-only resolved-field/profile-source provenance.
 
 The helper is pure: no I/O, resolver, decoder, engine, solver, motion source or registry is called. It retains no input resource/profile reference or payload array. The only copies are small immutable provenance records/maps. Caller access must be serialized over passive owned descriptors; concurrent mutation and hostile collection callbacks are outside the contract. Callers apply full [resource validation](SCENE_OBJECT_RESOURCE_VALIDATION_CONTRACT.md) and publication-currentness guards separately.
 
-Height must be finite in inclusive `[0.25,2]`, matching the accepted modern [visual Height policy](../../SWG-Godot-Client/poc/Stardust.Godot/SceneCreatureStatePresentation.cs). This is a modern guard, not the original scalar codec's acceptance range. Null input throws `ArgumentNullException`; invalid Height throws `ArgumentOutOfRangeException`; incomplete/static/mismatched profile metadata or invalid/unrepresentable dimensions throw `InvalidDataException`. No invalid receipt escapes.
+Height must be finite in inclusive `[0.25,2]`, matching the accepted modern visual Height policy (external historical reference). This is a modern guard, not the original scalar codec's acceptance range. Null input throws `ArgumentNullException`; invalid Height throws `ArgumentOutOfRangeException`; incomplete/static/mismatched profile metadata or invalid/unrepresentable dimensions throw `InvalidDataException`. No invalid receipt escapes.
 
 ## Geometry and identity
 
@@ -20,7 +20,7 @@ The receipt excludes world orientation and translation, parent/cell transforms, 
 
 ## Bounded evidence
 
-[Native scenario](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneCreatureBodyEnvelopeScenarios.cs), [independent float32 oracle](../../SWG-Godot-Client/poc/round17-tests/Assets/verify_body_envelope.py) and [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R17_BODY_ENVELOPE.md) establish **Confirmed modern behavior** from the accepted original39-source human detail0/albedo closure. Its loaded profile has five inherited sources/8,290 bytes. No additional resolver reads occur after archives close and borrowed buffers clear; the original complete resource fingerprint remains unchanged.
+Native scenario (external historical reference), independent float32 oracle (external historical reference) and [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R17_BODY_ENVELOPE.md) establish **Confirmed modern behavior** from the accepted original39-source human detail0/albedo closure. Its loaded profile has five inherited sources/8,290 bytes. No additional resolver reads occur after archives close and borrowed buffers clear; the original complete resource fingerprint remains unchanged.
 
 | Height | Ordinary center / radius / effective step | Special center / radius / effective step |
 | ---: | --- | --- |

@@ -18,7 +18,7 @@ BlueprintFaceResourceReader owns shader/effect descriptions, all declared textur
 
 Native --skeletal-face-resources uses pinned object/configuration/SAT arguments. Portable suite covers synthetic dependency deduplication, missing/masked texture, resource budget and cleared source ownership. Original probe covers missing/masked shader/texture/palette families,13 preceding sources plus37 face dependencies, every original blueprint truncated prefix. Narrow DDS tail fixtures cover strict default rejection, opt-in ownership/declared count and malformed tail/format/flag gates.
 
-Independent verify_face_resources.py checks raw effect candidate counts, every declared DDS mip/dimension/hash, retained tail bytes and every palette canonical record; integrated descriptor verifier also validates raw BTRT operands and derives the expected union from that independently checked description. All checks pass. Godot build zero warnings/errors. No generated face, GPU face upload or private corpus publication. Metrics/canonical counts unchanged.
+Independent verify_face_resources.py checks raw effect candidate counts, every declared DDS mip/dimension/hash, retained tail bytes and every palette canonical record; integrated descriptor verifier also validates raw BTRT operands and derives the expected union from that independently checked description. All checks pass. Prototype host build zero warnings/errors. No generated face, GPU face upload or private corpus publication. Metrics/canonical counts unchanged.
 
 ## Next probe
 

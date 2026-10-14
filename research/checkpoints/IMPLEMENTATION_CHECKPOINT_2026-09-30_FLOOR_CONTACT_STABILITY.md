@@ -18,7 +18,7 @@ python tools/python/verify_floor_walks.py C:\Stardust-DEV C:\Stardust-DEV\swgemu
 
 Five thousand seeded contacts pass reuse/retreat/rejection/budget checks: 1,109 corrected contacts and 501 explicit large-coordinate holds. Independent installed agreement remains 17,658 probes / 4,441 eligible floors; every returned locator now passes the added fresh-start check. Tight 1e-5 correction initially produced 266 corpus holds; a 1e-4 budget plus edge-normal directions resolves the corpus, including two thin-triangle cases that centroid-only correction could not represent.
 
-Instance screen: 533 actors / 31,980 ticks / 131 exact round trips. Six prior InvalidStart results disappear; final nonpass categories are 289 Accepted and 113 unsupported-nonlevel. Independent YT-1300 56 probes and cantina 948-tick / 44-transfer regression pass. Core/Godot build and headless Mustafar actor controls pass. No new GPU claim is needed for this core-only numerical fix. No original executable execution or server contact.
+Instance screen: 533 actors / 31,980 ticks / 131 exact round trips. Six prior InvalidStart results disappear; final nonpass categories are 289 Accepted and 113 unsupported-nonlevel. Independent YT-1300 56 probes and cantina 948-tick / 44-transfer regression pass. historical implementation path (omitted) build and headless Mustafar actor controls pass. No new GPU claim is needed for this core-only numerical fix. No original executable execution or server contact.
 
 ## Next probe
 

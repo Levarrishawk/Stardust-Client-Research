@@ -1,7 +1,7 @@
 # Offline playground controls and status
 
 October6,2026. Opt-in modern display over a supplied immutable status record.
-[TerrainOfflinePlaygroundHud](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflinePlaygroundHud.cs)
+TerrainOfflinePlaygroundHud (external historical reference)
 borrows its owner Node and state callback; it owns one CanvasLayer, Panel, three Labels
 and the panel style resource. It owns no world, camera, simulation, socket or input route.
 
@@ -51,7 +51,7 @@ left-click events delivered inside the visible panel reach the underlying world 
 a right-drag reaches the unchanged accepted orbit host and is handled by that host.
 This establishes bounded pass-through, not every possible GUI/input interaction.
 
-Configure/Refresh/Dispose and getters require the creating managed thread and Godot main
+Configure/Refresh/Dispose and getters require the creating managed thread and prototype host main
 thread. The exact live owner, captured parent and same viewport, and the exact owned
 layer/panel/label parent chain are checked before source invocation and after callbacks
 and text effects. Freed, queued, detached or reparented required nodes reject. Caught
@@ -68,10 +68,10 @@ API contract. Counter overflow is checked but not executed in fixtures.
 
 ## Reproduction and confidence
 
-[Invoke-Picker.ps1](../../SWG-Godot-Client/poc/round73-tests/Rendering/Invoke-Picker.ps1) verifies executable
-identity, uses cached offline Python/.NET/Godot, generates independent expectations,
+Invoke-Picker.ps1 (external historical reference) verifies executable
+identity, uses cached offline historical implementation path (omitted) generates independent expectations,
 builds and executes the replacement scene headless/GPU. The
-[producer/verifier](../../SWG-Godot-Client/poc/round73-tests/Rendering/verify_picker.py) validates the incoming
+the separate implementation record validates the incoming
 4371-file manifest/archive and privately stages the frozen orbit host for input proof.
 No Runtime73/Networking73 dependency or original asset read is involved.
 

@@ -4,7 +4,7 @@
 
 ## Inputs and method
 
-Four existing Low specialists used2831 frozen public files. Manifest SHA `173d7bf83c221bbea68938d959119dbb0149101e70f797c704a74dbec788b375`; ZIP SHA `668b57ff1696870da83fd24cb93cc01a84bbb2e675a2662214120a29c00da28f`. Full member/path/ancestor/hash preflight and postflight preceded worker changes. Main HEAD `5493338d9cd4255cf58f25de6c4cd15f6507b818` and empty index are preserved. Each scope was reviewed before working-byte integration; all leaf gates were rerun independently in main. Cached Python/.NET8/Godot only. Static VA reliance is hash-gated to `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. No original execution, live contact, download, staging, commit, push or publication.
+Four existing Low specialists used2831 frozen public files. Manifest SHA `173d7bf83c221bbea68938d959119dbb0149101e70f797c704a74dbec788b375`; ZIP SHA `668b57ff1696870da83fd24cb93cc01a84bbb2e675a2662214120a29c00da28f`. Full member/path/ancestor/hash preflight and postflight preceded worker changes. Main HEAD `5493338d9cd4255cf58f25de6c4cd15f6507b818historical prototype identifier (omitted)E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. No original execution, live contact, download, staging, commit, push or publication.
 
 ## Results and confidence
 
@@ -25,7 +25,7 @@ Observation: HAM registers the already closed integer-vector specialization, inc
 
 ## Combined gates and limits
 
-Shared Core smoke suite and final Godot build pass with zero build warnings/errors. Existing main original human/terminal headless join passes six TANO6 states/eight guarded events and fourteen quantized animation states/all-eight original mip identities, captions/customization/currentness and cleanup. Main log `preview-c2066d41dc6144f9ae86dbe4416f763f`; only the previously counted pre-state root-certificate diagnostic occurs. No new GPU probe: new code is engine-neutral and the existing adapter is unchanged. Detailed original bytes/static/native receipts and logs remain ignored under private round33 evidence.
+Shared Core smoke suite and final prototype host build pass with zero build warnings/errors. Existing main original human/terminal headless join passes six TANO6 states/eight guarded events and fourteen quantized animation states/all-eight original mip identities, captions/customization/currentness and cleanup. Main log `preview-c2066d41dc6144f9ae86dbe4416f763f`; only the previously counted pre-state root-certificate diagnostic occurs. No new GPU probe: new code is engine-neutral and the existing adapter is unchanged. Detailed original bytes/static/native receipts and logs remain ignored under private round33 evidence.
 
 Bounds, revisions, assignment/mutation descriptions, prepared atomicity and finite winding eligibility are explicit modern policies. Logical charges are not CLR heap measurements; caller-held historical snapshots and bounded map/journal copy overhead are separate. Research89%/readiness94%,2626 semantic names and345 packet-source rows stay separate and unchanged. No full-client completion percentage follows from fixture counts.
 

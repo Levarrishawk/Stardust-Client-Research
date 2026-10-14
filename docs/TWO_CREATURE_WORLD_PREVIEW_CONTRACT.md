@@ -4,12 +4,12 @@ R13-R, 2026-10-02. This bounded replacement preview uses the accepted
 [world mixed-state mode](SCENE_WORLD_REPLICATION_CONTRACT.md),
 [acknowledged observer](SCENE_WORLD_CHANGE_DELIVERY_CONTRACT.md),
 [resource initializer](SCENE_CREATURE_RESOURCE_INITIALIZER_CONTRACT.md) and
-[Godot presentation consumer](OFFLINE_REPLICATED_WORLD_PREVIEW_CONTRACT.md).
+[prototype host presentation consumer](OFFLINE_REPLICATED_WORLD_PREVIEW_CONTRACT.md).
 It adds no engine-neutral API or change to the existing one-actor inspector.
 
 ## Input and behavior
 
-[Generate-Fixture.py](../../SWG-Godot-Client/poc/round13-tests/Rendering/Generate-Fixture.py) authors
+Generate-Fixture.py (external historical reference) authors
 synthetic real-layout application bytes for IDs `F122334455667788` and
 `E122334455667799`, human template CRC 2937962913, identity quaternions and wire
 positions (-1.5,0,0)/(1.5,0,0). There are six staged create/full18-field
@@ -55,7 +55,7 @@ unestablished.
 
 ## Invocation and lead integration
 
-The new [Main partial](../../SWG-Godot-Client/poc/Stardust.Godot/Main.TwoCreatureWorld.cs) supplies a
+The new Main partial (external historical reference) supplies a
 method; Main.cs remains lead-owned. Proposed exact branch before the generic
 asset-root handler:
 
@@ -63,10 +63,10 @@ asset-root handler:
 if(args.Contains("--two-creature-world-preview")){await BuildTwoCreatureWorldPreview(args);return;}
 ```
 
-The [launcher](../../SWG-Godot-Client/poc/Stardust.Godot/Invoke-StardustTwoCreatureWorldPreview.ps1)
+The launcher (external historical reference)
 can verify independently of that registration: it writes a tiny ignored private
 scene referring to `res://TwoCreatureWorldPreview.cs` and launches that scene
-explicitly. Its arguments are `-GodotPath`, `-ArchiveRoot`, `-Configuration`,
+explicitly. Its arguments are historical prototype identifier (omitted), `-ArchiveRoot`, `-Configuration`,
 `-FixturePath`, `-CatalogProfile`, and one optional `-CapturePath` or `-CancelLoad`.
 Default/`-Headless` runs the full bounded scenario without GPU readback; capture
 runs use GPU and three fresh private PNGs: first, `-updated.png`, `-recreated.png`.
@@ -74,13 +74,8 @@ Automated windows are hidden, deadline45 seconds. A cancellation barrier waits
 until both loaders have opened their overlays, then selection cancellation
 publishes neither actor, closes both archives and drains all jobs.
 
-```powershell
-python poc/round13-tests/Rendering/Generate-Fixture.py local-private/round13/fixture.json
-dotnet build poc/Stardust.Godot/Stardust.Godot.csproj --no-restore -p:UseSharedCompilation=false -p:NuGetAudit=false
-dotnet restore poc/round13-tests/Rendering/Rendering.csproj --configfile poc/round13-tests/Rendering/NuGet.Config -p:NuGetAudit=false
-dotnet run --project poc/round13-tests/Rendering/Rendering.csproj --no-restore -p:UseSharedCompilation=false -p:NuGetAudit=false -- C:/Stardust-DEV C:/Stardust-DEV/swgemu_live.cfg poc/preview-profiles/scene-object-catalog.json poc/preview-profiles/human-locomotion.json local-private/round13/fixture.json
-poc/Stardust.Godot/Invoke-StardustTwoCreatureWorldPreview.ps1 -GodotPath $GodotPath -ArchiveRoot C:/Stardust-DEV -Configuration C:/Stardust-DEV/swgemu_live.cfg -FixturePath local-private/round13/fixture.json -CatalogProfile poc/preview-profiles/scene-object-catalog.json -CapturePath local-private/round13/fresh.png
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 Use the existing offline package cache and private APPDATA as required by the
 host. The native runner's five arguments are root, configuration, catalog,
@@ -92,16 +87,16 @@ mips remain owned after borrowed original resolver buffers are cleared.
 ## Export and oracle schemas
 
 All detailed logs/images remain ignored/private. The independently authored
-[world oracle](../../SWG-Godot-Client/poc/round13-tests/Rendering/Verify-World.py) takes eight paths:
+world oracle (external historical reference) takes eight paths:
 fixture, native log, GPU log, headless log, cancel log, initial PNG, updated PNG,
 recreated PNG. It hand-decodes layouts, independently models global registry/store
 revisions and pending-ID coalescing, checks actual disjoint actor regions below
 the fixed UI, and compares native/GPU/headless state. The
-[original oracle](../../SWG-Godot-Client/poc/round13-tests/Rendering/Verify-Original.py) takes root,
+original oracle (external historical reference) takes root,
 configuration, catalog, native/GPU/headless logs. It independently checks effective
 source priority/SHA, inheritance, programs/factors, every mip and sampled hue
 algebra, including both actors' identical-content but separate closures.
-[Verify-Launch.ps1](../../SWG-Godot-Client/poc/round13-tests/Rendering/Verify-Launch.ps1) takes the common
+Verify-Launch.ps1 (external historical reference) takes the common
 launcher arguments plus `-ExistingCapture` and rejects five mode/destination cases
 without new process logs/captures.
 
@@ -121,7 +116,7 @@ without new process logs/captures.
 The scene and launcher require lifecycle/cleanup acceptance markers. Positive
 native, GPU, headless, cancellation, original/world/pixel oracles and five prelaunch
 negatives pass; all roots are disposed and outstanding jobs reach zero. The known
-Godot certificate-store startup diagnostic is nonfatal. See the
+Prototype host certificate-store startup diagnostic is nonfatal. See the
 [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R13_TWO_CREATURE_WORLD.md)
 for input identity, scope and exact next action.
 

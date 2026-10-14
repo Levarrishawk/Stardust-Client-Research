@@ -2,7 +2,7 @@
 
 Question: can obstruction release recover smoothly while every new collision retracts immediately? Stop at explicit temporal distance policy, independent fixtures and retained original interior adapter.
 
-Inputs: existing148-source original scene/profile/character closure, same source/configuration baseline as preceding camera checkpoints. Tools: .NET fixture emitter, Python independent closed form and Godot4.7.2 .NET replacement. No new asset lookups. [Contract](../../docs/CAMERA_DISTANCE_RECOVERY_CONTRACT.md) gives exact timing/ownership/safety and unsupported original behavior.
+Inputs: existing148-source original scene/profile/character closure, same source/configuration baseline as preceding camera checkpoints. Tools: .NET fixture emitter, Python independent closed form and prototype host4.7.2 .NET replacement. No new asset lookups. [Contract](../../docs/CAMERA_DISTANCE_RECOVERY_CONTRACT.md) gives exact timing/ownership/safety and unsupported original behavior.
 
 Observation: hand-calculated half recovery and constant-clearance partition fixtures pass;256 authored trace cases agree with independent expm1 formula, max8.88178e-16 at1e-12 tolerance. First audit omitted restoration of serialized F32 input decimals and failed its overly exact comparison; restoring F32 values resolves the mismatch. Confidence confirmed for replacement arithmetic. Consequence: validate before publication, retract even when paused/zero-time, expand only on active elapsed time and never exceed current clearance.
 

@@ -28,5 +28,5 @@ The six-vertex CPU expansion is observed legacy behavior, not a compatibility re
 5. quads are rendered two-sided;
 6. material/shader grouping must not reorder effects in ways that violate transparency ordering.
 
-This cleanly separates asset/protocol compatibility from the D3D9 dynamic-buffer implementation and is directly representable in Godot, DX12, or Vulkan.
+This cleanly separates asset/protocol compatibility from the D3D9 dynamic-buffer implementation and is directly representable in prototype host, DX12, or Vulkan.
 

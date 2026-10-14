@@ -1,6 +1,6 @@
 # R9-RENDER-01: retained original static terminal frames
 
-Date: October2,2026. Question: can accepted explicit SWTS frame0/1 complete the original static object pipeline and display a visible terminal-screen difference in Godot while manual LOD/frame selection preserves GPU resources and geometry? Stop condition: original/native/independent audit, fixed-camera/UI-excluded GPU capture pair, headless/cancel/negative/teardown and exact-scope handoff pass.
+Date: October2,2026. Question: can accepted explicit SWTS frame0/1 complete the original static object pipeline and display a visible terminal-screen difference in prototype host while manual LOD/frame selection preserves GPU resources and geometry? Stop condition: original/native/independent audit, fixed-camera/UI-excluded GPU capture pair, headless/cancel/negative/teardown and exact-scope handoff pass.
 
 ## Inputs and orientation
 
@@ -8,7 +8,7 @@ Read AGENTS/START_HERE, accepted [Round8](../sessions/PARALLEL_DEVELOPMENT_ROUND
 
 Accepted baseline: HEAD `65de8c88141071744dc75594be126b3bab3696a5`,1,963 files; ZIP SHA `da266e684b8318aa605b0ef8730331915f7ba803bdccb2b693a2402ad9017dd8`; manifest SHA `29bdfd7c8bac3898aa219d68d0b9189b518c7f7934a1b1c1e248fddf494a4b56`. Verified safe relative paths and every file hash before/after synchronization; ignored/unlisted files preserved.
 
-Original configured `C:/Stardust-DEV` terminal, object/appearance/SWTS pins and frame selection are in the [durable contract](../../docs/STATIC_SWITCH_TEXTURE_PREVIEW_CONTRACT.md). Tools: .NET8.0.300, Godot4.7.2 .NET, Python/Pillow, PowerShell; compatibility OpenGL/NVIDIA RTX4070 SUPER. No toolchain downloads or lock edits.
+Original configured `C:/Stardust-DEV` terminal, object/appearance/SWTS pins and frame selection are in the [durable contract](../../docs/STATIC_SWITCH_TEXTURE_PREVIEW_CONTRACT.md). Tools: .NET8.0.300, prototype host4.7.2 .NET, Python/Pillow, PowerShell; compatibility OpenGL/NVIDIA RTX4070 SUPER. No toolchain downloads or lock edits.
 
 ## Findings, interpretation and consequence
 
@@ -20,7 +20,7 @@ The accepted opaque adapter rejects the known `a_emis_full.eft` on two SWTS surf
 
 Confirmed capture: finest serialized LOD3 and fixed camera/environment/resources show the full terminal. Both GPU and independent PNG comparison find6,934 changed pixels below the UI, bounded by `[615,316,717,393)` within the visible screen. Source/decoded-pixel difference is independently checked separately. Identical rendered images reject despite otherwise valid exports. Label changes cannot satisfy a row180..719 comparison. Original timing/initial-frame semantics remain Unknown; frame and LOD choices are modern policy.
 
-Initial build errors came from the wrong namespace for the existing geometry hash helper; corrected to `Stardust.Core.Proof`. Initial headless checks exposed the adapter's expected opaque-effect restriction. The scoped built-in policy resolved inspection without broadening opaque support or changing shaders. Failed/intermediate logs are excluded from final receipts. Final builds have zero warnings/errors. Known Godot certificate-store diagnostics persist in passing logs.
+Initial build errors came from the wrong namespace for the existing geometry hash helper; corrected to `Stardust.Core.Proof`. Initial headless checks exposed the adapter's expected opaque-effect restriction. The scoped built-in policy resolved inspection without broadening opaque support or changing shaders. Failed/intermediate logs are excluded from final receipts. Final builds have zero warnings/errors. Known prototype host certificate-store diagnostics persist in passing logs.
 
 ## Reproduction and final evidence
 
@@ -37,7 +37,7 @@ Run the own Python verifier with root/configuration plus those native/GPU/headle
 
 ## Scope and handoff
 
-Nine additions: two Godot files, launcher, contract/checkpoint, four own diagnostic files. The only existing edit is Main.cs's single byte-preserving dispatch branch. Removing it reproduces baseline bytes. Shared readers/adapters/shaders/projects/runners/status/ledgers/curated registries remain unchanged. New public files use UTF8/LF; generated logs/exports/images remain ignored. All1,963 baseline hashes audited; whitespace/workspace links validated; index empty and HEAD unchanged. Private changed-path manifest and receipt contain exact per-file/evidence hashes.
+Nine additions: two prototype host files, launcher, contract/checkpoint, four own diagnostic files. The only existing edit is Main.cs's single byte-preserving dispatch branch. Removing it reproduces baseline bytes. Shared readers/adapters/shaders/projects/runners/status/ledgers/curated registries remain unchanged. New public files use UTF8/LF; generated logs/exports/images remain ignored. All1,963 baseline hashes audited; whitespace/workspace links validated; index empty and HEAD unchanged. Private changed-path manifest and receipt contain exact per-file/evidence hashes.
 
 No main checkout edit, worker messaging, staging, commit, push, publication, downloads, original executable execution, socket/DNS/server contact, packet capture or fuzzing occurred. The image pair is a replacement viewport screenshot. No timer, live placement, original shader equation or research coverage claim follows.
 

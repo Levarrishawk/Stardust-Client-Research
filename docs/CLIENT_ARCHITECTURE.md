@@ -97,8 +97,8 @@ Redesign: memory managers/pools, thread primitives, platform loop, rendering API
 
 [Core consumer](SCENE_WORLD_OBJECT_PRESENTATION_CONTRACT.md) owns bounded actor
 bookkeeping, exact publication/incarnation checks and acknowledged change delivery.
-The [Godot factory](SCENE_WORLD_OBJECT_VISUAL_CONTRACT.md) owns recipe visuals and
-GPU lifetimes through ISceneWorldObjectPresentation; Core contains no Godot types.
+The [prototype host factory](SCENE_WORLD_OBJECT_VISUAL_CONTRACT.md) owns recipe visuals and
+GPU lifetimes through ISceneWorldObjectPresentation; Core contains no prototype host types.
 World registry, state, resource scheduler and close drain remain authoritative and
 externally owned. Callers pump publications/current batches and tick adapters.
 Application is serialized/retryable, with exact current applied-batch acknowledgment;
@@ -108,7 +108,7 @@ no presentation rollback transaction or separate state registry is introduced.
 
 [Round16](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_16_2026-10-02.md)
 joins the bounded [pump](SCENE_WORLD_PRESENTATION_PUMP_CONTRACT.md),
-[Godot host](SCENE_WORLD_PRESENTATION_HOST_CONTRACT.md) and logical
+[prototype host host](SCENE_WORLD_PRESENTATION_HOST_CONTRACT.md) and logical
 [resource accounting](SCENE_OBJECT_RESOURCE_ACCOUNTING_CONTRACT.md).
 Independent peer and original headless/GPU/cancellation checks pass; the human
 retains its resource identity during state updates and terminal-only recreation.
@@ -122,7 +122,7 @@ separate. Research scores and protocol/name denominators are unchanged.
 joins [compact codecs](COMPACT_SCENE_TRANSFORM_CONTRACT.md),
 [native poses](SCENE_WORLD_OBJECT_MOTION_CONTRACT.md),
 [body envelopes](SCENE_CREATURE_BODY_ENVELOPE_CONTRACT.md) and
-[Godot motion](SCENE_WORLD_OBJECT_MOTION_VISUAL_CONTRACT.md).
+[prototype host motion](SCENE_WORLD_OBJECT_MOTION_VISUAL_CONTRACT.md).
 Continuous original headless/GPU/cancel and independent/native/shared gates pass.
 Height applies once; immutable create/resource identity survives wrap/stale and
 clear/local resume. Diagnostic zero yaw/immediate pose is modern policy, not
@@ -161,7 +161,7 @@ next typed setter/field4 revision boundary; actual player values remain unknown.
 
 ## Round21 integrated boundary
 
-Round21 joins owned field4 codec, ordered raw sidecar, explicit typed-range projection and retained presentation source. Compatibility boundaries remain engine-neutral; the Godot adapter observes LastFailure and fails closed. Mixed field dispatch and live mount/default context remain next. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R21_WIRE_CUSTOMIZATION_INTEGRATION.md).
+Round21 joins owned field4 codec, ordered raw sidecar, explicit typed-range projection and retained presentation source. Compatibility boundaries remain engine-neutral; the prototype host adapter observes LastFailure and fails closed. Mixed field dispatch and live mount/default context remain next. [Evidence and reproduction](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R21_WIRE_CUSTOMIZATION_INTEGRATION.md).
 
 ## Round22 integrated boundary
 
@@ -221,7 +221,7 @@ The optional CREO6 world partition reuses genuine prepared store/world candidate
 
 ## Round37 complete creature kernel and supplied terrain
 
-The new complete CREO6 wire/state kernel composes frozen scalar/HAM/defender/wearable components without changing the existing scalar/HAM world API. Supplied terrain geometry/query objects remain engine-neutral, while [Godot inspection](TERRAIN_CIRCLE_HEIGHT_PATCH_CONTRACT.md) owns rendering resources. Full current-incarnation storage and optional world ingress are the next integration seam. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R37_COMPLETE_CREATURE_AND_SUPPLIED_TERRAIN.md).
+The new complete CREO6 wire/state kernel composes frozen scalar/HAM/defender/wearable components without changing the existing scalar/HAM world API. Supplied terrain geometry/query objects remain engine-neutral, while [prototype host inspection](TERRAIN_CIRCLE_HEIGHT_PATCH_CONTRACT.md) owns rendering resources. Full current-incarnation storage and optional world ingress are the next integration seam. [Evidence](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R37_COMPLETE_CREATURE_AND_SUPPLIED_TERRAIN.md).
 
 ## Round38 full creature publication and terrain inputs
 
@@ -249,7 +249,7 @@ Optional complete CREO4 world publication and original-resource headless/GPU joi
 The [Round45 report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_45_2026-10-04.md) records independently reviewed/replayed supplied
 AHFR/FFRA consumers, an incarnation-bound received-only partial CREO4 store,
 one human movement-template input chain and the actual current-height FHGT/AHCN
-Godot preview. The store accepts pending/finalized objects without default seeds
+Prototype host preview. The store accepts pending/finalized objects without default seeds
 but has no world/router admission yet. Original fractal generation/cache lifetime,
 floating controls, complete terrain and later creature writers remain unknown.
 Research scores and canonical name/packet denominators remain unchanged.

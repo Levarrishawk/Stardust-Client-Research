@@ -17,7 +17,7 @@ Original root `C:/Stardust-DEV`, configuration SHA256 `22158E5BD9B7EBE5A068F10C4
 - Observation:89 malformed/mismatched completion/caller-argument cases reject; seven positives include per-recipe baseline/thread/exact-budget checks and accepted SWTS hex-case policy. Checks cover every create field and negative-zero bits, null/missing/extra/invalid accounting/source metadata, wrong catalog/recipe/options, pins, prepared closure, albedo colors/movement routes, cycle/local finite placement/material/frame/nested source hash and decoded budgets. Confidence: **Confirmed native positive/fault execution**. Consequence: failure publishes nothing and leaves valid owned results unchanged. Native callbacks/thread/ownership/no-I/O observations are receipt evidence, not independently executed by Python.
 - Observation: fresh router/albedo/SWTS regressions pass65/16/168 negatives, and composed auditor verifies exact originals. Confidence: **Confirmed proportional regression/oracle execution**. Consequence: no same-round worker dependency, corpus rescan, engine/network or shared runtime change.
 
-Canonical [validation contract](../../docs/SCENE_OBJECT_RESOURCE_VALIDATION_CONTRACT.md), [API](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/SceneObjectResourceValidation.cs), [scenario](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/SceneObjectResourceValidationScenarios.cs) and own [oracle](../../../SWG-Godot-Client/poc/round14-tests/Assets/verify_validation.py).
+Canonical [validation contract](../../docs/SCENE_OBJECT_RESOURCE_VALIDATION_CONTRACT.md), API (external historical reference), scenario (external historical reference) and own oracle (external historical reference).
 
 ## Reproduction and observed corrections
 

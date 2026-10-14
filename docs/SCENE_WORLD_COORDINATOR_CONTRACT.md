@@ -2,7 +2,7 @@
 
 This document describes the legacy creature constructor and its shared lifecycle rules. Round14 adds an explicit [mixed-resource constructor and separate publication API](SCENE_MIXED_WORLD_CONTRACT.md); use that contract for creature/static routing and deferred generic envelope replay.
 
-Round 7, 2026-10-02. This is a modern engine-neutral coordination policy implemented in [SceneWorldCoordinator](../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldCoordinator.cs). It composes the accepted [scene transition](ZONE_SCENE_TRANSITION_CONTRACT.md), [object registry](SCENE_OBJECT_REGISTRY_CONTRACT.md), [resource initializer](SCENE_CREATURE_RESOURCE_INITIALIZER_CONTRACT.md), and [replication envelopes](REPLICATION_ENVELOPE_CODEC_CONTRACT.md). The checkpoint records validation and input identity.
+Round 7, 2026-10-02. This is a modern engine-neutral coordination policy implemented in SceneWorldCoordinator (external historical reference). It composes the accepted [scene transition](ZONE_SCENE_TRANSITION_CONTRACT.md), [object registry](SCENE_OBJECT_REGISTRY_CONTRACT.md), [resource initializer](SCENE_CREATURE_RESOURCE_INITIALIZER_CONTRACT.md), and [replication envelopes](REPLICATION_ENVELOPE_CODEC_CONTRACT.md). The checkpoint records validation and input identity.
 
 ## Boundary and confidence
 
@@ -30,9 +30,9 @@ Baseline/delta APPLICATION header size is 23 bytes, minimum 25 including the dec
 
 ## Proof and reproduction
 
-[OfflineSceneWorldScenario](../../SWG-Godot-Client/poc/Stardust.Core/Proof/OfflineSceneWorldScenario.cs) drives actual application messages through existing SoeClientTransport using independently generated offline peer datagrams. It covers reordered create/start delivery, duplicate suppression, corrupt CRC rejection, false/stale barriers, ordered replay, exact ready transmission/retry/ack, one pinned resource publication, server ready, and destroy. Synthetic opaque CREO:3 fields deliberately declare count 99 with bytes 7F00FF; they are not schema-valid gameplay fixtures. No sockets, executable execution, server contact, captures, or GPU work occur.
+OfflineSceneWorldScenario (external historical reference) drives actual application messages through existing SoeClientTransport using independently generated offline peer datagrams. It covers reordered create/start delivery, duplicate suppression, corrupt CRC rejection, false/stale barriers, ordered replay, exact ready transmission/retry/ack, one pinned resource publication, server ready, and destroy. Synthetic opaque CREO:3 fields deliberately declare count 99 with bytes 7F00FF; they are not schema-valid gameplay fixtures. No sockets, executable execution, server contact, captures, or GPU work occur.
 
-Run from the repository with Python on PATH and dotnet 8. Use a writable temporary APPDATA. Restore the isolated [Runtime project](../../SWG-Godot-Client/poc/round7-tests/Runtime/Runtime.csproj) with its sources-cleared NuGet.Config, the existing offline package cache, NuGetAudit=false, and UseSharedCompilation=false. Then:
+Run from the repository with Python on PATH and dotnet 8. Use a writable temporary APPDATA. Restore the isolated Runtime project (external historical reference) with its sources-cleared NuGet.Config, the existing offline package cache, NuGetAudit=false, and UseSharedCompilation=false. Then:
 
 ```powershell
 python poc/round7-tests/Runtime/Generate-Peer.py local-private/round7/peer.json

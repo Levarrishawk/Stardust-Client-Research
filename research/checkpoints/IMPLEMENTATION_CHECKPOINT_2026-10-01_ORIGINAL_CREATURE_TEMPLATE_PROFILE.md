@@ -24,7 +24,7 @@ Full native smoke passes new override/provenance/ownership/scaled-sphere tests a
 
 `dotnet run --no-restore --project poc/Stardust.Core.SmokeTests -- --creature-template-profile ROOT --configuration CONFIG --member object/creature/player/shared_human_male.iff --expected-sha256 ROOT_SHA`
 
-Redirect detailed output privately. Independently verify with `verify_creature_template_profile.py ROOT CONFIG NATIVE_OUTPUT --configuration-sha256 CONFIG_SHA --expected-root-sha256 ROOT_SHA`. It checks all source priority/byte/SHA identities, parent links, eight field values/provenance and sphere geometry. Godot build passes with zero warnings/errors. Documentation validation follows promotion.
+Redirect detailed output privately. Independently verify with `verify_creature_template_profile.py ROOT CONFIG NATIVE_OUTPUT --configuration-sha256 CONFIG_SHA --expected-root-sha256 ROOT_SHA`. It checks all source priority/byte/SHA identities, parent links, eight field values/provenance and sphere geometry. Prototype host build passes with zero warnings/errors. Documentation validation follows promotion.
 
 ## Next milestone
 

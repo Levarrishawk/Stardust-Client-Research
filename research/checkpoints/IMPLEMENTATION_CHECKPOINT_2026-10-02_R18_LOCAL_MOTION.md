@@ -10,7 +10,7 @@ Read AGENTS, START_HERE/[accepted Round17](../sessions/PARALLEL_DEVELOPMENT_ROUN
 
 ## Evidence, interpretation and consequences
 
-Observation: [driver](../../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneWorldLocalMotionDriver.cs) borrows one world/store, binds one current finalized typed incarnation, creates private FixedStepActorHost/Pose and PortalActorInputTimeline, publishes a starting local pose and remembers exact last local publication. No replacement clock/input queue is invented. Finite planar input/tick-start selection and native Y-yaw/position/speed are bounded by accepted shared policy. Interpretation: modern free movement, not original floor/collision/prediction/interpolation. Confidence: Confirmed native three-partition comparison against independent tick-indexed double trajectory (float tolerance) plus bit-identical partition results. Consequence: use one local driver per object, keep Height/resources separate, and provide explicit timestamped input.
+Observation: driver (external historical reference) borrows one world/store, binds one current finalized typed incarnation, creates private FixedStepActorHost/Pose and PortalActorInputTimeline, publishes a starting local pose and remembers exact last local publication. No replacement clock/input queue is invented. Finite planar input/tick-start selection and native Y-yaw/position/speed are bounded by accepted shared policy. Interpretation: modern free movement, not original floor/collision/prediction/interpolation. Confidence: Confirmed native three-partition comparison against independent tick-indexed double trajectory (float tolerance) plus bit-identical partition results. Consequence: use one local driver per object, keep Height/resources separate, and provide explicit timestamped input.
 
 Observation: a new current authoritative motion snaps owned pose/speed before advancement while retaining clock/fraction/input; no-tick/suspended advances expose correction without local overwrite. Next fixed tick publishes from correction. Common-boundary correction across three partitions and paused correction/resume pass. Interpretation: immediate modern correction without smoothing or event backdating. Confidence: Confirmed native tests. Consequence: correction observation time is caller responsibility; the frozen motion record has no server timestamp, so different observation schedules are not retrospectively made equivalent.
 
@@ -18,7 +18,7 @@ Observation: stall caps drop whole backlog, pause/resume suspends pending time a
 
 ## Reproduction and validation
 
-Scenario entry: `SceneWorldLocalMotionScenarios.Run(IReadOnlyDictionary<string,string> peer, string exportPath)`. [Own runner](../../../SWG-Godot-Client/poc/round18-tests/Runtime/Runtime.csproj) takes peer/export from repository root; accepted catalog/motion-bank JSON metadata are read from poc/preview-profiles. Shared harness registration remains lead-owned. Accepted Round14 independent producer supplies synthetic lifecycle/CREO/TANO fixture; driver adds no network codec or asset reader.
+Scenario entry: `SceneWorldLocalMotionScenarios.Run(IReadOnlyDictionary<string,string> peer, string exportPath)`. Own runner (external historical reference) takes peer/export from repository root; accepted catalog/motion-bank JSON metadata are read from poc/preview-profiles. Shared harness registration remains lead-owned. Accepted Round14 independent producer supplies synthetic lifecycle/CREO/TANO fixture; driver adds no network codec or asset reader.
 
 ```powershell
 $env:PYTHONUTF8='1'

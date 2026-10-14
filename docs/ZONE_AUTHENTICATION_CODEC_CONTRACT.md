@@ -1,6 +1,6 @@
 # Zone authentication application codec
 
-[ZoneAuthenticationCodec](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/ZoneAuthenticationCodec.cs) implements the existing [login-to-zone specification](LOGIN_AND_ZONE_STATE_MACHINE.md) in engine-neutral `Stardust.Core.Protocol`. This codec does not establish transport, validate credentials, enforce session phases or send packets.
+ZoneAuthenticationCodec (external historical reference) implements the existing [login-to-zone specification](LOGIN_AND_ZONE_STATE_MACHINE.md) in engine-neutral `Stardust.Core.Protocol`. This codec does not establish transport, validate credentials, enforce session phases or send packets.
 
 ```csharp
 byte[] owned = ZoneAuthenticationCodec.EncodeClientId(opaqueCredential, configuredClientVersion);
@@ -31,6 +31,6 @@ Confidence: Confirmed for the implemented bytes/bounds/ownership by independent 
 python poc/round83-tests/Networking/replay.py --output local-private/round83-review
 ```
 
-The standalone [test project](../../SWG-Godot-Client/poc/round83-tests/Networking/Networking.csproj) compiles only this codec, with empty NuGet sources and private artifacts. Independent Python expectations are written before native .NET execution. Three exact ClientId fixtures cover credential4/8/65536 bytes, version1/13/256 bytes, opaque NUL/high bytes and account preservation. All24 possible three/four-flag combinations, primitive independence after source mutation, malformed headers/lengths/flags and encode bounds/types including NUL/control/DEL version rejection pass65 checks/59 rejections. Build has zero warnings/errors. No real credentials, sockets, executable/server execution or GPU use.
+The standalone test project (external historical reference) compiles only this codec, with empty NuGet sources and private artifacts. Independent Python expectations are written before native .NET execution. Three exact ClientId fixtures cover credential4/8/65536 bytes, version1/13/256 bytes, opaque NUL/high bytes and account preservation. All24 possible three/four-flag combinations, primitive independence after source mutation, malformed headers/lengths/flags and encode bounds/types including NUL/control/DEL version rejection pass65 checks/59 rejections. Build has zero warnings/errors. No real credentials, sockets, executable/server execution or GPU use.
 
 Implementation consequence: submit ClientId only after a fresh zone SOE session is established, pass the unchanged login credential, and wait for CanLogin before exactly one SelectCharacter; these are session-owner responsibilities. Lead must review the sealed codec SHA before staging it for the Runtime worker. Next bounded integration ends at permission-gated selection, without scene-ready or live-compatibility claims. Shared canonical status/ledger remains lead-owned; no registry/coverage denominator changes.

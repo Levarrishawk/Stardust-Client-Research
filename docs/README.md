@@ -1,5 +1,8 @@
 # Durable research documents
 
+Current scope — October 14, 2026: this is research documentation. Any implementation choices or acceptance results below are historical evidence. Use [current status](../ANALYSIS_STATUS.md) for coverage and open questions; no engine choice or client development is prescribed here.
+
+
 These documents consolidate conclusions that remain useful across analysis sessions. Dated evidence and investigative history live under `research/`.
 
 ## Foundation

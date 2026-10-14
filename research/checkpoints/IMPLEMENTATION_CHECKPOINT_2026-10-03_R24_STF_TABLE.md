@@ -19,7 +19,7 @@ Readonly root `C:/Stardust-DEV`, configuration `swgemu_live.cfg`, SHA-256 `22158
 
 Requested `string/en/terminal_n.stf` is missing. A broad terminal metadata filter yielded 32 names and stopped at its 20-name cap without reading another STF payload. Refined root-level `string/en/terminal_` discovery yielded four candidates: terminal_detail, terminal_lookat, terminal_name and terminal_ui. Only terminal_name was selected. Exactly two present original STF payloads were read; detailed strings/keys remain private.
 
-Seven additions: [reader](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/LocalizedStringTable.cs), [native scenarios](../../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/LocalizedStringTableScenarios.cs), [contract](../../docs/LOCALIZED_STRING_TABLE_CONTRACT.md), this checkpoint, [project](../../../SWG-Godot-Client/poc/round24-tests/Assets/Assets.csproj), [entry point](../../../SWG-Godot-Client/poc/round24-tests/Assets/Program.cs), [Python oracle](../../../SWG-Godot-Client/poc/round24-tests/Assets/verify_stf.py). No baseline file or frozen/shared API is modified. Shared navigation, status, ledger and registry consolidation belongs to the lead.
+Seven additions: reader (external historical reference), native scenarios (external historical reference), [contract](../../docs/LOCALIZED_STRING_TABLE_CONTRACT.md), this checkpoint, project (external historical reference), entry point (external historical reference), Python oracle (external historical reference). No baseline file or frozen/shared API is modified. Shared navigation, status, ledger and registry consolidation belongs to the lead.
 
 ## Evidence, interpretation and consequences
 

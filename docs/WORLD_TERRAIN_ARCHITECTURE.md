@@ -104,7 +104,7 @@ Cell/interior RTTI separately confirms `CellProperty`, `PortalProperty`, render-
 
 ## Engine-evaluation implications
 
-Godot or another engine should be tested for large terrain chunk streaming, custom mesh generation, background preparation, material-layer limits, flora/radial instancing, water boundaries, origin/precision strategy and coexistence with portalized interiors. The engine need not reproduce the legacy chunk implementation, but it must represent the recovered terrain behavior and asset dependencies without a permanent engine fork.
+Prototype host or another engine should be tested for large terrain chunk streaming, custom mesh generation, background preparation, material-layer limits, flora/radial instancing, water boundaries, origin/precision strategy and coexistence with portalized interiors. The engine need not reproduce the legacy chunk implementation, but it must represent the recovered terrain behavior and asset dependencies without a permanent engine fork.
 
 ## Remaining analysis
 
@@ -178,7 +178,7 @@ Optional complete CREO4 world publication and original-resource headless/GPU joi
 The [Round45 report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_45_2026-10-04.md) records independently reviewed/replayed supplied
 AHFR/FFRA consumers, an incarnation-bound received-only partial CREO4 store,
 one human movement-template input chain and the actual current-height FHGT/AHCN
-Godot preview. The store accepts pending/finalized objects without default seeds
+Prototype host preview. The store accepts pending/finalized objects without default seeds
 but has no world/router admission yet. Original fractal generation/cache lifetime,
 floating controls, complete terrain and later creature writers remain unknown.
 Research scores and canonical name/packet denominators remain unchanged.
@@ -215,7 +215,7 @@ The [owned family/sampler join](TERRAIN_FRACTAL_FAMILY_SAMPLER_JOIN_CONTRACT.md)
 
 The [owned selected AHFR](TERRAIN_GENERATOR_HEIGHT_FRACTAL_RULE_CONTRACT.md) now
 feeds the [single-sampler patch](TERRAIN_SINGLE_SAMPLER_HEIGHT_PATCH_CONTRACT.md)
-and [Godot surface/grounding preview](SCENE_WORLD_FAMILY_HEIGHT_TERRAIN_PREVIEW_CONTRACT.md#round53-selected-original-rule-with-one-sampler-per-patch).
+and [prototype host surface/grounding preview](SCENE_WORLD_FAMILY_HEIGHT_TERRAIN_PREVIEW_CONTRACT.md#round53-selected-original-rule-with-one-sampler-per-patch).
 Exact400 retained samples/heights and headless/GPU cleanup pass. Coordinates,
 initial height/influence and arithmetic controls are caller-supplied preview
 policy; full recursive terrain, activation and materials remain Unknown.
@@ -273,7 +273,7 @@ The preview now consumes actual bounded engine-neutral [owned sparse evaluation]
 
 ## Round65 camera-driven point targeting
 
-[Joined host](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R65_CAMERA_TARGET_AND_FULL_CORRECTION.md) consumes an actual [camera picker](TERRAIN_CAMERA_PICKER_CONTRACT.md), [grounded point controller](SCENE_WORLD_TERRAIN_POINT_TARGET_CONTRACT.md) and [full-root correction router](SCENE_WORLD_FULL_TRANSFORM_APPLICATION_CONTRACT.md). Headless/GPU independent rays/89 updates cross two patches/two chunks, correct off-axis at step20, arrive and perform a consecutive zero-speed stop. Borrowed terrain/world/store and original resource publication survive owned controller/marker cleanup. Godot callback reentry is guarded; reused-marker physical mutation prefixes are explicit. Input and correction are constructed offline, direct router application rather than queued ingress. Original terrain/movement/picking parity remains unproved.
+[Joined host](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R65_CAMERA_TARGET_AND_FULL_CORRECTION.md) consumes an actual [camera picker](TERRAIN_CAMERA_PICKER_CONTRACT.md), [grounded point controller](SCENE_WORLD_TERRAIN_POINT_TARGET_CONTRACT.md) and [full-root correction router](SCENE_WORLD_FULL_TRANSFORM_APPLICATION_CONTRACT.md). Headless/GPU independent rays/89 updates cross two patches/two chunks, correct off-axis at step20, arrive and perform a consecutive zero-speed stop. Borrowed terrain/world/store and original resource publication survive owned controller/marker cleanup. Prototype host callback reentry is guarded; reused-marker physical mutation prefixes are explicit. Input and correction are constructed offline, direct router application rather than queued ingress. Original terrain/movement/picking parity remains unproved.
 
 ## Round66 input adapter, activity and queued correction
 

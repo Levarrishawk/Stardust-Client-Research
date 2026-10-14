@@ -2,11 +2,11 @@
 
 ## Question and stopping condition
 
-Can Godot expose the verified factor-query state as editable swatches, preserving shared variable keys and per-factor authored defaults, and reproduce actual RGB output? Close on controls plus headless/GPU gates for a present and missing-palette original shader.
+Can prototype host expose the verified factor-query state as editable swatches, preserving shared variable keys and per-factor authored defaults, and reproduce actual RGB output? Close on controls plus headless/GPU gates for a present and missing-palette original shader.
 
 ## Inputs and evidence
 
-Uses the [factor-bundle contract](../../docs/PALETTE_DECODER_CONTRACT.md) and pinned original configured overlay, unchanged executable identity from [checkpoint 24](IMPLEMENTATION_CHECKPOINT_2026-09-30_PALETTE_FACTOR_BUNDLES.md). Godot 4.7.2 .NET x64, OpenGL compatibility, RTX 4070 SUPER. Replacement proof only; no original execution or live sockets.
+Uses the [factor-bundle contract](../../docs/PALETTE_DECODER_CONTRACT.md) and pinned original configured overlay, unchanged executable identity from [checkpoint 24](IMPLEMENTATION_CHECKPOINT_2026-09-30_PALETTE_FACTOR_BUNDLES.md). Prototype host 4.7.2 .NET x64, OpenGL compatibility, RTX 4070 SUPER. Replacement proof only; no original execution or live sockets.
 
 Present sample: `shader/yt1300_a_patterna_swap_hcsc22.sht`, SHA `B301C855F3AA3C94E62A1CC26B2062C5E63F25412B9A409F5CC1DE6F2DCA10C1`, priority 52. Three sources, two palettes, two factors: authored MAIN trim entry zero `0xFFFEFEFE`, HUEB base entry 58 `0xFF925858`.
 
@@ -22,7 +22,7 @@ A synthetic repeated-variable fixture initially failed because its controls were
 
 ## Validation and reproduction
 
-Build succeeds without warnings. Native smoke/full factor agreement remains as checkpoint 24. Actual original controls and synthetic shared controls pass minimum/maximum overrides and authored reset. Headless gate explicitly does not claim GPU readback. Final missing-shader GPU capture passes both swatches and the shared fixture. Existing nonfatal Godot certificate-store startup error persists with exit zero.
+Build succeeds without warnings. Native smoke/full factor agreement remains as checkpoint 24. Actual original controls and synthetic shared controls pass minimum/maximum overrides and authored reset. Headless gate explicitly does not claim GPU readback. Final missing-shader GPU capture passes both swatches and the shared fixture. Existing nonfatal prototype host certificate-store startup error persists with exit zero.
 
 Run `Invoke-StardustAssetPreview.ps1` with `-PaletteInspector`, exact archive/config/member/SHA, then `-Headless`, bounded default GPU validation, `-CapturePath` under private storage, or user-visible `-Interactive`. This mode rejects incompatible appearance/material switches and caps UI factor rows at 128. Core parsing caps remain separate.
 

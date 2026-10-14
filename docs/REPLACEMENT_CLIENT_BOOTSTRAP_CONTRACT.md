@@ -1,8 +1,8 @@
 # Explicit replacement-client bootstrap
 
-The separate [bootstrap scene](../../SWG-Godot-Client/poc/Stardust.Godot/ReplacementClientBootstrap.tscn)
+The separate bootstrap scene (external historical reference)
 composes the original-installation preparation, engine-neutral application and
-[Godot host](REPLACEMENT_GODOT_CLIENT_HOST_CONTRACT.md). The project main scene
+[prototype host host](REPLACEMENT_PROTOTYPE_CLIENT_HOST_CONTRACT.md). The project main scene
 is unchanged. The accepted injected offline API remains available. Opening the
 scene with one explicit controlled-launch JSON path visibly refuses transport.
 Round93 adds an explicit opt-in composition; its real UDP constructor branch is
@@ -40,7 +40,7 @@ are labeled offline test inputs, not hidden production defaults.
 ## Input and admission
 
 `ReplacementClientBootstrap.ConfigureInjected` is called once on the creating
-Godot main thread before tree entry. Its inputs are the absolute JSON path,
+Prototype host main thread before tree entry. Its inputs are the absolute JSON path,
 explicit offline port factory, minimum-readiness provider, root-motion policy
 and optional explicit test clock. Validation precedes all application/factory
 acquisition. Relative, UNC, URI, linked, traversal and oversized file inputs
@@ -86,7 +86,7 @@ actual cleanup failures; it is not inferred from operation task failure alone.
 Faulted tasks are observed and the bootstrap's completion also faults for
 cleanup failure. Only type names and typed state are exposed in status.
 
-The injecting owner must retain native nodes and keep Godot's owner context
+The injecting owner must retain native nodes and keep prototype host's owner context
 running until bootstrap completion, then free or quit. A window-close request
 starts retirement and does not shorten pending startup rollback. The bootstrap
 does not automatically quit an injected92 owner's tree. The standalone owner
@@ -125,7 +125,7 @@ Receipts prove local observations only, never server-observed release or truth.
 
 ## Evidence and limits
 
-The [Round92 harness](../../SWG-Godot-Client/poc/round92-tests/Rendering/README.md) constructs this
+The Round92 harness (external historical reference) constructs this
 production composition against independently authored protected offline peers
 and the explicit installed human asset closure. It exercises a supported second
 human with the wrong ID, phase/overall stalls, cancellation, window close,
@@ -139,7 +139,7 @@ Headless verification does not establish GPU rendering or live compatibility.
 The separately requested offline GPU success case validates original publication
 and saves a native frame before actual drain/quit, with the same receipt/wire/
 resource assertions. It adds no live or physical-input evidence.
-The [Round93 harness](../../SWG-Godot-Client/poc/round93-tests/Rendering/README.md) uses the same opt-in
+The Round93 harness (external historical reference) uses the same opt-in
 admission/composition with explicit spy ports. It checks rejection before any
 acquisition, a supported wrong character, missing movement approval, budgets,
 delayed rollback, RunFault/cleanup distinction, an output collision and actual

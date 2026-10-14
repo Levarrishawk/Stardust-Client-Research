@@ -1,6 +1,6 @@
 # Received-only CREO4 scalar state
 
-[CreatureView4PartialState](../../SWG-Godot-Client/poc/Stardust.Core/Protocol/CreatureView4PartialState.cs) accumulates only received scalar assignments from the accepted [CreatureView4Codec scalar delta](CREATURE_VIEW4_BASELINE_AND_SCALARS_CONTRACT.md). It exposes neither a complete baseline nor constructor/template defaults. The [delivery investigation](CREATURE_VIEW4_DELIVERY_CONTRACT.md) establishes why a complete invented zero seed is inappropriate; this bounded state preserves availability without claiming to recover original observer initialization. No world, store, router or pending-baseline admission changes are included.
+CreatureView4PartialState (external historical reference) accumulates only received scalar assignments from the accepted [CreatureView4Codec scalar delta](CREATURE_VIEW4_BASELINE_AND_SCALARS_CONTRACT.md). It exposes neither a complete baseline nor constructor/template defaults. The [delivery investigation](CREATURE_VIEW4_DELIVERY_CONTRACT.md) establishes why a complete invented zero seed is inappropriate; this bounded state preserves availability without claiming to recover original observer initialization. No world, store, router or pending-baseline admission changes are included.
 
 ## API and explicit absence
 
@@ -26,7 +26,7 @@ Deterministic logical accounting: state bytes=16+32*knownCount, output=final sta
 
 ## Evidence and reproduction
 
-[Round44 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R44_CREO4_PARTIAL_STATE.md) records pinned inputs, scope and validation. [Public scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/CreatureView4PartialScenarios.cs) run via an actual separate Core project reference in the [role runner](../../SWG-Godot-Client/poc/round44-tests/Runtime/Runtime.csproj). [Independent Python peer](../../SWG-Godot-Client/poc/round44-tests/Runtime/peer.py) builds literal little-endian scalar wires and dictionary/provenance expectations without production imports or native expected-output extraction.
+[Round44 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R44_CREO4_PARTIAL_STATE.md) records pinned inputs, scope and validation. Public scenarios (external historical reference) run via an actual separate Core project reference in the role runner (external historical reference). Independent Python peer (external historical reference) builds literal little-endian scalar wires and dictionary/provenance expectations without production imports or native expected-output extraction.
 
 115 synthetic cases/528 messages/12516 events agree. Tests cover all eleven indices, received zero versus absence, repeated/equal updates, raw NaNs/signed zero/full U64 IDs, arbitrary declared metadata, source versus receipt revisions, exact/one-less state/message/work/event limits,4096-update boundary, overflow, aliases/readonly collections, concurrent branches, stale/foreign receipts and late malformed collection/unknown tails. Accepted43 full4 world and default smoke regressions pass separately. Confidence: Confirmed for this bounded modern received-only state. Original constructor/template defaults, observer admission, later full-baseline reconciliation and owner gameplay remain separate; no networking44 dependency is consumed.
 

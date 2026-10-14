@@ -172,7 +172,7 @@ flowchart LR
     DOMAIN --> OBJ[Object/session subsystem]
 ```
 
-The replacement should model the envelope as fixed-width wire DTOs and translate each inner payload into a typed domain command. It should not recreate the legacy `MessageQueue` object hierarchy or serialize native Godot/C++ object layouts.
+The replacement should model the envelope as fixed-width wire DTOs and translate each inner payload into a typed domain command. It should not recreate the legacy `MessageQueue` object hierarchy or serialize native prototype host/C++ object layouts.
 
 ## Remaining questions
 

@@ -1,9 +1,9 @@
 # Offline limits display owner
 
-October6,2026. A modern noninteractive Godot display over supplied immutable state.
-[Source](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineLimitsHud.cs),
-[actual native proof](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineLimitsHudVerification.cs),
-[independent oracle](../../SWG-Godot-Client/poc/round78-tests/Rendering/verify_picker.py).
+October6,2026. A modern noninteractive prototype host display over supplied immutable state.
+Source (external historical reference),
+actual native proof (external historical reference),
+independent oracle (external historical reference).
 
 ```csharp
 public sealed record TerrainOfflineLimitsHudState(int MaximumUpdates,
@@ -40,7 +40,7 @@ before post-guard. A valid formatted caption is assigned to Label.Text, followed
 another guard before Caption/RefreshCount commit. The display owns no world, driver,
 session settings, input adapter, transport, existing HUD or caller callback object.
 
-Explicit methods and getters require the creating managed thread and Godot main
+Explicit methods and getters require the creating managed thread and prototype host main
 thread. Guards require live unqueued exact owner/parent/viewport, exact layer/label
 attachment and noninteractive control flags. Caught nested Configure/Refresh/Dispose
 still poisons the outer refresh. Configure/Refresh tokens apply to that call; no
@@ -77,7 +77,7 @@ One bounded frozen default-HUD caption regression also agrees exactly; no full i
 suite is duplicated. Build has zero warnings/errors and logs have no native leak or
 resource-in-use diagnostic. The GPU capture was visually inspected.
 
-Observation: these tests execute replacement Godot behavior using synthetic state.
+Observation: these tests execute replacement prototype host behavior using synthetic state.
 Confidence: Confirmed for the fixtures. Consequence: the caller can replace its raw
 layer/label lifetime with this owner and keep exact accepted caption expectations.
 Association with controller/settings, variable-duration updates, original UI parity,

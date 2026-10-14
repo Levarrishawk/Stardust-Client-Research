@@ -1,6 +1,6 @@
 # Sparse approximate original-layer terrain preview
 
-Round59 [host](../../SWG-Godot-Client/poc/Stardust.Godot/ScenePumpedSparseFirstCurveTerrain.cs) uses the actual [sparse consumer](TERRAIN_HEIGHT_LAYER_FIRST_CURVE_SPARSE_CONSUMER_CONTRACT.md), [sparse curve batch](TERRAIN_FIRST_CURVE_FRACTAL_SPARSE_BATCH_CONTRACT.md), and [modern normal field](TERRAIN_MODERN_HEIGHT_NORMALS_CONTRACT.md). Version9 policy owned_layer_sparse_first_curve_modern_approximation requires explicit SuppliedWarmPriors, ModernBinary64LogPowApproximation, ModernBinary64CentralDifference and ModernLitVertexColor. Original numeric, terrain, normal, cache and lighting parity are unclaimed.
+Round59 host (external historical reference) uses the actual [sparse consumer](TERRAIN_HEIGHT_LAYER_FIRST_CURVE_SPARSE_CONSUMER_CONTRACT.md), [sparse curve batch](TERRAIN_FIRST_CURVE_FRACTAL_SPARSE_BATCH_CONTRACT.md), and [modern normal field](TERRAIN_MODERN_HEIGHT_NORMALS_CONTRACT.md). Version9 policy owned_layer_sparse_first_curve_modern_approximation requires explicit SuppliedWarmPriors, ModernBinary64LogPowApproximation, ModernBinary64CentralDifference and ModernLitVertexColor. Original numeric, terrain, normal, cache and lighting parity are unclaimed.
 
 ## Actual data flow
 

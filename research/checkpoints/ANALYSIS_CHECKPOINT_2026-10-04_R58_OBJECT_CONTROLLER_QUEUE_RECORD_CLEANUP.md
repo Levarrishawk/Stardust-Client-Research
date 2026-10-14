@@ -4,7 +4,7 @@ Date: 2026-10-04. Question and stopping condition: close `00AA67C0` initializati
 
 ## Evidence and findings
 
-The [durable contract](../../docs/OBJECT_CONTROLLER_QUEUE_RECORD_CLEANUP_CONTRACT.md) records the executable identity, body digests, exact instruction witnesses, observations, interpretations, confidence and implementation consequences. The [producer](../../../SWG-Godot-Client/tools/python/verify_object_controller_queue_record_cleanup.py) and [independent checks](../../../SWG-Godot-Client/poc/round58-tests/Networking/research_checks.py) provide reproducible static gates. No canonical names or shared ledgers were changed; shared integration belongs to the lead.
+The [durable contract](../../docs/OBJECT_CONTROLLER_QUEUE_RECORD_CLEANUP_CONTRACT.md) records the executable identity, body digests, exact instruction witnesses, observations, interpretations, confidence and implementation consequences. The producer (external historical reference) and independent checks (external historical reference) provide reproducible static gates. No canonical names or shared ledgers were changed; shared integration belongs to the lead.
 
 Confirmed: record A+8 is initialized to zero; the cleanup helper reads entry+8 at stride 16, calls each non-null payload's virtual slot zero with its own pushed 1, and clears the pointer only after normal return. Confirmed: the caller's second argument is unused, incoming queue ECX is unused, record bounds are snapshotted and not directly reset. Strongly inferred: the virtual operation disposes of a payload. Unknown: concrete payload RTTI/target, deletion/free policy, ownership/alias invariants, callback mutation, recovery after partial completion, and record storage release by `00AA6710`.
 

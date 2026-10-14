@@ -2,7 +2,7 @@
 
 ## Bounded question
 
-Can owned APPR hardpoint records be composed through loaded static appearance instances without merging duplicate names or losing transforms? Close on asymmetric synthetic composition, two independent original graphs and Godot reflected marker/visibility gates. This is static inspection, not recovered runtime virtual attachment lookup.
+Can owned APPR hardpoint records be composed through loaded static appearance instances without merging duplicate names or losing transforms? Close on asymmetric synthetic composition, two independent original graphs and prototype host reflected marker/visibility gates. This is static inspection, not recovered runtime virtual attachment lookup.
 
 ## Evidence and inputs
 
@@ -18,13 +18,13 @@ Garage `appearance/component/mun_all_garage_s01_u01.cmp`, SHA `1FE0DF11A1A1B6506
 
 Modern policies: 4,096 instances, 32,768 placements and depth 32; invalid limits, cycles, nonfinite composed transforms and aggregate exhaustion fail. No original runtime scale, appearance virtual override or parent-object attachment behavior is inferred.
 
-**Confirmed host boundary:** optional Godot component/interior markers use the same reflected transforms; all 14/12 marker world origins and basis axes match core placement. Axes share one owned mesh; markers inherit appearance/cell/LOD visibility and have a separate visibility toggle. Inspection annotations are excluded from geometry camera bounds. One selected readable label avoids overlapping whole-model text. UI lists the first 512 records; all bounded markers remain in the model. Labels include authored indices, so duplicate names remain distinct.
+**Confirmed host boundary:** optional prototype host component/interior markers use the same reflected transforms; all 14/12 marker world origins and basis axes match core placement. Axes share one owned mesh; markers inherit appearance/cell/LOD visibility and have a separate visibility toggle. Inspection annotations are excluded from geometry camera bounds. One selected readable label avoids overlapping whole-model text. UI lists the first 512 records; all bounded markers remain in the model. Labels include authored indices, so duplicate names remain distinct.
 
 ## Validation and reproduction
 
 Full native smoke suite passes asymmetric parent/child transforms, shared templates, owned paths, name ambiguity/case, cycles, depth/resource limits and nonfinite inputs. `verify_hardpoint_scene.py ROOT CONFIG MEMBER SHA CORE_DLL PRIVATE_JSON` independently parses raw HPTS/CMPA/DTLA/APT/PRTO records, reconstructs transforms and verifies ordered identities plus all source hashes. Run on the two pinned roots above. Detailed positions and names remain private.
 
-Godot build succeeds without warnings. Garage headless marker gates and YT-1300 GPU marker/host-coordinate capture pass. Final original capture was visually inspected; initial tiny-label and oversized-all-label captures remain private, followed by selectable single-label correction. The current full textured/floor scene still loads 87 sources, 33 textures/321 mips and shows 85 textured/three neutral surfaces. Existing certificate-store startup error remains nonfatal.
+Prototype host build succeeds without warnings. Garage headless marker gates and YT-1300 GPU marker/host-coordinate capture pass. Final original capture was visually inspected; initial tiny-label and oversized-all-label captures remain private, followed by selectable single-label correction. The current full textured/floor scene still loads 87 sources, 33 textures/321 mips and shows 85 textured/three neutral surfaces. Existing certificate-store startup error remains nonfatal.
 
 Use `Invoke-StardustAssetPreview.ps1 -InspectHardpoints` with `-Component` or `-Interior` and the pinned root. No skeletal/equipment/effect runtime attachment is claimed. Durable conclusion: [hardpoint contract](../../docs/APPEARANCE_HARDPOINT_CONTRACT.md). Research scores, packet and address counts are unchanged.
 
@@ -32,4 +32,4 @@ Use `Invoke-StardustAssetPreview.ps1 -InspectHardpoints` with `-Component` or `-
 
 Connect floor surface selection to same-cell graph-node route inspection while preserving coordinate and cell ownership; original legal movement/portal transitions remain separate.
 
-Final selector gate: axes-only uses an explicit sentinel rather than Godot's automatic negative item ID. Actual widget signals verify zero labels for axes-only and one label for a selected record; final garage GPU and build gates pass.
+Final selector gate: axes-only uses an explicit sentinel rather than prototype host's automatic negative item ID. Actual widget signals verify zero labels for axes-only and one label for a selected record; final garage GPU and build gates pass.

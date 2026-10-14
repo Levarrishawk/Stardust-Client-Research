@@ -1,9 +1,9 @@
 # Bounded modern second-curve terrain sampling
 
-The [second-curve helper and batch](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainSecondCurveFractalBatch.cs)
+The second-curve helper and batch (external historical reference)
 admit second-enabled MFRC/0001 families through an explicit
 `ModernBinary64LogPowWithF32Exponent` policy. Every receipt reports
-`OriginalNumericParity=false`. The [height traversal](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/OriginalTerrainHeightTraversal.cs)
+`OriginalNumericParity=false`. The height traversal (external historical reference)
 selects this batch before its existing first-only or curves-disabled paths.
 Existing first-only sampling semantics remain those in the
 [first-curve contract](TERRAIN_FIRST_CURVE_FRACTAL_BATCH_CONTRACT.md).
@@ -79,7 +79,7 @@ materials and live terrain authority remain separate questions.
 
 ## Reproduction and independent oracle
 
-The [focused runner](../../SWG-Godot-Client/poc/terrain-second-curve-tests/Program.cs) accepts an
+The focused runner (external historical reference) accepts an
 optional original terrain path. It tests negative/zero/high inputs, strict
 threshold centers and neighbors, nonzero full-word flags, first-before-second
 composition, immutable ownership, malformed framing, invalid parameters,

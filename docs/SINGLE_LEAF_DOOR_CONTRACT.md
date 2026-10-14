@@ -2,7 +2,7 @@
 
 ## Boundary and confidence
 
-This bounded offline implementation loads one original named style, retains explicit actor handles, advances its primary controller and moves one rigid primary leaf. Complete static-mesh detail bands are now accepted under the [fixed root-box gate](DOOR_STYLE_CAPABILITY_MATRIX.md). The Godot adapter renders neutral geometry and provides contact, permission, step and reset controls. Original controller/curve/trigger facts below are **Confirmed** by static executable evidence. Physical leaf clearance against the primary appearance box is an **owned conservative policy**; original narrow-phase shape selection and global actor ordering remain **Unknown**. This is separate from the permission barrier and mutable portal state described in the [barrier contract](PORTAL_BARRIER_COLLISION_CONTRACT.md).
+This bounded offline implementation loads one original named style, retains explicit actor handles, advances its primary controller and moves one rigid primary leaf. Complete static-mesh detail bands are now accepted under the [fixed root-box gate](DOOR_STYLE_CAPABILITY_MATRIX.md). The prototype host adapter renders neutral geometry and provides contact, permission, step and reset controls. Original controller/curve/trigger facts below are **Confirmed** by static executable evidence. Physical leaf clearance against the primary appearance box is an **owned conservative policy**; original narrow-phase shape selection and global actor ordering remain **Unknown**. This is separate from the permission barrier and mutable portal state described in the [barrier contract](PORTAL_BARRIER_COLLISION_CONTRACT.md).
 
 ## Original style schema
 
@@ -43,7 +43,7 @@ localTranslation = authoredMovement * displacementFraction
 leafPose = doorPose composed with localTranslation
 ```
 
-The existing [normal controller](../../SWG-Godot-Client/poc/Stardust.Core/Assets/PortalDoorController.cs) supplies frame pulses, duration updates and first-matching transition indices 0–3. Effects are returned as authored reference strings; playback is deferred. The caller consumes transition metadata once per advance. New contacts require known allowed entry in this prototype. Original denied-contact secondary/candidate branches and callback +7A semantics remain Unknown here. Revoking permission stops pulse refresh; an existing current/next-frame pulse can expire before closing begins.
+The existing normal controller (external historical reference) supplies frame pulses, duration updates and first-matching transition indices 0–3. Effects are returned as authored reference strings; playback is deferred. The caller consumes transition metadata once per advance. New contacts require known allowed entry in this prototype. Original denied-contact secondary/candidate branches and callback +7A semantics remain Unknown here. Revoking permission stops pulse refresh; an existing current/next-frame pulse can expire before closing begins.
 
 ## Owned physical envelope and lifecycle
 
@@ -55,7 +55,7 @@ External actor callbacks are resolved and validated before a step commits. Reset
 
 `cantina_door` has one primary `appearance/cantina_door.apt`, no frame/secondary/flip/force field, movement approximately `(-2.1,0,0)`, open/close 0.5 seconds, springiness approximately 1.3, smoothness 1 and trigger radius 3. It resolves to `appearance/mesh/cantina_door.msh`. Primary box minimum is approximately `(-1.175978,-0.037567,-0.073922)` and maximum `(1.215925,3.210477,0.078029)`. Its open-begin and close-begin reference metal style 01 effects; end references are empty.
 
-All 124 original rows match an independent DTII reader. A 100-frame scenario, stepping 0.025 seconds with the actor released at frame 40, matches independent timing, curve, translation, effect references and axial swept-box calculation: 60 blocked and 40 clear queries. These counts describe one scenario, not coverage of 124 runtime variants. Synthetic tests cover every truncated table prefix, duplicate/type/nonfinite/trailing rejection, fallback, owner/permission filters, capacity, radius hysteresis/equality, callback failure, permission revocation, reset/dispose and transformed owners. Headless and GPU Godot control/pose tests pass; capture was visually inspected. Input hashes, exact reproduction and remaining questions are in the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SINGLE_LEAF_DOOR.md).
+All 124 original rows match an independent DTII reader. A 100-frame scenario, stepping 0.025 seconds with the actor released at frame 40, matches independent timing, curve, translation, effect references and axial swept-box calculation: 60 blocked and 40 clear queries. These counts describe one scenario, not coverage of 124 runtime variants. Synthetic tests cover every truncated table prefix, duplicate/type/nonfinite/trailing rejection, fallback, owner/permission filters, capacity, radius hysteresis/equality, callback failure, permission revocation, reset/dispose and transformed owners. Headless and GPU prototype host control/pose tests pass; capture was visually inspected. Input hashes, exact reproduction and remaining questions are in the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_SINGLE_LEAF_DOOR.md).
 
 ## Next probe
 

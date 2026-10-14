@@ -2,7 +2,7 @@
 
 The selected real Tatooine FHGT reads the shared current height after the root layer and earlier siblings have completed. It does **not** form a real FHGT/AHCN pair: its layer, ancestor and examined earlier-sibling prefix contain no AHCN. Actual prior height writes use AHFR. This closes the ordering and fresh-preparation prerequisite for the [supplied current-height contract](TERRAIN_SUPPLIED_HEIGHT_FILTERED_SEQUENCE_CONTRACT.md); original numeric terrain parity remains Unknown.
 
-The [identity-gated verifier](../../SWG-Godot-Client/tools/python/verify_terrain_height_layer_order.py), [offline runner](../../SWG-Godot-Client/poc/round44-tests/Rendering/Invoke-HeightLayerOrder.ps1) and [Round 44 checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-03_R44_HEIGHT_LAYER_ORDER.md) reproduce the bounded result. All production terrain APIs are frozen in this research round.
+The identity-gated verifier (external historical reference), offline runner (external historical reference) and [Round 44 checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-03_R44_HEIGHT_LAYER_ORDER.md) reproduce the bounded result. All production terrain APIs are frozen in this research round.
 
 ## Input identity and bounded occurrence
 

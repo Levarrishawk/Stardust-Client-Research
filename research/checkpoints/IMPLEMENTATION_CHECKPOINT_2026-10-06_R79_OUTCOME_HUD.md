@@ -13,15 +13,15 @@ archive SHA-256:85fbdfff12aba49b002217479e5066c9b9806df3c33447c89afad815525c0a9f
 Original executable identity rechecked:
 E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150.
 Identity reads only; no original execution/VAs/assets/network/unfinished79 imports.
-Cached Python, offline .NET8/Godot4.7.2 .NET x64 toolchain/packages and actual
+Cached Python, offline historical implementation path (omitted) .NET x64 toolchain/packages and actual
 headless/OpenGL compatibility GPU. Only accepted78 playground/limits HUDs are staged
 as context dependencies; a frozen authored caption oracle supplies default comparison.
 
 [Durable contract](../../docs/TERRAIN_OFFLINE_OUTCOME_HUD_CONTRACT.md),
-[owner](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineOutcomeHud.cs),
-[verification](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineOutcomeHudVerification.cs),
-[runner](../../../SWG-Godot-Client/poc/round79-tests/Rendering/Invoke-Picker.ps1),
-[oracle](../../../SWG-Godot-Client/poc/round79-tests/Rendering/verify_picker.py).
+owner (external historical reference),
+verification (external historical reference),
+runner (external historical reference),
+oracle (external historical reference).
 
 The explicit-input runner takes Python/dotnet, original executable SHA input, offline
 package cache and a fresh ignored RunRoot. It pins the frozen manifest/archive and

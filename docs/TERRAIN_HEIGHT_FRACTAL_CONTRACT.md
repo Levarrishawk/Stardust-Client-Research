@@ -1,8 +1,8 @@
 # AHFR raw input and supplied fractal height consumer
 
-[TerrainHeightFractalInput](../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainHeightFractalInput.cs) owns AHFR raw records and decodes version0003 fields. [TerrainSuppliedHeightFractal](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainSuppliedHeightFractal.cs) implements only the direct height consumer with an explicitly supplied F32 fractal value. It does not generate noise, resolve a family, reproduce sampler/cache state, mutate original grids, or select original active floating controls. This provides a conditional consumer for the actual writer established in the [height-order contract](TERRAIN_HEIGHT_LAYER_ORDER_CONTRACT.md), not original generated-terrain parity.
+TerrainHeightFractalInput (external historical reference) owns AHFR raw records and decodes version0003 fields. TerrainSuppliedHeightFractal (external historical reference) implements only the direct height consumer with an explicitly supplied F32 fractal value. It does not generate noise, resolve a family, reproduce sampler/cache state, mutate original grids, or select original active floating controls. This provides a conditional consumer for the actual writer established in the [height-order contract](TERRAIN_HEIGHT_LAYER_ORDER_CONTRACT.md), not original generated-terrain parity.
 
-All addresses refer to EXE SHA256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. The [byte/Fraction/static verifier](../../SWG-Godot-Client/tools/python/verify_terrain_height_fractal.py) and [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R45_HEIGHT_FRACTAL.md) preserve reproduction and open questions.
+All addresses refer to EXE SHA256 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`. The the separate implementation record and [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-04_R45_HEIGHT_FRACTAL.md) preserve reproduction and open questions.
 
 ## Identity, loaders and raw boundary
 
@@ -50,11 +50,11 @@ The post-affector virtual+14 at `00B76980` returns true; the accepted layer driv
 
 ## Verification and exact next probe
 
-[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainHeightFractalScenarios.cs) and the independent oracle pass151 raw cases (134 rejected),8836 supplied consumers (766 rejected),40 ownership/budget/current-height checks and one null-section negative. Three arithmetic profiles cover signed zero, subnormal, cancellation, overflow eligibility, default/known/invalid operations and disabled/nonpositive gating. There are323 witnesses where prematurely storing T to F32 changes the outcome. Static verification passes96 instruction anchors, exact factory/RTTI/vtable/dispatch/operation tables, three PARM reads and eight wrong-identity negatives before VA interpretation.
+Native scenarios (external historical reference) and the independent oracle pass151 raw cases (134 rejected),8836 supplied consumers (766 rejected),40 ownership/budget/current-height checks and one null-section negative. Three arithmetic profiles cover signed zero, subnormal, cancellation, overflow eligibility, default/known/invalid operations and disabled/nonpositive gating. There are323 witnesses where prematurely storing T to F32 changes the outcome. Static verification passes96 instruction anchors, exact factory/RTTI/vtable/dispatch/operation tables, three PARM reads and eight wrong-identity negatives before VA interpretation.
 
 One priority42 Tatooine AHFR raw record is decoded, at TGEN offset12346, root layer0/child2,0003/IHDR0001,114 bytes, logical copy33, SHA256 `51735AECA9C172F0BD1E8194ACBCECD8CEF03041075CF307822E275D5E936B1E`. No original sampler value or generated height is evaluated. Actual separate-Core runner and default Core/SmokeTests build/run pass with zero warnings/errors; default smoke retains18 journal events/zero failures.
 
-Next bounded probe: establish the selected family map's actual sampler return/cache validity and effective arithmetic controls, then the preceding FFRA gate. Keep this supplied F32 kernel conditional until that evidence supports original generated-cell admission. Legacy embedded versions, universal map lifetime, noise reproduction, driver/cache integration and world/Godot admission remain separate work.
+Next bounded probe: establish the selected family map's actual sampler return/cache validity and effective arithmetic controls, then the preceding FFRA gate. Keep this supplied F32 kernel conditional until that evidence supports original generated-cell admission. Legacy embedded versions, universal map lifetime, noise reproduction, driver/cache integration and historical implementation path (omitted) admission remain separate work.
 
 ## Round46 accepted compatibility increment
 

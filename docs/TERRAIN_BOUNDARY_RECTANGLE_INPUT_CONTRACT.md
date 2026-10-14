@@ -1,6 +1,6 @@
 # Terrain boundary rectangle serialized input
 
-Round36 adds [TerrainBoundaryRectangleInput](../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainBoundaryRectangleInput.cs)
+Round36 adds TerrainBoundaryRectangleInput (external historical reference)
 over the frozen owned sections of [TerrainGeneratorInput](TERRAIN_GENERATOR_INPUT_CONTRACT.md).
 It preserves complete BREC bytes and exposes supported serialized fields.
 Influence, layer/filter/ancestor composition, coordinate mapping and original
@@ -202,8 +202,8 @@ Both extension flag words are zero in all29, and no serialized endpoints are
 inverted. These occurrence counts do not close dormant feature semantics or
 constitute coverage metrics. No original query/height computation was performed.
 
-[Native scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainBoundaryRectangleInputScenarios.cs)
-and [independent oracle](../../SWG-Godot-Client/poc/round36-tests/Assets/verify_brec_input.py) compare
+Native scenarios (external historical reference)
+and independent oracle (external historical reference) compare
 all29 records in layer/child order, TGEN offsets, full-section/header/extension
 hashes and complete raw DATA words. Synthetic fixtures cover all four known
 versions, both IHDR versions, fullwidth/nonfinite/signedzero bits, inverted

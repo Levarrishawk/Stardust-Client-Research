@@ -4,7 +4,7 @@ Date: October 2, 2026. Result: ready for lead review; stop after this Round 6 mi
 
 ## Bounded question and baseline
 
-Can a decoded create derive a finite engine-neutral row-stored column-vector placement with robust standard quaternion normalization, explicit zero policy and exact raw identity, while independently verifying point/composition/reflection conventions? Stop after own native/Python and ownership/rejection, build/link/scope gates. Existing codecs, AppearanceTransform, materials, scenes, registries and all Godot code remain read only.
+Can a decoded create derive a finite engine-neutral row-stored column-vector placement with robust standard quaternion normalization, explicit zero policy and exact raw identity, while independently verifying point/composition/reflection conventions? Stop after own native/Python and ownership/rejection, build/link/scope gates. Existing codecs, AppearanceTransform, materials, scenes, registries and all prototype host code remain read only.
 
 Checkout `C:/Users/ancie/.codex/worktrees/520a/Stardust-Client`; HEAD `65de8c88141071744dc75594be126b3bab3696a5`. Round 6 ZIP SHA-256 `0e55506a789046b8a875688c83285e27e535a51fbe09b2c28e7696c679077453`; manifest SHA-256 `3a1e812a4dd0d3de1c61b8e385a30c7851918c015b7757fe316296de4bd6d83a`. Verified 1,855 safe archive paths, file lengths and hashes before copying, then every destination hash. Preserved ignored/unlisted files. Main/shared runner/status/ledger/registries read only.
 
@@ -12,9 +12,9 @@ Orientation: START_HERE/latest named implementation session, accepted Round 5 re
 
 ## Evidence, interpretation and compatibility consequence
 
-Observation: existing `AppearanceTransform` stores three rows/translation and applies column vectors. `parent.Compose(local)` applies local first; previously established original component corpus and reflected Godot adapter evidence is cited in the [durable contract](../../docs/SCENE_CREATE_PLACEMENT_CONTRACT.md). Existing create codec preserves raw XYZW quaternion / XZY position wire identity and accepts zero/nonunit quaternions; it does not repair them.
+Observation: existing `AppearanceTransform` stores three rows/translation and applies column vectors. `parent.Compose(local)` applies local first; previously established original component corpus and reflected prototype host adapter evidence is cited in the [durable contract](../../docs/SCENE_CREATE_PLACEMENT_CONTRACT.md). Existing create codec preserves raw XYZW quaternion / XZY position wire identity and accepts zero/nonunit quaternions; it does not repair them.
 
-Observation: [new builder](../../../SWG-Godot-Client/poc/Stardust.Core/Session/SceneCreatePlacement.cs) rejects null/invalid policy/nonfinite fields; normalizes every nonzero quaternion with scaled double intermediates; handles only exact zero via caller-selected Reject/Identity; derives standard XYZW column-vector rotation and Cartesian translation from named DTO fields. It returns a distinct immutable raw scalar snapshot and derived norm/normalization/fallback metadata. No parent/container/root-motion/engine inference is applied.
+Observation: new builder (external historical reference) rejects null/invalid policy/nonfinite fields; normalizes every nonzero quaternion with scaled double intermediates; handles only exact zero via caller-selected Reject/Identity; derives standard XYZW column-vector rotation and Cartesian translation from named DTO fields. It returns a distinct immutable raw scalar snapshot and derived norm/normalization/fallback metadata. No parent/container/root-motion/engine inference is applied.
 
 Observation: native 27 synthetic decoded-create cases / 105 point probes / 26 compositions / 25 rejections pass. Axes 90/180/270, asymmetric q/-q, nonunit, smallest subnormal/minimum-normal/maximum finite/unbalanced values, signed zeros and extreme/subnormal positions are represented. Clearing encoded source arrays leaves raw DTO bits intact; failed derivations do not affect returned placements.
 
@@ -38,7 +38,7 @@ Task APPDATA under TEMP, accepted private NuGet cache, sources-cleared NuGet.Con
 
 Initial oracle exact comparisons treated binary32 shortest JSON decimals as exact binary64 values at maximum-float and q/-q exports. Corrected export reconstruction to binary32, preserving all numerical tolerances and production math. Negative-zero JSON handling is explicit. No original behavioral claim follows from those export corrections.
 
-Private exports/audit/hash/diff records remain ignored. No shared runner modification, Godot/headless/GPU run, original execution, network contact, staging/commit/push/publication.
+Private exports/audit/hash/diff records remain ignored. No shared runner modification, prototype host/headless/GPU run, original execution, network contact, staging/commit/push/publication.
 
 ## Handoff and remaining questions
 

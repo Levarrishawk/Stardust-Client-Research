@@ -8,8 +8,8 @@ without relying on a world router or engine. It stops after an exact native
 export matches an independent Python oracle, the prior named CREO/TANO wire
 regressions pass and workspace checks complete.
 
-The producer is [peer.py](../../SWG-Godot-Client/poc/round27-tests/Networking/peer.py); the native
-consumer is [TangibleMixedTranscriptScenarios.cs](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TangibleMixedTranscriptScenarios.cs).
+The producer is peer.py (external historical reference); the native
+consumer is TangibleMixedTranscriptScenarios.cs (external historical reference).
 The schema builds on [complete TANO3 codecs](TANGIBLE_VIEW3_CODEC_CONTRACT.md)
 and the accepted [SOE transport specification](SOE_TRANSPORT_PROTOCOL.md).
 It adds no recovered protocol claim or coverage percentage. Original client
@@ -36,7 +36,7 @@ including negative probes, before transporting or decoding it. Retargeting is
 an explicit integration transform and invalidates the original datagram/CRC
 expectations; regenerate those for the new transcript.
 
-The pinned [catalog](../../SWG-Godot-Client/poc/preview-profiles/scene-object-catalog.json) SHA-256 is
+The pinned catalog (external historical reference) SHA-256 is
 `B945D2D4695FF37D54343F11A7DF3539A5AB36A2E5D13246969B04F92657492D`.
 The producer checks both path CRCs independently. Creates reference catalog
 human2937962913 and mission terminal2907007746, with object IDs

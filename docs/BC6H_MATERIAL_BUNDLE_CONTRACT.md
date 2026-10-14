@@ -8,9 +8,9 @@ Per-mesh texture cardinality64 and encoded/decoded128 MiB budgets include both i
 
 Typeless BC6H94 and unsupported surface/header layouts remain rejected. Structural HDR candidate detection does not skip full DDS validation. Existing owned half pixels, signed/HDR values, reserved-mode zero output, exact mips and source identities remain unchanged.
 
-## Godot sampler and ownership
+## Prototype host sampler and ownership
 
-The shared preview texture cache uploads RGBH and RGBA8 under one128 MiB budget. Actual HDR texture data remains binary16 RGB; material samplers use linear data without `source_color` gamma conversion. Array meshes/material adapters share the same texture object for repeated HDR content. Full chains or one mip are accepted for Godot upload; valid partial CPU chains still require another upload policy.
+The shared preview texture cache uploads RGBH and RGBA8 under one128 MiB budget. Actual HDR texture data remains binary16 RGB; material samplers use linear data without `source_color` gamma conversion. Array meshes/material adapters share the same texture object for repeated HDR content. Full chains or one mip are accepted for prototype host upload; valid partial CPU chains still require another upload policy.
 
 The explicit opaque/unlit MAIN inspection policy remains in force. GPU texture readback and sampler binding preserve all half bytes. Signed negatives and values above one are retained; this does not specify their final viewport appearance, exposure or tone mapping. Original shader programs, lighting and HDR display policy remain separate. This modern DDS extension is not evidence of original executable DX10 support.
 
@@ -20,6 +20,6 @@ The existing forty standards-only BC6H fixtures cover264 mips, all fourteen vali
 
 Native smoke also verifies repeated HDR lookup/description ownership and exact shared96-byte budget, then a mixed64-byte RGBA plus96-byte HDR graph with exact160-byte pass/159-byte fatal failure. Existing original YT-1300 authored inspection remains87 sources/321 mips/39 effect records with independent agreement.
 
-Build native/Godot and run `Invoke-StardustHdrVerification.ps1 -Materials` with the existing explicit Godot/Python paths and a fresh private output directory. `-Headless` reports gpu=False; actual GPU is separately verified. `generate_hdr_material_fixtures.py` writes synthetic-only fixture assets into the private directory. The launcher reports bounded completion and validates40 fixtures/264 mips/80 templates. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BC6H_MATERIAL_BUNDLES.md).
+Build historical implementation path (omitted) and run `Invoke-StardustHdrVerification.ps1 -Materialshistorical prototype identifier (omitted)-Headless` reports gpu=False; actual GPU is separately verified. `generate_hdr_material_fixtures.py` writes synthetic-only fixture assets into the private directory. The launcher reports bounded completion and validates40 fixtures/264 mips/80 templates. [Checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_BC6H_MATERIAL_BUNDLES.md).
 
 Next: palette asset structure and exact packed-color handling, before translating customization factor colors.

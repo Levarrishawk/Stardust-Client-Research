@@ -12,7 +12,7 @@ The adapter queries participating source/target snapshots on both legs, retains 
 
 ## Validation
 
-Native gates cover precise path progress/offset, complete malformed later-segment rejection even with passage allowed, source approach to target boxes, slope/global progress,100 stable contacts, reverse transfer, unknown/allowed permission, tie order, caller snapshot mutation during callbacks, failed callback reuse, rotated/asymmetric owners and large-coordinate locator rollback. Full native smoke and Godot build pass with zero build warnings/errors.
+Native gates cover precise path progress/offset, complete malformed later-segment rejection even with passage allowed, source approach to target boxes, slope/global progress,100 stable contacts, reverse transfer, unknown/allowed permission, tie order, caller snapshot mutation during callbacks, failed callback reuse, rotated/asymmetric owners and large-coordinate locator rollback. Full native smoke and prototype host build pass with zero build warnings/errors.
 
 Independent `verify_portal_floor_sphere_boxes.py PRIVATE_OUTPUT CORE_DLL` reconstructs slope/seam legs and uses convex solid distance minimization:512 cases, seed2026100114, eight owner poses and varied offsets agree.36 accepted/281 obstacle stops/195 floor stops;464 zero/48 one transfers. Fixture SHA-256 `CE8FD4A3225FE3765F47C599B7F8053BF307BBFE4E6E862C1C9B6DE538E9BF69`. Includes rotated captured solids and false/unknown/true obstacle policies. Geometry details and generated fixtures remain ignored.
 

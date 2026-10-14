@@ -2,7 +2,7 @@
 
 Question: can third-person portal visibility follow camera ownership independently of actor ownership? Stop at owned aperture traversal/fallback and original doorway integration.
 
-Inputs: same pinned original scene/profile/character chain and configuration as the preceding chase-camera checkpoint,148 sources/16,612,055 bytes; no added source lookups. Tools: .NET core/native fixture emitters, effective PRTO Python parser, independent segment-ray/closest-point calculations and replacement Godot4.7.2 .NET only. [Durable contract](../../docs/CAMERA_CELL_TRACKING_CONTRACT.md) specifies source assumptions, limits, tolerances and fallback.
+Inputs: same pinned original scene/profile/character chain and configuration as the preceding chase-camera checkpoint,148 sources/16,612,055 bytes; no added source lookups. Tools: .NET core/native fixture emitters, effective PRTO Python parser, independent segment-ray/closest-point calculations and replacement prototype host4.7.2 .NET only. [Durable contract](../../docs/CAMERA_CELL_TRACKING_CONTRACT.md) specifies source assumptions, limits, tolerances and fallback.
 
 Observation:28 original doorway queries produce26 located/13 changed/two ambiguous results. Independent source geometry, statuses/cells/crossing order agree; maximum crossing-parameter error3.85904e-6 at2e-5 tolerance. Confidence confirmed for tested cases. Implementation consequence: do not substitute the actor cell after a camera portal crossing; ambiguous/unloaded/unpaired/budget outcomes show all selected rooms. Anchor and collision-resolved boom remain caller preconditions, not a universal containment proof.
 

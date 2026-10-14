@@ -12,7 +12,7 @@ Static executable SHA-256 was verified: `E782BF1C49B3DA730F66B54BC558947C46493F7
 
 ## Observation, interpretation and compatibility consequence
 
-Observation: the [loader](../../../SWG-Godot-Client/poc/Stardust.Core/Assets/TerrainSuppliedStaticMaterial.cs) resolves the pinned shader once, reuses frozen parsers, selects exactly one MAIN binding with static source flag and name, and resolves only that DDS. Actual priorities and captured-byte SHA values are retained. Effects and unrelated textures cause zero reads. Confidence: Confirmed source plus exact independent resolver-call/description comparison. Consequence: consumers supply a deliberate shader occurrence; no terrain family selection or original effect execution is inferred.
+Observation: the loader (external historical reference) resolves the pinned shader once, reuses frozen parsers, selects exactly one MAIN binding with static source flag and name, and resolves only that DDS. Actual priorities and captured-byte SHA values are retained. Effects and unrelated textures cause zero reads. Confidence: Confirmed source plus exact independent resolver-call/description comparison. Consequence: consumers supply a deliberate shader occurrence; no terrain family selection or original effect execution is inferred.
 
 Observation: default modulation is binary32 MAIN texel * vertex color; the opt-in mode adds directly authored MAIN MATL diffuse. Missing MAIN MATL explicitly produces white, while `AuthoredMainDiffuse` stays null. TFNS and other material/coordinate data remain retained metadata. Confidence: Confirmed independent scalar-bit fixtures, including authored present/default/opt-in and absent opt-in. Consequence: preserve this explicit modern policy, without inventing physical lighting, factor-tag mapping or original shader parity.
 
@@ -30,7 +30,7 @@ Nine runner guards reject wrong/empty executables, public/existing output paths,
 
 The readily available already-used diagnostic is terminal base `shader/defaultemis.sht`, SHA-256 `BD33741659BD3C322AE37DC8C0F4DDADBE940502DB273538DB6A34A9FE14D5F7`, **171 bytes / priority38 / SSHT0001**, effect reference `effect/a_emis_full.eft`. It is deliberately supplied without claiming original terrain association. MAIN references `texture/defaulttexture.dds`, SHA-256 `FFC82EDF27C4CDC26DF680EF7C7D74E9B5EC6C1A685E44A0E0B5DD491F6A981C`, **22,000 bytes / priority53 / BC2 / 128x128 / eight complete mips**. Total source bytes **22,171**, decoded bytes **87,380**; no effect read. Independent configured TRE extraction plus Pillow all-mip hashes agree with native decoded exports. Original byte detail remains private; the shader/effect occurrence does not establish original terrain material membership or execution.
 
-Only four assigned new public artifacts plus five own runners are added. Shared status/ledger/registries, Godot and sibling64 paths remain unchanged. The [durable contract](../../docs/TERRAIN_SUPPLIED_STATIC_MATERIAL_CONTRACT.md) records final API, strict selection, factor/mip policy, costs, ownership and cancellation limits.
+Only four assigned new public artifacts plus five own runners are added. Shared status/ledger/registries, prototype host and sibling64 paths remain unchanged. The [durable contract](../../docs/TERRAIN_SUPPLIED_STATIC_MATERIAL_CONTRACT.md) records final API, strict selection, factor/mip policy, costs, ownership and cancellation limits.
 
 ## Precise next action
 

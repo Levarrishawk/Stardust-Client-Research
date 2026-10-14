@@ -4,7 +4,7 @@ Date: October6,2026. Status: all execution gates passed; final workspace accepta
 
 ## Question and stopping condition
 
-Can the original human/terminal scene receive actual Godot viewport events through
+Can the original human/terminal scene receive actual prototype host viewport events through
 the reusable point-input Node, clear target intent for three active zero-speed ticks,
 retarget and adopt its queued correction, then encode selected actual local rows as
 explicit caller-owned outbound root messages? Stop after headless/GPU trajectory
@@ -76,14 +76,14 @@ changes follow.
 
 ## Reproduction, validation and next action
 
-[Trajectory/wire peer](../../../SWG-Godot-Client/poc/round67-tests/Integration/viewport_point_peer.py)
+the separate implementation record
 independently intersects three captured camera rays with Fraction geometry, casts
 expected targets to binary32 and calculates movement, paused/idle ticks, grounding,
 speed, clock and orientation. It independently packs packet metadata and checks
 wire-native XYZ/speed and quaternion basis against that calculated trajectory,
 without using native pose/hit output as the expected seed. Component outbound
 fixtures separately pin exact frame bytes and sign-equivalent near180 rotation.
-[Clock failure peer](../../../SWG-Godot-Client/poc/round67-tests/Integration/hosted_clock_failure_peer.py)
+Clock failure peer (external historical reference)
 checks actual event fault, zero query/target attempts and all inner/outer owner drains.
 The unchanged66 oracle remains a separate Version2 regression gate.
 
@@ -96,7 +96,7 @@ witnesses. Joined headless/GPU each pass102 updates, three actual viewport input
 three clear-idle ticks, three paused ticks, queued correction/duplicate and five
 offline root packets checked against independent geometry/trajectory/basis/wire.
 Invalid clock faults before child attempts and drains all owners. Unchanged66
-Version2 passes102 updates. Default smoke18 events/zero failures and normal Godot
+Version2 passes102 updates. Default smoke18 events/zero failures and normal prototype host
 build zero warnings/errors pass. All30 final worker/current/main hashes match.
 The first joined build found a lead nullable annotation; fixed before these runs,
 failed log retained. GPU capture inspected original human/terminal on textured

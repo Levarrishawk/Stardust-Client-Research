@@ -12,7 +12,7 @@ Does active point-light vertex diffuse/specular interpolation remain correct joi
 
 ## Completed milestones
 
-1. [Inline face shader compatibility](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INLINE_FACE_EFFECTS.md): both original effect candidates, legacy layouts, independent audits and negative/ownership gates; native suite/Godot build pass.
+1. [Inline face shader compatibility](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INLINE_FACE_EFFECTS.md): both original effect candidates, legacy layouts, independent audits and negative/ownership gates; native historical implementation path (omitted) build pass.
 
 2. [Original face dependency closure](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_FACE_RESOURCE_CLOSURE.md):50 sources/2,283,397 bytes,32 textures/251 declared mips,three palettes; narrow retained DDS tail policy, independent union/pixel/palette audit and failure gates pass.
 
@@ -26,7 +26,7 @@ Does active point-light vertex diffuse/specular interpolation remain correct joi
 
 7. [Skeletal albedo factors](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SKELETAL_ALBEDO_FACTORS.md):74-source/four-material/two-program original audit; core math/negative/ownership, GPU filtered sample/display/parameter and colored animated capture/cancellation pass.
 
-8. [Interior generated character](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_GENERATED_CHARACTER.md):139 sources/15,541,123 bytes; independent original face/albedo/geometry/floor and offline Godot route/GPU/animation checks pass.
+8. [Interior generated character](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_INTERIOR_GENERATED_CHARACTER.md):139 sources/15,541,123 bytes; independent original face/albedo/geometry/floor and offline prototype host route/GPU/animation checks pass.
 
 9. [Shared customization](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SHARED_CUSTOMIZATION.md): confirmed runtime domain mapping; eight-key zero/varied/INT_MAX original audits and standalone/interior GPU/cancellation proofs pass.
 

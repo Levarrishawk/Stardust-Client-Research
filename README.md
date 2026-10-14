@@ -1,12 +1,34 @@
 # Stardust Client Research
 
-Godot client implementation, tests and build tooling live in [SWG-Godot-Client](../SWG-Godot-Client/README.md). This repository contains research and its supporting evidence tools. See [the research-only boundary](docs/RESEARCH_ONLY_SCOPE.md).
-
 This repository is the curated, resumable research record for understanding the legacy `Stardust.exe` client well enough to build a clean, native 64-bit replacement that remains compatible with the Stardust/Core3 server and the original client data formats.
 
 This is a research-only repository. It contains executable-backed findings, protocol and asset specifications, evidence checkpoints, machine-readable registries, and reproducibility tools. Reconstructed behavior is not claimed to be original source code.
 
 > Start with [START_HERE.md](START_HERE.md) for the current status, authoritative metrics, recommended reading order, and latest resume point. Agents must also read [AGENTS.md](AGENTS.md) before changing research artifacts.
+
+## Current research status — October 14, 2026
+
+The latest formal assessment estimates **about 89% of observable client behavior
+researched**, with a judgment range of **86–91%**. This September 25 assessment
+remains the current baseline; later findings have not been formally rescored.
+It measures compatibility knowledge, not the percentage of source code recovered.
+
+| Measure | Status |
+|---|---|
+| Behavioral research coverage | **About 89%**; approximate range **86–91%** |
+| Research readiness for implementation decisions | **94%**; not implementation completion |
+| Stable semantic addresses | **2,626**, with zero duplicate registry rows |
+| Recorded server-source packet inventory | **345/345 documented**, zero reachable inventory gaps |
+| Percentage of executable functions fully reversed | **Unknown**; no valid application-function denominator |
+
+Principal architecture, protocol/state, archive/asset, animation and world
+contracts are documented. The main gaps are UI/gameplay breadth, protocol
+failure/timing fixtures, exact numeric/rendering fidelity, lifecycle cleanup and
+systematic function classification. Packet inventory coverage does not establish
+complete wire behavior or live interoperability.
+
+See [current status, evidence and remaining work](ANALYSIS_STATUS.md) and the
+[weighted coverage assessment](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-25_EVIDENCE_BASED_COVERAGE_RESCORE.md).
 
 ## Research baseline and boundaries
 
@@ -87,8 +109,6 @@ python .\tools\python\validate_organized_workspace.py .
 
 The validator checks relative links, accidental links into `local-private/`, duplicate provisional addresses, packet-matrix counts, and curated-tree size. Run narrower producer or verification scripts for any generated data you change and report their exact commands and results.
 
-The Godot proof has separate instructions and explicit non-claims in [../SWG-Godot-Client/poc/README.md](../SWG-Godot-Client/poc/README.md) and [../SWG-Godot-Client/poc/POC_RESULTS.md](../SWG-Godot-Client/poc/POC_RESULTS.md). Its synthetic message envelope is not a recovered Stardust protocol implementation.
-
 ## Contribution and publication safety
 
 - Preserve existing evidence and historical reports; amend living documents instead of rewriting history.
@@ -98,8 +118,10 @@ The Godot proof has separate instructions and explicit non-claims in [../SWG-God
 - Do not treat a clean working tree as proof that content is safe to publish. Review the staged inventory and follow [PUBLICATION_GUIDE.md](PUBLICATION_GUIDE.md).
 - Do not commit, push, create remotes, or publish without explicit authorization.
 
-## Implementation direction
+## Next research work
 
-The first replacement-client milestone remains deliberately small: a native x64 program that initializes configuration and logging, performs the minimum verified Stardust handshake, parses one known server response, logs it, and exits cleanly. It does not require world rendering, character rendering, broad gameplay UI, or asset conversion.
-
-The existing Godot proof shows that an engine-neutral .NET core can be hosted by Godot; it does not settle the final engine, language, protocol, or asset-compatibility decisions.
+Select one unresolved compatibility question from [current status](ANALYSIS_STATUS.md)
+or the [workstream inventory](WORKSTREAM_INVENTORY.md), confirm the baseline input,
+and close it with reproducible evidence and an explicit confidence level.
+The repository's deliverable is knowledge that can support an independent native
+64-bit client; client construction is outside this repository's current scope.

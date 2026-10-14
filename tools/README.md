@@ -8,4 +8,5 @@ Run `python/validate_organized_workspace.py [workspace-root]` after moving docum
 
 Scripts may rely on local paths, Ghidra APIs, or packages stored under `local-private/toolchain/`. Review dependencies, licensing, and machine-specific assumptions before publication. Generated outputs belong in `local-private/generated-evidence/` unless they are promoted deliberately to `data/curated/`.
 
-Prototype-dependent verifiers, preview launchers, build scripts and regression runners live in [SWG-Godot-Client](../../SWG-Godot-Client/README.md). Run dated prototype reproduction commands from that repository; their historical relative paths are preserved there. Standalone research tools remain here.
+
+Only standalone research tools remain here. Historical reports may describe prototype-dependent verifiers retained outside this repository; those descriptions are not local execution instructions.

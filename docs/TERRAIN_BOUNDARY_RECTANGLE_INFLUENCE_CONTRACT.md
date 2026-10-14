@@ -1,6 +1,6 @@
 # Fresh rectangle boundary influence
 
-[TerrainBoundaryRectangleInfluence](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainBoundaryRectangleInfluence.cs) evaluates one supplied coordinate pair against a fresh decoded [BREC input](TERRAIN_BOUNDARY_RECTANGLE_INPUT_CONTRACT.md). Cache and query/shaping precision are mandatory, separate nearest-even 24/53/64 profiles. The original active profiles remain Unknown. The evaluator covers constructor-default **untransformed** state; it does not evaluate arbitrary edited/transformed rectangles, combine layers/filters, assign axes or generate terrain. The [Round 39 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R39_RECTANGLE_INFLUENCE.md) records reproduction and input pins.
+TerrainBoundaryRectangleInfluence (external historical reference) evaluates one supplied coordinate pair against a fresh decoded [BREC input](TERRAIN_BOUNDARY_RECTANGLE_INPUT_CONTRACT.md). Cache and query/shaping precision are mandatory, separate nearest-even 24/53/64 profiles. The original active profiles remain Unknown. The evaluator covers constructor-default **untransformed** state; it does not evaluate arbitrary edited/transformed rectangles, combine layers/filters, assign axes or generate terrain. The [Round 39 checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R39_RECTANGLE_INFLUENCE.md) records reproduction and input pins.
 
 ## Direct evidence and supported state
 
@@ -78,7 +78,7 @@ The supported active domain requires finite geometry, amount and supplied coordi
 
 ## Verification and limits of the claim
 
-[Independent Fraction/integer oracle](../../SWG-Godot-Client/poc/round39-tests/Assets/verify_rectangle.py) and [public Core scenarios](../../SWG-Godot-Client/poc/Stardust.Core.SmokeTests/TerrainBoundaryRectangleInfluenceScenarios.cs) agree on 10,244 vectors: 9,285 accepted and 959 rejected, 32 ownership/budget/identity checks and six null negatives. The oracle independently demonstrates 300 query-profile-sensitive inputs, 456 cache-profile-sensitive inputs and 414 cases where spilling before Shape changes output. Static verification includes 73 arithmetic anchors, four constants, selector table and transform/layout assertions; the frozen 46 raw-input anchors are separately rechecked. The actual separate Core/default smoke-test build and execution pass.
+the separate implementation record and public Core scenarios (external historical reference) agree on 10,244 vectors: 9,285 accepted and 959 rejected, 32 ownership/budget/identity checks and six null negatives. The oracle independently demonstrates 300 query-profile-sensitive inputs, 456 cache-profile-sensitive inputs and 414 cases where spilling before Shape changes output. Static verification includes 73 arithmetic anchors, four constants, selector table and transform/layout assertions; the frozen 46 raw-input anchors are separately rechecked. The actual separate Core/default smoke-test build and execution pass.
 
 One real raw occurrence is compared by identity and ordered words from the same pinned Tatooine set of 29 rectangles: first BREC at TGEN offset 18,468, layer 11, child 2, version `0003`, IHDR `0001`. No influence is computed for original terrain records, and no original influence parity claim follows from these conditional synthetic results.
 

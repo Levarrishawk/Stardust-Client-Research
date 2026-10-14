@@ -1,4 +1,4 @@
-# Round 32: owned terrain patch geometry and separate Godot proof
+# Round 32: owned terrain patch geometry and separate prototype host proof
 
 Date: 2026-10-03. Milestone: implement only directly supported supplied-cell
 semantics using accepted topology, then prove a bounded owned adapter with
@@ -9,12 +9,12 @@ synthetic heights. Stop after static/native/headless/hidden-GPU and scope gates.
 Read repository instructions, START/latest
 [accepted Round 31](../sessions/PARALLEL_DEVELOPMENT_ROUND_31_2026-10-03.md),
 current status/ledger/unknown terminology, topology contract, terrain
-vertex/blend checkpoint, curated semantic rows and existing static/Godot
+vertex/blend checkpoint, curated semantic rows and existing historical implementation path (omitted)
 boundary tools.
 
 Executable SHA-256:
 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`.
-Cached Python/pefile/Capstone, .NET 8.0.300 and Godot 4.7.2 .NET only;
+Cached Python/pefile/Capstone, .NET 8.0.300 and prototype host 4.7.2 .NET only;
 no downloads. The static verifier checks identity before PE loading/VA use.
 
 Round 32 frozen overlay has 2786 manifest files. Manifest SHA-256
@@ -52,18 +52,14 @@ sampling. No shared Main/project/launchers or global registries were edited.
 
 ## Reproduction and required gates
 
-[Owned runner](../../../SWG-Godot-Client/poc/round32-tests/Rendering/Invoke-TerrainGeometry.ps1):
+Owned runner (external historical reference):
 
-```powershell
-.\poc\round32-tests\Rendering\Invoke-TerrainGeometry.ps1 -Build -GodotPath <cached-godot-console-exe> -Python <cached-python> -Exe <baseline-exe> -Packages <cached-pefile-capstone> -CachedGodotPackages <existing-godot-nuget-cache> -Dotnet <dotnet-exe>
-.\poc\round32-tests\Rendering\Invoke-TerrainGeometry.ps1 -Gpu -Capture <fresh-private-png> -GodotPath <cached-godot-console-exe> -Python <cached-python> -Exe <baseline-exe> -Packages <cached-pefile-capstone>
-python .\tools\python\validate_organized_workspace.py .
-git diff --check
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 Both invocations use the same private RunRoot (default is a task-specific
 ignored directory). Build/native outputs, copied offline packages and APPDATA
-are isolated; Godot's own proof-project cache is ignored. Existing packages are
+are isolated; prototype host's own proof-project cache is ignored. Existing packages are
 copied rather than mutated. Sources are cleared/offline only. The SDK resolver
 initially could not resolve the empty cache; supplying existing cached packages
 resolved it without a download.
@@ -74,7 +70,7 @@ rejections. Independent expected outputs cover every position/normal/color
 word, RGBA float bits, scale/base/auxiliary UV bits, selector/index order and
 bounds. Wrong identity/truncated synthetic input rejects before PE/VA.
 
-Passed focused native and Godot builds, zero warnings/errors. Headless and
+Passed focused native and prototype host builds, zero warnings/errors. Headless and
 hidden GPU proof verifies nine patterns, four selectors, 81 atlas vertices plus
 nine varied-ARGB vertices and six boundary/owner rejections. GPU tests additionally
 read four front UV/color samples and four culled back samples. Node/resource

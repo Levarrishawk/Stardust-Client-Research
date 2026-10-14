@@ -3,7 +3,7 @@
 Date: 2026-10-03. Bounded question: what sample permutation and integer
 boundary/mask rule feeds the nine-vertex primitive, and can a small owned
 engine-neutral helper preserve it? Stop after direct/static/native and hygiene
-gates. No Godot/GPU or unchanged-adapter rerun.
+gates. No prototype host/GPU or unchanged-adapter rerun.
 
 ## Inputs and orientation
 
@@ -51,7 +51,7 @@ selected samples are read; unused data is not scanned or retained.
 
 ## Reproduction and gates
 
-[Runner](../../../SWG-Godot-Client/poc/round33-tests/Rendering/Invoke-Assembly.ps1):
+Runner (external historical reference):
 
 ```powershell
 .\poc\round33-tests\Rendering\Invoke-Assembly.ps1 -Exe <baseline-exe> -Packages <cached-pefile-capstone> -Python <cached-python> -Dotnet <dotnet-exe>
@@ -79,7 +79,7 @@ winding, UV scale and auxiliary selector limits. Exact sample cap and explicit
 winding bypass are tested; unused invalid sample acceptance is deliberate.
 Wrong identity and truncated synthetic input must reject before PE/VA.
 
-Focused native build passes with zero warnings/errors. No Godot/GPU, live
+Focused native build passes with zero warnings/errors. No prototype host/GPU, live
 contact, source publication, staging/commit/push or shared/existing production
 changes occur in this milestone.
 

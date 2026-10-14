@@ -23,7 +23,7 @@ SceneWorldPumpPeerScenarios.Run(inputs, peerPath, exportPath,
     (world, factory, policy) => new SceneWorldPresentationPump(world, factory, policy));
 ```
 
-The concrete type above is supplied by lead integration, not referenced by the worker scenario. Only the frozen [pump interface](../../SWG-Godot-Client/poc/Stardust.Core/Session/ISceneWorldPresentationPump.cs) and accepted baseline APIs are compile dependencies. The [standalone runner](../../SWG-Godot-Client/poc/round16-tests/Networking/Networking.csproj) takes six paths and passes null. The [producer/model verifier](../../SWG-Godot-Client/poc/round16-tests/Networking/peer_model.py) reuses prior independently authored wire/model helpers, never production encoders or C# source. `--require-pump` refuses a baseline-only export.
+The concrete type above is supplied by lead integration, not referenced by the worker scenario. Only the frozen pump interface (external historical reference) and accepted baseline APIs are compile dependencies. The standalone runner (external historical reference) takes six paths and passes null. The the separate implementation record reuses prior independently authored wire/model helpers, never production encoders or C# source. `--require-pump` refuses a baseline-only export.
 
 ## Fixture and obligations
 

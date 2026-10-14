@@ -1,6 +1,6 @@
 # Round75: offline session input host
 
-Date:2026-10-06. Question: can a borrowed pause/stop adapter honor actual Godot GUI
+Date:2026-10-06. Question: can a borrowed pause/stop adapter honor actual prototype host GUI
 routing and retire deterministically through callback failure and owner loss, while
 preserving the existing default HUD? Stopping condition: independent action/prefix
 comparisons, real headless/GPU runs and exact prior default-HUD regression pass.
@@ -14,17 +14,17 @@ Original input executable SHA-256 was checked before work:
 E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150.
 No original instructions, VAs or execution are used for this modern policy.
 
-Tools: cached Python, offline .NET8/Godot4.7.2 SDK/packages and Godot .NET x64,
+Tools: cached Python, offline historical implementation path (omitted) SDK/packages and prototype host .NET x64,
 headless and one OpenGL compatibility GPU run. Independently authored Python fixtures
 and expected rows are written before native execution. Only accepted frozen orbit
 and default-HUD proof sources are staged as dependencies. No unfinished sibling
 source or original asset is imported.
 
 [Durable contract](../../docs/TERRAIN_OFFLINE_SESSION_INPUT_HOST_CONTRACT.md),
-[host](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineSessionInputHost.cs),
-[verification](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainOfflineSessionInputHostVerification.cs),
-[runner](../../../SWG-Godot-Client/poc/round75-tests/Rendering/Invoke-Picker.ps1),
-[oracle](../../../SWG-Godot-Client/poc/round75-tests/Rendering/verify_picker.py).
+host (external historical reference),
+verification (external historical reference),
+runner (external historical reference),
+oracle (external historical reference).
 
 ## Observations, conclusions and consequences
 
@@ -37,7 +37,7 @@ source or original asset is imported.
   match the independent model. Confirmed. Sink effects cannot be rolled back.
 - A source exception through actual viewport input is caught at _UnhandledInput and
   preserves a faulted event diagnostic; the borrowed owner survives. Confirmed.
-- First native run failed because base Godot Dispose did not remove the own input
+- First native run failed because base prototype host Dispose did not remove the own input
   node. Explicit own-node Free first corrected the concrete Dispose path. Lead
   integration then exposed recursive Free from the native disposal callback.
   Reopening with detached raw Free reproduced process failure at teardown begin.

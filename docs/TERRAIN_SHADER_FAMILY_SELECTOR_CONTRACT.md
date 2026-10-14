@@ -18,7 +18,7 @@ Executable SHA, gated before PE/VAs:
 |Selector00B69860..00B6989A|59 /31|7b4417782216005f8e6d7c41d944f732cb8391094db9dbbe030724db9149968a|
 |Approved getter00B69440..00B69442|3 /2|19d200194d49b34530548575f37a1bb4203ee60f18d42f0084e86b7a8c899faa|
 
-The [verifier](../../SWG-Godot-Client/tools/python/verify_terrain_shader_family_selector.py) gates
+The verifier (external historical reference) gates
 frozen68 source SHA before mapping/path/one-occurrence reuse; checks independent
 raw-PE/pefile mapping for both extents, full hashes,33 raw instruction/operand
 anchors, four raw fences and complete selector graph.31 selector instructions are
@@ -123,7 +123,7 @@ Borrowed array/family lifetime and thread affinity remain Unknown.
 
 ## Reproduction and models
 
-[Portable runner](../../SWG-Godot-Client/poc/round69-tests/Assets/Invoke-SelectedRule.ps1):
+Portable runner (external historical reference):
 
 ```powershell
 & ./poc/round69-tests/Assets/Invoke-SelectedRule.ps1 -Python $Python -Exe $Exe -Packages $CachedStaticPackages -AssetRoot $AssetRoot -Config $Config
@@ -136,7 +136,7 @@ models modulo32-bit address arithmetic without memory reads. Finite extent/type
 rejection is modern witness policy, not recovered original validation. Model captures
 stable count; it does not execute original registers, faults, races or callbacks.
 
-[Independent peer](../../SWG-Godot-Client/poc/round69-tests/Assets/peer.py) passes121 guards:7 identity,
+Independent peer (external historical reference) passes121 guards:7 identity,
 3 source SHA,6 truncation,6 headers,7 mapped extent,34 raw/operand,9 selected
 body/fences,7 approved getter/fences,7 control/reachability,18 budget,8 output path,
 5 safe-model policy,4 no-publication.22 local and22 independent selector checks

@@ -1,9 +1,9 @@
-# Explicit Godot client entry
+# Explicit prototype host client entry
 
 October 6, 2026 Eastern. Bounded modern adapter; no new recovered executable claim.
 
-[ReplacementClientHost](../../SWG-Godot-Client/poc/Stardust.Godot/ReplacementClientHost.cs) and its
-[scene](../../SWG-Godot-Client/poc/Stardust.Godot/ReplacementClientHost.tscn) provide actual login,
+ReplacementClientHost (external historical reference) and its
+scene (external historical reference) provide actual login,
 character selection, controlled movement and close controls over the accepted
 [application owner](REPLACEMENT_CLIENT_APPLICATION_CONTRACT.md). The scene starts
 unconfigured with disabled controls. It performs no automatic login, DNS, socket
@@ -27,7 +27,7 @@ to that caller; a failed constructor never supplies an application to this host.
 No credentials belong in the launch profile or host options.
 
 Add the host to a live tree and wait for its controls to be ready before Configure.
-Admission requires its creating Godot main thread, synchronization context,
+Admission requires its creating prototype host main thread, synchronization context,
 distinct connection IDs, disconnect timeout1..60000ms, fresh Offline session,
 Idle world and one prepared human catalog entry. Preflight reads owner metadata
 but invokes neither clock nor application operation. Rejected admission retains
@@ -35,7 +35,7 @@ the caller's application, including all retirement obligations. After admission,
 `IsConfigured` is true and the host exclusively owns application retirement and
 owner-thread finalization. A failure after transfer starts retirement; it does
 not return that ownership. Second or reentrant configuration rejects. Native
-controls remain Godot main-thread objects, not thread-neutral data.
+controls remain prototype host main-thread objects, not thread-neutral data.
 
 `Application` is a borrowed owner until finalization and throws afterwards.
 `Presentation` returns a transient borrowed adapter only while active. Callers
@@ -53,7 +53,7 @@ fields once and calls the accepted application operation; password is cleared
 in a finally block. Selection and close also clear both fields. Credential
 values are never printed, serialized, added to a receipt or retained by this
 host outside the controls and synchronous authentication call. Immutable managed
-strings and Godot's internal field storage are not claimed securely erasable.
+strings and prototype host's internal field storage are not claimed securely erasable.
 
 The OptionButton is populated from the actual session Characters, with bounded
 64-character display names and control characters removed. Selection accepts
@@ -86,7 +86,7 @@ No terrain/floor simulation or new pacing formula is implemented here.
 Close-button and window-close requests clear controls, stop movement and attempt
 protected protocol disconnect when the application is open, Selected and bound
 to a current generation. The owner keeps ticking the actual send/timeout path;
-it does not block the Godot thread or claim server release from local completion.
+it does not block the prototype host thread or claim server release from local completion.
 Pre-selection close retires directly. A failed application cannot submit another
 disconnect and instead retires its actual acquired prefix.
 
@@ -104,9 +104,9 @@ The composition owner must observe Completion, free the host afterwards and
 decide whether to exit the window/application. A close request is not itself a
 promise that this reusable node terminates the process.
 
-Native removal posts retirement to the captured Godot context after removal
+Native removal posts retirement to the captured prototype host context after removal
 unwinds. Supported proof removes the host while retaining its native nodes and
-keeps Godot's loop running through completion, then frees it. Immediate forced
+keeps prototype host's loop running through completion, then frees it. Immediate forced
 QueueFree of a live hierarchy produced actual presentation cleanup faults in an
 earlier probe; those faults were observed and ownership finalization attempted.
 That is not a successful clean-removal proof. External process termination or
@@ -115,9 +115,9 @@ close Completion before freeing a live hierarchy.
 
 ## Reproducible evidence and remaining limits
 
-The [explicit native harness](../../SWG-Godot-Client/poc/round90-tests/Rendering/README.md) authors
+The explicit native harness (external historical reference) authors
 accepted login/zone/world peers independently before native startup. Actual
-buttons/fields and Godot injected key events traverse this production host.
+buttons/fields and prototype host injected key events traverse this production host.
 Its two-character list proves unsupported selection retention; a withheld
 server-ready proves no pre-ready movement. Exact protected auth/select/ready,
 controlled roots and legal disconnect are independently compared, as are original

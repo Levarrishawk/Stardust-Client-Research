@@ -1,6 +1,6 @@
 # Animation event playback contract
 
-R2-RUNTIME-01 adds `AnimationEventPlayback`, an engine-neutral elapsed-seconds bridge to the [modern event cursor](ANIMATION_EVENT_CURSOR_CONTRACT.md). It uses existing [owned MSGS records and pinned clip evidence](COMPRESSED_LOCOMOTION_CONTRACT.md), without a new parser/scheduler, wall clock, preview-clock mutation, animation graph, Godot, root motion, or effect/audio delivery. Original scheduler semantics remain **UNKNOWN**.
+R2-RUNTIME-01 adds `AnimationEventPlayback`, an engine-neutral elapsed-seconds bridge to the [modern event cursor](ANIMATION_EVENT_CURSOR_CONTRACT.md). It uses existing [owned MSGS records and pinned clip evidence](COMPRESSED_LOCOMOTION_CONTRACT.md), without a new parser/scheduler, wall clock, preview-clock mutation, animation graph, prototype host, root motion, or effect/audio delivery. Original scheduler semantics remain **UNKNOWN**.
 
 ## API and time policy
 
@@ -38,4 +38,4 @@ Lead registration: `AnimationEventPlaybackScenarios.Run();`; optional original p
 
 ## Round3 integration follow-up
 
-The bounded delivery sink and original walk/run Godot adapter are described in [the diagnostic preview contract](ANIMATION_EVENT_DIAGNOSTIC_PREVIEW_CONTRACT.md). Original scheduler and audio/effect delivery remain open.
+The bounded delivery sink and original walk/run prototype host adapter are described in [the diagnostic preview contract](ANIMATION_EVENT_DIAGNOSTIC_PREVIEW_CONTRACT.md). Original scheduler and audio/effect delivery remain open.

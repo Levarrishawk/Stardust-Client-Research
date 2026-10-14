@@ -39,7 +39,7 @@ The appropriate whole-number report is **89%**, with a reasonable judgment inter
 
 ## Implementation/engine-decision research readiness
 
-This measures whether the recovered contracts are sufficient to specify fair Godot/custom-DX12/Vulkan spikes and the narrow x64 networking proof of concept. It does **not** mean those spikes have run or an engine has been selected.
+This measures whether the recovered contracts are sufficient to specify fair prototype host/custom-DX12/Vulkan spikes and the narrow x64 networking proof of concept. It does **not** mean those spikes have run or an engine has been selected.
 
 | Decision input | Weight | Current | Weighted points | Remaining gate |
 |---|---:|---:|---:|---|

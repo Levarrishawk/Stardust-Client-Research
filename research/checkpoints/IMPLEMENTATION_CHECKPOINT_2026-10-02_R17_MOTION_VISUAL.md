@@ -25,12 +25,12 @@ tools. No virtual addresses or original executable behavior were used.
 Original root read-only `C:/Stardust-DEV`; `swgemu_live.cfg` SHA256
 `22158E5BD9B7EBE5A068F10C4D15FCFAA7AB56C9130AF875A1BA47A9B41DA524`.
 Existing catalog/human-locomotion bank and original human/terminal pinned sources.
-Installed .NET8/Python/Godot4.7.2 Mono and existing private APPDATA/cache; no downloads.
+Installed historical implementation path (omitted) Mono and existing private APPDATA/cache; no downloads.
 Existing certificate-store startup diagnostic remains nonfatal.
 
 ## Findings and compatibility consequences
 
-Observation: [wrapper](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldObjectMotionVisual.cs)
+Observation: wrapper (external historical reference)
 checks initial identity/motion/Height before owning inner, borrows world/source,
 uses current resource/incarnation/state, converts native pose using accepted
 Z reflection, and derives Height once from the unscaled pose. Null/stale/foreign
@@ -82,20 +82,8 @@ renamed before successful gates. Shared baseline code was not changed.
 
 Using installed tools/offline caches and private output paths:
 
-```powershell
-python poc/round17-tests/Rendering/Generate-Peer.py <private-peer.json>
-$env:APPDATA=(Resolve-Path local-private/round2/appdata).Path
-dotnet build poc/Stardust.Godot/Stardust.Godot.csproj --no-restore -v minimal
-dotnet run --project poc/round17-tests/Rendering/Rendering.csproj -- <root> <cfg> poc/preview-profiles/scene-object-catalog.json poc/preview-profiles/human-locomotion.json <peer> <private-native.json>
-python poc/round17-tests/Rendering/verify.py <peer> <native-receipt>
-& poc/round17-tests/Rendering/Launch.ps1 -GodotPath <installed-Godot> -ArchiveRoot <root> -Configuration <cfg> -FixturePath <peer> -Headless
-& poc/round17-tests/Rendering/Launch.ps1 -GodotPath <installed-Godot> -ArchiveRoot <root> -Configuration <cfg> -FixturePath <peer> -CancelLoad
-& poc/round17-tests/Rendering/Launch.ps1 -GodotPath <installed-Godot> -ArchiveRoot <root> -Configuration <cfg> -FixturePath <peer> -CapturePath <fresh-private.png>
-python poc/round17-tests/Rendering/verify_preview.py <gpu-log> <headless-log> <cancel-log> <initial.png> <updated.png> <recreated.png> <motion.png>
-& poc/round17-tests/Rendering/Verify-Launch.ps1 -GodotPath <installed-Godot> -ArchiveRoot <root> -Configuration <cfg> -FixturePath <peer> -ExistingCapture <initial.png>
-python tools/python/validate_organized_workspace.py .
-git -c core.safecrlf=false diff --check
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 Build zero warnings/errors; native receipt, headless/GPU, cancellation,
 numeric/pixel/log oracle and launcher negatives pass. Validator:1,157 Markdown
@@ -105,18 +93,18 @@ files, zero broken/private links,2,602 provisional rows with zero duplicates,
 and sizes remain unchanged; exactly12 allowed additions, index empty and checkout
 HEAD unchanged. Detailed receipts/logs/captures and scope receipt remain ignored.
 
-Exact additions: [wrapper](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldObjectMotionVisual.cs),
-[preview](../../../SWG-Godot-Client/poc/Stardust.Godot/SceneWorldObjectMotionVisualPreview.cs),
+Exact additions: wrapper (external historical reference),
+preview (external historical reference),
 [contract](../../docs/SCENE_WORLD_OBJECT_MOTION_VISUAL_CONTRACT.md), this checkpoint,
 and own Rendering files:
-[Generate-Peer.py](../../../SWG-Godot-Client/poc/round17-tests/Rendering/Generate-Peer.py),
-[Launch.ps1](../../../SWG-Godot-Client/poc/round17-tests/Rendering/Launch.ps1),
-[NuGet.Config](../../../SWG-Godot-Client/poc/round17-tests/Rendering/NuGet.Config),
-[Program.cs](../../../SWG-Godot-Client/poc/round17-tests/Rendering/Program.cs),
-[Rendering.csproj](../../../SWG-Godot-Client/poc/round17-tests/Rendering/Rendering.csproj),
-[Verify-Launch.ps1](../../../SWG-Godot-Client/poc/round17-tests/Rendering/Verify-Launch.ps1),
-[verify.py](../../../SWG-Godot-Client/poc/round17-tests/Rendering/verify.py),
-[verify_preview.py](../../../SWG-Godot-Client/poc/round17-tests/Rendering/verify_preview.py).
+Generate-Peer.py (external historical reference),
+Launch.ps1 (external historical reference),
+NuGet.Config (external historical reference),
+Program.cs (external historical reference),
+Rendering.csproj (external historical reference),
+Verify-Launch.ps1 (external historical reference),
+verify.py (external historical reference),
+verify_preview.py (external historical reference).
 
 ## Limits and next action
 

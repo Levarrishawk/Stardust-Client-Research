@@ -2,7 +2,7 @@
 
 ## Result and scope
 
-[TerrainPatchAssembly](../../SWG-Godot-Client/poc/Stardust.Core/Geometry/TerrainPatchAssembly.cs)
+TerrainPatchAssembly (external historical reference)
 closes the integer sample-to-vertex and boundary-to-pattern seam left by
 [accepted topology](TERRAIN_PATCH_TOPOLOGY_CONTRACT.md) and
 [supplied geometry](TERRAIN_PATCH_GEOMETRY_CONTRACT.md). It produces an owned
@@ -11,7 +11,7 @@ closes the integer sample-to-vertex and boundary-to-pattern seam left by
 Inputs are resolved, common-stride row-major position/normal/ARGB grids,
 integer cell metadata, UV scale and auxiliary selectors. There is no height
 evaluator, procedural rule execution, material evaluation, baked-color
-modification, compass/world mapping, Godot dependency or renderer publication.
+modification, compass/world mapping, prototype host dependency or renderer publication.
 
 ## Exact sample order
 
@@ -111,7 +111,7 @@ All inspection arrays are copies; no engine or mutable global state is retained.
 
 ## Evidence and verification
 
-The [static/native oracle](../../SWG-Godot-Client/poc/round33-tests/Rendering/verify_assembly.py)
+The the separate implementation record
 SHA-gates before PE/VA use, checks nine table records and 27 instruction sites
 in five ranges. A bounded interpreter evaluates only decoded equality/test
 branches with synthetic integers; it never executes the original client.
@@ -127,4 +127,4 @@ Original generated heights, source padding defaults, material selection,
 resolved-color generation, world-axis orientation and scene integration remain
 outside this slice. Reproduction and exact next action are in the
 [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-03_R33_TERRAIN_PATCH_ASSEMBLY.md).
-No Godot/GPU probe was run in this round.
+No prototype host/GPU probe was run in this round.

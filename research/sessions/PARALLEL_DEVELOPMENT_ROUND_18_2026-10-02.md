@@ -10,7 +10,7 @@ to the existing pump before snapshot; default171-check pump regression passed.
 | Worker at Low | Milestone | Acceptance |
 |---|---|---|
 | Runtime | Integer-clock planar input driver and external authoritative correction | Accepted |
-| Rendering | Godot key/focus/pause driver adapter and explicit walk/run presentation | Accepted |
+| Rendering | prototype host key/focus/pause driver adapter and explicit walk/run presentation | Accepted |
 | Networking | Current-world compact-motion router through frozen bounded pump hook | Accepted |
 | Assets | Exact human-head white-material diagnosis and smallest evidence-backed fix | Accepted |
 
@@ -23,7 +23,7 @@ No original EXE/live contact/staging/publication. All workers stop after handoff
 
 Retrieve current worker status; do not redispatch. Finish scoped review,
 integration, callback/input/clock/locomotion/correction/cleanup and original/
-native/Godot gates. Reconcile and accept before the next round. Stop at07:00
+historical implementation path (omitted) gates. Reconcile and accept before the next round. Stop at07:00
 Eastern Oct3; no new full round after06:00. Head-material diagnosis may remain a
 precise gap without blocking independent controls/ingress progress.
 
@@ -45,7 +45,7 @@ walk/run/pause, queued correction while paused, resumed run, idle, focus loss/
 resume and reset. Native Z/Height compose once, only terminal reloads,3/3 archive
 jobs close, human identities remain. Separate cancellation drains both archives
 with zero published actors. GPU capture inspected. Shared native90/161 probes,
-default suite and zero-warning/error Godot build pass. Details, commands, exact
+default suite and zero-warning/error prototype host build pass. Details, commands, exact
 policies and uncertainties are in the [combined checkpoint](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-02_R18_LOCAL_INTEGRATION.md).
 
 ## Repository gate

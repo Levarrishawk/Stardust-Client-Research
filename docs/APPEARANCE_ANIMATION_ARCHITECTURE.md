@@ -214,7 +214,7 @@ See `ANALYSIS_CHECKPOINT_2026-09-12_SLOD_RUNTIME.md`.
 
 ## Engine-evaluation implications
 
-For Godot or another engine, the decisive prototype is not loading one static mesh. It is importing one human SAT chain, composing its skeletons and meshes, applying a representative customization string, attaching one remapped wearable, and driving one logical animation state transition. If that requires duplicating the engine skeleton/animation/resource system or maintaining a deep engine fork, a custom client architecture may be safer.
+For prototype host or another engine, the decisive prototype is not loading one static mesh. It is importing one human SAT chain, composing its skeletons and meshes, applying a representative customization string, attaching one remapped wearable, and driving one logical animation state transition. If that requires duplicating the engine skeleton/animation/resource system or maintaining a deep engine fork, a custom client architecture may be safer.
 
 ## Remaining analysis
 
@@ -231,11 +231,11 @@ interface and one selected index across body/head/components. See
 `ANALYSIS_CHECKPOINT_2026-09-22_SKELETAL_LOD_COMPOSITION.md`.
 
 1. ~~Test the explicit SWG-to-host-engine coordinate adapter with pose fixtures.~~
-   Closed for Godot: reflect Z for positions/directions, convert SWG
-   `[w,x,y,z]` to Godot `[-x,-y,z,w]`, preserve imported triangle indices after reflection and reverse
+   Closed for prototype host: reflect Z for positions/directions, convert SWG
+   `[w,x,y,z]historical prototype identifier (omitted)[-x,-y,z,w]`, preserve imported triangle indices after reflection and reverse
    tangent handedness, and keep wire x/z/y ordering at the codec boundary.
    Identity, axis rotations and a mixed pose pass matrix-conjugation fixtures.
-   See `ANALYSIS_CHECKPOINT_2026-09-22_GODOT_COORDINATE_ADAPTER.md`.
+   See `ANALYSIS_CHECKPOINT_2026-09-22_PROTOTYPE_COORDINATE_ADAPTER.md`.
 2. ~~Map exact animation controller update entry points and main-loop notification ordering.~~
    Closed for the appearance-local contract: transform-cache invalidation,
    ordered controller alter, per-substep root-motion accumulation, synchronous

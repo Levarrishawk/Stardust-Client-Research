@@ -1,10 +1,10 @@
 # Manual native-direction input host
 
-[TerrainManualInputHost](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainManualInputHost.cs) is a Godot Node borrowing a caller clock reader and native-direction sink. It owns four held-key bits, configuration references, checked counters and one latest diagnostic. It does not normalize diagonals, apply speed, advance clocks, tick simulation, send messages or dispose a caller-owned object. This is modern replacement policy; original movement/input units, cadence and gameplay parity remain unknown.
+TerrainManualInputHost (external historical reference) is a prototype host Node borrowing a caller clock reader and native-direction sink. It owns four held-key bits, configuration references, checked counters and one latest diagnostic. It does not normalize diagonals, apply speed, advance clocks, tick simulation, send messages or dispose a caller-owned object. This is modern replacement policy; original movement/input units, cadence and gameplay parity remain unknown.
 
 ## API and key policy
 
-Attach the Node to a live exact parent in its intended viewport, then configure once on its constructing managed thread and Godot main thread:
+Attach the Node to a live exact parent in its intended viewport, then configure once on its constructing managed thread and prototype host main thread:
 
 `Configure(Func<long> clock, Action<System.Numerics.Vector2, long> sink)`
 
@@ -22,7 +22,7 @@ One latest `TerrainManualInputDiagnostic` records requested direction, proposed 
 
 Nested Dispatch, SetEnabled, Configure or Close sets a poison flag before throwing. A clock callback catching that exception still prevents the outer sink call. If the sink catches nested host mutation and returns, its external effect may be completed while the host rejects its own held-state/accepted commit. SinkInvoked=true/SinkReturned=true/StateCommitted=false records that prefix. A throwing sink may also have changed external state; SinkReturned=false is not evidence of rollback. Token cancellation or tree exit inside a callback follows the same prefix policy.
 
-Selected routing failures propagate from direct Dispatch/SetEnabled, record one bounded failure and disable key processing. The actual Godot key/focus event boundary records failure and suppresses its escape into engine callback processing. Failed key events remain unhandled. Fault is terminal for further dispatch/configuration; Close remains available. There is no retry or rollback of delegates' external effects.
+Selected routing failures propagate from direct Dispatch/SetEnabled, record one bounded failure and disable key processing. The actual prototype host key/focus event boundary records failure and suppresses its escape into engine callback processing. Failed key events remain unhandled. Fault is terminal for further dispatch/configuration; Close remains available. There is no retry or rollback of delegates' external effects.
 
 ## Disable, focus and close
 
@@ -34,6 +34,6 @@ Close is terminal, owner-thread guarded and idempotent. It drops clock/sink/pare
 
 ## Reproduction
 
-The [offline runner](../../SWG-Godot-Client/poc/round68-tests/Rendering/Invoke-Picker.ps1) stages only this host and its [verification node](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainManualInputHostVerification.cs) with cached Godot packages. There is no Runtime/Core/project dependency. The [independent Python model](../../SWG-Godot-Client/poc/round68-tests/Rendering/verify_picker.py) generates42 authored actions and20 expected sink calls before native execution and compares exact held masks, binary32 axis bits, clocks, counters, enabled state, GUI consumption and event propagation.
+The offline runner (external historical reference) stages only this host and its verification node (external historical reference) with cached prototype host packages. There is no Runtime/Core/project dependency. The independent Python model (external historical reference) generates42 authored actions and20 expected sink calls before native execution and compares exact held masks, binary32 axis bits, clocks, counters, enabled state, GUI consumption and event propagation.
 
-Actual headless/GPU Viewport.PushInput, focused Control.AcceptEvent, native propagated window-focus notifications, callback-prefix, liveness/thread/token and ownership results are recorded in the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R68_MANUAL_INPUT_HOST.md). Focus notifications are injected through the native Godot notification path; no live user keyboard or operating-system focus transition is captured. The GPU panel proves bounded replacement UI execution, not original visual or movement fidelity.
+Actual headless/GPU Viewport.PushInput, focused Control.AcceptEvent, native propagated window-focus notifications, callback-prefix, liveness/thread/token and ownership results are recorded in the [checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-06_R68_MANUAL_INPUT_HOST.md). Focus notifications are injected through the native prototype host notification path; no live user keyboard or operating-system focus transition is captured. The GPU panel proves bounded replacement UI execution, not original visual or movement fidelity.

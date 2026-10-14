@@ -6,7 +6,7 @@ The pinned `s207_r.dll` SHA256D3A38E096B050F0219826A54908963C04F4ACDEDE03C5A4270
 
 Type4 is D3DDECLTYPE_D3DCOLOR, normalized packed bytes expanded to RGBA, and usage10/index0 is diffuse COLOR0. These numeric API meanings are documented by [Microsoft declaration types](https://learn.microsoft.com/en-us/windows/win32/direct3d9/d3ddecltype) and [declaration usage](https://learn.microsoft.com/en-us/windows/win32/direct3d9/d3ddeclusage). The direct backend observations establish their application here.
 
-`PackedVertexColor.ToRgba` maps U32 AARRGGBB to `(R,G,B,A)/255` with no gamma operation. Absence remains explicit. A primitive with mixed optional presence is rejected at GPU upload. Godot uploads COLOR alongside reflected positions/normals and unchanged authored indices; source alpha is retained even when the inspection shader is opaque.
+`PackedVertexColor.ToRgba` maps U32 AARRGGBB to `(R,G,B,A)/255` with no gamma operation. Absence remains explicit. A primitive with mixed optional presence is rejected at GPU upload. Prototype host uploads COLOR alongside reflected positions/normals and unchanged authored indices; source alpha is retained even when the inspection shader is opaque.
 
 ## Original scene occurrence
 

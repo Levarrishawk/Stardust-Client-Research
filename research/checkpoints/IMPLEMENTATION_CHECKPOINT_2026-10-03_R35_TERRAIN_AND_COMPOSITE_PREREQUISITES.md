@@ -23,7 +23,7 @@ The256 original BCIR records are all0002/IHDR0001,246 locally enabled, finite ge
 
 ## Integration and limits
 
-Core/default smoke and Godot build/regression gates are recorded in the final acceptance receipt. The main original mixed host continues using the accepted34 supported scalar CREO6 route and all prior original-resource/animation/TANO6 checks. No new GPU-specific behavior is introduced by this round. Leaf implementations remain engine-neutral and existing codecs/world/store bytes were preserved by workers.
+Core/default smoke and prototype host build/regression gates are recorded in the final acceptance receipt. The main original mixed host continues using the accepted34 supported scalar CREO6 route and all prior original-resource/animation/TANO6 checks. No new GPU-specific behavior is introduced by this round. Leaf implementations remain engine-neutral and existing codecs/world/store bytes were preserved by workers.
 
 Terrain original worker initial control word, transitive/virtual mutations and exception state remain Unknown. The CRT callback pointer resolves to a ret in the baseline, and inspected local worker bodies install no foundation word; this does not establish an OS default. Literal endpoint inventories exclude computed aliases/external mutation. Startup black/white registration and initial zero enable storage do not prove every effective runtime value. Keep precision/enable/endpoints explicit. No original generated terrain or influence evaluation is claimed.
 
@@ -35,6 +35,6 @@ Each linked specialist contract/checkpoint supplies exact commands. Main ignored
 
 Next: join the frozen composite prepared store into a separate optional world partition and original mixed host; close defender1 specialization; advance terrain boundary/influence prerequisites against accepted35. Do not consume unfinished sibling work. Wearable/full-vector union and full terrain generation remain later bounded milestones. Lead prepared a private five-plan scalar/HAM host peer from accepted independent oracles; it claims no host integration until that next milestone runs.
 
-Combined Core/default smoke and Godot builds passed with zero warnings/errors. Main original mixed-world headless log `preview-2fecc9d629ef495d96b8530073c21f17` passes all prior scalar CREO6/TANO6/animation/name/customization/resource/cleanup checks. One pre-state certificate diagnostic is accepted as the documented environment baseline; no new GPU run was necessary for these engine-neutral additions.
+Combined Core/default smoke and prototype host builds passed with zero warnings/errors. Main original mixed-world headless log `preview-2fecc9d629ef495d96b8530073c21f17` passes all prior scalar CREO6/TANO6/animation/name/customization/resource/cleanup checks. One pre-state certificate diagnostic is accepted as the documented environment baseline; no new GPU run was necessary for these engine-neutral additions.
 
 Accepted 2026-10-03 14:25:16 UTC:1347 Markdown/zero broken or private links;2626 distinct names/zero duplicate addresses;345 packet-source rows unchanged.45 exact-scoped changes (31 additions/14 existing),zero unrelated/deletions; HEAD and empty index preserved. All four existing Low workers idle at acceptance.

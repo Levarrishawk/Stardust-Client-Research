@@ -6,7 +6,7 @@
 
 The native query derives a line/triangle interval from three-dimensional barycentric inequalities and a bounded plane-distance condition. Plane distance is at most the smaller of configured strip width and **10 micrometres**; vertical coverage gaps above **one micrometre** reject. Height, reciprocal passable edges, solid membership, no portals, triangle count, supported target containment and canonical landing budgets remain unchanged. No global floor start tolerance changes.
 
-The [independent verifier](../../SWG-Godot-Client/tools/python/verify_floor_step_proposals.py) uses constant-horizontal-coordinate triangle-edge chord cuts in a vertical projection, rather than the native Gram-matrix calculation. It independently checks source edge intersection, target plane/containment, strip connectivity and coverage union. This is modern step policy, not proof of original traversal tolerances.
+The independent verifier (external historical reference) uses constant-horizontal-coordinate triangle-edge chord cuts in a vertical projection, rather than the native Gram-matrix calculation. It independently checks source edge intersection, target plane/containment, strip connectivity and coverage union. This is modern step policy, not proof of original traversal tolerances.
 
 ## Bounded results
 
@@ -22,4 +22,4 @@ Synthetic gates preserve whole-strip side-wall rejection, accept the local ray t
 
 ## Host option
 
-The explicit `-LocalStepDoorWalk` launcher flag requires step and precise modes. Pinned black-sun forward headless/reverse GPU checks pass, including controls, timing/input and reflected placement; manual transfers are 20 each and step events 23/25. See the [host checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_RAY_STEP_DOOR_GODOT.md).
+The explicit `-LocalStepDoorWalk` launcher flag requires step and precise modes. Pinned black-sun forward headless/reverse GPU checks pass, including controls, timing/input and reflected placement; manual transfers are 20 each and step events 23/25. See the [host checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_RAY_STEP_DOOR_PROTOTYPE.md).

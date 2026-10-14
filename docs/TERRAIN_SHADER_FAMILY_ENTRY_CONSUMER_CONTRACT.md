@@ -16,7 +16,7 @@ Executable SHA, gated before PE/VA inspection:
 Selected137-byte body/58 instructions SHA:
 `6ec6af1d3814942cfe2354b786e82edd86c49768aa3c93678ebbe5624b353458`.
 
-The [verifier](../../SWG-Godot-Client/tools/python/verify_terrain_shader_family_entry_consumer.py)
+The verifier (external historical reference)
 independently maps bounded raw PE headers/sections and crosschecks pefile;
 verifies complete body hash,58 exact instruction-byte/operand anchors and two
 raw extent fences; reconciles4 calls,3 branches and2 returns; and traverses the
@@ -133,13 +133,13 @@ prefix; these external effects and abnormal exits are not executed or guaranteed
 
 ## Reproduction and bounded witnesses
 
-Use the [portable runner](../../SWG-Godot-Client/poc/round67-tests/Assets/Invoke-SelectedRule.ps1):
+Use the portable runner (external historical reference):
 
 ```powershell
 & ./poc/round67-tests/Assets/Invoke-SelectedRule.ps1 -Python $Python -Exe $Exe -Packages $CachedStaticPackages -AssetRoot $AssetRoot -Config $Config
 ```
 
-Explicit cached inputs; fresh ignored output is automatic. The [peer](../../SWG-Godot-Client/poc/round67-tests/Assets/peer.py)
+Explicit cached inputs; fresh ignored output is automatic. The peer (external historical reference)
 checks identity before PE inspection, truncation/headers/extents, exact operands,
 all control edges/reachability, early-return truncation, discovery/incoming inventories,
 separate12 caps, portable output/reparse guards and no-publication preservation.

@@ -813,7 +813,7 @@ Optional complete CREO4 world publication and original-resource headless/GPU joi
 The [Round45 report](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_45_2026-10-04.md) records independently reviewed/replayed supplied
 AHFR/FFRA consumers, an incarnation-bound received-only partial CREO4 store,
 one human movement-template input chain and the actual current-height FHGT/AHCN
-Godot preview. The store accepts pending/finalized objects without default seeds
+Prototype host preview. The store accepts pending/finalized objects without default seeds
 but has no world/router admission yet. Original fractal generation/cache lifetime,
 floating controls, complete terrain and later creature writers remain unknown.
 Research scores and canonical name/packet denominators remain unchanged.

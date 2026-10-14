@@ -20,6 +20,6 @@ Bounded PersistentCrcString/CrcLowerString RTTI tables corroborate inherited con
 
 ## Verification and resume
 
-[Explicit-input runner](../../../SWG-Godot-Client/poc/round81-tests/Assets/Invoke-SelectedRule.ps1) uses fresh ignored output and SHA gating. Independent raw/pefile body/RTTI reads,13 instructions/eight role anchors/exact call/no branches/sole destination+4 store,18 admission negatives and eight authored isolated four-byte store fixtures pass. Fixtures verify local word-write bytes/neighbor preservation, not delegate/original CPU behavior. No native production build applies. Workspace/scope/UTF8/AST/PowerShell/diff verification accompanies sealed handoff; no failed verification run so far.
+Explicit-input runner (external historical reference) uses fresh ignored output and SHA gating. Independent raw/pefile body/RTTI reads,13 instructions/eight role anchors/exact call/no branches/sole destination+4 store,18 admission negatives and eight authored isolated four-byte store fixtures pass. Fixtures verify local word-write bytes/neighbor preservation, not delegate/original CPU behavior. No native production build applies. Workspace/scope/UTF8/AST/PowerShell/diff verification accompanies sealed handoff; no failed verification run so far.
 
 Next separate assignment:18-byte00AA2D70 initializer for initial key-field state/local effects/immediate constructor boundary. The193-byte00AA4250 reference/copy/failure behavior remains a separate later probe. Stop IDLE after sealing this one milestone; no next dispatch or outbound status messaging.

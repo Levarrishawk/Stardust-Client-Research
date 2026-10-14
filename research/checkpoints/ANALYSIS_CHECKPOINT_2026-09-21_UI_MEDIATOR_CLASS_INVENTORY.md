@@ -96,7 +96,7 @@ The replacement should preserve the separation, not the original C++ inheritance
 
 1. protocol messages update a crafting/session domain controller;
 2. typed domain events update a current workflow state;
-3. a screen controller binds that state to Godot or another eventual UI implementation;
+3. a screen controller binds that state to prototype host or another eventual UI implementation;
 4. declarative SWG UI assets may be translated or adapted, but gameplay state must not live inside widgets.
 
 The same model applies to inventory: a durable container/equipment model plus a disposable screen controller.

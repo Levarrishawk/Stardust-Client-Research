@@ -7,7 +7,7 @@ Adopted October 1, 2026. This chat is project lead. Four persistent worker chats
 | Worker | Specialty | Boundary |
 |---|---|---|
 | Asset compatibility | Archive/IFF readers, dependency closure, decoding | Engine-neutral asset contracts and fixtures |
-| Rendering | Materials, textures, shaders, geometry, Godot adapters | Rendering compatibility and adapter validation |
+| Rendering | Materials, textures, shaders, geometry, prototype host adapters | Rendering compatibility and adapter validation |
 | Runtime and simulation | Animation, movement, camera, scene state, lifecycle | State transitions, ownership and deterministic updates |
 | Networking and client state | SOE, application codecs, replication, connection state | Offline protocol and state fixtures |
 
@@ -80,7 +80,7 @@ Levarris authorized Round13 only. Reuse all four persistent specialists at Low r
 
 ## Round14 authorization and integration â€” October2,2026
 
-Levarris authorized Round14 only. Four persistent Low-reasoning specialists completed independent scopes against a2,149-file hashed baseline; lead reviewed and integrated all four, joined the accepted pure validator/generic world/recipe adapters and ran fresh combined original/native/independent/Godot gates. [Round14 record](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_14_2026-10-02.md). Workers are idle. No Round15 dispatch, automation or continuing milestone is authorized. Keep independent ownership, one GPU owner and serialized shared-contract acceptance.
+Levarris authorized Round14 only. Four persistent Low-reasoning specialists completed independent scopes against a2,149-file hashed baseline; lead reviewed and integrated all four, joined the accepted pure validator/generic world/recipe adapters and ran fresh combined historical implementation path (omitted) gates. [Round14 record](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_14_2026-10-02.md). Workers are idle. No Round15 dispatch, automation or continuing milestone is authorized. Keep independent ownership, one GPU owner and serialized shared-contract acceptance.
 
 ## Round15 authorization and worker effort policy - October2,2026
 
@@ -195,7 +195,7 @@ case-folded file collisions and linked roots, ancestors or targets before
 copying. It reviews every destination and retains each source's exact hashed
 bytes before the first write; all copied files receive a hash postflight.
 Private synthetic file and real Windows junction checks are reproducible with
-[the guard runner](../../SWG-Godot-Client/poc/round40-tests/Integration/verify_workspace_guards.py).
+the guard runner (external historical reference).
 These checks detect changes at their boundaries; they do not provide an atomic
 filesystem transaction against concurrent external replacement.
 

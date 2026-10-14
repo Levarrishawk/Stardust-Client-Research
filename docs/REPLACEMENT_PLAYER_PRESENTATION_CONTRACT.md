@@ -3,7 +3,7 @@
 October 6, 2026. Bounded modern replacement-client integration policy.
 This adds no recovered executable behavior or live compatibility claim.
 
-[ReplacementPlayerPresentationHost](../../SWG-Godot-Client/poc/Stardust.Godot/ReplacementPlayerPresentationHost.cs)
+ReplacementPlayerPresentationHost (external historical reference)
 connects one selected creature to the existing concrete
 [presentation pump](SCENE_WORLD_PRESENTATION_PUMP_CONTRACT.md) and
 [process host](SCENE_WORLD_PRESENTATION_HOST_CONTRACT.md).
@@ -14,20 +14,10 @@ for caller observation in either mode.
 
 ## Public boundary
 
-```csharp
-public partial class ReplacementPlayerPresentationHost : Godot.Node
-public void Configure(SceneWorldCoordinator world, ulong selectedObjectId,
-    Action<double> updateSession, ISceneWorldObjectMotionSource? motionSource = null);
-public SceneWorldPresentationPump Pump { get; }
-public Task Completion { get; }
-public bool PlayerPublished { get; }
-public SceneWorldObjectVisual? SelectedVisual { get; }
-public ulong CompletedFrames { get; }
-public Exception? Failure { get; }
-public void RequestClose();
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
 
-Add the adapter to a live parent and configure it on its creating Godot main
+
+Add the adapter to a live parent and configure it on its creating prototype host main
 thread, after binding the selected identity and before feeding scene messages.
 Capture the same current world generation. Configuration accepts once and requires
 a nonzero selected object ID, an open world, a non-null update callback, and no
@@ -59,7 +49,7 @@ close or dispose it. The adapter retains no actor/resource reference for
 as close or native exit starts. Completed frames and failure remain observable
 after retirement. `Completion` is one stable task.
 
-Use `RequestClose()`, keep Godot's loop running, await `Completion`, then free the
+Use `RequestClose()historical prototype identifier (omitted)Completion`, then free the
 node and stop the application. Repeated close is harmless. Completion resolves
 only after actual pump close, job drain and disposal, or faults after cleanup
 attempts. The adapter clears its update callback and managed world/parent/viewport
@@ -85,12 +75,12 @@ host completion before disposing the caller's motion store.
 
 The child host opts into `DeferNativeExitClose` before configuration. Removing
 the adapter from its parent stops admission and processing immediately, then
-posts actual pump/actor cleanup to Godot's captured synchronization context after
+posts actual pump/actor cleanup to prototype host's captured synchronization context after
 the native removal callback unwinds. Await completion before freeing the detached
 node. World state need not already be Closed inside the removal callback.
 
 Directly freeing an active adapter is an abort, not supported graceful cleanup:
-Godot destroys the native actor before managed visual disposal. The bounded
+Prototype host destroys the native actor before managed visual disposal. The bounded
 negative proof observes faulted completion, an absent native root and drained
 jobs, but the visual's successful-disposal counter remains incomplete. It does
 not claim successful visual retirement for that path. No engine quit, timeout or
@@ -98,20 +88,19 @@ process kill can substitute for awaited drain.
 
 ## Reproducible component proof
 
-[replay.py](../../SWG-Godot-Client/poc/round84-tests/Rendering/replay.py) stages source, build products
+replay.py (external historical reference) stages source, build products
 and package copies into a fresh ignored private output. It uses explicit local
-dotnet/Godot runtimes and six cached package families with package sources cleared.
+historical implementation path (omitted) runtimes and six cached package families with package sources cleared.
 Each child has a 120-second external process deadline. No original executable,
 server contact, DNS, sockets, captures or sibling implementation is required.
 
-```text
-python poc/round84-tests/Rendering/replay.py --dotnet ABS --godot ABS --packages ABS --output FRESH_PRIVATE_ABS
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 The self-contained headless proof exercises 39 assertions with the real adapter,
 host, coordinator and pump: rejection/ownership, callback ordering, failure,
 reentry, generation mismatch, callback close, delayed job/native removal and fresh
-owner. Its independent [peer](../../SWG-Godot-Client/poc/round84-tests/Rendering/peer.py) authors the
+owner. Its independent peer (external historical reference) authors the
 applications before native startup. These synthetic StartScene/create/typed
 CREO3/end/server-ready fixtures exercise the frozen codec, not transport/login
 compatibility or a captured complete legacy baseline.
@@ -119,7 +108,7 @@ compatibility or a captured complete legacy baseline.
 Optional explicit `--asset-root ABS --config ABS` prepares the installed shared
 human-male creature through the frozen resource pipeline and runs 59 headless
 assertions. `--gpu` adds a screenshot assertion (60 total); the independent
-[verifier](../../SWG-Godot-Client/poc/round84-tests/Rendering/verify.py) checks original root hash
+verifier (external historical reference) checks original root hash
 before native startup, object 42, engine position `(1.5, 2, 3)`, publication,
 textures, visible pixels, root removal and job drain. `--native-exit` selects
 positive native removal; `--native-free` selects the explicitly faulted abort
@@ -142,7 +131,7 @@ join it to independently verified session/ports/original preparation, then run
 combined acceptance. Next action: execute that joined proof; this component
 alone establishes no live-server or total replacement-client coverage.
 
-Round86 [headless runner](../../SWG-Godot-Client/poc/round86-tests/Rendering/replay.py) uses the same
+Round86 headless runner (external historical reference) uses the same
 explicit local runtime/cache/private-output arguments and requires
 `--asset-root ABS --config ABS`. GPU is reserved for lead acceptance. Its 104
 checks retain the 39 structural and 20 original-resource checks, then add actual

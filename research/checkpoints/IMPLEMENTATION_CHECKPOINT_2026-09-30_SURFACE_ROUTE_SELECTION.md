@@ -20,7 +20,7 @@ Uses [verified floor queries](IMPLEMENTATION_CHECKPOINT_2026-09-30_FLOOR_SURFACE
 
 Full native smoke suite passes owned maps, duplicate floor/node ties, cell filtering, missing/empty graph distinctions, no-hit/zero-length and invalid boundaries. The first synthetic connection test used a non-solid floor outside its vertical segment; the fixture was corrected to a solid triangle with a segment spanning its authored Y=2 plane. No production policy changed to satisfy it.
 
-Run `verify_portal_scene.py ROOT CONFIG appearance/yt1300.pob SHA CORE_DLL --surface-paths`. The verifier reuses existing independent raw floor/graph readers and checks every current solid horizontal triangle centroid; native `--portal-surface-paths` caps probes at 10,000. Godot `-Interior -InteriorFloors -InteriorPaths` enables the connection. Use `-FloorOnly -Cell 1` for the hall inspector. Headless passes seven control probes; GPU passes the same controls, node transform readback and host coordinate fixture. Captures remain private and were visually inspected. Existing certificate-store startup error remains nonfatal.
+Run `verify_portal_scene.py ROOT CONFIG appearance/yt1300.pob SHA CORE_DLL --surface-paths`. The verifier reuses existing independent raw floor/graph readers and checks every current solid horizontal triangle centroid; native `--portal-surface-pathshistorical prototype identifier (omitted)-Interior -InteriorFloors -InteriorPaths` enables the connection. Use `-FloorOnly -Cell 1` for the hall inspector. Headless passes seven control probes; GPU passes the same controls, node transform readback and host coordinate fixture. Captures remain private and were visually inspected. Existing certificate-store startup error remains nonfatal.
 
 ## Next action
 

@@ -53,7 +53,7 @@ or new name is needed.
 
 ## Required gates and reproduction
 
-[Runner](../../../SWG-Godot-Client/poc/round31-tests/Rendering/Invoke-Topology.ps1) uses cleared
+Runner (external historical reference) uses cleared
 package sources, private APPDATA/CLI home, and private build output. It builds
 only the owned helper and scenarios; it does not run the shared smoke-test entry
 point or install dependencies.
@@ -78,7 +78,7 @@ sites across two bounded ranges, and native index order/rebases against literal
 ring edges. Identity negatives use synthetic unrelated bytes and `MZ` only;
 both must reject before PE loading or VA interpretation.
 
-No original execution, Godot/GPU, external mutation/live server, download,
+No original execution, prototype host/GPU, external mutation/live server, download,
 staging, commit, push, global registry or shared Program edits. Detailed
 exploratory listings, generated fixture/native receipts and build logs remain
 private. This checkpoint publishes only the compact topology specification and

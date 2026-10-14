@@ -1,5 +1,8 @@
 # Unknown and Provisional Functions
 
+Current accounting — October 14, 2026: **2,626 unique curated semantic addresses**, zero duplicate rows. Exhaustive function reversal remains **uncalibrated**; historical counts below are dated evidence. See [research status](ANALYSIS_STATUS.md).
+
+
 ## 2026-10-03 Round44 initialization prerequisites
 
 The [creature template investigation](docs/CREATURE_VIEW4_INITIALIZATION_CONTRACT.md)
@@ -2643,7 +2646,7 @@ STFP-factory and CFBC-clear checkpoints.
 The appearance-local update-order unknown is closed: pose-cache invalidation
 precedes ordered controller alters; physical tracks extract root motion and
 emit messages synchronously before installing replacement animation. The
-Godot adapter is tested as a Z reflection with quaternion mapping
+Prototype host adapter is tested as a Z reflection with quaternion mapping
 `[w,x,y,z] -> [-x,-y,z,w]`. Object-text cache pairs `+0x30/+0x34` and
 `+0x38/+0x3C` are current/previous layout displacement and projected screen-Y.
 Only cross-object scene order and historical source member names remain.
@@ -2677,12 +2680,12 @@ dispatch proves. See
 
 ## Coordinate-adapter reconciliation (2026-09-22)
 
-The former host-engine pose-adapter test is closed for Godot. A single Z
-reflection maps SWG Y-up/+Z-forward transforms into Godot Y-up/-Z-forward;
-quaternion `[w,x,y,z]` becomes Godot `[-x,-y,z,w]`. Matrix-conjugation fixtures
+The former host-engine pose-adapter test is closed for prototype host. A single Z
+reflection maps SWG Y-up/+Z-forward transforms into prototype host Y-up/-Z-forward;
+quaternion `[w,x,y,z]historical prototype identifier (omitted)[-x,-y,z,w]`. Matrix-conjugation fixtures
 cover identity, all principal 90-degree rotations and a mixed pose. Wire x/z/y
 remains a codec field-order issue and is not conflated with this scene-space
-conversion. See `ANALYSIS_CHECKPOINT_2026-09-22_GODOT_COORDINATE_ADAPTER.md`.
+conversion. See `ANALYSIS_CHECKPOINT_2026-09-22_PROTOTYPE_COORDINATE_ADAPTER.md`.
 
 ## BTRT DEST reconciliation (2026-09-22)
 
@@ -3086,7 +3089,7 @@ Existing canonical skeletal_mesh_generator_load_v0004_VA_00800EF0 now has bounde
 
 ## 2026-10-01 Face camera and target observations
 
-[Face execution boundary](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_FACE_EXECUTION_BOUNDARY.md) traces PCAM0086C380/00768620/00767700, sampler inheritance62A0E570, managed destination00869CD0/ARGB8 scratch62A0AF40 and original shared pixel-program output. Corrected selected DEST remap;51-source/2,283,555-byte original dependency/instruction audit and negative/ownership gates pass. Godot build passes. Global opacity and exact raster parity remain open; coverage metrics/canonical names unchanged.
+[Face execution boundary](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_FACE_EXECUTION_BOUNDARY.md) traces PCAM0086C380/00768620/00767700, sampler inheritance62A0E570, managed destination00869CD0/ARGB8 scratch62A0AF40 and original shared pixel-program output. Corrected selected DEST remap;51-source/2,283,555-byte original dependency/instruction audit and negative/ownership gates pass. Prototype host build passes. Global opacity and exact raster parity remain open; coverage metrics/canonical names unchanged.
 
 
 2026-10-01 namespace relationship:00872C90 registration and00873190 value update map true to01924C80 `/private/`, false01924C70 `/shared_owner/`;00872A00/00872B10 initialize the strings from0188F570/0186B880. This matches CSHD007859B0 and closes the BTRT domain relationship without repurposing existing factory names. [Checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-01_SHARED_CUSTOMIZATION.md).
@@ -3170,7 +3173,7 @@ Five roles adopted after the pinned 109-anchor/two-RTTI audit: default construct
 The [Round45 report](research/sessions/PARALLEL_DEVELOPMENT_ROUND_45_2026-10-04.md) records independently reviewed/replayed supplied
 AHFR/FFRA consumers, an incarnation-bound received-only partial CREO4 store,
 one human movement-template input chain and the actual current-height FHGT/AHCN
-Godot preview. The store accepts pending/finalized objects without default seeds
+Prototype host preview. The store accepts pending/finalized objects without default seeds
 but has no world/router admission yet. Original fractal generation/cache lifetime,
 floating controls, complete terrain and later creature writers remain unknown.
 Research scores and canonical name/packet denominators remain unchanged.

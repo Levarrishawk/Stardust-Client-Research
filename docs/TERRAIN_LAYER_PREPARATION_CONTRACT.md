@@ -7,7 +7,7 @@ This closes enabled-count and bounds preparation used before the general
 recursive generation, capture original cache state or establish real filter
 semantics. Executable SHA256
 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`
-is checked before imports/VA use by [the verifier](../../SWG-Godot-Client/tools/python/verify_terrain_layer_preparation.py).
+is checked before imports/VA use by the verifier (external historical reference).
 [Checkpoint and reproduction](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-03_R41_LAYER_PREPARATION.md).
 
 ## Enabled-count preparation: Confirmed

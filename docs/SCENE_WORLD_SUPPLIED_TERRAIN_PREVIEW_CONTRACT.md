@@ -20,7 +20,7 @@ read the fixture's Expected section when constructing patches.
 `ScenePumpedTerrain.cs` bounds fixture bytes, depth, version, synthetic marker,
 policies, request order, channels and seam/UV parameters before construction.
 Accepted coordinate/patch APIs create sixteen immutable patches and query
-objects. Each debug Godot adapter owns three resources, verifies mesh readback,
+objects. Each debug prototype host adapter owns three resources, verifies mesh readback,
 and reflects native Z once. All adapters and query references are released on
 successful finish, failure and tree exit. This debug shader is inspection
 presentation, not a recovered terrain material.

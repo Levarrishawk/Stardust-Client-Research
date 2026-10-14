@@ -29,7 +29,7 @@ Accepted66 verifier source SHA
 is gated before mapping/path/one-occurrence decoding reuse. Its prior-source
 chain remains SHA-gated. No old setter/predicate/accessor/serialization suite runs.
 
-Three assigned new files: [verifier](../../../SWG-Godot-Client/tools/python/verify_terrain_shader_family_entry_consumer.py),
+Three assigned new files: verifier (external historical reference),
 [durable contract](../../docs/TERRAIN_SHADER_FAMILY_ENTRY_CONSUMER_CONTRACT.md),
 this checkpoint; two own67Assets runners. All4157 existing public bytes/shared
 hosts/registries/ledgers remain frozen; lead reconciles canonical acceptance.
@@ -90,7 +90,7 @@ store prefix/return distinctions are consolidated in the contract.
 
 ## Reproduction and final checks
 
-[Portable runner](../../../SWG-Godot-Client/poc/round67-tests/Assets/Invoke-SelectedRule.ps1):
+Portable runner (external historical reference):
 
 ```powershell
 & ./poc/round67-tests/Assets/Invoke-SelectedRule.ps1 -Python $Python -Exe $Exe -Packages $CachedStaticPackages -AssetRoot $AssetRoot -Config $Config

@@ -7,11 +7,11 @@ User authorizes sequential checkpoints through 07:00 EDT September 30 (11:00 UTC
 1. [Owned DTLA reader](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_DTLA_READER.md): parent graph, visibility geometry and four-coordinate mesh declaration. Native synthetic tests and all four independent original geometry comparisons pass. The earlier L4 preview is not an authored child of the current parent.
 
 2. [Selector and richer material graph](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_DETAIL_SELECTOR_AND_MATERIALS.md): distance-only baseline behavior, repeated PTXM records and 134 independently matching texture mips for each L0/L1 bundle.
-3. [Original LOD inspector](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_GODOT_LOD_INSPECTOR.md): all four authored children upload/switch in Godot; hidden GPU and headless gates pass.
+3. [Original LOD inspector](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_PROTOTYPE_LOD_INSPECTOR.md): all four authored children upload/switch in prototype host; hidden GPU and headless gates pass.
 
 4. [APT and exterior chain](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_APT_EXTERIOR_CHAIN.md): strict/default separation, three exterior levels, 4D auxiliary coordinates, 99 reference-matching exterior texture mips and explicit texture-only GPU inspector.
 
-5. [Verified BC7 extension](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_BC7_DECODER.md): all eight modes, 20 standard synthetic fixtures, 147 Pillow-matching mip levels plus reserved normative output, pinned managed codec and real Godot nine-mip upload.
+5. [Verified BC7 extension](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-29_BC7_DECODER.md): all eight modes, 20 standard synthetic fixtures, 147 Pillow-matching mip levels plus reserved normative output, pinned managed codec and real prototype host nine-mip upload.
 
 6. [Component geometry](../checkpoints/IMPLEMENTATION_CHECKPOINT_2026-09-30_COMPONENT_GEOMETRY.md): 165 templates/779 transforms independently agree, RADR geometry retained, bounded graph and four-LOD neutral vent inspection pass. Unsupported particles are counted.
 
@@ -70,11 +70,11 @@ Original runtime walking/portal transitions, legal route costs, dynamic permissi
 ## Final validation record
 
 - Full native smoke suite passes, including final source-map and transform-overflow negative gates; retained output is private.
-- Godot build passes with zero warnings/errors. Bounded headless/GPU gates are recorded in each checkpoint; final surface controls pass seven original samples in both hosts. GPU capture/marker/swatch results were visually inspected.
+- prototype host build passes with zero warnings/errors. Bounded headless/GPU gates are recorded in each checkpoint; final surface controls pass seven original samples in both hosts. GPU capture/marker/swatch results were visually inspected.
 - Workspace validator: 762 Markdown files, zero broken links, zero links into private storage, 2,590 provisional rows/zero duplicate addresses, 345 packet rows, zero public files at least 25 MiB.
 - `git diff --check` passes. Git emits existing CRLF/LF conversion warnings; no whitespace-error failure. Nothing is staged or committed. The intentionally dirty tree and unrelated earlier work are preserved.
 - Final executable SHA recheck matches `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`.
-- Godot's known root-certificate-store startup error remains nonfatal in the offline proof and is recorded in private logs. No live TLS/network verification is claimed.
+- prototype host's known root-certificate-store startup error remains nonfatal in the offline proof and is recorded in private logs. No live TLS/network verification is claimed.
 
 ## Exact resume point
 

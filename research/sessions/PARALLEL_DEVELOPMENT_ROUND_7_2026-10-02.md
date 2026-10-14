@@ -11,7 +11,7 @@ HEAD65de8c88141071744dc75594be126b3bab3696a5 plus1,888 public files. Manifest SH
 | Worker | Milestone | Boundary |
 |---|---|---|
 | Assets |R7-ASSETS-01| Explicit static-object catalog recipe, original inherited template to APT/LOD/mesh/material resources |
-| Rendering |R7-RENDER-01| Accepted asynchronous resource ticket and source placement to guarded Godot creature visual |
+| Rendering |R7-RENDER-01| Accepted asynchronous resource ticket and source placement to guarded prototype host creature visual |
 | Runtime |R7-RUNTIME-01| Offline generation-owned scene/world coordinator with real lifecycle messages and resource publication |
 | Networking |R7-NET-01| Six typed CREO:3 scalar delta fields with ordered atomic mutation plans |
 
@@ -42,7 +42,7 @@ After static enum1 became legal, lead changed the world's invalid enum fixture t
 
 Worker cancellation initially classified its Task.Run OperationCanceledException as a fault because the token was not associated with the task. The worker corrected it; lead's actual first-lookup cancellation closes archives, publishes zero and reports Canceled. Runtime's independent producer initially spelled the numeric CREO tag backward; lead caught it before acceptance, and corrected peer/export oracles use raw4352454F.
 
-Lead original static/native/independent audit, original world source/wire audits, scalar native/oracle, combined native suite and warning-free Godot build pass. Fresh async capture inspected: whole actor at derived engine origin(-2,4,-7), nonunit source rotation normalized and reflected once. GPU/headless sources match all37 path/priority/size/SHA tuples. Lead logs GPU preview-4caabbfbec984f7ab1ab6af81234714b, headless preview-9480c2a0972f4638a25a623cae09b6b6, cancellation preview-d415f725565842728eaf9e2c226ddcad. Detailed source exports/images/logs remain ignored. Known Godot certificate-store startup diagnostic persists in passing runs; no error-free startup claim. The full customized interior was not rerun in this round.
+Lead original static/native/independent audit, original world source/wire audits, scalar native/oracle, combined native suite and warning-free prototype host build pass. Fresh async capture inspected: whole actor at derived engine origin(-2,4,-7), nonunit source rotation normalized and reflected once. GPU/headless sources match all37 path/priority/size/SHA tuples. Lead logs GPU preview-4caabbfbec984f7ab1ab6af81234714b, headless preview-9480c2a0972f4638a25a623cae09b6b6, cancellation preview-d415f725565842728eaf9e2c226ddcad. Detailed source exports/images/logs remain ignored. Known prototype host certificate-store startup diagnostic persists in passing runs; no error-free startup claim. The full customized interior was not rerun in this round.
 
 ## Timing
 
@@ -61,4 +61,4 @@ Final repository gate: acceptance07:02:12 UTC,49m12s from preparation /44m57s fr
 
 World readiness and failure rules are modern explicit choices; end-baselines does not prove all views/resources/terrain complete. World stores opaque envelope history; typed scalar binding and full CREO3 baselines follow separately. Parent/container transform composition, original quaternion repair, SWTS switching/timing, full customization/normal/specular presentation, original event scheduler/audio/effects, arbitrary species and live connection remain open.
 
-Round8 will target explicit SWTS frame inspection, offline world-to-Godot publication, lifecycle-bound scalar state and complete CREO3 baseline bytes. No unfinished same-round dependency; all four workers idle between assignments. Stop after Round8. Research89%/94%,2,602 names and345 packet rows unchanged. Nothing staged, committed, published or executed against the original client/live server.
+Round8 will target explicit SWTS frame inspection, offline world-to-prototype host publication, lifecycle-bound scalar state and complete CREO3 baseline bytes. No unfinished same-round dependency; all four workers idle between assignments. Stop after Round8. Research89%/94%,2,602 names and345 packet rows unchanged. Nothing staged, committed, published or executed against the original client/live server.

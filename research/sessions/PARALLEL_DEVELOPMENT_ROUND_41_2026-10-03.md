@@ -74,7 +74,7 @@ host; version1 slope headless regression also passes. First new-host attempt
 caught a missing focus-resumed fixture pose, corrected before fresh passing
 runs. Deliberate negative launches and known startup diagnostics remain recorded.
 
-Separate Core/SmokeTests/Godot builds pass zero warnings/errors. Default smoke
+Separate historical implementation path (omitted) builds pass zero warnings/errors. Default smoke
 reports18 journal events/zero failures. Canonical reconciliation is complete.
 Exact frozen scope:64 changes,48 additions/16 existing; zero unrelated changes
 or deletions. HEAD5493338d9cd4255cf58f25de6c4cd15f6507b818 and empty index

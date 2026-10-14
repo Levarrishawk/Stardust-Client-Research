@@ -9,7 +9,7 @@ It adds no original Height, posture, lighting or readiness claim.
 `SceneWorldCreatureStatePresentation` owns one existing `SceneCreatureVisual` and
 accepts a world, its current `ScenePreparedCreaturePublication`, its current
 `SceneWorldReplicationSnapshot`, an explicit base engine transform, and a live
-Godot parent. It creates no registry or replication store and exposes neither.
+Prototype host parent. It creates no registry or replication store and exposes neither.
 The existing visual's `TryPublishWorld` gains only a final optional
 `Func<bool>? currentAttempt` parameter; null preserves previous callers' behavior.
 The additional guard runs before allocation, after staging and after attachment.
@@ -35,7 +35,7 @@ references; it does not close the caller-owned world.
 `Apply` rejects old/foreign snapshots without retiring valid resources. It checks
 the current snapshot, derives a valid presentation transform, runs the optional
 bounded `beforeApplication` callback, then rechecks before changing transform and
-visibility. Both state and resource operations remain on the serialized Godot
+visibility. Both state and resource operations remain on the serialized prototype host
 main thread. Height is the accepted modern uniform base-basis multiplier in the
 inclusive range 0.25–2.0; origin is unchanged. Invalid values throw before visual
 mutation and remain raw in world state. Baseline Visibility 0 hides; nonzero shows.
@@ -78,16 +78,12 @@ resource drain, including cancellation-ignoring work and late faults.
 
 ## Reproduction
 
-With the existing offline toolchain, first build `poc/Stardust.Godot`. Restore the
+With the existing offline toolchain, first build historical prototype identifier (omitted). Restore the
 new native project with its source-cleared config and an existing package cache.
 Use a private APPDATA directory if the host's ordinary NuGet config is inaccessible.
 
-```powershell
-python poc/round11-tests/Rendering/Generate-Peer.py local-private/round11/peer.json
-dotnet restore poc/round11-tests/Rendering/Rendering.csproj --configfile poc/round11-tests/Rendering/NuGet.Config -p:NuGetAudit=false
-dotnet run --project poc/round11-tests/Rendering/Rendering.csproj --no-restore -- C:/Stardust-DEV C:/Stardust-DEV/swgemu_live.cfg poc/preview-profiles/scene-object-catalog.json poc/preview-profiles/human-locomotion.json local-private/round11/peer.json
-tools/powershell/Invoke-StardustReplicatedWorldPreview.ps1 -GodotPath $GodotPath -ArchiveRoot C:/Stardust-DEV -Configuration C:/Stardust-DEV/swgemu_live.cfg -FixturePath local-private/round11/peer.json -CatalogProfile poc/preview-profiles/scene-object-catalog.json -Headless
-```
+> Historical prototype-specific command or code example omitted from the research-only documentation.
+
 
 Use `-CancelLoad` for bounded cancellation, `-Interactive` for visible inspection,
 or `-CapturePath` for a fresh private PNG pair. Automated windows are hidden and
@@ -96,11 +92,11 @@ mode combinations or capture destinations reject before launch. The inspector
 can apply Height 1.5, reset the baseline or hide the actor; those controls use the
 accepted world API rather than a duplicate state store.
 
-[Verify-Original.py](../../SWG-Godot-Client/poc/round11-tests/Rendering/Verify-Original.py) takes original
+Verify-Original.py (external historical reference) takes original
 root, configuration, catalog and native log; it independently reads effective
 archive bytes/priorities, inheritance and programs/factors, ten textures/80 mip
 hashes, and four original sampled pixels with hand-evaluated hue algebra.
-[Verify-World.py](../../SWG-Godot-Client/poc/round11-tests/Rendering/Verify-World.py) takes peer JSON,
+Verify-World.py (external historical reference) takes peer JSON,
 native/GPU/headless/cancel logs and the capture pair in that order. It independently
 checks framing/order/retry, raw signed-zero/scalar bits, quaternion cross-product
 placement and SRS reflection, source/factor/mip equality, bound shader parameters,
@@ -124,7 +120,7 @@ Optional `-PaletteProfile poc/preview-profiles/human-scene-colors.json` passes b
 
 Profile-enabled captures produce the original PNG, `-frame1.png` at Height 1.5, and `-authored.png` at the same Height, pose and camera with authored factors. Interactive controls expose both color choices. Fresh private destinations and the profile's 1..65536-byte budget reject before launch.
 
-The independently authored [Round 12 tests](../../SWG-Godot-Client/poc/round12-tests/Rendering/Program.cs) use accepted R11 scalar/palette APIs, without Runtime 12 mixed-delta or Assets 12 DDS dependencies. Generate the peer with `Generate-Peer.py`; restore/run `Rendering.csproj` using its source-cleared `NuGet.Config`. Native arguments are original root, configuration, catalog, animation bank, peer JSON and palette profile. `Verify-Original.py` arguments are original root, configuration, catalog, profile and native log. `Verify-World.py` arguments are peer, native/GPU/headless/cancel logs and the three captures. `Verify-Launch.ps1` exercises eight prelaunch negatives.
+The independently authored Round 12 tests (external historical reference) use accepted R11 scalar/palette APIs, without Runtime 12 mixed-delta or Assets 12 DDS dependencies. Generate the peer with `Generate-Peer.py`; restore/run `Rendering.csproj` using its source-cleared `NuGet.Config`. Native arguments are original root, configuration, catalog, animation bank, peer JSON and palette profile. `Verify-Original.py` arguments are original root, configuration, catalog, profile and native log. `Verify-World.py` arguments are peer, native/GPU/headless/cancel logs and the three captures. `Verify-Launch.ps1` exercises eight prelaunch negatives.
 
 Observation: the final fixed-camera Height pair changes 28,119 actor pixels, widths 132→204 and heights 237→367. The authored/profile choice changes 25,184 pixels with identical actor extent. Native nineteen negatives, original-source/palette oracle, coalesced state oracle, GPU/headless lifecycle/thread/ack/resource checks, cancellation, eight prelaunch negatives and default-profile headless regression pass. Confidence: **Confirmed for this bounded replacement fixture**. Original Height semantics, full-face customization, lighting and original-render fidelity remain unknown or outside scope. The next action is lead integration of this handoff; no Round 13 work is authorized here.
 
@@ -132,4 +128,4 @@ Observation: the final fixed-camera Height pair changes 28,119 actor pixels, wid
 
 After worker handoffs are integrated, -MixedReplication maps to --replicated-mixed and selects CreatureView3Mixed with LegacyBounded, payload1024,16 fields/scalars,64 command/value/element caps and retained-byte4096. Absent flag preserves scalar-only mode and its existing strict policy metadata. Duplicate direct mixed flags reject before world creation. Current wounds count/counter are diagnostic; no damage/posture callback behavior is inferred. Height and palette effects still follow the documented modern presentation policy.
 
-The [combined lead proof](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_12_2026-10-02.md) verifies native original palette resources plus framed mixed state/acknowledgment/failure. A fresh GPU Height+wounds transaction reaches current revision3,counter13 and values[-2,2147483647,-2]. All three actor crops exactly match ordinary scalar-mode Height/palette images, with retained GPU IDs and cleanup. Mode does not add components or other field/view support. The [mixed fixture producer](../../SWG-Godot-Client/poc/round12-tests/Integration/Generate-Mixed-Presentation.py) and [independent oracle](../../SWG-Godot-Client/poc/round12-tests/Integration/Verify-Mixed-Presentation.py) give exact reproduction; raw images/bytes remain private.
+The [combined lead proof](../research/sessions/PARALLEL_DEVELOPMENT_ROUND_12_2026-10-02.md) verifies native original palette resources plus framed mixed state/acknowledgment/failure. A fresh GPU Height+wounds transaction reaches current revision3,counter13 and values[-2,2147483647,-2]. All three actor crops exactly match ordinary scalar-mode Height/palette images, with retained GPU IDs and cleanup. Mode does not add components or other field/view support. The mixed fixture producer (external historical reference) and independent oracle (external historical reference) give exact reproduction; raw images/bytes remain private.

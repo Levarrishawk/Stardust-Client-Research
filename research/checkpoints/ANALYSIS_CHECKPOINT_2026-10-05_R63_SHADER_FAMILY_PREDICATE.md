@@ -40,7 +40,7 @@ public file is frozen. No shared docs/registries/entrypoints or sibling inputs.
 
 Durable [predicate contract](../../docs/TERRAIN_SHADER_FAMILY_PREDICATE_CONTRACT.md)
 consolidates exact sites, ABI, mode boundaries and implementation implications.
-[Verifier](../../../SWG-Godot-Client/tools/python/verify_terrain_shader_family_predicate.py) checks
+Verifier (external historical reference) checks
 208 bytes/85 instructions at01320590..0132065F, body SHA
 `ad7f167f1af74dd4aa9d8bdd3e65e868dd15586b88bc6f535ba112b61b7bd966`,
 53 raw/operand anchors, four direct calls and12 branches. One body expanded;

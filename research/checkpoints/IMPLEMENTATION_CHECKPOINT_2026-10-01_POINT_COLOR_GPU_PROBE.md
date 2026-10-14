@@ -6,7 +6,7 @@ Does the recovered point-light vertex color stage agree with the owned CPU refer
 
 ## Inputs and method
 
-Original source identities and the 159-source scene closure are unchanged from [checkpoint 50](IMPLEMENTATION_CHECKPOINT_2026-10-01_RECOVERED_LIGHTING_DEFAULT.md). Baseline executable and graphics DLL hashes were rechecked during checkpoints 40/48. This investigation executes only the independently authored Godot replacement. The added triangle, lights, textures and material are synthetic; they are not recovered game geometry or protocol.
+Original source identities and the 159-source scene closure are unchanged from [checkpoint 50](IMPLEMENTATION_CHECKPOINT_2026-10-01_RECOVERED_LIGHTING_DEFAULT.md). Baseline executable and graphics DLL hashes were rechecked during checkpoints 40/48. This investigation executes only the independently authored prototype host replacement. The added triangle, lights, textures and material are synthetic; they are not recovered game geometry or protocol.
 
 StaticDoorVaryingGpuScenarios.Verify(owner, true, true) combines two positive-coefficient point lights, one primary directional light, material emissive, hue, separate SPEC alpha, differing tangent bases, two powers, both handedness signs, rigid owners and orthographic/perspective cameras. CPU colors are evaluated per vertex, interpolated with screen barycentrics divided by clip W, then saturated at the pixel boundary. The existing tolerance remains 2/255.
 
@@ -26,7 +26,7 @@ No production shader equation or tolerance was changed to accommodate this resul
 
 ## Validation and next probe
 
-The Godot build and default engine-neutral smoke suite pass after isolating the diagnostic. Final ordinary scene/cleanup and organized-workspace checks are recorded in [the session report](../sessions/IMPLEMENTATION_SESSION_2026-10-01_UNTIL_2000.md). At that stage this question remained open; the resolution below closes the bounded fixture.
+The prototype host build and default engine-neutral smoke suite pass after isolating the diagnostic. Final ordinary scene/cleanup and organized-workspace checks are recorded in [the session report](../sessions/IMPLEMENTATION_SESSION_2026-10-01_UNTIL_2000.md). At that stage this question remained open; the resolution below closes the bounded fixture.
 
 Next: capture isolated primary diffuse, primary specular, tint and mask terms for the same failing pixel, applying the renderer transfer consistently. Compare raw floating-point output if the adapter supports it; separately bound quantized tangent and framebuffer precision. Preserve the failing case before modifying either shader arithmetic or the reference.
 

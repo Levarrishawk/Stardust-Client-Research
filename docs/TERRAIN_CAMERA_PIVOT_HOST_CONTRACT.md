@@ -9,10 +9,10 @@ public Vector3 Pivot { get; }
 public bool SetPivot(Vector3 pivot, CancellationToken cancellation = default);
 ```
 
-[TerrainCameraOrbitHost](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainCameraOrbitHost.cs) accepts explicit
+TerrainCameraOrbitHost (external historical reference) accepts explicit
 pivot updates while input is disabled. The caller supplies an engine-world point; no
 native coordinate conversion, actor ownership or Runtime72 source is implied. Components
-must be finite and within+/-1e6. Creating managed thread and Godot main thread, configured
+must be finite and within+/-1e6. Creating managed thread and prototype host main thread, configured
 open healthy host, exact live parents, same viewport and active perspective camera are
 required. Lifetime and cancellation are checked before an equal-pivot no-op returns false.
 Equal updates preserve pose, diagnostic and every counter.
@@ -20,7 +20,7 @@ Equal updates preserve pose, diagnostic and every counter.
 Changed updates retain the existing yaw, pitch and distance. Position is calculated
 against the candidate pivot using the existing binary64 orbit arithmetic and one final
 binary32 cast. Existing bounded/noncollapsed/nonpole admission still applies. SetPivot
-additionally rejects candidate position approximately equal to its target under Godot
+additionally rejects candidate position approximately equal to its target under prototype host
 `Vector3.IsEqualApprox`: at large coordinates a nonzero offset can still be rejected by
 LookAt. This extra check applies only to the new operation; existing Configure/Dispatch
 admission remains unchanged. Numeric/canceled preflight rejection leaves the healthy
@@ -30,7 +30,7 @@ After admission, the actual camera GlobalPosition setter and LookAt(candidate,Up
 with lifetime/reentry/cancellation checks after each. Only after both return and guards
 pass does Pivot commit. PoseAttemptCount increments for admitted mutations; Revision
 increments for successful pivot commits. AcceptedCount and HandledCount retain their
-input-event denominators. LastDiagnostic.Kind is Pivot and FromGodotEvent is false.
+input-event denominators. LastDiagnostic.Kind is Pivot and Fromprototype hostEvent is false.
 Yaw/Pitch/Distance remain unchanged. No new counter is needed.
 
 Mutation failure faults the host and records the existing diagnostic prefix. A camera
@@ -43,9 +43,9 @@ the last committed diagnostic value after Close; getters still require owner thr
 
 ## Bounded evidence
 
-[The standalone verification](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainCameraPivotVerification.cs)
+The standalone verification (external historical reference)
 executes12 follow updates across three yaw/pitch/distance configurations and four pivots.
-An [independent Python oracle](../../SWG-Godot-Client/poc/round72-tests/Rendering/verify_picker.py) generates
+An independent Python oracle (external historical reference) generates
 position/look-basis/perspective-ray expectations before native execution, reusing the
 accepted orbit arithmetic oracle. Each update follows an accepted input and disabled
 input state, proving orbit/input counters are retained. Position tolerance2e-5;
@@ -59,8 +59,8 @@ binary32 collapse, equal pivot, off-thread calls, closed/faulted calls and borro
 survival. The unchanged frozen orbit verification also passes118 headless checks,
 47 independently compared input poses/rays and24 accepted inputs with the modified host.
 
-[Invoke-Picker.ps1](../../SWG-Godot-Client/poc/round72-tests/Rendering/Invoke-Picker.ps1) uses offline cached
-Python/.NET/Godot, verifies executable identity, verifies the frozen4335-file archive and
+Invoke-Picker.ps1 (external historical reference) uses offline cached
+historical implementation path (omitted) verifies executable identity, verifies the frozen4335-file archive and
 manifest in its producer, stages the accepted regression source, produces expectations,
 builds and runs the new scene headless/GPU, then the old regression headless. Output must
 be fresh and ignored; reparse/nondirectory/public output paths are rejected. No original

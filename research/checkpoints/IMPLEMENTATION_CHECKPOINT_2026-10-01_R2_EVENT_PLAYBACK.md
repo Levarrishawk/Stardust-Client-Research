@@ -2,7 +2,7 @@
 
 ## Question and stopping condition
 
-Can bounded elapsed seconds and FPS feed the accepted modern event cursor with transactional time accumulation and stale-generation rejection? Stop after engine-neutral bridge/owned batches, deterministic and pinned-original verification, shared compile and lead handoff. No preview-clock, scheduler, effects/audio, root motion, graph or Godot changes.
+Can bounded elapsed seconds and FPS feed the accepted modern event cursor with transactional time accumulation and stale-generation rejection? Stop after engine-neutral bridge/owned batches, deterministic and pinned-original verification, shared compile and lead handoff. No preview-clock, scheduler, effects/audio, root motion, graph or prototype host changes.
 
 ## Baseline and orientation
 
@@ -37,7 +37,7 @@ $env:PYTHONUTF8 = '1'
 git -c safe.directory=C:/Users/ancie/.codex/worktrees/9175/Stardust-Client diff --check
 ```
 
-Console PASS:1120 absolute-time/unequal-partition cases at seven varied FPS; exact/fractional/end/zero/duplicate events; loop/nonloop; pause/focus/resume/reset/restart/replacement; foreign-owner/stale-generation rejection; invalid FPS/delta; atomic event/cycle budget failure/retry; retained fractional snap accumulation; source/batch ownership. Both original clips PASS three cycles/six occurrences at120Hz, exact source/configuration identity, authored metadata, absolute interval oracle, pause and restart. Core/shared SmokeTests builds PASS zero warnings/errors. No full shared suite execution or Godot runtime run is claimed; acceptance requires compilation plus the isolated bridge suite. Exhausting long generation or the2^40 phase ceiling via long-running playback was not executed; guards are explicit and inherited cursor limits remain unchanged.
+Console PASS:1120 absolute-time/unequal-partition cases at seven varied FPS; exact/fractional/end/zero/duplicate events; loop/nonloop; pause/focus/resume/reset/restart/replacement; foreign-owner/stale-generation rejection; invalid FPS/delta; atomic event/cycle budget failure/retry; retained fractional snap accumulation; source/batch ownership. Both original clips PASS three cycles/six occurrences at120Hz, exact source/configuration identity, authored metadata, absolute interval oracle, pause and restart. Core/shared SmokeTests builds PASS zero warnings/errors. No full shared suite execution or prototype host runtime run is claimed; acceptance requires compilation plus the isolated bridge suite. Exhausting long generation or the2^40 phase ceiling via long-running playback was not executed; guards are explicit and inherited cursor limits remain unchanged.
 
 ## Handoff and uncertainty
 

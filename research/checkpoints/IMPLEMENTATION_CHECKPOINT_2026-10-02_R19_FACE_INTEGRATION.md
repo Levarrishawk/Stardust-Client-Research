@@ -77,7 +77,7 @@ extreme-value oracles pass. Runtime52 face negatives plus prior89 validation and
 15 accounting negatives pass; independent source/header/TRTS andthree-profile
 composition agree. Networking6/947 passes independently in main. Rendering
 standalone GPU/headless/cancel and independent1,967-pixel proof rerun in main.
-Shared native face validation/resource scenarios and default suite pass. Godot
+Shared native face validation/resource scenarios and default suite pass. Prototype host
 build has zero warnings/errors. Lead joined headless/GPU source/weight/MAIN and
 nine-stage clocks pass; cancellation, incarnation-loss and missing-key cleanup
 receipts agree. Scope/link/whitespace results are in the session.
@@ -91,11 +91,11 @@ made to address those tooling issues.
 
 ## Reproduction and exact next action
 
-[Continuous launcher](../../../SWG-Godot-Client/poc/round16-tests/Integration/Launch.ps1):
+Continuous launcher (external historical reference):
 the accepted -LocalInput/-MotionPeer inputs plus -FaceProfile
 poc/preview-profiles/human-face-zero.json. Separate headless(default), -Gpu with
 fresh private -CapturePath, -CancelLoad, and -InputLoss modes.
-[Face join oracle](../../../SWG-Godot-Client/poc/round19-tests/Integration/verify_face_join.py) takes
+Face join oracle (external historical reference) takes
 joined log, Assets native log and face profile; prior Round18 verify_local.py and
 Round16 verify_preview.py verify clocks/queues. Worker contracts give native and
 standalone pixel commands. --round19-face-resources/--round19-face-validation run

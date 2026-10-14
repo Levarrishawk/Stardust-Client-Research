@@ -16,4 +16,4 @@ The two fixed fallback alternatives have two STAG records then one MAIN/MAIN STA
 
 ## Consequence and next action
 
-Preserve richer bindings for later material translation. An explicit inspector may use the authored opaque one-stage MAIN fallback without asserting original capability selection or dirt-blend fidelity. Next: validate all four selected detail resources in Godot, then close the appearance redirect boundary and precise reference-origin semantics.
+Preserve richer bindings for later material translation. An explicit inspector may use the authored opaque one-stage MAIN fallback without asserting original capability selection or dirt-blend fidelity. Next: validate all four selected detail resources in prototype host, then close the appearance redirect boundary and precise reference-origin semantics.

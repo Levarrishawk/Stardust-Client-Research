@@ -16,16 +16,16 @@ E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150.
 Identity reads only; no original execution, VAs or proprietary asset consumption.
 
 [Durable contract](../../docs/TERRAIN_BUDGETED_POINT_INPUT_CONTRACT.md),
-[adapter](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainPointTargetInputAdapter.cs),
-[host](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainPointTargetInputHost.cs),
-[verification](../../../SWG-Godot-Client/poc/Stardust.Godot/TerrainBudgetedPointInputVerification.cs),
-[runner](../../../SWG-Godot-Client/poc/round77-tests/Rendering/Invoke-Picker.ps1),
-[oracle](../../../SWG-Godot-Client/poc/round77-tests/Rendering/verify_picker.py).
+adapter (external historical reference),
+host (external historical reference),
+verification (external historical reference),
+runner (external historical reference),
+oracle (external historical reference).
 
-Cached Python/offline .NET8/Godot4.7.2 x64 SDK and packages. The portable explicit-input
+Cached Python/offline historical implementation path (omitted) x64 SDK and packages. The portable explicit-input
 runner requires Python, dotnet, original executable identity input, cached packages
 and fresh private RunRoot. It pins the incoming archive/manifest, stages accepted76
-Core and four accepted Godot borrowers, and creates independent expected rows/F32
+Core and four accepted prototype host borrowers, and creates independent expected rows/F32
 manual motion and frozen synthetic Fraction geometry before native builds. Frozen65
 synthetic typed fixture metadata is SHA-pinned. No unfinished77 sibling API is imported.
 

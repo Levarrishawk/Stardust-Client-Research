@@ -1,10 +1,10 @@
 # Explicit budgeted point input
 
 October6,2026. Modern offline input policy over existing native picking and targeting.
-[Adapter](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainPointTargetInputAdapter.cs),
-[host](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainPointTargetInputHost.cs),
-[native proof](../../SWG-Godot-Client/poc/Stardust.Godot/TerrainBudgetedPointInputVerification.cs),
-[independent oracle](../../SWG-Godot-Client/poc/round77-tests/Rendering/verify_picker.py).
+Adapter (external historical reference),
+host (external historical reference),
+native proof (external historical reference),
+independent oracle (external historical reference).
 
 ## Source-compatible admission
 
@@ -55,7 +55,7 @@ lifetime or availability probe.
 
 ## Confirmed native evidence
 
-Actual Godot4.7.2 .NET runs pass59 headless/60 GPU checks. Independently authored
+Actual prototype host4.7.2 .NET runs pass59 headless/60 GPU checks. Independently authored
 pre-native rows compare32 actual viewport presses:31 hits/one miss, exact attempts,
 remaining capacity, host clock/accepted/handled counts, target revisions and binary32
 coordinates. Frozen Fraction geometry/projection checks compare all32 rays. A supplied
