@@ -2,6 +2,18 @@
 
 Current accounting — October 14, 2026: **2,626 unique curated semantic addresses**, zero duplicate rows. Exhaustive function reversal remains **uncalibrated**; historical counts below are dated evidence. See [research status](ANALYSIS_STATUS.md).
 
+## 2026-10-17 overhead Accuracy observation
+
+[Accuracy contract](docs/PRECU_OVERHEAD_ACCURACY_CONTRACT.md): pinned renderer
+00FD5F80 selectively displays an adjustment, helper 010A9560 combines weapon,
+posture, motion and state, 010A9460 selects the table entry and 00709DC0
+interpolates integer weapon range accuracy. Arithmetic/bytes are Confirmed;
+walk-threshold and selected-ID semantic labels are Strongly inferred through
+registration/source correlation. Local estimate is not authoritative server
+hit probability. No new canonical names or address-count increase. Remaining
+question: live display/input acceptance in the conversion, including range
+unavailability and target changes.
+
 
 ## 2026-10-03 Round44 initialization prerequisites
 
@@ -1873,7 +1885,7 @@ Result 23 is intentionally left unlabeled: the executable confirms special suppr
 
 | Address | Stable provisional name | Status |
 |---|---|---|
-| `0x00ACFFA0` | `auction_query_headers_message_construct_VA_00ACFFA0` | Confirmed query archive constructor |
+| `0x00ACFFA0` | `auction_query_headers_message_construct_VA_00ACFFA0` | Confirmed query archive constructor; October17 correction: thirteen payload members include two Unicode filters; see [original query contract](docs/PRECU_AUCTION_QUERY_CONTRACT.md) |
 | `0x004D0FC0` | `auction_bid_or_buy_request_send_VA_004D0FC0` | Confirmed request wrapper/send path |
 | `0x00AD0710` | `bid_auction_message_construct_VA_00AD0710` | Confirmed U64 + U32 + U32 constructor |
 | `0x004D1130` | `auction_cancel_request_send_VA_004D1130` | Confirmed request wrapper/send path |
@@ -3357,3 +3369,8 @@ October14 combat-spam observation: existing registered wrapper00AEED70 calls rea
 
 
 October14 spatial-chat codec observation: known wrapper00AEF2C0 delegates to00B1BA00; known writer00AEF2A0 delegates to00B1BC40. Direct read/write probes establish two IDs, Unicode, three U16 values, U8 flags/language and two Unicode tails. See [spatial contract](docs/NGE_PRECU_SPATIAL_CHAT_CONTRACT.md). No canonical semantic name is added or reassigned and no address count changes.
+
+
+October14 targeted confirmations: original combat reader0119C330 and timed manager00943300 retain their established identities; exact bytes, expiry policy and bounded conversion consequences are consolidated in [combat actions](docs/NGE_PRECU_COMBAT_ACTION_CONTRACT.md) and [timed modifiers](docs/NGE_PRECU_TIMED_MODIFIER_CONTRACT.md). No new canonical aliases, renamed functions or changed2626 denominator. Original modifier mediator factory ownership and cancellation remain unresolved.
+
+October 14 Community boundary: the [original Community contract](docs/NGE_PRECU_COMMUNITY_CONTRACT.md) records six-page bindings, corrected name-before-species order and Unicode/ASCII lengths, registered fixtures, mixed Core3 birth-date units and safe wide-CRT conversion. Native13,490/4,780 plus five isolated cases passes; six pages and a real default-search result render. Heading/chat-count follow-up is separately gated. No account data, new aliases, formal coverage or packet-count changes.

@@ -33,6 +33,8 @@ Stardust.exe's actual quest counter is type `0x440` with the five-field counter-
 
 Additional confirmed response layouts:
 
+October14 source conversion: the [combat-action contract](NGE_PRECU_COMBAT_ACTION_CONTRACT.md) directly confirms the original counted eleven-byte defender reader and distinguishes the current server's ordinal extended producer. The [timed-modifier contract](NGE_PRECU_TIMED_MODIFIER_CONTRACT.md) confirms original expiry and the embedded icon template. Native codec acceptance is separate from natural receipt, UI and gameplay acceptance; no inventory denominator changes follow.
+
 | Type | Wire payload from `0x16` | Intended client effect |
 |---:|---|---|
 | `0xEE` | U32 scalar, U32 referenced message type, U8 status, U8 correlation | acknowledge a controller request such as harvester hopper operation |
@@ -43,3 +45,9 @@ Additional confirmed response layouts:
 The decoder should expose typed, direction-specific DTOs and then translate them into prototype host-facing events. Conversation, combat, and spatial-chat wire variants should remain protocol-layer variants rather than leaking packed/legacy optional layouts into UI or animation code.
 
 Malformed list/count records must fail before state mutation. In particular, combat defender records and “players near you” entries should be parsed with remaining-length checks because current server constructors contain conditional record shapes.
+
+## October14 source-client quest overlay clarification
+
+The original executable 0x440/0x441 versus current server0x441/0x444 discrepancy remains valid. The NGE source already registers the current server IDs, but its counter field meanings and played-time timer convention differ. The explicit [current Stardust overlay contract](STARDUST_QUEST_OVERLAY_CONTRACT.md) records omitted counter-task identity, bounded registered-codec fixtures, duration policy and live limits. Both existing server_packet_gap_matrix.csv source-class rows remain documented; no new row/status/count or original-client interoperability claim follows.
+
+October 14 search verification: [Community contract](NGE_PRECU_COMMUNITY_CONTRACT.md) corrects the historical order to Unicode32 name before U32 species and distinguishes ASCII16/extended strings. Registered0x1E7 fixtures and one real response pass; no new opcode/alias or server-gap status change.

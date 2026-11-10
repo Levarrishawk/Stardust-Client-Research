@@ -1,5 +1,11 @@
 # Analysis checkpoint — auction-filter UI state and item-type updates
 
+October 17 follow-up: [the original query contract](../../docs/PRECU_AUCTION_QUERY_CONTRACT.md)
+resolves the former second-scalar assumption as an empty Unicode string length
+and connects the first scalar to ItemTemplateCrc. The original UI's second
+getter returns empty; current Core3 does not parse a nonempty second string.
+This supersedes only the two-field uncertainty stated below.
+
 Question A09 / W10+W13. Target: verified original `C:\Stardust-DEV\Stardust.exe`; current Stardust-3 source was previously correlated for `AuctionQueryHeadersMessage` and `CommoditiesItemTypeListResponse`. This is a previously unvisited filter mediator, **not** a fresh packet decode.
 
 RTTI `SwgCuiAuctionFilter` maps to vtables `0x015F8FDC` and `0x015F9060`. Constructor `0x010BDF50` binds `treeTypes`, location radios `radioGalaxy`, `radioPlanet`, `radioCity`, `radioMarket`, text/minimum-price/maximum-price input fields, and `includeEntranceFee`. It builds a local type-tree model and owns a `SwgCuiAuctionFilter::Messages::Changed` transceiver. The tree is not just a server catalog view: initialization `0x010BDB50` walks local type/template data. The current server's empty `CommoditiesItemTypeListResponse` payload therefore must not be taken to mean the filter tree is empty without observing this local model's result.

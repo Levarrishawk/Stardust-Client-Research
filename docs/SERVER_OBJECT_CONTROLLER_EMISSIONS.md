@@ -138,3 +138,12 @@ Existing packet-handler/capability inventory and345-row server gap matrix are un
 ## October14 spatial-chat codec refinement
 
 [Spatial-chat contract](NGE_PRECU_SPATIAL_CHAT_CONTRACT.md) closes original0xF4 flags width/order against direct reader/writer probes and resolves a new172-byte application failure in the source NGE codec. The explicit Pre-CU adapter preserves owned OOB/text and bounds only the known eight-zero current-producer tail. Native11439/3538 plus five isolated cases pass; naturally received structured spatial chat is decoded in the rendered world. Nested presentation/outgoing acceptance remain open. The existing SpatialChat matrix row remains documented;345 source rows and all coverage denominators remain unchanged.
+
+## October14 source-client quest overlay clarification
+
+The original executable 0x440/0x441 versus current server0x441/0x444 discrepancy remains valid. The NGE source already registers the current server IDs, but its counter field meanings and played-time timer convention differ. The explicit [current Stardust overlay contract](STARDUST_QUEST_OVERLAY_CONTRACT.md) records omitted counter-task identity, bounded registered-codec fixtures, duration policy and live limits. Both existing server_packet_gap_matrix.csv source-class rows remain documented; no new row/status/count or original-client interoperability claim follows.
+
+
+October14 boundary refinement: [original timed modifiers](NGE_PRECU_TIMED_MODIFIER_CONTRACT.md) and [combat actions](NGE_PRECU_COMBAT_ACTION_CONTRACT.md) add exact implementation-facing evidence for existing0x229/0x22A/0xCC rows. Current-Core3 ordinal extended combat records are explicitly separate from original parser support. No new message family, curated packet row/status or345-row count is introduced. Live active-state/animation acceptance remains separate.
+
+October 14 search verification: [Community contract](NGE_PRECU_COMMUNITY_CONTRACT.md) corrects the historical order to Unicode32 name before U32 species and distinguishes ASCII16/extended strings. Registered0x1E7 fixtures and one real response pass; no new opcode/alias or server-gap status change.

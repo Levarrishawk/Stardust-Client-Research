@@ -4,6 +4,35 @@ Updated October 14, 2026. This repository contains reverse-engineering research,
 compatibility specifications, evidence reports, curated registries and analysis
 tools. Client implementation and build work are outside its scope.
 
+October 17 shadow evidence: the [dated original instruction comparison](research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-23_SHADOW_VOLUME_POLICY.md#october-17-bounded-geometry-correspondence-and-visual-baseline-limit)
+finds bounded agreement with the conversion's point apex, silhouette triangle
+winding, cap partition/draw and submission shape. Sharp character patches are
+observed in the conversion, but no comparable original-client visual A/B was
+found; original visual parity remains **Unknown**. Structural agreement rules
+out no difference beyond the compared paths and does not prove original pixels
+or an accepted repair. No semantic names, registry/packet counts or coverage/
+readiness scores change.
+
+October 17 raster follow-up: the [original comparison table](research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-17_RASTER_COMPARE_TABLE.md)
+closes logical indices 0–7 as numeric D3DCMPFUNC 1–8 in the hash-verified
+secondary raster module. Depth index 1 is LESS, matching the conversion's
+numeric table; this is not a shadow repair or original GPU execution claim.
+Coverage/readiness scores and semantic-address/packet counts remain unchanged.
+
+October 17 auction correction: the [original query contract](docs/PRECU_AUCTION_QUERY_CONTRACT.md)
+distinguishes its two Unicode filters from Core3's empty-second-filter parser
+subset and traces the template-selection scalar to ItemTemplateCrc. This
+corrects an older schema description without changing scores, packet inventory
+or canonical semantic-address counts. Static and synthetic verification passes;
+live query/transaction acceptance belongs to the source conversion repository.
+
+October 17 bounded follow-up: the [original overhead Accuracy display](docs/PRECU_OVERHEAD_ACCURACY_CONTRACT.md)
+now has static visibility, failure, interpolation and posture/motion rules.
+Repeated +50% in the conversion is an unbound authored sample, not a server
+value. This adds evidence without changing coverage/readiness scores, packet
+inventory or canonical semantic-address counts; conversion acceptance is tracked
+in its separate source repository.
+
 ## How much is researched and reversed?
 
 Approximately **89% of the observable compatibility behavior is researched**, with
@@ -80,8 +109,9 @@ analysis; dynamic execution and server contact require their own authorization.
 
 The analyzed executable baseline remains SHA-256
 `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`.
-This documentation update did not analyze or execute it, change registries, or
-rescore coverage. Current counts were read directly from the curated CSVs.
+The October17 shadow follow-up statically rechecked that exact image; it did
+not execute it, change registries or rescore coverage. Current counts remain
+those read directly from the curated CSVs.
 
 Next bounded research question: which effective x87 controls and ownership edges
 govern the documented terrain normal producer? Follow the residuals in the
@@ -92,3 +122,11 @@ Prior development reports and status claims are preserved in the
 [historical status snapshot](research/archive/ANALYSIS_STATUS_BEFORE_RESEARCH_ONLY_2026-10-14.md)
 and dated checkpoints. They do not define current scope or authorization.
 See the [research-only documentation policy](docs/RESEARCH_ONLY_SCOPE.md).
+
+
+October14 timed-modifier/combat-action boundary: [timed-buff contract](docs/NGE_PRECU_TIMED_MODIFIER_CONTRACT.md) confirms original expiry,148-row catalog and distinct embedded sampleIcon. A new ambient stationary first throw directly identifies the NGE combat-action decoder; [exact original/basic and current-Core3 extended shapes](docs/NGE_PRECU_COMBAT_ACTION_CONTRACT.md) are independently checked against the hash-verified executable and local producer. Native13,126/4,471 plus five isolated cases passes. Corrected world entry and normal Disconnect/re-entry with local toolbar slot persistence succeed; active buffs and corrected natural combat receipt remain unaccepted. No formal coverage, readiness, alias/packet counts, staging or publication change. See the [bounded checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-14_TIMED_MODIFIERS_AND_COMBAT_ACTION.md).
+
+October 14 Community boundary: the [original Community contract](docs/NGE_PRECU_COMMUNITY_CONTRACT.md) records six-page bindings, corrected name-before-species order and Unicode/ASCII lengths, registered fixtures, mixed Core3 birth-date units and safe wide-CRT conversion. Native13,490/4,780 plus five isolated cases passes; six pages and a real default-search result render. Heading/chat-count follow-up is separately gated. No account data, new aliases, formal coverage or packet-count changes.
+
+
+October 14 late-evening bounded radar follow-up: [radar tooltip/target contract](docs/NGE_PRECU_RADAR_TARGET_CONTRACT.md) and [checkpoint](research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-14_RADAR_CRASHES.md) distinguish the reported empty con-display-vector fault from a second null target-health mediator. Original nested target bindings are adapted; D51DD63E passes world entry, zoom, self/NPC tooltips, shelter/NPC names and bars, hidden Mind and normal Exit. Native13,496/4,780 plus five isolated cases passes. Shutdown caught C++ first throws remain; no zero-exception or full combat/difficulty claim. Source camera default is free for new Pre-CU profiles with saved choices preserved. Earlier autonomous cutoff has ended; bounded follow-up is complete. No coverage/readiness/alias/packet-count change or staging/publication.

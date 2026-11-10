@@ -1,5 +1,12 @@
 # Analysis Checkpoint: Client Auction Requests
 
+October 17 correction: the query row below describes the server callback's
+empty-second-filter subset, not the full original archive grammar. The original
+has two Unicode strings; its investigated UI supplies the second empty. The
+first unlabelled scalar comes from ItemTemplateCrc. See the
+[corrected contract](../../docs/PRECU_AUCTION_QUERY_CONTRACT.md). Historical
+bid/cancel/retrieve observations and counts below are retained.
+
 ## Outcome
 
 Four active client-to-server auction callbacks are closed as complete request paths. Each server registration opcode matches an exact message class embedded in `Stardust.exe`; client construction sites serialize the same field sequence that the server callback parses.

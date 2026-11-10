@@ -30,3 +30,14 @@ CC876358 enters the world. Initial geometry is root180x180, packed parent132x148
 ## Afternoon native UI discrimination
 
 A synthetic hierarchy reproduces the observed original packing rules with actual production UIPage/UIWidget objects: fixed root packing, parent absolute packing, un-packed square and the four-pixel ground margin. Explicit sizes180/200/280/400/256/180, recursive packing, and actual source lower-left mouse resize to280 all retain the expected root size and fit. Native11,546 checks/3,538 malformed rejections plus five isolated cases pass. The native runner now matches production /Zc:wchar_t- and supplies UI forward declarations; initial missing header/ABI compilation errors are corrected. These are production-library synthetic tests, not original asset execution or live resize acceptance. Bare packing/resize therefore does not reproduce the observed180 snap-back. A capped Pre-CU OnSizeChanged diagnostic is prepared to record dimensions/user-modification state and main-image code RVAs only, discriminating the actual root-resize caller without packet/account content.
+
+## Evening live resize acceptance
+
+The [Windows mouse adapter](NGE_PRECU_WINDOW_MOUSE_CONTRACT.md) confirms the failed automated drag's down transition arrived at its endpoint. Build3BC0CEEA corrects that ordering and passes live180→240→300→180, with circular imagery, compass and controls scaling together. Receipts are root240/parent192x208/square192/ground188x192 and root300/parent252x268/square252/ground248x252; the original four-pixel ground margin remains. A distinct240 size survives normal Disconnect/re-entry;180 is restored afterward. Native12,324/3,887 plus five isolated cases passes. Full process-restart persistence, other resolutions/display scales and physical input fidelity remain separate gates; earlier failed/ambiguous receipts remain historical.
+
+October 14 process-restart gate: changed240 radar size and local F2 placement survive normal Exit, full restart, login/world on D97C177C. Restored180 then survives normal Exit/restart on ABB2FDBD. This closes the tested-resolution restart gate; other scales, capture loss and full physical-input fidelity remain open.
+
+
+## Separate tooltip and target-selection crash follow-up
+
+The user's later radar-interaction report exposes missing NGE con data and an independent original target hierarchy mismatch. See the [radar tooltip/target contract](NGE_PRECU_RADAR_TARGET_CONTRACT.md) for dump identities, confidence, repairs and successful bounded D51DD63E retry. These faults are distinct from the already accepted square resize/input work. Skill-based difficulty and full target gameplay/state parity remain open.

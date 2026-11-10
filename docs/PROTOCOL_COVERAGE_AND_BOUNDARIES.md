@@ -2,6 +2,14 @@
 
 ## Coverage tiers
 
+October17 schema correction: the [original auction query](PRECU_AUCTION_QUERY_CONTRACT.md)
+has two Unicode filters, whereas the current Core3 callback consumes only the
+empty second filter's length as an integer. ItemTemplateCrc supplies the first
+previously unlabelled scalar. Static and synthetic alignment checks pass; the
+345-row packet-source inventory and readiness/coverage scores are unchanged.
+This is a corrected compatibility boundary, not live auction acceptance or an
+object-replication schema change.
+
 The replacement decision does not require naming every gameplay message before selecting an engine. It does require proving that unknown messages can be added without changing transport, object ownership or engine coupling. Current evidence supports that separation.
 
 | Tier | Coverage | Evidence | Pre-build status |
@@ -94,3 +102,7 @@ The [combined router](SCENE_WORLD_COMBINED_MOTION_INGRESS_CONTRACT.md) selects a
 ## Round72 outer disconnect completion prefix
 
 [Ordering and ownership](SCENE_WORLD_MULTIPACKET_DISCONNECT_CONTRACT.md) pass52 component checks and109-update joined closure/failure. Outer transport validates all framing then dispatches through matching disconnect, retaining only prior application/control output. Caller explicitly applies or drops queued prefix; suffix never dispatches. Exceptional untransferred ACK arrays now clear with applications; successful caller-owned arrays survive. Source-inspected private zeroing is distinguished from executed lifetime tests. No wire schema/345-row matrix, reason semantics or live phase claim changes.
+
+## October14 source-client quest overlay clarification
+
+The original executable 0x440/0x441 versus current server0x441/0x444 discrepancy remains valid. The NGE source already registers the current server IDs, but its counter field meanings and played-time timer convention differ. The explicit [current Stardust overlay contract](STARDUST_QUEST_OVERLAY_CONTRACT.md) records omitted counter-task identity, bounded registered-codec fixtures, duration policy and live limits. Both existing server_packet_gap_matrix.csv source-class rows remain documented; no new row/status/count or original-client interoperability claim follows.

@@ -33,3 +33,7 @@ Next: close the unchanged observation client normally, deploy the matching newly
 ## Observed visual correction
 
 Installed gl05_r.dll SHA256A9F4EC54965AF63849E530E08EDE66E978320934842B521C884125E14519E78B uses the unchanged main EXE0E1D600D42B75914DFC56112DD177B7611E6DC294FEED73FBC4B433DC93D7B2A and unchanged TREs. Computer-use login shows a textured, opaque selection character after its normal fade; world entry shows textured character and visible radar imagery. **Confirmed for this stationary character/profile**, not all shaders, all hardware or historical overlay equivalence. Retained old DLL permits rollback; user d3d9 wrapper remains uninvolved.
+
+## Evening shadow discrimination
+
+With the same renderer DLL, source EXE3BC0CEEA reproduces sharp dark triangular patches on the stationary world character. Capped numeric skeletal receipts distinguish world ownership and report settled fade-state3/opacity1/soft skinning/no batching. Switching Graphics shadows off removes those patches; restoring shadows reproduces them. **Confirmed shadow-setting correlation; underlying shadow-pass/geometry cause Unknown.** The original setting is restored, with no renderer workaround. Settled selection and inventory previews remain textured/opaque. This narrows the reported world transparency difference and limits the earlier stationary-render acceptance; it does not establish full material, shadow or foliage parity. See the [evening checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2026-10-14_WINDOWS_MOUSE_ORDERING.md).

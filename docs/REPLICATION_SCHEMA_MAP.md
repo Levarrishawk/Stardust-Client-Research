@@ -885,3 +885,7 @@ The [containment checkpoint](../research/checkpoints/IMPLEMENTATION_CHECKPOINT_2
 
 
 October14 source presentation: [original character-sheet adapter](NGE_PRECU_CHARACTER_SHEET_CONTRACT.md) reads raw creature current/max/base/wounds/encumbrance vectors at original indices rather than the six-semantic enum remap. Missing vector entries stay unavailable. Stardust authored six visible rows omit Mind/focus/willpower; background replication is retained. No new schema fields, indexed positions or packet rows are introduced.
+
+## Original journal progress bits: October 14 clarification
+
+PLAY8 completed/active quest byte vectors use least-significant-bit-first indexing, with out-of-range/negative queries false. Receiving these vectors does not populate the separate NGE BitArray members. Profile-specific queries and typed post-success notifications must use the received vectors; see the [original journal contract](NGE_PRECU_QUEST_JOURNAL_CONTRACT.md). This adds no field index or packet registry row.

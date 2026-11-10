@@ -34,6 +34,8 @@ The replacement should decode the wire payload independently, then route typed d
 
 ## CombatAction multi-target constraint
 
+The [October14 source-client adapter](NGE_PRECU_COMBAT_ACTION_CONTRACT.md) preserves the original zero/one-defender presentation gate and separately validates exact packet shapes. The [timed-modifier adapter](NGE_PRECU_TIMED_MODIFIER_CONTRACT.md) restores original timer policy and catalog/HUD bindings. Neither offline codec acceptance nor empty-world startup establishes active combat or buff presentation fidelity.
+
 `combat_action_apply_VA_006E4950` computes the decoded vector length of 0x18-byte legacy defender records:
 
 - zero defenders submits attacker-only combat animation;
@@ -53,3 +55,5 @@ These messages are primarily transient commands/events. Durable properties may a
 - Name all posture-transition and seat-selection subordinate policies.
 - Trace final subscribers for buff and weapon-range changes.
 - Continue through the remaining server-emitted controller types required by a playable scene.
+
+October 14 search verification: [Community contract](NGE_PRECU_COMMUNITY_CONTRACT.md) corrects the historical order to Unicode32 name before U32 species and distinguishes ASCII16/extended strings. Registered0x1E7 fixtures and one real response pass; no new opcode/alias or server-gap status change.

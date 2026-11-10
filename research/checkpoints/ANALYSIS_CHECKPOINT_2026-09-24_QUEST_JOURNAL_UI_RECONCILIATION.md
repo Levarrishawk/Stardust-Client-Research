@@ -11,3 +11,7 @@ The four player event wrappers at `0x00DB4360/4380/43A0/43C0` compare the event'
 This is a **view over immutable original-asset definitions plus replicated/local overlays**, not a request/response protocol initiated by the screen. No direct network send was observed in the inspected constructor, activation, selection, or refresh methods. The current server's counter/timer ID mismatch therefore cannot be repaired by just rebuilding the UI; it must be handled in a versioned protocol compatibility profile or server change.
 
 **Confirmed:** RTTI, bound controls, event names/subscription lifetime, local-player identity gates, category/tree/description call order and no direct send in inspected methods. **Strongly inferred:** `checkShowMission` filters quest/mission visibility based on boolean passed into manager queries. **Unknown:** every category formatting rule, precise counter/timer display order and malformed-quest handling in the UI. No new opcode or whole-client percentage is claimed.
+
+## October 14 authored-page clarification
+
+Both original counter-sample bindings use the same counterSample CodeData key, rather than establishing two separately authored sample widgets. The effective embedded page identifies checkShowMission as Include Completed Quests, and the query receives the inverse checked state as active-only. See the [journal contract](../../docs/NGE_PRECU_QUEST_JOURNAL_CONTRACT.md) for exact asset identity and current acceptance limits.

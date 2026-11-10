@@ -82,3 +82,7 @@ The quest journal cannot be reconstructed from network traffic alone. The hierar
 - `MMOCoreORB/src/server/zone/packets/object/QuestTaskTimerMessage.h`
 - `MMOCoreORB/src/server/zone/objects/player/LuaPlayerObject.cpp`
 
+
+## October 14 schema clarification
+
+The previously unknown seven initialized column names are now resolved by direct global-initializer references and the effective corpus. See the [journal contract](../../docs/NGE_PRECU_QUEST_JOURNAL_CONTRACT.md). This dated clarification supersedes only that unknown-name conclusion; the original/server controller mismatch remains open.

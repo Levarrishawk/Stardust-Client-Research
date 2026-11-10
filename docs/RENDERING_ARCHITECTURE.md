@@ -176,7 +176,21 @@ Raster compiler `0x62A0B340` emits the `(D3DRS,value)` vector applied by `0x62A0
 | `+0x68/+0x6C/+0x70` | 188/187/186 | CCW_STENCILPASS/ZFAIL/FAIL |
 | `+0x74/+0x78` | 59/58 | STENCILWRITEMASK/STENCILMASK |
 
-Together with the previously confirmed material, alpha/stencil reference, factor, scroll and fog fields, this closes the core PASS state roles. Translation-table element values still require enumeration.
+Together with the previously confirmed material, alpha/stencil reference, factor, scroll and fog fields, this closes the core PASS state roles. Other translation-table element values still require enumeration; the comparison table is now closed below.
+
+The hash-verified `s207_r.dll` comparison table at module RVA `0x0015143C`
+(preferred VA `0x62B5143C`, image base `0x62A00000`) contains eight little-endian
+U32 values `1,2,3,4,5,6,7,8`. Logical indices 0–7 therefore mean NEVER, LESS,
+EQUAL, LESSEQUAL, GREATER, NOTEQUAL, GREATEREQUAL and ALWAYS. The depth compiler
+loads logical PASS `+0x1C` at module RVA `0xB504`, indexes this table at `0xB507`,
+and constructs state 23 (ZFUNC) at `0xB519`. Alpha and front/CCW stencil compare
+members use the same table. **Confirmed:** index 1 is LESS (2), while index 3 is
+LESSEQUAL (4); the current conversion's numeric table agrees. This does not
+establish a shadow repair or original GPU execution. See the
+[bounded table checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-10-17_RASTER_COMPARE_TABLE.md)
+for full module identity, file offsets, consumers, tools and reproduction. These
+secondary-module addresses do not add primary-executable registry entries or
+change coverage counts.
 
 Per-texture compiler `0x62A0E570` compiles D3DSAMP 10 (maximum anisotropy), 1/2/3 (address U/V/W), and 7/6/5 (mip/min/mag filtering). TextureData supplies defaults; sentinel values select stage overrides. `0x62A0E0E0` binds the texture and `0x62A0E910` applies the sampler vector. Fixed-function color/alpha combiners remain pending.
 

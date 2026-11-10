@@ -46,3 +46,7 @@ For non-self results it applies wildcard name/guild matching; role-player, newbi
 - Four-word current bitmask convention: **Confirmed**.
 - Meanings of four otherwise unused request integers: **Unknown but positions preserved**.
 - Historical intended behavior of the two set-matchmaking commands: **Unknown/dormant in current Stardust**.
+
+## October 14 verification correction
+
+Fresh inspection of the same hash-verified baseline corrects the historical field list above: **Unicode name precedes U32 species**, at reader012567A6 then012567B9/C1. Unicode uses U32 UTF-16 code-unit count; only ASCII uses U16/FFFF+U32 byte lengths. Preserve this historical report, but implement the corrected [durable contract](../../docs/NGE_PRECU_COMMUNITY_CONTRACT.md). Registered fixtures and a real default-search result agree. No alias/coverage changes.

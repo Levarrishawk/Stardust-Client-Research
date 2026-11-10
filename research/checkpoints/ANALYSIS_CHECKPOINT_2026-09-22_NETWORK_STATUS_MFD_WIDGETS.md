@@ -40,3 +40,9 @@ Bindings, metric categories, watched-object ownership and status-bar layers are
 **confirmed/strongly inferred**. Exact display units and recent-value decay
 constants are fidelity tests, not protocol uncertainties.
 
+
+## October 14 source-client crash correction
+
+User reports Ctrl-O / Show Network Status Window crashes. The exact client-owned fatal names missing textActivity at SwgCuiNetStatus.cpp50 from /GroundHUD.netStatus. Effective ui/ui_pda_net_status.inc, priority53 stardust_3_01.tre,3862 bytes/SHA2566C771709DCAE74164A2A64ECA7AB9FFE25A89232E2A31078E978DBE5904F60D3 binds exactly textPing/textPacketLoss/textBandwidth/textFps, consistent with the original constructor above. Confirmed asset/source mismatch; no asset replacement is necessary for these four diagnostics.
+
+Source SwgCuiNetStatus treats activity as optional only under usePrecuHud, retains required NGE binding otherwise, and requests GalaxyLoopTimes only when its optional display exists. Existing ping/bandwidth/FPS diagnostics and options access remain. Cluster-info lookup is now null-checked before metric reads. Release build passes existing external PDB warnings; deployed Experimental EXEF2375434AC20DB29FD469503D4BBE6A708717F45095BC4C3DE3413244271B8C6 has matching symbols. Live toggle acceptance is the next gate; no protocol/function metric changes or private assets/account data are promoted.

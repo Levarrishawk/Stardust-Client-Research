@@ -1,0 +1,41 @@
+# Original Community and character-search compatibility
+
+October 14, 2026. Bounded question: can the source client construct the original six-page Community window and consume the original character-search response without NGE-only UI requirements or date conversion failures?
+
+## Evidence and correction
+
+The executable baseline SHA-256 is `E782BF1C49B3DA730F66B54BC558947C46493F7133F672EED1D8E0C56A6B6150`, reverified before address use. Original root/factory `00F6FD50`/`00F70470` and Character/Search mediators `01058360`/`01054690` correlate with the six-page composition in the [September composition checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_COMMUNITY_UI_COMPOSITION.md). Effective `ui/ui_matchmaking.inc` is priority 53 `stardust_3_01.tre`, 106,205 bytes, SHA-256 `0B005EF991D91701CF9D9F2EF2A58851977A1BA2B9D3226CC22F6B0CBF3CB950`. Only independently authored descriptions and identities are retained here.
+
+Character CodeData has original name/date/planet/species/bio, title/language, badges and individual flag controls. NGE cross-galaxy, hide-location and embedded LFG pages are absent. Search has four original faction/species/profession/title combos, three flags, a search button, an illustrative list and a separate initially hidden eight-column table. **Confirmed asset/source mismatch.** Requiring the NGE controls caused the reproduced fatal during Community construction.
+
+Fresh disassembly corrects the older [matchmaking checkpoint](../research/checkpoints/ANALYSIS_CHECKPOINT_2026-09-22_MATCHMAKING_AND_WHO.md): record decoder `012566D0` reads the word vector, then **Unicode name before U32 species**. Name reader `011948B0` is called at `012567A6`; species follows at `012567B9`/`012567C1`. ASCII region starts at `012567FE`/`0125680B`, followed by planet, guild and title. Unicode uses U32 code-unit count with UTF-16 units; ASCII uses U16 byte count and the `FFFF`/U32 extension. The old blanket variable-length-string statement does not apply to Unicode. **Confirmed bytes/order.** Local Core3 `MMOCoreORB/src/server/zone/packets/object/PlayersNearYou.h` independently matches name-before-species. Existing registration is inner `0x1E7`, server flags `0x0B`, standard controller scalar then U32 result count.
+
+`MMOCoreORB/src/server/zone/objects/creature/commands/RequestCharacterMatchCommand.h` parses nine tokens: five integers, faction, species, profession/title and wildcard. It uses four-word player flags and caps results at 32. Some legacy integers and filter comparisons remain uncertain; source correlation is not deployed-revision proof. Empty textual filters are literal `""` tokens.
+
+## Implementation boundary
+
+Engine-neutral `PrecuWhoProfile` retains all bitmask words, name, species and four ASCII strings. It parses a complete result before assigning the caller's object, rejects truncation and trailing bytes, and bounds allocation to 1,024 records / 4,096 words per record plus available-byte checks. These larger defensive caps are modern policy, distinct from the server's 32-result limit. Unknown words remain intact. The actual registered `MatchMakingCharacterResult` serializer selects this layout only under the explicit Pre-CU profile; NGE fields and packing remain on their existing false-profile path. No synthetic NGE levels, biography or group IDs are fabricated.
+
+The request builder emits `4 flags 0 0 0 faction species profession wildcard`, validates whitespace/quotes/embedded NUL before mutating output, and does not invent meanings for the three zero slots. Filters initialize to Any / unchecked, replacing asset illustration values. Original species 0..7,33,49 and effective skill profession/title names populate the controls; custom species completeness and exact server filter behavior remain open.
+
+Community Character uses the original individual controls, optional NGE-only bindings and guarded absent LFG ownership. Programmatic refresh suppresses callbacks so opening the page does not send title/language/flag changes. Birth planet and badges remain blank pending a real model; authored sample values are removed. Collections remain deferred. Search displays the real table, hides the illustrative list/dot, and binds headings to an available original HUD button style. Name/species/title and known role/group/helper bits are projected; unknown personality/faction presentation remains blank. Textual state markers are provisional, not original dot/rating fidelity. Chat tests the profile's real result collection before reporting an empty list.
+
+## Birth-date fault and units
+
+The first live Character activation on build `B90AB` ends in `c0000409`, with `_Strftime_l`, `CalendarTime::getCharacerBirthDateString` and Character activation in the fault chain. NGE interpreted an epoch-sized number as days since January 2001, performed a signed multiplication and passed failed local-time output to formatting. **Confirmed fault route and source hazards.**
+
+Local Core3 `src/server/zone/managers/player/creation/PlayerCreationManager.cpp` stores creation `now.getTime()` as birth date. `src/server/zone/objects/player/PlayerObjectImplementation.cpp::getBirthDate` returns positive stored values but can synthesize age seconds when missing; `packets/player/PlayerObjectMessage3.h` sends the U32 field. These are mixed server semantics, not permission to guess an age as a calendar date.
+
+`ClientGame.usePrecuBirthDatesAsUnixSeconds` defaults true only within the Pre-CU Character path; false retains the old day interpretation. Both conversion paths use checked 64-bit arithmetic and reject failed conversion before formatting. Windows explicitly uses `_localtime64` because the project intentionally retains `_USE_32BIT_TIME_T=1`; no global time ABI change is made. Epoch values below 978336000 remain unknown/blank. The CRT upper year limit is checked. Fixtures cover negative/extreme days, a valid legacy date, ambiguous small epoch values, a 2026 epoch and U32 maximum in 2106.
+
+## Verification and remaining gates
+
+Native suite: 13,490 checks / 4,780 malformed-input rejections plus five isolated CRC/customization cases. Actual registered `0x1E7` fixtures cover 0/1/2 results, variable word counts, UTF-16, high/unknown bits, every truncated prefix, impossible counts, string bounds, tails, unchanged destination on rejection, exact request grammar and retained NGE packing. Release builds pass with existing third-party missing-PDB warnings.
+
+Computer use confirms six pages open, Character renders a valid date, and normal Exit succeeds on `D591A134`. Build `ABB2FDBD` receives a real default-search response and displays the test character's name/species. That receipt reveals and motivates a separate NGE chat-empty check correction and heading correction; those are deployed in `A86B4C608E480B4A51C3F1E86C105A7D4F28FBEBCB94DA88AA161D1551C9E52F` for the next live gate. No profile/privacy edit, tell, invite, friend/ignore mutation or intentional gameplay action is used. No account/result content is retained in this specification.
+
+Next: verify corrected headings/chat count, close/reopen and normal Disconnect/re-entry reconstruction. Multiple real results, filtered queries, biographies, title/language edits, badges/birth planet, personal matching and original icon/rating fidelity remain unaccepted. This bounded implementation changes no function/protocol/research denominator.
+
+## Final Community acceptance receipt
+
+A86B4C60 passes actual default search with displayed name/species and correct one-result chat count, then normal Disconnect/re-entry and reopening Character/Search with a valid date. Results remain local between reopening; different-character cache policy is unaccepted. Final56C79A659B31E8133213891FF7BB87C3D762718E7C2C38DB27858FFEFD365FDE enters the world and localizes the corrected Roleplayer heading. Source/runtime matching symbols remain private. XP monitor expansion reveals all five authored selectors and restores compact size; one eligible choice/empty XP does not accept varied choices or nonempty XP. No deliberate gameplay or social/privacy mutation. Earlier A86 normal Exit returns0; caught C++ first throws are not claimed eliminated. Active timed buffs/natural corrected combat/underlying shadow issue remain separate open gates.

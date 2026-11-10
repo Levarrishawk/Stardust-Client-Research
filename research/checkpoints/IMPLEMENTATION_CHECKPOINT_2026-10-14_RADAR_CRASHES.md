@@ -1,0 +1,15 @@
+# Radar crash discrimination and bounded retry
+
+Question: which client path caused the reported radar-interaction access violation, and can the corrected build survive the same tooltip/selection paths? Date: October 14, 2026 Eastern, extending past midnight UTC.
+
+Inputs are the user's `20261015020457` crash pair, the first retry's `20261015022547` pair, the source client, effective Stardust HUD/overlay inventory and version-matched source builds. Static minidump stream inspection, unique instruction matching, DIA lookup and a bounded computer-use retry establish two different failures. Exact identities, addresses, confidence, source symbols, asset fingerprint and compatibility policy are consolidated in the [durable radar/target contract](../../docs/NGE_PRECU_RADAR_TARGET_CONTRACT.md). No original-baseline VA is introduced; no canonical alias or packet row changes.
+
+The first failure is an empty NGE con-display vector in a creature tooltip; exact old symbols were unavailable, so unique code correspondence is explicitly distinguished from direct unwinding. Guarded build 9C1938B6 reaches the world but exposes a second crash in attackable-target HAM presentation. Its matching executable/symbols identify a null mediator. The effective original target has a nested status page while the NGE constructor expects flat bindings. Final D51DD63E adapts the original hierarchy and adds an early null check without replacing assets.
+
+Release build and native 13,496/4,780 plus five isolated cases pass. The first native test attempt lacking `dpvs.dll` fails; including the existing Experimental runtime in the runner's PATH resolves the actual production dependency. Live computer use accepts zoom, self/multiple NPC tooltips, shelter and NPC target names/bars, removal of samples and normal Exit with code zero. Shutdown contains caught C++ first throws; no new access violation or crash report occurs. This is a bounded receipt, not comprehensive stability or combat acceptance.
+
+The separate camera-default request is also built/deployed: new Pre-CU profiles initialize free mode before existing version-one saved-option registration; saved preferences still win. No user preference files were reset and no clean-profile live default test is claimed.
+
+The earlier 22:00 autonomous cutoff is complete; these later explicit camera/crash requests authorize only their bounded follow-up. Stop broad autonomous work. Exact next action under renewed scope: recover original consider/difficulty semantics, or validate target gameplay/state updates with authoritative fixtures and a separately bounded live gate. Planet-map work remains deferred. Credentials, endpoints, original assets, dumps, executable and symbols stay outside curated Git content; nothing is staged, committed or published by this work.
+
+Final documentation validation: 1,968 Markdown files, zero broken links/private links, 2,626 unique addresses and 345 packet rows; both repository diff checks pass. Staged lists are empty. Existing unrelated dirty research work is preserved.
